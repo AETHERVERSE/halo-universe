@@ -4,210 +4,422 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AETHER — HALO Universe</title>
+<title>HALO Universe — AETHER</title>
 
 <style>
-*{
-  box-sizing:border-box;
+
+* {
+    box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  min-height:100vh;
-  font-family:Georgia,serif;
-  background:linear-gradient(180deg,#080d20,#15152d,#241c38);
-  color:#eee8f5;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f5edf8;
+
+    background:
+        radial-gradient(circle at 15% 10%, #29385c 0%, transparent 30%),
+        radial-gradient(circle at 85% 20%, #43284d 0%, transparent 28%),
+        linear-gradient(180deg, #070b18, #11172b, #211832);
 }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
-header{
-  text-align:center;
-  padding:55px 15px 35px;
+header {
+    text-align: center;
+    padding: 45px 15px 30px;
 }
 
-.logo{
-  letter-spacing:8px;
-  color:#f5d990;
-  font-size:1rem;
+.logo {
+    letter-spacing: 8px;
+    color: #f2d58e;
+    font-size: 0.9rem;
 }
 
-h1{
-  font-size:clamp(2.8rem,9vw,5.5rem);
-  letter-spacing:8px;
-  margin:15px 0;
-  color:#f5d990;
+h1 {
+    font-size: clamp(2.6rem, 9vw, 5.2rem);
+    letter-spacing: 8px;
+    margin: 15px 0;
+    color: #f2d58e;
 }
 
-.subtitle{
-  letter-spacing:5px;
-  color:#c9b8d8;
+.subtitle {
+    letter-spacing: 4px;
+    color: #cdbbd9;
 }
 
-nav{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:12px;
-  margin:20px 0 50px;
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 40px;
 }
 
-nav a{
-  color:#f5d990;
-  text-decoration:none;
-  border:1px solid #756486;
-  border-radius:30px;
-  padding:12px 22px;
+nav a {
+    padding: 10px 17px;
+    border: 1px solid #756486;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #d8cde0;
+    background: rgba(255,255,255,0.03);
 }
 
-nav a:hover{
-  background:#ffffff12;
+nav a:hover {
+    background: rgba(255,255,255,0.08);
+    color: #f2d58e;
 }
 
-.hero{
-  text-align:center;
-  padding:65px 25px;
-  border:1px solid #756486;
-  border-radius:30px;
-  background:#080d20aa;
+.hero {
+    text-align: center;
+    padding: 60px 25px;
+    border: 1px solid #756486;
+    border-radius: 30px;
+
+    background: rgba(8,13,32,0.78);
+
+    box-shadow:
+        0 0 50px rgba(205,177,255,0.15);
 }
 
-.hero h2{
-  font-size:2.5rem;
-  color:#f5d990;
+.hero h2 {
+    font-size: 2.4rem;
+    color: #f2d58e;
+    margin-top: 0;
 }
 
-.hero p{
-  max-width:700px;
-  margin:20px auto;
-  font-size:1.15rem;
-  line-height:1.8;
+.hero p {
+    max-width: 720px;
+    margin: 20px auto;
+    line-height: 1.8;
+    color: #d8cde0;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-  margin-top:45px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin-top: 35px;
 }
 
-.card{
-  text-align:center;
-  padding:30px 20px;
-  border:1px solid #756486;
-  border-radius:22px;
-  background:#0b1024cc;
+.card {
+    padding: 32px 22px;
+    border: 1px solid #5e5774;
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.035);
+
+    text-align: center;
+
+    transition: transform 0.2s, background 0.2s;
 }
 
-.card h3{
-  color:#f5d990;
-  letter-spacing:2px;
+.card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.07);
 }
 
-.card p{
-  color:#c9b8d8;
-  line-height:1.6;
+.icon {
+    font-size: 2.6rem;
+    margin-bottom: 12px;
 }
 
-.card a{
-  display:inline-block;
-  margin-top:10px;
-  color:#f5d990;
-  text-decoration:none;
+.card h3 {
+    color: #f2d58e;
+    letter-spacing: 2px;
 }
 
-footer{
-  text-align:center;
-  padding:60px 10px 30px;
-  color:#a99ab8;
-  letter-spacing:3px;
+.card p {
+    color: #c9bdd3;
+    line-height: 1.6;
 }
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #f2d58e;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.quote {
+    text-align: center;
+    margin: 55px auto 20px;
+    max-width: 700px;
+
+    color: #cdbbd9;
+
+    font-style: italic;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    padding: 55px 10px 25px;
+
+    color: #a99ab8;
+
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
+
 <header>
-  <div class="logo">AETHER</div>
-  <h1>HALO UNIVERSE</h1>
-  <div class="subtitle">SEVEN STARS. ONE LIGHT.</div>
+
+    <div class="logo">
+        AETHER
+    </div>
+
+    <h1>
+        HALO UNIVERSE
+    </h1>
+
+    <div class="subtitle">
+        SEVEN STARS. ONE LIGHT.
+    </div>
+
 </header>
 
+
 <nav>
-  <a href="index.html">Home</a>
-  <a href="universe.html">HALO Universe</a>
-  <a href="#codex">Codex</a>
-  <a href="#events">Events</a>
-  <a href="#achievements">Achievements</a>
+
+    <a href="/halo-universe/">Home</a>
+
+    <a href="universe.html">
+        HALO Universe
+    </a>
+
+    <a href="members.html">
+        Members
+    </a>
+
+    <a href="halo.html">
+        My HALO
+    </a>
+
+    <a href="ranks.html">
+        Rank System
+    </a>
+
+    <a href="codex.html">
+        Codex
+    </a>
+
+    <a href="events.html">
+        Events
+    </a>
+
+    <a href="achievements.html">
+        Achievements
+    </a>
+
 </nav>
+
 
 <section class="hero">
 
-  <h2>Welcome to the Universe.</h2>
+    <h2>
+        Welcome to the Universe.
+    </h2>
 
-  <p>
-    You found the stars beyond the stage.
-    This is the world of AETHER — a universe of memories,
-    stories, discoveries and seven lights connected by HALO.
-  </p>
+    <p>
+        You found the world beyond the stage.
+    </p>
 
-  <p>
-    Explore the worlds, uncover the lore,
-    follow the journey and discover what waits beyond the stage.
-  </p>
+    <p>
+        Here, every star has a story,
+        every world holds a memory,
+        and every HALO becomes part of the journey.
+    </p>
+
+    <p>
+        Explore AETHER, uncover forgotten memories,
+        discover the seven worlds and follow the path
+        that connects the stars.
+    </p>
 
 </section>
 
-<div class="grid">
 
-  <div class="card" id="codex">
-    <h3>✦ CODEX</h3>
-    <p>
-      Discover the lore, worlds, relics and secrets
-      of the AETHER universe.
-    </p>
-    <a href="#">Enter Codex →</a>
-  </div>
+<section class="grid">
 
-  <div class="card" id="events">
-    <h3>✧ EVENTS</h3>
-    <p>
-      Follow special events, challenges,
-      transmissions and discoveries.
-    </p>
-    <a href="#">Explore Events →</a>
-  </div>
 
-  <div class="card" id="achievements">
-    <h3>★ ACHIEVEMENTS</h3>
-    <p>
-      Your journey as HALO leaves traces.
-      Collect memories and unlock achievements.
-    </p>
-    <a href="#">View Achievements →</a>
-  </div>
+    <div class="card">
 
-  <div class="card">
-    <h3>☾ MY HALO</h3>
-    <p>
-      Your personal place within the AETHER universe.
-    </p>
-    <a href="#">Enter My HALO →</a>
-  </div>
+        <div class="icon">
+            👑
+        </div>
+
+        <h3>
+            AETHER
+        </h3>
+
+        <p>
+            Meet the seven stars and discover
+            who they are beyond the stage.
+        </p>
+
+        <a href="members.html">
+            Meet the Members →
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            📜
+        </div>
+
+        <h3>
+            THE CODEX
+        </h3>
+
+        <p>
+            Explore worlds, Guardians, relics,
+            transmissions and hidden lore.
+        </p>
+
+        <a href="codex.html">
+            Open the Codex →
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            ⭐
+        </div>
+
+        <h3>
+            MY HALO
+        </h3>
+
+        <p>
+            Your future personal space within
+            the AETHER universe.
+        </p>
+
+        <a href="halo.html">
+            Enter My HALO →
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            🌟
+        </div>
+
+        <h3>
+            RANK SYSTEM
+        </h3>
+
+        <p>
+            Begin as a New Star and journey
+            toward becoming a Legendary HALO.
+        </p>
+
+        <a href="ranks.html">
+            Discover the Ranks →
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            🌙
+        </div>
+
+        <h3>
+            EVENTS
+        </h3>
+
+        <p>
+            Take part in challenges, puzzles,
+            transmissions and special events.
+        </p>
+
+        <a href="events.html">
+            Explore Events →
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            🏆
+        </div>
+
+        <h3>
+            ACHIEVEMENTS
+        </h3>
+
+        <p>
+            Collect memories, milestones
+            and special HALO achievements.
+        </p>
+
+        <a href="achievements.html">
+            View Achievements →
+        </a>
+
+    </div>
+
+
+</section>
+
+
+<div class="quote">
+
+    “Somewhere beyond the stars,
+    seven lights are waiting to be found.”
 
 </div>
 
+
 <footer>
-  ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    <br><br>
+
+    #WEAREHALO • #WEAREAETHER
+
 </footer>
+
 
 </div>
 
 </body>
-  </html>
+</html>
