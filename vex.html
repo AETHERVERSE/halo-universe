@@ -1,194 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AETHER — Vex</title>
+<title>Vex — AETHER</title>
 
 <style>
 
-*{
-box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-margin:0;
-min-height:100vh;
-font-family:Georgia,serif;
-background:linear-gradient(135deg,#080817,#17112b,#0d0d20);
-color:#ddd2e6;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #f5edf8;
+
+    background:
+        radial-gradient(circle at 50% 0%, #633b78 0%, transparent 28%),
+        radial-gradient(circle at 15% 30%, #29213d 0%, transparent 30%),
+        linear-gradient(180deg, #090817, #171326, #24182f);
 }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:30px 20px 60px;
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
 }
 
-header{
-text-align:center;
-padding:35px 10px;
+header {
+    text-align: center;
+    padding: 45px 15px 25px;
 }
 
-.logo{
-letter-spacing:8px;
-font-size:1rem;
-color:#d8b4ff;
+.logo {
+    letter-spacing: 8px;
+    color: #d9a8ff;
+    font-size: 0.9rem;
 }
 
-h1{
-font-size:clamp(2.8rem,9vw,5rem);
-letter-spacing:8px;
-margin:15px 0;
-color:#d9a8ff;
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    letter-spacing: 10px;
+    margin: 15px 0;
+    color: #d9a8ff;
 }
 
-.subtitle{
-letter-spacing:4px;
-color:#bfa8d0;
+.subtitle {
+    letter-spacing: 5px;
+    color: #d5c3dc;
 }
 
-.member{
-margin-top:25px;
-padding:40px 25px;
-text-align:center;
-border:1px solid rgba(190,150,230,.45);
-border-radius:30px;
-background:rgba(20,15,40,.72);
-box-shadow:0 0 45px rgba(120,70,170,.18);
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 40px;
 }
 
-.star{
-font-size:3rem;
-color:#d9a8ff;
-margin-bottom:15px;
+nav a {
+    padding: 10px 16px;
+    border: 1px solid #756486;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #d8cde0;
+    background: rgba(255,255,255,0.03);
 }
 
-h2{
-font-size:2.3rem;
-color:#e1b6ff;
-letter-spacing:5px;
-margin:10px 0 25px;
+nav a:hover {
+    color: #d9a8ff;
+    background: rgba(255,255,255,0.08);
 }
 
-.role{
-font-size:1.2rem;
-letter-spacing:3px;
-color:#c89bea;
-margin-bottom:25px;
+.hero {
+    text-align: center;
+    padding: 55px 25px;
+
+    border: 1px solid #8d67a5;
+    border-radius: 30px;
+
+    background:
+        radial-gradient(circle, rgba(217,168,255,0.12), transparent 60%),
+        rgba(10,13,30,0.82);
+
+    box-shadow:
+        0 0 60px rgba(160,90,200,0.12);
 }
 
-.world{
-font-size:1.3rem;
-color:#f0d9ff;
-margin:20px 0;
+.star {
+    font-size: 4rem;
+    color: #d9a8ff;
 }
 
-.description{
-max-width:650px;
-margin:30px auto;
-font-size:1.15rem;
-line-height:1.8;
+.hero h2 {
+    font-size: 2.8rem;
+    color: #d9a8ff;
+    letter-spacing: 5px;
+    margin: 10px 0;
 }
 
-.info{
-margin-top:30px;
-padding:25px;
-border-top:1px solid rgba(190,150,230,.3);
-border-bottom:1px solid rgba(190,150,230,.3);
-line-height:1.8;
+.role {
+    color: #dbc7df;
+    letter-spacing: 3px;
 }
 
-.back{
-display:inline-block;
-margin-top:30px;
-padding:14px 28px;
-border:1px solid #c89bea;
-border-radius:30px;
-color:#e1b6ff;
-text-decoration:none;
-letter-spacing:2px;
+.world {
+    margin-top: 18px;
+    color: #d9a8ff;
+    font-size: 1.1rem;
 }
 
-.back:hover{
-background:rgba(200,155,235,.15);
+.quote {
+    max-width: 700px;
+    margin: 30px auto 0;
+    color: #d8cde0;
+    font-style: italic;
+    line-height: 1.8;
 }
 
-footer{
-text-align:center;
-padding:50px 10px 20px;
-color:#9989a8;
-letter-spacing:2px;
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 30px;
+}
+
+.card {
+    padding: 28px 20px;
+    border: 1px solid #655b78;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.035);
+}
+
+.card h3 {
+    color: #d9a8ff;
+    letter-spacing: 2px;
+}
+
+.card p {
+    color: #d8cde0;
+    line-height: 1.7;
+}
+
+.lore {
+    margin-top: 30px;
+    padding: 35px 25px;
+
+    border: 1px solid #756486;
+    border-radius: 25px;
+
+    background: rgba(8,13,32,0.72);
+}
+
+.lore h2 {
+    color: #d9a8ff;
+}
+
+.lore p {
+    color: #d8cde0;
+    line-height: 1.8;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 24px;
+
+    border: 1px solid #756486;
+    border-radius: 30px;
+
+    color: #d9a8ff;
+    text-decoration: none;
+}
+
+footer {
+    text-align: center;
+    padding: 60px 10px 25px;
+    color: #a99ab8;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
 }
 
 </style>
 </head>
 
+
 <body>
 
 <div class="container">
 
+
 <header>
 
-<div class="logo">AETHER</div>
+    <div class="logo">
+        AETHER
+    </div>
 
-<h1>VEX</h1>
+    <h1>
+        VEX
+    </h1>
 
-<div class="subtitle">THE SHADOW WITHIN THE STARS</div>
+    <div class="subtitle">
+        THE SHADOW WITHIN THE STARS
+    </div>
 
 </header>
 
-<section class="member">
 
-<div class="star">✧</div>
+<nav>
 
-<h2>VEX</h2>
+    <a href="/halo-universe/">
+        Home
+    </a>
 
-<div class="role">
-THE ELDEST
-</div>
+    <a href="universe.html">
+        HALO Universe
+    </a>
 
-<div class="world">
-◈ HOLLOW
-</div>
+    <a href="members.html">
+        Members
+    </a>
 
-<p class="description">
+    <a href="vex.html">
+        Vex
+    </a>
 
-Vex carries the quiet strength of the eldest among the seven.
-Calm, observant and difficult to read, he protects more than he reveals.
+</nav>
 
-Behind his controlled presence lies a connection to Hollow —
-a world where light and shadow exist dangerously close together.
 
-</p>
+<section class="hero">
 
-<div class="info">
+    <div class="star">
+        ✧
+    </div>
 
-<strong>Guardian</strong><br>
-Black Panther — carrying a purple crystal pendant.
+    <h2>
+        VEX
+    </h2>
 
-<br><br>
+    <div class="role">
+        THE ELDEST
+    </div>
 
-<strong>Relic</strong><br>
-The Purple Crystal
+    <div class="world">
+        ◈ HOME WORLD: HOLLOW ◈
+    </div>
 
-<br><br>
-
-<strong>Birthday</strong><br>
-30.03.
-
-</div>
-
-<a class="back" href="members.html">
-← BACK TO MEMBERS
-</a>
+    <div class="quote">
+        “Even shadows remember where the light once stood.”
+    </div>
 
 </section>
 
+
+<section class="info-grid">
+
+
+    <div class="card">
+
+        <h3>
+            🖤 OFFICIAL ROLE
+        </h3>
+
+        <p>
+            Eldest Member of AETHER
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🎂 BIRTHDAY
+        </h3>
+
+        <p>
+            March 30
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🌑 HOME WORLD
+        </h3>
+
+        <p>
+            Hollow
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🐾 GUARDIAN
+        </h3>
+
+        <p>
+            Black Panther with a purple crystal pendant.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            💎 RELIC
+        </h3>
+
+        <p>
+            Purple Crystal Pendant
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🕳️ HOLLOW
+        </h3>
+
+        <p>
+            A darkness that seeks to consume the light
+            Vex carries within himself.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<section class="lore">
+
+    <h2>
+        📜 HOLLOW
+    </h2>
+
+    <p>
+        Hollow is a world where light has almost completely
+        disappeared. Its skies are silent, its landscapes
+        are filled with shadows, and its secrets are rarely
+        revealed willingly.
+    </p>
+
+    <p>
+        Vex learned early that darkness does not always
+        announce itself. Sometimes it simply waits,
+        watches and slowly grows.
+    </p>
+
+    <p>
+        His black panther Guardian has remained beside him
+        through every shadow, carrying a purple crystal
+        that reflects the light Hollow could not destroy.
+    </p>
+
+    <p>
+        But Hollow has not forgotten Vex.
+        And somewhere within its darkness, something is
+        still trying to call him home.
+    </p>
+
+</section>
+
+
+<a class="back" href="members.html">
+    ← BACK TO MEMBERS
+</a>
+
+
 <footer>
-ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    <br><br>
+
+    #WEAREHALO • #WEAREAETHER
+
 </footer>
+
 
 </div>
 
