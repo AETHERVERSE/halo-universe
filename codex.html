@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The AETHER Codex</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #e9e6ff;
+
+    background:
+        radial-gradient(circle at 50% 0%, #443b78 0%, transparent 30%),
+        radial-gradient(circle at 10% 35%, #211d43 0%, transparent 30%),
+        linear-gradient(180deg, #080817, #11102b, #18163a);
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 55px 15px 35px;
+}
+
+.logo {
+    letter-spacing: 8px;
+    color: #b9adff;
+    font-size: 0.9rem;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    letter-spacing: 7px;
+    margin: 18px 0;
+    color: #eeeaff;
+}
+
+.subtitle {
+    color: #bdb8d9;
+    letter-spacing: 4px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 45px;
+}
+
+nav a {
+    padding: 10px 17px;
+    border: 1px solid #575477;
+    border-radius: 30px;
+    text-decoration: none;
+    color: #d8d5ed;
+    background: rgba(255,255,255,0.03);
+}
+
+nav a:hover {
+    color: #c8bdff;
+    background: rgba(255,255,255,0.08);
+}
+
+.codex-intro {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 55px;
+}
+
+.codex-intro h2 {
+    color: #c8bdff;
+    letter-spacing: 3px;
+}
+
+.codex-intro p {
+    color: #c9c5dc;
+    line-height: 1.9;
+}
+
+.codex-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.codex-card {
+    padding: 32px 25px;
+    min-height: 190px;
+
+    border: 1px solid #555174;
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.06),
+            rgba(255,255,255,0.02)
+        );
+
+    transition: transform 0.3s ease,
+                border-color 0.3s ease;
+}
+
+.codex-card:hover {
+    transform: translateY(-6px);
+    border-color: #9c91dc;
+}
+
+.codex-card h3 {
+    margin-top: 0;
+    color: #d0c7ff;
+    letter-spacing: 2px;
+}
+
+.codex-card p {
+    color: #c4c1d7;
+    line-height: 1.7;
+}
+
+.codex-card .symbol {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 65px 10px 30px;
+    color: #85819f;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<header>
+
+    <div class="logo">
+        AETHER
+    </div>
+
+    <h1>
+        THE AETHER CODEX
+    </h1>
+
+    <div class="subtitle">
+        SOME STORIES ARE MEANT TO BE REMEMBERED
+    </div>
+
+</header>
+
+
+<nav>
+
+    <a href="/halo-universe/">
+        Home
+    </a>
+
+    <a href="universe.html">
+        HALO Universe
+    </a>
+
+    <a href="members.html">
+        Members
+    </a>
+
+    <a href="codex.html">
+        Codex
+    </a>
+
+</nav>
+
+
+<section class="codex-intro">
+
+    <h2>
+        ✦ THE ARCHIVE
+    </h2>
+
+    <p>
+        Beyond the stage lies a universe of worlds,
+        guardians, relics, transmissions and memories.
+    </p>
+
+    <p>
+        The Codex preserves what AETHER has discovered —
+        and what has yet to be understood.
+    </p>
+
+</section>
+
+
+<section class="codex-grid">
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            🌍
+        </div>
+
+        <h3>
+            THE SEVEN WORLDS
+        </h3>
+
+        <p>
+            Discover the seven worlds connected to
+            the stars of AETHER.
+        </p>
+
+    </div>
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            🐾
+        </div>
+
+        <h3>
+            THE GUARDIANS
+        </h3>
+
+        <p>
+            Seven guardians. Seven bonds.
+            Each one carries a connection to its star.
+        </p>
+
+    </div>
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            💎
+        </div>
+
+        <h3>
+            THE RELICS
+        </h3>
+
+        <p>
+            Ancient objects carrying the power and
+            memories of the seven worlds.
+        </p>
+
+    </div>
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            📡
+        </div>
+
+        <h3>
+            TRANSMISSIONS
+        </h3>
+
+        <p>
+            Messages, signals and fragments discovered
+            throughout the AETHER journey.
+        </p>
+
+    </div>
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            📜
+        </div>
+
+        <h3>
+            THE CHRONICLES
+        </h3>
+
+        <p>
+            The history of AETHER, from the first light
+            to the moment the seven stars found one another.
+        </p>
+
+    </div>
+
+
+    <div class="codex-card">
+
+        <div class="symbol">
+            🌑
+        </div>
+
+        <h3>
+            THE UNKNOWN
+        </h3>
+
+        <p>
+            Some things remain unexplained.
+            Some stories have not yet revealed their ending.
+        </p>
+
+    </div>
+
+
+</section>
+
+
+<footer>
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    <br><br>
+
+    #WEAREHALO • #WEAREAETHER
+
+</footer>
+
+
+</div>
+
+</body>
+
+          </html>
