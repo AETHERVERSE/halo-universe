@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MY HALO — AETHERVERSE</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #11102d;
+    color: #ddd7ff;
+    font-family: Georgia, serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px 60px;
+}
+
+header {
+    text-align: center;
+    padding: 25px 0 45px;
+}
+
+.logo {
+    font-size: 1rem;
+    letter-spacing: 5px;
+    color: #aaa0e6;
+    margin-bottom: 25px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #ddd7ff;
+    text-decoration: none;
+    border: 1px solid #454263;
+    border-radius: 20px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+}
+
+nav a:hover {
+    background: #29264b;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.hero h1 {
+    margin: 0;
+    color: #ddd7ff;
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+}
+
+.hero p {
+    color: #aaa0e6;
+    margin-top: 15px;
+    line-height: 1.7;
+}
+
+.halo-panel {
+    max-width: 520px;
+    margin: auto;
+    padding: 35px;
+    background: #1d1b3d;
+    border: 1px solid #454263;
+    border-radius: 18px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.halo-symbol {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.halo-panel h2 {
+    text-align: center;
+    margin: 0 0 10px;
+    color: #ddd7ff;
+    letter-spacing: 2px;
+}
+
+.halo-intro {
+    text-align: center;
+    color: #aaa0e6;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #ddd7ff;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #454263;
+    background: #11102d;
+    color: #eeeaff;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #aaa0e6;
+}
+
+.button-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.button {
+    flex: 1;
+    padding: 13px;
+    border-radius: 25px;
+    border: 1px solid #aaa0e6;
+    background: transparent;
+    color: #ddd7ff;
+    font-family: Georgia, serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.button.primary {
+    background: #29264b;
+}
+
+.button:hover {
+    background: #38345e;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0;
+    color: #6f6a9b;
+    font-size: 0.8rem;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #454263;
+}
+
+.halo-note {
+    text-align: center;
+    color: #77729f;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    padding: 55px 10px 20px;
+    color: #85819f;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="logo">AETHERVERSE</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="universe.html">HALO Universe</a>
+        <a href="members.html">Members</a>
+        <a href="codex.html">Codex</a>
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <h1>✦ MY HALO</h1>
+
+    <p>
+        Your place among the seven stars.
+        <br>
+        Welcome to the AETHER universe.
+    </p>
+
+</section>
+
+<section class="halo-panel">
+
+    <div class="halo-symbol">💜</div>
+
+    <h2>WELCOME, HALO</h2>
+
+    <p class="halo-intro">
+        Create your HALO account or sign in
+        to begin your journey with AETHER.
+    </p>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+        >
+    </div>
+
+    <div class="button-row">
+
+        <button class="button primary">
+            LOG IN
+        </button>
+
+        <button class="button">
+            CREATE ACCOUNT
+        </button>
+
+    </div>
+
+    <div class="divider">
+        OR
+    </div>
+
+    <p class="halo-note">
+        Your HALO journey begins here.
+        <br>
+        One light. Seven stars. Endless love.
+    </p>
+
+</section>
+
+<footer>
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+    <br><br>
+    #WEAREHALO • #WEAREAETHER
+
+</footer>
+
+</div>
+
+</body>
+</html>
