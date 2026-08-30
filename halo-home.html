@@ -290,21 +290,35 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 </div>
 
 <script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-const { data: { user } } = await supabaseClient.auth.getUser();
+<script>
+const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-if (user) {
-    const { data: profile } = await supabaseClient
-        .from("halo_profiles")
-        .select("halo_id")
-        .eq("user_id", user.id)
-        .single();
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-    if (profile) {
-        document.getElementById("haloEmail").textContent =
-            "HALO ID: " + profile.halo_id;
+(async () => {
+    const { data: { user } } =
+        await supabaseClient.auth.getUser();
+
+    if (user) {
+        const { data: profile } =
+            await supabaseClient
+                .from("halo_profiles")
+                .select("halo_id")
+                .eq("user_id", user.id)
+                .single();
+
+        if (profile) {
+            document.getElementById("haloEmail").textContent =
+                "HALO ID: " + profile.halo_id;
+        }
     }
-}
+})();
 </script>
 
 </body>
