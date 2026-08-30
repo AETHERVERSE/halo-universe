@@ -874,172 +874,109 @@ async function selectStar(starName) {
 /* =====================================
    GESPEICHERTEN STAR LADEN
 ===================================== */
-
 async function loadSavedStar() {
 
-    showMessage(
-        "Connecting to AETHER..."
+    const {
+        data: { session },
+        error: sessionError
+    } = await supabaseClient.auth.getSession();
+
+    if (sessionError) {
+
+        console.error("SESSION ERROR:", sessionError);
+
+        document.getElementById("message").textContent =
+            "Session error: " + sessionError.message;
+
+        return;
+    }
+
+    if (!session) {
+
+        document.getElementById("message").textContent =
+            "Please LOG IN first.";
+
+        return;
+    }
+
+    console.log("LOGGED IN:", session.user.id);
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("halo_stars")
+        .select("star_name")
+        .eq("user_id", session.user.id)
+        .limit(1)
+        .maybeSingle();
+
+
+    if (error) {
+
+        console.error("STAR DATABASE ERROR:", error);
+
+        document.getElementById("message").textContent =
+            "STAR ERROR: " + error.message;
+
+        return;
+    }
+
+
+    if (!data) {
+
+        document.getElementById("currentStar").textContent =
+            "✦ YOUR STAR ✦";
+
+        document.getElementById("message").textContent =
+            "Choose your star below ✦";
+
+        return;
+    }
+
+
+    selectedStar = data.star_name;
+
+
+    document
+        .querySelectorAll(".star")
+        .forEach(card => {
+
+            card.classList.remove("selected");
+
+        });
+
+
+    const card = document.querySelector(
+        '[data-star="' + data.star_name + '"]'
     );
 
 
-    try {
+    if (card) {
 
-        /* Session holen */
-
-        const {
-            data: {
-                session
-            },
-            error: sessionError
-        } =
-        await supabaseClient
-            .auth
-            .getSession();
-
-
-        console.log(
-            "SESSION:",
-            session
-        );
-
-
-        if (sessionError) {
-
-            console.error(
-                "SESSION ERROR:",
-                sessionError
-            );
-
-            document.getElementById(
-                "currentStar"
-            ).textContent =
-                "Your connection is waiting to be discovered.";
-
-            showMessage(
-                "Could not verify your login."
-            );
-
-            return;
-        }
-
-
-        /* =================================
-           NICHT EINGELOGGT
-        ================================= */
-
-        if (!session) {
-
-            document.getElementById(
-                "currentStar"
-            ).textContent =
-                "Choose your star below ✦";
-
-            showMessage(
-                "Please LOG IN first."
-            );
-
-            return;
-        }
-
-
-        const userId =
-            session.user.id;
-
-
-        console.log(
-            "USER ID:",
-            userId
-        );
-
-
-        /* =================================
-           STAR AUS DATENBANK LADEN
-        ================================= */
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-            .from("halo_stars")
-            .select("star_name")
-            .eq(
-                "user_id",
-                userId
-            )
-            .maybeSingle();
-
-
-        if (error) {
-
-            console.error(
-                "STAR DATABASE ERROR:",
-                error
-            );
-
-            showMessage(
-                "Could not load your star."
-            );
-
-            return;
-        }
-
-
-        /* =================================
-           NOCH KEIN STAR
-        ================================= */
-
-        if (!data) {
-
-            document.getElementById(
-                "currentStar"
-            ).textContent =
-                "Choose your star below ✦";
-
-            showMessage(
-                "Choose your star below ✦"
-            );
-
-            return;
-        }
-
-
-        /* =================================
-           STAR GEFUNDEN
-        ================================= */
-
-        displayStar(
-            data.star_name
-        );
-
-
-        showMessage(
-            "Your star is " +
-            data.star_name +
-            ". ✦"
-        );
-
-
-        console.log(
-            "CURRENT STAR:",
-            data.star_name
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "LOAD STAR ERROR:",
-            error
-        );
-
-        showMessage(
-            "Could not load your star."
-        );
+        card.classList.add("selected");
 
     }
 
-}
+
+    document.getElementById("currentStar").textContent =
+        "★ " +
+        data.star_name.toUpperCase() +
+        " ★";
+
+
+    document.getElementById("message").textContent =
+        "Your star is " +
+        data.star_name +
+        ". ✦";
+
+
+    console.log(
+        "CURRENT STAR:",
+        data.star_name
+    );
+    }
 
 
 /* =====================================
