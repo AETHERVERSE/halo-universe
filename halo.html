@@ -285,55 +285,204 @@ footer {
 
 </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-    const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY"
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-const loginButton = document.getElementById("loginButton");
-const createAccountButton = document.getElementById("createAccountButton");
 
-createAccountButton.addEventListener("click", async function () {
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
-    if (!email || !password) {
-        alert("Please enter your email and password. ✦");
-        return;
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY,
+        {
+            auth: {
+                persistSession: true,
+                autoRefreshToken: true,
+                detectSessionInUrl: true
+            }
+        }
+    );
+
+
+const loginButton =
+    document.getElementById("loginButton");
+
+const createAccountButton =
+    document.getElementById("createAccountButton");
+
+
+/* =========================
+   CREATE ACCOUNT
+========================= */
+
+createAccountButton.addEventListener(
+    "click",
+    async function () {
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!email || !password) {
+
+            alert(
+                "Please enter your email and password. ✦"
+            );
+
+            return;
+        }
+
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password,
+
+            options: {
+
+                emailRedirectTo:
+                "https://aetherverse.github.io/halo-universe/"
+
+            }
+
+        });
+
+
+        if (error) {
+
+            alert(
+                "HALO registration failed ✦ " +
+                error.message
+            );
+
+            return;
+        }
+
+
+        localStorage.setItem(
+            "haloEmail",
+            email
+        );
+
+
+        alert(
+            "WELCOME TO AETHER, HALO ✦ " +
+            "Please check your email to confirm your account."
+        );
+
     }
+);
 
-    const { data, error } = await supabaseClient.auth.signUp({
-    email: email,
-    password: password,
-    options: {
-        emailRedirectTo: "https://aetherverse.github.io/halo-universe"
+
+/* =========================
+   LOGIN
+========================= */
+
+loginButton.addEventListener(
+    "click",
+    async function () {
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
+
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!email || !password) {
+
+            alert(
+                "Please enter your email and password. ✦"
+            );
+
+            return;
+        }
+
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+        if (error) {
+
+            alert(
+                "The stars do not recognize these credentials yet. ✦"
+            );
+
+            console.error(error);
+
+            return;
+        }
+
+
+        /* =========================
+           SESSION SICHERSTELLEN
+        ========================= */
+
+        const {
+            data: sessionData
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if (!sessionData.session) {
+
+            alert(
+                "Your HALO session could not be established. ✦"
+            );
+
+            return;
+        }
+
+
+        console.log(
+            "HALO SESSION ACTIVE:",
+            sessionData.session.user.id
+        );
+
+
+        /* =========================
+           ZUM HALO HOME
+        ========================= */
+
+        window.location.href =
+            "/halo-universe/halo-home.html";
+
     }
-});
+);
 
-    if (error) {
-        alert("HALO registration failed ✦ " + error.message);
-        return;
-    }
-localStorage.setItem("haloEmail", email);
-    alert("WELCOME TO AETHER, HALO ✦ Please check your email to confirm your account.");
-});
-
-
-loginButton.addEventListener("click", async function () {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-    });
-
-    if (error) {
-        alert("The stars do not recognize these credentials yet. ✦");
-        return;
-    }
-
-    window.location.href = "./halo-home.html";
-});
 </script>
 </body>
 </html>
