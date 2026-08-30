@@ -253,13 +253,13 @@ footer {
 
     <div class="button-row">
 
-        <button class="button primary">
-            LOG IN
-        </button>
+        <button class="button primary" type="button" id="loginButton">
+    LOG IN
+</button>
 
-        <button class="button">
-            CREATE ACCOUNT
-        </button>
+<button class="button" type="button" id="createAccountButton">
+    CREATE ACCOUNT
+</button>
 
     </div>
 
@@ -284,6 +284,39 @@ footer {
 </footer>
 
 </div>
+<script>
+const loginButton = document.getElementById("loginButton");
+const createAccountButton = document.getElementById("createAccountButton");
 
+createAccountButton.addEventListener("click", function () {
+    const email = prompt("Enter your email:");
+    if (!email) return;
+
+    const password = prompt("Create your password:");
+    if (!password) return;
+
+    localStorage.setItem("haloEmail", email);
+    localStorage.setItem("haloPassword", password);
+
+    alert("WELCOME TO AETHER, HALO ✦ Your account has been created.");
+});
+
+loginButton.addEventListener("click", function () {
+    const email = prompt("Enter your email:");
+    if (!email) return;
+
+    const password = prompt("Enter your password:");
+    if (!password) return;
+
+    const savedEmail = localStorage.getItem("haloEmail");
+    const savedPassword = localStorage.getItem("haloPassword");
+
+    if (email === savedEmail && password === savedPassword) {
+        alert("WELCOME BACK, HALO ✦");
+    } else {
+        alert("The stars do not recognize these credentials yet.");
+    }
+});
+</script>
 </body>
 </html>
