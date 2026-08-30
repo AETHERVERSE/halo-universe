@@ -857,78 +857,89 @@ async function selectStar(starName) {
 
 async function loadSavedStar() {
 
-    const {
-        data: { session }
-    } =
-    await supabaseClient.auth.getSession();
+    try {
 
+        // Eingeloggten Benutzer holen
+        const {
+            data: { user },
+            error: userError
+        } = await supabaseClient.auth.getUser();
 
-    if (!session) {
-        return;
-    }
+        if (userError) {
+            console.error("USER ERROR:", userError);
+            document.getElementById("message").textContent =
+                "Could not verify your login.";
+            return;
+        }
 
+        if (!user) {
+            document.getElementById("message").textContent =
+                "Please LOG IN first.";
+            return;
+        }
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .from("halo_stars")
-        .select("star_name")
-        .eq("user_id", session.user.id)
-        .maybeSingle();
+        console.log("LOGGED IN USER:", user.id);
 
+        // Gespeicherten Star aus Supabase holen
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("halo_stars")
+            .select("star_name")
+            .eq("user_id", user.id)
+            .maybeSingle();
 
-    if (error) {
+        if (error) {
+            console.error("STAR ERROR:", error);
 
-        console.error(error);
+            document.getElementById("message").textContent =
+                "Could not check your current star.";
 
-        return;
-    }
+            return;
+        }
 
+        // Noch kein Star ausgewählt
+        if (!data) {
 
-    if (!data) {
-        return;
-    }
+            document.getElementById("currentStar").textContent =
+                "✦ YOUR STAR ✦";
 
+            document.getElementById("message").textContent =
+                "Choose your star below ✦";
 
-    selectedStar =
-        data.star_name;
+            return;
+        }
 
+        // Star speichern
+        selectedStar = data.star_name;
 
-    /* Karte markieren */
-
-    const card =
-        document.querySelector(
-            '[data-star="' +
-            data.star_name +
-            '"]'
+        // Richtige Karte markieren
+        const card = document.querySelector(
+            '[data-star="' + data.star_name + '"]'
         );
 
+        if (card) {
+            card.classList.add("selected");
+        }
 
-    if (card) {
-        card.classList.add("selected");
+        // Star oben anzeigen
+        document.getElementById("currentStar").textContent =
+            "★ " + data.star_name.toUpperCase() + " ★";
+
+        document.getElementById("message").textContent =
+            "Your star is " + data.star_name + ". ✦";
+
+        console.log("CURRENT STAR:", data.star_name);
+
+    } catch (err) {
+
+        console.error("LOAD STAR ERROR:", err);
+
+        document.getElementById("message").textContent =
+            "Could not check your current star.";
     }
-
-
-    /* Star anzeigen */
-
-    document.getElementById(
-        "currentStar"
-    ).textContent =
-        "★ " +
-        data.star_name.toUpperCase() +
-        " ★";
-
-
-    document.getElementById(
-        "message"
-    ).textContent =
-        "Your star is " +
-        data.star_name +
-        ". ✦";
-
-}
+    }
 
 
 /* =========================
