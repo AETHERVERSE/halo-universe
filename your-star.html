@@ -659,9 +659,7 @@ const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 /*
-  HIER kommt derselbe vollständige
-  SUPABASE PUBLISHABLE KEY hinein,
-  den du bereits in halo-home.html hast.
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY"
 */
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
@@ -891,12 +889,12 @@ async function loadSavedStar() {
             .maybeSingle();
 
         if (error) {
-            console.error("STAR ERROR:", error);
+    console.error("STAR ERROR:", error);
 
-            document.getElementById("message").textContent =
-                "Could not check your current star.";
+    document.getElementById("message").textContent =
+        "STAR ERROR: " + error.message;
 
-            return;
+    return;
         }
 
         // Noch kein Star ausgewählt
