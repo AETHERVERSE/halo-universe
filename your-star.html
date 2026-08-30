@@ -655,58 +655,56 @@ footer {
 
 <script>
 
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+/*
+  HIER kommt derselbe vollständige
+  SUPABASE PUBLISHABLE KEY hinein,
+  den du bereits in halo-home.html hast.
+*/
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
 
 let selectedStar = null;
 
 
-function selectStar(starName) {
+/* =========================
+   STAR AUSWÄHLEN
+========================= */
 
+async function selectStar(starName) {
 
     selectedStar = starName;
 
-
-    /*
-       Remove previous selection
-    */
-
+    /* Alte Auswahl entfernen */
     document
         .querySelectorAll(".star")
-        .forEach(
-            card => {
-
-                card.classList.remove(
-                    "selected"
-                );
-
-            }
-        );
+        .forEach(card => {
+            card.classList.remove("selected");
+        });
 
 
-    /*
-       Highlight selected star
-    */
-
-    const selectedCard =
+    /* Neue Karte markieren */
+    const card =
         document.querySelector(
-            '[data-star="' +
-            starName +
-            '"]'
+            '[data-star="' + starName + '"]'
         );
 
-
-    if (selectedCard) {
-
-        selectedCard.classList.add(
-            "selected"
-        );
-
+    if (card) {
+        card.classList.add("selected");
     }
 
 
-    /*
-       Show current star
-    */
-
+    /* Anzeige oben ändern */
     document.getElementById(
         "currentStar"
     ).textContent =
@@ -715,9 +713,133 @@ function selectStar(starName) {
         " ★";
 
 
-    /*
-       Message
-    */
+    document.getElementById(
+        "message"
+    ).textContent =
+        "Saving your star...";
+
+
+    /* =========================
+       USER ERMITTELN
+    ========================= */
+
+    const {
+        data: { session },
+        error: sessionError
+    } =
+    await supabaseClient.auth.getSession();
+
+
+    if (sessionError || !session) {
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "Please LOG IN first.";
+
+        return;
+    }
+
+
+    const userId =
+        session.user.id;
+
+
+    /* =========================
+       PRÜFEN OB STAR EXISTIERT
+    ========================= */
+
+    const {
+        data: existingStar,
+        error: checkError
+    } =
+    await supabaseClient
+        .from("halo_stars")
+        .select("star_name")
+        .eq("user_id", userId)
+        .maybeSingle();
+
+
+    if (checkError) {
+
+        console.error(checkError);
+
+        document.getElementById(
+            "message"
+        ).textContent =
+            "Could not check your star.";
+
+        return;
+    }
+
+
+    /* =========================
+       NEU SPEICHERN
+    ========================= */
+
+    if (!existingStar) {
+
+        const {
+            error: insertError
+        } =
+        await supabaseClient
+            .from("halo_stars")
+            .insert({
+                user_id: userId,
+                star_name: starName
+            });
+
+
+        if (insertError) {
+
+            console.error(insertError);
+
+            document.getElementById(
+                "message"
+            ).textContent =
+                "Could not save your star.";
+
+            return;
+        }
+
+    }
+
+
+    /* =========================
+       BESTEHENDEN STAR ÄNDERN
+    ========================= */
+
+    else {
+
+        const {
+            error: updateError
+        } =
+        await supabaseClient
+            .from("halo_stars")
+            .update({
+                star_name: starName
+            })
+            .eq("user_id", userId);
+
+
+        if (updateError) {
+
+            console.error(updateError);
+
+            document.getElementById(
+                "message"
+            ).textContent =
+                "Could not update your star.";
+
+            return;
+        }
+
+    }
+
+
+    /* =========================
+       ERFOLG
+    ========================= */
 
     document.getElementById(
         "message"
@@ -726,9 +848,94 @@ function selectStar(starName) {
         starName +
         ". ✦";
 
+}
+
+
+/* =========================
+   BEIM ÖFFNEN LADEN
+========================= */
+
+async function loadSavedStar() {
+
+    const {
+        data: { session }
+    } =
+    await supabaseClient.auth.getSession();
+
+
+    if (!session) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("halo_stars")
+        .select("star_name")
+        .eq("user_id", session.user.id)
+        .maybeSingle();
+
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+    }
+
+
+    if (!data) {
+        return;
+    }
+
+
+    selectedStar =
+        data.star_name;
+
+
+    /* Karte markieren */
+
+    const card =
+        document.querySelector(
+            '[data-star="' +
+            data.star_name +
+            '"]'
+        );
+
+
+    if (card) {
+        card.classList.add("selected");
+    }
+
+
+    /* Star anzeigen */
+
+    document.getElementById(
+        "currentStar"
+    ).textContent =
+        "★ " +
+        data.star_name.toUpperCase() +
+        " ★";
+
+
+    document.getElementById(
+        "message"
+    ).textContent =
+        "Your star is " +
+        data.star_name +
+        ". ✦";
 
 }
 
+
+/* =========================
+   START
+========================= */
+
+loadSavedStar();
 
 </script>
 
