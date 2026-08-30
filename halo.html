@@ -4,9 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My HALO | AETHERVERSE</title>
 
@@ -390,7 +388,7 @@ h1 {
 
     height: 100%;
 
-    width: 100%;
+    width: 0%;
 
     background:
         linear-gradient(
@@ -400,6 +398,9 @@ h1 {
         );
 
     border-radius: 20px;
+
+    transition:
+        width 0.8s ease;
 }
 
 .codex-progress-text {
@@ -552,7 +553,7 @@ h1 {
 
 
 /* =========================
-   MUSIC DISCOVERY BUTTON
+   MUSIC BUTTON
 ========================= */
 
 .music-button {
@@ -600,13 +601,6 @@ h1 {
 
     transform:
         translateY(-2px);
-
-    background:
-        linear-gradient(
-            90deg,
-            #393064,
-            #4a3f78
-        );
 
     border-color:
         #c8bdff;
@@ -892,10 +886,6 @@ Welcome back to the AETHER universe.
 
 
 
-<!-- =========================
-     WELCOME
-========================= -->
-
 <section class="halo-card welcome">
 
 <div style="font-size: 2.5rem;">
@@ -919,16 +909,11 @@ id="haloEmail">
 
 
 
-<!-- =========================
-     HALO RANK
-========================= -->
-
 <section class="rank-card">
 
 <div class="rank-label">
 ✦ YOUR HALO RANK ✦
 </div>
-
 
 <div
 class="rank-name"
@@ -938,7 +923,6 @@ LOADING...
 
 </div>
 
-
 <div
 class="rank-points"
 id="rankPoints">
@@ -946,7 +930,6 @@ id="rankPoints">
 0 / 250 POINTS
 
 </div>
-
 
 <div class="progress-container">
 
@@ -957,7 +940,6 @@ id="progressBar">
 
 </div>
 
-
 <div
 class="progress-text"
 id="progressText">
@@ -965,7 +947,6 @@ id="progressText">
 Loading your journey...
 
 </div>
-
 
 <div
 class="next-rank"
@@ -976,25 +957,19 @@ id="nextRank">
 
 
 
-<!-- =========================
-     CODEX PROGRESS
-========================= -->
-
 <section class="codex-progress-card">
 
 <div class="codex-progress-label">
 ✦ CODEX DISCOVERIES ✦
 </div>
 
-
 <div
 class="codex-progress-count"
 id="codexProgressCount">
 
-21 / 21 DISCOVERED
+LOADING...
 
 </div>
-
 
 <div class="codex-progress-container">
 
@@ -1005,21 +980,19 @@ id="codexProgressBar">
 
 </div>
 
-
 <div
 class="codex-progress-text"
 id="codexProgressText">
 
-✦ THE CODEX IS COMPLETE. ✦
+Loading your Codex journey...
 
 </div>
-
 
 <div
 class="codex-progress-points"
 id="codexProgressPoints">
 
-105 STAR POINTS FROM CODEX
+0 STAR POINTS FROM CODEX
 
 </div>
 
@@ -1027,17 +1000,11 @@ id="codexProgressPoints">
 
 
 
-<!-- =========================
-     EARN STAR POINTS
-========================= -->
-
 <section class="points-section">
-
 
 <div class="points-title">
 ✦ EARN STAR POINTS ✦
 </div>
-
 
 <div class="points-description">
 
@@ -1051,14 +1018,10 @@ Every memory brings you closer to the next star.
 </div>
 
 
-
 <div class="points-grid">
 
 
-
-<!-- =========================
-     AETHER MUSIC
-========================= -->
+<!-- AETHER MUSIC -->
 
 <div class="points-card">
 
@@ -1078,7 +1041,6 @@ Discover an AETHER song and let the stars speak.
 +5 STAR POINTS
 </span>
 
-
 <button
 id="musicDiscoveryButton"
 class="music-button">
@@ -1086,7 +1048,6 @@ class="music-button">
 ✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS
 
 </button>
-
 
 <div
 id="musicMessage"
@@ -1097,9 +1058,7 @@ class="music-message">
 
 
 
-<!-- =========================
-     CODEX
-========================= -->
+<!-- CODEX -->
 
 <div class="points-card">
 
@@ -1119,7 +1078,6 @@ Explore the lore, worlds and secrets of AETHER.
 +5 STAR POINTS
 </span>
 
-
 <a
 href="codex.html"
 class="explore-button">
@@ -1132,9 +1090,7 @@ class="explore-button">
 
 
 
-<!-- =========================
-     TRANSMISSIONS
-========================= -->
+<!-- TRANSMISSIONS -->
 
 <div class="points-card">
 
@@ -1162,9 +1118,7 @@ COMING WITH TRANSMISSIONS
 
 
 
-<!-- =========================
-     COMMUNITY
-========================= -->
+<!-- COMMUNITY -->
 
 <div class="points-card">
 
@@ -1192,9 +1146,7 @@ COMING WITH COMMUNITY
 
 
 
-<!-- =========================
-     PUZZLES
-========================= -->
+<!-- PUZZLES -->
 
 <div class="points-card">
 
@@ -1222,9 +1174,7 @@ COMING WITH EVENTS
 
 
 
-<!-- =========================
-     SPECIAL
-========================= -->
+<!-- SPECIAL -->
 
 <div class="points-card">
 
@@ -1251,16 +1201,11 @@ SPECIAL EVENTS ONLY
 </div>
 
 
-
 </div>
 
 </section>
 
 
-
-<!-- =========================
-     DASHBOARD
-========================= -->
 
 <section class="dashboard">
 
@@ -1284,7 +1229,6 @@ Discover your connection to one of the seven stars of AETHER.
 </a>
 
 
-
 <div class="dashboard-card">
 
 <div class="icon">
@@ -1300,7 +1244,6 @@ Your HALO identity, memories and personal AETHER journey.
 </p>
 
 </div>
-
 
 
 <div class="dashboard-card">
@@ -1320,7 +1263,6 @@ Messages, signals and fragments from the AETHER universe.
 </div>
 
 
-
 <div class="dashboard-card">
 
 <div class="icon">
@@ -1336,7 +1278,6 @@ Your HALO rank and the memories you have unlocked.
 </p>
 
 </div>
-
 
 
 <div class="dashboard-card">
@@ -1356,7 +1297,6 @@ A place for the moments discovered throughout your journey.
 </div>
 
 
-
 <div class="dashboard-card">
 
 <div class="icon">
@@ -1372,7 +1312,6 @@ Collect milestones as you explore the seven worlds.
 </p>
 
 </div>
-
 
 
 </section>
@@ -1394,30 +1333,21 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 
 
-<!-- =========================
-     SUPABASE
-========================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
-
 
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
-
 
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
 
 
 /* =========================
@@ -1479,7 +1409,6 @@ const ranks = [
 ];
 
 
-
 /* =========================
    DISPLAY RANK
 ========================= */
@@ -1522,17 +1451,11 @@ function displayRank(points) {
         currentRank.name;
 
 
-
-    /* =========================
-       FINAL RANK
-    ========================= */
-
     if (!nextRank) {
 
         document.getElementById(
             "rankPoints"
         ).textContent =
-
             points.toLocaleString() +
             " POINTS";
 
@@ -1546,48 +1469,37 @@ function displayRank(points) {
         document.getElementById(
             "progressText"
         ).textContent =
-
             "✦ You have reached the eighth light. ✦";
 
 
         document.getElementById(
             "nextRank"
         ).textContent =
-
             "EIGHT • THE LIGHT BESIDE AETHER";
-
 
         return;
 
     }
 
 
-
     const pointsIntoRank =
-
         points -
         currentRank.min;
 
 
-
     const pointsNeeded =
-
         nextRank.min -
         currentRank.min;
 
 
-
     let percentage =
-
         (
             pointsIntoRank /
             pointsNeeded
         ) * 100;
 
 
-
     percentage =
-
         Math.max(
             0,
             Math.min(
@@ -1597,74 +1509,204 @@ function displayRank(points) {
         );
 
 
-
     document.getElementById(
         "rankPoints"
     ).textContent =
-
         points.toLocaleString() +
         " / " +
         nextRank.min.toLocaleString() +
         " POINTS";
 
 
-
     document.getElementById(
         "progressBar"
     ).style.width =
-
-        percentage +
-        "%";
-
+        percentage + "%";
 
 
     const remaining =
-
         nextRank.min -
         points;
-
 
 
     document.getElementById(
         "progressText"
     ).textContent =
-
         remaining.toLocaleString() +
         " points until " +
         nextRank.name;
 
 
-
     document.getElementById(
         "nextRank"
     ).textContent =
-
         "Next rank: " +
         nextRank.name;
 
 }
 
 
-
 /* =========================
-   CHECK MUSIC DISCOVERY
+   LOAD CODEX JOURNEY
 ========================= */
 
-function musicWasDiscovered() {
+async function loadCodexJourney(userId) {
 
-    return localStorage.getItem(
-        "aether_music_break_the_bubble"
-    ) === "true";
+    const totalCodex =
+        21;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("halo_point_events")
+        .select("action_key, points")
+        .eq(
+            "user_id",
+            userId
+        );
+
+
+    if (error) {
+
+        console.error(
+            "CODEX JOURNEY ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "codexProgressCount"
+        ).textContent =
+            "COULD NOT LOAD";
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+            "Could not load your Codex journey.";
+
+        return;
+
+    }
+
+
+    /*
+       Only real Codex discoveries count here.
+
+       Every Codex action starts with:
+       codex_
+
+       We use unique action keys so that
+       repeated events cannot inflate the
+       discovery count.
+    */
+
+    const codexEvents =
+        data.filter(
+            event =>
+                typeof event.action_key === "string" &&
+                event.action_key.startsWith("codex_")
+        );
+
+
+    const uniqueCodex =
+        new Set(
+            codexEvents.map(
+                event =>
+                    event.action_key
+            )
+        );
+
+
+    const discovered =
+        Math.min(
+            uniqueCodex.size,
+            totalCodex
+        );
+
+
+    const percentage =
+        (
+            discovered /
+            totalCodex
+        ) * 100;
+
+
+    const codexPoints =
+        codexEvents.reduce(
+            (
+                total,
+                event
+            ) =>
+                total +
+                Number(event.points || 0),
+            0
+        );
+
+
+    document.getElementById(
+        "codexProgressCount"
+    ).textContent =
+
+        discovered +
+        " / " +
+        totalCodex +
+        " DISCOVERED";
+
+
+    document.getElementById(
+        "codexProgressBar"
+    ).style.width =
+
+        percentage +
+        "%";
+
+
+    document.getElementById(
+        "codexProgressPoints"
+    ).textContent =
+
+        codexPoints +
+        " STAR POINTS FROM CODEX";
+
+
+    if (
+        discovered >= totalCodex
+    ) {
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+
+            "✦ THE CODEX IS COMPLETE. ✦";
+
+    }
+
+    else {
+
+        const remaining =
+            totalCodex -
+            discovered;
+
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+
+            remaining +
+            " Codex memories remain to be discovered. ✦";
+
+    }
 
 }
 
 
-
 /* =========================
-   SET MUSIC BUTTON
+   MUSIC STATUS
 ========================= */
 
-function setMusicDiscovered() {
+async function loadMusicStatus(userId) {
 
     const button =
         document.getElementById(
@@ -1677,28 +1719,60 @@ function setMusicDiscovered() {
         );
 
 
-    button.textContent =
-        "✓ BREAK THE BUBBLE DISCOVERED";
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("halo_point_events")
+        .select("action_key")
+        .eq(
+            "user_id",
+            userId
+        )
+        .eq(
+            "action_key",
+            "music_break_the_bubble"
+        );
 
 
-    button.classList.add(
-        "discovered"
-    );
+    if (error) {
+
+        console.error(
+            "MUSIC STATUS ERROR:",
+            error
+        );
+
+        return;
+
+    }
 
 
-    button.disabled =
-        true;
+    if (
+        data &&
+        data.length > 0
+    ) {
 
+        button.textContent =
+            "✓ BREAK THE BUBBLE DISCOVERED";
 
-    message.textContent =
-        "This song is already part of your HALO journey. ✦";
+        button.classList.add(
+            "discovered"
+        );
+
+        button.disabled =
+            true;
+
+        message.textContent =
+            "This song is already part of your HALO journey. ✦";
+
+    }
 
 }
 
 
-
 /* =========================
-   MUSIC DISCOVERY
+   DISCOVER MUSIC
 ========================= */
 
 async function discoverBreakTheBubble() {
@@ -1717,25 +1791,20 @@ async function discoverBreakTheBubble() {
     button.disabled =
         true;
 
-
     button.textContent =
         "DISCOVERING...";
-
 
     message.textContent =
         "";
 
 
-
     try {
-
 
         const {
             data: { user },
             error: userError
         } =
         await supabaseClient.auth.getUser();
-
 
 
         if (
@@ -1746,10 +1815,8 @@ async function discoverBreakTheBubble() {
             button.disabled =
                 false;
 
-
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
             message.textContent =
                 "Please log in first.";
@@ -1758,11 +1825,6 @@ async function discoverBreakTheBubble() {
 
         }
 
-
-
-        /* =========================
-           ADD POINTS
-        ========================= */
 
         const {
             data,
@@ -1780,7 +1842,6 @@ async function discoverBreakTheBubble() {
         );
 
 
-
         if (error) {
 
             console.error(
@@ -1788,14 +1849,11 @@ async function discoverBreakTheBubble() {
                 error
             );
 
-
             button.disabled =
                 false;
 
-
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
             message.textContent =
                 "Could not record this discovery.";
@@ -1805,69 +1863,39 @@ async function discoverBreakTheBubble() {
         }
 
 
-
-        /* =========================
-           SUCCESS
-        ========================= */
-
         if (
             Number(data) === 5
         ) {
 
-            localStorage.setItem(
-                "aether_music_break_the_bubble",
-                "true"
-            );
-
-
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
-
 
             button.classList.add(
                 "discovered"
             );
 
-
             message.textContent =
                 "✦ +5 STAR POINTS • BREAK THE BUBBLE IS NOW PART OF YOUR JOURNEY. ✦";
-
 
             await loadHaloData();
 
         }
 
-
-
-        /* =========================
-           ALREADY DISCOVERED
-        ========================= */
-
         else {
-
-            localStorage.setItem(
-                "aether_music_break_the_bubble",
-                "true"
-            );
-
 
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             button.classList.add(
                 "discovered"
             );
-
 
             message.textContent =
                 "This song is already part of your HALO journey.";
 
         }
 
-
     }
-
 
     catch (error) {
 
@@ -1876,14 +1904,11 @@ async function discoverBreakTheBubble() {
             error
         );
 
-
         button.disabled =
             false;
 
-
         button.textContent =
             "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
         message.textContent =
             "Something went wrong. Please try again.";
@@ -1891,7 +1916,6 @@ async function discoverBreakTheBubble() {
     }
 
 }
-
 
 
 /* =========================
@@ -1902,13 +1926,11 @@ async function loadHaloData() {
 
     try {
 
-
         const {
             data: { user },
             error: userError
         } =
         await supabaseClient.auth.getUser();
-
 
 
         if (
@@ -1921,7 +1943,6 @@ async function loadHaloData() {
             ).textContent =
                 "PLEASE LOG IN";
 
-
             document.getElementById(
                 "rankPoints"
             ).textContent =
@@ -1932,9 +1953,8 @@ async function loadHaloData() {
         }
 
 
-
         /* =========================
-           HALO PROFILE
+           PROFILE
         ========================= */
 
         const {
@@ -1954,7 +1974,6 @@ async function loadHaloData() {
             .single();
 
 
-
         if (profile) {
 
             document.getElementById(
@@ -1967,9 +1986,8 @@ async function loadHaloData() {
         }
 
 
-
         /* =========================
-           HALO POINTS
+           POINTS
         ========================= */
 
         const {
@@ -1990,7 +2008,6 @@ async function loadHaloData() {
             .maybeSingle();
 
 
-
         if (pointsError) {
 
             console.error(
@@ -1998,26 +2015,18 @@ async function loadHaloData() {
                 pointsError
             );
 
-
             document.getElementById(
                 "rankName"
             ).textContent =
                 "POINTS ERROR";
-
-
-            document.getElementById(
-                "progressText"
-            ).textContent =
-                pointsError.message;
 
             return;
 
         }
 
 
-
-        let points = 0;
-
+        let points =
+            0;
 
 
         if (
@@ -2033,8 +2042,25 @@ async function loadHaloData() {
         }
 
 
-
         displayRank(points);
+
+
+        /* =========================
+           JOURNEY
+        ========================= */
+
+        await loadCodexJourney(
+            user.id
+        );
+
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        await loadMusicStatus(
+            user.id
+        );
 
     }
 
@@ -2046,12 +2072,10 @@ async function loadHaloData() {
             error
         );
 
-
         document.getElementById(
             "rankName"
         ).textContent =
             "COULD NOT LOAD";
-
 
         document.getElementById(
             "progressText"
@@ -2063,7 +2087,6 @@ async function loadHaloData() {
 }
 
 
-
 /* =========================
    START
 ========================= */
@@ -2071,33 +2094,6 @@ async function loadHaloData() {
 document.addEventListener(
     "DOMContentLoaded",
     async function() {
-
-
-        /*
-           Restore music discovery
-           status on page load.
-        */
-
-        if (
-            musicWasDiscovered()
-        ) {
-
-            setMusicDiscovered();
-
-        }
-
-
-        /*
-           Load current HALO data.
-        */
-
-        await loadHaloData();
-
-
-
-        /*
-           Activate music button.
-        */
 
         const musicButton =
             document.getElementById(
@@ -2109,6 +2105,9 @@ document.addEventListener(
             "click",
             discoverBreakTheBubble
         );
+
+
+        await loadHaloData();
 
     }
 );
