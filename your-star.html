@@ -17,9 +17,7 @@ content="width=device-width, initial-scale=1.0">
 }
 
 body {
-
     margin: 0;
-
     min-height: 100vh;
 
     background:
@@ -38,13 +36,9 @@ body {
         serif;
 }
 
-
 .container {
-
     width: 100%;
-
     max-width: 900px;
-
     margin: auto;
 
     padding:
@@ -57,35 +51,22 @@ body {
 /* HEADER */
 
 .symbol {
-
     text-align: center;
-
     font-size: 52px;
-
     margin-bottom: 10px;
 }
 
-
 h1 {
-
     text-align: center;
-
     font-size: 44px;
-
     letter-spacing: 5px;
-
     margin: 0;
 }
 
-
 .subtitle {
-
     text-align: center;
-
     color: #bdb1e8;
-
     font-size: 19px;
-
     line-height: 1.6;
 
     margin:
@@ -100,7 +81,6 @@ h1 {
 /* CURRENT STAR */
 
 .current {
-
     text-align: center;
 
     padding: 35px 20px;
@@ -121,11 +101,8 @@ h1 {
         rgba(0,0,0,0.3);
 }
 
-
 .current-title {
-
     font-size: 17px;
-
     letter-spacing: 3px;
 
     color: #bcaee9;
@@ -133,11 +110,8 @@ h1 {
     margin-bottom: 15px;
 }
 
-
 .current-star {
-
     font-size: 34px;
-
     letter-spacing: 3px;
 
     color: #f1e7ff;
@@ -149,19 +123,15 @@ h1 {
 /* SECTION */
 
 .section {
-
     text-align: center;
 
     font-size: 29px;
-
     letter-spacing: 2px;
 
     margin-bottom: 10px;
 }
 
-
 .description {
-
     text-align: center;
 
     color: #bdb4d8;
@@ -175,7 +145,6 @@ h1 {
 /* STAR GRID */
 
 .stars {
-
     display: grid;
 
     grid-template-columns:
@@ -187,9 +156,7 @@ h1 {
     gap: 18px;
 }
 
-
 .star {
-
     position: relative;
 
     padding: 28px 18px;
@@ -214,9 +181,7 @@ h1 {
         background .25s ease;
 }
 
-
 .star:hover {
-
     transform:
         translateY(-5px);
 
@@ -228,9 +193,7 @@ h1 {
         rgba(150,110,255,0.2);
 }
 
-
 .star.selected {
-
     border:
         2px solid
         #dfc9ff;
@@ -243,35 +206,24 @@ h1 {
         rgba(188,150,255,0.28);
 }
 
-
 .icon {
-
     font-size: 48px;
-
     margin-bottom: 12px;
 }
 
-
 .name {
-
     font-size: 24px;
-
     letter-spacing: 3px;
 
     margin-bottom: 8px;
 }
 
-
 .world {
-
     color: #a99ecb;
-
     font-size: 15px;
 }
 
-
 .badge {
-
     margin-top: 15px;
 
     font-size: 13px;
@@ -283,9 +235,7 @@ h1 {
     display: none;
 }
 
-
 .star.selected .badge {
-
     display: block;
 }
 
@@ -293,7 +243,6 @@ h1 {
 /* MESSAGE */
 
 .message {
-
     text-align: center;
 
     min-height: 30px;
@@ -309,7 +258,6 @@ h1 {
 /* FOOTER */
 
 footer {
-
     text-align: center;
 
     margin-top: 60px;
@@ -327,34 +275,25 @@ footer {
 @media (max-width: 600px) {
 
     .container {
-
         padding:
             30px
             15px
             60px;
     }
 
-
     h1 {
-
         font-size: 34px;
     }
 
-
     .subtitle {
-
         font-size: 17px;
     }
 
-
     .current-star {
-
         font-size: 27px;
     }
 
-
     .stars {
-
         grid-template-columns: 1fr;
     }
 
@@ -370,21 +309,17 @@ footer {
 
 <div class="container">
 
-
     <div class="symbol">
         ✦
     </div>
-
 
     <h1>
         YOUR STAR
     </h1>
 
-
     <div class="subtitle">
 
         Seven stars.
-
         One connection.
 
         <br>
@@ -392,7 +327,6 @@ footer {
         Which AETHER star is yours?
 
     </div>
-
 
 
     <!-- CURRENT STAR -->
@@ -403,26 +337,21 @@ footer {
             YOUR STAR
         </div>
 
-
         <div
             class="current-star"
             id="currentStar"
         >
-            Choose your star below ✦
+            Connecting to AETHER...
         </div>
 
     </div>
 
 
-
     <!-- CHOOSE STAR -->
 
     <div class="section">
-
         CHOOSE YOUR STAR
-
     </div>
-
 
     <div class="description">
 
@@ -430,7 +359,6 @@ footer {
         closest to your heart.
 
     </div>
-
 
 
     <div class="stars">
@@ -463,7 +391,6 @@ footer {
         </div>
 
 
-
         <!-- VEX -->
 
         <div
@@ -489,7 +416,6 @@ footer {
             </div>
 
         </div>
-
 
 
         <!-- KAIRO -->
@@ -519,7 +445,6 @@ footer {
         </div>
 
 
-
         <!-- RIVEN -->
 
         <div
@@ -545,7 +470,6 @@ footer {
             </div>
 
         </div>
-
 
 
         <!-- ZENITH -->
@@ -575,7 +499,6 @@ footer {
         </div>
 
 
-
         <!-- LUX -->
 
         <div
@@ -601,7 +524,6 @@ footer {
             </div>
 
         </div>
-
 
 
         <!-- NERO -->
@@ -630,39 +552,43 @@ footer {
 
         </div>
 
-
     </div>
-
 
 
     <div
         class="message"
         id="message"
-    ></div>
-
+    >
+        Connecting to AETHER...
+    </div>
 
 
     <footer>
-
         #WEAREHALO • #WEAREAETHER
-
     </footer>
-
 
 </div>
 
 
 
+<!-- =====================================
+     SUPABASE
+===================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
 <script>
 
-const SUPABASE_URL =
-"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+/* =====================================
+   SUPABASE VERBINDUNG
+===================================== */
 
-/*
-"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY"
-*/
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
 const SUPABASE_KEY =
-"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
 
 const supabaseClient =
@@ -675,34 +601,62 @@ const supabaseClient =
 let selectedStar = null;
 
 
-/* =========================
-   STAR AUSWÄHLEN
-========================= */
+/* =====================================
+   HILFSFUNKTION
+===================================== */
 
-async function selectStar(starName) {
+function showMessage(text) {
+
+    document.getElementById(
+        "message"
+    ).textContent = text;
+
+}
+
+
+/* =====================================
+   STAR ANZEIGEN
+===================================== */
+
+function displayStar(starName) {
 
     selectedStar = starName;
 
-    /* Alte Auswahl entfernen */
+
+    /* Alle Karten zurücksetzen */
+
     document
         .querySelectorAll(".star")
         .forEach(card => {
-            card.classList.remove("selected");
+
+            card.classList.remove(
+                "selected"
+            );
+
         });
 
 
-    /* Neue Karte markieren */
+    /* Richtige Karte markieren */
+
     const card =
         document.querySelector(
-            '[data-star="' + starName + '"]'
+            '[data-star="' +
+            starName +
+            '"]'
         );
 
+
     if (card) {
-        card.classList.add("selected");
+
+        card.classList.add(
+            "selected"
+        );
+
     }
 
 
-    /* Anzeige oben ändern */
+    /* Star oben anzeigen */
+
     document.getElementById(
         "currentStar"
     ).textContent =
@@ -710,239 +664,387 @@ async function selectStar(starName) {
         starName.toUpperCase() +
         " ★";
 
-
-    document.getElementById(
-        "message"
-    ).textContent =
-        "Saving your star...";
+}
 
 
-    /* =========================
-       USER ERMITTELN
-    ========================= */
+/* =====================================
+   STAR AUSWÄHLEN
+===================================== */
 
-    const {
-        data: { session },
-        error: sessionError
-    } =
-    await supabaseClient.auth.getSession();
+async function selectStar(starName) {
 
+    /* Sofort sichtbar machen */
 
-    if (sessionError || !session) {
+    displayStar(starName);
 
-        document.getElementById(
-            "message"
-        ).textContent =
-            "Please LOG IN first.";
-
-        return;
-    }
+    showMessage(
+        "Saving your star..."
+    );
 
 
-    const userId =
-        session.user.id;
+    try {
 
-
-    /* =========================
-       PRÜFEN OB STAR EXISTIERT
-    ========================= */
-
-    const {
-        data: existingStar,
-        error: checkError
-    } =
-    await supabaseClient
-        .from("halo_stars")
-        .select("star_name")
-        .eq("user_id", userId)
-        .maybeSingle();
-
-
-    if (checkError) {
-
-        console.error(checkError);
-
-        document.getElementById(
-            "message"
-        ).textContent =
-            "Could not check your star.";
-
-        return;
-    }
-
-
-    /* =========================
-       NEU SPEICHERN
-    ========================= */
-
-    if (!existingStar) {
+        /* Eingeloggte Session holen */
 
         const {
-            error: insertError
+            data: {
+                session
+            },
+            error: sessionError
         } =
         await supabaseClient
-            .from("halo_stars")
-            .insert({
-                user_id: userId,
-                star_name: starName
-            });
+            .auth
+            .getSession();
 
 
-        if (insertError) {
+        if (sessionError) {
 
-            console.error(insertError);
+            console.error(
+                "SESSION ERROR:",
+                sessionError
+            );
 
-            document.getElementById(
-                "message"
-            ).textContent =
-                "Could not save your star.";
+            showMessage(
+                "Could not verify your login."
+            );
 
             return;
         }
 
-    }
 
+        if (!session) {
 
-    /* =========================
-       BESTEHENDEN STAR ÄNDERN
-    ========================= */
-
-    else {
-
-        const {
-            error: updateError
-        } =
-        await supabaseClient
-            .from("halo_stars")
-            .update({
-                star_name: starName
-            })
-            .eq("user_id", userId);
-
-
-        if (updateError) {
-
-            console.error(updateError);
-
-            document.getElementById(
-                "message"
-            ).textContent =
-                "Could not update your star.";
+            showMessage(
+                "Please LOG IN first."
+            );
 
             return;
         }
 
+
+        const userId =
+            session.user.id;
+
+
+        console.log(
+            "LOGGED IN USER:",
+            userId
+        );
+
+
+        /* =================================
+           EXISTIERENDEN STAR SUCHEN
+        ================================= */
+
+        const {
+            data: existingStar,
+            error: checkError
+        } =
+        await supabaseClient
+            .from("halo_stars")
+            .select("star_name")
+            .eq(
+                "user_id",
+                userId
+            )
+            .maybeSingle();
+
+
+        if (checkError) {
+
+            console.error(
+                "CHECK STAR ERROR:",
+                checkError
+            );
+
+            showMessage(
+                "Could not check your star."
+            );
+
+            return;
+        }
+
+
+        /* =================================
+           NOCH KEIN STAR
+        ================================= */
+
+        if (!existingStar) {
+
+            const {
+                error: insertError
+            } =
+            await supabaseClient
+                .from("halo_stars")
+                .insert({
+
+                    user_id:
+                        userId,
+
+                    star_name:
+                        starName
+
+                });
+
+
+            if (insertError) {
+
+                console.error(
+                    "INSERT ERROR:",
+                    insertError
+                );
+
+                showMessage(
+                    "Could not save your star."
+                );
+
+                return;
+            }
+
+        }
+
+
+        /* =================================
+           STAR BEREITS VORHANDEN
+        ================================= */
+
+        else {
+
+            const {
+                error: updateError
+            } =
+            await supabaseClient
+                .from("halo_stars")
+                .update({
+
+                    star_name:
+                        starName
+
+                })
+                .eq(
+                    "user_id",
+                    userId
+                );
+
+
+            if (updateError) {
+
+                console.error(
+                    "UPDATE ERROR:",
+                    updateError
+                );
+
+                showMessage(
+                    "Could not update your star."
+                );
+
+                return;
+            }
+
+        }
+
+
+        /* =================================
+           ERFOLG
+        ================================= */
+
+        showMessage(
+            "Your star is " +
+            starName +
+            ". ✦"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "SELECT STAR ERROR:",
+            error
+        );
+
+        showMessage(
+            "Something went wrong."
+        );
+
     }
-
-
-    /* =========================
-       ERFOLG
-    ========================= */
-
-    document.getElementById(
-        "message"
-    ).textContent =
-        "Your star is " +
-        starName +
-        ". ✦";
 
 }
 
 
-/* =========================
-   BEIM ÖFFNEN LADEN
-========================= */
+/* =====================================
+   GESPEICHERTEN STAR LADEN
+===================================== */
 
 async function loadSavedStar() {
 
+    showMessage(
+        "Connecting to AETHER..."
+    );
+
+
     try {
 
-        // Eingeloggten Benutzer holen
+        /* Session holen */
+
         const {
-            data: { user },
-            error: userError
-        } = await supabaseClient.auth.getUser();
+            data: {
+                session
+            },
+            error: sessionError
+        } =
+        await supabaseClient
+            .auth
+            .getSession();
 
-        if (userError) {
-            console.error("USER ERROR:", userError);
-            document.getElementById("message").textContent =
-                "Could not verify your login.";
+
+        console.log(
+            "SESSION:",
+            session
+        );
+
+
+        if (sessionError) {
+
+            console.error(
+                "SESSION ERROR:",
+                sessionError
+            );
+
+            document.getElementById(
+                "currentStar"
+            ).textContent =
+                "Your connection is waiting to be discovered.";
+
+            showMessage(
+                "Could not verify your login."
+            );
+
             return;
         }
 
-        if (!user) {
-            document.getElementById("message").textContent =
-                "Please LOG IN first.";
+
+        /* =================================
+           NICHT EINGELOGGT
+        ================================= */
+
+        if (!session) {
+
+            document.getElementById(
+                "currentStar"
+            ).textContent =
+                "Choose your star below ✦";
+
+            showMessage(
+                "Please LOG IN first."
+            );
+
             return;
         }
 
-        console.log("LOGGED IN USER:", user.id);
 
-        // Gespeicherten Star aus Supabase holen
+        const userId =
+            session.user.id;
+
+
+        console.log(
+            "USER ID:",
+            userId
+        );
+
+
+        /* =================================
+           STAR AUS DATENBANK LADEN
+        ================================= */
+
         const {
             data,
             error
-        } = await supabaseClient
+        } =
+        await supabaseClient
             .from("halo_stars")
             .select("star_name")
-            .eq("user_id", user.id)
+            .eq(
+                "user_id",
+                userId
+            )
             .maybeSingle();
 
+
         if (error) {
-    console.error("STAR ERROR:", error);
 
-    document.getElementById("message").textContent =
-        "STAR ERROR: " + error.message;
+            console.error(
+                "STAR DATABASE ERROR:",
+                error
+            );
 
-    return;
-        }
-
-        // Noch kein Star ausgewählt
-        if (!data) {
-
-            document.getElementById("currentStar").textContent =
-                "✦ YOUR STAR ✦";
-
-            document.getElementById("message").textContent =
-                "Choose your star below ✦";
+            showMessage(
+                "Could not load your star."
+            );
 
             return;
         }
 
-        // Star speichern
-        selectedStar = data.star_name;
 
-        // Richtige Karte markieren
-        const card = document.querySelector(
-            '[data-star="' + data.star_name + '"]'
-        );
+        /* =================================
+           NOCH KEIN STAR
+        ================================= */
 
-        if (card) {
-            card.classList.add("selected");
+        if (!data) {
+
+            document.getElementById(
+                "currentStar"
+            ).textContent =
+                "Choose your star below ✦";
+
+            showMessage(
+                "Choose your star below ✦"
+            );
+
+            return;
         }
 
-        // Star oben anzeigen
-        document.getElementById("currentStar").textContent =
-            "★ " + data.star_name.toUpperCase() + " ★";
 
-        document.getElementById("message").textContent =
-            "Your star is " + data.star_name + ". ✦";
+        /* =================================
+           STAR GEFUNDEN
+        ================================= */
 
-        console.log("CURRENT STAR:", data.star_name);
+        displayStar(
+            data.star_name
+        );
 
-    } catch (err) {
 
-        console.error("LOAD STAR ERROR:", err);
+        showMessage(
+            "Your star is " +
+            data.star_name +
+            ". ✦"
+        );
 
-        document.getElementById("message").textContent =
-            "Could not check your current star.";
+
+        console.log(
+            "CURRENT STAR:",
+            data.star_name
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "LOAD STAR ERROR:",
+            error
+        );
+
+        showMessage(
+            "Could not load your star."
+        );
+
     }
-    }
+
+}
 
 
-/* =========================
+/* =====================================
    START
-========================= */
+===================================== */
 
 loadSavedStar();
 
@@ -951,4 +1053,4 @@ loadSavedStar();
 
 </body>
 
-</html>
+    </html>
