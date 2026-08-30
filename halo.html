@@ -16,7 +16,6 @@
 
 body {
     margin: 0;
-
     background:
         radial-gradient(
             circle at 50% 0%,
@@ -24,11 +23,8 @@ body {
             #0f0d2b 45%,
             #080719 100%
         );
-
     color: #ddd7ff;
-
     font-family: Georgia, serif;
-
     min-height: 100vh;
 }
 
@@ -143,13 +139,9 @@ h1 {
         );
 
     border: 1px solid #514879;
-
     border-radius: 22px;
-
     padding: 30px 25px;
-
     margin-bottom: 30px;
-
     text-align: center;
 
     box-shadow:
@@ -186,15 +178,10 @@ h1 {
 .progress-container {
     width: 100%;
     height: 14px;
-
     background: #0e0c25;
-
     border: 1px solid #39345e;
-
     border-radius: 20px;
-
     overflow: hidden;
-
     margin: 0 auto 15px;
 }
 
@@ -228,7 +215,7 @@ h1 {
 
 
 /* =========================
-   JOURNEY
+   AETHER JOURNEY
 ========================= */
 
 .journey-card {
@@ -291,7 +278,7 @@ h1 {
 
     overflow: hidden;
 
-    margin-bottom: 15px;
+    margin-bottom: 18px;
 }
 
 .journey-bar {
@@ -312,26 +299,69 @@ h1 {
     transition: width 0.8s ease;
 }
 
-.journey-text {
-
-    color: #aaa0e6;
-
-    font-size: 0.85rem;
-
-    letter-spacing: 1px;
-
-    line-height: 1.7;
-}
-
-.journey-points {
-
-    margin-top: 12px;
+.journey-summary {
 
     color: #ddd7ff;
 
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+
+    line-height: 1.8;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   JOURNEY ITEMS
+========================= */
+
+.journey-items {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    text-align: left;
+}
+
+.journey-item {
+
+    background: #1d1a3d;
+
+    border: 1px solid #39345e;
+
+    border-radius: 15px;
+
+    padding: 16px;
+
+}
+
+.journey-item-title {
+
+    color: #eeeaff;
+
+    font-size: 0.9rem;
 
     letter-spacing: 1px;
+
+    margin-bottom: 6px;
+}
+
+.journey-item-status {
+
+    color: #aaa0e6;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+}
+
+.journey-item-status.discovered {
+
+    color: #d9ccff;
 }
 
 
@@ -363,8 +393,12 @@ h1 {
 ========================= */
 
 .points-grid {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 18px;
 }
 
@@ -396,19 +430,27 @@ h1 {
 }
 
 .points-icon {
+
     font-size: 2rem;
+
     margin-bottom: 12px;
 }
 
 .points-card h3 {
+
     margin: 5px 0 8px;
+
     color: #ddd7ff;
+
     letter-spacing: 1px;
 }
 
 .points-card p {
+
     color: #c4c1d7;
+
     line-height: 1.6;
+
     margin: 0 0 18px;
 }
 
@@ -544,11 +586,6 @@ h1 {
     font-size: 0.8rem;
 
     letter-spacing: 1px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
 }
 
 .explore-button:hover {
@@ -557,7 +594,6 @@ h1 {
 
     border-color: #c8bdff;
 
-    transform: translateY(-2px);
 }
 
 
@@ -569,7 +605,8 @@ h1 {
 
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     gap: 18px;
 }
@@ -651,9 +688,11 @@ footer {
 @media (max-width: 650px) {
 
     .dashboard,
-    .points-grid {
+    .points-grid,
+    .journey-items {
 
         grid-template-columns: 1fr;
+
     }
 
     h1 {
@@ -692,13 +731,21 @@ AETHERVERSE
 
 <nav>
 
-<a href="index.html">Home</a>
+<a href="index.html">
+Home
+</a>
 
-<a href="universe.html">HALO Universe</a>
+<a href="universe.html">
+HALO Universe
+</a>
 
-<a href="members.html">Members</a>
+<a href="members.html">
+Members
+</a>
 
-<a href="codex.html">Codex</a>
+<a href="codex.html">
+Codex
+</a>
 
 </nav>
 
@@ -729,10 +776,6 @@ Welcome back to the AETHER universe.
 </section>
 
 
-
-<!-- =========================
-     WELCOME
-========================= -->
 
 <section class="halo-card welcome">
 
@@ -810,7 +853,7 @@ id="nextRank">
 
 
 <!-- =========================
-     JOURNEY
+     AETHER JOURNEY
 ========================= -->
 
 <section class="journey-card">
@@ -819,6 +862,7 @@ id="nextRank">
 ✦ YOUR AETHER JOURNEY ✦
 </div>
 
+
 <div
 class="journey-count"
 id="journeyCount">
@@ -826,6 +870,7 @@ id="journeyCount">
 LOADING...
 
 </div>
+
 
 <div class="journey-container">
 
@@ -836,21 +881,85 @@ id="journeyBar">
 
 </div>
 
+
 <div
-class="journey-text"
-id="journeyText">
+class="journey-summary"
+id="journeySummary">
 
 Loading your discoveries...
 
 </div>
 
-<div
-class="journey-points"
-id="journeyPoints">
 
-0 STAR POINTS FROM DISCOVERIES
+<div class="journey-items">
+
+
+<div class="journey-item">
+
+<div class="journey-item-title">
+📖 CODEX
+</div>
+
+<div
+class="journey-item-status"
+id="journeyCodex">
+
+Loading...
+</div>
 
 </div>
+
+
+<div class="journey-item">
+
+<div class="journey-item-title">
+🎵 MUSIC
+</div>
+
+<div
+class="journey-item-status"
+id="journeyMusic">
+
+Loading...
+</div>
+
+</div>
+
+
+<div class="journey-item">
+
+<div class="journey-item-title">
+🌟 YOUR STAR
+</div>
+
+<div
+class="journey-item-status"
+id="journeyStar">
+
+Loading...
+</div>
+
+</div>
+
+
+<div class="journey-item">
+
+<div class="journey-item-title">
+📡 TRANSMISSIONS
+</div>
+
+<div
+class="journey-item-status"
+id="journeyTransmission">
+
+COMING SOON
+</div>
+
+</div>
+
+
+</div>
+
 
 </section>
 
@@ -878,13 +987,10 @@ Every memory brings you closer to the next star.
 </div>
 
 
-
 <div class="points-grid">
 
 
-<!-- =========================
-     MUSIC
-========================= -->
+<!-- MUSIC -->
 
 <div class="points-card">
 
@@ -921,9 +1027,7 @@ class="music-message">
 
 
 
-<!-- =========================
-     CODEX
-========================= -->
+<!-- CODEX -->
 
 <div class="points-card">
 
@@ -955,9 +1059,7 @@ class="explore-button">
 
 
 
-<!-- =========================
-     TRANSMISSIONS
-========================= -->
+<!-- TRANSMISSIONS -->
 
 <div class="points-card">
 
@@ -985,9 +1087,7 @@ COMING WITH TRANSMISSIONS
 
 
 
-<!-- =========================
-     COMMUNITY
-========================= -->
+<!-- COMMUNITY -->
 
 <div class="points-card">
 
@@ -1015,9 +1115,7 @@ COMING WITH COMMUNITY
 
 
 
-<!-- =========================
-     PUZZLES
-========================= -->
+<!-- PUZZLES -->
 
 <div class="points-card">
 
@@ -1045,9 +1143,7 @@ COMING WITH EVENTS
 
 
 
-<!-- =========================
-     SPECIAL
-========================= -->
+<!-- SPECIAL -->
 
 <div class="points-card">
 
@@ -1196,7 +1292,6 @@ Collect milestones as you explore the seven worlds.
 </div>
 
 
-
 </section>
 
 
@@ -1224,21 +1319,17 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 <script>
 
-
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
-
 
 const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
 
 
 /* =========================
@@ -1300,7 +1391,6 @@ const ranks = [
 ];
 
 
-
 /* =========================
    DISPLAY RANK
 ========================= */
@@ -1351,18 +1441,15 @@ function displayRank(points) {
             points.toLocaleString() +
             " POINTS";
 
-
         document.getElementById(
             "progressBar"
         ).style.width =
             "100%";
 
-
         document.getElementById(
             "progressText"
         ).textContent =
             "✦ You have reached the eighth light. ✦";
-
 
         document.getElementById(
             "nextRank"
@@ -1384,19 +1471,15 @@ function displayRank(points) {
         currentRank.min;
 
 
-    let percentage =
-        (
-            pointsIntoRank /
-            pointsNeeded
-        ) * 100;
-
-
-    percentage =
+    const percentage =
         Math.max(
             0,
             Math.min(
                 100,
-                percentage
+                (
+                    pointsIntoRank /
+                    pointsNeeded
+                ) * 100
             )
         );
 
@@ -1441,9 +1524,8 @@ function displayRank(points) {
 }
 
 
-
 /* =========================
-   LOAD REAL JOURNEY DATA
+   LOAD JOURNEY
 ========================= */
 
 async function loadJourney(userId) {
@@ -1458,14 +1540,24 @@ async function loadJourney(userId) {
             "journeyBar"
         );
 
-    const journeyText =
+    const journeySummary =
         document.getElementById(
-            "journeyText"
+            "journeySummary"
         );
 
-    const journeyPoints =
+    const journeyCodex =
         document.getElementById(
-            "journeyPoints"
+            "journeyCodex"
+        );
+
+    const journeyMusic =
+        document.getElementById(
+            "journeyMusic"
+        );
+
+    const journeyStar =
+        document.getElementById(
+            "journeyStar"
         );
 
 
@@ -1496,14 +1588,11 @@ async function loadJourney(userId) {
                 error
             );
 
-
             journeyCount.textContent =
-                "COULD NOT LOAD";
+                "JOURNEY ERROR";
 
-
-            journeyText.textContent =
-                "Could not load your AETHER journey.";
-
+            journeySummary.textContent =
+                "Could not load your discoveries.";
 
             return;
 
@@ -1515,34 +1604,23 @@ async function loadJourney(userId) {
 
 
         /* =========================
-           CODEX DISCOVERIES
+           CODEX
         ========================= */
-
-        const codexEvents =
-            allEvents.filter(
-                event =>
-
-                    typeof event.action_type ===
-                    "string"
-
-                    &&
-
-                    event.action_type
-                        .startsWith(
-                            "codex_"
-                        )
-            );
-
 
         const codexKeys =
             new Set();
 
 
-        codexEvents.forEach(
+        allEvents.forEach(
             event => {
 
                 if (
-                    event.action_type
+                    typeof event.action_type ===
+                    "string"
+                    &&
+                    event.action_type.startsWith(
+                        "codex_"
+                    )
                 ) {
 
                     codexKeys.add(
@@ -1559,14 +1637,6 @@ async function loadJourney(userId) {
             codexKeys.size;
 
 
-        /*
-           We currently have 25
-           canonical Codex entries.
-
-           The number can grow later
-           without breaking the page.
-        */
-
         const totalCodex =
             Math.max(
                 25,
@@ -1574,36 +1644,28 @@ async function loadJourney(userId) {
             );
 
 
-        const codexPercentage =
-            totalCodex > 0
-
-                ?
-
-                (
-                    codexDiscovered /
-                    totalCodex
-                ) * 100
-
-                :
-
-                0;
-
-
         const codexPoints =
-            codexEvents.reduce(
-                (
-                    total,
-                    event
-                ) =>
-
-                    total +
-                    Number(
-                        event.points || 0
-                    ),
-
-                0
-            );
-
+            allEvents
+                .filter(
+                    event =>
+                        typeof event.action_type ===
+                        "string"
+                        &&
+                        event.action_type.startsWith(
+                            "codex_"
+                        )
+                )
+                .reduce(
+                    (
+                        total,
+                        event
+                    ) =>
+                        total +
+                        Number(
+                            event.points || 0
+                        ),
+                    0
+                );
 
 
         /* =========================
@@ -1613,126 +1675,144 @@ async function loadJourney(userId) {
         const musicDiscovered =
             allEvents.some(
                 event =>
-
                     event.action_type ===
                     "music_break_the_bubble"
             );
 
 
+        /* =========================
+           YOUR STAR
+        ========================= */
+
+        const starDiscovered =
+            allEvents.some(
+                event =>
+                    event.action_type ===
+                    "your_star"
+            );
+
 
         /* =========================
-           DISPLAY JOURNEY
+           DISCOVERY COUNT
+        ========================= */
+
+        let discoveryCount =
+            codexDiscovered;
+
+
+        if (musicDiscovered) {
+            discoveryCount++;
+        }
+
+
+        if (starDiscovered) {
+            discoveryCount++;
+        }
+
+
+        const totalDiscoveries =
+            totalCodex + 2;
+
+
+        const journeyPercentage =
+            Math.min(
+                100,
+                (
+                    discoveryCount /
+                    totalDiscoveries
+                ) * 100
+            );
+
+
+        /* =========================
+           DISPLAY
         ========================= */
 
         journeyCount.textContent =
 
-            codexDiscovered +
+            discoveryCount +
             " / " +
-            totalCodex +
-            " CODEX DISCOVERED";
+            totalDiscoveries +
+            " DISCOVERIES";
 
 
         journeyBar.style.width =
 
-            Math.min(
-                100,
-                codexPercentage
-            ) +
+            journeyPercentage +
             "%";
 
 
-        journeyPoints.textContent =
+        journeyCodex.textContent =
 
+            codexDiscovered +
+            " / " +
+            totalCodex +
+            " DISCOVERED • " +
             codexPoints +
-            " STAR POINTS FROM CODEX";
-
-
-        let journeyMessage = "";
-
-
-        if (
-            codexDiscovered >=
-            totalCodex
-        ) {
-
-            journeyMessage =
-                "✦ THE CODEX IS COMPLETE. ✦";
-
-        }
-
-        else {
-
-            const remaining =
-                totalCodex -
-                codexDiscovered;
-
-
-            journeyMessage =
-
-                remaining +
-                " Codex memories remain to be discovered. ✦";
-
-        }
-
-
-        journeyText.innerHTML =
-
-            journeyMessage +
-            "<br><br>" +
-
-            "🎵 BREAK THE BUBBLE: " +
-
-            (
-                musicDiscovered
-
-                    ?
-
-                    "DISCOVERED ✓"
-
-                    :
-
-                    "NOT YET DISCOVERED"
-            );
-
-
-
-        /* =========================
-           MUSIC BUTTON STATUS
-        ========================= */
-
-        const musicButton =
-            document.getElementById(
-                "musicDiscoveryButton"
-            );
-
-
-        const musicMessage =
-            document.getElementById(
-                "musicMessage"
-            );
+            " POINTS";
 
 
         if (
             musicDiscovered
         ) {
 
-            musicButton.textContent =
-                "✓ BREAK THE BUBBLE DISCOVERED";
+            journeyMusic.textContent =
+                "BREAK THE BUBBLE • DISCOVERED ✓";
 
-
-            musicButton.classList.add(
+            journeyMusic.classList.add(
                 "discovered"
             );
 
+        }
 
-            musicButton.disabled =
-                true;
+        else {
 
-
-            musicMessage.textContent =
-                "This song is already part of your HALO journey. ✦";
+            journeyMusic.textContent =
+                "BREAK THE BUBBLE • NOT YET DISCOVERED";
 
         }
+
+
+        if (
+            starDiscovered
+        ) {
+
+            journeyStar.textContent =
+                "YOUR STAR • DISCOVERED ✓";
+
+            journeyStar.classList.add(
+                "discovered"
+            );
+
+        }
+
+        else {
+
+            journeyStar.textContent =
+                "YOUR STAR • NOT YET DISCOVERED";
+
+        }
+
+
+        journeySummary.innerHTML =
+
+            codexDiscovered +
+            " Codex memories discovered." +
+            "<br>" +
+
+            (
+                musicDiscovered
+                    ? "Break the Bubble has been discovered."
+                    : "Break the Bubble is waiting to be discovered."
+            ) +
+            "<br>" +
+
+            (
+                starDiscovered
+                    ? "Your Star has been discovered."
+                    : "Your Star is waiting to be discovered."
+            );
+
 
     }
 
@@ -1743,12 +1823,10 @@ async function loadJourney(userId) {
             error
         );
 
-
         journeyCount.textContent =
             "COULD NOT LOAD";
 
-
-        journeyText.textContent =
+        journeySummary.textContent =
             "Could not load your AETHER journey.";
 
     }
@@ -1756,9 +1834,8 @@ async function loadJourney(userId) {
 }
 
 
-
 /* =========================
-   DISCOVER BREAK THE BUBBLE
+   MUSIC DISCOVERY
 ========================= */
 
 async function discoverBreakTheBubble() {
@@ -1767,7 +1844,6 @@ async function discoverBreakTheBubble() {
         document.getElementById(
             "musicDiscoveryButton"
         );
-
 
     const message =
         document.getElementById(
@@ -1778,10 +1854,8 @@ async function discoverBreakTheBubble() {
     button.disabled =
         true;
 
-
     button.textContent =
         "DISCOVERING...";
-
 
     message.textContent =
         "";
@@ -1793,9 +1867,7 @@ async function discoverBreakTheBubble() {
             data: { user },
             error: userError
         } =
-        await supabaseClient
-            .auth
-            .getUser();
+        await supabaseClient.auth.getUser();
 
 
         if (
@@ -1806,14 +1878,11 @@ async function discoverBreakTheBubble() {
             button.disabled =
                 false;
 
-
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
 
-
             message.textContent =
                 "Please log in first.";
-
 
             return;
 
@@ -1827,13 +1896,11 @@ async function discoverBreakTheBubble() {
         await supabaseClient.rpc(
             "add_halo_points",
             {
-
                 p_user_id:
                     user.id,
 
                 p_action_key:
                     "music_break_the_bubble"
-
             }
         );
 
@@ -1845,18 +1912,14 @@ async function discoverBreakTheBubble() {
                 error
             );
 
-
             button.disabled =
                 false;
-
 
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
 
-
             message.textContent =
                 "Could not record this discovery.";
-
 
             return;
 
@@ -1870,11 +1933,9 @@ async function discoverBreakTheBubble() {
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             button.classList.add(
                 "discovered"
             );
-
 
             message.textContent =
                 "✦ +5 STAR POINTS • BREAK THE BUBBLE IS NOW PART OF YOUR JOURNEY. ✦";
@@ -1886,11 +1947,9 @@ async function discoverBreakTheBubble() {
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             button.classList.add(
                 "discovered"
             );
-
 
             message.textContent =
                 "This song is already part of your HALO journey.";
@@ -1902,7 +1961,6 @@ async function discoverBreakTheBubble() {
 
     }
 
-
     catch (error) {
 
         console.error(
@@ -1910,14 +1968,11 @@ async function discoverBreakTheBubble() {
             error
         );
 
-
         button.disabled =
             false;
 
-
         button.textContent =
             "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
         message.textContent =
             "Something went wrong. Please try again.";
@@ -1925,7 +1980,6 @@ async function discoverBreakTheBubble() {
     }
 
 }
-
 
 
 /* =========================
@@ -1940,9 +1994,7 @@ async function loadHaloData() {
             data: { user },
             error: userError
         } =
-        await supabaseClient
-            .auth
-            .getUser();
+        await supabaseClient.auth.getUser();
 
 
         if (
@@ -1955,12 +2007,10 @@ async function loadHaloData() {
             ).textContent =
                 "PLEASE LOG IN";
 
-
             document.getElementById(
                 "rankPoints"
             ).textContent =
                 "Your HALO session was not found.";
-
 
             return;
 
@@ -2001,7 +2051,7 @@ async function loadHaloData() {
 
 
         /* =========================
-           TOTAL POINTS
+           POINTS
         ========================= */
 
         const {
@@ -2028,7 +2078,6 @@ async function loadHaloData() {
                 "POINTS ERROR:",
                 pointsError
             );
-
 
             return;
 
@@ -2065,8 +2114,63 @@ async function loadHaloData() {
             user.id
         );
 
-    }
 
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        const {
+            data: musicEvents
+        } =
+        await supabaseClient
+
+            .from("halo_point_events")
+
+            .select("action_type")
+
+            .eq(
+                "user_id",
+                user.id
+            )
+            .eq(
+                "action_type",
+                "music_break_the_bubble"
+            )
+            .limit(1);
+
+
+        const musicButton =
+            document.getElementById(
+                "musicDiscoveryButton"
+            );
+
+        const musicMessage =
+            document.getElementById(
+                "musicMessage"
+            );
+
+
+        if (
+            musicEvents &&
+            musicEvents.length > 0
+        ) {
+
+            musicButton.textContent =
+                "✓ BREAK THE BUBBLE DISCOVERED";
+
+            musicButton.classList.add(
+                "discovered"
+            );
+
+            musicButton.disabled =
+                true;
+
+            musicMessage.textContent =
+                "This song is already part of your HALO journey. ✦";
+
+        }
+
+    }
 
     catch (error) {
 
@@ -2075,12 +2179,10 @@ async function loadHaloData() {
             error
         );
 
-
         document.getElementById(
             "rankName"
         ).textContent =
             "COULD NOT LOAD";
-
 
         document.getElementById(
             "progressText"
@@ -2090,7 +2192,6 @@ async function loadHaloData() {
     }
 
 }
-
 
 
 /* =========================
