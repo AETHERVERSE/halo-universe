@@ -7,224 +7,213 @@
 <title>AETHER — Your Star</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        min-height: 100vh;
-        background:
-            radial-gradient(circle at top, #24204b 0%, #110f2d 45%, #09081d 100%);
-        color: #eeeaff;
-        font-family: Georgia, "Times New Roman", serif;
-    }
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #30245c 0%, #15112f 45%, #090817 100%);
+    color: #eeeaff;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.top-symbol {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 20px;
+    color: #b9a9e8;
+    margin: 18px 0 45px;
+    line-height: 1.6;
+}
+
+.card {
+    background: rgba(35, 30, 70, 0.88);
+    border: 1px solid rgba(190, 170, 255, 0.22);
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.welcome {
+    text-align: center;
+}
+
+.heart {
+    font-size: 52px;
+    margin-bottom: 15px;
+}
+
+.welcome h2 {
+    font-size: 30px;
+    margin: 5px 0 15px;
+    letter-spacing: 2px;
+}
+
+.welcome p {
+    color: #c9c0e8;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.halo-id {
+    color: #b9a9e8;
+    font-style: italic;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.section-text {
+    color: #c9c0e8;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.stars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.star {
+    position: relative;
+    background: rgba(48, 42, 88, 0.9);
+    border: 1px solid rgba(200, 185, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.star:hover {
+    transform: translateY(-5px);
+    border-color: #bca7ff;
+    box-shadow: 0 10px 30px rgba(160, 130, 255, 0.18);
+}
+
+.star.selected {
+    border: 2px solid #d6c5ff;
+    background: rgba(76, 61, 130, 0.95);
+    box-shadow: 0 0 30px rgba(180, 150, 255, 0.2);
+}
+
+.star-icon {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.star-name {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.star-world {
+    color: #aaa0d0;
+    font-size: 15px;
+}
+
+.selected-badge {
+    display: none;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #e0d5ff;
+    letter-spacing: 1px;
+}
+
+.star.selected .selected-badge {
+    display: block;
+}
+
+.status {
+    text-align: center;
+    margin-top: 25px;
+    min-height: 25px;
+    color: #cbbcff;
+}
+
+.current {
+    text-align: center;
+    display: none;
+}
+
+.current.show {
+    display: block;
+}
+
+.current-star {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.loading {
+    text-align: center;
+    color: #b9a9e8;
+    padding: 30px;
+}
+
+.error {
+    color: #ffb7c8;
+    text-align: center;
+    line-height: 1.6;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    color: #80769f;
+    font-size: 14px;
+}
+
+@media (max-width: 650px) {
 
     .container {
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 40px 20px 70px;
-    }
-
-    .top-symbol {
-        text-align: center;
-        font-size: 48px;
-        margin-bottom: 10px;
+        padding: 30px 15px 60px;
     }
 
     h1 {
-        text-align: center;
-        font-size: 42px;
-        letter-spacing: 4px;
-        margin: 0;
-        color: #f1edff;
+        font-size: 32px;
     }
 
     .subtitle {
-        text-align: center;
-        color: #b9acee;
-        font-size: 20px;
-        line-height: 1.6;
-        margin: 18px auto 45px;
-        max-width: 650px;
-    }
-
-    .halo-box {
-        background: rgba(35, 31, 70, 0.88);
-        border: 1px solid rgba(190, 170, 255, 0.25);
-        border-radius: 24px;
-        padding: 25px;
-        text-align: center;
-        margin-bottom: 35px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    }
-
-    .halo-id {
-        color: #c9bcff;
-        font-size: 18px;
-        margin-top: 8px;
-    }
-
-    .section-title {
-        font-size: 30px;
-        text-align: center;
-        letter-spacing: 2px;
-        margin: 45px 0 10px;
-    }
-
-    .section-text {
-        text-align: center;
-        color: #bcb4d9;
-        font-size: 18px;
-        margin-bottom: 30px;
+        font-size: 17px;
     }
 
     .stars {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        grid-template-columns: 1fr;
     }
 
-    .star-card {
-        position: relative;
-        background: rgba(30, 27, 60, 0.92);
-        border: 1px solid rgba(190, 170, 255, 0.22);
-        border-radius: 22px;
-        padding: 28px 20px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        color: #eeeaff;
+    .card {
+        padding: 22px 18px;
     }
-
-    .star-card:hover {
-        transform: translateY(-4px);
-        border-color: #bba6ff;
-        box-shadow: 0 12px 30px rgba(137, 99, 255, 0.18);
-    }
-
-    .star-card.selected {
-        border: 2px solid #c6a7ff;
-        background: rgba(75, 54, 125, 0.55);
-        box-shadow:
-            0 0 0 4px rgba(177, 139, 255, 0.08),
-            0 0 30px rgba(154, 113, 255, 0.25);
-    }
-
-    .star-symbol {
-        font-size: 48px;
-        margin-bottom: 10px;
-    }
-
-    .star-name {
-        font-size: 27px;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-
-    .star-world {
-        margin-top: 8px;
-        color: #aaa0d4;
-        font-size: 16px;
-    }
-
-    .selected-mark {
-        position: absolute;
-        top: 12px;
-        right: 15px;
-        display: none;
-        color: #d8c7ff;
-        font-size: 22px;
-    }
-
-    .star-card.selected .selected-mark {
-        display: block;
-    }
-
-    .save-button {
-        display: block;
-        width: 100%;
-        max-width: 500px;
-        margin: 35px auto 15px;
-        padding: 17px 25px;
-        border: none;
-        border-radius: 50px;
-        background: linear-gradient(135deg, #8d5cff, #c06cff);
-        color: white;
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 19px;
-        font-weight: bold;
-        letter-spacing: 1px;
-        cursor: pointer;
-        box-shadow: 0 10px 30px rgba(150, 90, 255, 0.25);
-    }
-
-    .save-button:hover {
-        transform: translateY(-2px);
-    }
-
-    .save-button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    .message {
-        min-height: 30px;
-        text-align: center;
-        font-size: 17px;
-        margin-top: 15px;
-    }
-
-    .success {
-        color: #d6c6ff;
-    }
-
-    .error {
-        color: #ff9dba;
-    }
-
-    .loading {
-        text-align: center;
-        color: #bcb4d9;
-        font-size: 18px;
-        padding: 40px 0;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 65px;
-        color: #8279a8;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    @media (max-width: 600px) {
-        .container {
-            padding: 30px 15px 50px;
-        }
-
-        h1 {
-            font-size: 32px;
-        }
-
-        .subtitle {
-            font-size: 17px;
-        }
-
-        .stars {
-            grid-template-columns: 1fr;
-        }
-
-        .star-card {
-            padding: 24px 18px;
-        }
-
-        .star-name {
-            font-size: 24px;
-        }
-    }
+}
 </style>
 </head>
 
@@ -237,95 +226,192 @@
     <h1>YOUR STAR</h1>
 
     <div class="subtitle">
-        Choose the AETHER star closest to your heart.
-        <br>
-        Your connection begins here.
+        Your place among the seven stars.<br>
+        Choose the star that shines closest to you.
     </div>
 
-    <div class="halo-box">
-        <div style="font-size: 28px;">💜</div>
+    <div class="card welcome">
 
-        <div style="font-size: 22px; margin-top: 8px;">
-            WELCOME, HALO
-        </div>
+        <div class="heart">💜</div>
+
+        <h2>WELCOME, HALO</h2>
+
+        <p>
+            Every HALO has a connection to one of the seven stars.
+            Choose the AETHER member whose light feels closest to you.
+        </p>
 
         <div class="halo-id" id="haloId">
             Loading your HALO ID...
         </div>
+
     </div>
 
-    <h2 class="section-title">CHOOSE YOUR STAR</h2>
 
-    <div class="section-text">
-        Every HALO may choose one AETHER star.
-    </div>
+    <div class="card current" id="currentCard">
 
-    <div id="loading" class="loading">
-        Connecting to AETHER...
-    </div>
+        <div>YOUR STAR</div>
 
-    <div id="starsContainer" class="stars" style="display:none;">
-
-        <div class="star-card" data-star="Solen">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">☀️</div>
-            <div class="star-name">Solen</div>
-            <div class="star-world">Solarion</div>
-        </div>
-
-        <div class="star-card" data-star="Vex">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">🌑</div>
-            <div class="star-name">Vex</div>
-            <div class="star-world">Hollow</div>
-        </div>
-
-        <div class="star-card" data-star="Kairo">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">⚡</div>
-            <div class="star-name">Kairo</div>
-            <div class="star-world">Voltaris</div>
-        </div>
-
-        <div class="star-card" data-star="Riven">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">🌊</div>
-            <div class="star-name">Riven</div>
-            <div class="star-world">Thalassia</div>
-        </div>
-
-        <div class="star-card" data-star="Zenith">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">🔥</div>
-            <div class="star-name">Zenith</div>
-            <div class="star-world">Ignis</div>
-        </div>
-
-        <div class="star-card" data-star="Lux">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">✨</div>
-            <div class="star-name">Lux</div>
-            <div class="star-world">Lumenia</div>
-        </div>
-
-        <div class="star-card" data-star="Nero">
-            <div class="selected-mark">✦</div>
-            <div class="star-symbol">🌌</div>
-            <div class="star-name">Nero</div>
-            <div class="star-world">Nocteum</div>
+        <div class="current-star" id="currentStar">
         </div>
 
     </div>
 
-    <button id="saveButton" class="save-button" disabled>
-        CHOOSE YOUR STAR
-    </button>
 
-    <div id="message" class="message"></div>
+    <div class="card">
 
-    <div class="footer">
+        <div class="section-title">
+            ✦ Choose Your Star
+        </div>
+
+        <div class="section-text">
+            One HALO. One Star. Choose wisely. ✨
+        </div>
+
+        <div class="stars">
+
+            <div class="star" data-star="Solen">
+
+                <div class="star-icon">☀️</div>
+
+                <div class="star-name">
+                    SOLEN
+                </div>
+
+                <div class="star-world">
+                    Solarion
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Vex">
+
+                <div class="star-icon">🌑</div>
+
+                <div class="star-name">
+                    VEX
+                </div>
+
+                <div class="star-world">
+                    Hollow
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Kairo">
+
+                <div class="star-icon">⚡</div>
+
+                <div class="star-name">
+                    KAIRO
+                </div>
+
+                <div class="star-world">
+                    Voltaris
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Riven">
+
+                <div class="star-icon">🌊</div>
+
+                <div class="star-name">
+                    RIVEN
+                </div>
+
+                <div class="star-world">
+                    Thalassia
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Zenith">
+
+                <div class="star-icon">🔥</div>
+
+                <div class="star-name">
+                    ZENITH
+                </div>
+
+                <div class="star-world">
+                    Ignis
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Lux">
+
+                <div class="star-icon">✨</div>
+
+                <div class="star-name">
+                    LUX
+                </div>
+
+                <div class="star-world">
+                    Lumenia
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+
+            <div class="star" data-star="Nero">
+
+                <div class="star-icon">🌙</div>
+
+                <div class="star-name">
+                    NERO
+                </div>
+
+                <div class="star-world">
+                    Nocteum
+                </div>
+
+                <div class="selected-badge">
+                    ★ YOUR STAR
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="status" id="status"></div>
+
+    </div>
+
+
+    <footer>
         #WEAREHALO • #WEAREAETHER
-    </div>
+    </footer>
 
 </div>
 
@@ -337,10 +423,10 @@
 <script>
 
 const SUPABASE_URL =
-    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+"https://mkdkfnejqnqoalzyegaw.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_uScqa4BUx4rq01EmkV0-8Q_QsiyetmY";
+"sb_publishable_uScqa4BUx4rq01EmkV0-8Q_QsiyetmY";
 
 
 const supabaseClient =
@@ -350,45 +436,51 @@ const supabaseClient =
     );
 
 
-let currentUser = null;
-let selectedStar = null;
+const allowedStars = [
+    "Solen",
+    "Vex",
+    "Kairo",
+    "Riven",
+    "Zenith",
+    "Lux",
+    "Nero"
+];
 
 
-// --------------------------------------------------
-// START
-// --------------------------------------------------
+const haloIdElement =
+    document.getElementById("haloId");
 
-async function startYourStar() {
+const currentCard =
+    document.getElementById("currentCard");
 
-    const loading =
-        document.getElementById("loading");
+const currentStarElement =
+    document.getElementById("currentStar");
 
-    const starsContainer =
-        document.getElementById("starsContainer");
-
-    const saveButton =
-        document.getElementById("saveButton");
-
-    const haloId =
-        document.getElementById("haloId");
+const statusElement =
+    document.getElementById("status");
 
 
-    // Check logged-in user
+async function loadYourStar() {
+
+    statusElement.textContent = "";
+
     const {
-        data: { user },
+        data: {
+            user
+        },
         error: userError
     } = await supabaseClient.auth.getUser();
 
 
     if (userError) {
 
-        loading.innerHTML =
-            "Unable to connect to AETHER.";
+        haloIdElement.textContent =
+            "Unable to load your HALO.";
 
-        showMessage(
-            "USER ERROR: " + userError.message,
-            true
-        );
+        statusElement.innerHTML =
+            '<div class="error">USER ERROR: ' +
+            userError.message +
+            '</div>';
 
         return;
     }
@@ -396,24 +488,17 @@ async function startYourStar() {
 
     if (!user) {
 
-        loading.innerHTML =
-            "Please log in first.";
+        haloIdElement.textContent =
+            "No HALO is currently logged in.";
 
-        showMessage(
-            "NO HALO IS LOGGED IN.",
-            true
-        );
+        statusElement.innerHTML =
+            '<div class="error">Please log in first.</div>';
 
         return;
     }
 
 
-    currentUser = user;
-
-
-    // --------------------------------------------------
-    // Load HALO profile
-    // --------------------------------------------------
+    /* LOAD HALO ID */
 
     const {
         data: profile,
@@ -427,13 +512,13 @@ async function startYourStar() {
 
     if (profileError) {
 
-        loading.innerHTML =
-            "Your HALO profile could not be found.";
+        haloIdElement.textContent =
+            "HALO ID unavailable.";
 
-        showMessage(
-            "PROFILE ERROR: " + profileError.message,
-            true
-        );
+        statusElement.innerHTML =
+            '<div class="error">PROFILE ERROR: ' +
+            profileError.message +
+            '</div>';
 
         return;
     }
@@ -441,17 +526,17 @@ async function startYourStar() {
 
     if (profile) {
 
-        haloId.textContent =
-            "HALO ID: " + profile.halo_id;
+        haloIdElement.textContent =
+            "HALO ID: " +
+            profile.halo_id;
+
     }
 
 
-    // --------------------------------------------------
-    // Load existing Your Star
-    // --------------------------------------------------
+    /* LOAD CURRENT STAR */
 
     const {
-        data: existingStar,
+        data: star,
         error: starError
     } = await supabaseClient
         .from("halo_stars")
@@ -462,228 +547,150 @@ async function startYourStar() {
 
     if (starError) {
 
-        console.log(
-            "Existing star check:",
-            starError
-        );
+        statusElement.innerHTML =
+            '<div class="error">STAR ERROR: ' +
+            starError.message +
+            '</div>';
+
+        return;
     }
 
 
-    if (existingStar) {
+    if (star && allowedStars.includes(star.star_name)) {
 
-        selectedStar =
-            existingStar.star_name;
-
-        selectStarCard(selectedStar);
-
-        saveButton.textContent =
-            "UPDATE YOUR STAR";
+        showSelectedStar(star.star_name);
 
     }
 
-
-    // Show stars
-    loading.style.display = "none";
-
-    starsContainer.style.display = "grid";
-
-    saveButton.disabled = false;
 }
 
 
-// --------------------------------------------------
-// STAR SELECTION
-// --------------------------------------------------
-
-document.querySelectorAll(".star-card")
-    .forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            selectedStar =
-                card.dataset.star;
-
-            selectStarCard(selectedStar);
-
-            document.getElementById(
-                "saveButton"
-            ).textContent =
-                "SAVE " + selectedStar + " AS YOUR STAR";
-
-            clearMessage();
-        });
-
-    });
-
-
-function selectStarCard(starName) {
+function showSelectedStar(starName) {
 
     document
-        .querySelectorAll(".star-card")
+        .querySelectorAll(".star")
         .forEach(card => {
 
             card.classList.remove("selected");
 
-            if (
-                card.dataset.star === starName
-            ) {
-
-                card.classList.add("selected");
-            }
-
         });
+
+
+    const selectedCard =
+        document.querySelector(
+            '.star[data-star="' +
+            starName +
+            '"]'
+        );
+
+
+    if (selectedCard) {
+
+        selectedCard.classList.add("selected");
+
+    }
+
+
+    currentStarElement.textContent =
+        "★ " + starName + " ★";
+
+    currentCard.classList.add("show");
+
 }
 
 
-// --------------------------------------------------
-// SAVE
-// --------------------------------------------------
+async function chooseStar(starName) {
+
+    if (!allowedStars.includes(starName)) {
+
+        return;
+
+    }
+
+
+    statusElement.textContent =
+        "Connecting to AETHER...";
+
+
+    const {
+        data: {
+            user
+        },
+        error: userError
+    } = await supabaseClient.auth.getUser();
+
+
+    if (userError || !user) {
+
+        statusElement.textContent =
+            "Please log in first.";
+
+        return;
+
+    }
+
+
+    /* SAVE STAR */
+
+    const {
+        error
+    } = await supabaseClient
+        .from("halo_stars")
+        .upsert(
+            {
+                user_id: user.id,
+                star_name: starName
+            },
+            {
+                onConflict: "user_id"
+            }
+        );
+
+
+    if (error) {
+
+        statusElement.innerHTML =
+            '<div class="error">Unable to save your Star.<br>' +
+            error.message +
+            '</div>';
+
+        return;
+
+    }
+
+
+    showSelectedStar(starName);
+
+
+    statusElement.textContent =
+        "Your Star has been chosen. ✦";
+
+
+}
+
 
 document
-    .getElementById("saveButton")
-    .addEventListener("click", saveStar);
+    .querySelectorAll(".star")
+    .forEach(card => {
 
+        card.addEventListener(
+            "click",
+            () => {
 
-async function saveStar() {
+                const starName =
+                    card.dataset.star;
 
-    const button =
-        document.getElementById("saveButton");
+                chooseStar(starName);
 
-
-    if (!currentUser) {
-
-        showMessage(
-            "You must be logged in.",
-            true
+            }
         );
 
-        return;
-    }
+    });
 
 
-    if (!selectedStar) {
-
-        showMessage(
-            "Please choose one of the seven stars.",
-            true
-        );
-
-        return;
-    }
-
-
-    button.disabled = true;
-
-    button.textContent =
-        "SAVING...";
-
-
-    // Remove previous choice
-    const {
-        error: deleteError
-    } = await supabaseClient
-        .from("halo_stars")
-        .delete()
-        .eq("user_id", currentUser.id);
-
-
-    if (deleteError) {
-
-        showMessage(
-            "SAVE ERROR: " +
-            deleteError.message,
-            true
-        );
-
-        button.disabled = false;
-
-        button.textContent =
-            "SAVE " + selectedStar +
-            " AS YOUR STAR";
-
-        return;
-    }
-
-
-    // Save new choice
-    const {
-        error: insertError
-    } = await supabaseClient
-        .from("halo_stars")
-        .insert({
-            user_id: currentUser.id,
-            star_name: selectedStar
-        });
-
-
-    if (insertError) {
-
-        showMessage(
-            "SAVE ERROR: " +
-            insertError.message,
-            true
-        );
-
-        button.disabled = false;
-
-        return;
-    }
-
-
-    // Success 🎉
-
-    showMessage(
-        "✦ Your Star is now " +
-        selectedStar +
-        ". Welcome among the seven stars. ✦",
-        false
-    );
-
-
-    button.textContent =
-        "YOUR STAR: " + selectedStar;
-
-    button.disabled = false;
-}
-
-
-// --------------------------------------------------
-// MESSAGES
-// --------------------------------------------------
-
-function showMessage(text, error) {
-
-    const message =
-        document.getElementById("message");
-
-    message.textContent = text;
-
-    message.className =
-        error
-            ? "message error"
-            : "message success";
-}
-
-
-function clearMessage() {
-
-    const message =
-        document.getElementById("message");
-
-    message.textContent = "";
-
-    message.className =
-        "message";
-}
-
-
-// --------------------------------------------------
-// RUN
-// --------------------------------------------------
-
-startYourStar();
+loadYourStar();
 
 </script>
 
 </body>
-  </html>
+</html>
