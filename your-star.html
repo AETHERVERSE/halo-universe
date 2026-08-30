@@ -7,7 +7,6 @@
 <title>AETHER — Your Star</title>
 
 <style>
-
 * {
     box-sizing: border-box;
 }
@@ -16,7 +15,7 @@ body {
     margin: 0;
     min-height: 100vh;
     background:
-        radial-gradient(circle at top, #30245f 0%, #14112f 45%, #0d0b22 100%);
+        radial-gradient(circle at top, #30245f 0%, #17112f 55%, #0b0818 100%);
     color: #eeeaff;
     font-family: Georgia, "Times New Roman", serif;
 }
@@ -43,113 +42,92 @@ h1 {
 
 .subtitle {
     text-align: center;
-    font-size: 20px;
-    color: #bdb0e9;
+    font-size: 22px;
+    color: #c9bdf2;
     margin: 15px 0 35px;
 }
 
-.halo-card {
-    background: rgba(38, 32, 72, 0.88);
-    border: 1px solid rgba(190, 170, 255, 0.25);
-    border-radius: 24px;
-    padding: 30px;
+.status {
+    text-align: center;
+    padding: 25px;
     margin-bottom: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    border: 1px solid #594c86;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.04);
+    font-size: 20px;
 }
 
-.halo-id {
+.current {
     text-align: center;
-    color: #cfc3ff;
-    font-style: italic;
+    padding: 30px 20px;
+    margin-bottom: 35px;
+    border-radius: 28px;
+    border: 1px solid #a98cff;
+    background: rgba(117, 88, 180, 0.15);
+}
+
+.current-title {
+    color: #cfc1ff;
     font-size: 18px;
+    margin-bottom: 12px;
 }
 
 .current-star {
-    text-align: center;
-    font-size: 22px;
-    margin-top: 20px;
+    font-size: 30px;
+    letter-spacing: 3px;
 }
 
-.current-star strong {
-    color: #f2dcff;
-}
-
-.message {
-    text-align: center;
-    margin: 20px 0;
-    font-size: 18px;
-    color: #d9cff8;
-}
-
-.stars {
+.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
-.star-button {
-    width: 100%;
-    border: 1px solid rgba(200,180,255,0.28);
-    border-radius: 20px;
-    background: rgba(30,25,60,0.9);
-    color: #eeeaff;
-    padding: 25px 18px;
+.star-card {
+    padding: 30px 20px;
+    text-align: center;
+    border-radius: 24px;
+    border: 1px solid #554879;
+    background: rgba(255,255,255,0.045);
     cursor: pointer;
-    font-family: Georgia, "Times New Roman", serif;
     transition: 0.25s ease;
 }
 
-.star-button:hover {
+.star-card:hover {
     transform: translateY(-4px);
-    background: rgba(58,45,100,0.95);
-    border-color: #bfa7ff;
-    box-shadow: 0 10px 30px rgba(150,120,255,0.2);
+    border-color: #b79cff;
+    background: rgba(133, 101, 210, 0.16);
 }
 
 .star-symbol {
-    font-size: 38px;
-    margin-bottom: 10px;
+    font-size: 50px;
+    margin-bottom: 15px;
 }
 
 .star-name {
     font-size: 25px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
 }
 
-.star-description {
-    margin-top: 8px;
-    color: #bdb0e9;
-    font-size: 15px;
+.star-story {
+    color: #c5b8e9;
+    font-size: 17px;
 }
 
-.selected {
-    border-color: #e4c9ff;
-    box-shadow: 0 0 25px rgba(210,180,255,0.3);
-}
-
-.back {
-    display: block;
-    width: fit-content;
-    margin: 35px auto 0;
-    padding: 12px 24px;
-    border-radius: 30px;
-    border: 1px solid rgba(200,180,255,0.3);
-    color: #eeeaff;
-    text-decoration: none;
-    background: rgba(35,30,70,0.8);
-}
-
-.back:hover {
-    background: rgba(65,50,110,0.9);
+.message {
+    text-align: center;
+    margin-top: 30px;
+    min-height: 30px;
+    font-size: 18px;
 }
 
 footer {
     text-align: center;
     margin-top: 60px;
-    color: #9186bd;
+    color: #8e82b4;
     font-size: 14px;
 }
-
 </style>
 </head>
 
@@ -165,89 +143,66 @@ footer {
         Choose the star that calls to you.
     </div>
 
-    <div class="halo-card">
+    <div class="status" id="status">
+        Connecting to AETHER...
+    </div>
 
-        <div class="halo-id" id="haloId">
-            Connecting to AETHER...
+    <div class="current" id="currentBox" style="display:none;">
+        <div class="current-title">
+            YOUR CURRENT STAR
         </div>
 
         <div class="current-star" id="currentStar">
-            Your connection is waiting to be discovered.
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div class="star-card" onclick="chooseStar('Solen')">
+            <div class="star-symbol">☀️</div>
+            <div class="star-name">SOLEN</div>
+            <div class="star-story">The First Light</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Vex')">
+            <div class="star-symbol">🌑</div>
+            <div class="star-name">VEX</div>
+            <div class="star-story">The Shadow</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Kairo')">
+            <div class="star-symbol">⚡</div>
+            <div class="star-name">KAIRO</div>
+            <div class="star-story">The Storm</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Riven')">
+            <div class="star-symbol">🌊</div>
+            <div class="star-name">RIVEN</div>
+            <div class="star-story">The Tide</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Zenith')">
+            <div class="star-symbol">🔥</div>
+            <div class="star-name">ZENITH</div>
+            <div class="star-story">The Flame</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Lux')">
+            <div class="star-symbol">✨</div>
+            <div class="star-name">LUX</div>
+            <div class="star-story">The Light</div>
+        </div>
+
+        <div class="star-card" onclick="chooseStar('Nero')">
+            <div class="star-symbol">🌙</div>
+            <div class="star-name">NERO</div>
+            <div class="star-story">The Night</div>
         </div>
 
     </div>
 
-    <div class="halo-card">
-
-        <div class="message" id="message">
-            Choose one of the seven stars of AETHER.
-        </div>
-
-        <div class="stars">
-
-            <button class="star-button" onclick="chooseStar('Solen')" id="star-Solen">
-                <div class="star-symbol">☀️</div>
-                <div class="star-name">SOLEN</div>
-                <div class="star-description">
-                    The First Light
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Vex')" id="star-Vex">
-                <div class="star-symbol">🌑</div>
-                <div class="star-name">VEX</div>
-                <div class="star-description">
-                    The Shadow
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Kairo')" id="star-Kairo">
-                <div class="star-symbol">⚡</div>
-                <div class="star-name">KAIRO</div>
-                <div class="star-description">
-                    The Energy
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Riven')" id="star-Riven">
-                <div class="star-symbol">🌊</div>
-                <div class="star-name">RIVEN</div>
-                <div class="star-description">
-                    The Heart
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Zenith')" id="star-Zenith">
-                <div class="star-symbol">🔥</div>
-                <div class="star-name">ZENITH</div>
-                <div class="star-description">
-                    The Spark
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Lux')" id="star-Lux">
-                <div class="star-symbol">✨</div>
-                <div class="star-name">LUX</div>
-                <div class="star-description">
-                    The Comfort
-                </div>
-            </button>
-
-            <button class="star-button" onclick="chooseStar('Nero')" id="star-Nero">
-                <div class="star-symbol">🌙</div>
-                <div class="star-name">NERO</div>
-                <div class="star-description">
-                    The Night
-                </div>
-            </button>
-
-        </div>
-
-    </div>
-
-    <a href="halo-home.html" class="back">
-        ← Back to My Halo
-    </a>
+    <div class="message" id="message"></div>
 
     <footer>
         #WEAREHALO • #WEAREAETHER
@@ -255,162 +210,148 @@ footer {
 
 </div>
 
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY".replace(" ", "");
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq01EmkVO-8Q_Qsiy...";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+/*
+   IMPORTANT:
+   Keep the complete publishable key from your other AETHER files here.
+*/
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
 
 let currentUser = null;
-let currentHaloId = null;
 
 
 /* =========================
-   INITIALIZE PAGE
+   START
 ========================= */
 
-async function initializePage() {
+async function startPage() {
 
-    const message = document.getElementById("message");
+    const status =
+        document.getElementById("status");
 
     try {
 
-        /*
-         * Get the existing logged-in session.
-         * We deliberately use getSession() here because
-         * this page must continue the session from HALO HOME.
-         */
-
         const {
             data: { session },
-            error: sessionError
-        } = await supabaseClient.auth.getSession();
+            error
+        } =
+        await supabaseClient.auth.getSession();
 
-
-        if (sessionError) {
-
-            console.error(sessionError);
-
-            message.textContent =
-                "Unable to read your AETHER session.";
-
+        if (error) {
+            status.textContent =
+                "Could not connect to AETHER.";
+            console.error(error);
             return;
         }
-
 
         if (!session || !session.user) {
 
-            message.textContent =
-                "PLEASE LOG IN FIRST.";
-
-            document.getElementById("haloId").textContent =
-                "No active HALO session found.";
+            status.textContent =
+                "Please LOG IN first.";
 
             return;
         }
-
 
         currentUser = session.user;
 
+        status.textContent =
+            "Connected to AETHER ✦";
 
-        /*
-         * Get HALO profile
-         */
+        await loadCurrentStar();
 
-        const {
-            data: profile,
-            error: profileError
-        } = await supabaseClient
-            .from("halo_profiles")
-            .select("halo_id")
-            .eq("user_id", currentUser.id)
-            .single();
+    } catch (err) {
 
+        console.error(err);
 
-        if (profileError) {
+        status.textContent =
+            "Could not connect to AETHER.";
 
-            console.error(profileError);
-
-            message.textContent =
-                "Your HALO profile could not be found.";
-
-            return;
-        }
+    }
+}
 
 
-        currentHaloId = profile.halo_id;
+/* =========================
+   CURRENT STAR
+========================= */
 
+async function loadCurrentStar() {
 
-        document.getElementById("haloId").textContent =
-            "HALO ID: " + currentHaloId;
+    const currentBox =
+        document.getElementById("currentBox");
 
+    const currentStar =
+        document.getElementById("currentStar");
 
-        message.textContent =
-            "Choose your star among the seven.";
-
-
-        /*
-         * Check whether the HALO already has a star.
-         */
+    try {
 
         const {
-            data: star,
-            error: starError
-        } = await supabaseClient
+            data,
+            error
+        } =
+        await supabaseClient
             .from("halo_stars")
             .select("star_name")
             .eq("user_id", currentUser.id)
             .maybeSingle();
 
+        /*
+          maybeSingle() is important.
+          No star yet = normal, not an error.
+        */
 
-        if (!starError && star) {
+        if (error) {
 
-            showCurrentStar(star.star_name);
+            console.error(
+                "STAR CHECK ERROR:",
+                error
+            );
 
+            document.getElementById("status")
+                .textContent =
+                "Could not check your current star.";
+
+            return;
         }
 
-    } catch (error) {
+        if (!data) {
 
-        console.error(error);
+            currentBox.style.display = "block";
 
-        message.textContent =
-            "Something went wrong connecting to AETHER.";
+            currentStar.textContent =
+                "No star chosen yet ✦";
+
+            return;
+        }
+
+        currentBox.style.display = "block";
+
+        currentStar.textContent =
+            data.star_name;
+
+    } catch (err) {
+
+        console.error(err);
+
+        document.getElementById("status")
+            .textContent =
+            "Could not check your current star.";
 
     }
-
-}
-
-
-/* =========================
-   SHOW CURRENT STAR
-========================= */
-
-function showCurrentStar(starName) {
-
-    document.getElementById("currentStar").innerHTML =
-        "Your star is <strong>" + starName + "</strong> ⭐";
-
-
-    document.querySelectorAll(".star-button").forEach(button => {
-        button.classList.remove("selected");
-    });
-
-
-    const selectedButton =
-        document.getElementById("star-" + starName);
-
-    if (selectedButton) {
-        selectedButton.classList.add("selected");
-    }
-
 }
 
 
@@ -420,124 +361,148 @@ function showCurrentStar(starName) {
 
 async function chooseStar(starName) {
 
-    const message = document.getElementById("message");
+    const message =
+        document.getElementById("message");
 
-
-    /*
-     * Make absolutely sure we have the current session.
-     */
-
-    const {
-        data: { session },
-        error: sessionError
-    } = await supabaseClient.auth.getSession();
-
-
-    if (
-        sessionError ||
-        !session ||
-        !session.user
-    ) {
+    if (!currentUser) {
 
         message.textContent =
-            "PLEASE LOG IN FIRST.";
+            "Please LOG IN first.";
 
         return;
     }
-
-
-    currentUser = session.user;
-
 
     message.textContent =
-        "Connecting your HALO to " + starName + "...";
+        "Connecting to " + starName + "...";
+
+    try {
+
+        /*
+          First check whether the user
+          already has a star.
+        */
+
+        const {
+            data: existingStar,
+            error: checkError
+        } =
+        await supabaseClient
+            .from("halo_stars")
+            .select("star_name")
+            .eq("user_id", currentUser.id)
+            .maybeSingle();
+
+        if (checkError) {
+
+            console.error(
+                "CHECK ERROR:",
+                checkError
+            );
+
+            message.textContent =
+                "Could not check your current star.";
+
+            return;
+        }
 
 
-    /*
-     * Check whether this HALO already has a selected star.
-     */
+        /*
+          If a star already exists,
+          update it.
+        */
 
-    const {
-        data: existingStar,
-        error: existingError
-    } = await supabaseClient
-        .from("halo_stars")
-        .select("star_name")
-        .eq("user_id", currentUser.id)
-        .maybeSingle();
+        if (existingStar) {
+
+            const {
+                error: updateError
+            } =
+            await supabaseClient
+                .from("halo_stars")
+                .update({
+                    star_name: starName
+                })
+                .eq("user_id", currentUser.id);
+
+            if (updateError) {
+
+                console.error(
+                    "UPDATE ERROR:",
+                    updateError
+                );
+
+                message.textContent =
+                    "Could not save your star.";
+
+                return;
+            }
+
+        }
+
+        /*
+          If no star exists yet,
+          create one.
+        */
+
+        else {
+
+            const {
+                error: insertError
+            } =
+            await supabaseClient
+                .from("halo_stars")
+                .insert({
+                    user_id: currentUser.id,
+                    star_name: starName
+                });
+
+            if (insertError) {
+
+                console.error(
+                    "INSERT ERROR:",
+                    insertError
+                );
+
+                message.textContent =
+                    "Could not save your star.";
+
+                return;
+            }
+        }
 
 
-    if (existingError) {
+        /*
+          Update the page immediately.
+        */
 
-        console.error(existingError);
+        document.getElementById("currentBox")
+            .style.display = "block";
+
+        document.getElementById("currentStar")
+            .textContent = starName;
 
         message.textContent =
-            "Could not check your current star.";
+            "Your connection to " +
+            starName +
+            " has been chosen ✦";
 
-        return;
-    }
+    } catch (err) {
 
-
-    /*
-     * If a star already exists, update it.
-     * Otherwise create a new one.
-     */
-
-    let result;
-
-
-    if (existingStar) {
-
-        result = await supabaseClient
-            .from("halo_stars")
-            .update({
-                star_name: starName
-            })
-            .eq("user_id", currentUser.id);
-
-    } else {
-
-        result = await supabaseClient
-            .from("halo_stars")
-            .insert({
-                user_id: currentUser.id,
-                star_name: starName
-            });
-
-    }
-
-
-    if (result.error) {
-
-        console.error(result.error);
+        console.error(err);
 
         message.textContent =
-            "Your star could not be saved.";
+            "Something went wrong.";
 
-        return;
     }
-
-
-    /*
-     * Success!
-     */
-
-    showCurrentStar(starName);
-
-    message.textContent =
-        "Your connection has been chosen. ✦";
-
-
 }
 
 
 /* =========================
-   START
+   RUN
 ========================= */
 
-initializePage();
+startPage();
 
 </script>
 
 </body>
-    </html>
+</html>
