@@ -186,10 +186,15 @@ h1 {
 .progress-container {
     width: 100%;
     height: 14px;
+
     background: #0e0c25;
+
     border: 1px solid #39345e;
+
     border-radius: 20px;
+
     overflow: hidden;
+
     margin: 0 auto 15px;
 }
 
@@ -223,10 +228,10 @@ h1 {
 
 
 /* =========================
-   CODEX JOURNEY
+   JOURNEY
 ========================= */
 
-.codex-progress-card {
+.journey-card {
 
     background:
         linear-gradient(
@@ -250,7 +255,7 @@ h1 {
         rgba(0,0,0,0.25);
 }
 
-.codex-progress-label {
+.journey-label {
 
     color: #aaa0e6;
 
@@ -261,7 +266,7 @@ h1 {
     margin-bottom: 14px;
 }
 
-.codex-progress-count {
+.journey-count {
 
     color: #eeeaff;
 
@@ -272,7 +277,7 @@ h1 {
     margin-bottom: 18px;
 }
 
-.codex-progress-container {
+.journey-container {
 
     width: 100%;
 
@@ -289,7 +294,7 @@ h1 {
     margin-bottom: 15px;
 }
 
-.codex-progress-bar {
+.journey-bar {
 
     height: 100%;
 
@@ -307,7 +312,7 @@ h1 {
     transition: width 0.8s ease;
 }
 
-.codex-progress-text {
+.journey-text {
 
     color: #aaa0e6;
 
@@ -318,7 +323,7 @@ h1 {
     line-height: 1.6;
 }
 
-.codex-progress-points {
+.journey-points {
 
     margin-top: 12px;
 
@@ -354,7 +359,7 @@ h1 {
 
 
 /* =========================
-   POINT CARDS
+   POINT GRID
 ========================= */
 
 .points-grid {
@@ -459,11 +464,6 @@ h1 {
     letter-spacing: 1.5px;
 
     cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
 }
 
 .music-button:hover {
@@ -532,11 +532,6 @@ h1 {
     font-size: 0.8rem;
 
     letter-spacing: 1px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
 }
 
 .explore-button:hover {
@@ -656,7 +651,7 @@ footer {
         font-size: 1.5rem;
     }
 
-    .codex-progress-count {
+    .journey-count {
         font-size: 1.4rem;
     }
 
@@ -680,21 +675,13 @@ AETHERVERSE
 
 <nav>
 
-<a href="index.html">
-Home
-</a>
+<a href="index.html">Home</a>
 
-<a href="universe.html">
-HALO Universe
-</a>
+<a href="universe.html">HALO Universe</a>
 
-<a href="members.html">
-Members
-</a>
+<a href="members.html">Members</a>
 
-<a href="codex.html">
-Codex
-</a>
+<a href="codex.html">Codex</a>
 
 </nav>
 
@@ -797,42 +784,46 @@ id="nextRank">
 
 
 
-<section class="codex-progress-card">
+<!-- =========================
+     REAL JOURNEY
+========================= -->
 
-<div class="codex-progress-label">
-✦ CODEX DISCOVERIES ✦
+<section class="journey-card">
+
+<div class="journey-label">
+✦ YOUR AETHER JOURNEY ✦
 </div>
 
 <div
-class="codex-progress-count"
-id="codexProgressCount">
+class="journey-count"
+id="journeyCount">
 
 LOADING...
 
 </div>
 
-<div class="codex-progress-container">
+<div class="journey-container">
 
 <div
-class="codex-progress-bar"
-id="codexProgressBar">
+class="journey-bar"
+id="journeyBar">
 </div>
 
 </div>
 
 <div
-class="codex-progress-text"
-id="codexProgressText">
+class="journey-text"
+id="journeyText">
 
-Loading your Codex journey...
+Loading your discoveries...
 
 </div>
 
 <div
-class="codex-progress-points"
-id="codexProgressPoints">
+class="journey-points"
+id="journeyPoints">
 
-0 STAR POINTS FROM CODEX
+0 STAR POINTS FROM DISCOVERIES
 
 </div>
 
@@ -1042,7 +1033,6 @@ SPECIAL EVENTS ONLY
 </div>
 
 
-
 </div>
 
 </section>
@@ -1208,55 +1198,25 @@ window.supabase.createClient(
 
 const ranks = [
 
-    {
-        name: "NEW HALO",
-        min: 0
-    },
+    { name: "NEW HALO", min: 0 },
 
-    {
-        name: "AWAKENED HALO",
-        min: 250
-    },
+    { name: "AWAKENED HALO", min: 250 },
 
-    {
-        name: "RISING HALO",
-        min: 750
-    },
+    { name: "RISING HALO", min: 750 },
 
-    {
-        name: "RADIANT HALO",
-        min: 1500
-    },
+    { name: "RADIANT HALO", min: 1500 },
 
-    {
-        name: "STELLAR HALO",
-        min: 3000
-    },
+    { name: "STELLAR HALO", min: 3000 },
 
-    {
-        name: "CELESTIAL HALO",
-        min: 5500
-    },
+    { name: "CELESTIAL HALO", min: 5500 },
 
-    {
-        name: "LEGENDARY HALO",
-        min: 10000
-    },
+    { name: "LEGENDARY HALO", min: 10000 },
 
-    {
-        name: "ETERNAL HALO",
-        min: 15000
-    },
+    { name: "ETERNAL HALO", min: 15000 },
 
-    {
-        name: "PRESTIGE HALO",
-        min: 25000
-    },
+    { name: "PRESTIGE HALO", min: 25000 },
 
-    {
-        name: "EIGHT",
-        min: 50000
-    }
+    { name: "EIGHT", min: 50000 }
 
 ];
 
@@ -1282,8 +1242,7 @@ function displayRank(points) {
     ) {
 
         if (
-            points >=
-            ranks[i].min
+            points >= ranks[i].min
         ) {
 
             currentRank =
@@ -1312,18 +1271,15 @@ function displayRank(points) {
             points.toLocaleString() +
             " POINTS";
 
-
         document.getElementById(
             "progressBar"
         ).style.width =
             "100%";
 
-
         document.getElementById(
             "progressText"
         ).textContent =
             "✦ You have reached the eighth light. ✦";
-
 
         document.getElementById(
             "nextRank"
@@ -1401,10 +1357,10 @@ function displayRank(points) {
 
 
 /* =========================
-   LOAD CODEX JOURNEY
+   LOAD JOURNEY
 ========================= */
 
-async function loadCodexJourney() {
+async function loadJourney(userId) {
 
     const totalCodex =
         21;
@@ -1414,63 +1370,85 @@ async function loadCodexJourney() {
         data,
         error
     } =
-    await supabaseClient.rpc(
-        "get_codex_progress"
-    );
+    await supabaseClient
+
+        .from("halo_point_events")
+
+        .select(
+            "action_key, action_type, points"
+        )
+
+        .eq(
+            "user_id",
+            userId
+        );
 
 
     if (error) {
 
         console.error(
-            "CODEX JOURNEY ERROR:",
+            "JOURNEY ERROR:",
             error
         );
 
 
         document.getElementById(
-            "codexProgressCount"
+            "journeyCount"
         ).textContent =
             "COULD NOT LOAD";
 
 
         document.getElementById(
-            "codexProgressText"
+            "journeyText"
         ).textContent =
-            "Could not load your Codex journey.";
+            "Could not load your AETHER journey.";
 
         return;
 
     }
 
 
-    /*
-       Supabase returns an array
-       because the function uses
-       RETURNS TABLE.
-    */
+    const events =
+        data || [];
 
-    const result =
-        data &&
-        data.length > 0
-            ? data[0]
-            : {
-                discovered: 0,
-                star_points: 0
-            };
+
+    /* =========================
+       CODEX DISCOVERIES
+    ========================= */
+
+    const codexEvents =
+        events.filter(
+            event =>
+                event.action_type &&
+                event.action_type.startsWith(
+                    "codex_"
+                )
+        );
+
+
+    const codexKeys =
+        new Set();
+
+
+    codexEvents.forEach(
+        event => {
+
+            const key =
+                event.action_type;
+
+
+            if (key) {
+                codexKeys.add(key);
+            }
+
+        }
+    );
 
 
     const discovered =
         Math.min(
-            Number(
-                result.discovered || 0
-            ),
+            codexKeys.size,
             totalCodex
-        );
-
-
-    const codexPoints =
-        Number(
-            result.star_points || 0
         );
 
 
@@ -1481,8 +1459,26 @@ async function loadCodexJourney() {
         ) * 100;
 
 
+    const codexPoints =
+        codexEvents.reduce(
+            (
+                total,
+                event
+            ) =>
+                total +
+                Number(
+                    event.points || 0
+                ),
+            0
+        );
+
+
+    /* =========================
+       DISPLAY JOURNEY
+    ========================= */
+
     document.getElementById(
-        "codexProgressCount"
+        "journeyCount"
     ).textContent =
 
         discovered +
@@ -1492,7 +1488,7 @@ async function loadCodexJourney() {
 
 
     document.getElementById(
-        "codexProgressBar"
+        "journeyBar"
     ).style.width =
 
         percentage +
@@ -1500,7 +1496,7 @@ async function loadCodexJourney() {
 
 
     document.getElementById(
-        "codexProgressPoints"
+        "journeyPoints"
     ).textContent =
 
         codexPoints +
@@ -1512,7 +1508,7 @@ async function loadCodexJourney() {
     ) {
 
         document.getElementById(
-            "codexProgressText"
+            "journeyText"
         ).textContent =
 
             "✦ THE CODEX IS COMPLETE. ✦";
@@ -1527,7 +1523,7 @@ async function loadCodexJourney() {
 
 
         document.getElementById(
-            "codexProgressText"
+            "journeyText"
         ).textContent =
 
             remaining +
@@ -1535,64 +1531,31 @@ async function loadCodexJourney() {
 
     }
 
-}
 
+    /* =========================
+       MUSIC STATUS
+    ========================= */
 
-
-/* =========================
-   LOAD MUSIC STATUS
-========================= */
-
-async function loadMusicStatus(userId) {
-
-    const button =
-        document.getElementById(
-            "musicDiscoveryButton"
-        );
-
-    const message =
-        document.getElementById(
-            "musicMessage"
+    const musicEvent =
+        events.find(
+            event =>
+                event.action_type ===
+                "music_break_the_bubble"
         );
 
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
+    if (musicEvent) {
 
-        .from("halo_point_events")
+        const button =
+            document.getElementById(
+                "musicDiscoveryButton"
+            );
 
-        .select("action_key")
+        const message =
+            document.getElementById(
+                "musicMessage"
+            );
 
-        .eq(
-            "user_id",
-            userId
-        )
-
-        .eq(
-            "action_key",
-            "music_break_the_bubble"
-        );
-
-
-    if (error) {
-
-        console.error(
-            "MUSIC STATUS ERROR:",
-            error
-        );
-
-        return;
-
-    }
-
-
-    if (
-        data &&
-        data.length > 0
-    ) {
 
         button.textContent =
             "✓ BREAK THE BUBBLE DISCOVERED";
@@ -1614,7 +1577,7 @@ async function loadMusicStatus(userId) {
 
 
 /* =========================
-   DISCOVER MUSIC
+   DISCOVER BREAK THE BUBBLE
 ========================= */
 
 async function discoverBreakTheBubble() {
@@ -1719,9 +1682,6 @@ async function discoverBreakTheBubble() {
             message.textContent =
                 "✦ +5 STAR POINTS • BREAK THE BUBBLE IS NOW PART OF YOUR JOURNEY. ✦";
 
-
-            await loadHaloData();
-
         }
 
         else {
@@ -1737,6 +1697,9 @@ async function discoverBreakTheBubble() {
                 "This song is already part of your HALO journey.";
 
         }
+
+
+        await loadHaloData();
 
     }
 
@@ -1787,7 +1750,6 @@ async function loadHaloData() {
             ).textContent =
                 "PLEASE LOG IN";
 
-
             document.getElementById(
                 "rankPoints"
             ).textContent =
@@ -1832,7 +1794,7 @@ async function loadHaloData() {
 
 
         /* =========================
-           POINTS
+           TOTAL POINTS
         ========================= */
 
         const {
@@ -1860,11 +1822,6 @@ async function loadHaloData() {
                 pointsError
             );
 
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "POINTS ERROR";
-
             return;
 
         }
@@ -1891,22 +1848,14 @@ async function loadHaloData() {
 
 
         /* =========================
-           CODEX JOURNEY
+           REAL JOURNEY
         ========================= */
 
-        await loadCodexJourney();
-
-
-        /* =========================
-           MUSIC
-        ========================= */
-
-        await loadMusicStatus(
+        await loadJourney(
             user.id
         );
 
     }
-
 
     catch (error) {
 
@@ -1957,7 +1906,6 @@ document.addEventListener(
 );
 
 </script>
-
 
 </body>
 
