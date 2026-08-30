@@ -302,9 +302,12 @@ createAccountButton.addEventListener("click", async function () {
     }
 
     const { data, error } = await supabaseClient.auth.signUp({
-        email: email,
-        password: password
-    });
+    email: email,
+    password: password,
+    options: {
+        emailRedirectTo: "https://aetherverse.github.io/halo-universe"
+    }
+});
 
     if (error) {
         alert("HALO registration failed ✦ " + error.message);
