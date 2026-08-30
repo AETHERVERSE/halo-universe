@@ -128,7 +128,7 @@ h1 {
     padding:
         30px 25px;
 
-    margin-bottom: 30px;
+    margin-bottom: 45px;
 
     text-align: center;
 
@@ -226,6 +226,132 @@ h1 {
 
 
 /* =========================
+   EARN STAR POINTS
+========================= */
+
+.points-section {
+    text-align: center;
+
+    margin-bottom: 40px;
+}
+
+.points-title {
+    font-size: 1.8rem;
+
+    letter-spacing: 3px;
+
+    color: #eeeaff;
+
+    margin-bottom: 10px;
+}
+
+.points-description {
+    color: #aaa0e6;
+
+    line-height: 1.7;
+
+    margin-bottom: 28px;
+}
+
+
+/* POINT CARDS */
+
+.points-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.points-card {
+    background: #1d1a3d;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    text-align: left;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s;
+
+    position: relative;
+}
+
+.points-card:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        #242047;
+
+    border-color:
+        #514879;
+}
+
+.points-icon {
+    font-size: 2rem;
+
+    margin-bottom: 12px;
+}
+
+.points-card h3 {
+    margin:
+        5px 0 8px;
+
+    color: #ddd7ff;
+
+    letter-spacing: 1px;
+}
+
+.points-card p {
+    color: #c4c1d7;
+
+    line-height: 1.6;
+
+    margin:
+        0 0 18px;
+}
+
+.points-value {
+    display: inline-block;
+
+    padding:
+        6px 12px;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 20px;
+
+    color: #dfd1ff;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+}
+
+.points-status {
+    margin-top: 15px;
+
+    color: #77739e;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
    DASHBOARD
 ========================= */
 
@@ -312,7 +438,8 @@ footer {
 
 @media (max-width: 650px) {
 
-    .dashboard {
+    .dashboard,
+    .points-grid {
         grid-template-columns: 1fr;
     }
 
@@ -322,6 +449,10 @@ footer {
 
     .rank-name {
         font-size: 1.6rem;
+    }
+
+    .points-title {
+        font-size: 1.5rem;
     }
 
 }
@@ -470,6 +601,208 @@ Loading your journey...
 <div
 class="next-rank"
 id="nextRank">
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     EARN STAR POINTS
+========================= -->
+
+<section class="points-section">
+
+
+<div class="points-title">
+✦ EARN STAR POINTS ✦
+</div>
+
+
+<div class="points-description">
+
+Discover AETHER, explore the universe
+and collect Star Points along the way.
+
+<br>
+
+Every memory brings you closer to the next star.
+
+</div>
+
+
+
+<div class="points-grid">
+
+
+<!-- SONG -->
+
+<div class="points-card">
+
+<div class="points-icon">
+🎵
+</div>
+
+<h3>
+AETHER MUSIC
+</h3>
+
+<p>
+Discover an AETHER song and let the stars speak.
+</p>
+
+<span class="points-value">
++5 STAR POINTS
+</span>
+
+<div class="points-status">
+COMING WITH MUSIC EXPERIENCE
+</div>
+
+</div>
+
+
+
+<!-- CODEX -->
+
+<div class="points-card">
+
+<div class="points-icon">
+📖
+</div>
+
+<h3>
+THE CODEX
+</h3>
+
+<p>
+Explore the lore, worlds and secrets of AETHER.
+</p>
+
+<span class="points-value">
++5 STAR POINTS
+</span>
+
+<div class="points-status">
+COMING WITH CODEX EXPLORATION
+</div>
+
+</div>
+
+
+
+<!-- TRANSMISSIONS -->
+
+<div class="points-card">
+
+<div class="points-icon">
+📡
+</div>
+
+<h3>
+TRANSMISSIONS
+</h3>
+
+<p>
+Receive signals and fragments from the AETHER universe.
+</p>
+
+<span class="points-value">
++10 STAR POINTS
+</span>
+
+<div class="points-status">
+COMING WITH TRANSMISSIONS
+</div>
+
+</div>
+
+
+
+<!-- COMMUNITY -->
+
+<div class="points-card">
+
+<div class="points-icon">
+💬
+</div>
+
+<h3>
+COMMUNITY
+</h3>
+
+<p>
+Take part in the HALO community and connect with AETHER.
+</p>
+
+<span class="points-value">
++10 STAR POINTS
+</span>
+
+<div class="points-status">
+COMING WITH COMMUNITY
+</div>
+
+</div>
+
+
+
+<!-- PUZZLE -->
+
+<div class="points-card">
+
+<div class="points-icon">
+🧩
+</div>
+
+<h3>
+PUZZLES & EVENTS
+</h3>
+
+<p>
+Solve mysteries and discover hidden pieces of the universe.
+</p>
+
+<span class="points-value">
++15 STAR POINTS
+</span>
+
+<div class="points-status">
+COMING WITH EVENTS
+</div>
+
+</div>
+
+
+
+<!-- SPECIAL -->
+
+<div class="points-card">
+
+<div class="points-icon">
+🌟
+</div>
+
+<h3>
+SPECIAL CHALLENGES
+</h3>
+
+<p>
+Take part in special HALO challenges and limited experiences.
+</p>
+
+<span class="points-value">
++25 STAR POINTS
+</span>
+
+<div class="points-status">
+SPECIAL EVENTS ONLY
+</div>
+
+</div>
+
+
 
 </div>
 
@@ -747,7 +1080,7 @@ function displayRank(points) {
         currentRank.name;
 
 
-    /* EIGHT = final rank */
+    /* EIGHT = FINAL RANK */
 
     if (!nextRank) {
 
@@ -757,22 +1090,27 @@ function displayRank(points) {
             points.toLocaleString() +
             " POINTS";
 
+
         document.getElementById(
             "progressBar"
         ).style.width =
             "100%";
+
 
         document.getElementById(
             "progressText"
         ).textContent =
             "✦ You have reached the eighth light. ✦";
 
+
         document.getElementById(
             "nextRank"
         ).textContent =
             "EIGHT • THE LIGHT BESIDE AETHER";
 
+
         return;
+
     }
 
 
@@ -872,6 +1210,7 @@ async function loadHaloData() {
                 "HALO ERROR";
 
             return;
+
         }
 
 
@@ -882,12 +1221,14 @@ async function loadHaloData() {
             ).textContent =
                 "PLEASE LOG IN";
 
+
             document.getElementById(
                 "rankPoints"
             ).textContent =
                 "Your HALO session was not found.";
 
             return;
+
         }
 
 
@@ -914,9 +1255,7 @@ async function loadHaloData() {
             .single();
 
 
-        if (
-            profileError
-        ) {
+        if (profileError) {
 
             console.error(
                 "PROFILE ERROR:",
@@ -968,17 +1307,21 @@ async function loadHaloData() {
                 pointsError
             );
 
+
             document.getElementById(
                 "rankName"
             ).textContent =
                 "POINTS ERROR";
+
 
             document.getElementById(
                 "progressText"
             ).textContent =
                 pointsError.message;
 
+
             return;
+
         }
 
 
@@ -1006,6 +1349,7 @@ async function loadHaloData() {
             points
         );
 
+
         console.log(
             "HALO RANK:",
             document.getElementById(
@@ -1015,6 +1359,7 @@ async function loadHaloData() {
 
     }
 
+
     catch (error) {
 
         console.error(
@@ -1022,10 +1367,12 @@ async function loadHaloData() {
             error
         );
 
+
         document.getElementById(
             "rankName"
         ).textContent =
             "COULD NOT LOAD";
+
 
         document.getElementById(
             "progressText"
