@@ -291,14 +291,21 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 <script>
 
-const email = localStorage.getItem("haloEmail");
+const { data: { user } } = await supabaseClient.auth.getUser();
 
-if (email) {
-    document.getElementById("haloEmail").textContent =
-        "HALO ID: " + email;
+if (user) {
+    const { data: profile } = await supabaseClient
+        .from("halo_profiles")
+        .select("halo_id")
+        .eq("user_id", user.id)
+        .single();
+
+    if (profile) {
+        document.getElementById("haloEmail").textContent =
+            "HALO ID: " + profile.halo_id;
+    }
 }
-
 </script>
 
 </body>
-</html>
+</html
