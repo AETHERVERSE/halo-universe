@@ -284,7 +284,11 @@ footer {
 </footer>
 
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+    const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+const SUPABASE_KEY = "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY"
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const loginButton = document.getElementById("loginButton");
 const createAccountButton = document.getElementById("createAccountButton");
 
