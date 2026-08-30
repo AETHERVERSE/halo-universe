@@ -1607,30 +1607,20 @@ async function loadJourney(userId) {
            CODEX
         ========================= */
 
-        const codexKeys =
-            new Set();
+        const codexKeys = new Set();
 
+allEvents.forEach(event => {
 
-        allEvents.forEach(
-            event => {
+    if (
+        typeof event.action_type === "string" &&
+        event.action_type.startsWith("codex_")
+    ) {
 
-                if (
-                    typeof event.action_type ===
-                    "string"
-                    &&
-                    event.action_type.startsWith(
-                        "codex_"
-                    )
-                ) {
+        codexKeys.add(event.action_type);
 
-                    codexKeys.add(
-                        event.action_type
-                    );
+    }
 
-                }
-
-            }
-        );
+});
 
 
         const codexDiscovered =
