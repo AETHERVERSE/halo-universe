@@ -113,8 +113,9 @@ nav a:hover {
             rgba(255,255,255,0.02)
         );
 
-    transition: transform 0.3s ease,
-                border-color 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .codex-card:hover {
@@ -145,6 +146,7 @@ footer {
     letter-spacing: 2px;
     font-size: 0.75rem;
 }
+
 .world-archive {
     margin: 70px auto;
     max-width: 1000px;
@@ -175,8 +177,9 @@ footer {
         rgba(255,255,255,0.055),
         rgba(255,255,255,0.018)
     );
-    transition: transform 0.3s ease,
-                border-color 0.3s ease;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .world-entry:hover {
@@ -204,8 +207,9 @@ footer {
 
 .world-entry strong {
     color: #ddd7ff;
-    }
-    .guardian-archive {
+}
+
+.guardian-archive {
     margin: 70px auto;
     max-width: 1100px;
     text-align: center;
@@ -255,15 +259,74 @@ footer {
 
 .guardian-entry strong {
     color: #ddd7ff;
-    }
-    .relics-title {
+}
+
+.relics-title {
     grid-column: 1 / -1;
     text-align: center;
     color: #ddd7ff;
     font-size: 1.8rem;
     letter-spacing: 2px;
     margin: 0 0 28px;
-    }
+}
+
+
+/* =========================
+   CODEX DISCOVERY
+========================= */
+
+.discovery-button {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 10px 20px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 25px;
+
+    background: transparent;
+
+    color: #ddd7ff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.discovery-button:hover {
+    background: #29264b;
+    border-color: #c8bdff;
+    transform: translateY(-2px);
+}
+
+.discovery-button.discovered {
+    border-color: #70698f;
+    color: #aaa0e6;
+    cursor: default;
+    transform: none;
+}
+
+.discovery-message {
+    margin-top: 10px;
+    color: #c8bdff;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    min-height: 18px;
+}
+
 </style>
 
 </head>
@@ -329,6 +392,7 @@ footer {
     </p>
 
 </section>
+
 
 <section class="codex-grid">
 
@@ -443,9 +507,12 @@ footer {
 
 </section>
 
+
 <section class="world-archive">
 
-    <h2>✦ THE SEVEN WORLDS</h2>
+    <h2>
+        ✦ THE SEVEN WORLDS
+    </h2>
 
     <p class="world-intro">
         Seven worlds. Seven stars. Seven origins.
@@ -453,9 +520,12 @@ footer {
         and a story waiting to be remembered.
     </p>
 
+
     <div class="world-entry">
 
-        <h3>☀️ SOLARION</h3>
+        <h3>
+            ☀️ SOLARION
+        </h3>
 
         <p class="world-tagline">
             The World of Light
@@ -474,9 +544,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>🖤 HOLLOW</h3>
+        <h3>
+            🖤 HOLLOW
+        </h3>
 
         <p class="world-tagline">
             The World of Shadows
@@ -496,9 +569,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>⚡ VOLTARIS</h3>
+        <h3>
+            ⚡ VOLTARIS
+        </h3>
 
         <p class="world-tagline">
             The World of Storms
@@ -517,9 +593,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>🌊 THALASSIA</h3>
+        <h3>
+            🌊 THALASSIA
+        </h3>
 
         <p class="world-tagline">
             The World of Tides
@@ -537,9 +616,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>🔥 IGNIS</h3>
+        <h3>
+            🔥 IGNIS
+        </h3>
 
         <p class="world-tagline">
             The World of Fire
@@ -557,9 +639,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>✨ LUMENIA</h3>
+        <h3>
+            ✨ LUMENIA
+        </h3>
 
         <p class="world-tagline">
             The World of Gentle Light
@@ -577,9 +662,12 @@ footer {
 
     </div>
 
+
     <div class="world-entry">
 
-        <h3>🌙 NOCTEUM</h3>
+        <h3>
+            🌙 NOCTEUM
+        </h3>
 
         <p class="world-tagline">
             The World of Endless Night
@@ -599,18 +687,25 @@ footer {
     </div>
 
 </section>
-    <section class="guardian-archive">
 
-    <h2>✦ THE GUARDIANS</h2>
+
+<section class="guardian-archive">
+
+    <h2>
+        ✦ THE GUARDIANS
+    </h2>
 
     <p class="guardian-intro">
         Seven guardians. Seven bonds.
         Each one carries a connection to its star.
     </p>
 
+
     <div class="guardian-entry">
 
-        <h3>🦁 SOLEN'S GUARDIAN</h3>
+        <h3>
+            🦁 SOLEN'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Solis
@@ -628,9 +723,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🐆 VEX'S GUARDIAN</h3>
+        <h3>
+            🐆 VEX'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Umbra
@@ -648,9 +746,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🐺 KAIRO'S GUARDIAN</h3>
+        <h3>
+            🐺 KAIRO'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Volt
@@ -668,9 +769,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🐬 RIVEN'S GUARDIAN</h3>
+        <h3>
+            🐬 RIVEN'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Thalos
@@ -687,9 +791,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🔥 ZENITH'S GUARDIAN</h3>
+        <h3>
+            🔥 ZENITH'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Pyra
@@ -707,9 +814,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🐈 LUX'S GUARDIAN</h3>
+        <h3>
+            🐈 LUX'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Lumen
@@ -727,9 +837,12 @@ footer {
 
     </div>
 
+
     <div class="guardian-entry">
 
-        <h3>🐦‍⬛ NERO'S GUARDIAN</h3>
+        <h3>
+            🐦‍⬛ NERO'S GUARDIAN
+        </h3>
 
         <p class="guardian-tagline">
             Noctis
@@ -747,14 +860,25 @@ footer {
 
     </div>
 
-    </section>
-    <section class="codex-grid">
-    <h2 class="relics-title">✦ THE RELICS</h2>
+</section>
+
+
+<section class="codex-grid">
+
+    <h2 class="relics-title">
+        ✦ THE RELICS
+    </h2>
+
+
     <p style="grid-column: 1 / -1; text-align: center; color: #aaa0e6;">
+
         Seven relics. Seven worlds. Seven powers bound to the stars.
         Each relic carries a fragment of the world it came from —
         and a piece of the star who carries it.
+
     </p>
+
+
     <div class="codex-card">
 
         <div class="symbol">
@@ -908,7 +1032,9 @@ footer {
 
     </div>
 
-    </section>
+</section>
+
+
 <footer>
 
     ONE LIGHT • SEVEN STARS • ENDLESS LOVE
@@ -922,6 +1048,530 @@ footer {
 
 </div>
 
+
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================
+   CODEX IDENTIFIERS
+========================= */
+
+const codexKeys = {
+
+    "☀️ SOLARION":
+        "codex_solarion",
+
+    "🖤 HOLLOW":
+        "codex_hollow",
+
+    "⚡ VOLTARIS":
+        "codex_voltaris",
+
+    "🌊 THALASSIA":
+        "codex_thalassia",
+
+    "🔥 IGNIS":
+        "codex_ignis",
+
+    "✨ LUMENIA":
+        "codex_lumenia",
+
+    "🌙 NOCTEUM":
+        "codex_nocteum",
+
+    "🦁 SOLEN'S GUARDIAN":
+        "codex_solis",
+
+    "🐆 VEX'S GUARDIAN":
+        "codex_umbra",
+
+    "🐺 KAIRO'S GUARDIAN":
+        "codex_volt",
+
+    "🐬 RIVEN'S GUARDIAN":
+        "codex_thalos",
+
+    "🔥 ZENITH'S GUARDIAN":
+        "codex_pyra",
+
+    "🐈 LUX'S GUARDIAN":
+        "codex_lumen",
+
+    "🐦‍⬛ NERO'S GUARDIAN":
+        "codex_noctis",
+
+    "THE SUNSHARD":
+        "codex_sunshard",
+
+    "THE SHADOW PRISM":
+        "codex_shadow_prism",
+
+    "THE BLITZKERN":
+        "codex_blitzkern",
+
+    "THE GEZEITENPERLE":
+        "codex_gezeitenperle",
+
+    "THE FLAMMENHERZ":
+        "codex_flammenherz",
+
+    "THE STARLIGHT CRYSTAL":
+        "codex_starlight_crystal",
+
+    "THE NIGHTVEIL":
+        "codex_nightveil"
+
+};
+
+
+/* =========================
+   NORMALIZE TITLE
+========================= */
+
+function cleanTitle(text) {
+
+    return text
+        .replace(/\s+/g, " ")
+        .trim();
+
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+function addDiscoveryButton(
+    element,
+    actionKey
+) {
+
+    const button =
+        document.createElement("button");
+
+    button.className =
+        "discovery-button";
+
+    button.textContent =
+        "✦ DISCOVER — +5 STAR POINTS";
+
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "discovery-message";
+
+
+    element.appendChild(button);
+    element.appendChild(message);
+
+
+    button.addEventListener(
+        "click",
+        async function() {
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "DISCOVERING...";
+
+
+            const {
+                data: { user },
+                error: userError
+            } =
+            await supabaseClient.auth.getUser();
+
+
+            if (
+                userError ||
+                !user
+            ) {
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "✦ DISCOVER — +5 STAR POINTS";
+
+                message.textContent =
+                    "Please log in first.";
+
+                return;
+
+            }
+
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.rpc(
+                "add_halo_points",
+                {
+                    p_user_id:
+                        user.id,
+
+                    p_action_key:
+                        actionKey
+                }
+            );
+
+
+            if (error) {
+
+                console.error(
+                    "POINT ERROR:",
+                    error
+                );
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "✦ DISCOVER — +5 STAR POINTS";
+
+                message.textContent =
+                    "Could not record discovery.";
+
+                return;
+
+            }
+
+
+            if (
+                Number(data) === 5
+            ) {
+
+                button.textContent =
+                    "✓ DISCOVERED • +5 STAR POINTS";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "Your discovery has been recorded. ✦";
+
+            }
+
+            else {
+
+                button.textContent =
+                    "✓ ALREADY DISCOVERED";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "This memory is already part of your journey.";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================
+   ADD BUTTONS TO WORLDS
+========================= */
+
+function setupWorlds() {
+
+    document
+        .querySelectorAll(".world-entry")
+        .forEach(entry => {
+
+            const title =
+                cleanTitle(
+                    entry
+                        .querySelector("h3")
+                        .textContent
+                );
+
+            const key =
+                codexKeys[title];
+
+            if (!key) {
+
+                console.warn(
+                    "Missing world key:",
+                    title
+                );
+
+                return;
+
+            }
+
+            addDiscoveryButton(
+                entry,
+                key
+            );
+
+        });
+
+}
+
+
+/* =========================
+   ADD BUTTONS TO GUARDIANS
+========================= */
+
+function setupGuardians() {
+
+    document
+        .querySelectorAll(".guardian-entry")
+        .forEach(entry => {
+
+            const title =
+                cleanTitle(
+                    entry
+                        .querySelector("h3")
+                        .textContent
+                );
+
+            const key =
+                codexKeys[title];
+
+            if (!key) {
+
+                console.warn(
+                    "Missing guardian key:",
+                    title
+                );
+
+                return;
+
+            }
+
+            addDiscoveryButton(
+                entry,
+                key
+            );
+
+        });
+
+}
+
+
+/* =========================
+   ADD BUTTONS TO RELICS
+========================= */
+
+function setupRelics() {
+
+    document
+        .querySelectorAll(".codex-card")
+        .forEach(card => {
+
+            const titleElement =
+                card.querySelector("h3");
+
+            if (!titleElement) {
+                return;
+            }
+
+            const title =
+                cleanTitle(
+                    titleElement.textContent
+                );
+
+            const key =
+                codexKeys[title];
+
+            if (!key) {
+                return;
+            }
+
+            addDiscoveryButton(
+                card,
+                key
+            );
+
+        });
+
+}
+
+
+/* =========================
+   LOAD DISCOVERED ENTRIES
+========================= */
+
+async function loadDiscovered() {
+
+    const {
+        data: { user },
+        error: userError
+    } =
+    await supabaseClient.auth.getUser();
+
+
+    if (
+        userError ||
+        !user
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("halo_point_events")
+        .select("action_key")
+        .eq(
+            "user_id",
+            user.id
+        );
+
+
+    if (error) {
+
+        console.error(
+            "DISCOVERY LOAD ERROR:",
+            error
+        );
+
+        return;
+
+    }
+
+
+    const discovered =
+        new Set(
+            data.map(
+                event =>
+                    event.action_key
+            )
+        );
+
+
+    document
+        .querySelectorAll(
+            ".discovery-button"
+        )
+        .forEach(button => {
+
+            const key =
+                button.dataset.actionKey;
+
+            if (
+                discovered.has(key)
+            ) {
+
+                button.textContent =
+                    "✓ ALREADY DISCOVERED";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                button.disabled =
+                    true;
+
+            }
+
+        });
+
+}
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+async function initCodex() {
+
+    setupWorlds();
+
+    setupGuardians();
+
+    setupRelics();
+
+
+    /*
+       Jeder Button bekommt seinen
+       eigenen action key.
+    */
+
+    document
+        .querySelectorAll(
+            ".discovery-button"
+        )
+        .forEach(button => {
+
+            /*
+               Der Key wurde beim Erstellen
+               noch nicht gesetzt.
+               Wir ermitteln ihn über
+               den zugehörigen Container.
+            */
+
+            const parent =
+                button.parentElement;
+
+            const titleElement =
+                parent.querySelector("h3");
+
+            if (!titleElement) {
+                return;
+            }
+
+            const title =
+                cleanTitle(
+                    titleElement.textContent
+                );
+
+            const key =
+                codexKeys[title];
+
+            if (key) {
+
+                button.dataset.actionKey =
+                    key;
+
+            }
+
+        });
+
+
+    await loadDiscovered();
+
+}
+
+
+initCodex();
+
+</script>
+
+
 </body>
 
-          </html>
+    </html>
