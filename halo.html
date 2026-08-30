@@ -110,10 +110,11 @@ h1 {
 
 
 /* =========================
-   RANK
+   HALO RANK
 ========================= */
 
 .rank-card {
+
     background:
         linear-gradient(
             145deg,
@@ -137,38 +138,64 @@ h1 {
 }
 
 .rank-label {
+
     color: #aaa0e6;
+
     font-size: 0.85rem;
+
     letter-spacing: 4px;
+
     margin-bottom: 12px;
 }
 
 .rank-name {
+
     color: #eeeaff;
+
     font-size: 2rem;
+
     letter-spacing: 3px;
+
     margin-bottom: 10px;
 }
 
 .rank-points {
+
     color: #c4bddf;
+
     font-size: 1rem;
+
     letter-spacing: 1px;
+
     margin-bottom: 18px;
 }
 
+
+/* =========================
+   RANK PROGRESS
+========================= */
+
 .progress-container {
+
     width: 100%;
+
     height: 14px;
+
     background: #0e0c25;
+
     border: 1px solid #39345e;
+
     border-radius: 20px;
+
     overflow: hidden;
+
     margin: 0 auto 15px;
 }
 
 .progress-bar {
+
     height: 100%;
+
     width: 0%;
 
     background:
@@ -180,28 +207,33 @@ h1 {
 
     border-radius: 20px;
 
-    transition:
-        width 0.8s ease;
+    transition: width 0.8s ease;
 }
 
 .progress-text {
+
     color: #aaa0e6;
+
     font-size: 0.85rem;
+
     margin-bottom: 10px;
 }
 
 .next-rank {
+
     color: #ddd7ff;
+
     font-size: 0.9rem;
+
     letter-spacing: 1px;
 }
 
 
 /* =========================
-   CODEX SUMMARY
+   CODEX PROGRESS
 ========================= */
 
-.discovery-summary {
+.codex-progress-card {
 
     background:
         linear-gradient(
@@ -216,37 +248,58 @@ h1 {
 
     padding: 30px 25px;
 
-    margin-bottom: 45px;
+    margin-bottom: 30px;
 
     text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
 }
 
-.discovery-label {
+.codex-progress-label {
+
     color: #aaa0e6;
+
     font-size: 0.85rem;
+
     letter-spacing: 4px;
+
+    margin-bottom: 14px;
+}
+
+.codex-progress-count {
+
+    color: #eeeaff;
+
+    font-size: 1.7rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+.codex-progress-container {
+
+    width: 100%;
+
+    height: 14px;
+
+    background: #0e0c25;
+
+    border: 1px solid #39345e;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
     margin-bottom: 15px;
 }
 
-.discovery-count {
-    color: #eeeaff;
-    font-size: 2rem;
-    letter-spacing: 3px;
-    margin-bottom: 18px;
-}
+.codex-progress-bar {
 
-.discovery-progress {
-    width: 100%;
-    height: 14px;
-    background: #0e0c25;
-    border: 1px solid #39345e;
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 18px;
-}
-
-.discovery-progress-bar {
     height: 100%;
+
     width: 0%;
 
     background:
@@ -258,49 +311,183 @@ h1 {
 
     border-radius: 20px;
 
-    transition:
-        width 0.8s ease;
+    transition: width 0.8s ease;
 }
 
-.discovery-message {
+.codex-progress-text {
+
     color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 1px;
+
     line-height: 1.6;
-    font-size: 0.9rem;
 }
 
-.discovery-points {
-    margin-top: 18px;
+.codex-progress-points {
+
+    margin-top: 12px;
+
     color: #ddd7ff;
-    font-size: 0.85rem;
+
+    font-size: 0.8rem;
+
     letter-spacing: 1px;
 }
 
 
 /* =========================
-   STAR POINTS
+   MUSIC PROGRESS
+========================= */
+
+.music-progress-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #252052,
+            #181633
+        );
+
+    border: 1px solid #514879;
+
+    border-radius: 22px;
+
+    padding: 30px 25px;
+
+    margin-bottom: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+}
+
+.music-progress-label {
+
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 14px;
+}
+
+.music-progress-count {
+
+    color: #eeeaff;
+
+    font-size: 1.7rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+.music-progress-container {
+
+    width: 100%;
+
+    height: 14px;
+
+    background: #0e0c25;
+
+    border: 1px solid #39345e;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+}
+
+.music-progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7665b8,
+            #cdb9ff
+        );
+
+    border-radius: 20px;
+
+    transition: width 0.8s ease;
+}
+
+.music-progress-text {
+
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 1px;
+
+    line-height: 1.6;
+}
+
+.music-progress-points {
+
+    margin-top: 12px;
+
+    color: #ddd7ff;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   EARN STAR POINTS
 ========================= */
 
 .points-section {
+
     text-align: center;
-    margin-bottom: 45px;
+
+    margin-bottom: 40px;
 }
 
 .points-title {
+
     font-size: 1.8rem;
+
     letter-spacing: 3px;
+
     color: #eeeaff;
+
     margin-bottom: 10px;
 }
 
 .points-description {
+
     color: #aaa0e6;
+
     line-height: 1.7;
+
     margin-bottom: 28px;
 }
 
+
+/* =========================
+   POINT CARDS
+========================= */
+
 .points-grid {
+
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 18px;
 }
 
@@ -335,7 +522,9 @@ h1 {
 }
 
 .points-icon {
+
     font-size: 2rem;
+
     margin-bottom: 12px;
 }
 
@@ -344,20 +533,16 @@ h1 {
     margin:
         5px 0 8px;
 
-    color:
-        #ddd7ff;
+    color: #ddd7ff;
 
-    letter-spacing:
-        1px;
+    letter-spacing: 1px;
 }
 
 .points-card p {
 
-    color:
-        #c4c1d7;
+    color: #c4c1d7;
 
-    line-height:
-        1.6;
+    line-height: 1.6;
 
     margin:
         0 0 18px;
@@ -365,8 +550,7 @@ h1 {
 
 .points-value {
 
-    display:
-        inline-block;
+    display: inline-block;
 
     padding:
         6px 12px;
@@ -375,149 +559,140 @@ h1 {
         1px solid
         #514879;
 
-    border-radius:
-        20px;
+    border-radius: 20px;
 
-    color:
-        #dfd1ff;
+    color: #dfd1ff;
 
-    font-size:
-        0.8rem;
+    font-size: 0.8rem;
 
-    letter-spacing:
-        1px;
+    letter-spacing: 1px;
 }
 
 
 /* =========================
-   MUSIC CARD
+   MUSIC DISCOVERY BUTTON
 ========================= */
 
-.music-card {
+.music-discovery-button {
 
-    grid-column:
-        1 / -1;
+    display: block;
 
-    background:
-        linear-gradient(
-            145deg,
-            #292452,
-            #191735
-        );
+    width: 100%;
 
-    border:
-        1px solid
-        #62568e;
+    margin-top: 18px;
 
-    border-radius:
-        22px;
-
-    padding:
-        32px 28px;
-
-    text-align:
-        center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.2);
-}
-
-.music-symbol {
-    font-size: 3rem;
-    margin-bottom: 12px;
-}
-
-.music-card h3 {
-
-    color:
-        #eeeaff;
-
-    font-size:
-        1.7rem;
-
-    letter-spacing:
-        3px;
-
-    margin:
-        8px 0 12px;
-}
-
-.music-tagline {
-
-    color:
-        #aaa0e6;
-
-    font-style:
-        italic;
-
-    margin-bottom:
-        20px;
-}
-
-.music-description {
-
-    color:
-        #c9c5dc;
-
-    line-height:
-        1.8;
-
-    max-width:
-        650px;
-
-    margin:
-        0 auto 22px;
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
-
-.discovery-button {
-
-    display:
-        inline-block;
-
-    padding:
-        11px 22px;
+    padding: 13px 18px;
 
     border:
         1px solid
         #8f84c9;
 
-    border-radius:
-        25px;
+    border-radius: 25px;
 
     background:
-        transparent;
+        linear-gradient(
+            145deg,
+            #29264b,
+            #201d3e
+        );
 
-    color:
-        #ddd7ff;
+    color: #ddd7ff;
 
-    font-family:
-        Georgia, serif;
+    font-family: Georgia, serif;
 
-    font-size:
-        0.8rem;
+    font-size: 0.8rem;
 
-    letter-spacing:
-        1px;
+    letter-spacing: 1px;
 
-    cursor:
-        pointer;
-
-    text-decoration:
-        none;
+    cursor: pointer;
 
     transition:
         background 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.2s ease;
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
-.discovery-button:hover {
+.music-discovery-button:hover {
+
+    background:
+        #342f5b;
+
+    border-color:
+        #c8bdff;
+
+    transform:
+        translateY(-2px);
+}
+
+.music-discovery-button:disabled {
+
+    cursor: default;
+
+    transform: none;
+}
+
+.music-discovery-button.discovered {
+
+    border-color:
+        #70698f;
+
+    color:
+        #aaa0e6;
+
+    background:
+        #181633;
+}
+
+.music-message {
+
+    margin-top: 12px;
+
+    color: #c8bdff;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    line-height: 1.5;
+
+    min-height: 18px;
+}
+
+
+/* =========================
+   EXPLORE BUTTON
+========================= */
+
+.explore-button {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding:
+        9px 18px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 25px;
+
+    color: #ddd7ff;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.explore-button:hover {
 
     background:
         #29264b;
@@ -529,64 +704,6 @@ h1 {
         translateY(-2px);
 }
 
-.discovery-button:disabled {
-
-    opacity:
-        0.85;
-
-    cursor:
-        default;
-}
-
-.discovery-button.discovered {
-
-    border-color:
-        #70698f;
-
-    color:
-        #aaa0e6;
-
-    transform:
-        none;
-}
-
-.music-message {
-
-    margin-top:
-        13px;
-
-    color:
-        #c8bdff;
-
-    font-size:
-        0.8rem;
-
-    letter-spacing:
-        1px;
-
-    min-height:
-        20px;
-}
-
-.points-status {
-
-    margin-top:
-        15px;
-
-    color:
-        #77739e;
-
-    font-size:
-        0.75rem;
-
-    letter-spacing:
-        1px;
-}
-
-.coming-card {
-    opacity: 0.82;
-}
-
 
 /* =========================
    DASHBOARD
@@ -594,39 +711,31 @@ h1 {
 
 .dashboard {
 
-    display:
-        grid;
+    display: grid;
 
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap:
-        18px;
+    gap: 18px;
 }
 
 .dashboard-card {
 
-    background:
-        #1d1a3d;
+    background: #1d1a3d;
 
     border:
         1px solid
         #39345e;
 
-    border-radius:
-        18px;
+    border-radius: 18px;
 
-    padding:
-        25px;
+    padding: 25px;
 
-    transition:
-        0.2s;
+    transition: 0.2s;
 
-    text-decoration:
-        none;
+    text-decoration: none;
 
-    color:
-        inherit;
+    color: inherit;
 }
 
 .dashboard-card:hover {
@@ -640,11 +749,9 @@ h1 {
 
 .dashboard-card .icon {
 
-    font-size:
-        2rem;
+    font-size: 2rem;
 
-    margin-bottom:
-        12px;
+    margin-bottom: 12px;
 }
 
 .dashboard-card h3 {
@@ -712,23 +819,28 @@ footer {
     }
 
     h1 {
+
         font-size:
             1.8rem;
     }
 
     .rank-name {
+
         font-size:
             1.6rem;
     }
 
     .points-title {
+
         font-size:
             1.5rem;
     }
 
-    .music-card {
-        grid-column:
-            auto;
+    .codex-progress-count,
+    .music-progress-count {
+
+        font-size:
+            1.4rem;
     }
 
 }
@@ -740,6 +852,7 @@ footer {
 
 <body>
 
+
 <div class="container">
 
 
@@ -748,6 +861,7 @@ footer {
 <div class="logo">
 AETHERVERSE
 </div>
+
 
 <nav>
 
@@ -797,6 +911,10 @@ Welcome back to the AETHER universe.
 
 
 
+<!-- =========================
+     WELCOME
+========================= -->
+
 <section class="halo-card welcome">
 
 <div style="font-size: 2.5rem;">
@@ -820,11 +938,16 @@ id="haloEmail">
 
 
 
+<!-- =========================
+     HALO RANK
+========================= -->
+
 <section class="rank-card">
 
 <div class="rank-label">
 ✦ YOUR HALO RANK ✦
 </div>
+
 
 <div
 class="rank-name"
@@ -834,6 +957,7 @@ LOADING...
 
 </div>
 
+
 <div
 class="rank-points"
 id="rankPoints">
@@ -841,6 +965,7 @@ id="rankPoints">
 0 / 250 POINTS
 
 </div>
+
 
 <div class="progress-container">
 
@@ -851,6 +976,7 @@ id="progressBar">
 
 </div>
 
+
 <div
 class="progress-text"
 id="progressText">
@@ -858,6 +984,7 @@ id="progressText">
 Loading your journey...
 
 </div>
+
 
 <div
 class="next-rank"
@@ -868,51 +995,119 @@ id="nextRank">
 
 
 
-<section class="discovery-summary">
+<!-- =========================
+     CODEX PROGRESS
+========================= -->
 
-<div class="discovery-label">
+<section class="codex-progress-card">
+
+<div class="codex-progress-label">
 ✦ CODEX DISCOVERIES ✦
 </div>
 
-<div
-class="discovery-count"
-id="codexCount">
 
-LOADING...
+<div
+class="codex-progress-count"
+id="codexProgressCount">
+
+0 / 21 DISCOVERED
 
 </div>
 
-<div class="discovery-progress">
+
+<div class="codex-progress-container">
 
 <div
-class="discovery-progress-bar"
-id="codexProgress">
+class="codex-progress-bar"
+id="codexProgressBar">
 </div>
 
 </div>
 
-<div
-class="discovery-message"
-id="codexMessage">
 
-Loading Codex discoveries...
+<div
+class="codex-progress-text"
+id="codexProgressText">
+
+Loading your Codex journey...
 
 </div>
 
+
 <div
-class="discovery-points"
-id="codexPoints">
+class="codex-progress-points"
+id="codexProgressPoints">
+
+0 STAR POINTS FROM CODEX
+
 </div>
 
 </section>
 
 
 
+<!-- =========================
+     MUSIC PROGRESS
+========================= -->
+
+<section class="music-progress-card">
+
+<div class="music-progress-label">
+✦ MUSIC DISCOVERIES ✦
+</div>
+
+
+<div
+class="music-progress-count"
+id="musicProgressCount">
+
+0 / 1 DISCOVERED
+
+</div>
+
+
+<div class="music-progress-container">
+
+<div
+class="music-progress-bar"
+id="musicProgressBar">
+</div>
+
+</div>
+
+
+<div
+class="music-progress-text"
+id="musicProgressText">
+
+Discover the first AETHER song.
+
+</div>
+
+
+<div
+class="music-progress-points"
+id="musicProgressPoints">
+
+0 STAR POINTS FROM MUSIC
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     EARN STAR POINTS
+========================= -->
+
 <section class="points-section">
+
 
 <div class="points-title">
 ✦ EARN STAR POINTS ✦
 </div>
+
 
 <div class="points-description">
 
@@ -926,18 +1121,17 @@ Every memory brings you closer to the next star.
 </div>
 
 
-<div class="points-grid">
 
+<div class="points-grid">
 
 
 <!-- =========================
      AETHER MUSIC
 ========================= -->
 
-<div class="music-card"
-id="music">
+<div class="points-card">
 
-<div class="music-symbol">
+<div class="points-icon">
 🎵
 </div>
 
@@ -945,86 +1139,27 @@ id="music">
 AETHER MUSIC
 </h3>
 
-<div class="music-tagline">
-The sound of the seven stars.
-</div>
-
-<div class="music-description">
-
-Discover the music of AETHER
-and uncover the memories hidden within each song.
-
-<br><br>
-
-Your first musical discovery awaits.
-
-</div>
-
-<a
-href="#break-the-bubble"
-class="discovery-button">
-
-✦ EXPLORE MUSIC
-
-</a>
-
-</div>
-
-
-
-<!-- =========================
-     BREAK THE BUBBLE
-========================= -->
-
-<div
-class="music-card"
-id="break-the-bubble">
-
-<div class="music-symbol">
-🎵
-</div>
-
-<h3>
-BREAK THE BUBBLE
-</h3>
-
-<div class="music-tagline">
-The first song. The first fracture.
-</div>
-
-<div class="music-description">
-
-The first musical doorway into AETHER.
-
-<br>
-
-Seven voices.
-One universe.
-A world beginning to break open.
-
-</div>
-
-<div>
+<p>
+Discover an AETHER song and let the stars speak.
+</p>
 
 <span class="points-value">
 +5 STAR POINTS
 </span>
 
-</div>
-
-<br>
 
 <button
-class="discovery-button"
-id="breakBubbleButton">
+id="breakBubbleButton"
+class="music-discovery-button">
 
-✦ DISCOVER — +5 STAR POINTS
+✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS
 
 </button>
 
+
 <div
-class="music-message"
-id="breakBubbleMessage">
+id="musicMessage"
+class="music-message">
 </div>
 
 </div>
@@ -1053,11 +1188,9 @@ Explore the lore, worlds and secrets of AETHER.
 +5 STAR POINTS
 </span>
 
-<br>
-
 <a
 href="codex.html"
-class="discovery-button">
+class="explore-button">
 
 ✦ EXPLORE CODEX
 
@@ -1067,9 +1200,11 @@ class="discovery-button">
 
 
 
-<!-- TRANSMISSIONS -->
+<!-- =========================
+     TRANSMISSIONS
+========================= -->
 
-<div class="points-card coming-card">
+<div class="points-card">
 
 <div class="points-icon">
 📡
@@ -1095,9 +1230,11 @@ COMING WITH TRANSMISSIONS
 
 
 
-<!-- COMMUNITY -->
+<!-- =========================
+     COMMUNITY
+========================= -->
 
-<div class="points-card coming-card">
+<div class="points-card">
 
 <div class="points-icon">
 💬
@@ -1123,9 +1260,11 @@ COMING WITH COMMUNITY
 
 
 
-<!-- PUZZLES -->
+<!-- =========================
+     PUZZLES
+========================= -->
 
-<div class="points-card coming-card">
+<div class="points-card">
 
 <div class="points-icon">
 🧩
@@ -1151,9 +1290,11 @@ COMING WITH EVENTS
 
 
 
-<!-- SPECIAL -->
+<!-- =========================
+     SPECIAL
+========================= -->
 
-<div class="points-card coming-card">
+<div class="points-card">
 
 <div class="points-icon">
 🌟
@@ -1183,6 +1324,10 @@ SPECIAL EVENTS ONLY
 </section>
 
 
+
+<!-- =========================
+     DASHBOARD
+========================= -->
 
 <section class="dashboard">
 
@@ -1296,6 +1441,7 @@ Collect milestones as you explore the seven worlds.
 </div>
 
 
+
 </section>
 
 
@@ -1315,6 +1461,10 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 
 
+<!-- =========================
+     SUPABASE
+========================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
@@ -1323,8 +1473,10 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1334,69 +1486,59 @@ window.supabase.createClient(
 
 
 /* =========================
-   RANKS
+   HALO RANKS
 ========================= */
 
 const ranks = [
 
     {
         name: "NEW HALO",
-        min: 0,
-        max: 250
+        min: 0
     },
 
     {
         name: "AWAKENED HALO",
-        min: 250,
-        max: 750
+        min: 250
     },
 
     {
         name: "RISING HALO",
-        min: 750,
-        max: 1500
+        min: 750
     },
 
     {
         name: "RADIANT HALO",
-        min: 1500,
-        max: 3000
+        min: 1500
     },
 
     {
         name: "STELLAR HALO",
-        min: 3000,
-        max: 5500
+        min: 3000
     },
 
     {
         name: "CELESTIAL HALO",
-        min: 5500,
-        max: 10000
+        min: 5500
     },
 
     {
         name: "LEGENDARY HALO",
-        min: 10000,
-        max: 15000
+        min: 10000
     },
 
     {
         name: "ETERNAL HALO",
-        min: 15000,
-        max: 25000
+        min: 15000
     },
 
     {
         name: "PRESTIGE HALO",
-        min: 25000,
-        max: 50000
+        min: 25000
     },
 
     {
         name: "EIGHT",
-        min: 50000,
-        max: null
+        min: 50000
     }
 
 ];
@@ -1408,8 +1550,12 @@ const ranks = [
 
 function displayRank(points) {
 
-    let currentRank = ranks[0];
-    let nextRank = null;
+    let currentRank =
+        ranks[0];
+
+    let nextRank =
+        null;
+
 
     for (
         let i = 0;
@@ -1446,15 +1592,18 @@ function displayRank(points) {
             points.toLocaleString() +
             " POINTS";
 
+
         document.getElementById(
             "progressBar"
         ).style.width =
             "100%";
 
+
         document.getElementById(
             "progressText"
         ).textContent =
             "✦ You have reached the eighth light. ✦";
+
 
         document.getElementById(
             "nextRank"
@@ -1462,6 +1611,7 @@ function displayRank(points) {
             "EIGHT • THE LIGHT BESIDE AETHER";
 
         return;
+
     }
 
 
@@ -1469,9 +1619,11 @@ function displayRank(points) {
         points -
         currentRank.min;
 
+
     const pointsNeeded =
         nextRank.min -
         currentRank.min;
+
 
     let percentage =
         (
@@ -1531,73 +1683,346 @@ function displayRank(points) {
 
 
 /* =========================
-   CODEX DISPLAY
+   CODEX PROGRESS
 ========================= */
 
-function displayCodex(
-    count,
-    points
+function displayCodexProgress(
+    discovered
 ) {
 
-    const total =
+    const totalCodex =
         21;
 
 
+    const percentage =
+        (
+            discovered /
+            totalCodex
+        ) * 100;
+
+
+    const codexPoints =
+        discovered * 5;
+
+
     document.getElementById(
-        "codexCount"
+        "codexProgressCount"
     ).textContent =
 
-        count +
+        discovered +
         " / " +
-        total +
+        totalCodex +
         " DISCOVERED";
 
 
-    const percentage =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                (count / total) * 100
-            )
-        );
+    document.getElementById(
+        "codexProgressBar"
+    ).style.width =
+
+        percentage +
+        "%";
 
 
     document.getElementById(
-        "codexProgress"
-    ).style.width =
-        percentage + "%";
+        "codexProgressPoints"
+    ).textContent =
+
+        codexPoints +
+        " STAR POINTS FROM CODEX";
 
 
     if (
-        count >= total
+        discovered >= totalCodex
     ) {
 
         document.getElementById(
-            "codexMessage"
+            "codexProgressText"
         ).textContent =
+
             "✦ THE CODEX IS COMPLETE. ✦";
 
     }
 
     else {
 
+        const remaining =
+            totalCodex -
+            discovered;
+
+
         document.getElementById(
-            "codexMessage"
+            "codexProgressText"
         ).textContent =
 
-            (total - count) +
+            remaining +
             " Codex memories remain to be discovered. ✦";
 
     }
 
+}
+
+
+/* =========================
+   MUSIC PROGRESS
+========================= */
+
+function displayMusicProgress(
+    discovered
+) {
+
+    const totalMusic =
+        1;
+
+
+    const percentage =
+        discovered > 0
+            ? 100
+            : 0;
+
+
+    const musicPoints =
+        discovered * 5;
+
 
     document.getElementById(
-        "codexPoints"
+        "musicProgressCount"
     ).textContent =
 
-        points +
-        " STAR POINTS FROM CODEX";
+        discovered +
+        " / " +
+        totalMusic +
+        " DISCOVERED";
+
+
+    document.getElementById(
+        "musicProgressBar"
+    ).style.width =
+
+        percentage +
+        "%";
+
+
+    document.getElementById(
+        "musicProgressPoints"
+    ).textContent =
+
+        musicPoints +
+        " STAR POINTS FROM MUSIC";
+
+
+    if (
+        discovered >= totalMusic
+    ) {
+
+        document.getElementById(
+            "musicProgressText"
+        ).textContent =
+
+            "✦ BREAK THE BUBBLE HAS BEEN DISCOVERED. ✦";
+
+    }
+
+    else {
+
+        document.getElementById(
+            "musicProgressText"
+        ).textContent =
+
+            "Discover the first AETHER song.";
+
+    }
+
+}
+
+
+/* =========================
+   BREAK THE BUBBLE
+========================= */
+
+async function setupMusicDiscovery() {
+
+    const button =
+        document.getElementById(
+            "breakBubbleButton"
+        );
+
+    const message =
+        document.getElementById(
+            "musicMessage"
+        );
+
+
+    if (!button) {
+
+        return;
+
+    }
+
+
+    const {
+        data: { user },
+        error: userError
+    } =
+    await supabaseClient.auth.getUser();
+
+
+    if (
+        userError ||
+        !user
+    ) {
+
+        button.textContent =
+            "✦ LOG IN TO DISCOVER BREAK THE BUBBLE";
+
+        return;
+
+    }
+
+
+    /* =========================
+       CHECK IF ALREADY DISCOVERED
+    ========================= */
+
+    const {
+        data: existing,
+        error: existingError
+    } =
+    await supabaseClient
+        .from("halo_point_events")
+        .select("action_key")
+        .eq(
+            "user_id",
+            user.id
+        )
+        .eq(
+            "action_key",
+            "music_break_the_bubble"
+        )
+        .maybeSingle();
+
+
+    if (!existingError && existing) {
+
+        button.textContent =
+            "✓ ALREADY DISCOVERED";
+
+        button.classList.add(
+            "discovered"
+        );
+
+        button.disabled =
+            true;
+
+        message.textContent =
+            "This memory is already part of your journey.";
+
+        displayMusicProgress(1);
+
+        return;
+
+    }
+
+
+    /* =========================
+       CLICK
+    ========================= */
+
+    button.addEventListener(
+        "click",
+        async function() {
+
+            button.disabled =
+                true;
+
+            button.textContent =
+                "DISCOVERING...";
+
+            message.textContent =
+                "";
+
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.rpc(
+                "add_halo_points",
+                {
+                    p_user_id:
+                        user.id,
+
+                    p_action_key:
+                        "music_break_the_bubble"
+                }
+            );
+
+
+            if (error) {
+
+                console.error(
+                    "MUSIC POINT ERROR:",
+                    error
+                );
+
+
+                button.disabled =
+                    false;
+
+                button.textContent =
+                    "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
+
+                message.textContent =
+                    "Could not record discovery.";
+
+                return;
+
+            }
+
+
+            if (
+                Number(data) === 5
+            ) {
+
+                button.textContent =
+                    "✓ DISCOVERED • +5 STAR POINTS";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "Break the Bubble is now part of your HALO journey. ✦";
+
+                displayMusicProgress(1);
+
+            }
+
+            else {
+
+                button.textContent =
+                    "✓ ALREADY DISCOVERED";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "This memory is already part of your journey.";
+
+                displayMusicProgress(1);
+
+            }
+
+
+            /*
+               Reload the points so the
+               HALO rank updates immediately.
+            */
+
+            await loadHaloData();
+
+        }
+    );
 
 }
 
@@ -1617,64 +2042,40 @@ async function loadHaloData() {
         await supabaseClient.auth.getUser();
 
 
-        if (userError) {
-
-            console.error(
-                "USER ERROR:",
-                userError
-            );
-
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "HALO ERROR";
-
-            return;
-
-        }
-
-
-        if (!user) {
+        if (
+            userError ||
+            !user
+        ) {
 
             document.getElementById(
                 "rankName"
             ).textContent =
                 "PLEASE LOG IN";
 
-            document.getElementById(
-                "rankPoints"
-            ).textContent =
-                "Your HALO session was not found.";
-
             return;
 
         }
 
 
-        /* HALO ID */
+        /* =========================
+           HALO ID
+        ========================= */
 
         const {
-            data: profile,
-            error: profileError
+            data: profile
         } =
         await supabaseClient
+
             .from("halo_profiles")
+
             .select("halo_id")
+
             .eq(
                 "user_id",
                 user.id
             )
+
             .single();
-
-
-        if (profileError) {
-
-            console.error(
-                "PROFILE ERROR:",
-                profileError
-            );
-
-        }
 
 
         if (profile) {
@@ -1689,19 +2090,25 @@ async function loadHaloData() {
         }
 
 
-        /* HALO POINTS */
+        /* =========================
+           HALO POINTS
+        ========================= */
 
         const {
             data: pointsData,
             error: pointsError
         } =
         await supabaseClient
+
             .from("halo_points")
+
             .select("points")
+
             .eq(
                 "user_id",
                 user.id
             )
+
             .maybeSingle();
 
 
@@ -1737,17 +2144,20 @@ async function loadHaloData() {
         displayRank(points);
 
 
-        /* CODEX EVENTS */
+        /* =========================
+           LOAD ALL EVENTS
+        ========================= */
 
         const {
             data: events,
             error: eventsError
         } =
         await supabaseClient
+
             .from("halo_point_events")
-            .select(
-                "action_key, points"
-            )
+
+            .select("action_key, points")
+
             .eq(
                 "user_id",
                 user.id
@@ -1761,23 +2171,36 @@ async function loadHaloData() {
                 eventsError
             );
 
+            document.getElementById(
+                "codexProgressText"
+            ).textContent =
+                "Could not load Codex discoveries.";
+
             return;
 
         }
 
 
+        const eventList =
+            events || [];
+
+
+        /* =========================
+           CODEX
+        ========================= */
+
         const codexEvents =
-            events.filter(
+            eventList.filter(
                 event =>
-                    typeof event.action_key ===
-                    "string" &&
-                    event.action_key.startsWith(
+                    String(
+                        event.action_key
+                    ).startsWith(
                         "codex_"
                     )
             );
 
 
-        const uniqueCodexKeys =
+        const uniqueCodex =
             new Set(
                 codexEvents.map(
                     event =>
@@ -1786,49 +2209,54 @@ async function loadHaloData() {
             );
 
 
-        const codexPoints =
-            codexEvents.reduce(
-                (
-                    total,
-                    event
-                ) =>
-                    total +
-                    Number(
-                        event.points || 0
-                    ),
-                0
-            );
-
-
-        displayCodex(
-            uniqueCodexKeys.size,
-            codexPoints
+        displayCodexProgress(
+            uniqueCodex.size
         );
 
 
-        /* BREAK THE BUBBLE */
+        /* =========================
+           MUSIC
+        ========================= */
 
-        const musicDiscovered =
-            events.some(
+        const musicEvents =
+            eventList.filter(
                 event =>
-                    event.action_key ===
+                    String(
+                        event.action_key
+                    ) ===
                     "music_break_the_bubble"
             );
 
+
+        const musicDiscovered =
+            musicEvents.length > 0
+                ? 1
+                : 0;
+
+
+        displayMusicProgress(
+            musicDiscovered
+        );
+
+
+        /* =========================
+           UPDATE MUSIC BUTTON
+        ========================= */
 
         const button =
             document.getElementById(
                 "breakBubbleButton"
             );
 
-
         const message =
             document.getElementById(
-                "breakBubbleMessage"
+                "musicMessage"
             );
 
 
-        if (musicDiscovered) {
+        if (
+            musicDiscovered
+        ) {
 
             button.textContent =
                 "✓ ALREADY DISCOVERED";
@@ -1845,8 +2273,8 @@ async function loadHaloData() {
 
         }
 
-    }
 
+    }
 
     catch (error) {
 
@@ -1855,186 +2283,40 @@ async function loadHaloData() {
             error
         );
 
+
         document.getElementById(
             "rankName"
         ).textContent =
             "COULD NOT LOAD";
 
-    }
 
-}
-
-
-/* =========================
-   BREAK THE BUBBLE
-========================= */
-
-async function discoverBreakTheBubble() {
-
-    const button =
         document.getElementById(
-            "breakBubbleButton"
-        );
-
-    const message =
-        document.getElementById(
-            "breakBubbleMessage"
-        );
-
-
-    button.disabled =
-        true;
-
-    button.textContent =
-        "DISCOVERING...";
-
-    message.textContent =
-        "";
-
-
-    try {
-
-        const {
-            data: { user },
-            error: userError
-        } =
-        await supabaseClient.auth.getUser();
-
-
-        if (
-            userError ||
-            !user
-        ) {
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "✦ DISCOVER — +5 STAR POINTS";
-
-            message.textContent =
-                "Please log in first.";
-
-            return;
-
-        }
-
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient.rpc(
-            "add_halo_points",
-            {
-                p_user_id:
-                    user.id,
-
-                p_action_key:
-                    "music_break_the_bubble"
-            }
-        );
-
-
-        if (error) {
-
-            console.error(
-                "MUSIC POINT ERROR:",
-                error
-            );
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "✦ DISCOVER — +5 STAR POINTS";
-
-            message.textContent =
-                "Could not record discovery.";
-
-            return;
-
-        }
-
-
-        if (
-            Number(data) === 5
-        ) {
-
-            button.textContent =
-                "✓ DISCOVERED • +5 STAR POINTS";
-
-            button.classList.add(
-                "discovered"
-            );
-
-            message.textContent =
-                "Break the Bubble has become part of your journey. ✦";
-
-
-            await loadHaloData();
-
-        }
-
-        else {
-
-            button.textContent =
-                "✓ ALREADY DISCOVERED";
-
-            button.classList.add(
-                "discovered"
-            );
-
-            message.textContent =
-                "This memory is already part of your journey.";
-
-        }
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "BREAK THE BUBBLE ERROR:",
-            error
-        );
-
-        button.disabled =
-            false;
-
-        button.textContent =
-            "✦ DISCOVER — +5 STAR POINTS";
-
-        message.textContent =
-            "Could not record discovery.";
+            "progressText"
+        ).textContent =
+            "Could not load your HALO journey.";
 
     }
 
 }
-
-
-/* =========================
-   BUTTON
-========================= */
-
-document
-    .getElementById(
-        "breakBubbleButton"
-    )
-    .addEventListener(
-        "click",
-        discoverBreakTheBubble
-    );
 
 
 /* =========================
    START
 ========================= */
 
-loadHaloData();
+async function startHalo() {
+
+    await loadHaloData();
+
+    await setupMusicDiscovery();
+
+}
+
+
+startHalo();
 
 </script>
+
 
 </body>
 
