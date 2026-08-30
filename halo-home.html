@@ -168,7 +168,9 @@ h1 {
 }
 
 
-/* PROGRESS BAR */
+/* =========================
+   PROGRESS BAR
+========================= */
 
 .progress-container {
     width: 100%;
@@ -254,7 +256,9 @@ h1 {
 }
 
 
-/* POINT CARDS */
+/* =========================
+   POINT CARDS
+========================= */
 
 .points-grid {
     display: grid;
@@ -348,6 +352,50 @@ h1 {
     font-size: 0.75rem;
 
     letter-spacing: 1px;
+}
+
+
+/* =========================
+   EXPLORE BUTTON
+========================= */
+
+.explore-button {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding:
+        9px 18px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 25px;
+
+    color: #ddd7ff;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.explore-button:hover {
+
+    background: #29264b;
+
+    border-color: #c8bdff;
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -684,9 +732,13 @@ Explore the lore, worlds and secrets of AETHER.
 +5 STAR POINTS
 </span>
 
-<div class="points-status">
-COMING WITH CODEX EXPLORATION
-</div>
+<a
+href="codex.html"
+class="explore-button">
+
+✦ EXPLORE CODEX
+
+</a>
 
 </div>
 
@@ -815,7 +867,6 @@ SPECIAL EVENTS ONLY
 ========================= -->
 
 <section class="dashboard">
-
 
 
 <a
@@ -1080,8 +1131,6 @@ function displayRank(points) {
         currentRank.name;
 
 
-    /* EIGHT = FINAL RANK */
-
     if (!nextRank) {
 
         document.getElementById(
@@ -1107,7 +1156,6 @@ function displayRank(points) {
             "nextRank"
         ).textContent =
             "EIGHT • THE LIGHT BESIDE AETHER";
-
 
         return;
 
