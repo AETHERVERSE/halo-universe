@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>My HALO | AETHERVERSE</title>
 
@@ -74,6 +78,11 @@ h1 {
     line-height: 1.7;
 }
 
+
+/* =========================
+   WELCOME CARD
+========================= */
+
 .halo-card {
     background: #1d1a3d;
     border: 1px solid #39345e;
@@ -97,50 +106,209 @@ h1 {
     font-style: italic;
 }
 
+
+/* =========================
+   HALO RANK
+========================= */
+
+.rank-card {
+    background:
+        linear-gradient(
+            145deg,
+            #252052,
+            #181633
+        );
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 22px;
+
+    padding:
+        30px 25px;
+
+    margin-bottom: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+}
+
+.rank-label {
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+}
+
+.rank-name {
+    color: #eeeaff;
+
+    font-size: 2rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+}
+
+.rank-points {
+    color: #c4bddf;
+
+    font-size: 1rem;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 18px;
+}
+
+
+/* PROGRESS BAR */
+
+.progress-container {
+    width: 100%;
+
+    height: 14px;
+
+    background: #0e0c25;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin:
+        0 auto
+        15px;
+}
+
+.progress-bar {
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7665b8,
+            #cdb9ff
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width 0.8s ease;
+}
+
+.progress-text {
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    margin-bottom: 10px;
+}
+
+.next-rank {
+    color: #ddd7ff;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 18px;
 }
 
 .dashboard-card {
     background: #1d1a3d;
-    border: 1px solid #39345e;
+
+    border:
+        1px solid
+        #39345e;
+
     border-radius: 18px;
+
     padding: 25px;
+
     transition: 0.2s;
+
+    text-decoration: none;
+
+    color: inherit;
 }
 
 .dashboard-card:hover {
-    transform: translateY(-3px);
-    background: #242047;
+    transform:
+        translateY(-3px);
+
+    background:
+        #242047;
 }
 
 .dashboard-card .icon {
     font-size: 2rem;
+
     margin-bottom: 12px;
 }
 
 .dashboard-card h3 {
     margin: 8px 0;
+
     color: #ddd7ff;
+
     letter-spacing: 1px;
 }
 
 .dashboard-card p {
     color: #c4c1d7;
+
     line-height: 1.7;
+
     margin-bottom: 0;
 }
 
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
     text-align: center;
+
     margin-top: 55px;
+
     color: #77739e;
+
     font-size: 0.75rem;
+
     letter-spacing: 2px;
+
     line-height: 2;
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 650px) {
 
@@ -152,62 +320,182 @@ footer {
         font-size: 1.8rem;
     }
 
+    .rank-name {
+        font-size: 1.6rem;
+    }
+
 }
 
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 
 <header>
 
-<div class="logo">AETHERVERSE</div>
+<div class="logo">
+AETHERVERSE
+</div>
+
 
 <nav>
-<a href="index.html">Home</a>
-<a href="universe.html">HALO Universe</a>
-<a href="members.html">Members</a>
-<a href="codex.html">Codex</a>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="universe.html">
+HALO Universe
+</a>
+
+<a href="members.html">
+Members
+</a>
+
+<a href="codex.html">
+Codex
+</a>
+
 </nav>
 
 </header>
 
+
+
 <section class="hero">
 
-<div class="symbol">✦</div>
+<div class="symbol">
+✦
+</div>
 
-<h1>MY HALO</h1>
+<h1>
+MY HALO
+</h1>
 
 <p class="subtitle">
-Your place among the seven stars.<br>
+
+Your place among the seven stars.
+
+<br>
+
 Welcome back to the AETHER universe.
+
 </p>
 
 </section>
 
+
+
+<!-- =========================
+     WELCOME
+========================= -->
+
 <section class="halo-card welcome">
 
-<div style="font-size: 2.5rem;">💜</div>
+<div style="font-size: 2.5rem;">
+💜
+</div>
 
-<h2>WELCOME BACK, HALO</h2>
+<h2>
+WELCOME BACK, HALO
+</h2>
 
 <p>
 Your journey through AETHER continues.
 </p>
 
-<p class="email" id="haloEmail"></p>
+<p
+class="email"
+id="haloEmail">
+</p>
 
 </section>
 
+
+
+<!-- =========================
+     HALO RANK
+========================= -->
+
+<section class="rank-card">
+
+<div class="rank-label">
+✦ YOUR HALO RANK ✦
+</div>
+
+
+<div
+class="rank-name"
+id="rankName">
+
+LOADING...
+
+</div>
+
+
+<div
+class="rank-points"
+id="rankPoints">
+
+0 / 250 POINTS
+
+</div>
+
+
+<div class="progress-container">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+
+<div
+class="progress-text"
+id="progressText">
+
+Loading your journey...
+
+</div>
+
+
+<div
+class="next-rank"
+id="nextRank">
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
 <section class="dashboard">
 
-<a href="your-star.html" class="dashboard-card">
 
-<div class="icon">🌟</div>
 
-<h3>YOUR STAR</h3>
+<a
+href="your-star.html"
+class="dashboard-card">
+
+<div class="icon">
+🌟
+</div>
+
+<h3>
+YOUR STAR
+</h3>
 
 <p>
 Discover your connection to one of the seven stars of AETHER.
@@ -215,11 +503,17 @@ Discover your connection to one of the seven stars of AETHER.
 
 </a>
 
+
+
 <div class="dashboard-card">
 
-<div class="icon">🪽</div>
+<div class="icon">
+🪽
+</div>
 
-<h3>MY PROFILE</h3>
+<h3>
+MY PROFILE
+</h3>
 
 <p>
 Your HALO identity, memories and personal AETHER journey.
@@ -227,11 +521,17 @@ Your HALO identity, memories and personal AETHER journey.
 
 </div>
 
+
+
 <div class="dashboard-card">
 
-<div class="icon">📡</div>
+<div class="icon">
+📡
+</div>
 
-<h3>TRANSMISSIONS</h3>
+<h3>
+TRANSMISSIONS
+</h3>
 
 <p>
 Messages, signals and fragments from the AETHER universe.
@@ -239,11 +539,17 @@ Messages, signals and fragments from the AETHER universe.
 
 </div>
 
+
+
 <div class="dashboard-card">
 
-<div class="icon">🏆</div>
+<div class="icon">
+🏆
+</div>
 
-<h3>RANK & ACHIEVEMENTS</h3>
+<h3>
+RANK & ACHIEVEMENTS
+</h3>
 
 <p>
 Your HALO rank and the memories you have unlocked.
@@ -251,11 +557,17 @@ Your HALO rank and the memories you have unlocked.
 
 </div>
 
+
+
 <div class="dashboard-card">
 
-<div class="icon">💫</div>
+<div class="icon">
+💫
+</div>
 
-<h3>MEMORY ARCHIVE</h3>
+<h3>
+MEMORY ARCHIVE
+</h3>
 
 <p>
 A place for the moments discovered throughout your journey.
@@ -263,11 +575,17 @@ A place for the moments discovered throughout your journey.
 
 </div>
 
+
+
 <div class="dashboard-card">
 
-<div class="icon">🎖️</div>
+<div class="icon">
+🎖️
+</div>
 
-<h3>ACHIEVEMENTS</h3>
+<h3>
+ACHIEVEMENTS
+</h3>
 
 <p>
 Collect milestones as you explore the seven worlds.
@@ -275,7 +593,11 @@ Collect milestones as you explore the seven worlds.
 
 </div>
 
+
+
 </section>
+
+
 
 <footer>
 
@@ -287,51 +609,443 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 </footer>
 
+
 </div>
+
+
+
+<!-- =========================
+     SUPABASE
+========================= -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-const supabaseClient = window.supabase.createClient(
+<script>
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-    console.log("SUPABASE TEST", supabaseClient);
-    (async () => {
-    const { data: { user }, error: userError } =
+
+
+/* =========================
+   HALO RANKS
+========================= */
+
+const ranks = [
+
+    {
+        name: "NEW HALO",
+        min: 0,
+        max: 250
+    },
+
+    {
+        name: "AWAKENED HALO",
+        min: 250,
+        max: 750
+    },
+
+    {
+        name: "RISING HALO",
+        min: 750,
+        max: 1500
+    },
+
+    {
+        name: "RADIANT HALO",
+        min: 1500,
+        max: 3000
+    },
+
+    {
+        name: "STELLAR HALO",
+        min: 3000,
+        max: 5500
+    },
+
+    {
+        name: "CELESTIAL HALO",
+        min: 5500,
+        max: 10000
+    },
+
+    {
+        name: "LEGENDARY HALO",
+        min: 10000,
+        max: 15000
+    },
+
+    {
+        name: "ETERNAL HALO",
+        min: 15000,
+        max: 25000
+    },
+
+    {
+        name: "PRESTIGE HALO",
+        min: 25000,
+        max: 50000
+    },
+
+    {
+        name: "EIGHT",
+        min: 50000,
+        max: null
+    }
+
+];
+
+
+
+/* =========================
+   RANK ANZEIGEN
+========================= */
+
+function displayRank(points) {
+
+    let currentRank =
+        ranks[0];
+
+    let nextRank = null;
+
+
+    for (
+        let i = 0;
+        i < ranks.length;
+        i++
+    ) {
+
+        if (
+            points >= ranks[i].min
+        ) {
+
+            currentRank =
+                ranks[i];
+
+            nextRank =
+                ranks[i + 1] || null;
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "rankName"
+    ).textContent =
+        currentRank.name;
+
+
+    /* EIGHT = final rank */
+
+    if (!nextRank) {
+
+        document.getElementById(
+            "rankPoints"
+        ).textContent =
+            points.toLocaleString() +
+            " POINTS";
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            "100%";
+
+        document.getElementById(
+            "progressText"
+        ).textContent =
+            "✦ You have reached the eighth light. ✦";
+
+        document.getElementById(
+            "nextRank"
+        ).textContent =
+            "EIGHT • THE LIGHT BESIDE AETHER";
+
+        return;
+    }
+
+
+    const pointsIntoRank =
+        points -
+        currentRank.min;
+
+
+    const pointsNeeded =
+        nextRank.min -
+        currentRank.min;
+
+
+    let percentage =
+        (
+            pointsIntoRank /
+            pointsNeeded
+        ) * 100;
+
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
+
+    document.getElementById(
+        "rankPoints"
+    ).textContent =
+
+        points.toLocaleString() +
+        " / " +
+        nextRank.min.toLocaleString() +
+        " POINTS";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    const remaining =
+        nextRank.min -
+        points;
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+
+        remaining.toLocaleString() +
+        " points until " +
+        nextRank.name;
+
+
+    document.getElementById(
+        "nextRank"
+    ).textContent =
+
+        "Next rank: " +
+        nextRank.name;
+
+}
+
+
+
+/* =========================
+   USER + HALO DATEN LADEN
+========================= */
+
+async function loadHaloData() {
+
+    try {
+
+        const {
+            data: { user },
+            error: userError
+        } =
         await supabaseClient.auth.getUser();
 
-    if (userError) {
-        alert("USER ERROR: " + userError.message);
-        return;
-    }
 
-    if (!user) {
-        alert("KEIN USER EINGELOGGT");
-        return;
-    }
+        if (userError) {
 
-    const { data: profile, error: profileError } =
+            console.error(
+                "USER ERROR:",
+                userError
+            );
+
+            document.getElementById(
+                "rankName"
+            ).textContent =
+                "HALO ERROR";
+
+            return;
+        }
+
+
+        if (!user) {
+
+            document.getElementById(
+                "rankName"
+            ).textContent =
+                "PLEASE LOG IN";
+
+            document.getElementById(
+                "rankPoints"
+            ).textContent =
+                "Your HALO session was not found.";
+
+            return;
+        }
+
+
+
+        /* =========================
+           HALO ID
+        ========================= */
+
+        const {
+            data: profile,
+            error: profileError
+        } =
         await supabaseClient
+
             .from("halo_profiles")
+
             .select("halo_id")
-            .eq("user_id", user.id)
+
+            .eq(
+                "user_id",
+                user.id
+            )
+
             .single();
 
-    if (profileError) {
-        alert("PROFILE ERROR: " + profileError.message);
-        return;
+
+        if (
+            profileError
+        ) {
+
+            console.error(
+                "PROFILE ERROR:",
+                profileError
+            );
+
+        }
+
+
+        if (profile) {
+
+            document.getElementById(
+                "haloEmail"
+            ).textContent =
+
+                "HALO ID: " +
+                profile.halo_id;
+
+        }
+
+
+
+        /* =========================
+           HALO POINTS
+        ========================= */
+
+        const {
+            data: pointsData,
+            error: pointsError
+        } =
+        await supabaseClient
+
+            .from("halo_points")
+
+            .select("points")
+
+            .eq(
+                "user_id",
+                user.id
+            )
+
+            .maybeSingle();
+
+
+        if (pointsError) {
+
+            console.error(
+                "POINTS ERROR:",
+                pointsError
+            );
+
+            document.getElementById(
+                "rankName"
+            ).textContent =
+                "POINTS ERROR";
+
+            document.getElementById(
+                "progressText"
+            ).textContent =
+                pointsError.message;
+
+            return;
+        }
+
+
+        let points = 0;
+
+
+        if (
+            pointsData &&
+            pointsData.points !== null
+        ) {
+
+            points =
+                Number(
+                    pointsData.points
+                );
+
+        }
+
+
+        displayRank(points);
+
+
+        console.log(
+            "HALO POINTS:",
+            points
+        );
+
+        console.log(
+            "HALO RANK:",
+            document.getElementById(
+                "rankName"
+            ).textContent
+        );
+
     }
 
-    if (profile) {
-        document.getElementById("haloEmail").textContent =
-            "HALO ID: " + profile.halo_id;
+    catch (error) {
+
+        console.error(
+            "HALO LOAD ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "rankName"
+        ).textContent =
+            "COULD NOT LOAD";
+
+        document.getElementById(
+            "progressText"
+        ).textContent =
+            "Could not load your HALO journey.";
+
     }
-})();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadHaloData();
+
 </script>
 
+
 </body>
-</html
+
+    </html>
