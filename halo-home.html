@@ -4,9 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My HALO | AETHERVERSE</title>
 
@@ -128,7 +126,7 @@ h1 {
     padding:
         30px 25px;
 
-    margin-bottom: 45px;
+    margin-bottom: 30px;
 
     text-align: center;
 
@@ -169,7 +167,7 @@ h1 {
 
 
 /* =========================
-   PROGRESS BAR
+   RANK PROGRESS
 ========================= */
 
 .progress-container {
@@ -222,6 +220,120 @@ h1 {
     color: #ddd7ff;
 
     font-size: 0.9rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   CODEX PROGRESS
+========================= */
+
+.codex-progress-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #252052,
+            #181633
+        );
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 22px;
+
+    padding:
+        30px 25px;
+
+    margin-bottom: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+}
+
+.codex-progress-label {
+
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 14px;
+}
+
+.codex-progress-count {
+
+    color: #eeeaff;
+
+    font-size: 1.7rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+}
+
+.codex-progress-container {
+
+    width: 100%;
+
+    height: 14px;
+
+    background: #0e0c25;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 15px;
+}
+
+.codex-progress-bar {
+
+    height: 100%;
+
+    width: 0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7665b8,
+            #cdb9ff
+        );
+
+    border-radius: 20px;
+
+    transition:
+        width 0.8s ease;
+}
+
+.codex-progress-text {
+
+    color: #aaa0e6;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 1px;
+
+    line-height: 1.6;
+}
+
+.codex-progress-points {
+
+    margin-top: 12px;
+
+    color: #ddd7ff;
+
+    font-size: 0.8rem;
 
     letter-spacing: 1px;
 }
@@ -503,6 +615,10 @@ footer {
         font-size: 1.5rem;
     }
 
+    .codex-progress-count {
+        font-size: 1.4rem;
+    }
+
 }
 
 </style>
@@ -649,6 +765,57 @@ Loading your journey...
 <div
 class="next-rank"
 id="nextRank">
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     CODEX PROGRESS
+========================= -->
+
+<section class="codex-progress-card">
+
+<div class="codex-progress-label">
+✦ CODEX DISCOVERIES ✦
+</div>
+
+
+<div
+class="codex-progress-count"
+id="codexProgressCount">
+
+0 / 21 DISCOVERED
+
+</div>
+
+
+<div class="codex-progress-container">
+
+<div
+class="codex-progress-bar"
+id="codexProgressBar">
+</div>
+
+</div>
+
+
+<div
+class="codex-progress-text"
+id="codexProgressText">
+
+Begin exploring the AETHER Codex. ✦
+
+</div>
+
+
+<div
+class="codex-progress-points"
+id="codexProgressPoints">
+
+0 STAR POINTS FROM CODEX
 
 </div>
 
@@ -1093,7 +1260,7 @@ const ranks = [
 
 
 /* =========================
-   RANK ANZEIGEN
+   DISPLAY RANK
 ========================= */
 
 function displayRank(points) {
@@ -1231,7 +1398,147 @@ function displayRank(points) {
 
 
 /* =========================
-   USER + HALO DATEN LADEN
+   LOAD CODEX PROGRESS
+========================= */
+
+async function loadCodexProgress(userId) {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+        .from("halo_point_events")
+
+        .select("action_key")
+
+        .eq(
+            "user_id",
+            userId
+        )
+        .like(
+            "action_key",
+            "codex_%"
+        );
+
+
+    if (error) {
+
+        console.error(
+            "CODEX ERROR:",
+            error
+        );
+
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+            "Could not load Codex discoveries.";
+
+        return;
+
+    }
+
+
+    /*
+       We use a Set so every unique
+       Codex discovery is counted once.
+    */
+
+    const discovered =
+        new Set(
+            data
+                ? data.map(
+                    event =>
+                        event.action_key
+                )
+                : []
+        );
+
+
+    const discoveredCount =
+        discovered.size;
+
+
+    const totalCodex =
+        21;
+
+
+    const percentage =
+        Math.min(
+            100,
+            (
+                discoveredCount /
+                totalCodex
+            ) * 100
+        );
+
+
+    const codexPoints =
+        discoveredCount * 5;
+
+
+    document.getElementById(
+        "codexProgressCount"
+    ).textContent =
+
+        discoveredCount +
+        " / " +
+        totalCodex +
+        " DISCOVERED";
+
+
+    document.getElementById(
+        "codexProgressBar"
+    ).style.width =
+
+        percentage +
+        "%";
+
+
+    document.getElementById(
+        "codexProgressPoints"
+    ).textContent =
+
+        codexPoints +
+        " STAR POINTS FROM CODEX";
+
+
+    if (
+        discoveredCount >= totalCodex
+    ) {
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+
+            "✦ THE CODEX IS COMPLETE. ✦";
+
+    }
+
+    else {
+
+        const remaining =
+            totalCodex -
+            discoveredCount;
+
+
+        document.getElementById(
+            "codexProgressText"
+        ).textContent =
+
+            remaining +
+            " Codex memories remain to be discovered. ✦";
+
+    }
+
+}
+
+
+
+/* =========================
+   USER + HALO DATA
 ========================= */
 
 async function loadHaloData() {
@@ -1251,6 +1558,7 @@ async function loadHaloData() {
                 "USER ERROR:",
                 userError
             );
+
 
             document.getElementById(
                 "rankName"
@@ -1389,7 +1697,20 @@ async function loadHaloData() {
         }
 
 
+        /* =========================
+           DISPLAY RANK
+        ========================= */
+
         displayRank(points);
+
+
+        /* =========================
+           DISPLAY CODEX PROGRESS
+        ========================= */
+
+        await loadCodexProgress(
+            user.id
+        );
 
 
         console.log(
@@ -1430,6 +1751,7 @@ async function loadHaloData() {
     }
 
 }
+
 
 
 /* =========================
