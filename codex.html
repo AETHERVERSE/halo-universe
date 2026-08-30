@@ -172,11 +172,13 @@ footer {
     padding: 30px 28px;
     border: 1px solid #555174;
     border-radius: 24px;
+
     background: linear-gradient(
         145deg,
         rgba(255,255,255,0.055),
         rgba(255,255,255,0.018)
     );
+
     transition:
         transform 0.3s ease,
         border-color 0.3s ease;
@@ -272,19 +274,17 @@ footer {
 
 
 /* =========================
-   CODEX DISCOVERY
+   WORLD DISCOVERY
 ========================= */
 
 .discovery-button {
     display: inline-block;
 
-    margin-top: 18px;
+    margin-top: 20px;
 
     padding: 10px 20px;
 
-    border:
-        1px solid
-        #8f84c9;
+    border: 1px solid #8f84c9;
 
     border-radius: 25px;
 
@@ -312,6 +312,10 @@ footer {
     transform: translateY(-2px);
 }
 
+.discovery-button:disabled {
+    opacity: 0.8;
+}
+
 .discovery-button.discovered {
     border-color: #70698f;
     color: #aaa0e6;
@@ -321,9 +325,13 @@ footer {
 
 .discovery-message {
     margin-top: 10px;
+
     color: #c8bdff;
+
     font-size: 0.8rem;
+
     letter-spacing: 1px;
+
     min-height: 18px;
 }
 
@@ -1071,98 +1079,79 @@ window.supabase.createClient(
 
 
 /* =========================
-   CODEX IDENTIFIERS
+   WORLD DATA
 ========================= */
 
-const codexKeys = {
+const worlds = {
 
-    "☀️ SOLARION":
+    "SOLARION":
         "codex_solarion",
 
-    "🖤 HOLLOW":
+    "HOLLOW":
         "codex_hollow",
 
-    "⚡ VOLTARIS":
+    "VOLTARIS":
         "codex_voltaris",
 
-    "🌊 THALASSIA":
+    "THALASSIA":
         "codex_thalassia",
 
-    "🔥 IGNIS":
+    "IGNIS":
         "codex_ignis",
 
-    "✨ LUMENIA":
+    "LUMENIA":
         "codex_lumenia",
 
-    "🌙 NOCTEUM":
-        "codex_nocteum",
-
-    "🦁 SOLEN'S GUARDIAN":
-        "codex_solis",
-
-    "🐆 VEX'S GUARDIAN":
-        "codex_umbra",
-
-    "🐺 KAIRO'S GUARDIAN":
-        "codex_volt",
-
-    "🐬 RIVEN'S GUARDIAN":
-        "codex_thalos",
-
-    "🔥 ZENITH'S GUARDIAN":
-        "codex_pyra",
-
-    "🐈 LUX'S GUARDIAN":
-        "codex_lumen",
-
-    "🐦‍⬛ NERO'S GUARDIAN":
-        "codex_noctis",
-
-    "THE SUNSHARD":
-        "codex_sunshard",
-
-    "THE SHADOW PRISM":
-        "codex_shadow_prism",
-
-    "THE BLITZKERN":
-        "codex_blitzkern",
-
-    "THE GEZEITENPERLE":
-        "codex_gezeitenperle",
-
-    "THE FLAMMENHERZ":
-        "codex_flammenherz",
-
-    "THE STARLIGHT CRYSTAL":
-        "codex_starlight_crystal",
-
-    "THE NIGHTVEIL":
-        "codex_nightveil"
+    "NOCTEUM":
+        "codex_nocteum"
 
 };
 
 
 /* =========================
-   NORMALIZE TITLE
+   GET WORLD NAME
 ========================= */
 
-function cleanTitle(text) {
+function getWorldName(entry) {
 
-    return text
-        .replace(/\s+/g, " ")
-        .trim();
+    const title =
+        entry
+        .querySelector("h3")
+        .textContent
+        .trim()
+        .toUpperCase();
+
+    for (
+        const worldName in worlds
+    ) {
+
+        if (
+            title.includes(worldName)
+        ) {
+
+            return worldName;
+
+        }
+
+    }
+
+    return null;
 
 }
 
 
 /* =========================
-   CREATE BUTTON
+   CREATE DISCOVERY BUTTON
 ========================= */
 
-function addDiscoveryButton(
-    element,
-    actionKey
+function createDiscoveryButton(
+    entry,
+    worldName
 ) {
+
+    const actionKey =
+        worlds[worldName];
+
 
     const button =
         document.createElement("button");
@@ -1181,8 +1170,13 @@ function addDiscoveryButton(
         "discovery-message";
 
 
-    element.appendChild(button);
-    element.appendChild(message);
+    entry.appendChild(button);
+
+    entry.appendChild(message);
+
+
+    button.dataset.actionKey =
+        actionKey;
 
 
     button.addEventListener(
@@ -1195,53 +1189,114 @@ function addDiscoveryButton(
             button.textContent =
                 "DISCOVERING...";
 
-
-            const {
-                data: { user },
-                error: userError
-            } =
-            await supabaseClient.auth.getUser();
+            message.textContent =
+                "";
 
 
-            if (
-                userError ||
-                !user
-            ) {
+            try {
 
-                button.disabled =
-                    false;
+                const {
+                    data: { user },
+                    error: userError
+                } =
+                await supabaseClient
+                    .auth
+                    .getUser();
 
-                button.textContent =
-                    "✦ DISCOVER — +5 STAR POINTS";
 
-                message.textContent =
-                    "Please log in first.";
+                if (
+                    userError ||
+                    !user
+                ) {
 
-                return;
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "✦ DISCOVER — +5 STAR POINTS";
+
+                    message.textContent =
+                        "Please log in first.";
+
+                    return;
+
+                }
+
+
+                const {
+                    data,
+                    error
+                } =
+                await supabaseClient
+                    .rpc(
+                        "add_halo_points",
+                        {
+                            p_user_id:
+                                user.id,
+
+                            p_action_key:
+                                actionKey
+                        }
+                    );
+
+
+                if (error) {
+
+                    console.error(
+                        "POINT ERROR:",
+                        error
+                    );
+
+                    button.disabled =
+                        false;
+
+                    button.textContent =
+                        "✦ DISCOVER — +5 STAR POINTS";
+
+                    message.textContent =
+                        "Could not record discovery.";
+
+                    return;
+
+                }
+
+
+                if (
+                    Number(data) === 5
+                ) {
+
+                    button.textContent =
+                        "✓ DISCOVERED • +5 STAR POINTS";
+
+                    button.classList.add(
+                        "discovered"
+                    );
+
+                    message.textContent =
+                        "Your discovery has been recorded. ✦";
+
+                }
+
+                else {
+
+                    button.textContent =
+                        "✓ ALREADY DISCOVERED";
+
+                    button.classList.add(
+                        "discovered"
+                    );
+
+                    message.textContent =
+                        "This world is already part of your journey.";
+
+                }
 
             }
 
-
-            const {
-                data,
-                error
-            } =
-            await supabaseClient.rpc(
-                "add_halo_points",
-                {
-                    p_user_id:
-                        user.id,
-
-                    p_action_key:
-                        actionKey
-                }
-            );
-
-
-            if (error) {
+            catch (error) {
 
                 console.error(
-                    "POINT ERROR:",
+                    "DISCOVERY ERROR:",
                     error
                 );
 
@@ -1252,40 +1307,7 @@ function addDiscoveryButton(
                     "✦ DISCOVER — +5 STAR POINTS";
 
                 message.textContent =
-                    "Could not record discovery.";
-
-                return;
-
-            }
-
-
-            if (
-                Number(data) === 5
-            ) {
-
-                button.textContent =
-                    "✓ DISCOVERED • +5 STAR POINTS";
-
-                button.classList.add(
-                    "discovered"
-                );
-
-                message.textContent =
-                    "Your discovery has been recorded. ✦";
-
-            }
-
-            else {
-
-                button.textContent =
-                    "✓ ALREADY DISCOVERED";
-
-                button.classList.add(
-                    "discovered"
-                );
-
-                message.textContent =
-                    "This memory is already part of your journey.";
+                    "Something went wrong.";
 
             }
 
@@ -1296,137 +1318,18 @@ function addDiscoveryButton(
 
 
 /* =========================
-   ADD BUTTONS TO WORLDS
+   LOAD PREVIOUS DISCOVERIES
 ========================= */
 
-function setupWorlds() {
-
-    document
-        .querySelectorAll(".world-entry")
-        .forEach(entry => {
-
-            const title =
-                cleanTitle(
-                    entry
-                        .querySelector("h3")
-                        .textContent
-                );
-
-            const key =
-                codexKeys[title];
-
-            if (!key) {
-
-                console.warn(
-                    "Missing world key:",
-                    title
-                );
-
-                return;
-
-            }
-
-            addDiscoveryButton(
-                entry,
-                key
-            );
-
-        });
-
-}
-
-
-/* =========================
-   ADD BUTTONS TO GUARDIANS
-========================= */
-
-function setupGuardians() {
-
-    document
-        .querySelectorAll(".guardian-entry")
-        .forEach(entry => {
-
-            const title =
-                cleanTitle(
-                    entry
-                        .querySelector("h3")
-                        .textContent
-                );
-
-            const key =
-                codexKeys[title];
-
-            if (!key) {
-
-                console.warn(
-                    "Missing guardian key:",
-                    title
-                );
-
-                return;
-
-            }
-
-            addDiscoveryButton(
-                entry,
-                key
-            );
-
-        });
-
-}
-
-
-/* =========================
-   ADD BUTTONS TO RELICS
-========================= */
-
-function setupRelics() {
-
-    document
-        .querySelectorAll(".codex-card")
-        .forEach(card => {
-
-            const titleElement =
-                card.querySelector("h3");
-
-            if (!titleElement) {
-                return;
-            }
-
-            const title =
-                cleanTitle(
-                    titleElement.textContent
-                );
-
-            const key =
-                codexKeys[title];
-
-            if (!key) {
-                return;
-            }
-
-            addDiscoveryButton(
-                card,
-                key
-            );
-
-        });
-
-}
-
-
-/* =========================
-   LOAD DISCOVERED ENTRIES
-========================= */
-
-async function loadDiscovered() {
+async function loadDiscoveredWorlds() {
 
     const {
         data: { user },
         error: userError
     } =
-    await supabaseClient.auth.getUser();
+    await supabaseClient
+        .auth
+        .getUser();
 
 
     if (
@@ -1479,11 +1382,10 @@ async function loadDiscovered() {
         )
         .forEach(button => {
 
-            const key =
-                button.dataset.actionKey;
-
             if (
-                discovered.has(key)
+                discovered.has(
+                    button.dataset.actionKey
+                )
             ) {
 
                 button.textContent =
@@ -1509,60 +1411,39 @@ async function loadDiscovered() {
 
 async function initCodex() {
 
-    setupWorlds();
-
-    setupGuardians();
-
-    setupRelics();
-
-
-    /*
-       Jeder Button bekommt seinen
-       eigenen action key.
-    */
-
     document
         .querySelectorAll(
-            ".discovery-button"
+            ".world-entry"
         )
-        .forEach(button => {
+        .forEach(entry => {
 
-            /*
-               Der Key wurde beim Erstellen
-               noch nicht gesetzt.
-               Wir ermitteln ihn über
-               den zugehörigen Container.
-            */
+            const worldName =
+                getWorldName(entry);
 
-            const parent =
-                button.parentElement;
 
-            const titleElement =
-                parent.querySelector("h3");
+            if (!worldName) {
 
-            if (!titleElement) {
-                return;
-            }
-
-            const title =
-                cleanTitle(
-                    titleElement.textContent
+                console.warn(
+                    "WORLD NOT FOUND:",
+                    entry
+                    .querySelector("h3")
+                    .textContent
                 );
 
-            const key =
-                codexKeys[title];
-
-            if (key) {
-
-                button.dataset.actionKey =
-                    key;
+                return;
 
             }
+
+
+            createDiscoveryButton(
+                entry,
+                worldName
+            );
 
         });
 
 
-    await loadDiscovered();
+    await loadDiscoveredWorlds();
 
 }
 
@@ -1574,4 +1455,4 @@ initCodex();
 
 </body>
 
-    </html>
+        </html>
