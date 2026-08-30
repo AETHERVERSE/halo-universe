@@ -313,7 +313,7 @@ createAccountButton.addEventListener("click", async function () {
         alert("HALO registration failed ✦ " + error.message);
         return;
     }
-
+localStorage.setItem("haloEmail", email);
     alert("WELCOME TO AETHER, HALO ✦ Please check your email to confirm your account.");
 });
 
