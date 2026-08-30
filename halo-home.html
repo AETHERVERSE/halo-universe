@@ -301,21 +301,35 @@ const supabaseClient = window.supabase.createClient(
 );
 
 (async () => {
-    const { data: { user } } =
+    (async () => {
+    const { data: { user }, error: userError } =
         await supabaseClient.auth.getUser();
 
-    if (user) {
-        const { data: profile } =
-            await supabaseClient
-                .from("halo_profiles")
-                .select("halo_id")
-                .eq("user_id", user.id)
-                .single();
+    if (userError) {
+        alert("USER ERROR: " + userError.message);
+        return;
+    }
 
-        if (profile) {
-            document.getElementById("haloEmail").textContent =
-                "HALO ID: " + profile.halo_id;
-        }
+    if (!user) {
+        alert("KEIN USER EINGELOGGT");
+        return;
+    }
+
+    const { data: profile, error: profileError } =
+        await supabaseClient
+            .from("halo_profiles")
+            .select("halo_id")
+            .eq("user_id", user.id)
+            .single();
+
+    if (profileError) {
+        alert("PROFILE ERROR: " + profileError.message);
+        return;
+    }
+
+    if (profile) {
+        document.getElementById("haloEmail").textContent =
+            "HALO ID: " + profile.halo_id;
     }
 })();
 </script>
