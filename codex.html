@@ -4,7 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>The AETHER Codex</title>
 
@@ -17,13 +19,31 @@
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: Georgia, "Times New Roman", serif;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     color: #e9e6ff;
 
     background:
-        radial-gradient(circle at 50% 0%, #443b78 0%, transparent 30%),
-        radial-gradient(circle at 10% 35%, #211d43 0%, transparent 30%),
-        linear-gradient(180deg, #080817, #11102b, #18163a);
+        radial-gradient(
+            circle at 50% 0%,
+            #443b78 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 10% 35%,
+            #211d43 0%,
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #080817,
+            #11102b,
+            #18163a
+        );
 }
 
 .container {
@@ -31,6 +51,11 @@ body {
     margin: auto;
     padding: 20px;
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 header {
     text-align: center;
@@ -44,9 +69,17 @@ header {
 }
 
 h1 {
-    font-size: clamp(2.8rem, 8vw, 5rem);
+    font-size:
+        clamp(
+            2.8rem,
+            8vw,
+            5rem
+        );
+
     letter-spacing: 7px;
+
     margin: 18px 0;
+
     color: #eeeaff;
 }
 
@@ -54,6 +87,11 @@ h1 {
     color: #bdb8d9;
     letter-spacing: 4px;
 }
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
     display: flex;
@@ -65,22 +103,51 @@ nav {
 
 nav a {
     padding: 10px 17px;
-    border: 1px solid #575477;
+
+    border:
+        1px solid
+        #575477;
+
     border-radius: 30px;
+
     text-decoration: none;
+
     color: #d8d5ed;
-    background: rgba(255,255,255,0.03);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
 }
 
 nav a:hover {
     color: #c8bdff;
-    background: rgba(255,255,255,0.08);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.08
+        );
 }
+
+
+/* =========================
+   INTRO
+========================= */
 
 .codex-intro {
     text-align: center;
+
     max-width: 760px;
-    margin: 0 auto 55px;
+
+    margin:
+        0 auto
+        55px;
 }
 
 .codex-intro h2 {
@@ -93,24 +160,53 @@ nav a:hover {
     line-height: 1.9;
 }
 
+
+/* =========================
+   GENERAL CARDS
+========================= */
+
 .codex-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                260px,
+                1fr
+            )
+        );
+
     gap: 24px;
 }
 
 .codex-card {
-    padding: 32px 25px;
+    padding:
+        32px 25px;
+
     min-height: 190px;
 
-    border: 1px solid #555174;
+    border:
+        1px solid
+        #555174;
+
     border-radius: 25px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,0.06),
-            rgba(255,255,255,0.02)
+            rgba(
+                255,
+                255,
+                255,
+                0.06
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.02
+            )
         );
 
     transition:
@@ -119,18 +215,24 @@ nav a:hover {
 }
 
 .codex-card:hover {
-    transform: translateY(-6px);
-    border-color: #9c91dc;
+    transform:
+        translateY(-6px);
+
+    border-color:
+        #9c91dc;
 }
 
 .codex-card h3 {
     margin-top: 0;
+
     color: #d0c7ff;
+
     letter-spacing: 2px;
 }
 
 .codex-card p {
     color: #c4c1d7;
+
     line-height: 1.7;
 }
 
@@ -139,13 +241,10 @@ nav a:hover {
     margin-bottom: 12px;
 }
 
-footer {
-    text-align: center;
-    padding: 65px 10px 30px;
-    color: #85819f;
-    letter-spacing: 2px;
-    font-size: 0.75rem;
-}
+
+/* =========================
+   WORLDS
+========================= */
 
 .world-archive {
     margin: 70px auto;
@@ -154,30 +253,56 @@ footer {
 
 .world-archive h2 {
     text-align: center;
+
     color: #c8bdff;
+
     letter-spacing: 3px;
+
     margin-bottom: 18px;
 }
 
 .world-intro {
     max-width: 720px;
-    margin: 0 auto 45px;
+
+    margin:
+        0 auto
+        45px;
+
     text-align: center;
+
     color: #c9c5dc;
+
     line-height: 1.8;
 }
 
 .world-entry {
     margin-bottom: 28px;
-    padding: 30px 28px;
-    border: 1px solid #555174;
+
+    padding:
+        30px 28px;
+
+    border:
+        1px solid
+        #555174;
+
     border-radius: 24px;
 
-    background: linear-gradient(
-        145deg,
-        rgba(255,255,255,0.055),
-        rgba(255,255,255,0.018)
-    );
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                255,
+                255,
+                255,
+                0.055
+            ),
+            rgba(
+                255,
+                255,
+                255,
+                0.018
+            )
+        );
 
     transition:
         transform 0.3s ease,
@@ -185,25 +310,35 @@ footer {
 }
 
 .world-entry:hover {
-    transform: translateY(-4px);
-    border-color: #9c91dc;
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #9c91dc;
 }
 
 .world-entry h3 {
-    margin: 0 0 8px;
+    margin:
+        0 0 8px;
+
     color: #e1dbff;
+
     letter-spacing: 2px;
+
     font-size: 1.35rem;
 }
 
 .world-tagline {
     margin-top: 0;
+
     color: #aaa0e6;
+
     font-style: italic;
 }
 
 .world-entry p {
     color: #c4c1d7;
+
     line-height: 1.8;
 }
 
@@ -211,51 +346,101 @@ footer {
     color: #ddd7ff;
 }
 
+
+/* =========================
+   GUARDIANS
+========================= */
+
 .guardian-archive {
     margin: 70px auto;
+
     max-width: 1100px;
+
     text-align: center;
 }
 
 .guardian-archive h2 {
     font-size: 2.2rem;
+
     letter-spacing: 3px;
+
     margin-bottom: 20px;
 }
 
 .guardian-intro {
     max-width: 700px;
-    margin: 0 auto 45px;
+
+    margin:
+        0 auto
+        45px;
+
     font-size: 1.1rem;
+
     line-height: 1.8;
+
     opacity: 0.9;
 }
 
 .guardian-entry {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(210,200,255,0.25);
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.04
+        );
+
+    border:
+        1px solid
+        rgba(
+            210,
+            200,
+            255,
+            0.25
+        );
+
     border-radius: 24px;
-    padding: 30px 35px;
+
+    padding:
+        30px 35px;
+
     margin-bottom: 25px;
+
     text-align: left;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            0,
+            0,
+            0,
+            0.12
+        );
 }
 
 .guardian-entry h3 {
-    margin: 0 0 10px;
+    margin:
+        0 0 10px;
+
     color: #e1dbff;
+
     letter-spacing: 2px;
+
     font-size: 1.35rem;
 }
 
-.guardian-entry .guardian-tagline {
-    margin: 0 0 18px;
+.guardian-tagline {
+    margin:
+        0 0 18px;
+
     color: #aaa0e6;
+
     font-style: italic;
 }
 
 .guardian-entry p {
     color: #c4c1d7;
+
     line-height: 1.8;
 }
 
@@ -263,28 +448,58 @@ footer {
     color: #ddd7ff;
 }
 
+
+/* =========================
+   RELICS
+========================= */
+
 .relics-title {
-    grid-column: 1 / -1;
+    grid-column:
+        1 / -1;
+
     text-align: center;
+
     color: #ddd7ff;
+
     font-size: 1.8rem;
+
     letter-spacing: 2px;
-    margin: 0 0 28px;
+
+    margin:
+        0 0 10px;
+}
+
+.relics-intro {
+    grid-column:
+        1 / -1;
+
+    text-align: center;
+
+    color: #aaa0e6;
+
+    line-height: 1.8;
+
+    margin:
+        0 0 20px;
 }
 
 
 /* =========================
-   WORLD DISCOVERY
+   DISCOVERY SYSTEM
 ========================= */
 
 .discovery-button {
+
     display: inline-block;
 
-    margin-top: 20px;
+    margin-top: 18px;
 
-    padding: 10px 20px;
+    padding:
+        10px 20px;
 
-    border: 1px solid #8f84c9;
+    border:
+        1px solid
+        #8f84c9;
 
     border-radius: 25px;
 
@@ -292,7 +507,9 @@ footer {
 
     color: #ddd7ff;
 
-    font-family: Georgia, serif;
+    font-family:
+        Georgia,
+        serif;
 
     font-size: 0.8rem;
 
@@ -306,33 +523,96 @@ footer {
         border-color 0.2s ease;
 }
 
-.discovery-button:hover {
-    background: #29264b;
-    border-color: #c8bdff;
-    transform: translateY(-2px);
-}
+.discovery-button:hover:not(:disabled) {
 
-.discovery-button:disabled {
-    opacity: 0.8;
+    background:
+        #29264b;
+
+    border-color:
+        #c8bdff;
+
+    transform:
+        translateY(-2px);
 }
 
 .discovery-button.discovered {
-    border-color: #70698f;
-    color: #aaa0e6;
-    cursor: default;
-    transform: none;
+
+    border-color:
+        #70698f;
+
+    color:
+        #aaa0e6;
+
+    cursor:
+        default;
+
+    transform:
+        none;
+}
+
+.discovery-button:disabled {
+    opacity: 1;
 }
 
 .discovery-message {
+
     margin-top: 10px;
 
-    color: #c8bdff;
+    color:
+        #c8bdff;
 
-    font-size: 0.8rem;
+    font-size:
+        0.8rem;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 
-    min-height: 18px;
+    min-height:
+        18px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+
+    padding:
+        65px 10px
+        30px;
+
+    color:
+        #85819f;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        0.75rem;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .codex-grid {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    .guardian-entry,
+    .world-entry {
+        padding: 25px 22px;
+    }
+
 }
 
 </style>
@@ -341,6 +621,7 @@ footer {
 
 
 <body>
+
 
 <div class="container">
 
@@ -401,6 +682,10 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     CODEX OVERVIEW
+========================= -->
 
 <section class="codex-grid">
 
@@ -516,6 +801,10 @@ footer {
 </section>
 
 
+<!-- =========================
+     SEVEN WORLDS
+========================= -->
+
 <section class="world-archive">
 
     <h2>
@@ -529,7 +818,9 @@ footer {
     </p>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_solarion">
 
         <h3>
             ☀️ SOLARION
@@ -546,14 +837,17 @@ footer {
         </p>
 
         <p>
-            It is the home world of <strong>Solen</strong>,
+            It is the home world of
+            <strong>Solen</strong>,
             the first light among the seven stars.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_hollow">
 
         <h3>
             🖤 HOLLOW
@@ -571,14 +865,17 @@ footer {
         </p>
 
         <p>
-            Hollow is the home world of <strong>Vex</strong> —
+            Hollow is the home world of
+            <strong>Vex</strong> —
             and a place whose secrets reach far deeper than anyone knows.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_voltaris">
 
         <h3>
             ⚡ VOLTARIS
@@ -595,14 +892,17 @@ footer {
         </p>
 
         <p>
-            It is the home world of <strong>Kairo</strong>,
+            It is the home world of
+            <strong>Kairo</strong>,
             whose spirit burns with the same restless energy.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_thalassia">
 
         <h3>
             🌊 THALASSIA
@@ -619,13 +919,16 @@ footer {
         </p>
 
         <p>
-            Thalassia is the home world of <strong>Riven</strong>.
+            Thalassia is the home world of
+            <strong>Riven</strong>.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_ignis">
 
         <h3>
             🔥 IGNIS
@@ -642,13 +945,16 @@ footer {
         </p>
 
         <p>
-            It is the home world of <strong>Zenith</strong>.
+            It is the home world of
+            <strong>Zenith</strong>.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_lumenia">
 
         <h3>
             ✨ LUMENIA
@@ -665,13 +971,16 @@ footer {
         </p>
 
         <p>
-            It is the home world of <strong>Lux</strong>.
+            It is the home world of
+            <strong>Lux</strong>.
         </p>
 
     </div>
 
 
-    <div class="world-entry">
+    <div
+        class="world-entry"
+        data-action-key="codex_nocteum">
 
         <h3>
             🌙 NOCTEUM
@@ -689,13 +998,18 @@ footer {
         </p>
 
         <p>
-            It is the home world of <strong>Nero</strong>.
+            It is the home world of
+            <strong>Nero</strong>.
         </p>
 
     </div>
 
 </section>
 
+
+<!-- =========================
+     GUARDIANS
+========================= -->
 
 <section class="guardian-archive">
 
@@ -709,7 +1023,9 @@ footer {
     </p>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_solis">
 
         <h3>
             🦁 SOLEN'S GUARDIAN
@@ -726,13 +1042,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Solen</strong>.
+            Guardian of
+            <strong>Solen</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_umbra">
 
         <h3>
             🐆 VEX'S GUARDIAN
@@ -749,13 +1068,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Vex</strong>.
+            Guardian of
+            <strong>Vex</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_volt">
 
         <h3>
             🐺 KAIRO'S GUARDIAN
@@ -772,13 +1094,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Kairo</strong>.
+            Guardian of
+            <strong>Kairo</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_thalos">
 
         <h3>
             🐬 RIVEN'S GUARDIAN
@@ -794,13 +1119,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Riven</strong>.
+            Guardian of
+            <strong>Riven</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_pyra">
 
         <h3>
             🔥 ZENITH'S GUARDIAN
@@ -817,13 +1145,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Zenith</strong>.
+            Guardian of
+            <strong>Zenith</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_lumen">
 
         <h3>
             🐈 LUX'S GUARDIAN
@@ -840,13 +1171,16 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Lux</strong>.
+            Guardian of
+            <strong>Lux</strong>.
         </p>
 
     </div>
 
 
-    <div class="guardian-entry">
+    <div
+        class="guardian-entry"
+        data-action-key="codex_noctis">
 
         <h3>
             🐦‍⬛ NERO'S GUARDIAN
@@ -863,13 +1197,18 @@ footer {
         </p>
 
         <p>
-            Guardian of <strong>Nero</strong>.
+            Guardian of
+            <strong>Nero</strong>.
         </p>
 
     </div>
 
 </section>
 
+
+<!-- =========================
+     RELICS
+========================= -->
 
 <section class="codex-grid">
 
@@ -878,7 +1217,7 @@ footer {
     </h2>
 
 
-    <p style="grid-column: 1 / -1; text-align: center; color: #aaa0e6;">
+    <p class="relics-intro">
 
         Seven relics. Seven worlds. Seven powers bound to the stars.
         Each relic carries a fragment of the world it came from —
@@ -887,7 +1226,9 @@ footer {
     </p>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_sunshard">
 
         <div class="symbol">
             ☀️
@@ -898,18 +1239,22 @@ footer {
         </h3>
 
         <p>
-            The relic of Solarion, carrying the warmth and radiant power of the first light.
-            Its golden energy reflects Solen's strength and his promise to protect the light.
+            The relic of Solarion, carrying the warmth and radiant power
+            of the first light. Its golden energy reflects Solen's strength
+            and his promise to protect the light.
         </p>
 
         <p>
-            Relic of <strong>Solen</strong>.
+            Relic of
+            <strong>Solen</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_shadow_prism">
 
         <div class="symbol">
             💜
@@ -921,17 +1266,21 @@ footer {
 
         <p>
             A mysterious crystal born from the depths of Hollow.
-            It holds fragments of forgotten truths and reflects the shadows that Vex carries within.
+            It holds fragments of forgotten truths and reflects
+            the shadows that Vex carries within.
         </p>
 
         <p>
-            Relic of <strong>Vex</strong>.
+            Relic of
+            <strong>Vex</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_blitzkern">
 
         <div class="symbol">
             ⚡
@@ -943,17 +1292,21 @@ footer {
 
         <p>
             A powerful relic charged with the endless energy of Voltaris.
-            Lightning flows through its core, responding to Kairo's restless strength and spirit.
+            Lightning flows through its core, responding to Kairo's
+            restless strength and spirit.
         </p>
 
         <p>
-            Relic of <strong>Kairo</strong>.
+            Relic of
+            <strong>Kairo</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_gezeitenperle">
 
         <div class="symbol">
             🌊
@@ -965,17 +1318,21 @@ footer {
 
         <p>
             A mysterious pearl carrying the memories of Thalassia.
-            Its tides hold echoes of the past and the emotions that Riven carries within his heart.
+            Its tides hold echoes of the past and the emotions
+            that Riven carries within his heart.
         </p>
 
         <p>
-            Relic of <strong>Riven</strong>.
+            Relic of
+            <strong>Riven</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_flammenherz">
 
         <div class="symbol">
             🔥
@@ -986,18 +1343,22 @@ footer {
         </h3>
 
         <p>
-            The eternal flame of Ignis, burning with passion and unwavering strength.
-            Its fire grows brighter whenever Zenith refuses to surrender.
+            The eternal flame of Ignis, burning with passion and
+            unwavering strength. Its fire grows brighter whenever
+            Zenith refuses to surrender.
         </p>
 
         <p>
-            Relic of <strong>Zenith</strong>.
+            Relic of
+            <strong>Zenith</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_starlight_crystal">
 
         <div class="symbol">
             ✨
@@ -1009,17 +1370,21 @@ footer {
 
         <p>
             A crystal carrying the gentle light of Lumenia.
-            It shines softly in the darkness, offering warmth, comfort and a place to rest.
+            It shines softly in the darkness, offering warmth,
+            comfort and a place to rest.
         </p>
 
         <p>
-            Relic of <strong>Lux</strong>.
+            Relic of
+            <strong>Lux</strong>.
         </p>
 
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card"
+        data-action-key="codex_nightveil">
 
         <div class="symbol">
             🌑
@@ -1031,14 +1396,17 @@ footer {
 
         <p>
             A relic hidden beneath the endless night of Nocteum.
-            It carries secrets buried among the stars and reveals them only to those willing to look into the darkness.
+            It carries secrets buried among the stars and reveals
+            them only to those willing to look into the darkness.
         </p>
 
         <p>
-            Relic of <strong>Nero</strong>.
+            Relic of
+            <strong>Nero</strong>.
         </p>
 
     </div>
+
 
 </section>
 
@@ -1063,13 +1431,16 @@ footer {
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
 
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
 
 const supabaseClient =
 window.supabase.createClient(
@@ -1079,109 +1450,79 @@ window.supabase.createClient(
 
 
 /* =========================
-   WORLD DATA
+   CONSTANTS
 ========================= */
 
-const worlds = {
+const DISCOVERY_POINTS = 5;
 
-    "SOLARION":
-        "codex_solarion",
-
-    "HOLLOW":
-        "codex_hollow",
-
-    "VOLTARIS":
-        "codex_voltaris",
-
-    "THALASSIA":
-        "codex_thalassia",
-
-    "IGNIS":
-        "codex_ignis",
-
-    "LUMENIA":
-        "codex_lumenia",
-
-    "NOCTEUM":
-        "codex_nocteum"
-
-};
-
-
-/* =========================
-   GET WORLD NAME
-========================= */
-
-function getWorldName(entry) {
-
-    const title =
-        entry
-        .querySelector("h3")
-        .textContent
-        .trim()
-        .toUpperCase();
-
-    for (
-        const worldName in worlds
-    ) {
-
-        if (
-            title.includes(worldName)
-        ) {
-
-            return worldName;
-
-        }
-
-    }
-
-    return null;
-
-}
+const TOTAL_DISCOVERIES = 21;
 
 
 /* =========================
    CREATE DISCOVERY BUTTON
 ========================= */
 
-function createDiscoveryButton(
-    entry,
-    worldName
+function addDiscoveryButton(
+    element
 ) {
 
     const actionKey =
-        worlds[worldName];
+        element.dataset.actionKey;
+
+
+    if (!actionKey) {
+
+        console.warn(
+            "Missing action key:",
+            element
+        );
+
+        return;
+
+    }
 
 
     const button =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
 
     button.className =
         "discovery-button";
+
+    button.dataset.actionKey =
+        actionKey;
 
     button.textContent =
         "✦ DISCOVER — +5 STAR POINTS";
 
 
     const message =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     message.className =
         "discovery-message";
 
 
-    entry.appendChild(button);
+    element.appendChild(button);
 
-    entry.appendChild(message);
-
-
-    button.dataset.actionKey =
-        actionKey;
+    element.appendChild(message);
 
 
     button.addEventListener(
         "click",
         async function() {
+
+            if (
+                button.disabled
+            ) {
+
+                return;
+
+            }
+
 
             button.disabled =
                 true;
@@ -1189,114 +1530,59 @@ function createDiscoveryButton(
             button.textContent =
                 "DISCOVERING...";
 
-            message.textContent =
-                "";
+
+            const {
+                data: {
+                    user
+                },
+                error:
+                    userError
+            } =
+            await supabaseClient
+                .auth
+                .getUser();
 
 
-            try {
+            if (
+                userError ||
+                !user
+            ) {
 
-                const {
-                    data: { user },
-                    error: userError
-                } =
-                await supabaseClient
-                    .auth
-                    .getUser();
+                button.disabled =
+                    false;
 
+                button.textContent =
+                    "✦ DISCOVER — +5 STAR POINTS";
 
-                if (
-                    userError ||
-                    !user
-                ) {
+                message.textContent =
+                    "Please log in first.";
 
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "✦ DISCOVER — +5 STAR POINTS";
-
-                    message.textContent =
-                        "Please log in first.";
-
-                    return;
-
-                }
-
-
-                const {
-                    data,
-                    error
-                } =
-                await supabaseClient
-                    .rpc(
-                        "add_halo_points",
-                        {
-                            p_user_id:
-                                user.id,
-
-                            p_action_key:
-                                actionKey
-                        }
-                    );
-
-
-                if (error) {
-
-                    console.error(
-                        "POINT ERROR:",
-                        error
-                    );
-
-                    button.disabled =
-                        false;
-
-                    button.textContent =
-                        "✦ DISCOVER — +5 STAR POINTS";
-
-                    message.textContent =
-                        "Could not record discovery.";
-
-                    return;
-
-                }
-
-
-                if (
-                    Number(data) === 5
-                ) {
-
-                    button.textContent =
-                        "✓ DISCOVERED • +5 STAR POINTS";
-
-                    button.classList.add(
-                        "discovered"
-                    );
-
-                    message.textContent =
-                        "Your discovery has been recorded. ✦";
-
-                }
-
-                else {
-
-                    button.textContent =
-                        "✓ ALREADY DISCOVERED";
-
-                    button.classList.add(
-                        "discovered"
-                    );
-
-                    message.textContent =
-                        "This world is already part of your journey.";
-
-                }
+                return;
 
             }
 
-            catch (error) {
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+                .rpc(
+                    "add_halo_points",
+                    {
+                        p_user_id:
+                            user.id,
+
+                        p_action_key:
+                            actionKey
+                    }
+                );
+
+
+            if (error) {
 
                 console.error(
-                    "DISCOVERY ERROR:",
+                    "POINT ERROR:",
                     error
                 );
 
@@ -1307,7 +1593,49 @@ function createDiscoveryButton(
                     "✦ DISCOVER — +5 STAR POINTS";
 
                 message.textContent =
-                    "Something went wrong.";
+                    "Could not record discovery.";
+
+                return;
+
+            }
+
+
+            /*
+               The RPC returns 5 when
+               the discovery was new.
+
+               A different result means
+               the action was already recorded.
+            */
+
+            if (
+                Number(data) ===
+                DISCOVERY_POINTS
+            ) {
+
+                button.textContent =
+                    "✓ DISCOVERED • +5 STAR POINTS";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "Your discovery has been recorded. ✦";
+
+            }
+
+            else {
+
+                button.textContent =
+                    "✓ ALREADY DISCOVERED";
+
+                button.classList.add(
+                    "discovered"
+                );
+
+                message.textContent =
+                    "This memory is already part of your journey.";
 
             }
 
@@ -1318,14 +1646,48 @@ function createDiscoveryButton(
 
 
 /* =========================
-   LOAD PREVIOUS DISCOVERIES
+   SETUP ALL DISCOVERIES
 ========================= */
 
-async function loadDiscoveredWorlds() {
+function setupDiscoveries() {
+
+    const entries =
+        document.querySelectorAll(
+            "[data-action-key]"
+        );
+
+
+    entries.forEach(
+        entry => {
+
+            addDiscoveryButton(
+                entry
+            );
+
+        }
+    );
+
+
+    console.log(
+        "CODEX ENTRIES:",
+        entries.length
+    );
+
+}
+
+
+/* =========================
+   LOAD DISCOVERED ENTRIES
+========================= */
+
+async function loadDiscovered() {
 
     const {
-        data: { user },
-        error: userError
+        data: {
+            user
+        },
+        error:
+            userError
     } =
     await supabaseClient
         .auth
@@ -1347,8 +1709,12 @@ async function loadDiscoveredWorlds() {
         error
     } =
     await supabaseClient
-        .from("halo_point_events")
-        .select("action_key")
+        .from(
+            "halo_point_events"
+        )
+        .select(
+            "action_key"
+        )
         .eq(
             "user_id",
             user.id
@@ -1367,12 +1733,19 @@ async function loadDiscoveredWorlds() {
     }
 
 
+    /*
+       Set removes duplicate action keys.
+       This means the Codex always counts
+       unique memories only.
+    */
+
     const discovered =
         new Set(
-            data.map(
-                event =>
-                    event.action_key
-            )
+            (data || [])
+                .map(
+                    event =>
+                        event.action_key
+                )
         );
 
 
@@ -1380,27 +1753,40 @@ async function loadDiscoveredWorlds() {
         .querySelectorAll(
             ".discovery-button"
         )
-        .forEach(button => {
+        .forEach(
+            button => {
 
-            if (
-                discovered.has(
-                    button.dataset.actionKey
-                )
-            ) {
+                const key =
+                    button.dataset
+                        .actionKey;
 
-                button.textContent =
-                    "✓ ALREADY DISCOVERED";
 
-                button.classList.add(
-                    "discovered"
-                );
+                if (
+                    discovered.has(key)
+                ) {
 
-                button.disabled =
-                    true;
+                    button.textContent =
+                        "✓ ALREADY DISCOVERED";
+
+                    button.classList.add(
+                        "discovered"
+                    );
+
+                    button.disabled =
+                        true;
+
+                }
 
             }
+        );
 
-        });
+
+    console.log(
+        "CODEX DISCOVERED:",
+        discovered.size,
+        "/",
+        TOTAL_DISCOVERIES
+    );
 
 }
 
@@ -1411,39 +1797,9 @@ async function loadDiscoveredWorlds() {
 
 async function initCodex() {
 
-    document
-        .querySelectorAll(
-            ".world-entry"
-        )
-        .forEach(entry => {
+    setupDiscoveries();
 
-            const worldName =
-                getWorldName(entry);
-
-
-            if (!worldName) {
-
-                console.warn(
-                    "WORLD NOT FOUND:",
-                    entry
-                    .querySelector("h3")
-                    .textContent
-                );
-
-                return;
-
-            }
-
-
-            createDiscoveryButton(
-                entry,
-                worldName
-            );
-
-        });
-
-
-    await loadDiscoveredWorlds();
+    await loadDiscovered();
 
 }
 
@@ -1455,4 +1811,4 @@ initCodex();
 
 </body>
 
-        </html>
+    </html>
