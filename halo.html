@@ -5,10 +5,13 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>My HALO | AETHERVERSE</title>
+
 
 <style>
 
@@ -17,6 +20,7 @@ content="width=device-width, initial-scale=1.0">
 }
 
 body {
+
     margin: 0;
 
     background:
@@ -33,6 +37,7 @@ body {
 
     min-height: 100vh;
 }
+
 
 .container {
 
@@ -216,6 +221,7 @@ h1 {
         rgba(0,0,0,0.25);
 }
 
+
 .rank-label {
 
     color: #aaa0e6;
@@ -227,6 +233,7 @@ h1 {
     margin-bottom: 12px;
 }
 
+
 .rank-name {
 
     color: #eeeaff;
@@ -237,6 +244,7 @@ h1 {
 
     margin-bottom: 10px;
 }
+
 
 .rank-points {
 
@@ -275,6 +283,7 @@ h1 {
         15px;
 }
 
+
 .progress-bar {
 
     height: 100%;
@@ -294,6 +303,7 @@ h1 {
         width 0.8s ease;
 }
 
+
 .progress-text {
 
     color: #aaa0e6;
@@ -302,6 +312,7 @@ h1 {
 
     margin-bottom: 10px;
 }
+
 
 .next-rank {
 
@@ -345,6 +356,7 @@ h1 {
         rgba(0,0,0,0.25);
 }
 
+
 .journey-label {
 
     color: #aaa0e6;
@@ -356,6 +368,7 @@ h1 {
     margin-bottom: 14px;
 }
 
+
 .journey-count {
 
     color: #eeeaff;
@@ -366,6 +379,7 @@ h1 {
 
     margin-bottom: 18px;
 }
+
 
 .journey-container {
 
@@ -386,6 +400,7 @@ h1 {
     margin-bottom: 18px;
 }
 
+
 .journey-bar {
 
     height: 100%;
@@ -404,6 +419,7 @@ h1 {
     transition:
         width 0.8s ease;
 }
+
 
 .journey-summary {
 
@@ -433,6 +449,7 @@ h1 {
     text-align: left;
 }
 
+
 .journey-item {
 
     background: #1d1a3d;
@@ -446,6 +463,7 @@ h1 {
     padding: 16px;
 }
 
+
 .journey-item-title {
 
     color: #eeeaff;
@@ -457,6 +475,7 @@ h1 {
     margin-bottom: 6px;
 }
 
+
 .journey-item-status {
 
     color: #aaa0e6;
@@ -465,6 +484,7 @@ h1 {
 
     letter-spacing: 1px;
 }
+
 
 .journey-item-status.discovered {
 
@@ -483,6 +503,7 @@ h1 {
     margin-bottom: 40px;
 }
 
+
 .points-title {
 
     font-size: 1.8rem;
@@ -493,6 +514,7 @@ h1 {
 
     margin-bottom: 10px;
 }
+
 
 .points-description {
 
@@ -518,6 +540,7 @@ h1 {
     gap: 18px;
 }
 
+
 .points-card {
 
     background: #1d1a3d;
@@ -538,6 +561,7 @@ h1 {
         border-color 0.2s;
 }
 
+
 .points-card:hover {
 
     transform:
@@ -550,6 +574,7 @@ h1 {
         #514879;
 }
 
+
 .points-icon {
 
     font-size: 2rem;
@@ -557,16 +582,17 @@ h1 {
     margin-bottom: 12px;
 }
 
+
 .points-card h3 {
 
     margin:
-        5px 0
-        8px;
+        5px 0 8px;
 
     color: #ddd7ff;
 
     letter-spacing: 1px;
 }
+
 
 .points-card p {
 
@@ -575,18 +601,16 @@ h1 {
     line-height: 1.6;
 
     margin:
-        0
-        0
-        18px;
+        0 0 18px;
 }
+
 
 .points-value {
 
     display: inline-block;
 
     padding:
-        6px
-        12px;
+        6px 12px;
 
     border:
         1px solid
@@ -599,17 +623,6 @@ h1 {
     font-size: 0.8rem;
 
     letter-spacing: 1px;
-}
-
-.points-status {
-
-    color: #77739e;
-
-    font-size: 0.75rem;
-
-    letter-spacing: 1px;
-
-    margin-top: 15px;
 }
 
 
@@ -658,6 +671,7 @@ h1 {
         border-color 0.2s ease;
 }
 
+
 .music-button:hover {
 
     transform:
@@ -674,6 +688,7 @@ h1 {
         #c8bdff;
 }
 
+
 .music-button:disabled {
 
     cursor: default;
@@ -682,6 +697,7 @@ h1 {
 
     opacity: 0.8;
 }
+
 
 .music-button.discovered {
 
@@ -694,6 +710,7 @@ h1 {
     color:
         #aaa0e6;
 }
+
 
 .music-message {
 
@@ -740,7 +757,13 @@ h1 {
     font-size: 0.8rem;
 
     letter-spacing: 1px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
+
 
 .explore-button:hover {
 
@@ -749,6 +772,9 @@ h1 {
 
     border-color:
         #c8bdff;
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -765,6 +791,7 @@ h1 {
 
     gap: 18px;
 }
+
 
 .dashboard-card {
 
@@ -785,6 +812,7 @@ h1 {
     color: inherit;
 }
 
+
 .dashboard-card:hover {
 
     transform:
@@ -794,6 +822,7 @@ h1 {
         #242047;
 }
 
+
 .dashboard-card .icon {
 
     font-size: 2rem;
@@ -801,16 +830,17 @@ h1 {
     margin-bottom: 12px;
 }
 
+
 .dashboard-card h3 {
 
     margin:
-        8px
-        0;
+        8px 0;
 
     color: #ddd7ff;
 
     letter-spacing: 1px;
 }
+
 
 .dashboard-card p {
 
@@ -854,7 +884,9 @@ footer {
 
         grid-template-columns:
             1fr;
+
     }
+
 
     h1 {
 
@@ -862,17 +894,20 @@ footer {
             1.8rem;
     }
 
+
     .rank-name {
 
         font-size:
             1.6rem;
     }
 
+
     .points-title {
 
         font-size:
             1.5rem;
     }
+
 
     .journey-count {
 
@@ -898,6 +933,7 @@ footer {
 AETHERVERSE
 </div>
 
+
 <nav>
 
 <a href="index.html">
@@ -914,6 +950,10 @@ Members
 
 <a href="codex.html">
 Codex
+</a>
+
+<a href="community.html">
+Community
 </a>
 
 </nav>
@@ -979,6 +1019,7 @@ id="haloEmail">
 ✦ YOUR HALO RANK ✦
 </div>
 
+
 <div
 class="rank-name"
 id="rankName">
@@ -987,6 +1028,7 @@ LOADING...
 
 </div>
 
+
 <div
 class="rank-points"
 id="rankPoints">
@@ -994,6 +1036,7 @@ id="rankPoints">
 0 / 250 POINTS
 
 </div>
+
 
 <div class="progress-container">
 
@@ -1004,6 +1047,7 @@ id="progressBar">
 
 </div>
 
+
 <div
 class="progress-text"
 id="progressText">
@@ -1011,6 +1055,7 @@ id="progressText">
 Loading your journey...
 
 </div>
+
 
 <div
 class="next-rank"
@@ -1031,6 +1076,7 @@ id="nextRank">
 ✦ YOUR AETHER JOURNEY ✦
 </div>
 
+
 <div
 class="journey-count"
 id="journeyCount">
@@ -1038,6 +1084,7 @@ id="journeyCount">
 LOADING...
 
 </div>
+
 
 <div class="journey-container">
 
@@ -1047,6 +1094,7 @@ id="journeyBar">
 </div>
 
 </div>
+
 
 <div
 class="journey-summary"
@@ -1071,7 +1119,6 @@ class="journey-item-status"
 id="journeyCodex">
 
 Loading...
-
 </div>
 
 </div>
@@ -1088,7 +1135,6 @@ class="journey-item-status"
 id="journeyMusic">
 
 Loading...
-
 </div>
 
 </div>
@@ -1105,7 +1151,6 @@ class="journey-item-status"
 id="journeyStar">
 
 Loading...
-
 </div>
 
 </div>
@@ -1122,7 +1167,6 @@ class="journey-item-status"
 id="journeyTransmission">
 
 COMING SOON
-
 </div>
 
 </div>
@@ -1162,6 +1206,7 @@ Every memory brings you closer to the next star.
 <div class="points-grid">
 
 
+
 <!-- =========================
      MUSIC
 ========================= -->
@@ -1184,6 +1229,7 @@ Discover an AETHER song and let the stars speak.
 +5 STAR POINTS
 </span>
 
+
 <button
 id="musicDiscoveryButton"
 class="music-button">
@@ -1191,6 +1237,7 @@ class="music-button">
 ✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS
 
 </button>
+
 
 <div
 id="musicMessage"
@@ -1222,6 +1269,7 @@ Explore the lore, worlds and secrets of AETHER.
 <span class="points-value">
 +5 STAR POINTS
 </span>
+
 
 <a
 href="codex.html"
@@ -1287,9 +1335,14 @@ Take part in the HALO community and connect with AETHER.
 +10 STAR POINTS
 </span>
 
-<div class="points-status">
-COMING WITH COMMUNITY
-</div>
+
+<a
+href="community.html"
+class="explore-button">
+
+✦ ENTER COMMUNITY
+
+</a>
 
 </div>
 
@@ -1352,6 +1405,7 @@ SPECIAL EVENTS ONLY
 </div>
 
 </div>
+
 
 
 </div>
@@ -1476,6 +1530,7 @@ Collect milestones as you explore the seven worlds.
 </div>
 
 
+
 </section>
 
 
@@ -1501,8 +1556,8 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
 
+<script>
 
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
@@ -1517,7 +1572,6 @@ window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
 
 
 /* =========================
@@ -1579,7 +1633,6 @@ const ranks = [
 ];
 
 
-
 /* =========================
    DISPLAY RANK
 ========================= */
@@ -1622,57 +1675,45 @@ function displayRank(points) {
         currentRank.name;
 
 
-
     if (!nextRank) {
 
         document.getElementById(
             "rankPoints"
         ).textContent =
-
             points.toLocaleString() +
             " POINTS";
-
 
         document.getElementById(
             "progressBar"
         ).style.width =
             "100%";
 
-
         document.getElementById(
             "progressText"
         ).textContent =
-
             "✦ You have reached the eighth light. ✦";
-
 
         document.getElementById(
             "nextRank"
         ).textContent =
-
             "EIGHT • THE LIGHT BESIDE AETHER";
-
 
         return;
 
     }
 
 
-
     const pointsIntoRank =
-
         points -
         currentRank.min;
 
 
     const pointsNeeded =
-
         nextRank.min -
         currentRank.min;
 
 
     const percentage =
-
         Math.max(
             0,
             Math.min(
@@ -1698,13 +1739,10 @@ function displayRank(points) {
     document.getElementById(
         "progressBar"
     ).style.width =
-
-        percentage +
-        "%";
+        percentage + "%";
 
 
     const remaining =
-
         nextRank.min -
         points;
 
@@ -1726,7 +1764,6 @@ function displayRank(points) {
         nextRank.name;
 
 }
-
 
 
 /* =========================
@@ -1768,11 +1805,6 @@ async function loadJourney(userId) {
 
     try {
 
-
-        /*
-         * LOAD ALL EVENTS
-         */
-
         const {
             data: events,
             error
@@ -1783,7 +1815,9 @@ async function loadJourney(userId) {
                 "halo_point_events"
             )
 
-            .select("*")
+            .select(
+                "action_key, action_type, points"
+            )
 
             .eq(
                 "user_id",
@@ -1794,18 +1828,15 @@ async function loadJourney(userId) {
         if (error) {
 
             console.error(
-                "JOURNEY DATABASE ERROR:",
+                "JOURNEY ERROR:",
                 error
             );
 
-
             journeyCount.textContent =
-                "DATABASE ERROR";
-
+                "JOURNEY ERROR";
 
             journeySummary.textContent =
-                error.message;
-
+                "Could not load your discoveries.";
 
             return;
 
@@ -1813,21 +1844,7 @@ async function loadJourney(userId) {
 
 
         const allEvents =
-            Array.isArray(events)
-                ? events
-                : [];
-
-
-        console.log(
-            "HALO JOURNEY EVENTS:",
-            allEvents
-        );
-
-
-
-        /* =========================
-           CODEX
-        ========================= */
+            events || [];
 
 
         const codexKeys =
@@ -1837,50 +1854,13 @@ async function loadJourney(userId) {
         allEvents.forEach(
             event => {
 
-
-                const actionType =
-                    typeof event.action_type ===
-                    "string"
-
-                        ? event.action_type
-                            .trim()
-                            .toLowerCase()
-
-                        : "";
-
-
-                const actionKey =
-                    typeof event.action_key ===
-                    "string"
-
-                        ? event.action_key
-                            .trim()
-                            .toLowerCase()
-
-                        : "";
-
-
                 if (
-                    actionType.startsWith(
-                        "codex_"
-                    )
+                    typeof event.action_type === "string" &&
+                    event.action_type.startsWith("codex_")
                 ) {
 
                     codexKeys.add(
-                        actionType
-                    );
-
-                }
-
-
-                if (
-                    actionKey.startsWith(
-                        "codex_"
-                    )
-                ) {
-
-                    codexKeys.add(
-                        actionKey
+                        event.action_type
                     );
 
                 }
@@ -1893,12 +1873,6 @@ async function loadJourney(userId) {
             codexKeys.size;
 
 
-
-        /*
-         * AETHER CURRENTLY HAS
-         * 25 CODEX DISCOVERIES
-         */
-
         const totalCodex =
             Math.max(
                 25,
@@ -1906,55 +1880,17 @@ async function loadJourney(userId) {
             );
 
 
-
-        /*
-         * CODEX POINTS
-         */
-
         const codexPoints =
             allEvents
 
                 .filter(
-                    event => {
-
-
-                        const actionType =
-                            typeof event.action_type ===
-                            "string"
-
-                                ? event.action_type
-                                    .trim()
-                                    .toLowerCase()
-
-                                : "";
-
-
-                        const actionKey =
-                            typeof event.action_key ===
-                            "string"
-
-                                ? event.action_key
-                                    .trim()
-                                    .toLowerCase()
-
-                                : "";
-
-
-                        return (
-
-                            actionType.startsWith(
-                                "codex_"
-                            )
-
-                            ||
-
-                            actionKey.startsWith(
-                                "codex_"
-                            )
-
-                        );
-
-                    }
+                    event =>
+                        typeof event.action_type ===
+                        "string"
+                        &&
+                        event.action_type.startsWith(
+                            "codex_"
+                        )
                 )
 
                 .reduce(
@@ -1962,136 +1898,41 @@ async function loadJourney(userId) {
                         total,
                         event
                     ) =>
-
                         total +
                         Number(
                             event.points || 0
                         ),
-
                     0
                 );
 
 
-
-        /* =========================
-           MUSIC
-        ========================= */
-
         const musicDiscovered =
             allEvents.some(
-                event => {
-
-
-                    const actionType =
-                        typeof event.action_type ===
-                        "string"
-
-                            ? event.action_type
-                                .trim()
-                                .toLowerCase()
-
-                            : "";
-
-
-                    const actionKey =
-                        typeof event.action_key ===
-                        "string"
-
-                            ? event.action_key
-                                .trim()
-                                .toLowerCase()
-
-                            : "";
-
-
-                    return (
-
-                        actionType ===
-                        "music_break_the_bubble"
-
-                        ||
-
-                        actionKey ===
-                        "music_break_the_bubble"
-
-                    );
-
-                }
+                event =>
+                    event.action_type ===
+                    "music_break_the_bubble"
             );
 
-
-
-        /* =========================
-           YOUR STAR
-        ========================= */
 
         const starDiscovered =
             allEvents.some(
-                event => {
-
-
-                    const actionType =
-                        typeof event.action_type ===
-                        "string"
-
-                            ? event.action_type
-                                .trim()
-                                .toLowerCase()
-
-                            : "";
-
-
-                    const actionKey =
-                        typeof event.action_key ===
-                        "string"
-
-                            ? event.action_key
-                                .trim()
-                                .toLowerCase()
-
-                            : "";
-
-
-                    return (
-
-                        actionType ===
-                        "your_star"
-
-                        ||
-
-                        actionKey ===
-                        "your_star"
-
-                    );
-
-                }
+                event =>
+                    event.action_type ===
+                    "your_star"
             );
 
-
-
-        /* =========================
-           JOURNEY COUNT
-        ========================= */
 
         let discoveryCount =
             codexDiscovered;
 
 
-        if (
-            musicDiscovered
-        ) {
-
+        if (musicDiscovered) {
             discoveryCount++;
-
         }
 
 
-        if (
-            starDiscovered
-        ) {
-
+        if (starDiscovered) {
             discoveryCount++;
-
         }
 
 
@@ -2100,23 +1941,14 @@ async function loadJourney(userId) {
 
 
         const journeyPercentage =
-            totalDiscoveries > 0
+            Math.min(
+                100,
+                (
+                    discoveryCount /
+                    totalDiscoveries
+                ) * 100
+            );
 
-                ? Math.min(
-                    100,
-                    (
-                        discoveryCount /
-                        totalDiscoveries
-                    ) * 100
-                )
-
-                : 0;
-
-
-
-        /* =========================
-           DISPLAY
-        ========================= */
 
         journeyCount.textContent =
 
@@ -2142,24 +1974,12 @@ async function loadJourney(userId) {
             " POINTS";
 
 
-
-        /* =========================
-           MUSIC DISPLAY
-        ========================= */
-
-        journeyMusic.classList.remove(
-            "discovered"
-        );
-
-
         if (
             musicDiscovered
         ) {
 
             journeyMusic.textContent =
-
                 "BREAK THE BUBBLE • DISCOVERED ✓";
-
 
             journeyMusic.classList.add(
                 "discovered"
@@ -2170,20 +1990,9 @@ async function loadJourney(userId) {
         else {
 
             journeyMusic.textContent =
-
                 "BREAK THE BUBBLE • NOT YET DISCOVERED";
 
         }
-
-
-
-        /* =========================
-           STAR DISPLAY
-        ========================= */
-
-        journeyStar.classList.remove(
-            "discovered"
-        );
 
 
         if (
@@ -2191,9 +2000,7 @@ async function loadJourney(userId) {
         ) {
 
             journeyStar.textContent =
-
                 "YOUR STAR • DISCOVERED ✓";
-
 
             journeyStar.classList.add(
                 "discovered"
@@ -2204,77 +2011,31 @@ async function loadJourney(userId) {
         else {
 
             journeyStar.textContent =
-
                 "YOUR STAR • NOT YET DISCOVERED";
 
         }
 
 
-
-        /* =========================
-           SUMMARY
-        ========================= */
-
         journeySummary.innerHTML =
 
             codexDiscovered +
             " Codex memories discovered." +
-
             "<br>" +
 
             (
                 musicDiscovered
-
                     ? "Break the Bubble has been discovered."
-
                     : "Break the Bubble is waiting to be discovered."
             ) +
-
             "<br>" +
 
             (
                 starDiscovered
-
                     ? "Your Star has been discovered."
-
                     : "Your Star is waiting to be discovered."
             );
 
-
-
-        /*
-         * DEBUG
-         */
-
-        console.log(
-            "CODEX DISCOVERED:",
-            codexDiscovered
-        );
-
-        console.log(
-            "CODEX KEYS:",
-            [...codexKeys]
-        );
-
-        console.log(
-            "MUSIC DISCOVERED:",
-            musicDiscovered
-        );
-
-        console.log(
-            "STAR DISCOVERED:",
-            starDiscovered
-        );
-
-        console.log(
-            "JOURNEY:",
-            discoveryCount +
-            " / " +
-            totalDiscoveries
-        );
-
     }
-
 
     catch (error) {
 
@@ -2283,19 +2044,15 @@ async function loadJourney(userId) {
             error
         );
 
-
         journeyCount.textContent =
             "COULD NOT LOAD";
 
-
         journeySummary.textContent =
-            error.message ||
             "Could not load your AETHER journey.";
 
     }
 
 }
-
 
 
 /* =========================
@@ -2329,7 +2086,6 @@ async function discoverBreakTheBubble() {
 
     try {
 
-
         const {
             data: { user },
             error: userError
@@ -2345,19 +2101,15 @@ async function discoverBreakTheBubble() {
             button.disabled =
                 false;
 
-
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
             message.textContent =
                 "Please log in first.";
 
-
             return;
 
         }
-
 
 
         const {
@@ -2365,21 +2117,15 @@ async function discoverBreakTheBubble() {
             error
         } =
         await supabaseClient.rpc(
-
             "add_halo_points",
-
             {
-
                 p_user_id:
                     user.id,
 
                 p_action_key:
                     "music_break_the_bubble"
-
             }
-
         );
-
 
 
         if (error) {
@@ -2389,76 +2135,19 @@ async function discoverBreakTheBubble() {
                 error
             );
 
-
-            /*
-             * Duplicate means the song
-             * has already been discovered.
-             */
-
-            if (
-
-                error.code ===
-                "23505"
-
-                ||
-
-                String(
-                    error.message || ""
-                )
-                    .toLowerCase()
-                    .includes(
-                        "duplicate"
-                    )
-
-            ) {
-
-
-                button.textContent =
-                    "✓ BREAK THE BUBBLE DISCOVERED";
-
-
-                button.classList.add(
-                    "discovered"
-                );
-
-
-                button.disabled =
-                    true;
-
-
-                message.textContent =
-                    "This song is already part of your HALO journey. ✦";
-
-
-                await loadHaloData();
-
-
-                return;
-
-            }
-
-
             button.disabled =
                 false;
-
 
             button.textContent =
                 "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
 
-
             message.textContent =
                 "Could not record this discovery.";
-
 
             return;
 
         }
 
-
-
-        /*
-         * FIRST SUCCESS
-         */
 
         if (
             Number(data) === 5
@@ -2467,15 +2156,9 @@ async function discoverBreakTheBubble() {
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             button.classList.add(
                 "discovered"
             );
-
-
-            button.disabled =
-                true;
-
 
             message.textContent =
                 "✦ +5 STAR POINTS • BREAK THE BUBBLE IS NOW PART OF YOUR JOURNEY. ✦";
@@ -2487,27 +2170,19 @@ async function discoverBreakTheBubble() {
             button.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             button.classList.add(
                 "discovered"
             );
 
-
-            button.disabled =
-                true;
-
-
             message.textContent =
-                "This song is already part of your HALO journey. ✦";
+                "This song is already part of your HALO journey.";
 
         }
-
 
 
         await loadHaloData();
 
     }
-
 
     catch (error) {
 
@@ -2516,14 +2191,11 @@ async function discoverBreakTheBubble() {
             error
         );
 
-
         button.disabled =
             false;
 
-
         button.textContent =
             "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
 
         message.textContent =
             "Something went wrong. Please try again.";
@@ -2533,7 +2205,6 @@ async function discoverBreakTheBubble() {
 }
 
 
-
 /* =========================
    LOAD HALO DATA
 ========================= */
@@ -2541,7 +2212,6 @@ async function discoverBreakTheBubble() {
 async function loadHaloData() {
 
     try {
-
 
         const {
             data: { user },
@@ -2560,22 +2230,15 @@ async function loadHaloData() {
             ).textContent =
                 "PLEASE LOG IN";
 
-
             document.getElementById(
                 "rankPoints"
             ).textContent =
                 "Your HALO session was not found.";
 
-
             return;
 
         }
 
-
-
-        /* =========================
-           PROFILE
-        ========================= */
 
         const {
             data: profile
@@ -2598,9 +2261,7 @@ async function loadHaloData() {
             .single();
 
 
-        if (
-            profile
-        ) {
+        if (profile) {
 
             document.getElementById(
                 "haloEmail"
@@ -2611,11 +2272,6 @@ async function loadHaloData() {
 
         }
 
-
-
-        /* =========================
-           POINTS
-        ========================= */
 
         const {
             data: pointsData,
@@ -2639,37 +2295,33 @@ async function loadHaloData() {
             .maybeSingle();
 
 
-        if (
-            pointsError
-        ) {
+        if (pointsError) {
 
             console.error(
                 "POINTS ERROR:",
                 pointsError
             );
 
-
-            document.getElementById(
-                "progressText"
-            ).textContent =
-                pointsError.message;
-
-
             return;
 
         }
 
 
-        const points =
+        let points =
+            0;
 
+
+        if (
             pointsData &&
             pointsData.points !== null
+        ) {
 
-                ? Number(
+            points =
+                Number(
                     pointsData.points
-                )
+                );
 
-                : 0;
+        }
 
 
         displayRank(
@@ -2677,27 +2329,13 @@ async function loadHaloData() {
         );
 
 
-
-        /* =========================
-           JOURNEY
-        ========================= */
-
         await loadJourney(
             user.id
         );
 
 
-
-        /* =========================
-           MUSIC BUTTON
-        =========================
-           
-           Database is the source of truth.
-        */
-
         const {
-            data: musicEvents,
-            error: musicError
+            data: musicEvents
         } =
         await supabaseClient
 
@@ -2706,7 +2344,7 @@ async function loadHaloData() {
             )
 
             .select(
-                "action_key, action_type"
+                "action_type"
             )
 
             .eq(
@@ -2714,23 +2352,12 @@ async function loadHaloData() {
                 user.id
             )
 
-            .or(
-                "action_type.eq.music_break_the_bubble,action_key.eq.music_break_the_bubble"
+            .eq(
+                "action_type",
+                "music_break_the_bubble"
             )
 
             .limit(1);
-
-
-        if (
-            musicError
-        ) {
-
-            console.error(
-                "MUSIC STATUS ERROR:",
-                musicError
-            );
-
-        }
 
 
         const musicButton =
@@ -2753,15 +2380,12 @@ async function loadHaloData() {
             musicButton.textContent =
                 "✓ BREAK THE BUBBLE DISCOVERED";
 
-
             musicButton.classList.add(
                 "discovered"
             );
 
-
             musicButton.disabled =
                 true;
-
 
             musicMessage.textContent =
                 "This song is already part of your HALO journey. ✦";
@@ -2770,7 +2394,6 @@ async function loadHaloData() {
 
     }
 
-
     catch (error) {
 
         console.error(
@@ -2778,24 +2401,19 @@ async function loadHaloData() {
             error
         );
 
-
         document.getElementById(
             "rankName"
         ).textContent =
             "COULD NOT LOAD";
 
-
         document.getElementById(
             "progressText"
         ).textContent =
-
-            error.message ||
             "Could not load your HALO journey.";
 
     }
 
 }
-
 
 
 /* =========================
@@ -2805,7 +2423,6 @@ async function loadHaloData() {
 document.addEventListener(
     "DOMContentLoaded",
     async function() {
-
 
         const musicButton =
             document.getElementById(
@@ -2828,4 +2445,4 @@ document.addEventListener(
 
 </body>
 
-</html>
+    </html>
