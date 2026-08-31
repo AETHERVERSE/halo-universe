@@ -469,8 +469,7 @@ nav a:hover {
 }
 
 
-.message.halo
-.message-bubble {
+.message.halo .message-bubble {
 
     background:
         linear-gradient(
@@ -487,8 +486,7 @@ nav a:hover {
 }
 
 
-.message.aether
-.message-bubble {
+.message.aether .message-bubble {
 
     background:
         #1d1a3d;
@@ -542,6 +540,103 @@ nav a:hover {
     font-size: 0.58rem;
 
     letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   REACTIONS
+========================================================= */
+
+.reactions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 5px;
+
+    margin-top: 7px;
+
+    padding:
+        0
+        3px;
+}
+
+
+.reaction-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    min-height: 28px;
+
+    padding:
+        4px
+        8px;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 15px;
+
+    background:
+        #171532;
+
+    color: #aaa0e6;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.7rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+.reaction-button:hover {
+
+    transform:
+        translateY(-1px);
+
+    background:
+        #29264b;
+
+    border-color:
+        #7064a5;
+
+    color:
+        #eeeaff;
+}
+
+
+.reaction-button.active {
+
+    background:
+        #393064;
+
+    border-color:
+        #9c8fe0;
+
+    color:
+        #eeeaff;
+}
+
+
+.reaction-count {
+
+    font-size: 0.65rem;
+
+    min-width: 8px;
 }
 
 
@@ -799,6 +894,16 @@ footer {
         width: 100%;
 
         min-height: 45px;
+    }
+
+
+    .reaction-button {
+
+        min-height: 30px;
+
+        padding:
+            5px
+            9px;
     }
 
 }
@@ -1077,6 +1182,46 @@ window.supabase.createClient(
 
 
 /* =========================================================
+   REACTION TYPES
+========================================================= */
+
+const reactionTypes = [
+
+    {
+        key: "love",
+        emoji: "❤️",
+        label: "Love"
+    },
+
+    {
+        key: "aether",
+        emoji: "✦",
+        label: "AETHER"
+    },
+
+    {
+        key: "lol",
+        emoji: "😂",
+        label: "LOL"
+    },
+
+    {
+        key: "feels",
+        emoji: "🥹",
+        label: "Feels"
+    },
+
+    {
+        key: "fire",
+        emoji: "🔥",
+        label: "Fire"
+    }
+
+];
+
+
+
+/* =========================================================
    DOM ELEMENTS
 ========================================================= */
 
@@ -1239,12 +1384,188 @@ async function loadAetherMembers() {
 
 
 /* =========================================================
+   LOAD REACTIONS
+========================================================= */
+
+async function loadReactions(
+    messageIds
+) {
+
+    if (
+        !messageIds ||
+        messageIds.length === 0
+    ) {
+
+        return [];
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+        .from(
+            "community_reactions"
+        )
+
+        .select(
+            "id, message_id, user_id, reaction, created_at"
+        )
+
+        .in(
+            "message_id",
+            messageIds
+        );
+
+
+    if (error) {
+
+        console.error(
+            "REACTION LOAD ERROR:",
+            error
+        );
+
+        return [];
+
+    }
+
+
+    return data || [];
+
+}
+
+
+
+/* =========================================================
+   CREATE REACTION BUTTONS
+========================================================= */
+
+function createReactionArea(
+    message,
+    reactions
+) {
+
+    const area =
+        document.createElement(
+            "div"
+        );
+
+
+    area.className =
+        "reactions";
+
+
+    reactionTypes.forEach(
+        type => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.type =
+                "button";
+
+
+            button.className =
+                "reaction-button";
+
+
+            const matchingReactions =
+                reactions.filter(
+                    reaction =>
+                        reaction.message_id ===
+                        message.id
+                        &&
+                        reaction.reaction ===
+                        type.key
+                );
+
+
+            const count =
+                matchingReactions.length;
+
+
+            const userReacted =
+                currentUser &&
+                matchingReactions.some(
+                    reaction =>
+                        reaction.user_id ===
+                        currentUser.id
+                );
+
+
+            if (userReacted) {
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            button.innerHTML = `
+
+                <span>
+                    ${type.emoji}
+                </span>
+
+                <span>
+                    ${type.label}
+                </span>
+
+                ${
+                    count > 0
+                        ? `
+                            <span class="reaction-count">
+                                ${count}
+                            </span>
+                          `
+                        : ""
+                }
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    toggleReaction(
+                        message.id,
+                        type.key
+                    );
+
+                }
+            );
+
+
+            area.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    return area;
+
+}
+
+
+
+/* =========================================================
    RENDER MESSAGE
 ========================================================= */
 
 function renderMessage(
     message,
-    aetherMembers
+    aetherMembers,
+    reactions
 ) {
 
     const aetherMember =
@@ -1354,6 +1675,18 @@ function renderMessage(
     }
 
 
+    const reactionArea =
+        createReactionArea(
+            message,
+            reactions
+        );
+
+
+    messageElement.appendChild(
+        reactionArea
+    );
+
+
     messagesContainer.appendChild(
         messageElement
     );
@@ -1366,7 +1699,7 @@ function renderMessage(
    RENDER ALL MESSAGES
 ========================================================= */
 
-function renderMessages(
+async function renderMessages(
     messages,
     aetherMembers
 ) {
@@ -1405,11 +1738,25 @@ function renderMessages(
     }
 
 
+    const messageIds =
+        messages.map(
+            message =>
+                message.id
+        );
+
+
+    const reactions =
+        await loadReactions(
+            messageIds
+        );
+
+
     messages.forEach(
         message =>
             renderMessage(
                 message,
-                aetherMembers
+                aetherMembers,
+                reactions
             )
     );
 
@@ -1487,7 +1834,7 @@ async function loadMessages() {
     }
 
 
-    renderMessages(
+    await renderMessages(
         data || [],
         aetherMembers
     );
@@ -1500,6 +1847,164 @@ async function loadMessages() {
     chatStatus.classList.add(
         "online"
     );
+
+}
+
+
+
+/* =========================================================
+   TOGGLE REACTION
+========================================================= */
+
+async function toggleReaction(
+    messageId,
+    reactionType
+) {
+
+    if (!currentUser) {
+
+        composerMessage.textContent =
+            "Please log in first.";
+
+        return;
+
+    }
+
+
+    const {
+        data: existingReaction,
+        error: findError
+    } =
+    await supabaseClient
+
+        .from(
+            "community_reactions"
+        )
+
+        .select(
+            "id"
+        )
+
+        .eq(
+            "message_id",
+            messageId
+        )
+
+        .eq(
+            "user_id",
+            currentUser.id
+        )
+
+        .eq(
+            "reaction",
+            reactionType
+        )
+
+        .maybeSingle();
+
+
+    if (findError) {
+
+        console.error(
+            "REACTION CHECK ERROR:",
+            findError
+        );
+
+        composerMessage.textContent =
+            "Could not update reaction.";
+
+        return;
+
+    }
+
+
+    if (existingReaction) {
+
+        const {
+            error
+        } =
+        await supabaseClient
+
+            .from(
+                "community_reactions"
+            )
+
+            .delete()
+
+            .eq(
+                "id",
+                existingReaction.id
+            )
+
+            .eq(
+                "user_id",
+                currentUser.id
+            );
+
+
+        if (error) {
+
+            console.error(
+                "REACTION DELETE ERROR:",
+                error
+            );
+
+            composerMessage.textContent =
+                "Could not remove reaction.";
+
+            return;
+
+        }
+
+    }
+
+    else {
+
+        const {
+            error
+        } =
+        await supabaseClient
+
+            .from(
+                "community_reactions"
+            )
+
+            .insert({
+
+                message_id:
+                    messageId,
+
+                user_id:
+                    currentUser.id,
+
+                reaction:
+                    reactionType
+
+            });
+
+
+        if (error) {
+
+            console.error(
+                "REACTION INSERT ERROR:",
+                error
+            );
+
+            composerMessage.textContent =
+                "Could not add reaction.";
+
+            return;
+
+        }
+
+    }
+
+
+    composerMessage.textContent =
+        "";
+
+
+    await loadMessages();
 
 }
 
@@ -1622,7 +2127,7 @@ async function sendMessage() {
 
 
 /* =========================================================
-   REALTIME
+   REALTIME — MESSAGES
 ========================================================= */
 
 function subscribeToMessages() {
@@ -1652,6 +2157,47 @@ function subscribeToMessages() {
 
                 console.log(
                     "COMMUNITY REALTIME:",
+                    status
+                );
+
+            }
+        );
+
+}
+
+
+
+/* =========================================================
+   REALTIME — REACTIONS
+========================================================= */
+
+function subscribeToReactions() {
+
+    supabaseClient
+
+        .channel(
+            "community-reactions"
+        )
+
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public",
+                table: "community_reactions"
+            },
+            async function() {
+
+                await loadMessages();
+
+            }
+        )
+
+        .subscribe(
+            function(status) {
+
+                console.log(
+                    "REACTIONS REALTIME:",
                     status
                 );
 
@@ -1762,6 +2308,9 @@ async function initializeCommunity() {
 
     subscribeToMessages();
 
+
+    subscribeToReactions();
+
 }
 
 
@@ -1825,4 +2374,4 @@ document.addEventListener(
 
 </body>
 
-  </html>
+    </html>
