@@ -514,6 +514,8 @@ nav a:hover {
     flex-direction: column;
 
     gap: 15px;
+
+    scroll-behavior: smooth;
 }
 
 
@@ -564,6 +566,34 @@ nav a:hover {
     flex-direction: column;
 
     max-width: 78%;
+
+    animation:
+        messageAppear
+        0.35s
+        ease-out;
+}
+
+
+@keyframes messageAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+
 }
 
 
@@ -1557,6 +1587,36 @@ let currentUser =
 null;
 
 
+/* =========================================================
+   LOCAL MESSAGE CACHE
+========================================================= */
+
+let messageCache = [];
+
+
+/* =========================================================
+   AETHER MEMBER CACHE
+========================================================= */
+
+let aetherMembersCache = [];
+
+
+/* =========================================================
+   REACTION CACHE
+========================================================= */
+
+let reactionCache = [];
+
+
+/* =========================================================
+   REALTIME CHANNELS
+========================================================= */
+
+let messageChannel = null;
+
+let reactionChannel = null;
+
+
 
 /* =========================================================
    FORMAT TIME
@@ -1609,6 +1669,37 @@ function escapeHtml(
 
 
 /* =========================================================
+   CHECK WHETHER USER IS AT BOTTOM
+========================================================= */
+
+function isNearBottom() {
+
+    const distance =
+        messagesContainer.scrollHeight -
+        messagesContainer.scrollTop -
+        messagesContainer.clientHeight;
+
+
+    return distance < 120;
+
+}
+
+
+
+/* =========================================================
+   SCROLL TO BOTTOM
+========================================================= */
+
+function scrollToBottom() {
+
+    messagesContainer.scrollTop =
+        messagesContainer.scrollHeight;
+
+}
+
+
+
+/* =========================================================
    LOAD AETHER MEMBERS
 ========================================================= */
 
@@ -1646,7 +1737,11 @@ async function loadAetherMembers() {
     }
 
 
-    return data || [];
+    aetherMembersCache =
+        data || [];
+
+
+    return aetherMembersCache;
 
 }
 
@@ -1664,6 +1759,8 @@ async function loadReactions(
         !messageIds ||
         messageIds.length === 0
     ) {
+
+        reactionCache = [];
 
         return [];
 
@@ -1697,12 +1794,16 @@ async function loadReactions(
             error
         );
 
-        return [];
+        return reactionCache;
 
     }
 
 
-    return data || [];
+    reactionCache =
+        data || [];
+
+
+    return reactionCache;
 
 }
 
@@ -1713,8 +1814,7 @@ async function loadReactions(
 ========================================================= */
 
 function createReactionArea(
-    message,
-    reactions
+    message
 ) {
 
     const area =
@@ -1745,7 +1845,7 @@ function createReactionArea(
 
 
             const matchingReactions =
-                reactions.filter(
+                reactionCache.filter(
                     reaction =>
                         reaction.message_id ===
                         message.id
@@ -1828,17 +1928,15 @@ function createReactionArea(
 
 
 /* =========================================================
-   RENDER MESSAGE
+   BUILD MESSAGE ELEMENT
 ========================================================= */
 
-function renderMessage(
-    message,
-    aetherMembers,
-    reactions
+function buildMessageElement(
+    message
 ) {
 
     const aetherMember =
-        aetherMembers.find(
+        aetherMembersCache.find(
             member =>
                 member.user_id ===
                 message.user_id
@@ -1864,6 +1962,10 @@ function renderMessage(
                 ? "aether"
                 : "halo"
         );
+
+
+    messageElement.dataset.messageId =
+        message.id;
 
 
     if (isAether) {
@@ -1954,42 +2056,120 @@ function renderMessage(
     }
 
 
-    const reactionArea =
-        createReactionArea(
-            message,
-            reactions
-        );
-
-
     messageElement.appendChild(
-        reactionArea
+        createReactionArea(
+            message
+        )
     );
 
 
-    messagesContainer.appendChild(
-        messageElement
-    );
+    return messageElement;
 
 }
 
 
 
 /* =========================================================
-   RENDER ALL MESSAGES
+   ADD MESSAGE TO CHAT
 ========================================================= */
 
-async function renderMessages(
-    messages,
-    aetherMembers
+function addMessageToChat(
+    message,
+    options = {}
 ) {
+
+    const {
+        scroll = true
+    } = options;
+
+
+    if (
+        document.querySelector(
+            `[data-message-id="${message.id}"]`
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const shouldScroll =
+        isNearBottom();
+
+
+    const emptyState =
+        messagesContainer.querySelector(
+            ".empty-state"
+        );
+
+
+    if (emptyState) {
+
+        emptyState.remove();
+
+    }
+
+
+    messageCache.push(
+        message
+    );
+
+
+    messageCache.sort(
+        (a, b) =>
+            new Date(a.created_at) -
+            new Date(b.created_at)
+    );
+
+
+    const messageElement =
+        buildMessageElement(
+            message
+        );
+
+
+    messagesContainer.appendChild(
+        messageElement
+    );
+
+
+    if (
+        scroll &&
+        shouldScroll
+    ) {
+
+        requestAnimationFrame(
+            function() {
+
+                scrollToBottom();
+
+            }
+        );
+
+    }
+
+}
+
+
+
+/* =========================================================
+   REBUILD CHAT
+========================================================= */
+
+function rebuildChat() {
+
+    const wasNearBottom =
+        isNearBottom();
+
 
     messagesContainer.innerHTML =
         "";
 
 
     if (
-        !messages ||
-        messages.length === 0
+        !messageCache ||
+        messageCache.length === 0
     ) {
 
         messagesContainer.innerHTML = `
@@ -2017,43 +2197,36 @@ async function renderMessages(
     }
 
 
-    const messageIds =
-        messages.map(
-            message =>
-                message.id
+    messageCache
+        .sort(
+            (a, b) =>
+                new Date(a.created_at) -
+                new Date(b.created_at)
+        )
+        .forEach(
+            message => {
+
+                messagesContainer.appendChild(
+                    buildMessageElement(
+                        message
+                    )
+                );
+
+            }
         );
 
 
-    const reactions =
-        await loadReactions(
-            messageIds
+    if (wasNearBottom) {
+
+        requestAnimationFrame(
+            function() {
+
+                scrollToBottom();
+
+            }
         );
 
-
-    messages.forEach(
-        message =>
-            renderMessage(
-                message,
-                aetherMembers,
-                reactions
-            )
-    );
-
-
-    scrollToBottom();
-
-}
-
-
-
-/* =========================================================
-   SCROLL TO BOTTOM
-========================================================= */
-
-function scrollToBottom() {
-
-    messagesContainer.scrollTop =
-        messagesContainer.scrollHeight;
+    }
 
 }
 
@@ -2065,8 +2238,7 @@ function scrollToBottom() {
 
 async function loadMessages() {
 
-    const aetherMembers =
-        await loadAetherMembers();
+    await loadAetherMembers();
 
 
     const {
@@ -2113,10 +2285,26 @@ async function loadMessages() {
     }
 
 
-    await renderMessages(
-        data || [],
-        aetherMembers
+    messageCache =
+        data || [];
+
+
+    const messageIds =
+        messageCache.map(
+            message =>
+                message.id
+        );
+
+
+    await loadReactions(
+        messageIds
     );
+
+
+    rebuildChat();
+
+
+    scrollToBottom();
 
 
     chatStatus.textContent =
@@ -2125,6 +2313,58 @@ async function loadMessages() {
 
     chatStatus.classList.add(
         "online"
+    );
+
+}
+
+
+
+/* =========================================================
+   UPDATE REACTION AREAS
+========================================================= */
+
+function updateReactionAreas() {
+
+    messageCache.forEach(
+        message => {
+
+            const messageElement =
+                document.querySelector(
+                    `[data-message-id="${message.id}"]`
+                );
+
+
+            if (!messageElement) {
+
+                return;
+
+            }
+
+
+            const oldArea =
+                messageElement.querySelector(
+                    ".reactions"
+                );
+
+
+            if (!oldArea) {
+
+                return;
+
+            }
+
+
+            const newArea =
+                createReactionArea(
+                    message
+                );
+
+
+            oldArea.replaceWith(
+                newArea
+            );
+
+        }
     );
 
 }
@@ -2281,9 +2521,6 @@ async function toggleReaction(
 
     composerMessage.textContent =
         "";
-
-
-    await loadMessages();
 
 }
 
@@ -2493,9 +2730,6 @@ async function triggerAetherScene() {
         sceneMessage.textContent =
             "✦ AETHER SCENE TRIGGERED";
 
-
-        await loadMessages();
-
     }
 
     catch (error) {
@@ -2647,36 +2881,92 @@ async function sendMessage() {
 
 function subscribeToMessages() {
 
-    supabaseClient
+    if (messageChannel) {
 
-        .channel(
-            "community-messages"
-        )
-
-        .on(
-            "postgres_changes",
-            {
-                event: "INSERT",
-                schema: "public",
-                table: "community_messages"
-            },
-            async function() {
-
-                await loadMessages();
-
-            }
-        )
-
-        .subscribe(
-            function(status) {
-
-                console.log(
-                    "COMMUNITY REALTIME:",
-                    status
-                );
-
-            }
+        supabaseClient.removeChannel(
+            messageChannel
         );
+
+    }
+
+
+    messageChannel =
+        supabaseClient
+
+            .channel(
+                "community-messages-live"
+            )
+
+            .on(
+                "postgres_changes",
+                {
+                    event: "INSERT",
+                    schema: "public",
+                    table: "community_messages"
+                },
+                async function(payload) {
+
+                    console.log(
+                        "NEW COMMUNITY MESSAGE:",
+                        payload.new
+                    );
+
+
+                    const message =
+                        payload.new;
+
+
+                    if (
+                        messageCache.some(
+                            existing =>
+                                existing.id ===
+                                message.id
+                        )
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    /*
+                     * A new message has arrived.
+                     * Add only this message instead
+                     * of rebuilding the entire chat.
+                     */
+
+                    addMessageToChat(
+                        message
+                    );
+
+                }
+            )
+
+            .subscribe(
+                function(status) {
+
+                    console.log(
+                        "COMMUNITY REALTIME:",
+                        status
+                    );
+
+
+                    if (
+                        status ===
+                        "SUBSCRIBED"
+                    ) {
+
+                        chatStatus.textContent =
+                            "✦ COMMUNITY ONLINE";
+
+                        chatStatus.classList.add(
+                            "online"
+                        );
+
+                    }
+
+                }
+            );
 
 }
 
@@ -2688,36 +2978,108 @@ function subscribeToMessages() {
 
 function subscribeToReactions() {
 
-    supabaseClient
+    if (reactionChannel) {
 
-        .channel(
-            "community-reactions"
-        )
-
-        .on(
-            "postgres_changes",
-            {
-                event: "*",
-                schema: "public",
-                table: "community_reactions"
-            },
-            async function() {
-
-                await loadMessages();
-
-            }
-        )
-
-        .subscribe(
-            function(status) {
-
-                console.log(
-                    "REACTIONS REALTIME:",
-                    status
-                );
-
-            }
+        supabaseClient.removeChannel(
+            reactionChannel
         );
+
+    }
+
+
+    reactionChannel =
+        supabaseClient
+
+            .channel(
+                "community-reactions-live"
+            )
+
+            .on(
+                "postgres_changes",
+                {
+                    event: "*",
+                    schema: "public",
+                    table: "community_reactions"
+                },
+                async function(payload) {
+
+                    console.log(
+                        "REACTION UPDATE:",
+                        payload
+                    );
+
+
+                    const messageId =
+                        payload.new &&
+                        payload.new.message_id
+                            ? payload.new.message_id
+                            : payload.old &&
+                              payload.old.message_id
+                                ? payload.old.message_id
+                                : null;
+
+
+                    if (!messageId) {
+
+                        return;
+
+                    }
+
+
+                    const {
+                        data,
+                        error
+                    } =
+                    await supabaseClient
+
+                        .from(
+                            "community_reactions"
+                        )
+
+                        .select(
+                            "id, message_id, user_id, reaction, created_at"
+                        )
+
+                        .in(
+                            "message_id",
+                            messageCache.map(
+                                message =>
+                                    message.id
+                            )
+                        );
+
+
+                    if (error) {
+
+                        console.error(
+                            "LIVE REACTION LOAD ERROR:",
+                            error
+                        );
+
+                        return;
+
+                    }
+
+
+                    reactionCache =
+                        data || [];
+
+
+                    updateReactionAreas();
+
+                }
+            )
+
+            .subscribe(
+                function(status) {
+
+                    console.log(
+                        "REACTIONS REALTIME:",
+                        status
+                    );
+
+                }
+            );
 
 }
 
