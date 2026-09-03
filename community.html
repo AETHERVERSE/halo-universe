@@ -619,6 +619,109 @@ nav a:hover {
 
 
 /* =========================================================
+   AETHER TYPING INDICATOR
+========================================================= */
+
+.aether-typing {
+    display: none;
+
+    align-self: flex-start;
+
+    margin:
+        0
+        5px
+        2px;
+
+    padding:
+        0
+        10px;
+
+    color: #8f88b5;
+
+    font-size: 0.7rem;
+    letter-spacing: 0.6px;
+
+    animation:
+        typingAppear
+        0.25s
+        ease-out;
+}
+
+.aether-typing.visible {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.typing-name {
+    color: #aaa0e6;
+}
+
+.typing-dots {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+}
+
+.typing-dot {
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #aaa0e6;
+
+    animation:
+        typingDot
+        1.2s
+        infinite
+        ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+@keyframes typingAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+@keyframes typingDot {
+
+    0%,
+    60%,
+    100% {
+        opacity: 0.3;
+        transform:
+            translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform:
+            translateY(-3px);
+    }
+
+}
+
+
+/* =========================================================
    REACTIONS
 ========================================================= */
 
@@ -1120,6 +1223,30 @@ The first message is waiting to be written.
 
 
 <div
+    class="aether-typing"
+    id="aetherTyping"
+>
+
+<span class="typing-name" id="typingName">
+AETHER
+</span>
+
+<span>
+is typing
+</span>
+
+<span class="typing-dots">
+
+<span class="typing-dot"></span>
+<span class="typing-dot"></span>
+<span class="typing-dot"></span>
+
+</span>
+
+</div>
+
+
+<div
     class="composer"
     id="composer"
 >
@@ -1290,6 +1417,16 @@ document.getElementById(
     "sceneMessage"
 );
 
+const aetherTyping =
+document.getElementById(
+    "aetherTyping"
+);
+
+const typingName =
+document.getElementById(
+    "typingName"
+);
+
 
 let currentUser = null;
 
@@ -1303,6 +1440,14 @@ let messageChannel = null;
 
 let reactionChannel = null;
 
+let typingChannel = null;
+
+let typingTimeout = null;
+
+
+/* =========================================================
+   GENERAL HELPERS
+========================================================= */
 
 function formatTime(timestamp) {
 
@@ -1357,6 +1502,137 @@ function scrollToBottom() {
 }
 
 
+/* =========================================================
+   AETHER TYPING INDICATOR
+========================================================= */
+
+function showAetherTyping(
+    memberKey,
+    displayName
+) {
+
+    clearTimeout(
+        typingTimeout
+    );
+
+    const member =
+        aetherMembersCache.find(
+            item =>
+                item.member_key ===
+                memberKey
+        );
+
+    const name =
+        displayName ||
+        (
+            member
+                ? member.display_name
+                : memberKey || "AETHER"
+        );
+
+    typingName.textContent =
+        name;
+
+    aetherTyping.classList.add(
+        "visible"
+    );
+
+    if (isNearBottom()) {
+
+        requestAnimationFrame(
+            function() {
+
+                scrollToBottom();
+
+            }
+        );
+
+    }
+
+}
+
+
+function hideAetherTyping() {
+
+    aetherTyping.classList.remove(
+        "visible"
+    );
+
+}
+
+
+function subscribeToAetherTyping() {
+
+    if (typingChannel) {
+
+        supabaseClient.removeChannel(
+            typingChannel
+        );
+
+    }
+
+    typingChannel =
+        supabaseClient
+
+            .channel(
+                "aether-community-live"
+            )
+
+            .on(
+                "broadcast",
+                {
+                    event:
+                        "aether_typing"
+                },
+                function(payload) {
+
+                    console.log(
+                        "AETHER TYPING:",
+                        payload
+                    );
+
+                    const data =
+                        payload.payload ||
+                        {};
+
+                    if (
+                        data.typing === true
+                    ) {
+
+                        showAetherTyping(
+                            data.member_key,
+                            data.display_name
+                        );
+
+                    }
+
+                    else {
+
+                        hideAetherTyping();
+
+                    }
+
+                }
+            )
+
+            .subscribe(
+                function(status) {
+
+                    console.log(
+                        "AETHER TYPING REALTIME:",
+                        status
+                    );
+
+                }
+            );
+
+}
+
+
+/* =========================================================
+   AETHER MEMBERS
+========================================================= */
+
 async function loadAetherMembers() {
 
     const {
@@ -1370,7 +1646,7 @@ async function loadAetherMembers() {
         )
 
         .select(
-            "user_id, display_name, role, avatar_url"
+            "user_id, display_name, role, avatar_url, member_key"
         )
 
         .eq(
@@ -1396,6 +1672,10 @@ async function loadAetherMembers() {
 
 }
 
+
+/* =========================================================
+   REACTIONS
+========================================================= */
 
 async function loadReactions(
     messageIds
@@ -1550,6 +1830,10 @@ function createReactionArea(
 
 }
 
+
+/* =========================================================
+   MESSAGE RENDERING
+========================================================= */
 
 function buildMessageElement(
     message
@@ -1923,6 +2207,10 @@ function updateReactionAreas() {
 }
 
 
+/* =========================================================
+   REACTION TOGGLE
+========================================================= */
+
 async function toggleReaction(
     messageId,
     reactionType
@@ -2067,6 +2355,10 @@ async function toggleReaction(
 }
 
 
+/* =========================================================
+   AETHER ADMIN
+========================================================= */
+
 async function checkAetherAdmin() {
 
     aetherControl.style.display =
@@ -2110,6 +2402,10 @@ async function checkAetherAdmin() {
 
 }
 
+
+/* =========================================================
+   TRIGGER AETHER SCENE
+========================================================= */
 
 async function triggerAetherScene() {
 
@@ -2269,6 +2565,10 @@ async function triggerAetherScene() {
 
 }
 
+
+/* =========================================================
+   SEND HALO MESSAGE
+========================================================= */
 
 async function sendMessage() {
 
@@ -2632,6 +2932,8 @@ async function initializeCommunity() {
     subscribeToMessages();
 
     subscribeToReactions();
+
+    subscribeToAetherTyping();
 
 }
 
