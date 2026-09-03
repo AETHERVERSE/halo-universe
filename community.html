@@ -1674,6 +1674,57 @@ async function loadAetherMembers() {
 
 
 /* =========================================================
+   AETHER HALO WELCOME
+========================================================= */
+
+async function triggerHaloWelcome() {
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "trigger_halo_welcome"
+    );
+
+    if (error) {
+
+        console.error(
+            "HALO WELCOME ERROR:",
+            error
+        );
+
+        return;
+
+    }
+
+    if (data) {
+
+        console.log(
+            "✦ AETHER WELCOME TRIGGERED:",
+            data
+        );
+
+    }
+
+    else {
+
+        console.log(
+            "HALO already received AETHER welcome."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    REACTIONS
 ========================================================= */
 
@@ -2927,7 +2978,11 @@ async function initializeCommunity() {
     composer.style.display =
         "block";
 
-    await loadMessages();
+    /*
+     * Subscribe BEFORE triggering the welcome.
+     * This guarantees that the new Solen message
+     * can arrive through Realtime immediately.
+     */
 
     subscribeToMessages();
 
@@ -2935,12 +2990,18 @@ async function initializeCommunity() {
 
     subscribeToAetherTyping();
 
+    await loadMessages();
+
+    /*
+     * First-community-visit welcome.
+     * The database function guarantees that
+     * this happens only once per HALO.
+     */
+
+    await triggerHaloWelcome();
+
 }
 
-
-/* =========================================================
-   FORM
-========================================================= */
 
 messageForm.addEventListener(
     "submit",
