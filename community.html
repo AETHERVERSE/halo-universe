@@ -1503,6 +1503,106 @@ function scrollToBottom() {
 
 
 /* =========================================================
+   DIRECT AETHER ADDRESS DETECTION
+========================================================= */
+
+function detectMentionedMember(message) {
+
+    const lower =
+        message.toLowerCase();
+
+    const members = [
+
+        {
+            key: "solen",
+            name: "Solen"
+        },
+
+        {
+            key: "vex",
+            name: "Vex"
+        },
+
+        {
+            key: "kairo",
+            name: "Kairo"
+        },
+
+        {
+            key: "riven",
+            name: "Riven"
+        },
+
+        {
+            key: "zenith",
+            name: "Zenith"
+        },
+
+        {
+            key: "lux",
+            name: "Lux"
+        },
+
+        {
+            key: "nero",
+            name: "Nero"
+        }
+
+    ];
+
+    for (
+        const member
+        of members
+    ) {
+
+        const pattern =
+            new RegExp(
+                "(^|[^a-z])" +
+                member.name.toLowerCase() +
+                "([^a-z]|$)"
+            );
+
+        if (
+            pattern.test(lower)
+        ) {
+
+            return member;
+
+        }
+
+    }
+
+    return null;
+
+}
+
+
+function showLocalAetherTyping(
+    memberKey
+) {
+
+    const member =
+        aetherMembersCache.find(
+            item =>
+                item.member_key ===
+                memberKey
+        );
+
+    if (!member) {
+
+        return;
+
+    }
+
+    showAetherTyping(
+        member.member_key,
+        member.display_name
+    );
+
+}
+
+
+/* =========================================================
    AETHER TYPING INDICATOR
 ========================================================= */
 
@@ -2618,6 +2718,109 @@ async function triggerAetherScene() {
 
 
 /* =========================================================
+   HALO → AETHER REPLY
+========================================================= */
+
+async function requestAetherReply(
+    messageId,
+    haloMessage
+) {
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+    const mentionedMember =
+        detectMentionedMember(
+            haloMessage
+        );
+
+    /*
+     * No direct member mentioned:
+     * no AETHER reply.
+     */
+    if (!mentionedMember) {
+
+        return;
+
+    }
+
+    /*
+     * Small natural pause before AETHER answers.
+     */
+    showLocalAetherTyping(
+        mentionedMember.key
+    );
+
+    const delay =
+        1500 +
+        Math.floor(
+            Math.random() * 1300
+        );
+
+    await new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                delay
+            )
+    );
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "respond_to_halo_message",
+            {
+                p_message_id:
+                    messageId
+            }
+        );
+
+        if (error) {
+
+            console.error(
+                "AETHER HALO REPLY ERROR:",
+                error
+            );
+
+            hideAetherTyping();
+
+            return;
+
+        }
+
+        console.log(
+            "✦ AETHER HALO REPLY:",
+            data
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "AETHER HALO REPLY REQUEST ERROR:",
+            error
+        );
+
+    }
+
+    finally {
+
+        hideAetherTyping();
+
+    }
+
+}
+
+
+/* =========================================================
    SEND HALO MESSAGE
 ========================================================= */
 
@@ -2663,6 +2866,7 @@ async function sendMessage() {
         "Sending...";
 
     const {
+        data,
         error
     } =
     await supabaseClient
@@ -2679,7 +2883,13 @@ async function sendMessage() {
             message:
                 message
 
-        });
+        })
+
+        .select(
+            "id, user_id, message, created_at, scene_id, scene_order"
+        )
+
+        .single();
 
     if (error) {
 
@@ -2714,6 +2924,19 @@ async function sendMessage() {
         false;
 
     messageInput.focus();
+
+
+    /*
+     * Let the normal Realtime INSERT render
+     * the HALO message first.
+     *
+     * Then ask AETHER whether the HALO
+     * directly addressed a member.
+     */
+    requestAetherReply(
+        data.id,
+        data.message
+    );
 
 }
 
@@ -2980,8 +3203,6 @@ async function initializeCommunity() {
 
     /*
      * Subscribe BEFORE triggering the welcome.
-     * This guarantees that the new Solen message
-     * can arrive through Realtime immediately.
      */
 
     subscribeToMessages();
@@ -2994,8 +3215,6 @@ async function initializeCommunity() {
 
     /*
      * First-community-visit welcome.
-     * The database function guarantees that
-     * this happens only once per HALO.
      */
 
     await triggerHaloWelcome();
