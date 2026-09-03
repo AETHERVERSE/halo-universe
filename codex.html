@@ -1530,6 +1530,9 @@ function addDiscoveryButton(
             button.textContent =
                 "DISCOVERING...";
 
+            message.textContent =
+                "";
+
 
             const {
                 data: {
@@ -1562,18 +1565,26 @@ function addDiscoveryButton(
             }
 
 
+            /*
+               UNIVERSAL CODEX RPC
+
+               The action key itself tells
+               the backend which Codex entry
+               was discovered.
+
+               No individual Codex entry
+               needs its own JavaScript.
+            */
+
             const {
                 data,
                 error
             } =
             await supabaseClient
                 .rpc(
-                    "add_halo_points",
+                    "discover_codex_entry",
                     {
-                        p_user_id:
-                            user.id,
-
-                        p_action_key:
+                        p_codex_key:
                             actionKey
                     }
                 );
@@ -1582,7 +1593,7 @@ function addDiscoveryButton(
             if (error) {
 
                 console.error(
-                    "POINT ERROR:",
+                    "CODEX DISCOVERY ERROR:",
                     error
                 );
 
@@ -1601,17 +1612,14 @@ function addDiscoveryButton(
 
 
             /*
-               The RPC returns 5 when
-               the discovery was new.
-
-               A different result means
-               the action was already recorded.
+               A non-null result means:
+               - this was a genuine new discovery
+               - the Codex discovery was stored
+               - +5 points were processed
+               - Riven was sent to the community
             */
 
-            if (
-                Number(data) ===
-                DISCOVERY_POINTS
-            ) {
+            if (data !== null) {
 
                 button.textContent =
                     "✓ DISCOVERED • +5 STAR POINTS";
@@ -1621,11 +1629,17 @@ function addDiscoveryButton(
                 );
 
                 message.textContent =
-                    "Your discovery has been recorded. ✦";
+                    "Your discovery has been recorded. Riven noticed. ✦";
 
             }
 
             else {
+
+                /*
+                   This can happen when the entry
+                   was already known from the old
+                   system or another session.
+                */
 
                 button.textContent =
                     "✓ ALREADY DISCOVERED";
@@ -1704,9 +1718,54 @@ async function loadDiscovered() {
     }
 
 
+    /*
+       Load the NEW Codex discovery table.
+    */
+
     const {
-        data,
-        error
+        data:
+            codexData,
+        error:
+            codexError
+    } =
+    await supabaseClient
+        .from(
+            "halo_codex_discoveries"
+        )
+        .select(
+            "codex_key"
+        )
+        .eq(
+            "user_id",
+            user.id
+        );
+
+
+    if (codexError) {
+
+        console.error(
+            "CODEX DISCOVERY LOAD ERROR:",
+            codexError
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Also load the old point-event table.
+
+       This allows the page to recognize
+       discoveries made before the universal
+       Codex system was introduced.
+    */
+
+    const {
+        data:
+            legacyData,
+        error:
+            legacyError
     } =
     await supabaseClient
         .from(
@@ -1721,33 +1780,66 @@ async function loadDiscovered() {
         );
 
 
-    if (error) {
+    if (legacyError) {
 
         console.error(
-            "DISCOVERY LOAD ERROR:",
-            error
+            "LEGACY DISCOVERY LOAD ERROR:",
+            legacyError
         );
-
-        return;
 
     }
 
 
     /*
-       Set removes duplicate action keys.
-       This means the Codex always counts
-       unique memories only.
+       Combine both systems.
+
+       Set automatically removes duplicates.
     */
 
     const discovered =
-        new Set(
-            (data || [])
-                .map(
-                    event =>
-                        event.action_key
-                )
+        new Set();
+
+
+    (codexData || [])
+        .forEach(
+            entry => {
+
+                if (
+                    entry.codex_key
+                ) {
+
+                    discovered.add(
+                        entry.codex_key
+                    );
+
+                }
+
+            }
         );
 
+
+    (legacyData || [])
+        .forEach(
+            event => {
+
+                if (
+                    event.action_key
+                ) {
+
+                    discovered.add(
+                        event.action_key
+                    );
+
+                }
+
+            }
+        );
+
+
+    /*
+       Disable every Codex entry that
+       has already been discovered.
+    */
 
     document
         .querySelectorAll(
@@ -1811,4 +1903,4 @@ initCodex();
 
 </body>
 
-    </html>
+            </html>
