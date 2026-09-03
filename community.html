@@ -224,6 +224,180 @@ nav a:hover {
 
 
 /* =========================================================
+   AETHER CONTROL
+========================================================= */
+
+.aether-control {
+
+    display: none;
+
+    background:
+        linear-gradient(
+            145deg,
+            #29234f,
+            #17142f
+        );
+
+    border:
+        1px solid
+        #7064a5;
+
+    border-radius: 20px;
+
+    padding:
+        20px
+        25px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+}
+
+
+.aether-control-title {
+
+    color: #d8ceff;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+}
+
+
+.aether-control-subtitle {
+
+    color: #8f88b5;
+
+    font-size: 0.72rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 14px;
+}
+
+
+.scene-select {
+
+    width: 100%;
+
+    min-height: 45px;
+
+    padding:
+        10px
+        13px;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 15px;
+
+    background:
+        #0e0c25;
+
+    color: #eeeaff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.82rem;
+
+    outline: none;
+
+    margin-bottom: 10px;
+}
+
+
+.scene-select:focus {
+
+    border-color:
+        #9c8fe0;
+}
+
+
+.scene-button {
+
+    width: 100%;
+
+    min-height: 45px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #292451,
+            #393064
+        );
+
+    color: #eeeaff;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.scene-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #393064,
+            #4a3f78
+        );
+
+    border-color:
+        #c8bdff;
+}
+
+
+.scene-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: default;
+
+    transform: none;
+}
+
+
+.scene-message {
+
+    min-height: 18px;
+
+    margin-top: 10px;
+
+    color: #aaa0e6;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.7px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
    CHAT
 ========================================================= */
 
@@ -540,6 +714,26 @@ nav a:hover {
     font-size: 0.58rem;
 
     letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   SCENE MARKER
+========================================================= */
+
+.scene-marker {
+
+    color: #8f88b5;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 1.5px;
+
+    margin-top: 2px;
+
+    padding:
+        0
+        5px;
 }
 
 
@@ -1013,6 +1207,53 @@ LOADING...
 
 
 <!-- =======================================================
+     AETHER CONTROL
+======================================================= -->
+
+<section
+    class="aether-control"
+    id="aetherControl"
+>
+
+<div class="aether-control-title">
+AETHER CONTROL
+</div>
+
+<div class="aether-control-subtitle">
+Admin access • AETHER conversation engine
+</div>
+
+<select
+    id="sceneSelect"
+    class="scene-select"
+>
+
+<option value="KAIRO_ZENITH_001">
+THE IDEA
+</option>
+
+</select>
+
+
+<button
+    type="button"
+    id="triggerSceneButton"
+    class="scene-button"
+>
+⚡ TRIGGER SCENE
+</button>
+
+
+<div
+    class="scene-message"
+    id="sceneMessage"
+></div>
+
+</section>
+
+
+
+<!-- =======================================================
      CHAT
 ======================================================= -->
 
@@ -1276,6 +1517,34 @@ document.getElementById(
 const composerMessage =
 document.getElementById(
     "composerMessage"
+);
+
+
+/* =========================================================
+   AETHER CONTROL ELEMENTS
+========================================================= */
+
+const aetherControl =
+document.getElementById(
+    "aetherControl"
+);
+
+
+const sceneSelect =
+document.getElementById(
+    "sceneSelect"
+);
+
+
+const triggerSceneButton =
+document.getElementById(
+    "triggerSceneButton"
+);
+
+
+const sceneMessage =
+document.getElementById(
+    "sceneMessage"
 );
 
 
@@ -1627,6 +1896,16 @@ function renderMessage(
                 )}
             </div>
 
+            ${
+                message.scene_id
+                    ? `
+                        <div class="scene-marker">
+                            ✦ AETHER SCENE
+                        </div>
+                      `
+                    : ""
+            }
+
             <div class="message-time">
                 ${formatTime(
                     message.created_at
@@ -1801,7 +2080,7 @@ async function loadMessages() {
         )
 
         .select(
-            "id, user_id, message, created_at"
+            "id, user_id, message, created_at, scene_id, scene_order"
         )
 
         .order(
@@ -2005,6 +2284,242 @@ async function toggleReaction(
 
 
     await loadMessages();
+
+}
+
+
+
+/* =========================================================
+   CHECK AETHER ADMIN
+========================================================= */
+
+async function checkAetherAdmin() {
+
+    aetherControl.style.display =
+        "none";
+
+
+    if (!currentUser) {
+
+        return false;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "is_aether_admin"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "AETHER ADMIN CHECK ERROR:",
+            error
+        );
+
+        return false;
+
+    }
+
+
+    if (data === true) {
+
+        aetherControl.style.display =
+            "block";
+
+        return true;
+
+    }
+
+
+    return false;
+
+}
+
+
+
+/* =========================================================
+   TRIGGER AETHER SCENE
+========================================================= */
+
+async function triggerAetherScene() {
+
+    if (!currentUser) {
+
+        sceneMessage.textContent =
+            "Please log in first.";
+
+        return;
+
+    }
+
+
+    const sceneKey =
+        sceneSelect.value;
+
+
+    if (!sceneKey) {
+
+        sceneMessage.textContent =
+            "Please select a scene.";
+
+        return;
+
+    }
+
+
+    triggerSceneButton.disabled =
+        true;
+
+
+    sceneSelect.disabled =
+        true;
+
+
+    sceneMessage.textContent =
+        "Triggering AETHER scene...";
+
+
+    try {
+
+        const {
+            data: sessionData,
+            error: sessionError
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if (
+            sessionError ||
+            !sessionData ||
+            !sessionData.session
+        ) {
+
+            sceneMessage.textContent =
+                "Your login session could not be verified.";
+
+            return;
+
+        }
+
+
+        const accessToken =
+            sessionData.session.access_token;
+
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/functions/v1/trigger-aether-scene",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+
+                    },
+
+                    body: JSON.stringify({
+
+                        scene_key:
+                            sceneKey
+
+                    })
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            console.error(
+                "AETHER SCENE ERROR:",
+                result
+            );
+
+
+            if (
+                response.status ===
+                403
+            ) {
+
+                sceneMessage.textContent =
+                    "AETHER admin access required.";
+
+            }
+
+            else {
+
+                sceneMessage.textContent =
+                    result.error ||
+                    "Could not trigger the scene.";
+
+            }
+
+            return;
+
+        }
+
+
+        if (
+            result.scene_id === null ||
+            result.scene_id === undefined
+        ) {
+
+            sceneMessage.textContent =
+                "This scene has already been triggered.";
+
+            return;
+
+        }
+
+
+        sceneMessage.textContent =
+            "✦ AETHER SCENE TRIGGERED";
+
+
+        await loadMessages();
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "AETHER SCENE REQUEST ERROR:",
+            error
+        );
+
+
+        sceneMessage.textContent =
+            "Could not reach the AETHER scene engine.";
+
+    }
+
+    finally {
+
+        triggerSceneButton.disabled =
+            false;
+
+        sceneSelect.disabled =
+            false;
+
+    }
 
 }
 
@@ -2246,6 +2761,10 @@ async function initializeCommunity() {
             "none";
 
 
+        aetherControl.style.display =
+            "none";
+
+
         return;
 
     }
@@ -2253,6 +2772,9 @@ async function initializeCommunity() {
 
     currentUser =
         user;
+
+
+    await checkAetherAdmin();
 
 
     /* =====================================================
@@ -2350,6 +2872,21 @@ messageInput.addEventListener(
             sendMessage();
 
         }
+
+    }
+);
+
+
+
+/* =========================================================
+   SCENE BUTTON
+========================================================= */
+
+triggerSceneButton.addEventListener(
+    "click",
+    function() {
+
+        triggerAetherScene();
 
     }
 );
