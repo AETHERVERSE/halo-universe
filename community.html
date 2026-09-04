@@ -2737,22 +2737,51 @@ async function requestAetherReply(
             haloMessage
         );
 
-    /*
-     * No direct member mentioned:
-     * no AETHER reply.
-     */
-    if (!mentionedMember) {
 
-        return;
+    /*
+     * Direct member mention:
+     * show that specific AETHER member typing.
+     *
+     * Conversation continuation:
+     * no member name was mentioned, so let the
+     * database determine the recent conversation partner.
+     */
+
+    if (mentionedMember) {
+
+        showLocalAetherTyping(
+            mentionedMember.key
+        );
 
     }
+
+    else {
+
+        typingName.textContent =
+            "AETHER";
+
+        aetherTyping.classList.add(
+            "visible"
+        );
+
+        if (isNearBottom()) {
+
+            requestAnimationFrame(
+                function() {
+
+                    scrollToBottom();
+
+                }
+            );
+
+        }
+
+    }
+
 
     /*
      * Small natural pause before AETHER answers.
      */
-    showLocalAetherTyping(
-        mentionedMember.key
-    );
 
     const delay =
         1500 +
@@ -2768,6 +2797,7 @@ async function requestAetherReply(
             )
     );
 
+
     try {
 
         const {
@@ -2782,6 +2812,7 @@ async function requestAetherReply(
             }
         );
 
+
         if (error) {
 
             console.error(
@@ -2794,6 +2825,7 @@ async function requestAetherReply(
             return;
 
         }
+
 
         console.log(
             "✦ AETHER HALO REPLY:",
