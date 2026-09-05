@@ -131,8 +131,8 @@ h1 {
 
 nav {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin: 10px 0 40px;
 }
@@ -149,6 +149,16 @@ nav a {
 nav a:hover {
     background: rgba(255,255,255,0.08);
     color: #f2d58e;
+}
+
+.halo-note {
+    max-width: 420px;
+    margin: 4px auto 0;
+    color: #b9adff;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    text-align: center;
+    opacity: 0.9;
 }
 
 .hero {
@@ -232,18 +242,6 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.halo-note {
-    max-width: 360px;
-    margin: 18px auto 0;
-
-    color: #b9adff;
-
-    font-size: 0.85rem;
-    line-height: 1.6;
-
-    opacity: 0.9;
-}
-
 .quote {
     text-align: center;
     margin: 55px auto 20px;
@@ -298,6 +296,12 @@ footer {
     <a href="halo.html">
         MY HALO
     </a>
+
+    <div class="halo-note">
+        Sign up for free to discover more
+        AETHER Moments, hidden stories and
+        secrets waiting to be found. ✦
+    </div>
 
 </nav>
 
@@ -395,12 +399,6 @@ footer {
         <a href="halo.html">
             Enter My HALO →
         </a>
-
-        <div class="halo-note">
-            Sign up for free to discover more
-            AETHER Moments, hidden stories and
-            secrets waiting to be found. ✦
-        </div>
 
     </div>
 
