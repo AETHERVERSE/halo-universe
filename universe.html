@@ -242,6 +242,135 @@ nav a:hover {
     text-decoration: underline;
 }
 
+.locked-link {
+    cursor: pointer;
+}
+
+.access-message {
+    display: none;
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: min(
+        90%,
+        480px
+    );
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border: 1px solid #756486;
+    border-radius: 24px;
+
+    background:
+        rgba(
+            8,
+            13,
+            32,
+            0.97
+        );
+
+    box-shadow:
+        0 0 60px
+        rgba(
+            205,
+            177,
+            255,
+            0.25
+        );
+
+    z-index: 1000;
+}
+
+.access-message.active {
+    display: block;
+}
+
+.access-message h2 {
+    color: #f2d58e;
+    margin-top: 0;
+}
+
+.access-message p {
+    color: #d8cde0;
+    line-height: 1.7;
+}
+
+.access-button {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 12px 25px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b28ac9,
+            #d9bd78
+        );
+
+    color: #101323;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    letter-spacing: 1px;
+}
+
+.close-button {
+    display: block;
+
+    margin: 18px auto 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #a99ab8;
+
+    cursor: pointer;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+.close-button:hover {
+    color: #f2d58e;
+}
+
+.overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.65
+        );
+
+    z-index: 999;
+}
+
+.overlay.active {
+    display: block;
+}
+
 .quote {
     text-align: center;
     margin: 55px auto 20px;
@@ -349,7 +478,11 @@ footer {
             who they are beyond the stage.
         </p>
 
-        <a href="members.html">
+        <a
+            href="#"
+            class="locked-link"
+            data-area="AETHER"
+        >
             Meet the Members →
         </a>
 
@@ -372,7 +505,9 @@ footer {
         </p>
 
         <a
-            href="codex.html"
+            href="#"
+            class="locked-link"
+            data-area="THE CODEX"
             style="color:#b9adff;text-decoration:none;"
         >
             Open the Codex →
@@ -418,7 +553,11 @@ footer {
             toward becoming a Legendary HALO.
         </p>
 
-        <a href="ranks.html">
+        <a
+            href="#"
+            class="locked-link"
+            data-area="RANK SYSTEM"
+        >
             Discover the Ranks →
         </a>
 
@@ -440,7 +579,11 @@ footer {
             transmissions and special events.
         </p>
 
-        <a href="events.html">
+        <a
+            href="#"
+            class="locked-link"
+            data-area="EVENTS"
+        >
             Explore Events →
         </a>
 
@@ -462,7 +605,11 @@ footer {
             and special HALO achievements.
         </p>
 
-        <a href="achievements.html">
+        <a
+            href="#"
+            class="locked-link"
+            data-area="ACHIEVEMENTS"
+        >
             View Achievements →
         </a>
 
@@ -616,6 +763,131 @@ footer {
 
 
 </div>
+
+
+<div
+    class="overlay"
+    id="accessOverlay"
+></div>
+
+
+<div
+    class="access-message"
+    id="accessMessage"
+>
+
+    <h2>
+        ✦ The Universe Is Waiting
+    </h2>
+
+    <p>
+        This part of the AETHERVERSE is waiting
+        for you.
+    </p>
+
+    <p>
+        Sign up for free to unlock more
+        AETHER Moments, stories and secrets.
+        ✦
+    </p>
+
+    <a
+        href="halo.html"
+        class="access-button"
+    >
+        ENTER MY HALO
+    </a>
+
+    <button
+        type="button"
+        class="close-button"
+        id="closeAccess"
+    >
+        Maybe later
+    </button>
+
+</div>
+
+
+<script>
+
+const lockedLinks =
+    document.querySelectorAll(
+        ".locked-link"
+    );
+
+const accessMessage =
+    document.getElementById(
+        "accessMessage"
+    );
+
+const accessOverlay =
+    document.getElementById(
+        "accessOverlay"
+    );
+
+const closeAccess =
+    document.getElementById(
+        "closeAccess"
+    );
+
+
+function showAccessMessage() {
+
+    accessMessage.classList.add(
+        "active"
+    );
+
+    accessOverlay.classList.add(
+        "active"
+    );
+
+}
+
+
+function closeAccessMessage() {
+
+    accessMessage.classList.remove(
+        "active"
+    );
+
+    accessOverlay.classList.remove(
+        "active"
+    );
+
+}
+
+
+lockedLinks.forEach(
+    function(link) {
+
+        link.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                showAccessMessage();
+
+            }
+        );
+
+    }
+);
+
+
+closeAccess.addEventListener(
+    "click",
+    closeAccessMessage
+);
+
+
+accessOverlay.addEventListener(
+    "click",
+    closeAccessMessage
+);
+
+</script>
 
 
 </body>
