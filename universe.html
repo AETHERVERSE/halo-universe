@@ -1,493 +1,328 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>HALO Universe — AETHER</title>
-
-<style>
-.worlds {
-    margin: 70px auto;
-    max-width: 1100px;
-    text-align: center;
-}
-
-.worlds h2 {
-    font-size: 2.2rem;
-    letter-spacing: 3px;
-    margin-bottom: 20px;
-}
-
-.worlds .intro {
-    max-width: 700px;
-    margin: 0 auto 45px;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    opacity: 0.9;
-}
-
-.world-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-}
-
-.world-card {
-    padding: 30px 25px;
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 24px;
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(8px);
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.world-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255,255,255,0.55);
-}
-
-.world-card h3 {
-    margin-bottom: 15px;
-    font-size: 1.35rem;
-    letter-spacing: 2px;
-}
-
-.world-card p {
-    margin: 0;
-    line-height: 1.7;
-    font-size: 0.98rem;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Georgia, "Times New Roman", serif;
-    color: #f5edf8;
-
-    background:
-        radial-gradient(circle at 15% 10%, #29385c 0%, transparent 30%),
-        radial-gradient(circle at 85% 20%, #43284d 0%, transparent 28%),
-        linear-gradient(180deg, #070b18, #11172b, #211832);
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
-}
-
-header {
-    text-align: center;
-    padding: 45px 15px 30px;
-}
-
-.logo {
-    letter-spacing: 8px;
-    color: #f2d58e;
-    font-size: 0.9rem;
-}
-
-h1 {
-    font-size: clamp(2.6rem, 9vw, 5.2rem);
-    letter-spacing: 8px;
-    margin: 15px 0;
-    color: #f2d58e;
-}
-
-.subtitle {
-    letter-spacing: 4px;
-    color: #cdbbd9;
-}
-
-.hero {
-    text-align: center;
-    padding: 60px 25px;
-    border: 1px solid #756486;
-    border-radius: 30px;
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-    background: rgba(8,13,32,0.78);
+  
+  
 
-    box-shadow:
-        0 0 50px rgba(205,177,255,0.15);
-}
+<div class="logo">  
+    AETHER  
+</div>  
 
-.hero h2 {
-    font-size: 2.4rem;
-    color: #f2d58e;
-    margin-top: 0;
-}
+<h1>  
+    HALO UNIVERSE  
+</h1>  
 
-.hero p {
-    max-width: 720px;
-    margin: 20px auto;
-    line-height: 1.8;
-    color: #d8cde0;
-}
+<div class="subtitle">  
+    SEVEN STARS. ONE LIGHT.  
+</div>  
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
-    margin-top: 35px;
-}
 
-.card {
-    padding: 32px 22px;
-    border: 1px solid #5e5774;
-    border-radius: 22px;
+  
+  
 
-    background: rgba(255,255,255,0.035);
+<a href="/halo-universe/">Home</a>  
 
-    text-align: center;
+<a href="universe.html">  
+    HALO Universe  
+</a>  
 
-    transition: transform 0.2s, background 0.2s;
-}
+<a href="members.html">  
+    Members  
+</a>  
 
-.card:hover {
-    transform: translateY(-4px);
-    background: rgba(255,255,255,0.07);
-}
+<a href="halo.html">  
+    My HALO  
+</a>  
 
-.icon {
-    font-size: 2.6rem;
-    margin-bottom: 12px;
-}
+<a href="ranks.html">  
+    Rank System  
+</a>  
 
-.card h3 {
-    color: #f2d58e;
-    letter-spacing: 2px;
-}
+<a href="codex.html">  
+    Codex  
+</a>  
 
-.card p {
-    color: #c9bdd3;
-    line-height: 1.6;
-}
+<a href="events.html">  
+    Events  
+</a>  
 
-.card a {
-    display: inline-block;
-    margin-top: 10px;
-    color: #f2d58e;
-    text-decoration: none;
-}
+<a href="achievements.html">  
+    Achievements  
+</a>  
 
-.card a:hover {
-    text-decoration: underline;
-}
 
-.quote {
-    text-align: center;
-    margin: 55px auto 20px;
-    max-width: 700px;
+  
 
-    color: #cdbbd9;
+  
 
-    font-style: italic;
-    line-height: 1.8;
-}
+<h2>  
+    Welcome to the Universe.  
+</h2>  
 
-footer {
-    text-align: center;
-    padding: 55px 10px 25px;
+<p>  
+    You found the world beyond the stage.  
+</p>  
 
-    color: #a99ab8;
+<p>  
+    Here, every star has a story,  
+    every world holds a memory,  
+    and every HALO becomes part of the journey.  
+</p>  
 
-    letter-spacing: 2px;
-    font-size: 0.75rem;
-}
+<p>  
+    Explore AETHER, uncover forgotten memories,  
+    discover the seven worlds and follow the path  
+    that connects the stars.  
+</p>  
 
-</style>
-</head>
 
 
-<body>
+  
 
-<div class="container">
+  
 
+<div class="card">  
 
-<header>
+    <div class="icon">  
+        👑  
+    </div>  
 
-    <div class="logo">
-        AETHER
-    </div>
+    <h3>  
+        AETHER  
+    </h3>  
 
-    <h1>
-        HALO UNIVERSE
-    </h1>
+    <p>  
+        Meet the seven stars and discover  
+        who they are beyond the stage.  
+    </p>  
 
-    <div class="subtitle">
-        SEVEN STARS. ONE LIGHT.
-    </div>
+    <a href="members.html">  
+        Meet the Members →  
+    </a>  
 
-</header>
+</div>  
 
 
-<section class="hero">
 
-    <h2>
-        Welcome to the Universe.
-    </h2>
+<div class="card">  
 
-    <p>
-        You found the world beyond the stage.
-    </p>
+    <div class="icon">  
+        📜  
+    </div>  
 
-    <p>
-        Here, every star has a story,
-        every world holds a memory,
-        and every HALO becomes part of the journey.
-    </p>
+    <h3>  
+        THE CODEX  
+    </h3>  
 
-    <p>
-        Explore AETHER, uncover forgotten memories,
-        discover the seven worlds and follow the path
-        that connects the stars.
-    </p>
+    <p>  
+        Explore worlds, Guardians, relics,  
+        transmissions and hidden lore.  
+    </p>  
 
-</section>
 
+  
+    Open the Codex →  
+  
 
-<section class="grid">
+<div class="card">  
 
+    <div class="icon">  
+        ⭐  
+    </div>  
 
-    <div class="card">
+    <h3>  
+        MY HALO  
+    </h3>  
 
-        <div class="icon">
-            👑
-        </div>
+    <p>  
+        Your future personal space within  
+        the AETHER universe.  
+    </p>  
 
-        <h3>
-            AETHER
-        </h3>
+    <a href="halo.html">  
+        Enter My HALO →  
+    </a>  
 
-        <p>
-            Meet the seven stars and discover
-            who they are beyond the stage.
-        </p>
+</div>  
 
-        <a href="members.html">
-            Meet the Members →
-        </a>
 
-    </div>
 
+<div class="card">  
 
+    <div class="icon">  
+        🌟  
+    </div>  
 
-    <div class="card">
+    <h3>  
+        RANK SYSTEM  
+    </h3>  
 
-        <div class="icon">
-            📜
-        </div>
+    <p>  
+        Begin as a New Star and journey  
+        toward becoming a Legendary HALO.  
+    </p>  
 
-        <h3>
-            THE CODEX
-        </h3>
+    <a href="ranks.html">  
+        Discover the Ranks →  
+    </a>  
 
-        <p>
-            Explore worlds, Guardians, relics,
-            transmissions and hidden lore.
-        </p>
+</div>  
 
-        <a href="codex.html" style="color:#b9adff;text-decoration:none;">
-            Open the Codex →
-        </a>
 
 
-    <div class="card">
+<div class="card">  
 
-        <div class="icon">
-            ⭐
-        </div>
+    <div class="icon">  
+        🌙  
+    </div>  
 
-        <h3>
-            MY HALO
-        </h3>
+    <h3>  
+        EVENTS  
+    </h3>  
 
-        <p>
-            Your future personal space within
-            the AETHER universe.
-        </p>
+    <p>  
+        Take part in challenges, puzzles,  
+        transmissions and special events.  
+    </p>  
 
-        <a href="halo.html">
-            Enter My HALO →
-        </a>
+    <a href="events.html">  
+        Explore Events →  
+    </a>  
 
-    </div>
+</div>  
 
 
 
-    <div class="card">
+<div class="card">  
 
-        <div class="icon">
-            🌟
-        </div>
+    <div class="icon">  
+        🏆  
+    </div>  
 
-        <h3>
-            RANK SYSTEM
-        </h3>
+    <h3>  
+        ACHIEVEMENTS  
+    </h3>  
 
-        <p>
-            Begin as a New Star and journey
-            toward becoming a Legendary HALO.
-        </p>
+    <p>  
+        Collect memories, milestones  
+        and special HALO achievements.  
+    </p>  
 
-        <a href="ranks.html">
-            Discover the Ranks →
-        </a>
+    <a href="achievements.html">  
+        View Achievements →  
+    </a>  
 
-    </div>
+</div>  
 
 
 
-    <div class="card">
+  
 
-        <div class="icon">
-            🌙
-        </div>
+  
 
-        <h3>
-            EVENTS
-        </h3>
+<h2>✦ THE SEVEN WORLDS</h2>  
 
-        <p>
-            Take part in challenges, puzzles,
-            transmissions and special events.
-        </p>
+<p class="intro">  
+    Seven worlds. Seven stars. Seven paths that were never  
+    meant to remain separate.  
+</p>  
 
-        <a href="events.html">
-            Explore Events →
-        </a>
+<div class="world-grid">  
 
-    </div>
+    <div class="world-card">  
+        <h3>☀️ SOLARION</h3>  
+        <p>  
+            The world of light, warmth and golden skies.  
+            Home of Solen.  
+        </p>  
+    </div>  
 
+    <div class="world-card">  
+        <h3>🖤 HOLLOW</h3>  
+        <p>  
+            A world of silence and shadows, where forgotten  
+            truths wait beneath the darkness.  
+            Home of Vex.  
+        </p>  
+    </div>  
 
+    <div class="world-card">  
+        <h3>⚡ VOLTARIS</h3>  
+        <p>  
+            A world powered by storms, electricity and  
+            endless movement.  
+            Home of Kairo.  
+        </p>  
+    </div>  
 
-    <div class="card">
+    <div class="world-card">  
+        <h3>🌊 THALASSIA</h3>  
+        <p>  
+            A world of endless oceans, memories and tides  
+            that carry stories from the past.  
+            Home of Riven.  
+        </p>  
+    </div>  
 
-        <div class="icon">
-            🏆
-        </div>
+    <div class="world-card">  
+        <h3>🔥 IGNIS</h3>  
+        <p>  
+            A world of fire, passion and volcanic landscapes,  
+            where warmth can be found even in danger.  
+            Home of Zenith.  
+        </p>  
+    </div>  
 
-        <h3>
-            ACHIEVEMENTS
-        </h3>
+    <div class="world-card">  
+        <h3>✨ LUMENIA</h3>  
+        <p>  
+            A world of gentle light, quiet stars and places  
+            where weary hearts can rest.  
+            Home of Lux.  
+        </p>  
+    </div>  
 
-        <p>
-            Collect memories, milestones
-            and special HALO achievements.
-        </p>
+    <div class="world-card">  
+        <h3>🌙 NOCTEUM</h3>  
+        <p>  
+            A world of endless night, deep blue skies and  
+            secrets hidden beneath the stars.  
+            Home of Nero.  
+        </p>  
+    </div>  
 
-        <a href="achievements.html">
-            View Achievements →
-        </a>
+</div>  
 
-    </div>
 
 
-</section>
+  
 
-<section class="worlds">
+  
 
-    <h2>✦ THE SEVEN WORLDS</h2>
+“Somewhere beyond the stars,  
+seven lights are waiting to be found.”  
 
-    <p class="intro">
-        Seven worlds. Seven stars. Seven paths that were never
-        meant to remain separate.
-    </p>
 
-    <div class="world-grid">
 
-        <div class="world-card">
-            <h3>☀️ SOLARION</h3>
-            <p>
-                The world of light, warmth and golden skies.
-                Home of Solen.
-            </p>
-        </div>
+  
+  
 
-        <div class="world-card">
-            <h3>🖤 HOLLOW</h3>
-            <p>
-                A world of silence and shadows, where forgotten
-                truths wait beneath the darkness.
-                Home of Vex.
-            </p>
-        </div>
+ONE LIGHT • SEVEN STARS • ENDLESS LOVE  
 
-        <div class="world-card">
-            <h3>⚡ VOLTARIS</h3>
-            <p>
-                A world powered by storms, electricity and
-                endless movement.
-                Home of Kairo.
-            </p>
-        </div>
+<br><br>  
 
-        <div class="world-card">
-            <h3>🌊 THALASSIA</h3>
-            <p>
-                A world of endless oceans, memories and tides
-                that carry stories from the past.
-                Home of Riven.
-            </p>
-        </div>
+#WEAREHALO • #WEAREAETHER  
 
-        <div class="world-card">
-            <h3>🔥 IGNIS</h3>
-            <p>
-                A world of fire, passion and volcanic landscapes,
-                where warmth can be found even in danger.
-                Home of Zenith.
-            </p>
-        </div>
 
-        <div class="world-card">
-            <h3>✨ LUMENIA</h3>
-            <p>
-                A world of gentle light, quiet stars and places
-                where weary hearts can rest.
-                Home of Lux.
-            </p>
-        </div>
+  
 
-        <div class="world-card">
-            <h3>🌙 NOCTEUM</h3>
-            <p>
-                A world of endless night, deep blue skies and
-                secrets hidden beneath the stars.
-                Home of Nero.
-            </p>
-        </div>
+  
+  
 
-    </div>
-
-</section>
-
-
-<div class="quote">
-
-    “Somewhere beyond the stars,
-    seven lights are waiting to be found.”
-
-</div>
-
-
-<footer>
-
-    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
-
-    <br><br>
-
-    #WEAREHALO • #WEAREAETHER
-
-</footer>
-
-
-</div>
-
-</body>
-</html>
