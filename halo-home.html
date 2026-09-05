@@ -1141,6 +1141,82 @@ window.supabase.createClient(
 
 
 /* =========================
+   PROTECTED HALO PAGE
+========================= */
+
+async function requireHaloSession() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "HALO SESSION ERROR:",
+                error
+            );
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return false;
+
+        }
+
+
+        const session =
+            data &&
+            data.session
+                ? data.session
+                : null;
+
+
+        if (
+            !session ||
+            !session.user
+        ) {
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "HALO SESSION CHECK ERROR:",
+            error
+        );
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================
    HALO RANKS
 ========================= */
 
@@ -1565,14 +1641,9 @@ async function discoverBreakTheBubble() {
         !user
     ) {
 
-        button.disabled =
-            false;
-
-        button.textContent =
-            "✦ DISCOVER BREAK THE BUBBLE";
-
-        status.textContent =
-            "Please log in first.";
+        window.location.replace(
+            "halo.html"
+        );
 
         return;
 
@@ -1660,7 +1731,9 @@ async function loadHaloData() {
         await supabaseClient.auth.getUser();
 
 
-        if (userError) {
+        if (
+            userError
+        ) {
 
             console.error(
                 "USER ERROR:",
@@ -1675,14 +1748,6 @@ async function loadHaloData() {
 
         }
 
-
-        /*
-         * PROTECTED PAGE
-         *
-         * If no valid Supabase session
-         * exists, immediately return to
-         * the HALO login page.
-         */
 
         if (!user) {
 
@@ -1813,14 +1878,6 @@ async function loadHaloData() {
             error
         );
 
-        /*
-         * If the page cannot verify
-         * the HALO session, return to
-         * the login page instead of
-         * leaving the protected page
-         * in an unusable state.
-         */
-
         window.location.replace(
             "halo.html"
         );
@@ -1848,7 +1905,25 @@ document
    START
 ========================= */
 
-loadHaloData();
+async function startHaloHome() {
+
+    const authorized =
+        await requireHaloSession();
+
+
+    if (!authorized) {
+
+        return;
+
+    }
+
+
+    await loadHaloData();
+
+}
+
+
+startHaloHome();
 
 </script>
 
