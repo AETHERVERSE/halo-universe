@@ -1,59 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>AETHER — HALO Universe</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:#f5e9d0;background:radial-gradient(circle at 20% 20%,#29385c 0%,transparent 28%),radial-gradient(circle at 80% 30%,#40264d 0%,transparent 25%),radial-gradient(circle at 50% 90%,#172d4d 0%,transparent 30%),#070b18}
-.container{max-width:1100px;margin:auto;padding:25px}
-header{text-align:center;padding:45px 20px 30px}
-.logo{letter-spacing:8px;font-size:1rem;color:#d9bd78}
-h1{font-size:clamp(2.5rem,8vw,5.5rem);letter-spacing:10px;margin:15px 0;color:#f3d58d}
-.subtitle{letter-spacing:4px;color:#c9b8d8;font-size:1rem}
-nav{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0 45px}
-nav a{color:#f5e9d0;text-decoration:none;border:1px solid #806b91;padding:10px 18px;border-radius:30px;background:rgba(255,255,255,.04)}
-.hero{text-align:center;padding:60px 25px;border:1px solid #65577a;border-radius:24px;background:rgba(10,15,35,.72);box-shadow:0 0 50px rgba(100,80,160,.18)}
-.hero h2{font-size:2.2rem;color:#f0d69a}
-.hero p{max-width:650px;margin:20px auto;line-height:1.8;color:#d8cedd}
-.button{display:inline-block;margin-top:20px;padding:14px 30px;border-radius:30px;background:linear-gradient(90deg,#b28ac9,#d9bd78);color:#101323;font-weight:bold;text-decoration:none;letter-spacing:2px}
-.ranks{margin-top:45px}.ranks h2{text-align:center;color:#f0d69a}
-.rank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:15px;margin-top:25px}
-.rank{padding:22px 12px;text-align:center;border:1px solid #514c70;border-radius:16px;background:rgba(255,255,255,.035)}
-.number{font-size:.8rem;color:#a99ab8}.star{font-size:2rem;margin:10px}.rank h3{font-size:.9rem;letter-spacing:1px}
-footer{text-align:center;padding:55px 10px 25px;color:#9e91a8;letter-spacing:2px;font-size:.75rem}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: #f5e9d0;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #29385c 0%,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 30%,
+            #40264d 0%,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            #172d4d 0%,
+            transparent 30%
+        ),
+        #070b18;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px;
+}
+
+header {
+    text-align: center;
+    padding: 45px 20px 30px;
+}
+
+.logo {
+    letter-spacing: 8px;
+    font-size: 1rem;
+    color: #d9bd78;
+}
+
+h1 {
+    font-size: clamp(
+        2.5rem,
+        8vw,
+        5.5rem
+    );
+
+    letter-spacing: 10px;
+    margin: 15px 0;
+    color: #f3d58d;
+}
+
+.subtitle {
+    letter-spacing: 4px;
+    color: #c9b8d8;
+    font-size: 1rem;
+}
+
+.hero {
+    text-align: center;
+
+    padding: 60px 25px;
+
+    border: 1px solid #65577a;
+    border-radius: 24px;
+
+    background:
+        rgba(
+            10,
+            15,
+            35,
+            .72
+        );
+
+    box-shadow:
+        0 0 50px
+        rgba(
+            100,
+            80,
+            160,
+            .18
+        );
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    color: #f0d69a;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 20px auto;
+
+    line-height: 1.8;
+
+    color: #d8cedd;
+}
+
+.button {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #b28ac9,
+            #d9bd78
+        );
+
+    color: #101323;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    letter-spacing: 2px;
+}
+
+.ranks {
+    margin-top: 45px;
+}
+
+.ranks h2 {
+    text-align: center;
+    color: #f0d69a;
+}
+
+.rank-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                130px,
+                1fr
+            )
+        );
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.rank {
+    padding: 22px 12px;
+
+    text-align: center;
+
+    border: 1px solid #514c70;
+    border-radius: 16px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .035
+        );
+}
+
+.number {
+    font-size: .8rem;
+    color: #a99ab8;
+}
+
+.star {
+    font-size: 2rem;
+    margin: 10px;
+}
+
+.rank h3 {
+    font-size: .9rem;
+    letter-spacing: 1px;
+}
+
+footer {
+    text-align: center;
+
+    padding: 55px 10px 25px;
+
+    color: #9e91a8;
+
+    letter-spacing: 2px;
+
+    font-size: .75rem;
+}
+
 </style>
+
 </head>
+
+
 <body>
+
+
 <div class="container">
+
+
 <header>
-<div class="logo">AETHER</div>
-<h1>HALO UNIVERSE</h1>
-<div class="subtitle">SEVEN STARS. ONE LIGHT.</div>
+
+    <div class="logo">
+        AETHER
+    </div>
+
+    <h1>
+        HALO UNIVERSE
+    </h1>
+
+    <div class="subtitle">
+        SEVEN STARS. ONE LIGHT.
+    </div>
+
 </header>
-<nav>
-<a href="#">Home</a><a href="#">My HALO</a><a href="#">Rank System</a><a href="#">Codex</a><a href="#">Events</a><a href="#">Achievements</a>
-</nav>
+
+
 <section class="hero">
-<h2>Welcome, HALO.</h2>
-<p>HALO is more than a fandom. It is a connection of hearts, memories and light — united through AETHER.</p>
-<p>Begin your journey among the seven stars and discover the universe waiting beyond the stage.</p>
-<a class="button" href="/halo-universe/universe.html">ENTER HALO UNIVERSE</a>
+
+    <h2>
+        Welcome, HALO.
+    </h2>
+
+    <p>
+        HALO is more than a fandom.
+        It is a connection of hearts,
+        memories and light —
+        united through AETHER.
+    </p>
+
+    <p>
+        Begin your journey among
+        the seven stars and discover
+        the universe waiting beyond
+        the stage.
+    </p>
+
+    <a
+        class="button"
+        href="/halo-universe/universe.html"
+    >
+        ENTER HALO UNIVERSE
+    </a>
+
 </section>
-<section id="ranks" class="ranks">
-<h2>✦ THE SEVEN RANKS ✦</h2>
-<div class="rank-grid">
-<div class="rank"><div class="number">01</div><div class="star">✦</div><h3>NEW STAR</h3></div>
-<div class="rank"><div class="number">02</div><div class="star">✧</div><h3>RISING STAR</h3></div>
-<div class="rank"><div class="number">03</div><div class="star">✦</div><h3>GUARDIAN</h3></div>
-<div class="rank"><div class="number">04</div><div class="star">✧</div><h3>CELESTIAL</h3></div>
-<div class="rank"><div class="number">05</div><div class="star">✦</div><h3>ETERNAL</h3></div>
-<div class="rank"><div class="number">06</div><div class="star">✧</div><h3>STARBORN</h3></div>
-<div class="rank"><div class="number">07</div><div class="star">✦</div><h3>LEGENDARY HALO</h3></div>
-</div>
+
+
+<section
+    id="ranks"
+    class="ranks"
+>
+
+    <h2>
+        ✦ THE SEVEN RANKS ✦
+    </h2>
+
+
+    <div class="rank-grid">
+
+
+        <div class="rank">
+
+            <div class="number">
+                01
+            </div>
+
+            <div class="star">
+                ✦
+            </div>
+
+            <h3>
+                NEW STAR
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                02
+            </div>
+
+            <div class="star">
+                ✧
+            </div>
+
+            <h3>
+                RISING STAR
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                03
+            </div>
+
+            <div class="star">
+                ✦
+            </div>
+
+            <h3>
+                GUARDIAN
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                04
+            </div>
+
+            <div class="star">
+                ✧
+            </div>
+
+            <h3>
+                CELESTIAL
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                05
+            </div>
+
+            <div class="star">
+                ✦
+            </div>
+
+            <h3>
+                ETERNAL
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                06
+            </div>
+
+            <div class="star">
+                ✧
+            </div>
+
+            <h3>
+                STARBORN
+            </h3>
+
+        </div>
+
+
+        <div class="rank">
+
+            <div class="number">
+                07
+            </div>
+
+            <div class="star">
+                ✦
+            </div>
+
+            <h3>
+                LEGENDARY HALO
+            </h3>
+
+        </div>
+
+
+    </div>
+
 </section>
-<footer>ONE LIGHT • SEVEN STARS • ENDLESS LOVE<br><br>#WEAREHALO • #WEAREAETHER</footer>
+
+
+<footer>
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    <br><br>
+
+    #WEAREHALO • #WEAREAETHER
+
+</footer>
+
+
 </div>
+
+
 </body>
 </html>
