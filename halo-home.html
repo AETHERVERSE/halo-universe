@@ -42,18 +42,32 @@ nav {
     flex-wrap: wrap;
 }
 
-nav a {
+nav a,
+.logout-nav-button {
     text-decoration: none;
     color: #ddd7ff;
     border: 1px solid #39345e;
     border-radius: 25px;
     padding: 8px 18px;
     font-size: 0.85rem;
+    font-family: Georgia, serif;
+    cursor: pointer;
 }
 
-nav a:hover {
+nav a:hover,
+.logout-nav-button:hover {
     background: #29264b;
+    border-color: #8f84c9;
 }
+
+.logout-nav-button {
+    background: transparent;
+}
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero {
     text-align: center;
@@ -552,71 +566,6 @@ h1 {
 
 
 /* =========================
-   LOGOUT
-========================= */
-
-.logout-section {
-
-    text-align: center;
-
-    margin-top: 50px;
-
-    padding-top: 30px;
-
-    border-top: 1px solid #39345e;
-}
-
-.logout-button {
-
-    display: inline-block;
-
-    padding: 10px 24px;
-
-    border: 1px solid #514879;
-
-    border-radius: 25px;
-
-    background: transparent;
-
-    color: #aaa0e6;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.logout-button:hover {
-
-    background: #29264b;
-
-    border-color: #8f84c9;
-
-    color: #eeeaff;
-
-    transform: translateY(-2px);
-}
-
-.logout-status {
-
-    margin-top: 12px;
-
-    color: #aaa0e6;
-
-    font-size: 0.75rem;
-}
-
-
-/* =========================
    FOOTER
 ========================= */
 
@@ -712,6 +661,15 @@ Codex
 <a href="community.html">
 Community
 </a>
+
+<button
+type="button"
+id="logoutButton"
+class="logout-nav-button">
+
+↪ LOG OUT
+
+</button>
 
 </nav>
 
@@ -1173,26 +1131,6 @@ ACHIEVEMENTS
 Collect milestones as you explore the seven worlds.
 </p>
 
-</div>
-
-</section>
-
-
-<!-- LOGOUT -->
-
-<section class="logout-section">
-
-<button
-id="logoutButton"
-class="logout-button">
-
-↪ LOG OUT
-
-</button>
-
-<div
-id="logoutStatus"
-class="logout-status">
 </div>
 
 </section>
@@ -1989,11 +1927,6 @@ async function logoutHalo() {
             "logoutButton"
         );
 
-    const status =
-        document.getElementById(
-            "logoutStatus"
-        );
-
 
     button.disabled =
         true;
@@ -2023,9 +1956,6 @@ async function logoutHalo() {
             button.textContent =
                 "↪ LOG OUT";
 
-            status.textContent =
-                "Could not log out. Please try again.";
-
             return;
 
         }
@@ -2049,9 +1979,6 @@ async function logoutHalo() {
 
         button.textContent =
             "↪ LOG OUT";
-
-        status.textContent =
-            "Could not log out. Please try again.";
 
     }
 
@@ -2110,4 +2037,4 @@ startHaloHome();
 
 </body>
 
-    </html>
+</html>
