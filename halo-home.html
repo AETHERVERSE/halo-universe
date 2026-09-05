@@ -1667,27 +1667,28 @@ async function loadHaloData() {
                 userError
             );
 
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "HALO ERROR";
+            window.location.replace(
+                "halo.html"
+            );
 
             return;
 
         }
 
 
+        /*
+         * PROTECTED PAGE
+         *
+         * If no valid Supabase session
+         * exists, immediately return to
+         * the HALO login page.
+         */
+
         if (!user) {
 
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "PLEASE LOG IN";
-
-            document.getElementById(
-                "rankPoints"
-            ).textContent =
-                "Your HALO session was not found.";
+            window.location.replace(
+                "halo.html"
+            );
 
             return;
 
@@ -1812,10 +1813,17 @@ async function loadHaloData() {
             error
         );
 
-        document.getElementById(
-            "rankName"
-        ).textContent =
-            "COULD NOT LOAD";
+        /*
+         * If the page cannot verify
+         * the HALO session, return to
+         * the login page instead of
+         * leaving the protected page
+         * in an unusable state.
+         */
+
+        window.location.replace(
+            "halo.html"
+        );
 
     }
 
@@ -1846,4 +1854,4 @@ loadHaloData();
 
 </body>
 
-</html>
+    </html>
