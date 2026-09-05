@@ -10,7 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>My HALO | AETHERVERSE</title>
+<title>HALO Login | AETHERVERSE</title>
 
 
 <style>
@@ -19,9 +19,12 @@
     box-sizing: border-box;
 }
 
+
 body {
 
     margin: 0;
+
+    min-height: 100vh;
 
     background:
         radial-gradient(
@@ -33,22 +36,28 @@ body {
 
     color: #ddd7ff;
 
-    font-family: Georgia, serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    min-height: 100vh;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 25px;
 }
 
 
 .container {
 
-    max-width: 900px;
+    width: 100%;
+
+    max-width: 520px;
 
     margin: auto;
-
-    padding:
-        30px
-        20px
-        60px;
 }
 
 
@@ -60,140 +69,60 @@ header {
 
     text-align: center;
 
-    margin-bottom: 45px;
+    margin-bottom: 35px;
 }
+
 
 .logo {
 
-    letter-spacing: 6px;
+    color: #aaa0e6;
 
     font-size: 0.8rem;
 
-    color: #aaa0e6;
+    letter-spacing: 6px;
 
-    margin-bottom: 25px;
-}
-
-nav {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-}
-
-nav a {
-
-    text-decoration: none;
-
-    color: #ddd7ff;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 25px;
-
-    padding:
-        8px
-        18px;
-
-    font-size: 0.85rem;
-}
-
-nav a:hover {
-
-    background: #29264b;
-
+    margin-bottom: 20px;
 }
 
 
-/* =========================
-   HERO
-========================= */
-
-.hero {
-
-    text-align: center;
-
-    margin-bottom: 40px;
-}
-
-.hero .symbol {
+.symbol {
 
     font-size: 3rem;
 
     margin-bottom: 10px;
 }
 
+
 h1 {
+
+    margin:
+        5px
+        0
+        12px;
+
+    color: #eeeaff;
 
     font-size: 2.2rem;
 
-    letter-spacing: 3px;
-
-    margin: 10px 0;
+    letter-spacing: 4px;
 }
+
 
 .subtitle {
 
     color: #aaa0e6;
 
     line-height: 1.7;
+
+    font-size: 0.95rem;
 }
 
 
 /* =========================
-   WELCOME
+   LOGIN CARD
 ========================= */
 
-.halo-card {
-
-    background: #1d1a3d;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 20px;
-
-    padding: 30px;
-
-    margin-bottom: 30px;
-
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.2);
-}
-
-.welcome {
-
-    text-align: center;
-}
-
-.welcome h2 {
-
-    color: #ddd7ff;
-
-    letter-spacing: 2px;
-}
-
-.email {
-
-    color: #aaa0e6;
-
-    font-style: italic;
-}
-
-
-/* =========================
-   RANK
-========================= */
-
-.rank-card {
+.login-card {
 
     background:
         linear-gradient(
@@ -206,39 +135,25 @@ h1 {
         1px solid
         #514879;
 
-    border-radius: 22px;
+    border-radius: 24px;
 
     padding:
-        30px
-        25px;
-
-    margin-bottom: 30px;
-
-    text-align: center;
+        35px
+        30px;
 
     box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
+        0 20px 50px
+        rgba(0,0,0,0.35);
+
+    text-align: center;
 }
 
 
-.rank-label {
-
-    color: #aaa0e6;
-
-    font-size: 0.85rem;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 12px;
-}
-
-
-.rank-name {
+.card-title {
 
     color: #eeeaff;
 
-    font-size: 2rem;
+    font-size: 1.35rem;
 
     letter-spacing: 3px;
 
@@ -246,609 +161,326 @@ h1 {
 }
 
 
-.rank-points {
-
-    color: #c4bddf;
-
-    font-size: 1rem;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 18px;
-}
-
-
-/* =========================
-   RANK PROGRESS
-========================= */
-
-.progress-container {
-
-    width: 100%;
-
-    height: 14px;
-
-    background: #0e0c25;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin:
-        0 auto
-        15px;
-}
-
-
-.progress-bar {
-
-    height: 100%;
-
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7665b8,
-            #cdb9ff
-        );
-
-    border-radius: 20px;
-
-    transition:
-        width 0.8s ease;
-}
-
-
-.progress-text {
-
-    color: #aaa0e6;
-
-    font-size: 0.85rem;
-
-    margin-bottom: 10px;
-}
-
-
-.next-rank {
-
-    color: #ddd7ff;
-
-    font-size: 0.9rem;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   AETHER JOURNEY
-========================= */
-
-.journey-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #181633
-        );
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 22px;
-
-    padding:
-        30px
-        25px;
-
-    margin-bottom: 40px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
-}
-
-
-.journey-label {
-
-    color: #aaa0e6;
-
-    font-size: 0.85rem;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 14px;
-}
-
-
-.journey-count {
-
-    color: #eeeaff;
-
-    font-size: 1.7rem;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 18px;
-}
-
-
-.journey-container {
-
-    width: 100%;
-
-    height: 14px;
-
-    background: #0e0c25;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-bottom: 18px;
-}
-
-
-.journey-bar {
-
-    height: 100%;
-
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7665b8,
-            #cdb9ff
-        );
-
-    border-radius: 20px;
-
-    transition:
-        width 0.8s ease;
-}
-
-
-.journey-summary {
-
-    color: #ddd7ff;
-
-    font-size: 0.9rem;
-
-    line-height: 1.8;
-
-    margin-bottom: 20px;
-}
-
-
-/* =========================
-   JOURNEY ITEMS
-========================= */
-
-.journey-items {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 12px;
-
-    text-align: left;
-}
-
-
-.journey-item {
-
-    background: #1d1a3d;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 15px;
-
-    padding: 16px;
-}
-
-
-.journey-item-title {
-
-    color: #eeeaff;
-
-    font-size: 0.9rem;
-
-    letter-spacing: 1px;
-
-    margin-bottom: 6px;
-}
-
-
-.journey-item-status {
-
-    color: #aaa0e6;
-
-    font-size: 0.75rem;
-
-    letter-spacing: 1px;
-}
-
-
-.journey-item-status.discovered {
-
-    color: #d9ccff;
-}
-
-
-/* =========================
-   EARN STAR POINTS
-========================= */
-
-.points-section {
-
-    text-align: center;
-
-    margin-bottom: 40px;
-}
-
-
-.points-title {
-
-    font-size: 1.8rem;
-
-    letter-spacing: 3px;
-
-    color: #eeeaff;
-
-    margin-bottom: 10px;
-}
-
-
-.points-description {
+.card-description {
 
     color: #aaa0e6;
 
     line-height: 1.7;
+
+    font-size: 0.9rem;
 
     margin-bottom: 28px;
 }
 
 
 /* =========================
-   POINT GRID
+   FORM
 ========================= */
 
-.points-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-
-.points-card {
-
-    background: #1d1a3d;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 18px;
-
-    padding: 25px;
+.form-group {
 
     text-align: left;
 
-    transition:
-        transform 0.2s,
-        background 0.2s,
-        border-color 0.2s;
+    margin-bottom: 18px;
 }
 
 
-.points-card:hover {
+label {
 
-    transform:
-        translateY(-3px);
+    display: block;
 
-    background:
-        #242047;
+    color: #cfc8e8;
 
-    border-color:
-        #514879;
+    font-size: 0.8rem;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
 }
 
 
-.points-icon {
+input {
 
-    font-size: 2rem;
-
-    margin-bottom: 12px;
-}
-
-
-.points-card h3 {
-
-    margin:
-        5px 0 8px;
-
-    color: #ddd7ff;
-
-    letter-spacing: 1px;
-}
-
-
-.points-card p {
-
-    color: #c4c1d7;
-
-    line-height: 1.6;
-
-    margin:
-        0 0 18px;
-}
-
-
-.points-value {
-
-    display: inline-block;
+    width: 100%;
 
     padding:
-        6px 12px;
+        13px
+        15px;
 
     border:
         1px solid
         #514879;
 
-    border-radius: 20px;
+    border-radius: 12px;
 
-    color: #dfd1ff;
+    background:
+        #0e0c25;
 
-    font-size: 0.8rem;
+    color:
+        #eeeaff;
 
-    letter-spacing: 1px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        0.95rem;
+
+    outline:
+        none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+input:focus {
+
+    border-color:
+        #9c8fe0;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(156,143,224,0.12);
+}
+
+
+input::placeholder {
+
+    color:
+        #68627f;
 }
 
 
 /* =========================
-   MUSIC BUTTON
+   MAIN BUTTON
 ========================= */
 
-.music-button {
-
-    display: block;
+.login-button {
 
     width: 100%;
 
-    margin-top: 18px;
+    margin-top: 8px;
 
     padding:
-        12px
-        18px;
+        14px
+        20px;
 
     border:
         1px solid
         #9c8fe0;
 
-    border-radius: 25px;
+    border-radius: 28px;
 
     background:
         linear-gradient(
             90deg,
-            #292451,
-            #393064
+            #7665b8,
+            #cdb9ff
         );
 
-    color: #eeeaff;
+    color:
+        #100d25;
 
-    font-family: Georgia, serif;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    font-size: 0.82rem;
+    font-size:
+        0.85rem;
 
-    letter-spacing: 1.5px;
+    font-weight:
+        bold;
 
-    cursor: pointer;
+    letter-spacing:
+        2px;
+
+    cursor:
+        pointer;
 
     transition:
         transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.login-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(160,140,220,0.25);
+}
+
+
+.login-button:disabled {
+
+    cursor:
+        default;
+
+    opacity:
+        0.65;
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* =========================
+   SWITCH
+========================= */
+
+.switch-area {
+
+    margin-top:
+        25px;
+
+    padding-top:
+        22px;
+
+    border-top:
+        1px solid
+        #39345e;
+
+    color:
+        #aaa0e6;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.7;
+}
+
+
+.switch-button {
+
+    margin-top:
+        8px;
+
+    padding:
+        8px
+        15px;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius:
+        20px;
+
+    background:
+        transparent;
+
+    color:
+        #ddd7ff;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        0.78rem;
+
+    letter-spacing:
+        1px;
+
+    cursor:
+        pointer;
+
+    transition:
         background 0.2s ease,
         border-color 0.2s ease;
 }
 
 
-.music-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    background:
-        linear-gradient(
-            90deg,
-            #393064,
-            #4a3f78
-        );
-
-    border-color:
-        #c8bdff;
-}
-
-
-.music-button:disabled {
-
-    cursor: default;
-
-    transform: none;
-
-    opacity: 0.8;
-}
-
-
-.music-button.discovered {
-
-    border-color:
-        #70698f;
-
-    background:
-        #211e3d;
-
-    color:
-        #aaa0e6;
-}
-
-
-.music-message {
-
-    min-height: 20px;
-
-    margin-top: 12px;
-
-    color: #c8bdff;
-
-    font-size: 0.78rem;
-
-    letter-spacing: 1px;
-
-    line-height: 1.5;
-
-    text-align: center;
-}
-
-
-/* =========================
-   EXPLORE BUTTON
-========================= */
-
-.explore-button {
-
-    display: inline-block;
-
-    margin-top: 15px;
-
-    padding:
-        9px
-        18px;
-
-    border:
-        1px solid
-        #8f84c9;
-
-    border-radius: 25px;
-
-    color: #ddd7ff;
-
-    text-decoration: none;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.explore-button:hover {
+.switch-button:hover {
 
     background:
         #29264b;
 
     border-color:
-        #c8bdff;
-
-    transform:
-        translateY(-2px);
+        #8f84c9;
 }
 
 
 /* =========================
-   DASHBOARD
+   STATUS
 ========================= */
 
-.dashboard {
+.status {
 
-    display: grid;
+    min-height:
+        24px;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    margin-top:
+        20px;
 
-    gap: 18px;
+    color:
+        #c8bdff;
+
+    font-size:
+        0.8rem;
+
+    line-height:
+        1.6;
 }
 
 
-.dashboard-card {
+.status.error {
 
-    background: #1d1a3d;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    transition: 0.2s;
-
-    text-decoration: none;
-
-    color: inherit;
+    color:
+        #d9a7b5;
 }
 
 
-.dashboard-card:hover {
+.status.success {
 
-    transform:
-        translateY(-3px);
-
-    background:
-        #242047;
+    color:
+        #cdb9ff;
 }
 
 
-.dashboard-card .icon {
+/* =========================
+   BACK LINK
+========================= */
 
-    font-size: 2rem;
+.back-link {
 
-    margin-bottom: 12px;
+    display:
+        inline-block;
+
+    margin-top:
+        25px;
+
+    color:
+        #aaa0e6;
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.78rem;
+
+    letter-spacing:
+        1px;
 }
 
 
-.dashboard-card h3 {
+.back-link:hover {
 
-    margin:
-        8px 0;
-
-    color: #ddd7ff;
-
-    letter-spacing: 1px;
-}
-
-
-.dashboard-card p {
-
-    color: #c4c1d7;
-
-    line-height: 1.7;
-
-    margin-bottom: 0;
+    color:
+        #eeeaff;
 }
 
 
@@ -858,17 +490,23 @@ h1 {
 
 footer {
 
-    text-align: center;
+    text-align:
+        center;
 
-    margin-top: 55px;
+    margin-top:
+        30px;
 
-    color: #77739e;
+    color:
+        #77739e;
 
-    font-size: 0.75rem;
+    font-size:
+        0.7rem;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 
-    line-height: 2;
+    line-height:
+        2;
 }
 
 
@@ -876,15 +514,23 @@ footer {
    MOBILE
 ========================= */
 
-@media (max-width: 650px) {
+@media (max-width: 500px) {
 
-    .dashboard,
-    .points-grid,
-    .journey-items {
+    body {
 
-        grid-template-columns:
-            1fr;
+        align-items:
+            flex-start;
 
+        padding-top:
+            35px;
+    }
+
+
+    .login-card {
+
+        padding:
+            30px
+            22px;
     }
 
 
@@ -892,27 +538,9 @@ footer {
 
         font-size:
             1.8rem;
-    }
 
-
-    .rank-name {
-
-        font-size:
-            1.6rem;
-    }
-
-
-    .points-title {
-
-        font-size:
-            1.5rem;
-    }
-
-
-    .journey-count {
-
-        font-size:
-            1.4rem;
+        letter-spacing:
+            3px;
     }
 
 }
@@ -924,6 +552,7 @@ footer {
 
 <body>
 
+
 <div class="container">
 
 
@@ -934,43 +563,15 @@ AETHERVERSE
 </div>
 
 
-<nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="universe.html">
-HALO Universe
-</a>
-
-<a href="members.html">
-Members
-</a>
-
-<a href="codex.html">
-Codex
-</a>
-
-<a href="community.html">
-Community
-</a>
-
-</nav>
-
-</header>
-
-
-
-<section class="hero">
-
 <div class="symbol">
 ✦
 </div>
 
+
 <h1>
-MY HALO
+HALO
 </h1>
+
 
 <p class="subtitle">
 
@@ -978,557 +579,151 @@ Your place among the seven stars.
 
 <br>
 
-Welcome back to the AETHER universe.
+Enter the AETHER universe.
 
 </p>
 
-</section>
+</header>
 
 
 
-<section class="halo-card welcome">
+<section class="login-card">
 
-<div style="font-size: 2.5rem;">
-💜
-</div>
 
-<h2>
+<div
+id="cardTitle"
+class="card-title">
+
 WELCOME BACK, HALO
-</h2>
 
-<p>
-Your journey through AETHER continues.
-</p>
+</div>
 
-<p
-class="email"
-id="haloEmail">
-</p>
 
-</section>
+<div
+id="cardDescription"
+class="card-description">
+
+Sign in to continue your journey
+through AETHER.
+
+</div>
 
 
 
 <!-- =========================
-     HALO RANK
+     FORM
 ========================= -->
 
-<section class="rank-card">
+<form
+id="authForm">
 
-<div class="rank-label">
-✦ YOUR HALO RANK ✦
+
+<div class="form-group">
+
+<label for="email">
+EMAIL
+</label>
+
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+autocomplete="email"
+required>
+
 </div>
+
+
+
+<div class="form-group">
+
+<label for="password">
+PASSWORD
+</label>
+
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+autocomplete="current-password"
+required>
+
+</div>
+
 
 
 <div
-class="rank-name"
-id="rankName">
+id="confirmGroup"
+class="form-group"
+style="display:none;">
 
-LOADING...
-
-</div>
-
-
-<div
-class="rank-points"
-id="rankPoints">
-
-0 / 250 POINTS
-
-</div>
+<label for="confirmPassword">
+CONFIRM PASSWORD
+</label>
 
 
-<div class="progress-container">
-
-<div
-class="progress-bar"
-id="progressBar">
-</div>
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm your password"
+autocomplete="new-password">
 
 </div>
 
-
-<div
-class="progress-text"
-id="progressText">
-
-Loading your journey...
-
-</div>
-
-
-<div
-class="next-rank"
-id="nextRank">
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     AETHER JOURNEY
-========================= -->
-
-<section class="journey-card">
-
-<div class="journey-label">
-✦ YOUR AETHER JOURNEY ✦
-</div>
-
-
-<div
-class="journey-count"
-id="journeyCount">
-
-LOADING...
-
-</div>
-
-
-<div class="journey-container">
-
-<div
-class="journey-bar"
-id="journeyBar">
-</div>
-
-</div>
-
-
-<div
-class="journey-summary"
-id="journeySummary">
-
-Loading your discoveries...
-
-</div>
-
-
-<div class="journey-items">
-
-
-<div class="journey-item">
-
-<div class="journey-item-title">
-📖 CODEX
-</div>
-
-<div
-class="journey-item-status"
-id="journeyCodex">
-
-Loading...
-</div>
-
-</div>
-
-
-<div class="journey-item">
-
-<div class="journey-item-title">
-🎵 MUSIC
-</div>
-
-<div
-class="journey-item-status"
-id="journeyMusic">
-
-Loading...
-</div>
-
-</div>
-
-
-<div class="journey-item">
-
-<div class="journey-item-title">
-🌟 YOUR STAR
-</div>
-
-<div
-class="journey-item-status"
-id="journeyStar">
-
-Loading...
-</div>
-
-</div>
-
-
-<div class="journey-item">
-
-<div class="journey-item-title">
-📡 TRANSMISSIONS
-</div>
-
-<div
-class="journey-item-status"
-id="journeyTransmission">
-
-COMING SOON
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     EARN STAR POINTS
-========================= -->
-
-<section class="points-section">
-
-
-<div class="points-title">
-✦ EARN STAR POINTS ✦
-</div>
-
-
-<div class="points-description">
-
-Discover AETHER, explore the universe
-and collect Star Points along the way.
-
-<br>
-
-Every memory brings you closer to the next star.
-
-</div>
-
-
-
-<div class="points-grid">
-
-
-
-<!-- =========================
-     MUSIC
-========================= -->
-
-<div class="points-card">
-
-<div class="points-icon">
-🎵
-</div>
-
-<h3>
-AETHER MUSIC
-</h3>
-
-<p>
-Discover an AETHER song and let the stars speak.
-</p>
-
-<span class="points-value">
-+5 STAR POINTS
-</span>
 
 
 <button
-id="musicDiscoveryButton"
-class="music-button">
+type="submit"
+id="authButton"
+class="login-button">
 
-✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS
+✦ ENTER AETHER
 
 </button>
 
 
+</form>
+
+
+
 <div
-id="musicMessage"
-class="music-message">
+id="status"
+class="status">
 </div>
 
+
+
+<div class="switch-area">
+
+<div id="switchText">
+
+New to the AETHERVERSE?
+
 </div>
 
 
+<button
+type="button"
+id="switchButton"
+class="switch-button">
 
-<!-- =========================
-     CODEX
-========================= -->
+CREATE YOUR HALO
 
-<div class="points-card">
+</button>
 
-<div class="points-icon">
-📖
 </div>
 
-<h3>
-THE CODEX
-</h3>
-
-<p>
-Explore the lore, worlds and secrets of AETHER.
-</p>
-
-<span class="points-value">
-+5 STAR POINTS
-</span>
 
 
 <a
-href="codex.html"
-class="explore-button">
+href="index.html"
+class="back-link">
 
-✦ EXPLORE CODEX
-
-</a>
-
-</div>
-
-
-
-<!-- =========================
-     TRANSMISSIONS
-========================= -->
-
-<div class="points-card">
-
-<div class="points-icon">
-📡
-</div>
-
-<h3>
-TRANSMISSIONS
-</h3>
-
-<p>
-Receive signals and fragments from the AETHER universe.
-</p>
-
-<span class="points-value">
-+10 STAR POINTS
-</span>
-
-<div class="points-status">
-COMING WITH TRANSMISSIONS
-</div>
-
-</div>
-
-
-
-<!-- =========================
-     COMMUNITY
-========================= -->
-
-<div class="points-card">
-
-<div class="points-icon">
-💬
-</div>
-
-<h3>
-COMMUNITY
-</h3>
-
-<p>
-Take part in the HALO community and connect with AETHER.
-</p>
-
-<span class="points-value">
-+10 STAR POINTS
-</span>
-
-
-<a
-href="community.html"
-class="explore-button">
-
-✦ ENTER COMMUNITY
+← RETURN TO AETHERVERSE
 
 </a>
-
-</div>
-
-
-
-<!-- =========================
-     PUZZLES
-========================= -->
-
-<div class="points-card">
-
-<div class="points-icon">
-🧩
-</div>
-
-<h3>
-PUZZLES & EVENTS
-</h3>
-
-<p>
-Solve mysteries and discover hidden pieces of the universe.
-</p>
-
-<span class="points-value">
-+15 STAR POINTS
-</span>
-
-<div class="points-status">
-COMING WITH EVENTS
-</div>
-
-</div>
-
-
-
-<!-- =========================
-     SPECIAL
-========================= -->
-
-<div class="points-card">
-
-<div class="points-icon">
-🌟
-</div>
-
-<h3>
-SPECIAL CHALLENGES
-</h3>
-
-<p>
-Take part in special HALO challenges and limited experiences.
-</p>
-
-<span class="points-value">
-+25 STAR POINTS
-</span>
-
-<div class="points-status">
-SPECIAL EVENTS ONLY
-</div>
-
-</div>
-
-
-
-</div>
-
-</section>
-
-
-
-<!-- =========================
-     DASHBOARD
-========================= -->
-
-<section class="dashboard">
-
-
-<a
-href="your-star.html"
-class="dashboard-card">
-
-<div class="icon">
-🌟
-</div>
-
-<h3>
-YOUR STAR
-</h3>
-
-<p>
-Discover your connection to one of the seven stars of AETHER.
-</p>
-
-</a>
-
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-🪽
-</div>
-
-<h3>
-MY PROFILE
-</h3>
-
-<p>
-Your HALO identity, memories and personal AETHER journey.
-</p>
-
-</div>
-
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-📡
-</div>
-
-<h3>
-TRANSMISSIONS
-</h3>
-
-<p>
-Messages, signals and fragments from the AETHER universe.
-</p>
-
-</div>
-
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-🏆
-</div>
-
-<h3>
-RANK & ACHIEVEMENTS
-</h3>
-
-<p>
-Your HALO rank and the memories you have unlocked.
-</p>
-
-</div>
-
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-💫
-</div>
-
-<h3>
-MEMORY ARCHIVE
-</h3>
-
-<p>
-A place for the moments discovered throughout your journey.
-</p>
-
-</div>
-
-
-
-<div class="dashboard-card">
-
-<div class="icon">
-🎖️
-</div>
-
-<h3>
-ACHIEVEMENTS
-</h3>
-
-<p>
-Collect milestones as you explore the seven worlds.
-</p>
-
-</div>
-
 
 
 </section>
@@ -1559,6 +754,11 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 <script>
 
+
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
@@ -1574,575 +774,297 @@ window.supabase.createClient(
 );
 
 
-/* =========================
-   HALO RANKS
-========================= */
-
-const ranks = [
-
-    {
-        name: "NEW HALO",
-        min: 0
-    },
-
-    {
-        name: "AWAKENED HALO",
-        min: 250
-    },
-
-    {
-        name: "RISING HALO",
-        min: 750
-    },
-
-    {
-        name: "RADIANT HALO",
-        min: 1500
-    },
-
-    {
-        name: "STELLAR HALO",
-        min: 3000
-    },
-
-    {
-        name: "CELESTIAL HALO",
-        min: 5500
-    },
-
-    {
-        name: "LEGENDARY HALO",
-        min: 10000
-    },
-
-    {
-        name: "ETERNAL HALO",
-        min: 15000
-    },
-
-    {
-        name: "PRESTIGE HALO",
-        min: 25000
-    },
-
-    {
-        name: "EIGHT",
-        min: 50000
-    }
-
-];
-
 
 /* =========================
-   DISPLAY RANK
+   ELEMENTS
 ========================= */
 
-function displayRank(points) {
-
-    let currentRank =
-        ranks[0];
-
-    let nextRank =
-        null;
+const authForm =
+document.getElementById(
+    "authForm"
+);
 
 
-    for (
-        let i = 0;
-        i < ranks.length;
-        i++
-    ) {
-
-        if (
-            points >=
-            ranks[i].min
-        ) {
-
-            currentRank =
-                ranks[i];
-
-            nextRank =
-                ranks[i + 1] ||
-                null;
-
-        }
-
-    }
+const emailInput =
+document.getElementById(
+    "email"
+);
 
 
-    document.getElementById(
-        "rankName"
-    ).textContent =
-        currentRank.name;
+const passwordInput =
+document.getElementById(
+    "password"
+);
 
 
-    if (!nextRank) {
-
-        document.getElementById(
-            "rankPoints"
-        ).textContent =
-            points.toLocaleString() +
-            " POINTS";
-
-        document.getElementById(
-            "progressBar"
-        ).style.width =
-            "100%";
-
-        document.getElementById(
-            "progressText"
-        ).textContent =
-            "✦ You have reached the eighth light. ✦";
-
-        document.getElementById(
-            "nextRank"
-        ).textContent =
-            "EIGHT • THE LIGHT BESIDE AETHER";
-
-        return;
-
-    }
+const confirmPasswordInput =
+document.getElementById(
+    "confirmPassword"
+);
 
 
-    const pointsIntoRank =
-        points -
-        currentRank.min;
+const confirmGroup =
+document.getElementById(
+    "confirmGroup"
+);
 
 
-    const pointsNeeded =
-        nextRank.min -
-        currentRank.min;
+const authButton =
+document.getElementById(
+    "authButton"
+);
 
 
-    const percentage =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                (
-                    pointsIntoRank /
-                    pointsNeeded
-                ) * 100
-            )
-        );
+const switchButton =
+document.getElementById(
+    "switchButton"
+);
 
 
-    document.getElementById(
-        "rankPoints"
-    ).textContent =
-
-        points.toLocaleString() +
-        " / " +
-        nextRank.min.toLocaleString() +
-        " POINTS";
+const switchText =
+document.getElementById(
+    "switchText"
+);
 
 
-    document.getElementById(
-        "progressBar"
-    ).style.width =
-        percentage + "%";
+const cardTitle =
+document.getElementById(
+    "cardTitle"
+);
 
 
-    const remaining =
-        nextRank.min -
-        points;
+const cardDescription =
+document.getElementById(
+    "cardDescription"
+);
 
 
-    document.getElementById(
-        "progressText"
-    ).textContent =
-
-        remaining.toLocaleString() +
-        " points until " +
-        nextRank.name;
+const status =
+document.getElementById(
+    "status"
+);
 
 
-    document.getElementById(
-        "nextRank"
-    ).textContent =
 
-        "Next rank: " +
-        nextRank.name;
+/* =========================
+   MODE
+========================= */
+
+let isSignupMode =
+false;
+
+
+
+/* =========================
+   REDIRECT
+========================= */
+
+function goToHaloHome() {
+
+    window.location.replace(
+        "halo-home.html"
+    );
 
 }
 
 
+
 /* =========================
-   LOAD JOURNEY
+   SHOW STATUS
 ========================= */
 
-async function loadJourney(userId) {
+function showStatus(
+    message,
+    type = ""
+) {
 
-    const journeyCount =
-        document.getElementById(
-            "journeyCount"
+    status.textContent =
+        message;
+
+    status.className =
+        "status";
+
+    if (type) {
+
+        status.classList.add(
+            type
         );
-
-    const journeyBar =
-        document.getElementById(
-            "journeyBar"
-        );
-
-    const journeySummary =
-        document.getElementById(
-            "journeySummary"
-        );
-
-    const journeyCodex =
-        document.getElementById(
-            "journeyCodex"
-        );
-
-    const journeyMusic =
-        document.getElementById(
-            "journeyMusic"
-        );
-
-    const journeyStar =
-        document.getElementById(
-            "journeyStar"
-        );
-
-
-    try {
-
-        const {
-            data: events,
-            error
-        } =
-        await supabaseClient
-
-            .from(
-                "halo_point_events"
-            )
-
-            .select(
-                "action_key, action_type, points"
-            )
-
-            .eq(
-                "user_id",
-                userId
-            );
-
-
-        if (error) {
-
-            console.error(
-                "JOURNEY ERROR:",
-                error
-            );
-
-            journeyCount.textContent =
-                "JOURNEY ERROR";
-
-            journeySummary.textContent =
-                "Could not load your discoveries.";
-
-            return;
-
-        }
-
-
-        const allEvents =
-            events || [];
-
-
-        const codexKeys =
-            new Set();
-
-
-        allEvents.forEach(
-            event => {
-
-                if (
-                    typeof event.action_type === "string" &&
-                    event.action_type.startsWith("codex_")
-                ) {
-
-                    codexKeys.add(
-                        event.action_type
-                    );
-
-                }
-
-            }
-        );
-
-
-        const codexDiscovered =
-            codexKeys.size;
-
-
-        const totalCodex =
-            Math.max(
-                25,
-                codexDiscovered
-            );
-
-
-        const codexPoints =
-            allEvents
-
-                .filter(
-                    event =>
-                        typeof event.action_type ===
-                        "string"
-                        &&
-                        event.action_type.startsWith(
-                            "codex_"
-                        )
-                )
-
-                .reduce(
-                    (
-                        total,
-                        event
-                    ) =>
-                        total +
-                        Number(
-                            event.points || 0
-                        ),
-                    0
-                );
-
-
-        const musicDiscovered =
-            allEvents.some(
-                event =>
-                    event.action_type ===
-                    "music_break_the_bubble"
-            );
-
-
-        const starDiscovered =
-            allEvents.some(
-                event =>
-                    event.action_type ===
-                    "your_star"
-            );
-
-
-        let discoveryCount =
-            codexDiscovered;
-
-
-        if (musicDiscovered) {
-            discoveryCount++;
-        }
-
-
-        if (starDiscovered) {
-            discoveryCount++;
-        }
-
-
-        const totalDiscoveries =
-            totalCodex + 2;
-
-
-        const journeyPercentage =
-            Math.min(
-                100,
-                (
-                    discoveryCount /
-                    totalDiscoveries
-                ) * 100
-            );
-
-
-        journeyCount.textContent =
-
-            discoveryCount +
-            " / " +
-            totalDiscoveries +
-            " DISCOVERIES";
-
-
-        journeyBar.style.width =
-
-            journeyPercentage +
-            "%";
-
-
-        journeyCodex.textContent =
-
-            codexDiscovered +
-            " / " +
-            totalCodex +
-            " DISCOVERED • " +
-            codexPoints +
-            " POINTS";
-
-
-        if (
-            musicDiscovered
-        ) {
-
-            journeyMusic.textContent =
-                "BREAK THE BUBBLE • DISCOVERED ✓";
-
-            journeyMusic.classList.add(
-                "discovered"
-            );
-
-        }
-
-        else {
-
-            journeyMusic.textContent =
-                "BREAK THE BUBBLE • NOT YET DISCOVERED";
-
-        }
-
-
-        if (
-            starDiscovered
-        ) {
-
-            journeyStar.textContent =
-                "YOUR STAR • DISCOVERED ✓";
-
-            journeyStar.classList.add(
-                "discovered"
-            );
-
-        }
-
-        else {
-
-            journeyStar.textContent =
-                "YOUR STAR • NOT YET DISCOVERED";
-
-        }
-
-
-        journeySummary.innerHTML =
-
-            codexDiscovered +
-            " Codex memories discovered." +
-            "<br>" +
-
-            (
-                musicDiscovered
-                    ? "Break the Bubble has been discovered."
-                    : "Break the Bubble is waiting to be discovered."
-            ) +
-            "<br>" +
-
-            (
-                starDiscovered
-                    ? "Your Star has been discovered."
-                    : "Your Star is waiting to be discovered."
-            );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "JOURNEY LOAD ERROR:",
-            error
-        );
-
-        journeyCount.textContent =
-            "COULD NOT LOAD";
-
-        journeySummary.textContent =
-            "Could not load your AETHER journey.";
 
     }
 
 }
 
 
+
 /* =========================
-   MUSIC DISCOVERY
+   SWITCH MODE
 ========================= */
 
-async function discoverBreakTheBubble() {
+function updateAuthMode() {
 
-    const button =
-        document.getElementById(
-            "musicDiscoveryButton"
-        );
+    if (isSignupMode) {
 
-    const message =
-        document.getElementById(
-            "musicMessage"
-        );
+        cardTitle.textContent =
+            "CREATE YOUR HALO";
+
+        cardDescription.textContent =
+            "Create your HALO identity and begin your journey through AETHER.";
+
+        confirmGroup.style.display =
+            "block";
+
+        confirmPasswordInput.required =
+            true;
+
+        authButton.textContent =
+            "✦ CREATE HALO";
+
+        switchText.textContent =
+            "Already have a HALO account?";
+
+        switchButton.textContent =
+            "SIGN IN";
+
+    }
+
+    else {
+
+        cardTitle.textContent =
+            "WELCOME BACK, HALO";
+
+        cardDescription.textContent =
+            "Sign in to continue your journey through AETHER.";
+
+        confirmGroup.style.display =
+            "none";
+
+        confirmPasswordInput.required =
+            false;
+
+        authButton.textContent =
+            "✦ ENTER AETHER";
+
+        switchText.textContent =
+            "New to the AETHERVERSE?";
+
+        switchButton.textContent =
+            "CREATE YOUR HALO";
+
+    }
 
 
-    button.disabled =
-        true;
+    showStatus("");
 
-
-    button.textContent =
-        "DISCOVERING...";
-
-
-    message.textContent =
+    passwordInput.value =
         "";
 
+    confirmPasswordInput.value =
+        "";
+
+}
+
+
+
+switchButton.addEventListener(
+    "click",
+    function() {
+
+        isSignupMode =
+            !isSignupMode;
+
+        updateAuthMode();
+
+    }
+);
+
+
+
+/* =========================
+   CHECK EXISTING SESSION
+========================= */
+
+async function checkExistingSession() {
 
     try {
-
-        const {
-            data: { user },
-            error: userError
-        } =
-        await supabaseClient.auth.getUser();
-
-
-        if (
-            userError ||
-            !user
-        ) {
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
-            message.textContent =
-                "Please log in first.";
-
-            return;
-
-        }
-
 
         const {
             data,
             error
         } =
-        await supabaseClient.rpc(
-            "add_halo_points",
-            {
-                p_user_id:
-                    user.id,
-
-                p_action_key:
-                    "music_break_the_bubble"
-            }
-        );
+        await supabaseClient.auth.getSession();
 
 
         if (error) {
 
             console.error(
-                "MUSIC POINT ERROR:",
+                "HALO SESSION ERROR:",
                 error
             );
 
-            button.disabled =
-                false;
+            return;
 
-            button.textContent =
-                "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
+        }
 
-            message.textContent =
-                "Could not record this discovery.";
+
+        const session =
+            data &&
+            data.session
+                ? data.session
+                : null;
+
+
+        if (
+            session &&
+            session.user
+        ) {
+
+            goToHaloHome();
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "HALO SESSION CHECK ERROR:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   LOGIN / SIGNUP
+========================= */
+
+authForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            emailInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+        if (
+            !email ||
+            !password
+        ) {
+
+            showStatus(
+                "Please enter your email and password.",
+                "error"
+            );
 
             return;
 
@@ -2150,299 +1072,277 @@ async function discoverBreakTheBubble() {
 
 
         if (
-            Number(data) === 5
+            isSignupMode
         ) {
 
-            button.textContent =
-                "✓ BREAK THE BUBBLE DISCOVERED";
+            const confirmPassword =
+                confirmPasswordInput.value;
 
-            button.classList.add(
-                "discovered"
-            );
 
-            message.textContent =
-                "✦ +5 STAR POINTS • BREAK THE BUBBLE IS NOW PART OF YOUR JOURNEY. ✦";
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                showStatus(
+                    "Your passwords do not match.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            if (
+                password.length < 6
+            ) {
+
+                showStatus(
+                    "Your password must contain at least 6 characters.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        authButton.disabled =
+            true;
+
+
+        if (
+            isSignupMode
+        ) {
+
+            authButton.textContent =
+                "CREATING YOUR HALO...";
 
         }
 
         else {
 
-            button.textContent =
-                "✓ BREAK THE BUBBLE DISCOVERED";
-
-            button.classList.add(
-                "discovered"
-            );
-
-            message.textContent =
-                "This song is already part of your HALO journey.";
+            authButton.textContent =
+                "ENTERING AETHER...";
 
         }
 
 
-        await loadHaloData();
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "MUSIC DISCOVERY ERROR:",
-            error
-        );
-
-        button.disabled =
-            false;
-
-        button.textContent =
-            "✦ DISCOVER BREAK THE BUBBLE — +5 STAR POINTS";
-
-        message.textContent =
-            "Something went wrong. Please try again.";
-
-    }
-
-}
+        showStatus("");
 
 
-/* =========================
-   LOAD HALO DATA
-========================= */
-
-async function loadHaloData() {
-
-    try {
-
-        const {
-            data: { user },
-            error: userError
-        } =
-        await supabaseClient.auth.getUser();
+        try {
 
 
-        if (
-            userError ||
-            !user
-        ) {
+            /* =========================
+               SIGN UP
+            ========================= */
 
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "PLEASE LOG IN";
+            if (
+                isSignupMode
+            ) {
 
-            document.getElementById(
-                "rankPoints"
-            ).textContent =
-                "Your HALO session was not found.";
+                const {
+                    data,
+                    error
+                } =
+                await supabaseClient.auth.signUp(
+                    {
+                        email:
+                            email,
 
-            return;
-
-        }
-
-
-        const {
-            data: profile
-        } =
-        await supabaseClient
-
-            .from(
-                "halo_profiles"
-            )
-
-            .select(
-                "halo_id"
-            )
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .single();
-
-
-        if (profile) {
-
-            document.getElementById(
-                "haloEmail"
-            ).textContent =
-
-                "HALO ID: " +
-                profile.halo_id;
-
-        }
-
-
-        const {
-            data: pointsData,
-            error: pointsError
-        } =
-        await supabaseClient
-
-            .from(
-                "halo_points"
-            )
-
-            .select(
-                "points"
-            )
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .maybeSingle();
-
-
-        if (pointsError) {
-
-            console.error(
-                "POINTS ERROR:",
-                pointsError
-            );
-
-            return;
-
-        }
-
-
-        let points =
-            0;
-
-
-        if (
-            pointsData &&
-            pointsData.points !== null
-        ) {
-
-            points =
-                Number(
-                    pointsData.points
+                        password:
+                            password
+                    }
                 );
 
+
+                if (error) {
+
+                    console.error(
+                        "HALO SIGNUP ERROR:",
+                        error
+                    );
+
+                    showStatus(
+                        error.message,
+                        "error"
+                    );
+
+                    authButton.disabled =
+                        false;
+
+                    authButton.textContent =
+                        "✦ CREATE HALO";
+
+                    return;
+
+                }
+
+
+                /*
+                 * Supabase may require
+                 * email confirmation.
+                 */
+
+                if (
+                    data &&
+                    data.session
+                ) {
+
+                    showStatus(
+                        "✦ Your HALO has been created. Entering AETHER...",
+                        "success"
+                    );
+
+                    setTimeout(
+                        goToHaloHome,
+                        500
+                    );
+
+                    return;
+
+                }
+
+
+                showStatus(
+                    "✦ Your HALO has been created. Please check your email to confirm your account.",
+                    "success"
+                );
+
+
+                authButton.disabled =
+                    false;
+
+                authButton.textContent =
+                    "✦ CREATE HALO";
+
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               LOGIN
+            ========================= */
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient.auth.signInWithPassword(
+                {
+                    email:
+                        email,
+
+                    password:
+                        password
+                }
+            );
+
+
+            if (error) {
+
+                console.error(
+                    "HALO LOGIN ERROR:",
+                    error
+                );
+
+                showStatus(
+                    "Login failed. Please check your email and password.",
+                    "error"
+                );
+
+                authButton.disabled =
+                    false;
+
+                authButton.textContent =
+                    "✦ ENTER AETHER";
+
+                return;
+
+            }
+
+
+            if (
+                data &&
+                data.user
+            ) {
+
+                showStatus(
+                    "✦ Welcome back, HALO. Entering AETHER...",
+                    "success"
+                );
+
+
+                setTimeout(
+                    goToHaloHome,
+                    500
+                );
+
+                return;
+
+            }
+
+
+            showStatus(
+                "Could not start your HALO session. Please try again.",
+                "error"
+            );
+
+
+            authButton.disabled =
+                false;
+
+            authButton.textContent =
+                "✦ ENTER AETHER";
+
+
         }
 
+        catch (error) {
 
-        displayRank(
-            points
-        );
+            console.error(
+                "HALO AUTH ERROR:",
+                error
+            );
 
-
-        await loadJourney(
-            user.id
-        );
-
-
-        const {
-            data: musicEvents
-        } =
-        await supabaseClient
-
-            .from(
-                "halo_point_events"
-            )
-
-            .select(
-                "action_type"
-            )
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .eq(
-                "action_type",
-                "music_break_the_bubble"
-            )
-
-            .limit(1);
-
-
-        const musicButton =
-            document.getElementById(
-                "musicDiscoveryButton"
+            showStatus(
+                "Something went wrong. Please try again.",
+                "error"
             );
 
 
-        const musicMessage =
-            document.getElementById(
-                "musicMessage"
-            );
+            authButton.disabled =
+                false;
 
 
-        if (
-            musicEvents &&
-            musicEvents.length > 0
-        ) {
-
-            musicButton.textContent =
-                "✓ BREAK THE BUBBLE DISCOVERED";
-
-            musicButton.classList.add(
-                "discovered"
-            );
-
-            musicButton.disabled =
-                true;
-
-            musicMessage.textContent =
-                "This song is already part of your HALO journey. ✦";
+            authButton.textContent =
+                isSignupMode
+                    ? "✦ CREATE HALO"
+                    : "✦ ENTER AETHER";
 
         }
 
     }
+);
 
-    catch (error) {
-
-        console.error(
-            "HALO LOAD ERROR:",
-            error
-        );
-
-        document.getElementById(
-            "rankName"
-        ).textContent =
-            "COULD NOT LOAD";
-
-        document.getElementById(
-            "progressText"
-        ).textContent =
-            "Could not load your HALO journey.";
-
-    }
-
-}
 
 
 /* =========================
    START
 ========================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async function() {
+checkExistingSession();
 
-        const musicButton =
-            document.getElementById(
-                "musicDiscoveryButton"
-            );
-
-
-        musicButton.addEventListener(
-            "click",
-            discoverBreakTheBubble
-        );
-
-
-        await loadHaloData();
-
-    }
-);
 
 </script>
 
 </body>
 
-    </html>
+</html>
