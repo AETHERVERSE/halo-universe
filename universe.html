@@ -1,17 +1,222 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>HALO Universe — AETHER</title>  <style>  
+.worlds {  
+    margin: 70px auto;  
+    max-width: 1100px;  
+    text-align: center;  
+}  
   
+.worlds h2 {  
+    font-size: 2.2rem;  
+    letter-spacing: 3px;  
+    margin-bottom: 20px;  
+}  
   
+.worlds .intro {  
+    max-width: 700px;  
+    margin: 0 auto 45px;  
+    font-size: 1.1rem;  
+    line-height: 1.8;  
+    opacity: 0.9;  
+}  
   
+.world-grid {  
+    display: grid;  
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));  
+    gap: 25px;  
+}  
   
+.world-card {  
+    padding: 30px 25px;  
+    border: 1px solid rgba(255,255,255,0.25);  
+    border-radius: 24px;  
+    background: rgba(255,255,255,0.04);  
+    backdrop-filter: blur(8px);  
+    transition: transform 0.3s ease, border-color 0.3s ease;  
+}  
   
+.world-card:hover {  
+    transform: translateY(-6px);  
+    border-color: rgba(255,255,255,0.55);  
+}  
   
+.world-card h3 {  
+    margin-bottom: 15px;  
+    font-size: 1.35rem;  
+    letter-spacing: 2px;  
+}  
   
+.world-card p {  
+    margin: 0;  
+    line-height: 1.7;  
+    font-size: 0.98rem;  
+}  
+* {  
+    box-sizing: border-box;  
+}  
   
+body {  
+    margin: 0;  
+    min-height: 100vh;  
+    font-family: Georgia, "Times New Roman", serif;  
+    color: #f5edf8;  
   
-
+    background:  
+        radial-gradient(circle at 15% 10%, #29385c 0%, transparent 30%),  
+        radial-gradient(circle at 85% 20%, #43284d 0%, transparent 28%),  
+        linear-gradient(180deg, #070b18, #11172b, #211832);  
+}  
   
+.container {  
+    max-width: 1100px;  
+    margin: auto;  
+    padding: 20px;  
+}  
   
-
-<div class="logo">  
+header {  
+    text-align: center;  
+    padding: 45px 15px 30px;  
+}  
+  
+.logo {  
+    letter-spacing: 8px;  
+    color: #f2d58e;  
+    font-size: 0.9rem;  
+}  
+  
+h1 {  
+    font-size: clamp(2.6rem, 9vw, 5.2rem);  
+    letter-spacing: 8px;  
+    margin: 15px 0;  
+    color: #f2d58e;  
+}  
+  
+.subtitle {  
+    letter-spacing: 4px;  
+    color: #cdbbd9;  
+}  
+  
+nav {  
+    display: flex;  
+    flex-wrap: wrap;  
+    justify-content: center;  
+    gap: 10px;  
+    margin: 10px 0 40px;  
+}  
+  
+nav a {  
+    padding: 10px 17px;  
+    border: 1px solid #756486;  
+    border-radius: 30px;  
+    text-decoration: none;  
+    color: #d8cde0;  
+    background: rgba(255,255,255,0.03);  
+}  
+  
+nav a:hover {  
+    background: rgba(255,255,255,0.08);  
+    color: #f2d58e;  
+}  
+  
+.hero {  
+    text-align: center;  
+    padding: 60px 25px;  
+    border: 1px solid #756486;  
+    border-radius: 30px;  
+  
+    background: rgba(8,13,32,0.78);  
+  
+    box-shadow:  
+        0 0 50px rgba(205,177,255,0.15);  
+}  
+  
+.hero h2 {  
+    font-size: 2.4rem;  
+    color: #f2d58e;  
+    margin-top: 0;  
+}  
+  
+.hero p {  
+    max-width: 720px;  
+    margin: 20px auto;  
+    line-height: 1.8;  
+    color: #d8cde0;  
+}  
+  
+.grid {  
+    display: grid;  
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));  
+    gap: 18px;  
+    margin-top: 35px;  
+}  
+  
+.card {  
+    padding: 32px 22px;  
+    border: 1px solid #5e5774;  
+    border-radius: 22px;  
+  
+    background: rgba(255,255,255,0.035);  
+  
+    text-align: center;  
+  
+    transition: transform 0.2s, background 0.2s;  
+}  
+  
+.card:hover {  
+    transform: translateY(-4px);  
+    background: rgba(255,255,255,0.07);  
+}  
+  
+.icon {  
+    font-size: 2.6rem;  
+    margin-bottom: 12px;  
+}  
+  
+.card h3 {  
+    color: #f2d58e;  
+    letter-spacing: 2px;  
+}  
+  
+.card p {  
+    color: #c9bdd3;  
+    line-height: 1.6;  
+}  
+  
+.card a {  
+    display: inline-block;  
+    margin-top: 10px;  
+    color: #f2d58e;  
+    text-decoration: none;  
+}  
+  
+.card a:hover {  
+    text-decoration: underline;  
+}  
+  
+.quote {  
+    text-align: center;  
+    margin: 55px auto 20px;  
+    max-width: 700px;  
+  
+    color: #cdbbd9;  
+  
+    font-style: italic;  
+    line-height: 1.8;  
+}  
+  
+footer {  
+    text-align: center;  
+    padding: 55px 10px 25px;  
+  
+    color: #a99ab8;  
+  
+    letter-spacing: 2px;  
+    font-size: 0.75rem;  
+}  
+  
+</style>  </head>  <body>  <div class="container">  <header>  <div class="logo">  
     AETHER  
 </div>  
 
@@ -21,13 +226,9 @@
 
 <div class="subtitle">  
     SEVEN STARS. ONE LIGHT.  
-</div>  
+</div>
 
-
-  
-  
-
-<a href="/halo-universe/">Home</a>  
+</header>  <nav>  <a href="/halo-universe/">Home</a>  
 
 <a href="universe.html">  
     HALO Universe  
@@ -55,14 +256,9 @@
 
 <a href="achievements.html">  
     Achievements  
-</a>  
+</a>
 
-
-  
-
-  
-
-<h2>  
+</nav>  <section class="hero">  <h2>  
     Welcome to the Universe.  
 </h2>  
 
@@ -80,15 +276,9 @@
     Explore AETHER, uncover forgotten memories,  
     discover the seven worlds and follow the path  
     that connects the stars.  
-</p>  
+</p>
 
-
-
-  
-
-  
-
-<div class="card">  
+</section>  <section class="grid">  <div class="card">  
 
     <div class="icon">  
         👑  
@@ -124,14 +314,11 @@
     <p>  
         Explore worlds, Guardians, relics,  
         transmissions and hidden lore.  
-    </p>  
+    </p>
 
-
-  
+<a href="codex.html" style="color:#b9adff;text-decoration:none;">  
     Open the Codex →  
-  
-
-<div class="card">  
+</a>  <div class="card">  
 
     <div class="icon">  
         ⭐  
@@ -219,15 +406,9 @@
         View Achievements →  
     </a>  
 
-</div>  
+</div>
 
-
-
-  
-
-  
-
-<h2>✦ THE SEVEN WORLDS</h2>  
+</section>  <section class="worlds">  <h2>✦ THE SEVEN WORLDS</h2>  
 
 <p class="intro">  
     Seven worlds. Seven stars. Seven paths that were never  
@@ -298,31 +479,17 @@
         </p>  
     </div>  
 
-</div>  
+</div>
 
+</section>  
+<div class="quote">  “Somewhere beyond the stars,  
+seven lights are waiting to be found.”
 
-
-  
-
-  
-
-“Somewhere beyond the stars,  
-seven lights are waiting to be found.”  
-
-
-
-  
-  
-
-ONE LIGHT • SEVEN STARS • ENDLESS LOVE  
+</div>  <footer>  ONE LIGHT • SEVEN STARS • ENDLESS LOVE  
 
 <br><br>  
 
-#WEAREHALO • #WEAREAETHER  
+#WEAREHALO • #WEAREAETHER
 
-
-  
-
-  
-  
-
+</footer>  </div>  </body>  
+</html>
