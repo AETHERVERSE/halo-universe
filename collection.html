@@ -246,9 +246,9 @@ h1 {
 
     border-radius: 999px;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.3px;
 
     cursor: pointer;
 
@@ -303,14 +303,6 @@ h1 {
 .status.error {
 
     color: #ff8d8d;
-
-    opacity: 1;
-}
-
-
-.status.success {
-
-    color: #d9d0ff;
 
     opacity: 1;
 }
@@ -554,6 +546,21 @@ h1 {
     }
 
 
+    .filters {
+
+        gap: 8px;
+    }
+
+
+    .filter-button {
+
+        padding:
+            9px 12px;
+
+        font-size: 9px;
+    }
+
+
     .collection-grid {
 
         grid-template-columns: 1fr;
@@ -633,8 +640,8 @@ h1 {
 
 
     <p>
-        The memories, stories and special moments you have
-        discovered throughout the AETHERVERSE.
+        Every memory you discover becomes part of your
+        personal AETHERVERSE archive.
     </p>
 
 </section>
@@ -648,7 +655,7 @@ h1 {
     id="collectionCounter"
     class="collection-counter">
 
-    0 / 8 COLLECTION ITEMS
+    0 / 91 DISCOVERIES
 
 </div>
 
@@ -679,6 +686,15 @@ h1 {
 
     <button
         class="filter-button"
+        data-filter="EVERYDAY AETHER">
+
+        EVERYDAY AETHER
+
+    </button>
+
+
+    <button
+        class="filter-button"
         data-filter="BONDS">
 
         BONDS
@@ -688,18 +704,36 @@ h1 {
 
     <button
         class="filter-button"
-        data-filter="STORIES">
+        data-filter="FAMILY">
 
-        STORIES
+        FAMILY
 
     </button>
 
 
     <button
         class="filter-button"
-        data-filter="MEMORIES">
+        data-filter="CHILDHOOD">
 
-        MEMORIES
+        CHILDHOOD
+
+    </button>
+
+
+    <button
+        class="filter-button"
+        data-filter="UNTOLD STORIES">
+
+        UNTOLD STORIES
+
+    </button>
+
+
+    <button
+        class="filter-button"
+        data-filter="SCRAPBOOK">
+
+        SCRAPBOOK
 
     </button>
 
@@ -709,15 +743,6 @@ h1 {
         data-filter="HIDDEN">
 
         HIDDEN
-
-    </button>
-
-
-    <button
-        class="filter-button"
-        data-filter="SPECIAL">
-
-        SPECIAL
 
     </button>
 
@@ -762,7 +787,7 @@ const SUPABASE_KEY =
     "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
 
-const db =
+const supabaseClient =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
@@ -770,10 +795,28 @@ const db =
 
 
 // ======================================================
-// CONSTANTS
+// CATEGORIES
 // ======================================================
 
-const TOTAL_COLLECTION_ITEMS = 8;
+const CATEGORIES = [
+
+    "BACKSTAGE",
+
+    "EVERYDAY AETHER",
+
+    "BONDS",
+
+    "FAMILY",
+
+    "CHILDHOOD",
+
+    "UNTOLD STORIES",
+
+    "SCRAPBOOK",
+
+    "HIDDEN"
+
+];
 
 
 // ======================================================
@@ -783,6 +826,16 @@ const TOTAL_COLLECTION_ITEMS = 8;
 let currentUser = null;
 
 let collectionItems = [];
+
+let categoryProgress = {};
+
+let overallProgress = {
+
+    discovered: 0,
+
+    total: 91
+
+};
 
 let currentFilter = "ALL";
 
@@ -822,7 +875,7 @@ const logoutButton =
 
 
 // ======================================================
-// AUTH CHECK
+// AUTH
 // ======================================================
 
 async function checkSession() {
@@ -831,34 +884,20 @@ async function checkSession() {
         data,
         error
     } =
-    await db.auth.getSession();
+    await supabaseClient.auth.getSession();
 
 
-    if (error) {
-
-        console.error(
-            "Session error:",
-            error
-        );
-
+    if (
+        error ||
+        !data.session
+    ) {
 
         window.location.replace(
             "halo.html"
         );
 
+        return null;
 
-        return;
-    }
-
-
-    if (!data.session) {
-
-        window.location.replace(
-            "halo.html"
-        );
-
-
-        return;
     }
 
 
@@ -866,7 +905,91 @@ async function checkSession() {
         data.session.user;
 
 
-    await loadCollection();
+    return data.session;
+
+}
+
+
+// ======================================================
+// LOAD CATEGORY
+// ======================================================
+
+async function loadCategory(
+    category
+) {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "get_explore_category_items",
+        {
+            p_category:
+                category
+        }
+    );
+
+
+    if (error) {
+
+        console.error(
+            "COLLECTION CATEGORY ERROR:",
+            category,
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    return data || [];
+
+}
+
+
+// ======================================================
+// LOAD OVERALL
+// ======================================================
+
+async function loadOverall() {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "get_explore_overall_progress"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "COLLECTION OVERALL ERROR:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    overallProgress = {
+
+        discovered:
+            Number(
+                data?.discovered || 0
+            ),
+
+        total:
+            Number(
+                data?.total || 91
+            )
+
+    };
+
 }
 
 
@@ -881,63 +1004,85 @@ async function loadCollection() {
     );
 
 
-    /*
-      IMPORTANT:
+    try {
 
-      The collection is determined ONLY by
-      aether_collection_ownership.
+        await loadOverall();
 
-      user_id = current HALO.
 
-      This means one HALO can never see another
-      HALO's private collection through this query.
-    */
+        const results =
+            await Promise.all(
+                CATEGORIES.map(
+                    category =>
+                        loadCategory(
+                            category
+                        )
+                )
+            );
 
-    const {
-        data,
-        error
-    } =
-    await db
 
-        .from(
-            "aether_collection_ownership"
-        )
+        collectionItems = [];
 
-        .select(`
-            id,
-            acquired_at,
-            source_type,
-            source_key,
-            visibility,
-            aether_collection_items (
-                id,
-                title,
-                description,
+        categoryProgress = {};
+
+
+        CATEGORIES.forEach(
+            (
                 category,
-                content_type,
-                content_data,
-                is_active,
-                created_at
-            )
-        `)
+                index
+            ) => {
 
-        .eq(
-            "user_id",
-            currentUser.id
-        )
+                const items =
+                    results[index] || [];
 
-        .order(
-            "acquired_at",
-            {
-                ascending: false
+
+                const discoveredItems =
+                    items.filter(
+                        item =>
+                            item.status ===
+                            "discovered"
+                    );
+
+
+                categoryProgress[
+                    category
+                ] = {
+
+                    discovered:
+                        discoveredItems.length,
+
+                    total:
+                        items.length
+
+                };
+
+
+                discoveredItems.forEach(
+                    item => {
+
+                        collectionItems.push(
+                            {
+                                ...item,
+
+                                collection_category:
+                                    category
+                            }
+                        );
+
+                    }
+                );
+
             }
         );
 
 
-    if (error) {
+        updateCollectionCounter();
+
+        renderCollection();
+
+    } catch (error) {
 
         console.error(
-            "Collection error:",
+            "COLLECTION LOAD ERROR:",
             error
         );
 
@@ -950,46 +1095,61 @@ async function loadCollection() {
 
         collectionContainer.innerHTML = "";
 
-        return;
     }
 
-
-    /*
-      Only active collection items are displayed.
-    */
-
-    collectionItems =
-        (data || [])
-            .filter(
-                ownership => {
-
-                    const item =
-                        ownership
-                            .aether_collection_items;
-
-                    return (
-                        item &&
-                        item.is_active === true
-                    );
-
-                }
-            );
-
-
-    updateCollectionCounter();
-
-    renderCollection();
 }
 
 
 // ======================================================
-// COLLECTION COUNTER
+// COUNTER
 // ======================================================
 
 function updateCollectionCounter() {
 
     collectionCounter.textContent =
-        `${collectionItems.length} / ${TOTAL_COLLECTION_ITEMS} COLLECTION ITEMS`;
+
+        `${overallProgress.discovered} / ${overallProgress.total} DISCOVERIES`;
+
+}
+
+
+// ======================================================
+// FILTER LABEL
+// ======================================================
+
+function getFilterProgress(
+    filter
+) {
+
+    if (
+        filter === "ALL"
+    ) {
+
+        return {
+
+            discovered:
+                overallProgress.discovered,
+
+            total:
+                overallProgress.total
+
+        };
+
+    }
+
+
+    return (
+        categoryProgress[
+            filter
+        ] || {
+
+            discovered: 0,
+
+            total: 0
+
+        }
+    );
+
 }
 
 
@@ -1000,44 +1160,59 @@ function updateCollectionCounter() {
 function renderCollection() {
 
     const filteredItems =
+
         currentFilter === "ALL"
 
             ? collectionItems
 
             : collectionItems.filter(
-                ownership => {
-
-                    const item =
-                        ownership
-                            .aether_collection_items;
-
-
-                    return (
-                        item.category ===
-                        currentFilter
-                    );
-
-                }
+                item =>
+                    item.collection_category ===
+                    currentFilter
             );
+
+
+    const progress =
+        getFilterProgress(
+            currentFilter
+        );
+
+
+    /*
+     * Show the category progress
+     * directly above the memories.
+     */
+
+    collectionCounter.textContent =
+
+        `${progress.discovered} / ${progress.total} DISCOVERIES`;
 
 
     // --------------------------------------------------
     // EMPTY
     // --------------------------------------------------
 
-    if (!filteredItems.length) {
+    if (
+        !filteredItems.length
+    ) {
 
         collectionContainer.innerHTML = `
 
             <div class="empty-state">
 
                 <h2>
-                    NOTHING HERE YET
+                    ${progress.discovered === 0
+                        ? "NOTHING HERE YET"
+                        : "NO MEMORIES IN THIS VIEW"
+                    }
                 </h2>
 
                 <p>
-                    Your AETHERVERSE collection is waiting
-                    for its first memory.
+                    ${
+                        progress.discovered === 0
+                            ? "Your AETHERVERSE collection is waiting for its first discovery."
+                            : "Your discovered memories will appear here."
+                    }
                 </p>
 
             </div>
@@ -1045,19 +1220,13 @@ function renderCollection() {
         `;
 
 
-        if (collectionItems.length > 0) {
+        setStatus(
+            `${progress.discovered} / ${progress.total} discovered`
+        );
 
-            setStatus(
-                `${collectionItems.length} collection item${collectionItems.length === 1 ? "" : "s"}`
-            );
-
-        } else {
-
-            setStatus("");
-
-        }
 
         return;
+
     }
 
 
@@ -1079,12 +1248,7 @@ function renderCollection() {
 
 
     filteredItems.forEach(
-        ownership => {
-
-            const item =
-                ownership
-                    .aether_collection_items;
-
+        item => {
 
             const card =
                 document.createElement(
@@ -1111,7 +1275,7 @@ function renderCollection() {
 
 
             category.textContent =
-                item.category;
+                item.collection_category;
 
 
             // --------------------------------------------------
@@ -1125,7 +1289,8 @@ function renderCollection() {
 
 
             title.textContent =
-                item.title;
+                item.title ||
+                "Hidden Memory";
 
 
             // --------------------------------------------------
@@ -1157,33 +1322,43 @@ function renderCollection() {
                 "card-meta";
 
 
-            const type =
+            const sequence =
                 document.createElement(
                     "span"
                 );
 
 
-            type.textContent =
-                item.content_type;
+            sequence.textContent =
+
+                item.sequence
+
+                    ? `STORY ${String(
+                        item.sequence
+                    ).padStart(
+                        2,
+                        "0"
+                    )}`
+
+                    : "DISCOVERED";
 
 
-            const visibility =
+            const status =
                 document.createElement(
                     "span"
                 );
 
 
-            visibility.textContent =
-                ownership.visibility;
+            status.textContent =
+                "DISCOVERED ✦";
 
 
             meta.appendChild(
-                type
+                sequence
             );
 
 
             meta.appendChild(
-                visibility
+                status
             );
 
 
@@ -1220,8 +1395,9 @@ function renderCollection() {
 
 
     setStatus(
-        `${filteredItems.length} collection item${filteredItems.length === 1 ? "" : "s"}`
+        `${progress.discovered} / ${progress.total} discovered`
     );
+
 }
 
 
@@ -1279,7 +1455,7 @@ logoutButton.addEventListener(
         const {
             error
         } =
-        await db.auth.signOut();
+        await supabaseClient.auth.signOut();
 
 
         if (error) {
@@ -1289,8 +1465,8 @@ logoutButton.addEventListener(
                 error
             );
 
-
             return;
+
         }
 
 
@@ -1327,7 +1503,21 @@ function setStatus(
 // START
 // ======================================================
 
-checkSession();
+async function initializeCollection() {
+
+    const session =
+        await checkSession();
+
+
+    if (!session) return;
+
+
+    await loadCollection();
+
+}
+
+
+initializeCollection();
 
 </script>
 
