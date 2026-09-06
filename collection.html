@@ -194,6 +194,25 @@ h1 {
 
 
 /* ======================================================
+   COLLECTION COUNTER
+====================================================== */
+
+.collection-counter {
+
+    text-align: center;
+
+    margin:
+        -15px 0 28px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.45;
+}
+
+
+/* ======================================================
    FILTERS
 ====================================================== */
 
@@ -622,6 +641,19 @@ h1 {
 
 
 <!-- ====================================================
+     COLLECTION COUNTER
+===================================================== -->
+
+<div
+    id="collectionCounter"
+    class="collection-counter">
+
+    0 / 8 COLLECTION ITEMS
+
+</div>
+
+
+<!-- ====================================================
      FILTERS
 ===================================================== -->
 
@@ -738,6 +770,13 @@ const db =
 
 
 // ======================================================
+// CONSTANTS
+// ======================================================
+
+const TOTAL_COLLECTION_ITEMS = 8;
+
+
+// ======================================================
 // STATE
 // ======================================================
 
@@ -761,6 +800,12 @@ const statusElement =
 const collectionContainer =
     document.getElementById(
         "collectionContainer"
+    );
+
+
+const collectionCounter =
+    document.getElementById(
+        "collectionCounter"
     );
 
 
@@ -836,6 +881,18 @@ async function loadCollection() {
     );
 
 
+    /*
+      IMPORTANT:
+
+      The collection is determined ONLY by
+      aether_collection_ownership.
+
+      user_id = current HALO.
+
+      This means one HALO can never see another
+      HALO's private collection through this query.
+    */
+
     const {
         data,
         error
@@ -891,20 +948,48 @@ async function loadCollection() {
         );
 
 
+        collectionContainer.innerHTML = "";
+
         return;
     }
 
 
+    /*
+      Only active collection items are displayed.
+    */
+
     collectionItems =
         (data || [])
             .filter(
-                ownership =>
-                    ownership
-                        .aether_collection_items
+                ownership => {
+
+                    const item =
+                        ownership
+                            .aether_collection_items;
+
+                    return (
+                        item &&
+                        item.is_active === true
+                    );
+
+                }
             );
 
 
+    updateCollectionCounter();
+
     renderCollection();
+}
+
+
+// ======================================================
+// COLLECTION COUNTER
+// ======================================================
+
+function updateCollectionCounter() {
+
+    collectionCounter.textContent =
+        `${collectionItems.length} / ${TOTAL_COLLECTION_ITEMS} COLLECTION ITEMS`;
 }
 
 
@@ -960,7 +1045,17 @@ function renderCollection() {
         `;
 
 
-        setStatus("");
+        if (collectionItems.length > 0) {
+
+            setStatus(
+                `${collectionItems.length} collection item${collectionItems.length === 1 ? "" : "s"}`
+            );
+
+        } else {
+
+            setStatus("");
+
+        }
 
         return;
     }
@@ -1001,7 +1096,9 @@ function renderCollection() {
                 "collection-card";
 
 
-            // Category
+            // --------------------------------------------------
+            // CATEGORY
+            // --------------------------------------------------
 
             const category =
                 document.createElement(
@@ -1017,7 +1114,9 @@ function renderCollection() {
                 item.category;
 
 
-            // Title
+            // --------------------------------------------------
+            // TITLE
+            // --------------------------------------------------
 
             const title =
                 document.createElement(
@@ -1029,7 +1128,9 @@ function renderCollection() {
                 item.title;
 
 
-            // Description
+            // --------------------------------------------------
+            // DESCRIPTION
+            // --------------------------------------------------
 
             const description =
                 document.createElement(
@@ -1042,7 +1143,9 @@ function renderCollection() {
                 "A discovered AETHER memory.";
 
 
-            // Meta
+            // --------------------------------------------------
+            // META
+            // --------------------------------------------------
 
             const meta =
                 document.createElement(
@@ -1084,7 +1187,9 @@ function renderCollection() {
             );
 
 
-            // Assemble
+            // --------------------------------------------------
+            // ASSEMBLE
+            // --------------------------------------------------
 
             card.appendChild(
                 category
