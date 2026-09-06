@@ -909,7 +909,13 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-const supabase =
+/*
+    Separate client variable.
+    This avoids a possible conflict with the
+    global window.supabase object from the CDN.
+*/
+
+const db =
     window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
@@ -1044,152 +1050,67 @@ function showError(message) {
 
 
 /* =========================================================
-   LOAD CARDS
+   ESCAPE HTML
 ========================================================= */
 
-async function loadCards() {
+function escapeHtml(value) {
 
-    const {
-        data,
-        error
-    } = await supabase
+    if (
+        value === null ||
+        value === undefined
+    ) {
 
-        .from("aether_cards")
-
-        .select(`
-            id,
-            card_number,
-            card_key,
-            set_key,
-            title,
-            description,
-            rarity,
-            image_url,
-            content_data
-        `)
-
-        .eq(
-            "is_active",
-            true
-        )
-
-        .order(
-            "card_number",
-            {
-                ascending: true
-            }
-        );
-
-
-    if (error) {
-
-        throw error;
+        return "";
 
     }
 
 
-    cards =
-        data || [];
+    return String(value)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
 /* =========================================================
-   LOAD OWNERSHIP
+   RARITY CLASS
 ========================================================= */
 
-async function loadOwnership() {
+function rarityClass(
+    rarity
+) {
 
-    const {
-        data,
-        error
-    } = await supabase
-
-        .from("aether_card_ownership")
-
-        .select(`
-            card_id
-        `)
-
-        .eq(
-            "user_id",
-            currentSession.user.id
+    return String(
+        rarity || ""
+    )
+        .toLowerCase()
+        .replace(
+            /[^a-z]/g,
+            ""
         );
-
-
-    if (error) {
-
-        throw error;
-
-    }
-
-
-    ownedCards.clear();
-
-
-    (data || []).forEach(
-        row => {
-
-            /*
-                card_id in ownership is the UUID
-                of aether_cards.id.
-
-                This is important:
-                we do NOT compare it with
-                card_number or card_key.
-            */
-
-            if (
-                row.card_id
-            ) {
-
-                ownedCards.add(
-                    row.card_id
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function updateProgress() {
-
-    const total =
-        cards.length;
-
-    const owned =
-        ownedCards.size;
-
-    const percentage =
-        total > 0
-            ? (
-                owned /
-                total
-            ) * 100
-            : 0;
-
-
-    document
-        .getElementById(
-            "progress-count"
-        )
-        .textContent =
-            `${owned} / ${total} CARDS`;
-
-
-    document
-        .getElementById(
-            "progress-fill"
-        )
-        .style.width =
-            `${percentage}%`;
 
 }
 
@@ -1204,6 +1125,13 @@ function renderSetFilters() {
         document.getElementById(
             "set-filters"
         );
+
+
+    if (!container) {
+
+        return;
+
+    }
 
 
     container.innerHTML =
@@ -1271,6 +1199,13 @@ function renderRarityFilters() {
         );
 
 
+    if (!container) {
+
+        return;
+
+    }
+
+
     container.innerHTML =
         RARITIES.map(
             rarity => {
@@ -1325,6 +1260,148 @@ function renderRarityFilters() {
 
 
 /* =========================================================
+   LOAD CARDS
+========================================================= */
+
+async function loadCards() {
+
+    const {
+        data,
+        error
+    } = await db
+
+        .from("aether_cards")
+
+        .select(`
+            id,
+            card_number,
+            card_key,
+            set_key,
+            title,
+            description,
+            rarity,
+            image_url,
+            content_data
+        `)
+
+        .eq(
+            "is_active",
+            true
+        )
+
+        .order(
+            "card_number",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        throw error;
+
+    }
+
+
+    cards =
+        data || [];
+
+}
+
+
+/* =========================================================
+   LOAD OWNERSHIP
+========================================================= */
+
+async function loadOwnership() {
+
+    const {
+        data,
+        error
+    } = await db
+
+        .from("aether_card_ownership")
+
+        .select(`
+            card_id
+        `)
+
+        .eq(
+            "user_id",
+            currentSession.user.id
+        );
+
+
+    if (error) {
+
+        throw error;
+
+    }
+
+
+    ownedCards.clear();
+
+
+    (data || []).forEach(
+        row => {
+
+            if (
+                row.card_id
+            ) {
+
+                ownedCards.add(
+                    row.card_id
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    const total =
+        cards.length;
+
+    const owned =
+        ownedCards.size;
+
+    const percentage =
+        total > 0
+            ? (
+                owned /
+                total
+            ) * 100
+            : 0;
+
+
+    document
+        .getElementById(
+            "progress-count"
+        )
+        .textContent =
+            `${owned} / ${total} CARDS`;
+
+
+    document
+        .getElementById(
+            "progress-fill"
+        )
+        .style.width =
+            `${percentage}%`;
+
+}
+
+
+/* =========================================================
    CARD IMAGE
 ========================================================= */
 
@@ -1366,7 +1443,6 @@ function renderCardImage(
                 src="${escapeHtml(card.image_url)}"
                 alt="${escapeHtml(card.title)}"
                 loading="lazy"
-                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','CARD IMAGE')"
             >
 
         `;
@@ -1381,72 +1457,6 @@ function renderCardImage(
         </div>
 
     `;
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value) {
-
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return "";
-
-    }
-
-
-    return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =========================================================
-   RARITY CLASS
-========================================================= */
-
-function rarityClass(
-    rarity
-) {
-
-    return String(
-        rarity || ""
-    )
-        .toLowerCase()
-        .replace(
-            /[^a-z]/g,
-            ""
-        );
 
 }
 
@@ -1491,6 +1501,13 @@ function renderCards() {
         document.getElementById(
             "card-grid"
         );
+
+
+    if (!grid) {
+
+        return;
+
+    }
 
 
     const visibleCards =
@@ -1564,12 +1581,10 @@ function renderCards() {
                                 class="card-image"
                             >
 
-                                ${
-                                    renderCardImage(
-                                        card,
-                                        owned
-                                    )
-                                }
+                                ${renderCardImage(
+                                    card,
+                                    owned
+                                )}
 
                             </div>
 
@@ -1616,11 +1631,9 @@ function renderCards() {
                             <span
                                 class="rarity rarity-${rarity}"
                             >
-                                ${
-                                    escapeHtml(
-                                        card.rarity
-                                    )
-                                }
+                                ${escapeHtml(
+                                    card.rarity
+                                )}
                             </span>
 
 
@@ -1665,7 +1678,7 @@ document
 
             try {
 
-                await supabase
+                await db
                     .auth
                     .signOut();
 
@@ -1686,7 +1699,7 @@ document
    AUTH STATE
 ========================================================= */
 
-supabase.auth.onAuthStateChange(
+db.auth.onAuthStateChange(
     (
         event,
         session
@@ -1711,13 +1724,26 @@ supabase.auth.onAuthStateChange(
 
 async function init() {
 
+    /*
+        Render the interface immediately.
+        This keeps the filters visible even if
+        Supabase data loading fails.
+    */
+
+    renderSetFilters();
+
+    renderRarityFilters();
+
+    renderCards();
+
+
     try {
 
         const {
             data,
             error
         } =
-            await supabase
+            await db
                 .auth
                 .getSession();
 
@@ -1753,18 +1779,7 @@ async function init() {
         await loadOwnership();
 
 
-        /*
-            We expect exactly 50 active cards.
-            If the database contains something
-            else, we still render what actually
-            exists instead of inventing cards.
-        */
-
         updateProgress();
-
-        renderSetFilters();
-
-        renderRarityFilters();
 
         renderCards();
 
@@ -1773,13 +1788,17 @@ async function init() {
     catch (error) {
 
         console.error(
-            "Card Album error:",
+            "AETHER CARD ALBUM ERROR:",
             error
         );
 
 
         showError(
-            "The Card Album could not load its data. Please check the Supabase connection and RLS policies."
+            "CARD ALBUM ERROR: " +
+            (
+                error?.message ||
+                String(error)
+            )
         );
 
     }
@@ -1792,4 +1811,4 @@ init();
 </script>
 
 </body>
-</html>
+    </html>
