@@ -1528,13 +1528,48 @@ async function discoverStory(itemId) {
 
     try {
 
+        const numericItemId =
+            Number(itemId);
+
+        if (
+            !Number.isFinite(
+                numericItemId
+            )
+        ) {
+
+            success.style.display =
+                "block";
+
+            success.innerHTML = `
+                <strong>DISCOVERY ERROR</strong><br><br>
+                Story ID is missing or invalid.<br>
+                Received: ${escapeHtml(
+                    String(itemId)
+                )}
+            `;
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "DISCOVER THIS STORY ✦";
+
+            return;
+        }
+
+        console.log(
+            "DISCOVERY ITEM ID:",
+            numericItemId
+        );
+
         const {
             data,
             error
         } = await supabaseClient.rpc(
             "discover_explore_story",
             {
-                p_explore_item_id: itemId
+                p_explore_item_id:
+                    numericItemId
             }
         );
 
@@ -1573,7 +1608,7 @@ async function discoverStory(itemId) {
             setTimeout(
                 () => {
                     openStory(
-                        itemId
+                        numericItemId
                     );
                 },
                 900
@@ -1965,4 +2000,4 @@ initializeExplore();
 </script>
 
 </body>
-</html>
+    </html>
