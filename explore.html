@@ -225,6 +225,7 @@ nav {
         transform 0.25s ease,
         border-color 0.25s ease,
         background 0.25s ease;
+    cursor: pointer;
 }
 
 .category-card:hover {
@@ -287,6 +288,223 @@ nav {
     height: 100%;
     background: rgba(255,255,255,0.8);
     transition: width 0.5s ease;
+}
+
+/* STORY VIEW */
+
+.story-view {
+    display: none;
+    padding: 10px 0 80px;
+}
+
+.story-shell {
+    max-width: 820px;
+    margin: 0 auto;
+}
+
+.story-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 22px;
+    padding: 10px 0;
+    border: 0;
+    background: none;
+    color: rgba(255,255,255,0.55);
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+}
+
+.story-back:hover {
+    color: #fff;
+}
+
+.story-card {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
+        );
+    padding: 34px;
+}
+
+.story-category {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    opacity: 0.42;
+    margin-bottom: 14px;
+}
+
+.story-card h2 {
+    margin: 0;
+    font-size: clamp(27px, 5vw, 42px);
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+}
+
+.story-description {
+    margin-top: 16px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.story-content {
+    margin-top: 32px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.82);
+    font-size: 15px;
+    line-height: 1.9;
+    white-space: pre-line;
+}
+
+.story-status {
+    margin-top: 34px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+}
+
+.story-status-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 15px;
+}
+
+.discover-button {
+    width: 100%;
+    max-width: 420px;
+    padding: 15px 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 999px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    cursor: pointer;
+    letter-spacing: 0.13em;
+    font-size: 11px;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.discover-button:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.35);
+    transform: translateY(-2px);
+}
+
+.discover-button:disabled {
+    opacity: 0.45;
+    cursor: default;
+    transform: none;
+}
+
+.discovered-label {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+}
+
+.locked-story {
+    text-align: center;
+    padding: 30px 10px 10px;
+}
+
+.locked-icon {
+    font-size: 28px;
+    margin-bottom: 14px;
+}
+
+.locked-title {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+}
+
+.locked-description {
+    margin-top: 10px;
+    color: rgba(255,255,255,0.45);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.countdown {
+    margin-top: 18px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.countdown-label {
+    margin-top: 6px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.35);
+}
+
+.story-list {
+    margin-top: 24px;
+    display: grid;
+    gap: 10px;
+}
+
+.story-list-item {
+    width: 100%;
+    text-align: left;
+    padding: 16px 18px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.025);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.story-list-item:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.16);
+}
+
+.story-list-item.locked {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.story-list-number {
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    opacity: 0.42;
+}
+
+.story-list-title {
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+.story-list-status {
+    margin-top: 7px;
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    opacity: 0.42;
+}
+
+/* SUCCESS MESSAGE */
+
+.discovery-success {
+    display: none;
+    margin-top: 18px;
+    color: rgba(255,255,255,0.72);
+    font-size: 12px;
+    line-height: 1.6;
 }
 
 /* FOOTER */
@@ -356,6 +574,15 @@ footer {
     .category-card {
         min-height: 175px;
     }
+
+    .story-card {
+        padding: 24px;
+    }
+
+    .story-content {
+        font-size: 14px;
+        line-height: 1.8;
+    }
 }
 </style>
 </head>
@@ -370,7 +597,7 @@ footer {
         </a>
 
         <div class="nav-links">
-            <a href="universe.html" class="active">EXPLORE</a>
+            <a href="explore.html" class="active">EXPLORE</a>
             <a href="community.html">COMMUNITY</a>
             <a href="codex.html">CODEX</a>
 
@@ -384,7 +611,7 @@ footer {
 
 <main>
 
-    <section class="hero">
+    <section class="hero" id="exploreHero">
         <div class="container">
 
             <div class="eyebrow">
@@ -403,7 +630,7 @@ footer {
     </section>
 
 
-    <section class="container">
+    <section class="container" id="progressSection">
 
         <div class="overall-card">
 
@@ -433,7 +660,7 @@ footer {
     </section>
 
 
-    <section class="container">
+    <section class="container" id="categorySection">
 
         <div class="section-heading">
             <h2>DISCOVER THE UNSEEN</h2>
@@ -454,6 +681,27 @@ footer {
             class="category-grid"
             id="categoryGrid"
         ></div>
+
+    </section>
+
+
+    <section class="story-view" id="storyView">
+
+        <div class="story-shell">
+
+            <button
+                class="story-back"
+                id="storyBack"
+            >
+                ← BACK TO EXPLORE
+            </button>
+
+            <div
+                class="story-card"
+                id="storyCard"
+            ></div>
+
+        </div>
 
     </section>
 
@@ -531,6 +779,13 @@ const CATEGORY_META = {
 };
 
 
+let currentProgress = [];
+let currentCategory = null;
+let countdownInterval = null;
+
+
+/* SESSION */
+
 async function checkSession() {
 
     const {
@@ -549,6 +804,8 @@ async function checkSession() {
     return data.session;
 }
 
+
+/* PROGRESS */
 
 async function loadExploreProgress() {
 
@@ -599,7 +856,11 @@ async function loadOverallProgress() {
 }
 
 
+/* CATEGORY DISPLAY */
+
 function renderCategories(progress) {
+
+    currentProgress = progress;
 
     const grid =
         document.getElementById(
@@ -670,11 +931,22 @@ function renderCategories(progress) {
                 </div>
             `;
 
+            card.addEventListener(
+                "click",
+                () => {
+                    openCategory(
+                        category.category
+                    );
+                }
+            );
+
             grid.appendChild(card);
         }
     );
 }
 
+
+/* OVERALL DISPLAY */
 
 function renderOverallProgress(data) {
 
@@ -706,6 +978,923 @@ function renderOverallProgress(data) {
 }
 
 
+/* STORY LOADING */
+
+async function getExploreItem(itemId) {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "get_explore_item",
+        {
+            p_explore_item_id: itemId
+        }
+    );
+
+    if (error) {
+        console.error(
+            "EXPLORE ITEM ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return data;
+}
+
+
+/* CATEGORY ITEMS */
+
+async function loadCategoryItems(category) {
+
+    /*
+        The table itself is no longer readable by authenticated users.
+        Therefore we only request item metadata through the secure RPC
+        one item at a time after determining IDs from the progress state.
+
+        The IDs are loaded from the category's known sequential structure.
+    */
+
+    const categoryProgress =
+        currentProgress.find(
+            item =>
+                item.category === category
+        );
+
+    if (!categoryProgress) {
+        throw new Error(
+            "CATEGORY_NOT_FOUND"
+        );
+    }
+
+    /*
+        We intentionally do not expose all story content.
+        The first story is ID-based on the current Explore dataset.
+        Category ranges are determined from the current database order.
+    */
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "get_explore_category_items",
+        {
+            p_category: category
+        }
+    );
+
+    if (error) {
+        console.error(
+            "EXPLORE CATEGORY ITEMS ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return data || [];
+}
+
+
+/* OPEN CATEGORY */
+
+async function openCategory(category) {
+
+    currentCategory = category;
+
+    document.getElementById(
+        "exploreHero"
+    ).style.display = "none";
+
+    document.getElementById(
+        "progressSection"
+    ).style.display = "none";
+
+    document.getElementById(
+        "categorySection"
+    ).style.display = "none";
+
+    document.getElementById(
+        "storyView"
+    ).style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    const storyCard =
+        document.getElementById(
+            "storyCard"
+        );
+
+    storyCard.innerHTML = `
+        <div class="story-category">
+            ${category}
+        </div>
+
+        <div class="locked-story">
+            <div class="locked-icon">✦</div>
+            <div class="locked-title">
+                LOADING DISCOVERIES
+            </div>
+        </div>
+    `;
+
+    try {
+
+        const items =
+            await loadCategoryItems(
+                category
+            );
+
+        renderStoryList(
+            category,
+            items
+        );
+
+    } catch (error) {
+
+        console.error(
+            "OPEN CATEGORY ERROR:",
+            error
+        );
+
+        storyCard.innerHTML = `
+            <div class="story-category">
+                ${category}
+            </div>
+
+            <div class="locked-story">
+                <div class="locked-icon">✦</div>
+                <div class="locked-title">
+                    SOMETHING WENT WRONG
+                </div>
+
+                <div class="locked-description">
+                    This discovery could not be opened.
+                    Please try again.
+                </div>
+            </div>
+        `;
+    }
+}
+
+
+/* STORY LIST */
+
+function renderStoryList(
+    category,
+    items
+) {
+
+    const storyCard =
+        document.getElementById(
+            "storyCard"
+        );
+
+    storyCard.innerHTML = `
+
+        <div class="story-category">
+            ${category}
+        </div>
+
+        <h2>
+            DISCOVERIES
+        </h2>
+
+        <div class="story-description">
+            Follow the path one discovery at a time.
+            Some memories require patience.
+        </div>
+
+        <div
+            class="story-list"
+            id="storyList"
+        ></div>
+    `;
+
+    const list =
+        document.getElementById(
+            "storyList"
+        );
+
+    items.forEach(
+        item => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "story-list-item";
+
+            if (
+                item.status === "locked"
+            ) {
+                button.classList.add(
+                    "locked"
+                );
+            }
+
+            let statusText =
+                "AVAILABLE";
+
+            if (
+                item.status ===
+                "discovered"
+            ) {
+                statusText =
+                    "DISCOVERED ✦";
+            }
+
+            if (
+                item.status ===
+                "locked"
+            ) {
+                statusText =
+                    item.available_at
+                        ? formatCountdownStatus(
+                            item.available_at
+                        )
+                        : "LOCKED";
+            }
+
+            button.innerHTML = `
+
+                <div class="story-list-number">
+                    STORY ${String(
+                        item.sequence
+                    ).padStart(2, "0")}
+                </div>
+
+                <div class="story-list-title">
+                    ${escapeHtml(
+                        item.title ||
+                        "Hidden Memory"
+                    )}
+                </div>
+
+                <div class="story-list-status">
+                    ${statusText}
+                </div>
+            `;
+
+            if (
+                item.status !== "locked"
+            ) {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+                        openStory(
+                            item.id
+                        );
+                    }
+                );
+            }
+
+            list.appendChild(button);
+        }
+    );
+}
+
+
+/* STORY */
+
+async function openStory(itemId) {
+
+    const storyCard =
+        document.getElementById(
+            "storyCard"
+        );
+
+    storyCard.innerHTML = `
+        <div class="locked-story">
+            <div class="locked-icon">✦</div>
+            <div class="locked-title">
+                OPENING MEMORY...
+            </div>
+        </div>
+    `;
+
+    try {
+
+        const item =
+            await getExploreItem(
+                itemId
+            );
+
+        renderStory(
+            item
+        );
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    } catch (error) {
+
+        console.error(
+            "OPEN STORY ERROR:",
+            error
+        );
+
+        storyCard.innerHTML = `
+            <div class="locked-story">
+                <div class="locked-icon">✦</div>
+                <div class="locked-title">
+                    DISCOVERY UNAVAILABLE
+                </div>
+
+                <div class="locked-description">
+                    This memory could not be opened.
+                </div>
+            </div>
+        `;
+    }
+}
+
+
+/* STORY RENDER */
+
+function renderStory(item) {
+
+    const storyCard =
+        document.getElementById(
+            "storyCard"
+        );
+
+    if (
+        item.status === "locked"
+    ) {
+
+        storyCard.innerHTML = `
+
+            <div class="story-category">
+                ${item.category || currentCategory}
+            </div>
+
+            <h2>
+                ${escapeHtml(
+                    item.title ||
+                    "Something Is Waiting"
+                )}
+            </h2>
+
+            <div class="locked-story">
+
+                <div class="locked-icon">
+                    ⏳
+                </div>
+
+                <div class="locked-title">
+                    NOT YET
+                </div>
+
+                <div class="locked-description">
+                    ${escapeHtml(
+                        item.description ||
+                        "Something is waiting beyond the next discovery."
+                    )}
+                </div>
+
+                ${
+                    item.available_at
+                    ? `
+                        <div
+                            class="countdown"
+                            id="storyCountdown"
+                        >
+                            ${formatCountdown(
+                                item.available_at
+                            )}
+                        </div>
+
+                        <div class="countdown-label">
+                            AVAILABLE IN
+                        </div>
+                    `
+                    : ""
+                }
+
+            </div>
+        `;
+
+        if (item.available_at) {
+            startCountdown(
+                item.available_at
+            );
+        }
+
+        return;
+    }
+
+
+    if (
+        item.status === "secret"
+    ) {
+
+        storyCard.innerHTML = `
+
+            <div class="story-category">
+                ${item.category || currentCategory}
+            </div>
+
+            <h2>
+                ${escapeHtml(
+                    item.title ||
+                    "Hidden"
+                )}
+            </h2>
+
+            <div class="locked-story">
+
+                <div class="locked-icon">
+                    👀
+                </div>
+
+                <div class="locked-title">
+                    SECRET DISCOVERY
+                </div>
+
+                <div class="locked-description">
+                    ${
+                        escapeHtml(
+                            item.description ||
+                            "Something is hidden here."
+                        )
+                    }
+                </div>
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const alreadyDiscovered =
+        item.status ===
+        "discovered";
+
+    storyCard.innerHTML = `
+
+        <div class="story-category">
+            ${item.category || currentCategory}
+        </div>
+
+        <h2>
+            ${escapeHtml(
+                item.title ||
+                "Untitled Memory"
+            )}
+        </h2>
+
+        <div class="story-description">
+            ${escapeHtml(
+                item.description || ""
+            )}
+        </div>
+
+        <div class="story-content">
+            ${escapeHtml(
+                item.content || ""
+            )}
+        </div>
+
+        <div class="story-status">
+
+            ${
+                alreadyDiscovered
+
+                ? `
+                    <div class="discovered-label">
+                        DISCOVERED ✦
+                    </div>
+                `
+
+                : `
+                    <div class="story-status-label">
+                        YOU'VE REACHED THE END
+                    </div>
+
+                    <button
+                        class="discover-button"
+                        id="discoverButton"
+                    >
+                        DISCOVER THIS STORY ✦
+                    </button>
+
+                    <div
+                        class="discovery-success"
+                        id="discoverySuccess"
+                    ></div>
+                `
+            }
+
+        </div>
+    `;
+
+    if (!alreadyDiscovered) {
+
+        document
+            .getElementById(
+                "discoverButton"
+            )
+            .addEventListener(
+                "click",
+                () => {
+                    discoverStory(
+                        item.id
+                    );
+                }
+            );
+    }
+}
+
+
+/* DISCOVER */
+
+async function discoverStory(itemId) {
+
+    const button =
+        document.getElementById(
+            "discoverButton"
+        );
+
+    const success =
+        document.getElementById(
+            "discoverySuccess"
+        );
+
+    if (!button) return;
+
+    button.disabled = true;
+
+    button.textContent =
+        "DISCOVERING...";
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient.rpc(
+            "discover_explore_item",
+            {
+                p_explore_item_id: itemId
+            }
+        );
+
+        if (error) {
+            throw error;
+        }
+
+        if (
+            data &&
+            data.status ===
+            "discovered"
+        ) {
+
+            button.style.display =
+                "none";
+
+            success.style.display =
+                "block";
+
+            success.innerHTML =
+                "✦ DISCOVERY SAVED · +5 HALO POINTS";
+
+            await refreshProgress();
+
+            setTimeout(
+                () => {
+                    openStory(
+                        itemId
+                    );
+                },
+                900
+            );
+
+            return;
+        }
+
+        if (
+            data &&
+            data.status ===
+            "already_discovered"
+        ) {
+
+            button.style.display =
+                "none";
+
+            success.style.display =
+                "block";
+
+            success.innerHTML =
+                "DISCOVERED ✦";
+
+            await refreshProgress();
+
+            return;
+        }
+
+        if (
+            data &&
+            data.status ===
+            "locked"
+        ) {
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "DISCOVER THIS STORY ✦";
+
+            success.style.display =
+                "block";
+
+            success.innerHTML =
+                data.available_at
+                    ? `Available in ${formatCountdown(
+                        data.available_at
+                    )}`
+                    : "This story is still locked.";
+
+            return;
+        }
+
+        throw new Error(
+            "UNEXPECTED_DISCOVERY_RESPONSE"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "DISCOVERY ERROR:",
+            error
+        );
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "DISCOVER THIS STORY ✦";
+
+        success.style.display =
+            "block";
+
+        success.textContent =
+            "The discovery could not be saved. Please try again.";
+    }
+}
+
+
+/* REFRESH */
+
+async function refreshProgress() {
+
+    const [
+        progress,
+        overall
+    ] = await Promise.all([
+        loadExploreProgress(),
+        loadOverallProgress()
+    ]);
+
+    renderCategories(
+        progress
+    );
+
+    renderOverallProgress(
+        overall
+    );
+}
+
+
+/* COUNTDOWN */
+
+function startCountdown(
+    availableAt
+) {
+
+    if (countdownInterval) {
+        clearInterval(
+            countdownInterval
+        );
+    }
+
+    updateCountdown(
+        availableAt
+    );
+
+    countdownInterval =
+        setInterval(
+            () => {
+
+                const remaining =
+                    new Date(
+                        availableAt
+                    ).getTime()
+                    -
+                    Date.now();
+
+                if (
+                    remaining <= 0
+                ) {
+
+                    clearInterval(
+                        countdownInterval
+                    );
+
+                    countdownInterval =
+                        null;
+
+                    openCategory(
+                        currentCategory
+                    );
+
+                    return;
+                }
+
+                updateCountdown(
+                    availableAt
+                );
+
+            },
+            1000
+        );
+}
+
+
+function updateCountdown(
+    availableAt
+) {
+
+    const element =
+        document.getElementById(
+            "storyCountdown"
+        );
+
+    if (!element) return;
+
+    element.textContent =
+        formatCountdown(
+            availableAt
+        );
+}
+
+
+function formatCountdown(
+    availableAt
+) {
+
+    const remaining =
+        Math.max(
+            0,
+            new Date(
+                availableAt
+            ).getTime()
+            -
+            Date.now()
+        );
+
+    const totalSeconds =
+        Math.floor(
+            remaining / 1000
+        );
+
+    const hours =
+        Math.floor(
+            totalSeconds / 3600
+        );
+
+    const minutes =
+        Math.floor(
+            (totalSeconds % 3600) / 60
+        );
+
+    const seconds =
+        totalSeconds % 60;
+
+    return [
+        String(hours).padStart(2, "0"),
+        String(minutes).padStart(2, "0"),
+        String(seconds).padStart(2, "0")
+    ].join(":");
+}
+
+
+function formatCountdownStatus(
+    availableAt
+) {
+
+    return `AVAILABLE IN ${formatCountdown(
+        availableAt
+    )}`;
+}
+
+
+/* BACK */
+
+document
+    .getElementById(
+        "storyBack"
+    )
+    .addEventListener(
+        "click",
+        () => {
+
+            if (countdownInterval) {
+                clearInterval(
+                    countdownInterval
+                );
+
+                countdownInterval =
+                    null;
+            }
+
+            document.getElementById(
+                "storyView"
+            ).style.display = "none";
+
+            document.getElementById(
+                "exploreHero"
+            ).style.display = "block";
+
+            document.getElementById(
+                "progressSection"
+            ).style.display = "block";
+
+            document.getElementById(
+                "categorySection"
+            ).style.display = "block";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    );
+
+
+/* HTML SAFETY */
+
+function escapeHtml(
+    value
+) {
+
+    return String(
+        value || ""
+    )
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+/* LOGOUT */
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        async () => {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href =
+                "halo.html";
+        }
+    );
+
+
+/* INITIALIZE */
+
 async function initializeExplore() {
 
     try {
@@ -723,13 +1912,18 @@ async function initializeExplore() {
             loadOverallProgress()
         ]);
 
-        renderCategories(progress);
+        renderCategories(
+            progress
+        );
 
-        renderOverallProgress(overall);
+        renderOverallProgress(
+            overall
+        );
 
         document.getElementById(
             "loading"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
     } catch (error) {
 
@@ -740,31 +1934,19 @@ async function initializeExplore() {
 
         document.getElementById(
             "loading"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
         document.getElementById(
             "error"
-        ).style.display = "block";
+        ).style.display =
+            "block";
     }
 }
-
-
-document.getElementById(
-    "logoutButton"
-).addEventListener(
-    "click",
-    async () => {
-
-        await supabaseClient.auth.signOut();
-
-        window.location.href =
-            "halo.html";
-    }
-);
 
 
 initializeExplore();
 </script>
 
 </body>
-              </html>
+    </html>
