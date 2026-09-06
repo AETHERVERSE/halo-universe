@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AETHER — Card Album</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root {
+    --bg: #070914;
+    --bg-soft: #0d1120;
+    --panel: #11162a;
+    --panel-light: #171d35;
+    --line: #2a3150;
+    --text: #f5f7ff;
+    --muted: #9da6c5;
+    --accent: #b9a7ff;
+    --accent-soft: rgba(185,167,255,0.12);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #191d40 0%, #0b0e1b 42%, #070914 75%);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.page {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.topbar {
+    padding: 26px 0 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.nav a {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    transition: 0.2s ease;
+}
+
+.nav a:hover {
+    color: var(--text);
+}
+
+.nav .active {
+    color: var(--text);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.hero {
+    padding: 48px 0 30px;
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    font-weight: 700;
+}
+
+.hero h1 {
+    margin: 10px 0 8px;
+    font-size: clamp(38px, 7vw, 68px);
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+.hero p {
+    max-width: 680px;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box {
+    margin-bottom: 28px;
+    padding: 20px;
+    background: rgba(17,22,42,0.85);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.progress-title {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+}
+
+.progress-count {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.progress-track {
+    height: 8px;
+    margin-top: 14px;
+    background: #242a45;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        #8c7cff,
+        #d8d0ff
+    );
+    transition: width 0.4s ease;
+}
+
+/* =========================
+   SET FILTERS
+========================= */
+
+.filters {
+    display: flex;
+    gap: 9px;
+    overflow-x: auto;
+    padding: 2px 0 20px;
+    scrollbar-width: thin;
+}
+
+.filter {
+    flex: 0 0 auto;
+    padding: 10px 15px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    transition: 0.2s ease;
+}
+
+.filter:hover {
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+.filter.active {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--text);
+}
+
+/* =========================
+   CARD GRID
+========================= */
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(190px, 1fr)
+    );
+    gap: 18px;
+    padding-bottom: 70px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    position: relative;
+    min-height: 320px;
+    padding: 14px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171c34,
+            #0c1020
+        );
+
+    border: 1px solid var(--line);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #4a5279;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.28);
+}
+
+.card.locked {
+    opacity: 0.58;
+}
+
+.card-number {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
+
+.card-image {
+    height: 185px;
+    margin-top: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        radial-gradient(
+            circle,
+            #252b4b 0%,
+            #111528 55%,
+            #090c17 100%
+        );
+
+    color: #687293;
+
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-align: center;
+}
+
+.card-info {
+    padding-top: 12px;
+}
+
+.card-name {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.card-title {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.card-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.rarity {
+    display: inline-block;
+    padding: 5px 8px;
+
+    border: 1px solid var(--line);
+    border-radius: 999px;
+
+    color: var(--accent);
+
+    font-size: 9px;
+    letter-spacing: 0.14em;
+}
+
+.card-status {
+    color: var(--muted);
+    font-size: 9px;
+    text-align: right;
+    letter-spacing: 0.08em;
+}
+
+/* =========================
+   EMPTY / ERROR
+========================= */
+
+.empty {
+    grid-column: 1 / -1;
+
+    padding: 55px 20px;
+
+    text-align: center;
+
+    border: 1px dashed var(--line);
+    border-radius: 18px;
+
+    color: var(--muted);
+}
+
+.error {
+    display: none;
+
+    margin-bottom: 20px;
+    padding: 14px;
+
+    border-radius: 12px;
+
+    background: #351923;
+    border: 1px solid #73384a;
+
+    color: #ffdce4;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .topbar {
+        padding-top: 20px;
+    }
+
+    .nav {
+        gap: 12px;
+    }
+
+    .hero {
+        padding-top: 36px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card {
+        min-height: 285px;
+        padding: 11px;
+    }
+
+    .card-image {
+        height: 145px;
+    }
+
+    .card-name {
+        font-size: 13px;
+    }
+
+    .card-title {
+        font-size: 10px;
+    }
+
+    .progress-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <header class="topbar">
+
+        <nav class="nav">
+
+            <a href="halo-home.html">
+                MY HALO
+            </a>
+
+            <a href="explore.html">
+                EXPLORE
+            </a>
+
+            <a href="collection.html">
+                MY COLLECTION
+            </a>
+
+            <a href="card-album.html" class="active">
+                CARD ALBUM
+            </a>
+
+            <a href="codex.html">
+                CODEX
+            </a>
+
+            <a href="community.html">
+                COMMUNITY
+            </a>
+
+            <a href="#" id="logout">
+                LOG OUT
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            AETHER CARD ALBUM
+        </div>
+
+        <h1>
+            THE CARD ALBUM
+        </h1>
+
+        <p>
+            50 unique AETHER cards.
+            No duplicates. No random packs.
+            Every card has its own place in the universe.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         ERROR
+    ========================== -->
+
+    <div id="error" class="error"></div>
+
+
+    <!-- =========================
+         PROGRESS
+    ========================== -->
+
+    <section class="progress-box">
+
+        <div class="progress-top">
+
+            <div class="progress-title">
+                YOUR COLLECTION
+            </div>
+
+            <div
+                class="progress-count"
+                id="progress-count"
+            >
+                0 / 50 CARDS
+            </div>
+
+        </div>
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="progress-fill"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FILTERS
+    ========================== -->
+
+    <div
+        class="filters"
+        id="filters"
+    ></div>
+
+
+    <!-- =========================
+         CARD GRID
+    ========================== -->
+
+    <main
+        class="card-grid"
+        id="card-grid"
+    ></main>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabase =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   CARD SETS
+========================================================= */
+
+const CARD_SETS = [
+
+    "ALL",
+
+    "THE SEVEN",
+
+    "THE GUARDIANS",
+
+    "THE WORLDS",
+
+    "AETHER BACKSTAGE",
+
+    "AETHER BONDS",
+
+    "MEMORY CARDS",
+
+    "SECRET CARDS"
+
+];
+
+
+/* =========================================================
+   50 CARDS
+========================================================= */
+
+const CARDS = [
+
+    /* THE SEVEN */
+
+    {
+        id: "001",
+        name: "Solen",
+        title: "The Light Within",
+        set: "THE SEVEN",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "002",
+        name: "Vex",
+        title: "Where Silence Speaks",
+        set: "THE SEVEN",
+        rarity: "RARE"
+    },
+
+    {
+        id: "003",
+        name: "Kairo",
+        title: "Electric Heart",
+        set: "THE SEVEN",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "004",
+        name: "Riven",
+        title: "Between Tide & Thought",
+        set: "THE SEVEN",
+        rarity: "RARE"
+    },
+
+    {
+        id: "005",
+        name: "Zenith",
+        title: "Born to Burn Bright",
+        set: "THE SEVEN",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "006",
+        name: "Lux",
+        title: "Light You Can Hold",
+        set: "THE SEVEN",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "007",
+        name: "Nero",
+        title: "Where Night Begins",
+        set: "THE SEVEN",
+        rarity: "EPIC"
+    },
+
+
+    /* THE GUARDIANS */
+
+    {
+        id: "008",
+        name: "Solis",
+        title: "Solen's Golden Lion",
+        set: "THE GUARDIANS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "009",
+        name: "Umbra",
+        title: "Vex's Black Panther",
+        set: "THE GUARDIANS",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "010",
+        name: "Volt",
+        title: "Kairo's Wolf",
+        set: "THE GUARDIANS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "011",
+        name: "Thalos",
+        title: "Riven's Blue Dolphin",
+        set: "THE GUARDIANS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "012",
+        name: "Pyra",
+        title: "Zenith's Phoenix",
+        set: "THE GUARDIANS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "013",
+        name: "Lumen",
+        title: "Lux's White Owl",
+        set: "THE GUARDIANS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "014",
+        name: "Noctis",
+        title: "Nero's Dark Blue Raven",
+        set: "THE GUARDIANS",
+        rarity: "RARE"
+    },
+
+
+    /* THE WORLDS */
+
+    {
+        id: "015",
+        name: "SOLARION",
+        title: "The Golden Horizon",
+        set: "THE WORLDS",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "016",
+        name: "HOLLOW",
+        title: "Where Silence Lives",
+        set: "THE WORLDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "017",
+        name: "VOLTARIS",
+        title: "Storms Above",
+        set: "THE WORLDS",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "018",
+        name: "THALASSIA",
+        title: "The Ocean Remembers",
+        set: "THE WORLDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "019",
+        name: "IGNIS",
+        title: "Born From Fire",
+        set: "THE WORLDS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "020",
+        name: "LUMENIA",
+        title: "A Quiet Place of Light",
+        set: "THE WORLDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "021",
+        name: "NOCTEUM",
+        title: "Where Night Never Ends",
+        set: "THE WORLDS",
+        rarity: "EPIC"
+    },
+
+
+    /* AETHER BACKSTAGE */
+
+    {
+        id: "022",
+        name: "Five Minutes Before Stage",
+        title: "Five Minutes Before Stage",
+        set: "AETHER BACKSTAGE",
+        rarity: "RARE"
+    },
+
+    {
+        id: "023",
+        name: "Midnight Snack Run",
+        title: "Midnight Snack Run",
+        set: "AETHER BACKSTAGE",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "024",
+        name: "The Laugh They Didn't Expect",
+        title: "The Laugh They Didn't Expect",
+        set: "AETHER BACKSTAGE",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "025",
+        name: "First Coffee, Then Chaos",
+        title: "First Coffee, Then Chaos",
+        set: "AETHER BACKSTAGE",
+        rarity: "RARE"
+    },
+
+    {
+        id: "026",
+        name: "The Empty Practice Room",
+        title: "The Empty Practice Room",
+        set: "AETHER BACKSTAGE",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "027",
+        name: "One Last Rehearsal",
+        title: "One Last Rehearsal",
+        set: "AETHER BACKSTAGE",
+        rarity: "RARE"
+    },
+
+    {
+        id: "028",
+        name: "After the Lights Go Out",
+        title: "After the Lights Go Out",
+        set: "AETHER BACKSTAGE",
+        rarity: "EPIC"
+    },
+
+
+    /* AETHER BONDS */
+
+    {
+        id: "029",
+        name: "The Look Across the Room",
+        title: "The Look Across the Room",
+        set: "AETHER BONDS",
+        rarity: "EPIC"
+    },
+
+    {
+        id: "030",
+        name: "Same Rhythm",
+        title: "Same Rhythm",
+        set: "AETHER BONDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "031",
+        name: "The Inside Joke",
+        title: "The Inside Joke",
+        set: "AETHER BONDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "032",
+        name: "You Know Without Asking",
+        title: "You Know Without Asking",
+        set: "AETHER BONDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "033",
+        name: "Seven, Not One",
+        title: "Seven, Not One",
+        set: "AETHER BONDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "034",
+        name: "Stay Until I'm Ready",
+        title: "Stay Until I'm Ready",
+        set: "AETHER BONDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "035",
+        name: "After Rehearsal",
+        title: "After Rehearsal",
+        set: "AETHER BONDS",
+        rarity: "EPIC"
+    },
+
+
+    /* MEMORY CARDS */
+
+    {
+        id: "036",
+        name: "The First Night",
+        title: "The First Night",
+        set: "MEMORY CARDS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "037",
+        name: "A Song We Never Finished",
+        title: "A Song We Never Finished",
+        set: "MEMORY CARDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "038",
+        name: "The Smallest Gift",
+        title: "The Smallest Gift",
+        set: "MEMORY CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "039",
+        name: "The Day It Finally Felt Real",
+        title: "The Day It Finally Felt Real",
+        set: "MEMORY CARDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "040",
+        name: "The Moment We Won",
+        title: "The Moment We Won",
+        set: "MEMORY CARDS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "041",
+        name: "The Night We Stayed Up",
+        title: "The Night We Stayed Up",
+        set: "MEMORY CARDS",
+        rarity: "RARE"
+    },
+
+    {
+        id: "042",
+        name: "The Message That Changed Everything",
+        title: "The Message That Changed Everything",
+        set: "MEMORY CARDS",
+        rarity: "SECRET"
+    },
+
+
+    /* SECRET CARDS */
+
+    {
+        id: "043",
+        name: "The Door That Shouldn't Exist",
+        title: "The Door That Shouldn't Exist",
+        set: "SECRET CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "044",
+        name: "The Transmission",
+        title: "The Transmission",
+        set: "SECRET CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "045",
+        name: "The Missing Page",
+        title: "The Missing Page",
+        set: "SECRET CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "046",
+        name: "The Seventh Light",
+        title: "The Seventh Light",
+        set: "SECRET CARDS",
+        rarity: "LEGENDARY"
+    },
+
+    {
+        id: "047",
+        name: "The Space Between Worlds",
+        title: "The Space Between Worlds",
+        set: "SECRET CARDS",
+        rarity: "SECRET"
+    },
+
+    {
+        id: "048",
+        name: "The Moment Before",
+        title: "The Moment Before",
+        set: "SECRET CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "049",
+        name: "The Last Photograph",
+        title: "The Last Photograph",
+        set: "SECRET CARDS",
+        rarity: "COMMON"
+    },
+
+    {
+        id: "050",
+        name: "Where All Seven Meet",
+        title: "Where All Seven Meet",
+        set: "SECRET CARDS",
+        rarity: "SECRET"
+    }
+
+];
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let ownedCards = new Set();
+
+let activeSet = "ALL";
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message) {
+
+    const element =
+        document.getElementById("error");
+
+    element.textContent = message;
+
+    element.style.display = "block";
+}
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+function renderFilters() {
+
+    const container =
+        document.getElementById("filters");
+
+    container.innerHTML =
+        CARD_SETS.map(set => {
+
+            const active =
+                set === activeSet
+                    ? "active"
+                    : "";
+
+            return `
+                <button
+                    class="filter ${active}"
+                    data-set="${set}"
+                >
+                    ${set}
+                </button>
+            `;
+
+        }).join("");
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    activeSet =
+                        button.dataset.set;
+
+                    renderFilters();
+
+                    renderCards();
+
+                }
+            );
+
+        });
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+function renderCards() {
+
+    const grid =
+        document.getElementById("card-grid");
+
+    const visibleCards =
+        activeSet === "ALL"
+            ? CARDS
+            : CARDS.filter(
+                card =>
+                    card.set === activeSet
+            );
+
+
+    if (!visibleCards.length) {
+
+        grid.innerHTML = `
+            <div class="empty">
+                No cards in this set yet.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    grid.innerHTML =
+        visibleCards.map(card => {
+
+            const owned =
+                ownedCards.has(card.id);
+
+            return `
+
+                <article
+                    class="card ${owned ? "" : "locked"}"
+                >
+
+                    <div>
+
+                        <div class="card-number">
+                            CARD ${card.id}
+                        </div>
+
+                        <div class="card-image">
+
+                            ${
+                                owned
+                                ? "CARD COLLECTED"
+                                : "LOCKED CARD"
+                            }
+
+                        </div>
+
+                        <div class="card-info">
+
+                            <div class="card-name">
+                                ${card.name}
+                            </div>
+
+                            <div class="card-title">
+                                ${card.title}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-bottom">
+
+                        <span class="rarity">
+                            ${card.rarity}
+                        </span>
+
+                        <span class="card-status">
+
+                            ${
+                                owned
+                                ? "COLLECTED"
+                                : "NOT YET DISCOVERED"
+                            }
+
+                        </span>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        }).join("");
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    const count =
+        ownedCards.size;
+
+    const percentage =
+        Math.min(
+            100,
+            (count / 50) * 100
+        );
+
+
+    document
+        .getElementById("progress-count")
+        .textContent =
+            `${count} / 50 CARDS`;
+
+
+    document
+        .getElementById("progress-fill")
+        .style.width =
+            `${percentage}%`;
+}
+
+
+/* =========================================================
+   LOAD OWNERSHIP
+========================================================= */
+
+async function loadOwnership(session) {
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabase
+
+            .from("aether_card_ownership")
+
+            .select("card_id")
+
+            .eq(
+                "user_id",
+                session.user.id
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        ownedCards.clear();
+
+
+        (data || []).forEach(row => {
+
+            const id =
+                String(row.card_id)
+                .padStart(3, "0");
+
+            ownedCards.add(id);
+
+        });
+
+
+    } catch (error) {
+
+        showError(
+            "The Card Album interface is ready, but the Supabase card ownership table is not available yet."
+        );
+
+    }
+
+
+    updateProgress();
+
+    renderFilters();
+
+    renderCards();
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document
+    .getElementById("logout")
+    .addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+
+            await supabase.auth.signOut();
+
+            window.location.href =
+                "halo.html";
+
+        }
+    );
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+async function init() {
+
+    const {
+        data,
+        error
+    } =
+        await supabase.auth.getSession();
+
+
+    if (
+        error ||
+        !data.session
+    ) {
+
+        window.location.href =
+            "halo.html";
+
+        return;
+    }
+
+
+    await loadOwnership(
+        data.session
+    );
+
+}
+
+
+init();
+
+</script>
+
+</body>
+  </html>
