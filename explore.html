@@ -1275,7 +1275,8 @@ async function openStory(itemId) {
             );
 
         renderStory(
-            item
+            item,
+            itemId
         );
 
         window.scrollTo({
@@ -1308,7 +1309,10 @@ async function openStory(itemId) {
 
 /* STORY RENDER */
 
-function renderStory(item) {
+function renderStory(
+    item,
+    itemId
+) {
 
     const storyCard =
         document.getElementById(
@@ -1497,7 +1501,7 @@ function renderStory(item) {
                 "click",
                 () => {
                     discoverStory(
-                        item.id
+                        itemId
                     );
                 }
             );
