@@ -2899,15 +2899,6 @@ async function discoverStory(
                 "✦ DISCOVERY SAVED · +5 HALO POINTS";
 
 
-            /*
-             * Collection reward is checked
-             * only after a successful discovery.
-             *
-             * The server decides whether
-             * the complete category has
-             * actually been finished.
-             */
-
             const reward =
                 await claimCollectionReward(
                     currentCategory
@@ -3130,6 +3121,94 @@ async function refreshProgress() {
 
 
 // ======================================================
+// TIME PARSING
+// ======================================================
+
+function parseAvailableAt(
+    availableAt
+) {
+
+    if (
+        availableAt === null ||
+        availableAt === undefined ||
+        availableAt === ""
+    ) {
+
+        return NaN;
+
+    }
+
+
+    let value =
+        String(
+            availableAt
+        ).trim();
+
+
+    /*
+     * Normalize PostgreSQL timestamps:
+     *
+     * 2026-09-07 12:34:56+00
+     *
+     * becomes:
+     *
+     * 2026-09-07T12:34:56+00
+     */
+
+    if (
+        value.includes(" ") &&
+        !value.includes("T")
+    ) {
+
+        value =
+            value.replace(
+                " ",
+                "T"
+            );
+
+    }
+
+
+    /*
+     * JavaScript Date only supports
+     * millisecond precision.
+     */
+
+    value =
+        value.replace(
+            /\.(\d{3})\d+/,
+            ".$1"
+        );
+
+
+    const timestamp =
+        Date.parse(
+            value
+        );
+
+
+    if (
+        Number.isNaN(
+            timestamp
+        )
+    ) {
+
+        console.error(
+            "INVALID EXPLORE available_at:",
+            availableAt
+        );
+
+        return NaN;
+
+    }
+
+
+    return timestamp;
+
+}
+
+
+// ======================================================
 // STORY COUNTDOWN
 // ======================================================
 
@@ -3155,18 +3234,21 @@ function startCountdown(
         setInterval(
             () => {
 
-                const remaining =
-
-                    new Date(
+                const targetTime =
+                    parseAvailableAt(
                         availableAt
-                    ).getTime()
+                    );
 
-                    -
 
+                const remaining =
+                    targetTime -
                     Date.now();
 
 
                 if (
+                    Number.isNaN(
+                        targetTime
+                    ) ||
                     remaining <= 0
                 ) {
 
@@ -3200,6 +3282,10 @@ function startCountdown(
 
 }
 
+
+// ======================================================
+// UPDATE STORY COUNTDOWN
+// ======================================================
 
 function updateCountdown(
     availableAt
@@ -3277,6 +3363,10 @@ function startListCountdown() {
 }
 
 
+// ======================================================
+// UPDATE LIST COUNTDOWNS
+// ======================================================
+
 function updateListCountdowns() {
 
     const elements =
@@ -3297,18 +3387,21 @@ function updateListCountdowns() {
                     .listCountdown;
 
 
-            const remaining =
-
-                new Date(
+            const targetTime =
+                parseAvailableAt(
                     availableAt
-                ).getTime()
+                );
 
-                -
 
+            const remaining =
+                targetTime -
                 Date.now();
 
 
             if (
+                Number.isNaN(
+                    targetTime
+                ) ||
                 remaining <= 0
             ) {
 
@@ -3347,17 +3440,32 @@ function formatCountdown(
     availableAt
 ) {
 
-    const remaining =
+    const targetTime =
+        parseAvailableAt(
+            availableAt
+        );
 
+
+    /*
+     * Never allow NaN to reach
+     * the visible countdown.
+     */
+
+    if (
+        Number.isNaN(
+            targetTime
+        )
+    ) {
+
+        return "--:--:--";
+
+    }
+
+
+    const remaining =
         Math.max(
             0,
-
-            new Date(
-                availableAt
-            ).getTime()
-
-            -
-
+            targetTime -
             Date.now()
         );
 
