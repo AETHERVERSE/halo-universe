@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EXPLORE — AETHER | HALO UNIVERSE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
+        linear-gradient(180deg, #0b0d16 0%, #080a11 100%);
+    color: #f4f5f8;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+.container {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+/* NAVIGATION */
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,10,17,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.nav-inner {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.brand span {
+    opacity: 0.55;
+    font-weight: 400;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+.nav-links a {
+    opacity: 0.68;
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
+}
+
+.logout {
+    cursor: pointer;
+    background: none;
+    border: 0;
+    color: #fff;
+    opacity: 0.68;
+    letter-spacing: 0.12em;
+    font-size: 12px;
+}
+
+.logout:hover {
+    opacity: 1;
+}
+
+/* HERO */
+
+.hero {
+    padding: 76px 0 44px;
+    text-align: center;
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    opacity: 0.55;
+    margin-bottom: 16px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(38px, 7vw, 72px);
+    letter-spacing: 0.12em;
+    font-weight: 700;
+}
+
+.hero p {
+    max-width: 680px;
+    margin: 22px auto 0;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.68);
+}
+
+/* OVERALL PROGRESS */
+
+.overall-card {
+    margin: 10px auto 54px;
+    max-width: 760px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.035);
+    border-radius: 18px;
+}
+
+.overall-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.overall-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    opacity: 0.55;
+}
+
+.overall-count {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.progress-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #fff;
+    border-radius: inherit;
+    transition: width 0.5s ease;
+}
+
+.overall-sub {
+    margin-top: 13px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.48);
+}
+
+/* CATEGORIES */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 0.16em;
+}
+
+.section-heading p {
+    margin: 10px 0 0;
+    color: rgba(255,255,255,0.48);
+    font-size: 13px;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding-bottom: 70px;
+}
+
+.category-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
+        );
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.065);
+}
+
+.category-number {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+}
+
+.category-icon {
+    font-size: 28px;
+    margin: 12px 0 8px;
+}
+
+.category-card h3 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+}
+
+.category-description {
+    margin: 10px 0 22px;
+    color: rgba(255,255,255,0.52);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.category-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    margin-bottom: 9px;
+}
+
+.category-progress span:first-child {
+    opacity: 0.5;
+    letter-spacing: 0.12em;
+}
+
+.category-progress span:last-child {
+    font-weight: 700;
+}
+
+.category-track {
+    height: 4px;
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.category-fill {
+    width: 0%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    transition: width 0.5s ease;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 0 40px;
+    text-align: center;
+    color: rgba(255,255,255,0.35);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+}
+
+/* LOADING / ERROR */
+
+#loading {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+}
+
+#error {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    color: rgba(255,255,255,0.55);
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+    .nav-inner {
+        min-height: 64px;
+    }
+
+    .brand {
+        font-size: 14px;
+    }
+
+    .nav-links {
+        gap: 10px;
+        font-size: 9px;
+        letter-spacing: 0.08em;
+    }
+
+    .nav-links a:nth-child(2),
+    .nav-links a:nth-child(3) {
+        display: none;
+    }
+
+    .hero {
+        padding: 55px 0 35px;
+    }
+
+    .overall-card {
+        padding: 22px;
+        margin-bottom: 40px;
+    }
+
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        min-height: 175px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="container nav-inner">
+
+        <a class="brand" href="halo-home.html">
+            AETHER <span>/ HALO</span>
+        </a>
+
+        <div class="nav-links">
+            <a href="universe.html" class="active">EXPLORE</a>
+            <a href="community.html">COMMUNITY</a>
+            <a href="codex.html">CODEX</a>
+
+            <button class="logout" id="logoutButton">
+                ↪ LOG OUT
+            </button>
+        </div>
+
+    </div>
+</nav>
+
+<main>
+
+    <section class="hero">
+        <div class="container">
+
+            <div class="eyebrow">
+                A PRIVATE AETHER DISCOVERY SPACE
+            </div>
+
+            <h1>EXPLORE</h1>
+
+            <p>
+                Some things cannot be found in the Codex.
+                Some stories were never meant to be announced.
+                And some memories are waiting for the right HALO to discover them.
+            </p>
+
+        </div>
+    </section>
+
+
+    <section class="container">
+
+        <div class="overall-card">
+
+            <div class="overall-top">
+                <div class="overall-label">
+                    AETHERVERSE PROGRESS
+                </div>
+
+                <div class="overall-count" id="overallCount">
+                    0 / 91
+                </div>
+            </div>
+
+            <div class="progress-track">
+                <div
+                    class="progress-fill"
+                    id="overallFill"
+                ></div>
+            </div>
+
+            <div class="overall-sub" id="overallSub">
+                Your discoveries are saved to your HALO.
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="container">
+
+        <div class="section-heading">
+            <h2>DISCOVER THE UNSEEN</h2>
+            <p>
+                Eight paths. Ninety-one memories. One AETHERVERSE.
+            </p>
+        </div>
+
+        <div id="loading">
+            LOADING EXPLORE...
+        </div>
+
+        <div id="error">
+            Something went wrong while loading Explore.
+        </div>
+
+        <div
+            class="category-grid"
+            id="categoryGrid"
+        ></div>
+
+    </section>
+
+</main>
+
+<footer>
+    AETHER × HALO UNIVERSE · SEVEN STARS. ONE LIGHT.
+</footer>
+
+
+<script>
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+const CATEGORY_META = {
+
+    "BACKSTAGE": {
+        icon: "🎬",
+        description:
+            "The moments behind the lights, cameras and stage."
+    },
+
+    "EVERYDAY AETHER": {
+        icon: "🏠",
+        description:
+            "Seven members being themselves when nobody is watching."
+    },
+
+    "BONDS": {
+        icon: "❤️",
+        description:
+            "The connections that hold seven different people together."
+    },
+
+    "FAMILY": {
+        icon: "👨‍👩‍👦",
+        description:
+            "The people and memories that shaped them before AETHER."
+    },
+
+    "CHILDHOOD": {
+        icon: "🧒",
+        description:
+            "Small moments from the lives they lived before becoming seven."
+    },
+
+    "UNTOLD STORIES": {
+        icon: "📖",
+        description:
+            "Stories AETHER never told anywhere else."
+    },
+
+    "SCRAPBOOK": {
+        icon: "📸",
+        description:
+            "The memories they chose to keep."
+    },
+
+    "HIDDEN": {
+        icon: "👀",
+        description:
+            "Some things are better found than announced."
+    }
+
+};
+
+
+async function checkSession() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.auth.getSession();
+
+    if (
+        error ||
+        !data.session
+    ) {
+        window.location.href = "halo.html";
+        return null;
+    }
+
+    return data.session;
+}
+
+
+async function loadExploreProgress() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "get_explore_progress"
+    );
+
+    if (error) {
+        console.error(
+            "EXPLORE PROGRESS ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return data || [];
+}
+
+
+async function loadOverallProgress() {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "get_explore_overall_progress"
+    );
+
+    if (error) {
+        console.error(
+            "EXPLORE OVERALL ERROR:",
+            error
+        );
+
+        throw error;
+    }
+
+    return data || {
+        discovered: 0,
+        total: 91,
+        percentage: 0,
+        fully_explored: false
+    };
+}
+
+
+function renderCategories(progress) {
+
+    const grid =
+        document.getElementById(
+            "categoryGrid"
+        );
+
+    grid.innerHTML = "";
+
+    progress.forEach(
+        (category, index) => {
+
+            const meta =
+                CATEGORY_META[
+                    category.category
+                ] || {
+                    icon: "✦",
+                    description:
+                        "A hidden part of the AETHERVERSE."
+                };
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "category-card";
+
+            card.innerHTML = `
+
+                <div class="category-number">
+                    PATH ${String(index + 1).padStart(2, "0")}
+                </div>
+
+                <div class="category-icon">
+                    ${meta.icon}
+                </div>
+
+                <h3>
+                    ${category.category}
+                </h3>
+
+                <div class="category-description">
+                    ${meta.description}
+                </div>
+
+                <div class="category-progress">
+
+                    <span>
+                        DISCOVERED
+                    </span>
+
+                    <span>
+                        ${category.discovered}
+                        /
+                        ${category.total}
+                    </span>
+
+                </div>
+
+                <div class="category-track">
+
+                    <div
+                        class="category-fill"
+                        style="width: ${category.percentage}%"
+                    ></div>
+
+                </div>
+            `;
+
+            grid.appendChild(card);
+        }
+    );
+}
+
+
+function renderOverallProgress(data) {
+
+    const discovered =
+        Number(data.discovered || 0);
+
+    const total =
+        Number(data.total || 91);
+
+    const percentage =
+        Number(data.percentage || 0);
+
+    document.getElementById(
+        "overallCount"
+    ).textContent =
+        `${discovered} / ${total}`;
+
+    document.getElementById(
+        "overallFill"
+    ).style.width =
+        `${percentage}%`;
+
+    document.getElementById(
+        "overallSub"
+    ).textContent =
+        data.fully_explored
+            ? "AETHERVERSE FULLY EXPLORED ✦"
+            : "Your discoveries are saved to your HALO.";
+}
+
+
+async function initializeExplore() {
+
+    try {
+
+        const session =
+            await checkSession();
+
+        if (!session) return;
+
+        const [
+            progress,
+            overall
+        ] = await Promise.all([
+            loadExploreProgress(),
+            loadOverallProgress()
+        ]);
+
+        renderCategories(progress);
+
+        renderOverallProgress(overall);
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+    } catch (error) {
+
+        console.error(
+            "EXPLORE INITIALIZATION ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "loading"
+        ).style.display = "none";
+
+        document.getElementById(
+            "error"
+        ).style.display = "block";
+    }
+}
+
+
+document.getElementById(
+    "logoutButton"
+).addEventListener(
+    "click",
+    async () => {
+
+        await supabaseClient.auth.signOut();
+
+        window.location.href =
+            "halo.html";
+    }
+);
+
+
+initializeExplore();
+</script>
+
+</body>
+              </html>
