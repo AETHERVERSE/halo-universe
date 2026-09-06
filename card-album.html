@@ -909,12 +909,6 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-/*
-    Separate client variable.
-    This avoids a possible conflict with the
-    global window.supabase object from the CDN.
-*/
-
 const db =
     window.supabase.createClient(
         SUPABASE_URL,
@@ -1363,6 +1357,43 @@ async function loadOwnership() {
 
 
 /* =========================================================
+   CHECK CARD 022
+========================================================= */
+
+async function checkCard022() {
+
+    const {
+        data,
+        error
+    } = await db.rpc(
+        "check_aether_card_022"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Card 022 unlock error:",
+            error
+        );
+
+        return null;
+
+    }
+
+
+    console.log(
+        "Card 022 unlock result:",
+        data
+    );
+
+
+    return data;
+
+}
+
+
+/* =========================================================
    PROGRESS
 ========================================================= */
 
@@ -1774,7 +1805,27 @@ async function init() {
             data.session;
 
 
+        /* -----------------------------------------
+           LOAD CARD DATABASE
+        ----------------------------------------- */
+
         await loadCards();
+
+
+        /* -----------------------------------------
+           CHECK CARD UNLOCKS
+           
+           For now this tests the first real
+           acquisition trigger:
+           BACKSTAGE_001 / Card 022
+        ----------------------------------------- */
+
+        await checkCard022();
+
+
+        /* -----------------------------------------
+           LOAD UPDATED OWNERSHIP
+        ----------------------------------------- */
 
         await loadOwnership();
 
