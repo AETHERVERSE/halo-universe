@@ -497,6 +497,23 @@ nav {
     opacity: 0.42;
 }
 
+/* LIVE LIST COUNTDOWN */
+
+.story-list-countdown {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+}
+
+.story-list-countdown-label {
+    margin-top: 3px;
+    font-size: 8px;
+    letter-spacing: 0.16em;
+    opacity: 0.38;
+}
+
 /* SUCCESS MESSAGE */
 
 .discovery-success {
@@ -782,6 +799,7 @@ const CATEGORY_META = {
 let currentProgress = [];
 let currentCategory = null;
 let countdownInterval = null;
+let listCountdownInterval = null;
 
 
 /* SESSION */
@@ -1050,6 +1068,14 @@ async function openCategory(category) {
 
     currentCategory = category;
 
+    if (listCountdownInterval) {
+        clearInterval(
+            listCountdownInterval
+        );
+
+        listCountdownInterval = null;
+    }
+
     document.getElementById(
         "exploreHero"
     ).style.display = "none";
@@ -1136,6 +1162,14 @@ function renderStoryList(
     items
 ) {
 
+    if (listCountdownInterval) {
+        clearInterval(
+            listCountdownInterval
+        );
+
+        listCountdownInterval = null;
+    }
+
     const storyCard =
         document.getElementById(
             "storyCard"
@@ -1166,6 +1200,9 @@ function renderStoryList(
         document.getElementById(
             "storyList"
         );
+
+    let hasListCountdown =
+        false;
 
     items.forEach(
         item => {
@@ -1203,9 +1240,7 @@ function renderStoryList(
             ) {
                 statusText =
                     item.available_at
-                        ? formatCountdownStatus(
-                            item.available_at
-                        )
+                        ? "WAITING"
                         : "LOCKED";
             }
 
@@ -1227,6 +1262,28 @@ function renderStoryList(
                 <div class="story-list-status">
                     ${statusText}
                 </div>
+
+                ${
+                    item.status === "locked" &&
+                    item.available_at
+                    ? `
+                        <div
+                            class="story-list-countdown"
+                            data-list-countdown="${escapeHtml(
+                                item.available_at
+                            )}"
+                        >
+                            ${formatCountdown(
+                                item.available_at
+                            )}
+                        </div>
+
+                        <div class="story-list-countdown-label">
+                            AVAILABLE IN
+                        </div>
+                    `
+                    : ""
+                }
             `;
 
             if (
@@ -1243,15 +1300,37 @@ function renderStoryList(
                 );
             }
 
-            list.appendChild(button);
+            if (
+                item.status === "locked" &&
+                item.available_at
+            ) {
+                hasListCountdown =
+                    true;
+            }
+
+            list.appendChild(
+                button
+            );
         }
     );
+
+    if (hasListCountdown) {
+        startListCountdown();
+    }
 }
 
 
 /* STORY */
 
 async function openStory(itemId) {
+
+    if (listCountdownInterval) {
+        clearInterval(
+            listCountdownInterval
+        );
+
+        listCountdownInterval = null;
+    }
 
     const storyCard =
         document.getElementById(
@@ -1732,7 +1811,7 @@ async function refreshProgress() {
 }
 
 
-/* COUNTDOWN */
+/* STORY COUNTDOWN */
 
 function startCountdown(
     availableAt
@@ -1805,6 +1884,95 @@ function updateCountdown(
 }
 
 
+/* STORY LIST COUNTDOWN */
+
+function startListCountdown() {
+
+    if (listCountdownInterval) {
+        clearInterval(
+            listCountdownInterval
+        );
+    }
+
+    updateListCountdowns();
+
+    listCountdownInterval =
+        setInterval(
+            () => {
+
+                const shouldRefresh =
+                    updateListCountdowns();
+
+                if (
+                    shouldRefresh
+                ) {
+
+                    clearInterval(
+                        listCountdownInterval
+                    );
+
+                    listCountdownInterval =
+                        null;
+
+                    openCategory(
+                        currentCategory
+                    );
+                }
+
+            },
+            1000
+        );
+}
+
+
+function updateListCountdowns() {
+
+    const elements =
+        document.querySelectorAll(
+            "[data-list-countdown]"
+        );
+
+    let shouldRefresh =
+        false;
+
+    elements.forEach(
+        element => {
+
+            const availableAt =
+                element.dataset
+                    .listCountdown;
+
+            const remaining =
+                new Date(
+                    availableAt
+                ).getTime()
+                -
+                Date.now();
+
+            if (
+                remaining <= 0
+            ) {
+
+                element.textContent =
+                    "00:00:00";
+
+                shouldRefresh =
+                    true;
+
+                return;
+            }
+
+            element.textContent =
+                formatCountdown(
+                    availableAt
+                );
+        }
+    );
+
+    return shouldRefresh;
+}
+
+
 function formatCountdown(
     availableAt
 ) {
@@ -1871,6 +2039,15 @@ document
                 );
 
                 countdownInterval =
+                    null;
+            }
+
+            if (listCountdownInterval) {
+                clearInterval(
+                    listCountdownInterval
+                );
+
+                listCountdownInterval =
                     null;
             }
 
@@ -2004,4 +2181,4 @@ initializeExplore();
 </script>
 
 </body>
-</html>
+    </html>
