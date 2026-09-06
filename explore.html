@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>EXPLORE — AETHER | HALO UNIVERSE</title>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+EXPLORE — AETHER | HALO UNIVERSE
+</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -19,11 +27,26 @@ html {
 
 body {
     margin: 0;
+
     background:
-        radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 35%),
-        linear-gradient(180deg, #0b0d16 0%, #080a11 100%);
+        radial-gradient(
+            circle at top,
+            rgba(255,255,255,0.08),
+            transparent 35%
+        ),
+        linear-gradient(
+            180deg,
+            #0b0d16 0%,
+            #080a11 100%
+        );
+
     color: #f4f5f8;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     min-height: 100vh;
 }
 
@@ -37,65 +60,109 @@ button {
 }
 
 .container {
-    width: min(1180px, calc(100% - 32px));
+    width:
+        min(
+            1180px,
+            calc(100% - 32px)
+        );
+
     margin: 0 auto;
 }
 
-/* NAVIGATION */
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 nav {
+
     position: sticky;
+
     top: 0;
+
     z-index: 100;
-    background: rgba(8,10,17,0.92);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    background:
+        rgba(8,10,17,0.92);
+
+    backdrop-filter:
+        blur(14px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
 }
 
 .nav-inner {
+
     min-height: 72px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 20px;
 }
 
 .brand {
+
     font-size: 18px;
+
     font-weight: 700;
+
     letter-spacing: 0.18em;
 }
 
 .brand span {
+
     opacity: 0.55;
+
     font-weight: 400;
 }
 
 .nav-links {
+
     display: flex;
+
     align-items: center;
+
     gap: 22px;
+
     font-size: 12px;
+
     letter-spacing: 0.12em;
 }
 
 .nav-links a {
+
     opacity: 0.68;
-    transition: opacity 0.2s ease;
+
+    transition:
+        opacity 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
+
     opacity: 1;
 }
 
 .logout {
+
     cursor: pointer;
+
     background: none;
+
     border: 0;
+
     color: #fff;
+
     opacity: 0.68;
+
     letter-spacing: 0.12em;
+
     font-size: 12px;
 }
 
@@ -103,216 +170,372 @@ nav {
     opacity: 1;
 }
 
-/* HERO */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
-    padding: 76px 0 44px;
+
+    padding:
+        76px 0 44px;
+
     text-align: center;
 }
 
 .eyebrow {
+
     font-size: 11px;
+
     letter-spacing: 0.28em;
+
     opacity: 0.55;
+
     margin-bottom: 16px;
 }
 
 .hero h1 {
+
     margin: 0;
-    font-size: clamp(38px, 7vw, 72px);
+
+    font-size:
+        clamp(
+            38px,
+            7vw,
+            72px
+        );
+
     letter-spacing: 0.12em;
+
     font-weight: 700;
 }
 
 .hero p {
+
     max-width: 680px;
-    margin: 22px auto 0;
+
+    margin:
+        22px auto 0;
+
     line-height: 1.7;
-    color: rgba(255,255,255,0.68);
+
+    color:
+        rgba(255,255,255,0.68);
 }
 
-/* OVERALL PROGRESS */
+
+/* =========================================================
+   OVERALL PROGRESS
+========================================================= */
 
 .overall-card {
-    margin: 10px auto 54px;
+
+    margin:
+        10px auto 54px;
+
     max-width: 760px;
+
     padding: 28px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    background:
+        rgba(255,255,255,0.035);
+
     border-radius: 18px;
 }
 
 .overall-top {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     gap: 20px;
+
     margin-bottom: 16px;
 }
 
 .overall-label {
+
     font-size: 11px;
+
     letter-spacing: 0.18em;
+
     opacity: 0.55;
 }
 
 .overall-count {
+
     font-size: 20px;
+
     font-weight: 700;
 }
 
 .progress-track {
+
     width: 100%;
+
     height: 6px;
-    background: rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.08);
+
     border-radius: 999px;
+
     overflow: hidden;
 }
 
 .progress-fill {
+
     width: 0%;
+
     height: 100%;
+
     background: #fff;
+
     border-radius: inherit;
-    transition: width 0.5s ease;
+
+    transition:
+        width 0.5s ease;
 }
 
 .overall-sub {
+
     margin-top: 13px;
+
     font-size: 12px;
-    color: rgba(255,255,255,0.48);
+
+    color:
+        rgba(255,255,255,0.48);
 }
 
-/* CATEGORIES */
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
 .section-heading {
+
     text-align: center;
+
     margin-bottom: 28px;
 }
 
 .section-heading h2 {
+
     margin: 0;
+
     font-size: 20px;
+
     letter-spacing: 0.16em;
 }
 
 .section-heading p {
-    margin: 10px 0 0;
-    color: rgba(255,255,255,0.48);
+
+    margin:
+        10px 0 0;
+
+    color:
+        rgba(255,255,255,0.48);
+
     font-size: 13px;
 }
 
 .category-grid {
+
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
+
     gap: 18px;
+
     padding-bottom: 70px;
 }
 
 .category-card {
+
     position: relative;
+
     min-height: 190px;
+
     padding: 25px;
-    border: 1px solid rgba(255,255,255,0.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.09);
+
     border-radius: 18px;
+
     background:
         linear-gradient(
             145deg,
             rgba(255,255,255,0.055),
             rgba(255,255,255,0.018)
         );
+
     transition:
         transform 0.25s ease,
         border-color 0.25s ease,
         background 0.25s ease;
+
     cursor: pointer;
 }
 
 .category-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.065);
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(255,255,255,0.2);
+
+    background:
+        rgba(255,255,255,0.065);
 }
 
 .category-number {
+
     font-size: 10px;
+
     letter-spacing: 0.2em;
+
     opacity: 0.4;
 }
 
 .category-icon {
+
     font-size: 28px;
-    margin: 12px 0 8px;
+
+    margin:
+        12px 0 8px;
 }
 
 .category-card h3 {
+
     margin: 0;
+
     font-size: 18px;
+
     letter-spacing: 0.08em;
 }
 
 .category-description {
-    margin: 10px 0 22px;
-    color: rgba(255,255,255,0.52);
+
+    margin:
+        10px 0 22px;
+
+    color:
+        rgba(255,255,255,0.52);
+
     font-size: 12px;
+
     line-height: 1.6;
 }
 
 .category-progress {
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     font-size: 11px;
+
     margin-bottom: 9px;
 }
 
 .category-progress span:first-child {
+
     opacity: 0.5;
+
     letter-spacing: 0.12em;
 }
 
 .category-progress span:last-child {
+
     font-weight: 700;
 }
 
 .category-track {
+
     height: 4px;
+
     width: 100%;
-    background: rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.08);
+
     border-radius: 999px;
+
     overflow: hidden;
 }
 
 .category-fill {
+
     width: 0%;
+
     height: 100%;
-    background: rgba(255,255,255,0.8);
-    transition: width 0.5s ease;
+
+    background:
+        rgba(255,255,255,0.8);
+
+    transition:
+        width 0.5s ease;
 }
 
-/* STORY VIEW */
+
+/* =========================================================
+   STORY VIEW
+========================================================= */
 
 .story-view {
+
     display: none;
-    padding: 10px 0 80px;
+
+    padding:
+        10px 0 80px;
 }
 
 .story-shell {
+
     max-width: 820px;
+
     margin: 0 auto;
 }
 
 .story-back {
+
     display: inline-flex;
+
     align-items: center;
+
     gap: 8px;
+
     margin-bottom: 22px;
+
     padding: 10px 0;
+
     border: 0;
+
     background: none;
-    color: rgba(255,255,255,0.55);
+
+    color:
+        rgba(255,255,255,0.55);
+
     cursor: pointer;
+
     font-size: 11px;
+
     letter-spacing: 0.14em;
 }
 
@@ -321,73 +544,132 @@ nav {
 }
 
 .story-card {
-    border: 1px solid rgba(255,255,255,0.1);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
     border-radius: 20px;
+
     background:
         linear-gradient(
             145deg,
             rgba(255,255,255,0.055),
             rgba(255,255,255,0.018)
         );
+
     padding: 34px;
 }
 
 .story-category {
+
     font-size: 10px;
+
     letter-spacing: 0.24em;
+
     opacity: 0.42;
+
     margin-bottom: 14px;
 }
 
 .story-card h2 {
+
     margin: 0;
-    font-size: clamp(27px, 5vw, 42px);
+
+    font-size:
+        clamp(
+            27px,
+            5vw,
+            42px
+        );
+
     letter-spacing: 0.04em;
+
     line-height: 1.15;
 }
 
 .story-description {
+
     margin-top: 16px;
-    color: rgba(255,255,255,0.55);
+
+    color:
+        rgba(255,255,255,0.55);
+
     line-height: 1.7;
+
     font-size: 14px;
 }
 
 .story-content {
+
     margin-top: 32px;
+
     padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.82);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    color:
+        rgba(255,255,255,0.82);
+
     font-size: 15px;
+
     line-height: 1.9;
+
     white-space: pre-line;
 }
 
 .story-status {
+
     margin-top: 34px;
+
     padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
     text-align: center;
 }
 
 .story-status-label {
+
     font-size: 10px;
+
     letter-spacing: 0.2em;
-    color: rgba(255,255,255,0.42);
+
+    color:
+        rgba(255,255,255,0.42);
+
     margin-bottom: 15px;
 }
 
 .discover-button {
+
     width: 100%;
+
     max-width: 420px;
+
     padding: 15px 20px;
-    border: 1px solid rgba(255,255,255,0.2);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
+
     border-radius: 999px;
-    background: rgba(255,255,255,0.06);
+
+    background:
+        rgba(255,255,255,0.06);
+
     color: #fff;
+
     cursor: pointer;
+
     letter-spacing: 0.13em;
+
     font-size: 11px;
+
     transition:
         background 0.2s ease,
         border-color 0.2s ease,
@@ -395,346 +677,587 @@ nav {
 }
 
 .discover-button:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(255,255,255,0.35);
-    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border-color:
+        rgba(255,255,255,0.35);
+
+    transform:
+        translateY(-2px);
 }
 
 .discover-button:disabled {
+
     opacity: 0.45;
+
     cursor: default;
+
     transform: none;
 }
 
 .discovered-label {
+
     display: inline-block;
-    padding: 12px 20px;
-    border: 1px solid rgba(255,255,255,0.15);
+
+    padding:
+        12px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
     border-radius: 999px;
+
     font-size: 11px;
+
     letter-spacing: 0.16em;
 }
 
 .locked-story {
+
     text-align: center;
-    padding: 30px 10px 10px;
+
+    padding:
+        30px 10px 10px;
 }
 
 .locked-icon {
+
     font-size: 28px;
+
     margin-bottom: 14px;
 }
 
 .locked-title {
+
     font-size: 14px;
+
     letter-spacing: 0.12em;
 }
 
 .locked-description {
+
     margin-top: 10px;
-    color: rgba(255,255,255,0.45);
+
+    color:
+        rgba(255,255,255,0.45);
+
     font-size: 12px;
+
     line-height: 1.7;
 }
 
 .countdown {
+
     margin-top: 18px;
+
     font-size: 22px;
+
     font-weight: 700;
+
     letter-spacing: 0.08em;
 }
 
 .countdown-label {
+
     margin-top: 6px;
+
     font-size: 9px;
+
     letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.35);
+
+    color:
+        rgba(255,255,255,0.35);
 }
 
 .story-list {
+
     margin-top: 24px;
+
     display: grid;
+
     gap: 10px;
 }
 
 .story-list-item {
+
     width: 100%;
+
     text-align: left;
-    padding: 16px 18px;
-    border: 1px solid rgba(255,255,255,0.08);
+
+    padding:
+        16px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
     border-radius: 12px;
-    background: rgba(255,255,255,0.025);
+
+    background:
+        rgba(255,255,255,0.025);
+
     color: #fff;
+
     cursor: pointer;
-    transition: background 0.2s ease, border-color 0.2s ease;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .story-list-item:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.16);
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border-color:
+        rgba(255,255,255,0.16);
 }
 
 .story-list-item.locked {
+
     cursor: default;
+
     opacity: 0.5;
 }
 
 .story-list-number {
+
     font-size: 9px;
+
     letter-spacing: 0.18em;
+
     opacity: 0.42;
 }
 
 .story-list-title {
+
     margin-top: 6px;
+
     font-size: 13px;
 }
 
 .story-list-status {
+
     margin-top: 7px;
+
     font-size: 9px;
+
     letter-spacing: 0.12em;
+
     opacity: 0.42;
 }
 
-/* LIVE LIST COUNTDOWN */
-
 .story-list-countdown {
+
     margin-top: 8px;
+
     font-size: 13px;
+
     font-weight: 700;
+
     letter-spacing: 0.08em;
+
     opacity: 0.85;
 }
 
 .story-list-countdown-label {
+
     margin-top: 3px;
+
     font-size: 8px;
+
     letter-spacing: 0.16em;
+
     opacity: 0.38;
 }
 
-/* SUCCESS MESSAGE */
-
 .discovery-success {
+
     display: none;
+
     margin-top: 18px;
-    color: rgba(255,255,255,0.72);
+
+    color:
+        rgba(255,255,255,0.72);
+
     font-size: 12px;
+
     line-height: 1.6;
 }
 
-/* FOOTER */
+
+/* =========================================================
+   COLLECTION REWARD MESSAGE
+========================================================= */
+
+.collection-reward {
+
+    margin-top: 16px;
+
+    padding:
+        14px 18px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    color:
+        rgba(255,255,255,0.82);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding: 28px 0 40px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    padding:
+        28px 0 40px;
+
     text-align: center;
-    color: rgba(255,255,255,0.35);
+
+    color:
+        rgba(255,255,255,0.35);
+
     font-size: 11px;
+
     letter-spacing: 0.1em;
 }
 
-/* LOADING / ERROR */
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
 
 #loading {
+
     text-align: center;
+
     padding: 40px 0;
-    color: rgba(255,255,255,0.5);
+
+    color:
+        rgba(255,255,255,0.5);
+
     font-size: 12px;
+
     letter-spacing: 0.12em;
 }
 
 #error {
+
     display: none;
+
     text-align: center;
+
     padding: 30px;
-    color: rgba(255,255,255,0.55);
+
+    color:
+        rgba(255,255,255,0.55);
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 760px) {
 
     .nav-inner {
+
         min-height: 64px;
     }
 
     .brand {
+
         font-size: 14px;
     }
 
     .nav-links {
+
         gap: 10px;
+
         font-size: 9px;
+
         letter-spacing: 0.08em;
     }
 
     .nav-links a:nth-child(2),
     .nav-links a:nth-child(3) {
+
         display: none;
     }
 
     .hero {
-        padding: 55px 0 35px;
+
+        padding:
+            55px 0 35px;
     }
 
     .overall-card {
+
         padding: 22px;
+
         margin-bottom: 40px;
     }
 
     .category-grid {
+
         grid-template-columns: 1fr;
     }
 
     .category-card {
+
         min-height: 175px;
     }
 
     .story-card {
+
         padding: 24px;
     }
 
     .story-content {
+
         font-size: 14px;
+
         line-height: 1.8;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <nav>
+
     <div class="container nav-inner">
 
-        <a class="brand" href="halo-home.html">
+        <a
+            class="brand"
+            href="halo-home.html"
+        >
             AETHER <span>/ HALO</span>
         </a>
 
-        <div class="nav-links">
-            <a href="explore.html" class="active">EXPLORE</a>
-            <a href="community.html">COMMUNITY</a>
-            <a href="codex.html">CODEX</a>
 
-            <button class="logout" id="logoutButton">
+        <div class="nav-links">
+
+            <a
+                href="explore.html"
+                class="active"
+            >
+                EXPLORE
+            </a>
+
+            <a href="community.html">
+                COMMUNITY
+            </a>
+
+            <a href="codex.html">
+                CODEX
+            </a>
+
+            <a href="collection.html">
+                COLLECTION
+            </a>
+
+            <button
+                class="logout"
+                id="logoutButton"
+            >
                 ↪ LOG OUT
             </button>
+
         </div>
 
     </div>
+
 </nav>
+
 
 <main>
 
-    <section class="hero" id="exploreHero">
-        <div class="container">
 
-            <div class="eyebrow">
-                A PRIVATE AETHER DISCOVERY SPACE
+<section
+    class="hero"
+    id="exploreHero"
+>
+
+    <div class="container">
+
+        <div class="eyebrow">
+            A PRIVATE AETHER DISCOVERY SPACE
+        </div>
+
+        <h1>
+            EXPLORE
+        </h1>
+
+        <p>
+            Some things cannot be found in the Codex.
+            Some stories were never meant to be announced.
+            And some memories are waiting for the right HALO to discover them.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section
+    class="container"
+    id="progressSection"
+>
+
+    <div class="overall-card">
+
+        <div class="overall-top">
+
+            <div class="overall-label">
+                AETHERVERSE PROGRESS
             </div>
-
-            <h1>EXPLORE</h1>
-
-            <p>
-                Some things cannot be found in the Codex.
-                Some stories were never meant to be announced.
-                And some memories are waiting for the right HALO to discover them.
-            </p>
-
-        </div>
-    </section>
-
-
-    <section class="container" id="progressSection">
-
-        <div class="overall-card">
-
-            <div class="overall-top">
-                <div class="overall-label">
-                    AETHERVERSE PROGRESS
-                </div>
-
-                <div class="overall-count" id="overallCount">
-                    0 / 91
-                </div>
-            </div>
-
-            <div class="progress-track">
-                <div
-                    class="progress-fill"
-                    id="overallFill"
-                ></div>
-            </div>
-
-            <div class="overall-sub" id="overallSub">
-                Your discoveries are saved to your HALO.
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <section class="container" id="categorySection">
-
-        <div class="section-heading">
-            <h2>DISCOVER THE UNSEEN</h2>
-            <p>
-                Eight paths. Ninety-one memories. One AETHERVERSE.
-            </p>
-        </div>
-
-        <div id="loading">
-            LOADING EXPLORE...
-        </div>
-
-        <div id="error">
-            Something went wrong while loading Explore.
-        </div>
-
-        <div
-            class="category-grid"
-            id="categoryGrid"
-        ></div>
-
-    </section>
-
-
-    <section class="story-view" id="storyView">
-
-        <div class="story-shell">
-
-            <button
-                class="story-back"
-                id="storyBack"
-            >
-                ← BACK TO EXPLORE
-            </button>
 
             <div
-                class="story-card"
-                id="storyCard"
+                class="overall-count"
+                id="overallCount"
+            >
+                0 / 91
+            </div>
+
+        </div>
+
+
+        <div class="progress-track">
+
+            <div
+                class="progress-fill"
+                id="overallFill"
             ></div>
 
         </div>
 
-    </section>
+
+        <div
+            class="overall-sub"
+            id="overallSub"
+        >
+            Your discoveries are saved to your HALO.
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    class="container"
+    id="categorySection"
+>
+
+    <div class="section-heading">
+
+        <h2>
+            DISCOVER THE UNSEEN
+        </h2>
+
+        <p>
+            Eight paths. Ninety-one memories. One AETHERVERSE.
+        </p>
+
+    </div>
+
+
+    <div id="loading">
+        LOADING EXPLORE...
+    </div>
+
+
+    <div id="error">
+        Something went wrong while loading Explore.
+    </div>
+
+
+    <div
+        class="category-grid"
+        id="categoryGrid"
+    ></div>
+
+</section>
+
+
+<section
+    class="story-view"
+    id="storyView"
+>
+
+    <div class="story-shell">
+
+        <button
+            class="story-back"
+            id="storyBack"
+        >
+            ← BACK TO EXPLORE
+        </button>
+
+
+        <div
+            class="story-card"
+            id="storyCard"
+        ></div>
+
+    </div>
+
+</section>
+
 
 </main>
 
+
 <footer>
+
     AETHER × HALO UNIVERSE · SEVEN STARS. ONE LIGHT.
+
 </footer>
 
 
 <script>
+
+
+// ======================================================
+// SUPABASE
+// ======================================================
+
 const SUPABASE_URL =
     "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
+
 const SUPABASE_KEY =
     "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -743,109 +1266,164 @@ const supabaseClient =
     );
 
 
+// ======================================================
+// CATEGORY META
+// ======================================================
+
 const CATEGORY_META = {
 
     "BACKSTAGE": {
+
         icon: "🎬",
+
         description:
             "The moments behind the lights, cameras and stage."
+
     },
+
 
     "EVERYDAY AETHER": {
+
         icon: "🏠",
+
         description:
             "Seven members being themselves when nobody is watching."
+
     },
+
 
     "BONDS": {
+
         icon: "❤️",
+
         description:
             "The connections that hold seven different people together."
+
     },
+
 
     "FAMILY": {
+
         icon: "👨‍👩‍👦",
+
         description:
             "The people and memories that shaped them before AETHER."
+
     },
+
 
     "CHILDHOOD": {
+
         icon: "🧒",
+
         description:
             "Small moments from the lives they lived before becoming seven."
+
     },
+
 
     "UNTOLD STORIES": {
+
         icon: "📖",
+
         description:
             "Stories AETHER never told anywhere else."
+
     },
+
 
     "SCRAPBOOK": {
+
         icon: "📸",
+
         description:
             "The memories they chose to keep."
+
     },
 
+
     "HIDDEN": {
+
         icon: "👀",
+
         description:
             "Some things are better found than announced."
+
     }
 
 };
 
 
 let currentProgress = [];
+
 let currentCategory = null;
+
 let currentStoryId = null;
 
 let countdownInterval = null;
+
 let listCountdownInterval = null;
 
 
-/* SESSION */
+// ======================================================
+// SESSION
+// ======================================================
 
 async function checkSession() {
 
     const {
         data,
         error
-    } = await supabaseClient.auth.getSession();
+    } =
+    await supabaseClient.auth.getSession();
+
 
     if (
         error ||
         !data.session
     ) {
-        window.location.href = "halo.html";
+
+        window.location.href =
+            "halo.html";
+
         return null;
+
     }
+
 
     return data.session;
 }
 
 
-/* PROGRESS */
+// ======================================================
+// PROGRESS
+// ======================================================
 
 async function loadExploreProgress() {
 
     const {
         data,
         error
-    } = await supabaseClient.rpc(
+    } =
+    await supabaseClient.rpc(
         "get_explore_progress"
     );
 
+
     if (error) {
+
         console.error(
             "EXPLORE PROGRESS ERROR:",
             error
         );
 
         throw error;
+
     }
 
+
     return data || [];
+
 }
 
 
@@ -854,78 +1432,125 @@ async function loadOverallProgress() {
     const {
         data,
         error
-    } = await supabaseClient.rpc(
+    } =
+    await supabaseClient.rpc(
         "get_explore_overall_progress"
     );
 
+
     if (error) {
+
         console.error(
             "EXPLORE OVERALL ERROR:",
             error
         );
 
         throw error;
+
     }
 
+
     return data || {
+
         discovered: 0,
+
         total: 91,
+
         percentage: 0,
+
         fully_explored: false
+
     };
+
 }
 
 
-/* CATEGORY DISPLAY */
+// ======================================================
+// CATEGORY DISPLAY
+// ======================================================
 
-function renderCategories(progress) {
+function renderCategories(
+    progress
+) {
 
-    currentProgress = progress;
+    currentProgress =
+        progress;
+
 
     const grid =
         document.getElementById(
             "categoryGrid"
         );
 
-    grid.innerHTML = "";
+
+    grid.innerHTML =
+        "";
+
 
     progress.forEach(
-        (category, index) => {
+        (
+            category,
+            index
+        ) => {
 
             const meta =
                 CATEGORY_META[
                     category.category
                 ] || {
+
                     icon: "✦",
+
                     description:
                         "A hidden part of the AETHERVERSE."
+
                 };
+
 
             const card =
                 document.createElement(
                     "div"
                 );
 
+
             card.className =
                 "category-card";
+
 
             card.innerHTML = `
 
                 <div class="category-number">
-                    PATH ${String(index + 1).padStart(2, "0")}
+
+                    PATH
+                    ${String(
+                        index + 1
+                    ).padStart(
+                        2,
+                        "0"
+                    )}
+
                 </div>
+
 
                 <div class="category-icon">
+
                     ${meta.icon}
+
                 </div>
+
 
                 <h3>
+
                     ${category.category}
+
                 </h3>
 
+
                 <div class="category-description">
+
                     ${meta.description}
+
                 </div>
+
 
                 <div class="category-progress">
 
@@ -934,272 +1559,412 @@ function renderCategories(progress) {
                     </span>
 
                     <span>
+
                         ${category.discovered}
                         /
                         ${category.total}
+
                     </span>
 
                 </div>
+
 
                 <div class="category-track">
 
                     <div
                         class="category-fill"
-                        style="width: ${category.percentage}%"
+                        style="
+                            width:
+                            ${category.percentage}%
+                        "
                     ></div>
 
                 </div>
+
             `;
+
 
             card.addEventListener(
                 "click",
                 () => {
+
                     openCategory(
                         category.category,
                         true
                     );
+
                 }
             );
 
-            grid.appendChild(card);
+
+            grid.appendChild(
+                card
+            );
+
         }
     );
+
 }
 
 
-/* OVERALL DISPLAY */
+// ======================================================
+// OVERALL DISPLAY
+// ======================================================
 
-function renderOverallProgress(data) {
+function renderOverallProgress(
+    data
+) {
 
     const discovered =
-        Number(data.discovered || 0);
+        Number(
+            data.discovered || 0
+        );
+
 
     const total =
-        Number(data.total || 91);
+        Number(
+            data.total || 91
+        );
+
 
     const percentage =
-        Number(data.percentage || 0);
+        Number(
+            data.percentage || 0
+        );
+
 
     document.getElementById(
         "overallCount"
     ).textContent =
+
         `${discovered} / ${total}`;
+
 
     document.getElementById(
         "overallFill"
     ).style.width =
+
         `${percentage}%`;
+
 
     document.getElementById(
         "overallSub"
     ).textContent =
+
         data.fully_explored
+
             ? "AETHERVERSE FULLY EXPLORED ✦"
+
             : "Your discoveries are saved to your HALO.";
+
 }
 
 
-/* STORY LOADING */
+// ======================================================
+// STORY LOADING
+// ======================================================
 
-async function getExploreItem(itemId) {
+async function getExploreItem(
+    itemId
+) {
 
     const {
         data,
         error
-    } = await supabaseClient.rpc(
+    } =
+    await supabaseClient.rpc(
         "get_explore_item",
         {
-            p_explore_item_id: itemId
+            p_explore_item_id:
+                itemId
         }
     );
 
+
     if (error) {
+
         console.error(
             "EXPLORE ITEM ERROR:",
             error
         );
 
         throw error;
+
     }
 
+
     return data;
+
 }
 
 
-/* CATEGORY ITEMS */
+// ======================================================
+// CATEGORY ITEMS
+// ======================================================
 
-async function loadCategoryItems(category) {
+async function loadCategoryItems(
+    category
+) {
 
     const categoryProgress =
         currentProgress.find(
             item =>
-                item.category === category
+                item.category ===
+                category
         );
 
+
     if (!categoryProgress) {
+
         throw new Error(
             "CATEGORY_NOT_FOUND"
         );
+
     }
+
 
     const {
         data,
         error
-    } = await supabaseClient.rpc(
+    } =
+    await supabaseClient.rpc(
         "get_explore_category_items",
         {
-            p_category: category
+            p_category:
+                category
         }
     );
 
+
     if (error) {
+
         console.error(
             "EXPLORE CATEGORY ITEMS ERROR:",
             error
         );
 
         throw error;
+
     }
 
+
     return data || [];
+
 }
 
 
-/* SHOW EXPLORE */
+// ======================================================
+// SHOW EXPLORE
+// ======================================================
 
 function showExploreView(
     updateHistory = false
 ) {
 
     if (countdownInterval) {
+
         clearInterval(
             countdownInterval
         );
 
-        countdownInterval = null;
+        countdownInterval =
+            null;
+
     }
 
+
     if (listCountdownInterval) {
+
         clearInterval(
             listCountdownInterval
         );
 
-        listCountdownInterval = null;
+        listCountdownInterval =
+            null;
+
     }
 
-    currentCategory = null;
-    currentStoryId = null;
+
+    currentCategory =
+        null;
+
+    currentStoryId =
+        null;
+
 
     document.getElementById(
         "storyView"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     document.getElementById(
         "exploreHero"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     document.getElementById(
         "progressSection"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     document.getElementById(
         "categorySection"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     if (updateHistory) {
 
         history.pushState(
             {
-                view: "explore"
+                view:
+                    "explore"
             },
             "",
             window.location.href
         );
+
     }
 
+
     window.scrollTo({
+
         top: 0,
-        behavior: "smooth"
+
+        behavior:
+            "smooth"
+
     });
+
 }
 
 
-/* OPEN CATEGORY */
+// ======================================================
+// OPEN CATEGORY
+// ======================================================
 
 async function openCategory(
     category,
     addHistory = true
 ) {
 
-    currentCategory = category;
-    currentStoryId = null;
+    currentCategory =
+        category;
+
+    currentStoryId =
+        null;
+
 
     if (countdownInterval) {
+
         clearInterval(
             countdownInterval
         );
 
-        countdownInterval = null;
+        countdownInterval =
+            null;
+
     }
 
+
     if (listCountdownInterval) {
+
         clearInterval(
             listCountdownInterval
         );
 
-        listCountdownInterval = null;
+        listCountdownInterval =
+            null;
+
     }
+
 
     if (addHistory) {
 
         history.pushState(
             {
-                view: "category",
-                category: category
+                view:
+                    "category",
+
+                category:
+                    category
+
             },
             "",
             window.location.href
         );
+
     }
+
 
     document.getElementById(
         "exploreHero"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     document.getElementById(
         "progressSection"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     document.getElementById(
         "categorySection"
-    ).style.display = "none";
+    ).style.display =
+        "none";
+
 
     document.getElementById(
         "storyView"
-    ).style.display = "block";
+    ).style.display =
+        "block";
+
 
     window.scrollTo({
+
         top: 0,
-        behavior: "smooth"
+
+        behavior:
+            "smooth"
+
     });
+
 
     const storyCard =
         document.getElementById(
             "storyCard"
         );
 
+
     storyCard.innerHTML = `
+
         <div class="story-category">
-            ${escapeHtml(category)}
+
+            ${escapeHtml(
+                category
+            )}
+
         </div>
 
+
         <div class="locked-story">
-            <div class="locked-icon">✦</div>
+
+            <div class="locked-icon">
+                ✦
+            </div>
+
             <div class="locked-title">
                 LOADING DISCOVERIES
             </div>
+
         </div>
+
     `;
+
 
     try {
 
@@ -1208,10 +1973,12 @@ async function openCategory(
                 category
             );
 
+
         renderStoryList(
             category,
             items
         );
+
 
     } catch (error) {
 
@@ -1220,28 +1987,47 @@ async function openCategory(
             error
         );
 
+
         storyCard.innerHTML = `
+
             <div class="story-category">
-                ${escapeHtml(category)}
+
+                ${escapeHtml(
+                    category
+                )}
+
             </div>
 
+
             <div class="locked-story">
-                <div class="locked-icon">✦</div>
+
+                <div class="locked-icon">
+                    ✦
+                </div>
+
                 <div class="locked-title">
                     SOMETHING WENT WRONG
                 </div>
 
                 <div class="locked-description">
+
                     This discovery could not be opened.
                     Please try again.
+
                 </div>
+
             </div>
+
         `;
+
     }
+
 }
 
 
-/* STORY LIST */
+// ======================================================
+// STORY LIST
+// ======================================================
 
 function renderStoryList(
     category,
@@ -1249,46 +2035,64 @@ function renderStoryList(
 ) {
 
     if (listCountdownInterval) {
+
         clearInterval(
             listCountdownInterval
         );
 
-        listCountdownInterval = null;
+        listCountdownInterval =
+            null;
+
     }
+
 
     const storyCard =
         document.getElementById(
             "storyCard"
         );
 
+
     storyCard.innerHTML = `
 
         <div class="story-category">
-            ${escapeHtml(category)}
+
+            ${escapeHtml(
+                category
+            )}
+
         </div>
+
 
         <h2>
             DISCOVERIES
         </h2>
 
+
         <div class="story-description">
+
             Follow the path one discovery at a time.
             Some memories require patience.
+
         </div>
+
 
         <div
             class="story-list"
             id="storyList"
         ></div>
+
     `;
+
 
     const list =
         document.getElementById(
             "storyList"
         );
 
+
     let hasListCountdown =
         false;
+
 
     items.forEach(
         item => {
@@ -1298,117 +2102,179 @@ function renderStoryList(
                     "button"
                 );
 
+
             button.className =
                 "story-list-item";
 
-            if (
-                item.status === "locked"
-            ) {
-                button.classList.add(
-                    "locked"
-                );
-            }
-
-            let statusText =
-                "AVAILABLE";
-
-            if (
-                item.status ===
-                "discovered"
-            ) {
-                statusText =
-                    "DISCOVERED ✦";
-            }
 
             if (
                 item.status ===
                 "locked"
             ) {
+
+                button.classList.add(
+                    "locked"
+                );
+
+            }
+
+
+            let statusText =
+                "AVAILABLE";
+
+
+            if (
+                item.status ===
+                "discovered"
+            ) {
+
+                statusText =
+                    "DISCOVERED ✦";
+
+            }
+
+
+            if (
+                item.status ===
+                "locked"
+            ) {
+
                 statusText =
                     item.available_at
+
                         ? "WAITING"
+
                         : "LOCKED";
+
             }
+
 
             button.innerHTML = `
 
                 <div class="story-list-number">
-                    STORY ${String(
+
+                    STORY
+                    ${String(
                         item.sequence
-                    ).padStart(2, "0")}
+                    ).padStart(
+                        2,
+                        "0"
+                    )}
+
                 </div>
 
+
                 <div class="story-list-title">
+
                     ${escapeHtml(
                         item.title ||
                         "Hidden Memory"
                     )}
+
                 </div>
+
 
                 <div class="story-list-status">
+
                     ${statusText}
+
                 </div>
 
+
                 ${
-                    item.status === "locked" &&
+                    item.status ===
+                    "locked" &&
                     item.available_at
+
                     ? `
+
                         <div
                             class="story-list-countdown"
-                            data-list-countdown="${escapeHtml(
-                                item.available_at
-                            )}"
+                            data-list-countdown="
+                                ${escapeHtml(
+                                    item.available_at
+                                )}
+                            "
                         >
+
                             ${formatCountdown(
                                 item.available_at
                             )}
+
                         </div>
 
-                        <div class="story-list-countdown-label">
+
+                        <div class="
+                            story-list-countdown-label
+                        ">
+
                             AVAILABLE IN
+
                         </div>
+
                     `
+
                     : ""
+
                 }
+
             `;
 
+
             if (
-                item.status !== "locked"
+                item.status !==
+                "locked"
             ) {
 
                 button.addEventListener(
                     "click",
                     () => {
+
                         openStory(
                             item.id,
                             true
                         );
+
                     }
                 );
+
             }
 
+
             if (
-                item.status === "locked" &&
+                item.status ===
+                "locked" &&
                 item.available_at
             ) {
 
                 hasListCountdown =
                     true;
+
             }
+
 
             list.appendChild(
                 button
             );
+
         }
     );
 
-    if (hasListCountdown) {
+
+    if (
+        hasListCountdown
+    ) {
+
         startListCountdown();
+
     }
+
 }
 
 
-/* STORY */
+// ======================================================
+// STORY
+// ======================================================
 
 async function openStory(
     itemId,
@@ -1416,42 +2282,68 @@ async function openStory(
 ) {
 
     currentStoryId =
-        Number(itemId);
+        Number(
+            itemId
+        );
+
 
     if (listCountdownInterval) {
+
         clearInterval(
             listCountdownInterval
         );
 
-        listCountdownInterval = null;
+        listCountdownInterval =
+            null;
+
     }
+
 
     if (addHistory) {
 
         history.pushState(
             {
-                view: "story",
-                category: currentCategory,
-                itemId: Number(itemId)
+                view:
+                    "story",
+
+                category:
+                    currentCategory,
+
+                itemId:
+                    Number(
+                        itemId
+                    )
+
             },
             "",
             window.location.href
         );
+
     }
+
 
     const storyCard =
         document.getElementById(
             "storyCard"
         );
 
+
     storyCard.innerHTML = `
+
         <div class="locked-story">
-            <div class="locked-icon">✦</div>
+
+            <div class="locked-icon">
+                ✦
+            </div>
+
             <div class="locked-title">
                 OPENING MEMORY...
             </div>
+
         </div>
+
     `;
+
 
     try {
 
@@ -1460,15 +2352,22 @@ async function openStory(
                 itemId
             );
 
+
         renderStory(
             item,
             itemId
         );
 
+
         window.scrollTo({
+
             top: 0,
-            behavior: "smooth"
+
+            behavior:
+                "smooth"
+
         });
+
 
     } catch (error) {
 
@@ -1477,9 +2376,15 @@ async function openStory(
             error
         );
 
+
         storyCard.innerHTML = `
+
             <div class="locked-story">
-                <div class="locked-icon">✦</div>
+
+                <div class="locked-icon">
+                    ✦
+                </div>
+
                 <div class="locked-title">
                     DISCOVERY UNAVAILABLE
                 </div>
@@ -1487,13 +2392,19 @@ async function openStory(
                 <div class="locked-description">
                     This memory could not be opened.
                 </div>
+
             </div>
+
         `;
+
     }
+
 }
 
 
-/* STORY RENDER */
+// ======================================================
+// STORY RENDER
+// ======================================================
 
 function renderStory(
     item,
@@ -1505,26 +2416,34 @@ function renderStory(
             "storyCard"
         );
 
+
     if (
-        item.status === "locked"
+        item.status ===
+        "locked"
     ) {
 
         storyCard.innerHTML = `
 
             <div class="story-category">
+
                 ${escapeHtml(
                     item.category ||
                     currentCategory ||
                     ""
                 )}
+
             </div>
 
+
             <h2>
+
                 ${escapeHtml(
                     item.title ||
                     "Something Is Waiting"
                 )}
+
             </h2>
+
 
             <div class="locked-story">
 
@@ -1532,46 +2451,67 @@ function renderStory(
                     ⏳
                 </div>
 
+
                 <div class="locked-title">
                     NOT YET
                 </div>
 
+
                 <div class="locked-description">
+
                     ${escapeHtml(
                         item.description ||
                         "Something is waiting beyond the next discovery."
                     )}
+
                 </div>
+
 
                 ${
                     item.available_at
+
                     ? `
+
                         <div
                             class="countdown"
                             id="storyCountdown"
                         >
+
                             ${formatCountdown(
                                 item.available_at
                             )}
+
                         </div>
+
 
                         <div class="countdown-label">
                             AVAILABLE IN
                         </div>
+
                     `
+
                     : ""
+
                 }
 
             </div>
+
         `;
 
-        if (item.available_at) {
+
+        if (
+            item.available_at
+        ) {
+
             startCountdown(
                 item.available_at
             );
+
         }
 
+
         return;
+
     }
 
 
@@ -1583,19 +2523,25 @@ function renderStory(
         storyCard.innerHTML = `
 
             <div class="story-category">
+
                 ${escapeHtml(
                     item.category ||
                     currentCategory ||
                     ""
                 )}
+
             </div>
 
+
             <h2>
+
                 ${escapeHtml(
                     item.title ||
                     "Hidden"
                 )}
+
             </h2>
+
 
             <div class="locked-story">
 
@@ -1603,23 +2549,28 @@ function renderStory(
                     👀
                 </div>
 
+
                 <div class="locked-title">
                     SECRET DISCOVERY
                 </div>
 
+
                 <div class="locked-description">
-                    ${
-                        escapeHtml(
-                            item.description ||
-                            "Something is hidden here."
-                        )
-                    }
+
+                    ${escapeHtml(
+                        item.description ||
+                        "Something is hidden here."
+                    )}
+
                 </div>
 
             </div>
+
         `;
 
+
         return;
+
     }
 
 
@@ -1627,69 +2578,102 @@ function renderStory(
         item.status ===
         "discovered";
 
+
     storyCard.innerHTML = `
 
         <div class="story-category">
+
             ${escapeHtml(
                 item.category ||
                 currentCategory ||
                 ""
             )}
+
         </div>
 
+
         <h2>
+
             ${escapeHtml(
                 item.title ||
                 "Untitled Memory"
             )}
+
         </h2>
 
+
         <div class="story-description">
+
             ${escapeHtml(
-                item.description || ""
+                item.description ||
+                ""
             )}
+
         </div>
+
 
         <div class="story-content">
+
             ${escapeHtml(
-                item.content || ""
+                item.content ||
+                ""
             )}
+
         </div>
 
+
         <div class="story-status">
+
 
             ${
                 alreadyDiscovered
 
                 ? `
+
                     <div class="discovered-label">
+
                         DISCOVERED ✦
+
                     </div>
+
                 `
 
                 : `
+
                     <div class="story-status-label">
+
                         YOU'VE REACHED THE END
+
                     </div>
+
 
                     <button
                         class="discover-button"
                         id="discoverButton"
                     >
+
                         DISCOVER THIS STORY ✦
+
                     </button>
+
 
                     <div
                         class="discovery-success"
                         id="discoverySuccess"
                     ></div>
+
                 `
+
             }
 
         </div>
+
     `;
 
-    if (!alreadyDiscovered) {
+
+    if (
+        !alreadyDiscovered
+    ) {
 
         document
             .getElementById(
@@ -1698,40 +2682,122 @@ function renderStory(
             .addEventListener(
                 "click",
                 () => {
+
                     discoverStory(
                         itemId
                     );
+
                 }
             );
+
     }
+
 }
 
 
-/* DISCOVER */
+// ======================================================
+// COLLECTION REWARD
+// ======================================================
 
-async function discoverStory(itemId) {
+async function claimCollectionReward(
+    category
+) {
+
+    if (!category) {
+
+        return null;
+
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "claim_explore_collection_reward",
+            {
+                p_category:
+                    category
+            }
+        );
+
+
+        if (error) {
+
+            console.error(
+                "COLLECTION REWARD ERROR:",
+                error
+            );
+
+            return null;
+
+        }
+
+
+        console.log(
+            "COLLECTION REWARD RESULT:",
+            data
+        );
+
+
+        return data;
+
+
+    } catch (error) {
+
+        console.error(
+            "COLLECTION REWARD EXCEPTION:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+// ======================================================
+// DISCOVER
+// ======================================================
+
+async function discoverStory(
+    itemId
+) {
 
     const button =
         document.getElementById(
             "discoverButton"
         );
 
+
     const success =
         document.getElementById(
             "discoverySuccess"
         );
 
+
     if (!button) return;
 
-    button.disabled = true;
+
+    button.disabled =
+        true;
+
 
     button.textContent =
         "DISCOVERING...";
 
+
     try {
 
         const numericItemId =
-            Number(itemId);
+            Number(
+                itemId
+            );
+
 
         if (
             !Number.isFinite(
@@ -1742,38 +2808,60 @@ async function discoverStory(itemId) {
             success.style.display =
                 "block";
 
+
             success.innerHTML = `
-                <strong>DISCOVERY ERROR</strong><br><br>
-                Story ID is missing or invalid.<br>
-                Received: ${escapeHtml(
-                    String(itemId)
+
+                <strong>
+                    DISCOVERY ERROR
+                </strong>
+
+                <br><br>
+
+                Story ID is missing or invalid.
+
+                <br>
+
+                Received:
+                ${escapeHtml(
+                    String(
+                        itemId
+                    )
                 )}
+
             `;
+
 
             button.disabled =
                 false;
 
+
             button.textContent =
                 "DISCOVER THIS STORY ✦";
 
+
             return;
+
         }
+
 
         console.log(
             "DISCOVERY ITEM ID:",
             numericItemId
         );
 
+
         const {
             data,
             error
-        } = await supabaseClient.rpc(
+        } =
+        await supabaseClient.rpc(
             "discover_explore_story",
             {
                 p_explore_item_id:
                     numericItemId
             }
         );
+
 
         if (error) {
 
@@ -1783,12 +2871,15 @@ async function discoverStory(itemId) {
             );
 
             throw error;
+
         }
+
 
         console.log(
             "DISCOVERY RPC RESULT:",
             data
         );
+
 
         if (
             data &&
@@ -1799,13 +2890,58 @@ async function discoverStory(itemId) {
             button.style.display =
                 "none";
 
+
             success.style.display =
                 "block";
+
 
             success.innerHTML =
                 "✦ DISCOVERY SAVED · +5 HALO POINTS";
 
+
+            /*
+             * Collection reward is checked
+             * only after a successful discovery.
+             *
+             * The server decides whether
+             * the complete category has
+             * actually been finished.
+             */
+
+            const reward =
+                await claimCollectionReward(
+                    currentCategory
+                );
+
+
+            if (
+                reward &&
+                reward.status ===
+                "claimed"
+            ) {
+
+                success.innerHTML += `
+
+                    <div class="collection-reward">
+
+                        ✦ COLLECTION REWARD UNLOCKED
+
+                        <br>
+
+                        ${escapeHtml(
+                            reward.title ||
+                            "A new AETHER memory"
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+
             await refreshProgress();
+
 
             setTimeout(
                 () => {
@@ -1816,11 +2952,18 @@ async function discoverStory(itemId) {
                     );
 
                 },
-                900
+                reward &&
+                reward.status ===
+                "claimed"
+                    ? 1800
+                    : 900
             );
 
+
             return;
+
         }
+
 
         if (
             data &&
@@ -1831,16 +2974,22 @@ async function discoverStory(itemId) {
             button.style.display =
                 "none";
 
+
             success.style.display =
                 "block";
+
 
             success.innerHTML =
                 "DISCOVERED ✦";
 
+
             await refreshProgress();
 
+
             return;
+
         }
+
 
         if (
             data &&
@@ -1851,26 +3000,38 @@ async function discoverStory(itemId) {
             button.disabled =
                 false;
 
+
             button.textContent =
                 "DISCOVER THIS STORY ✦";
+
 
             success.style.display =
                 "block";
 
+
             success.innerHTML =
+
                 data.available_at
+
                     ? `Available in ${formatCountdown(
                         data.available_at
                     )}`
+
                     : "This story is still locked.";
 
+
             return;
+
         }
+
 
         throw new Error(
             "UNEXPECTED_DISCOVERY_RESPONSE: " +
-            JSON.stringify(data)
+            JSON.stringify(
+                data
+            )
         );
+
 
     } catch (error) {
 
@@ -1879,86 +3040,131 @@ async function discoverStory(itemId) {
             error
         );
 
+
         button.disabled =
             false;
+
 
         button.textContent =
             "DISCOVER THIS STORY ✦";
 
+
         success.style.display =
             "block";
 
+
         success.innerHTML = `
-            <strong>DISCOVERY ERROR</strong><br><br>
-            Code: ${escapeHtml(
+
+            <strong>
+                DISCOVERY ERROR
+            </strong>
+
+            <br><br>
+
+            Code:
+            ${escapeHtml(
                 error?.code ||
                 "unknown"
-            )}<br>
-            Message: ${escapeHtml(
+            )}
+
+            <br>
+
+            Message:
+            ${escapeHtml(
                 error?.message ||
                 "unknown"
-            )}<br>
-            Details: ${escapeHtml(
+            )}
+
+            <br>
+
+            Details:
+            ${escapeHtml(
                 error?.details ||
                 "none"
-            )}<br>
-            Hint: ${escapeHtml(
+            )}
+
+            <br>
+
+            Hint:
+            ${escapeHtml(
                 error?.hint ||
                 "none"
             )}
+
         `;
+
     }
+
 }
 
 
-/* REFRESH */
+// ======================================================
+// REFRESH
+// ======================================================
 
 async function refreshProgress() {
 
     const [
         progress,
         overall
-    ] = await Promise.all([
+    ] =
+    await Promise.all([
+
         loadExploreProgress(),
+
         loadOverallProgress()
+
     ]);
+
 
     renderCategories(
         progress
     );
 
+
     renderOverallProgress(
         overall
     );
+
 }
 
 
-/* STORY COUNTDOWN */
+// ======================================================
+// STORY COUNTDOWN
+// ======================================================
 
 function startCountdown(
     availableAt
 ) {
 
     if (countdownInterval) {
+
         clearInterval(
             countdownInterval
         );
+
     }
+
 
     updateCountdown(
         availableAt
     );
+
 
     countdownInterval =
         setInterval(
             () => {
 
                 const remaining =
+
                     new Date(
                         availableAt
                     ).getTime()
+
                     -
+
                     Date.now();
+
 
                 if (
                     remaining <= 0
@@ -1968,16 +3174,21 @@ function startCountdown(
                         countdownInterval
                     );
 
+
                     countdownInterval =
                         null;
+
 
                     openCategory(
                         currentCategory,
                         false
                     );
 
+
                     return;
+
                 }
+
 
                 updateCountdown(
                     availableAt
@@ -1986,6 +3197,7 @@ function startCountdown(
             },
             1000
         );
+
 }
 
 
@@ -1998,26 +3210,37 @@ function updateCountdown(
             "storyCountdown"
         );
 
+
     if (!element) return;
+
 
     element.textContent =
         formatCountdown(
             availableAt
         );
+
 }
 
 
-/* STORY LIST COUNTDOWN */
+// ======================================================
+// STORY LIST COUNTDOWN
+// ======================================================
 
 function startListCountdown() {
 
-    if (listCountdownInterval) {
+    if (
+        listCountdownInterval
+    ) {
+
         clearInterval(
             listCountdownInterval
         );
+
     }
 
+
     updateListCountdowns();
+
 
     listCountdownInterval =
         setInterval(
@@ -2025,6 +3248,7 @@ function startListCountdown() {
 
                 const shouldRefresh =
                     updateListCountdowns();
+
 
                 if (
                     shouldRefresh
@@ -2034,18 +3258,22 @@ function startListCountdown() {
                         listCountdownInterval
                     );
 
+
                     listCountdownInterval =
                         null;
+
 
                     openCategory(
                         currentCategory,
                         false
                     );
+
                 }
 
             },
             1000
         );
+
 }
 
 
@@ -2056,8 +3284,10 @@ function updateListCountdowns() {
             "[data-list-countdown]"
         );
 
+
     let shouldRefresh =
         false;
+
 
     elements.forEach(
         element => {
@@ -2066,12 +3296,17 @@ function updateListCountdowns() {
                 element.dataset
                     .listCountdown;
 
+
             const remaining =
+
                 new Date(
                     availableAt
                 ).getTime()
+
                 -
+
                 Date.now();
+
 
             if (
                 remaining <= 0
@@ -2080,74 +3315,109 @@ function updateListCountdowns() {
                 element.textContent =
                     "00:00:00";
 
+
                 shouldRefresh =
                     true;
 
+
                 return;
+
             }
+
 
             element.textContent =
                 formatCountdown(
                     availableAt
                 );
+
         }
     );
 
+
     return shouldRefresh;
+
 }
 
+
+// ======================================================
+// FORMAT COUNTDOWN
+// ======================================================
 
 function formatCountdown(
     availableAt
 ) {
 
     const remaining =
+
         Math.max(
             0,
+
             new Date(
                 availableAt
             ).getTime()
+
             -
+
             Date.now()
         );
+
 
     const totalSeconds =
         Math.floor(
             remaining / 1000
         );
 
+
     const hours =
         Math.floor(
             totalSeconds / 3600
         );
 
+
     const minutes =
         Math.floor(
-            (totalSeconds % 3600) / 60
+            (
+                totalSeconds %
+                3600
+            ) / 60
         );
+
 
     const seconds =
         totalSeconds % 60;
 
+
     return [
-        String(hours).padStart(2, "0"),
-        String(minutes).padStart(2, "0"),
-        String(seconds).padStart(2, "0")
+
+        String(
+            hours
+        ).padStart(
+            2,
+            "0"
+        ),
+
+        String(
+            minutes
+        ).padStart(
+            2,
+            "0"
+        ),
+
+        String(
+            seconds
+        ).padStart(
+            2,
+            "0"
+        )
+
     ].join(":");
+
 }
 
 
-function formatCountdownStatus(
-    availableAt
-) {
-
-    return `AVAILABLE IN ${formatCountdown(
-        availableAt
-    )}`;
-}
-
-
-/* BROWSER HISTORY */
+// ======================================================
+// BROWSER HISTORY
+// ======================================================
 
 window.addEventListener(
     "popstate",
@@ -2156,18 +3426,22 @@ window.addEventListener(
         const state =
             event.state;
 
+
         if (
             state &&
-            state.view === "story"
+            state.view ===
+            "story"
         ) {
 
             currentCategory =
                 state.category;
 
+
             currentStoryId =
                 Number(
                     state.itemId
                 );
+
 
             openCategory(
                 currentCategory,
@@ -2183,13 +3457,16 @@ window.addEventListener(
                 }
             );
 
+
             return;
+
         }
 
 
         if (
             state &&
-            state.view === "category"
+            state.view ===
+            "category"
         ) {
 
             openCategory(
@@ -2197,18 +3474,23 @@ window.addEventListener(
                 false
             );
 
+
             return;
+
         }
 
 
         showExploreView(
             false
         );
+
     }
 );
 
 
-/* BACK BUTTON */
+// ======================================================
+// BACK BUTTON
+// ======================================================
 
 document
     .getElementById(
@@ -2229,12 +3511,16 @@ document
                 showExploreView(
                     false
                 );
+
             }
+
         }
     );
 
 
-/* HTML SAFETY */
+// ======================================================
+// HTML SAFETY
+// ======================================================
 
 function escapeHtml(
     value
@@ -2243,30 +3529,38 @@ function escapeHtml(
     return String(
         value || ""
     )
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
         );
+
 }
 
 
-/* LOGOUT */
+// ======================================================
+// LOGOUT
+// ======================================================
 
 document
     .getElementById(
@@ -2278,13 +3572,17 @@ document
 
             await supabaseClient.auth.signOut();
 
+
             window.location.href =
                 "halo.html";
+
         }
     );
 
 
-/* INITIALIZE */
+// ======================================================
+// INITIALIZE
+// ======================================================
 
 async function initializeExplore() {
 
@@ -2293,23 +3591,32 @@ async function initializeExplore() {
         const session =
             await checkSession();
 
+
         if (!session) return;
+
 
         const [
             progress,
             overall
-        ] = await Promise.all([
+        ] =
+        await Promise.all([
+
             loadExploreProgress(),
+
             loadOverallProgress()
+
         ]);
+
 
         renderCategories(
             progress
         );
 
+
         renderOverallProgress(
             overall
         );
+
 
         document.getElementById(
             "loading"
@@ -2327,11 +3634,13 @@ async function initializeExplore() {
 
             history.replaceState(
                 {
-                    view: "explore"
+                    view:
+                        "explore"
                 },
                 "",
                 window.location.href
             );
+
         }
 
 
@@ -2342,6 +3651,7 @@ async function initializeExplore() {
 
         const state =
             history.state;
+
 
         if (
             state &&
@@ -2355,6 +3665,7 @@ async function initializeExplore() {
                 false
             );
 
+
         } else if (
             state &&
             state.view ===
@@ -2366,10 +3677,12 @@ async function initializeExplore() {
             currentCategory =
                 state.category;
 
+
             await openCategory(
                 state.category,
                 false
             );
+
 
             await openStory(
                 Number(
@@ -2377,7 +3690,9 @@ async function initializeExplore() {
                 ),
                 false
             );
+
         }
+
 
     } catch (error) {
 
@@ -2386,21 +3701,27 @@ async function initializeExplore() {
             error
         );
 
+
         document.getElementById(
             "loading"
         ).style.display =
             "none";
 
+
         document.getElementById(
             "error"
         ).style.display =
             "block";
+
     }
+
 }
 
 
 initializeExplore();
+
 </script>
 
 </body>
+
     </html>
