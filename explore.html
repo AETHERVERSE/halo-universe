@@ -1009,14 +1009,6 @@ async function getExploreItem(itemId) {
 
 async function loadCategoryItems(category) {
 
-    /*
-        The table itself is no longer readable by authenticated users.
-        Therefore we only request item metadata through the secure RPC
-        one item at a time after determining IDs from the progress state.
-
-        The IDs are loaded from the category's known sequential structure.
-    */
-
     const categoryProgress =
         currentProgress.find(
             item =>
@@ -1028,12 +1020,6 @@ async function loadCategoryItems(category) {
             "CATEGORY_NOT_FOUND"
         );
     }
-
-    /*
-        We intentionally do not expose all story content.
-        The first story is ID-based on the current Explore dataset.
-        Category ranges are determined from the current database order.
-    */
 
     const {
         data,
@@ -1396,7 +1382,8 @@ function renderStory(item) {
 
 
     if (
-        item.status === "secret"
+        item.status ===
+        "secret"
     ) {
 
         storyCard.innerHTML = `
@@ -1552,8 +1539,19 @@ async function discoverStory(itemId) {
         );
 
         if (error) {
+
+            console.error(
+                "DISCOVERY RPC ERROR:",
+                error
+            );
+
             throw error;
         }
+
+        console.log(
+            "DISCOVERY RPC RESULT:",
+            data
+        );
 
         if (
             data &&
@@ -1630,13 +1628,14 @@ async function discoverStory(itemId) {
         }
 
         throw new Error(
-            "UNEXPECTED_DISCOVERY_RESPONSE"
+            "UNEXPECTED_DISCOVERY_RESPONSE: " +
+            JSON.stringify(data)
         );
 
     } catch (error) {
 
         console.error(
-            "DISCOVERY ERROR:",
+            "DISCOVERY ERROR FULL:",
             error
         );
 
@@ -1649,8 +1648,25 @@ async function discoverStory(itemId) {
         success.style.display =
             "block";
 
-        success.textContent =
-            "The discovery could not be saved. Please try again.";
+        success.innerHTML = `
+            <strong>DISCOVERY ERROR</strong><br><br>
+            Code: ${escapeHtml(
+                error?.code ||
+                "unknown"
+            )}<br>
+            Message: ${escapeHtml(
+                error?.message ||
+                "unknown"
+            )}<br>
+            Details: ${escapeHtml(
+                error?.details ||
+                "none"
+            )}<br>
+            Hint: ${escapeHtml(
+                error?.hint ||
+                "none"
+            )}
+        `;
     }
 }
 
