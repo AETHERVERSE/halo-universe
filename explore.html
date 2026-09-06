@@ -1532,7 +1532,7 @@ async function discoverStory(itemId) {
             data,
             error
         } = await supabaseClient.rpc(
-            "discover_explore_item",
+            "discover_explore_story",
             {
                 p_explore_item_id: itemId
             }
@@ -1965,4 +1965,4 @@ initializeExplore();
 </script>
 
 </body>
-    </html>
+</html>
