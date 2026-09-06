@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -51,6 +52,10 @@ body {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+button {
+    font-family: inherit;
 }
 
 .page {
@@ -224,8 +229,21 @@ a {
 
 
 /* =========================================================
-   SET FILTERS
+   FILTER AREA
 ========================================================= */
+
+.filter-section {
+    margin-bottom: 24px;
+}
+
+.filter-heading {
+    margin-bottom: 10px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    letter-spacing: 0.16em;
+}
 
 .filters {
     display: flex;
@@ -235,7 +253,7 @@ a {
     overflow-x: auto;
 
     padding:
-        2px 0 20px;
+        2px 0 8px;
 
     scrollbar-width: thin;
 }
@@ -338,7 +356,8 @@ a {
     border-radius:
         18px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
     transition:
         transform 0.25s ease,
@@ -360,7 +379,7 @@ a {
 
 .card.locked {
     opacity:
-        0.58;
+        0.62;
 }
 
 
@@ -439,6 +458,45 @@ a {
 
     display:
         block;
+}
+
+
+/* =========================================================
+   LOCKED CARD
+========================================================= */
+
+.locked-image {
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    width:
+        100%;
+
+    height:
+        100%;
+
+    color:
+        #687293;
+
+    gap:
+        8px;
+}
+
+.lock-icon {
+    font-size:
+        28px;
+
+    opacity:
+        0.7;
 }
 
 
@@ -537,6 +595,36 @@ a {
 
 
 /* =========================================================
+   RARITY DISPLAY
+========================================================= */
+
+.rarity-common {
+    color:
+        #b8bfd8;
+}
+
+.rarity-rare {
+    color:
+        #9fc5ff;
+}
+
+.rarity-epic {
+    color:
+        #c6a7ff;
+}
+
+.rarity-legendary {
+    color:
+        #f1d58a;
+}
+
+.rarity-secret {
+    color:
+        #ff9fd3;
+}
+
+
+/* =========================================================
    EMPTY
 ========================================================= */
 
@@ -558,6 +646,9 @@ a {
 
     color:
         var(--muted);
+
+    line-height:
+        1.7;
 }
 
 
@@ -758,13 +849,39 @@ a {
 
 
 <!-- =======================================================
-     FILTERS
+     SET FILTERS
 ======================================================== -->
+
+<section class="filter-section">
+
+<div class="filter-heading">
+    FILTER BY SET
+</div>
 
 <div
     class="filters"
-    id="filters"
+    id="set-filters"
 ></div>
+
+</section>
+
+
+<!-- =======================================================
+     RARITY FILTERS
+======================================================== -->
+
+<section class="filter-section">
+
+<div class="filter-heading">
+    FILTER BY RARITY
+</div>
+
+<div
+    class="filters"
+    id="rarity-filters"
+></div>
+
+</section>
 
 
 <!-- =======================================================
@@ -809,6 +926,9 @@ let ownedCards =
     new Set();
 
 let activeSet =
+    "ALL";
+
+let activeRarity =
     "ALL";
 
 let currentSession =
@@ -865,6 +985,45 @@ const SETS = [
 
 
 /* =========================================================
+   RARITIES
+========================================================= */
+
+const RARITIES = [
+
+    {
+        key: "ALL",
+        label: "ALL"
+    },
+
+    {
+        key: "COMMON",
+        label: "COMMON"
+    },
+
+    {
+        key: "RARE",
+        label: "RARE"
+    },
+
+    {
+        key: "EPIC",
+        label: "EPIC"
+    },
+
+    {
+        key: "LEGENDARY",
+        label: "LEGENDARY"
+    },
+
+    {
+        key: "SECRET",
+        label: "SECRET"
+    }
+
+];
+
+
+/* =========================================================
    ERROR
 ========================================================= */
 
@@ -880,6 +1039,7 @@ function showError(message) {
 
     element.style.display =
         "block";
+
 }
 
 
@@ -970,9 +1130,24 @@ async function loadOwnership() {
     (data || []).forEach(
         row => {
 
-            ownedCards.add(
+            /*
+                card_id in ownership is the UUID
+                of aether_cards.id.
+
+                This is important:
+                we do NOT compare it with
+                card_number or card_key.
+            */
+
+            if (
                 row.card_id
-            );
+            ) {
+
+                ownedCards.add(
+                    row.card_id
+                );
+
+            }
 
         }
     );
@@ -994,7 +1169,10 @@ function updateProgress() {
 
     const percentage =
         total > 0
-            ? (owned / total) * 100
+            ? (
+                owned /
+                total
+            ) * 100
             : 0;
 
 
@@ -1017,14 +1195,14 @@ function updateProgress() {
 
 
 /* =========================================================
-   FILTERS
+   SET FILTERS
 ========================================================= */
 
-function renderFilters() {
+function renderSetFilters() {
 
     const container =
         document.getElementById(
-            "filters"
+            "set-filters"
         );
 
 
@@ -1041,10 +1219,11 @@ function renderFilters() {
                 return `
 
                     <button
+                        type="button"
                         class="filter ${active}"
-                        data-set="${set.key}"
+                        data-set="${escapeHtml(set.key)}"
                     >
-                        ${set.label}
+                        ${escapeHtml(set.label)}
                     </button>
 
                 `;
@@ -1053,7 +1232,7 @@ function renderFilters() {
         ).join("");
 
 
-    document
+    container
         .querySelectorAll(
             ".filter"
         )
@@ -1067,7 +1246,72 @@ function renderFilters() {
                         activeSet =
                             button.dataset.set;
 
-                        renderFilters();
+                        renderSetFilters();
+
+                        renderCards();
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   RARITY FILTERS
+========================================================= */
+
+function renderRarityFilters() {
+
+    const container =
+        document.getElementById(
+            "rarity-filters"
+        );
+
+
+    container.innerHTML =
+        RARITIES.map(
+            rarity => {
+
+                const active =
+                    rarity.key === activeRarity
+                        ? "active"
+                        : "";
+
+
+                return `
+
+                    <button
+                        type="button"
+                        class="filter ${active}"
+                        data-rarity="${escapeHtml(rarity.key)}"
+                    >
+                        ${escapeHtml(rarity.label)}
+                    </button>
+
+                `;
+
+            }
+        ).join("");
+
+
+    container
+        .querySelectorAll(
+            ".filter"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        activeRarity =
+                            button.dataset.rarity;
+
+                        renderRarityFilters();
 
                         renderCards();
 
@@ -1084,28 +1328,45 @@ function renderFilters() {
    CARD IMAGE
 ========================================================= */
 
-function renderCardImage(card, owned) {
+function renderCardImage(
+    card,
+    owned
+) {
 
-    /*
-        Locked cards do not reveal
-        their artwork.
+    if (
+        !owned
+    ) {
 
-        Once collected, image_url
-        can be shown automatically.
-    */
+        return `
+
+            <div class="locked-image">
+
+                <div class="lock-icon">
+                    ✦
+                </div>
+
+                <div>
+                    LOCKED
+                </div>
+
+            </div>
+
+        `;
+
+    }
 
 
     if (
-        owned &&
         card.image_url
     ) {
 
         return `
 
             <img
-                src="${card.image_url}"
+                src="${escapeHtml(card.image_url)}"
                 alt="${escapeHtml(card.title)}"
                 loading="lazy"
+                onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend','CARD IMAGE')"
             >
 
         `;
@@ -1113,9 +1374,13 @@ function renderCardImage(card, owned) {
     }
 
 
-    return owned
-        ? "CARD COLLECTED"
-        : "LOCKED CARD";
+    return `
+
+        <div>
+            CARD COLLECTED
+        </div>
+
+    `;
 
 }
 
@@ -1167,6 +1432,56 @@ function escapeHtml(value) {
 
 
 /* =========================================================
+   RARITY CLASS
+========================================================= */
+
+function rarityClass(
+    rarity
+) {
+
+    return String(
+        rarity || ""
+    )
+        .toLowerCase()
+        .replace(
+            /[^a-z]/g,
+            ""
+        );
+
+}
+
+
+/* =========================================================
+   FILTER CARDS
+========================================================= */
+
+function getVisibleCards() {
+
+    return cards.filter(
+        card => {
+
+            const matchesSet =
+                activeSet === "ALL" ||
+                card.set_key === activeSet;
+
+
+            const matchesRarity =
+                activeRarity === "ALL" ||
+                card.rarity === activeRarity;
+
+
+            return (
+                matchesSet &&
+                matchesRarity
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    RENDER CARDS
 ========================================================= */
 
@@ -1179,15 +1494,7 @@ function renderCards() {
 
 
     const visibleCards =
-        activeSet === "ALL"
-
-            ? cards
-
-            : cards.filter(
-                card =>
-                    card.set_key ===
-                    activeSet
-            );
+        getVisibleCards();
 
 
     if (
@@ -1198,7 +1505,7 @@ function renderCards() {
 
             <div class="empty">
 
-                No cards in this set yet.
+                No cards match these filters yet.
 
             </div>
 
@@ -1219,6 +1526,21 @@ function renderCards() {
                     );
 
 
+                const rarity =
+                    rarityClass(
+                        card.rarity
+                    );
+
+
+                const cardNumber =
+                    String(
+                        card.card_number
+                    ).padStart(
+                        3,
+                        "0"
+                    );
+
+
                 return `
 
                     <article
@@ -1234,14 +1556,7 @@ function renderCards() {
                             <div
                                 class="card-number"
                             >
-                                CARD ${
-                                    String(
-                                        card.card_number
-                                    ).padStart(
-                                        3,
-                                        "0"
-                                    )
-                                }
+                                CARD ${cardNumber}
                             </div>
 
 
@@ -1299,7 +1614,7 @@ function renderCards() {
                         >
 
                             <span
-                                class="rarity"
+                                class="rarity rarity-${rarity}"
                             >
                                 ${
                                     escapeHtml(
@@ -1348,16 +1663,46 @@ document
             event.preventDefault();
 
 
-            await supabase
-                .auth
-                .signOut();
+            try {
 
+                await supabase
+                    .auth
+                    .signOut();
+
+            }
+
+            finally {
+
+                window.location.href =
+                    "halo.html";
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabase.auth.onAuthStateChange(
+    (
+        event,
+        session
+    ) => {
+
+        if (
+            event === "SIGNED_OUT"
+        ) {
 
             window.location.href =
                 "halo.html";
 
         }
-    );
+
+    }
+);
 
 
 /* =========================================================
@@ -1378,7 +1723,16 @@ async function init() {
 
 
         if (
-            error ||
+            error
+        ) {
+
+            throw error;
+
+        }
+
+
+        if (
+            !data ||
             !data.session
         ) {
 
@@ -1399,14 +1753,24 @@ async function init() {
         await loadOwnership();
 
 
+        /*
+            We expect exactly 50 active cards.
+            If the database contains something
+            else, we still render what actually
+            exists instead of inventing cards.
+        */
+
         updateProgress();
 
-        renderFilters();
+        renderSetFilters();
+
+        renderRarityFilters();
 
         renderCards();
 
+    }
 
-    } catch (error) {
+    catch (error) {
 
         console.error(
             "Card Album error:",
@@ -1415,7 +1779,7 @@ async function init() {
 
 
         showError(
-            "The Card Album could not load its data. Please check the Supabase connection."
+            "The Card Album could not load its data. Please check the Supabase connection and RLS policies."
         );
 
     }
