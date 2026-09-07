@@ -1290,7 +1290,98 @@ body {
 </div>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+   AETHER COINS
+===================================================== */
+
+async function loadAetherCoins() {
+
+    const {
+        data: { user },
+        error: userError
+    } =
+    await supabaseClient.auth.getUser();
+
+
+    if (
+        userError ||
+        !user
+    ) {
+
+        console.error(
+            "AETHER COIN USER ERROR:",
+            userError
+        );
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "get_aether_coin_balance"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "AETHER COIN BALANCE ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "coinBalance"
+        ).textContent =
+            "—";
+
+        return;
+
+    }
+
+
+    const balance =
+        Number(data || 0);
+
+
+    document.getElementById(
+        "coinBalance"
+    ).textContent =
+        balance.toLocaleString();
+
+}
+
 
 /* =====================================================
    SHOP NAVIGATION
@@ -1311,26 +1402,10 @@ function scrollToSection(id) {
 
 
 /* =====================================================
-   AETHER COINS
+   START
 ===================================================== */
 
-/*
-   TEMPORARY DISPLAY
-
-   The balance is intentionally isolated here.
-
-   AETHER COINS are completely independent
-   from HALO POINTS.
-
-   The real Supabase wallet will be connected
-   in the next step.
-*/
-
-let aetherCoins = 0;
-
-document.getElementById("coinBalance").textContent =
-    aetherCoins.toLocaleString();
-
+loadAetherCoins();
 
 </script>
 
