@@ -656,7 +656,7 @@ button {
 
 
 /* =========================================================
-   CARD MODAL
+   CARD MODAL — AETHER PREMIUM
 ========================================================= */
 
 .card-modal {
@@ -682,23 +682,48 @@ button {
         20px;
 
     background:
-        rgba(3,5,14,0.88);
+        radial-gradient(
+            circle at center,
+            rgba(82,70,150,0.18),
+            rgba(3,5,14,0.94) 58%
+        );
 
     backdrop-filter:
-        blur(10px);
+        blur(16px);
+
+    opacity:
+        0;
 }
 
 .card-modal.open {
     display:
         flex;
+
+    animation:
+        modalFadeIn 0.28s ease forwards;
 }
+
+@keyframes modalFadeIn {
+
+    from {
+        opacity:
+            0;
+    }
+
+    to {
+        opacity:
+            1;
+    }
+
+}
+
 
 .card-modal-content {
     position:
         relative;
 
     width:
-        min(92vw, 520px);
+        min(92vw, 540px);
 
     max-height:
         92vh;
@@ -707,27 +732,104 @@ button {
         auto;
 
     padding:
-        20px;
+        18px;
 
     background:
         linear-gradient(
             145deg,
-            #171c34,
-            #0c1020
+            rgba(27,31,59,0.98),
+            rgba(8,11,25,0.99)
         );
 
     border:
-        1px solid #4a5279;
+        1px solid rgba(185,167,255,0.42);
 
     border-radius:
-        22px;
+        24px;
 
     box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.55);
+        0 0 0 1px rgba(185,167,255,0.05),
+        0 0 45px rgba(145,120,255,0.16),
+        0 30px 90px rgba(0,0,0,0.7);
+
+    transform:
+        translateY(18px)
+        scale(0.97);
+
+    animation:
+        modalCardIn 0.38s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
 }
 
+@keyframes modalCardIn {
+
+    from {
+        opacity:
+            0;
+
+        transform:
+            translateY(18px)
+            scale(0.97);
+    }
+
+    to {
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PREMIUM TOP LIGHT
+--------------------------------------------------------- */
+
+.card-modal-content::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        12%;
+
+    right:
+        12%;
+
+    height:
+        1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(210,200,255,0.9),
+            transparent
+        );
+
+    box-shadow:
+        0 0 14px
+        rgba(185,167,255,0.65);
+
+}
+
+
+/* ---------------------------------------------------------
+   CLOSE BUTTON
+--------------------------------------------------------- */
+
 .card-modal-close {
+
     position:
         absolute;
 
@@ -738,13 +840,13 @@ button {
         12px;
 
     z-index:
-        2;
+        5;
 
     width:
-        36px;
+        38px;
 
     height:
-        36px;
+        38px;
 
     display:
         flex;
@@ -756,13 +858,14 @@ button {
         center;
 
     border:
-        1px solid var(--line);
+        1px solid
+        rgba(185,167,255,0.28);
 
     border-radius:
         50%;
 
     background:
-        rgba(7,9,20,0.8);
+        rgba(5,7,18,0.78);
 
     color:
         var(--text);
@@ -771,21 +874,44 @@ button {
         pointer;
 
     font-size:
-        18px;
+        20px;
+
+    line-height:
+        1;
 
     transition:
-        0.2s ease;
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .card-modal-close:hover {
+
+    transform:
+        rotate(90deg);
+
     border-color:
         var(--accent);
 
     background:
-        var(--accent-soft);
+        rgba(185,167,255,0.12);
+
+    box-shadow:
+        0 0 18px
+        rgba(185,167,255,0.25);
 }
 
+
+/* ---------------------------------------------------------
+   CARD IMAGE
+--------------------------------------------------------- */
+
 .card-modal-image {
+
+    position:
+        relative;
+
     width:
         100%;
 
@@ -798,22 +924,81 @@ button {
     justify-content:
         center;
 
-    border-radius:
-        15px;
+    padding:
+        8px;
 
-    overflow:
-        hidden;
+    border-radius:
+        17px;
 
     background:
         radial-gradient(
-            circle,
-            #252b4b 0%,
-            #111528 55%,
-            #090c17 100%
+            circle at center,
+            rgba(90,78,155,0.24),
+            rgba(9,12,27,0.96) 72%
         );
+
+    border:
+        1px solid
+        rgba(185,167,255,0.16);
+
+    box-shadow:
+        inset 0 0 30px
+        rgba(0,0,0,0.35),
+
+        0 0 28px
+        rgba(125,105,230,0.10);
+
+    overflow:
+        hidden;
+}
+
+.card-modal-image::after {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 35%,
+            rgba(255,255,255,0.055) 50%,
+            transparent 65%
+        );
+
+    transform:
+        translateX(-100%);
+
+    animation:
+        cardShine 1.2s ease
+        0.25s forwards;
+}
+
+@keyframes cardShine {
+
+    to {
+        transform:
+            translateX(100%);
+    }
+
 }
 
 .card-modal-image img {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
     display:
         block;
 
@@ -825,41 +1010,72 @@ button {
 
     object-fit:
         contain;
+
+    border-radius:
+        10px;
+
+    filter:
+        drop-shadow(
+            0 12px 25px
+            rgba(0,0,0,0.5)
+        );
 }
 
+
+/* ---------------------------------------------------------
+   CARD INFORMATION
+--------------------------------------------------------- */
+
 .card-modal-info {
+
     padding:
-        18px 4px 4px;
+        20px 5px 5px;
 }
 
 .card-modal-number {
+
     color:
-        var(--muted);
+        var(--accent);
 
     font-size:
         10px;
 
+    font-weight:
+        700;
+
     letter-spacing:
-        0.18em;
+        0.22em;
+
+    text-transform:
+        uppercase;
 }
 
 .card-modal-title {
+
     margin-top:
         8px;
 
     font-size:
-        24px;
+        26px;
 
     font-weight:
         700;
 
     line-height:
-        1.25;
+        1.2;
+
+    letter-spacing:
+        0.02em;
+
+    text-shadow:
+        0 0 20px
+        rgba(185,167,255,0.16);
 }
 
 .card-modal-description {
+
     margin-top:
-        10px;
+        11px;
 
     color:
         var(--muted);
@@ -868,24 +1084,29 @@ button {
         13px;
 
     line-height:
-        1.7;
+        1.75;
 }
 
 .card-modal-rarity {
+
     display:
         inline-block;
 
     margin-top:
-        14px;
+        16px;
 
     padding:
-        6px 10px;
+        7px 11px;
 
     border:
-        1px solid var(--line);
+        1px solid
+        rgba(185,167,255,0.28);
 
     border-radius:
         999px;
+
+    background:
+        rgba(185,167,255,0.07);
 
     color:
         var(--accent);
@@ -893,40 +1114,109 @@ button {
     font-size:
         9px;
 
+    font-weight:
+        700;
+
     letter-spacing:
-        0.14em;
+        0.16em;
 }
 
+
+/* ---------------------------------------------------------
+   LOCKED CARD
+--------------------------------------------------------- */
+
 .card-modal-locked {
+
+    position:
+        relative;
+
     padding:
-        45px 20px;
+        58px 22px;
 
     text-align:
         center;
+
+    border:
+        1px solid
+        rgba(185,167,255,0.12);
+
+    border-radius:
+        17px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(92,77,155,0.16),
+            rgba(8,11,25,0.5) 70%
+        );
 }
 
 .card-modal-locked-icon {
+
     font-size:
-        42px;
+        46px;
 
     margin-bottom:
-        15px;
+        18px;
+
+    color:
+        var(--accent);
 
     opacity:
-        0.75;
+        0.82;
+
+    text-shadow:
+        0 0 24px
+        rgba(185,167,255,0.6);
+
+    animation:
+        mysteryPulse 2.4s
+        ease-in-out infinite;
+}
+
+@keyframes mysteryPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+        opacity:
+            0.7;
+    }
+
+    50% {
+
+        transform:
+            scale(1.12);
+
+        opacity:
+            1;
+    }
+
 }
 
 .card-modal-locked-title {
+
     font-size:
         22px;
 
     font-weight:
         700;
+
+    letter-spacing:
+        0.04em;
 }
 
 .card-modal-locked-text {
-    margin-top:
-        10px;
+
+    max-width:
+        360px;
+
+    margin:
+        12px auto 0;
 
     color:
         var(--muted);
@@ -935,7 +1225,73 @@ button {
         13px;
 
     line-height:
-        1.7;
+        1.75;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE MODAL
+--------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    .card-modal {
+
+        padding:
+            10px;
+    }
+
+    .card-modal-content {
+
+        width:
+            100%;
+
+        max-height:
+            95vh;
+
+        padding:
+            13px;
+
+        border-radius:
+            20px;
+    }
+
+    .card-modal-image {
+
+        padding:
+            5px;
+
+        border-radius:
+            14px;
+    }
+
+    .card-modal-image img {
+
+        max-height:
+            64vh;
+    }
+
+    .card-modal-title {
+
+        font-size:
+            21px;
+    }
+
+    .card-modal-description {
+
+        font-size:
+            12px;
+
+        line-height:
+            1.7;
+    }
+
+    .card-modal-locked {
+
+        padding:
+            50px 18px;
+    }
+
 }
 
 
@@ -1008,35 +1364,6 @@ button {
 
         gap:
             8px;
-    }
-
-    .card-modal {
-        padding:
-            12px;
-    }
-
-    .card-modal-content {
-        width:
-            100%;
-
-        max-height:
-            94vh;
-
-        padding:
-            14px;
-
-        border-radius:
-            18px;
-    }
-
-    .card-modal-image img {
-        max-height:
-            65vh;
-    }
-
-    .card-modal-title {
-        font-size:
-            20px;
     }
 
 }
@@ -2546,7 +2873,7 @@ async function init() {
 
         /* -----------------------------------------
            CHECK CARD UNLOCKS
-           
+
            For now this tests the first real
            acquisition trigger:
            BACKSTAGE_001 / Card 022
