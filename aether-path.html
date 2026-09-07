@@ -1,1 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE AETHER PATH</title>
 
+<style>
+:root {
+    --bg: #050712;
+    --bg-soft: #0b1020;
+    --panel: #10172a;
+    --panel-light: #17213a;
+    --line: rgba(160,185,255,0.20);
+
+    --text: #d9e4ff;
+    --muted: #8fa6d8;
+    --accent: #a9c0ff;
+    --gold: #ffd978;
+
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 15%, rgba(95,120,255,0.13), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(90,50,180,0.08), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+.page {
+    width: min(1250px, 100%);
+    margin: 0 auto;
+    padding: 28px 20px 80px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.hero {
+    text-align: center;
+    padding: 30px 10px 24px;
+}
+
+.eyebrow {
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(36px, 7vw, 72px);
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    text-shadow: 0 0 30px rgba(159,184,255,0.18);
+}
+
+.subtitle {
+    margin: 15px auto 0;
+    max-width: 600px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 25px auto 10px;
+}
+
+.status-card {
+    min-width: 150px;
+    padding: 13px 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(16,23,42,0.78);
+    box-shadow: var(--shadow);
+}
+
+.status-label {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.status-value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.coins {
+    color: var(--gold);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    margin-top: 55px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-heading .small {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    margin: 7px 0 8px;
+    font-size: clamp(24px, 5vw, 36px);
+    letter-spacing: 0.08em;
+}
+
+.section-heading p {
+    margin: 0;
+    color: var(--muted);
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map-wrap {
+    position: relative;
+    width: min(100%, 900px);
+    margin: 0 auto;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(160,185,255,0.15),
+        0 25px 80px rgba(0,0,0,0.55);
+    background: #050712;
+}
+
+.map-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.map-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 14%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255,255,255,0);
+    border-radius: 50%;
+    background: rgba(255,255,255,0);
+    cursor: pointer;
+    z-index: 5;
+    transition: 0.25s ease;
+}
+
+.map-hotspot::after {
+    content: "";
+    position: absolute;
+    inset: 25%;
+    border-radius: 50%;
+    border: 1px solid rgba(210,225,255,0.0);
+    transition: 0.25s ease;
+}
+
+.map-hotspot:hover,
+.map-hotspot:focus-visible {
+    background: rgba(170,195,255,0.10);
+    border-color: rgba(210,225,255,0.55);
+    box-shadow:
+        0 0 25px rgba(160,190,255,0.35),
+        inset 0 0 20px rgba(160,190,255,0.08);
+}
+
+.map-hotspot:hover::after,
+.map-hotspot:focus-visible::after {
+    border-color: rgba(230,240,255,0.75);
+}
+
+.map-hotspot:focus {
+    outline: none;
+}
+
+/*
+    Positions correspond to the supplied map.
+
+    Solarion   top center
+    Hollow     upper left
+    Voltaris   upper right
+    Lumenia    left
+    Thalassia  right
+    Nocteum    lower left
+    Ignis      lower right
+*/
+
+.hotspot-solarion {
+    left: 50%;
+    top: 19%;
+}
+
+.hotspot-hollow {
+    left: 18%;
+    top: 27%;
+}
+
+.hotspot-voltaris {
+    left: 82%;
+    top: 27%;
+}
+
+.hotspot-lumenia {
+    left: 17%;
+    top: 51%;
+}
+
+.hotspot-thalassia {
+    left: 83%;
+    top: 51%;
+}
+
+.hotspot-nocteum {
+    left: 30%;
+    top: 74%;
+}
+
+.hotspot-ignis {
+    left: 70%;
+    top: 74%;
+}
+
+.map-hint {
+    text-align: center;
+    color: var(--muted);
+    margin: 16px 0 0;
+    font-size: 13px;
+}
+
+/* =========================
+   WORLD PANEL
+========================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(2,4,12,0.78);
+    backdrop-filter: blur(10px);
+}
+
+.overlay.open {
+    display: flex;
+}
+
+.world-panel {
+    width: min(720px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: 25px;
+    background:
+        radial-gradient(circle at top, rgba(120,150,255,0.12), transparent 45%),
+        var(--panel);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    right: 18px;
+    top: 15px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--panel-light);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.world-kicker {
+    color: var(--muted);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+.world-panel h2 {
+    margin: 8px 0;
+    font-size: 34px;
+    letter-spacing: 0.06em;
+}
+
+.world-member {
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.world-description {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.mission-list {
+    display: grid;
+    gap: 12px;
+}
+
+.mission-card {
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: rgba(23,33,58,0.65);
+}
+
+.mission-number {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+}
+
+.mission-card h3 {
+    margin: 6px 0;
+    font-size: 19px;
+}
+
+.mission-meta {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+.mission-button,
+.primary-button {
+    width: 100%;
+    border: 0;
+    border-radius: 12px;
+    padding: 13px 18px;
+    background: linear-gradient(135deg, #9fb8ff, #c4d3ff);
+    color: #081020;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.mission-button:hover,
+.primary-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(150,180,255,0.22);
+}
+
+/* =========================
+   GUARDIANS
+========================= */
+
+.guardian-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+}
+
+.guardian {
+    aspect-ratio: 1;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: linear-gradient(145deg, #11182c, #090e1c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 8px;
+}
+
+.guardian-icon {
+    font-size: clamp(28px, 5vw, 42px);
+    margin-bottom: 8px;
+}
+
+.guardian-name {
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-box {
+    width: min(850px, 100%);
+    margin: 0 auto;
+    padding: 24px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(16,23,42,0.7);
+}
+
+.progress-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.progress-row:last-child {
+    margin-bottom: 0;
+}
+
+.progress-name {
+    margin-bottom: 7px;
+    font-size: 13px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 7px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #080d19;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #809cff, #d1dcff);
+    transition: width 0.3s ease;
+}
+
+.progress-number {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* =========================
+   SECRET
+========================= */
+
+.secret {
+    text-align: center;
+    margin-top: 55px;
+    color: rgba(143,166,216,0.45);
+}
+
+.secret-symbol {
+    font-size: 30px;
+    letter-spacing: 0.3em;
+}
+
+.secret p {
+    font-size: 11px;
+    letter-spacing: 0.22em;
+}
+
+/* =========================
+   MISSION MODAL
+========================= */
+
+.mission-panel {
+    width: min(650px, 100%);
+    padding: 30px;
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+.mission-panel h2 {
+    margin: 8px 0 15px;
+    font-size: 28px;
+}
+
+.mission-story {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.attempts {
+    display: flex;
+    gap: 8px;
+    margin: 15px 0 22px;
+}
+
+.attempt {
+    font-size: 25px;
+}
+
+.mission-question {
+    padding: 18px;
+    border-radius: 16px;
+    background: rgba(23,33,58,0.7);
+    margin-bottom: 18px;
+    line-height: 1.6;
+}
+
+.answer-area {
+    display: grid;
+    gap: 10px;
+}
+
+.answer-button {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 13px;
+    background: var(--panel-light);
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.answer-button:hover {
+    background: rgba(150,175,255,0.15);
+    border-color: rgba(180,200,255,0.45);
+}
+
+.result {
+    min-height: 25px;
+    margin-top: 16px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.reward {
+    color: var(--gold);
+    margin-top: 10px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .page {
+        padding: 15px 10px 60px;
+    }
+
+    .hero {
+        padding-top: 20px;
+    }
+
+    .status-card {
+        min-width: 130px;
+    }
+
+    .map-wrap {
+        border-radius: 16px;
+        width: 100%;
+    }
+
+    .map-hotspot {
+        width: 19%;
+    }
+
+    .guardian-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .world-panel,
+    .mission-panel {
+        padding: 24px 18px;
+    }
+
+    .world-panel h2 {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .guardian-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .status-card {
+        min-width: 115px;
+        padding: 11px;
+    }
+
+    .status-value {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <header class="hero">
+
+        <div class="eyebrow">AETHERVERSE • MISSION SYSTEM</div>
+
+        <h1>THE AETHER PATH</h1>
+
+        <p class="subtitle">
+            Seven worlds. Seven Guardians. One forgotten path.
+        </p>
+
+        <div class="status-bar">
+
+            <div class="status-card">
+                <span class="status-label">AETHER Coins</span>
+                <span class="status-value coins" id="coinDisplay">0</span>
+            </div>
+
+            <div class="status-card">
+                <span class="status-label">Missions</span>
+                <span class="status-value">
+                    <span id="missionCount">0</span>/21
+                </span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- WORLDS -->
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="small">THE AETHER PATH</div>
+            <h2>THE SEVEN WORLDS</h2>
+            <p>Choose a world and begin your mission.</p>
+        </div>
+
+
+        <div class="map-wrap">
+
+            <img
+                class="map-image"
+                src="assets/aether-path-map.png"
+                alt="The Seven AETHER Worlds"
+            >
+
+            <!-- SOLARION -->
+            <button
+                class="map-hotspot hotspot-solarion"
+                aria-label="Open Solarion"
+                onclick="openWorld('SOLARION')">
+            </button>
+
+            <!-- HOLLOW -->
+            <button
+                class="map-hotspot hotspot-hollow"
+                aria-label="Open Hollow"
+                onclick="openWorld('HOLLOW')">
+            </button>
+
+            <!-- VOLTARIS -->
+            <button
+                class="map-hotspot hotspot-voltaris"
+                aria-label="Open Voltaris"
+                onclick="openWorld('VOLTARIS')">
+            </button>
+
+            <!-- LUMENIA -->
+            <button
+                class="map-hotspot hotspot-lumenia"
+                aria-label="Open Lumenia"
+                onclick="openWorld('LUMENIA')">
+            </button>
+
+            <!-- THALASSIA -->
+            <button
+                class="map-hotspot hotspot-thalassia"
+                aria-label="Open Thalassia"
+                onclick="openWorld('THALASSIA')">
+            </button>
+
+            <!-- NOCTEUM -->
+            <button
+                class="map-hotspot hotspot-nocteum"
+                aria-label="Open Nocteum"
+                onclick="openWorld('NOCTEUM')">
+            </button>
+
+            <!-- IGNIS -->
+            <button
+                class="map-hotspot hotspot-ignis"
+                aria-label="Open Ignis"
+                onclick="openWorld('IGNIS')">
+            </button>
+
+        </div>
+
+        <div class="map-hint">
+            ✦ Tap a world to enter its path ✦
+        </div>
+
+    </section>
+
+
+    <!-- GUARDIANS -->
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="small">THE SEVEN GUARDIANS</div>
+            <h2>GUARDIAN PATH</h2>
+            <p>Seven Guardians. Seven different challenges.</p>
+        </div>
+
+        <div class="guardian-grid">
+
+            <div class="guardian">
+                <div class="guardian-icon">🦁</div>
+                <div class="guardian-name">SOLEN'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🐆</div>
+                <div class="guardian-name">VEX'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🐺</div>
+                <div class="guardian-name">KAIRO'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🐬</div>
+                <div class="guardian-name">RIVEN'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🔥</div>
+                <div class="guardian-name">ZENITH'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🐈</div>
+                <div class="guardian-name">LUX'S GUARDIAN</div>
+            </div>
+
+            <div class="guardian">
+                <div class="guardian-icon">🐦‍⬛</div>
+                <div class="guardian-name">NERO'S GUARDIAN</div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+    <section class="section">
+
+        <div class="section-heading">
+            <div class="small">YOUR PATH</div>
+            <h2>PATH PROGRESS</h2>
+        </div>
+
+        <div class="progress-box">
+
+            <div class="progress-row">
+
+                <div>
+                    <div class="progress-name">Worlds discovered</div>
+
+                    <div class="progress-track">
+                        <div
+                            class="progress-fill"
+                            id="worldProgress">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-number" id="worldCount">
+                    0/7
+                </div>
+
+            </div>
+
+
+            <div class="progress-row">
+
+                <div>
+                    <div class="progress-name">Guardians completed</div>
+
+                    <div class="progress-track">
+                        <div
+                            class="progress-fill"
+                            id="guardianProgress">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-number">
+                    0/7
+                </div>
+
+            </div>
+
+
+            <div class="progress-row">
+
+                <div>
+                    <div class="progress-name">Missions completed</div>
+
+                    <div class="progress-track">
+                        <div
+                            class="progress-fill"
+                            id="missionProgress">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="progress-number" id="missionProgressText">
+                    0/21
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECRET TEASER -->
+    <div class="secret">
+
+        <div class="secret-symbol">· · ·</div>
+
+        <p>
+            SOMEWHERE BEYOND THE SEVEN WORLDS,
+            SOMETHING REMEMBERS.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     WORLD OVERLAY
+========================= -->
+
+<div
+    class="overlay"
+    id="worldOverlay"
+    onclick="closeOverlayOutside(event)"
+>
+
+    <div class="world-panel">
+
+        <button
+            class="close-button"
+            onclick="closeWorld()">
+            ×
+        </button>
+
+        <div class="world-kicker" id="worldKicker">
+            WORLD
+        </div>
+
+        <h2 id="worldTitle">
+            SOLARION
+        </h2>
+
+        <div
+            class="world-member"
+            id="worldMember">
+        </div>
+
+        <div
+            class="world-description"
+            id="worldDescription">
+        </div>
+
+        <div
+            class="mission-list"
+            id="missionList">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MISSION OVERLAY
+========================= -->
+
+<div
+    class="overlay"
+    id="missionOverlay"
+    onclick="closeMissionOutside(event)"
+>
+
+    <div class="mission-panel">
+
+        <button
+            class="close-button"
+            onclick="closeMission()">
+            ×
+        </button>
+
+        <div class="world-kicker" id="missionType">
+            MISSION
+        </div>
+
+        <h2 id="missionTitle">
+            Mission
+        </h2>
+
+        <div
+            class="mission-story"
+            id="missionStory">
+        </div>
+
+        <div
+            class="attempts"
+            id="attempts">
+        </div>
+
+        <div
+            class="mission-question"
+            id="missionQuestion">
+        </div>
+
+        <div
+            class="answer-area"
+            id="answerArea">
+        </div>
+
+        <div
+            class="result"
+            id="missionResult">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   AETHER PATH DATA
+========================================================= */
+
+const worlds = {
+
+    SOLARION: {
+        member: "Solen",
+        description:
+            "The world of light, leadership and renewal. Solarion asks what remains when everything begins again.",
+        missions: [
+            {
+                number: 1,
+                title: "THE FIRST LIGHT",
+                type: "Lore Puzzle",
+                reward: 20,
+                story:
+                    "A first light appears above Solarion. Three symbols remain in its glow.",
+                question:
+                    "Which Guardian belongs to Solen?",
+                answers: [
+                    "Golden Lion",
+                    "Black Panther",
+                    "White Cat"
+                ],
+                correct: "Golden Lion"
+            },
+            {
+                number: 8,
+                title: "THE LIGHT RETURNS",
+                type: "Lore Mission",
+                reward: 35,
+                story:
+                    "Solarion remembers every beginning. Follow the light and discover what it protects.",
+                question:
+                    "Who carries the solar relic?",
+                answers: [
+                    "Solen",
+                    "Nero",
+                    "Riven"
+                ],
+                correct: "Solen"
+            }
+        ]
+    },
+
+
+    HOLLOW: {
+        member: "Vex",
+        description:
+            "A world of shadow, truth and transformation. Hollow never gives an answer without hiding another question.",
+        missions: [
+            {
+                number: 2,
+                title: "THE SHADOW'S QUESTION",
+                type: "Lore Puzzle",
+                reward: 20,
+                story:
+                    "The shadows move before you do. Something is watching from inside them.",
+                question:
+                    "Which Guardian walks beside Vex?",
+                answers: [
+                    "Black Panther",
+                    "Wolf",
+                    "Raven"
+                ],
+                correct: "Black Panther"
+            },
+            {
+                number: 9,
+                title: "BEYOND THE SHADOW",
+                type: "Three Attempts",
+                reward: 35,
+                attempts: true,
+                story:
+                    "Hollow opens only when you stop trusting what you see.",
+                question:
+                    "Which world represents shadow, truth and transformation?",
+                answers: [
+                    "Hollow",
+                    "Ignis",
+                    "Lumenia"
+                ],
+                correct: "Hollow"
+            }
+        ]
+    },
+
+
+    VOLTARIS: {
+        member: "Kairo",
+        description:
+            "Power, motion and evolution. Voltaris never stands still.",
+        missions: [
+            {
+                number: 3,
+                title: "THE VOLTARIS SIGNAL",
+                type: "Pattern Puzzle",
+                reward: 20,
+                story:
+                    "A pulse travels through the world in a repeating pattern.",
+                question:
+                    "Which symbol belongs to Voltaris?",
+                answers: [
+                    "⚡",
+                    "🌙",
+                    "🌊"
+                ],
+                correct: "⚡"
+            },
+            {
+                number: 10,
+                title: "THE HEART OF VOLTARIS",
+                type: "Puzzle / Lore",
+                reward: 40,
+                attempts: true,
+                story:
+                    "At the center of Voltaris, three signs appear: the world, the Guardian and the relic. Only one connection is complete.",
+                question:
+                    "Which connection belongs to Kairo?",
+                answers: [
+                    "Voltaris + Wolf + Blitzkern",
+                    "Thalassia + Dolphin + Gezeitenperle",
+                    "Ignis + Phoenix + Flammenherz"
+                ],
+                correct: "Voltaris + Wolf + Blitzkern"
+            }
+        ]
+    },
+
+
+    THALASSIA: {
+        member: "Riven",
+        description:
+            "A world of flow, healing and belonging. Its memories move like tides.",
+        missions: [
+            {
+                number: 4,
+                title: "THE TIDE'S MEMORY",
+                type: "Memory Puzzle",
+                reward: 20,
+                story:
+                    "The tide leaves behind three symbols. Remember them before they disappear.",
+                question:
+                    "Which Guardian belongs to Riven?",
+                answers: [
+                    "Dolphin",
+                    "Phoenix",
+                    "Raven"
+                ],
+                correct: "Dolphin"
+            },
+            {
+                number: 11,
+                title: "THE MEMORY BENEATH THE TIDE",
+                type: "Lore Puzzle",
+                reward: 40,
+                attempts: true,
+                story:
+                    "Deep beneath Thalassia, an old memory waits beneath the water.",
+                question:
+                    "Which connection belongs to Riven?",
+                answers: [
+                    "Thalassia + Dolphin + Gezeitenperle",
+                    "Solarion + Lion + Sun Pendant",
+                    "Nocteum + Raven + Noctis"
+                ],
+                correct: "Thalassia + Dolphin + Gezeitenperle"
+            }
+        ]
+    },
+
+
+    IGNIS: {
+        member: "Zenith",
+        description:
+            "Passion, creation and rise. Ignis burns brightest when someone refuses to give up.",
+        missions: [
+            {
+                number: 5,
+                title: "THE FIRST FLAME",
+                type: "Mini Challenge",
+                reward: 20,
+                story:
+                    "A small flame appears. Only one symbol carries the true fire.",
+                question:
+                    "Which Guardian rises from the flames?",
+                answers: [
+                    "Phoenix",
+                    "Dolphin",
+                    "Panther"
+                ],
+                correct: "Phoenix"
+            },
+            {
+                number: 12,
+                title: "THE FLAME TEST",
+                type: "Three Attempts",
+                reward: 45,
+                attempts: true,
+                story:
+                    "Watch the flame. Its symbols appear only for a moment.",
+                question:
+                    "Which Guardian represents Zenith?",
+                answers: [
+                    "Phoenix",
+                    "Golden Lion",
+                    "White Cat"
+                ],
+                correct: "Phoenix"
+            }
+        ]
+    },
+
+
+    LUMENIA: {
+        member: "Lux",
+        description:
+            "Balance, dream and unity. Lumenia remembers the light people carry for one another.",
+        missions: [
+            {
+                number: 6,
+                title: "THE BALANCE OF LIGHT",
+                type: "Pattern Puzzle",
+                reward: 20,
+                story:
+                    "Two lights appear. One is brighter, but only one completes the pattern.",
+                question:
+                    "Which color belongs to Lux?",
+                answers: [
+                    "White",
+                    "Purple",
+                    "Dark Blue"
+                ],
+                correct: "White"
+            },
+            {
+                number: 13,
+                title: "THE LIGHT THAT REMAINS",
+                type: "Three Attempts",
+                reward: 45,
+                attempts: true,
+                story:
+                    "The light repeats a simple pattern.",
+                question:
+                    "✦ → ✧ → ✦ → ✧ → ?",
+                answers: [
+                    "✦",
+                    "✧",
+                    "☾"
+                ],
+                correct: "✦"
+            }
+        ]
+    },
+
+
+    NOCTEUM: {
+        member: "Nero",
+        description:
+            "Mystery, observation and protection. Nocteum remembers things the other worlds have forgotten.",
+        missions: [
+            {
+                number: 7,
+                title: "THE NIGHT WATCH",
+                type: "Memory Puzzle",
+                reward: 20,
+                story:
+                    "The night gives you four symbols. Remember their order.",
+                question:
+                    "Which Guardian watches over Nero?",
+                answers: [
+                    "Raven",
+                    "Wolf",
+                    "Golden Lion"
+                ],
+                correct: "Raven"
+            },
+            {
+                number: 14,
+                title: "THE NIGHT REMEMBERS",
+                type: "Three Attempts",
+                reward: 45,
+                attempts: true,
+                story:
+                    "Remember the sequence before Nocteum hides it again.",
+                question:
+                    "🌙 → 🐦‍⬛ → 💎 → 🌑 → ?",
+                answers: [
+                    "🌙",
+                    "🐦‍⬛",
+                    "💎"
+                ],
+                correct: "🌙"
+            }
+        ]
+    }
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let coins = Number(localStorage.getItem("aether_path_coins") || 0);
+
+let completedMissions =
+    JSON.parse(
+        localStorage.getItem("aether_path_completed") || "[]"
+    );
+
+let discoveredWorlds =
+    JSON.parse(
+        localStorage.getItem("aether_path_worlds") || "[]"
+    );
+
+let currentMission = null;
+
+let attemptsLeft = 3;
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateUI() {
+
+    document.getElementById("coinDisplay").textContent = coins;
+
+    document.getElementById("missionCount").textContent =
+        completedMissions.length;
+
+    document.getElementById("missionProgressText").textContent =
+        `${completedMissions.length}/21`;
+
+    document.getElementById("worldCount").textContent =
+        `${discoveredWorlds.length}/7`;
+
+    document.getElementById("missionProgress").style.width =
+        `${(completedMissions.length / 21) * 100}%`;
+
+    document.getElementById("worldProgress").style.width =
+        `${(discoveredWorlds.length / 7) * 100}%`;
+
+    localStorage.setItem(
+        "aether_path_coins",
+        coins
+    );
+
+    localStorage.setItem(
+        "aether_path_completed",
+        JSON.stringify(completedMissions)
+    );
+
+    localStorage.setItem(
+        "aether_path_worlds",
+        JSON.stringify(discoveredWorlds)
+    );
+}
+
+
+/* =========================================================
+   WORLD PANEL
+========================================================= */
+
+function openWorld(worldKey) {
+
+    const world = worlds[worldKey];
+
+    if (!world) return;
+
+    if (!discoveredWorlds.includes(worldKey)) {
+
+        discoveredWorlds.push(worldKey);
+
+        updateUI();
+    }
+
+    document.getElementById("worldKicker").textContent =
+        "WORLD PATH";
+
+    document.getElementById("worldTitle").textContent =
+        worldKey;
+
+    document.getElementById("worldMember").textContent =
+        `Member: ${world.member}`;
+
+    document.getElementById("worldDescription").textContent =
+        world.description;
+
+    const list =
+        document.getElementById("missionList");
+
+    list.innerHTML = "";
+
+    world.missions.forEach(mission => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "mission-card";
+
+        const completed =
+            completedMissions.includes(mission.number);
+
+        card.innerHTML = `
+            <div class="mission-number">
+                MISSION ${String(mission.number).padStart(2, "0")}
+            </div>
+
+            <h3>${mission.title}</h3>
+
+            <div class="mission-meta">
+                ${mission.type} • ${mission.reward} AETHER Coins
+            </div>
+
+            <button
+                class="mission-button"
+                onclick="startMission(${mission.number})">
+                ${completed ? "COMPLETED" : "BEGIN MISSION"}
+            </button>
+        `;
+
+        list.appendChild(card);
+    });
+
+    document
+        .getElementById("worldOverlay")
+        .classList.add("open");
+}
+
+
+function closeWorld() {
+
+    document
+        .getElementById("worldOverlay")
+        .classList.remove("open");
+}
+
+
+function closeOverlayOutside(event) {
+
+    if (event.target.id === "worldOverlay") {
+        closeWorld();
+    }
+}
+
+
+/* =========================================================
+   FIND MISSION
+========================================================= */
+
+function findMission(number) {
+
+    for (const key in worlds) {
+
+        const found =
+            worlds[key].missions.find(
+                mission => mission.number === number
+            );
+
+        if (found) return found;
+    }
+
+    return null;
+}
+
+
+/* =========================================================
+   START MISSION
+========================================================= */
+
+function startMission(number) {
+
+    const mission =
+        findMission(number);
+
+    if (!mission) return;
+
+    currentMission = mission;
+
+    attemptsLeft =
+        mission.attempts ? 3 : 999;
+
+    closeWorld();
+
+    document.getElementById("missionType").textContent =
+        mission.type;
+
+    document.getElementById("missionTitle").textContent =
+        `MISSION ${String(mission.number).padStart(2, "0")} — ${mission.title}`;
+
+    document.getElementById("missionStory").textContent =
+        mission.story;
+
+    document.getElementById("missionQuestion").textContent =
+        mission.question;
+
+    renderAttempts();
+
+    const area =
+        document.getElementById("answerArea");
+
+    area.innerHTML = "";
+
+    mission.answers.forEach(answer => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer-button";
+
+        button.textContent = answer;
+
+        button.onclick = () =>
+            answerMission(answer);
+
+        area.appendChild(button);
+    });
+
+    document.getElementById("missionResult").textContent = "";
+
+    document
+        .getElementById("missionOverlay")
+        .classList.add("open");
+}
+
+
+/* =========================================================
+   ATTEMPTS
+========================================================= */
+
+function renderAttempts() {
+
+    const area =
+        document.getElementById("attempts");
+
+    if (!currentMission.attempts) {
+
+        area.innerHTML = "";
+
+        return;
+    }
+
+    let html = "";
+
+    for (let i = 0; i < 3; i++) {
+
+        html += `
+            <span class="attempt">
+                ${i < attemptsLeft ? "🔥" : "○"}
+            </span>
+        `;
+    }
+
+    area.innerHTML = html;
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+function answerMission(answer) {
+
+    if (!currentMission) return;
+
+    const result =
+        document.getElementById("missionResult");
+
+    if (answer === currentMission.correct) {
+
+        if (
+            completedMissions.includes(
+                currentMission.number
+            )
+        ) {
+
+            result.innerHTML =
+                "MISSION ALREADY COMPLETED.";
+
+            return;
+        }
+
+        completedMissions.push(
+            currentMission.number
+        );
+
+        coins += currentMission.reward;
+
+        updateUI();
+
+        result.innerHTML =
+            `✦ MISSION COMPLETE ✦
+             <div class="reward">
+                +${currentMission.reward} AETHER Coins
+             </div>`;
+
+        document
+            .querySelectorAll(".answer-button")
+            .forEach(button => {
+                button.disabled = true;
+                button.style.opacity = "0.5";
+            });
+
+        return;
+    }
+
+
+    /* WRONG ANSWER */
+
+    if (currentMission.attempts) {
+
+        attemptsLeft--;
+
+        renderAttempts();
+
+        if (attemptsLeft <= 0) {
+
+            result.innerHTML =
+                "The path closes for now.<br><br>Try again later.";
+
+            document
+                .querySelectorAll(".answer-button")
+                .forEach(button => {
+                    button.disabled = true;
+                });
+
+            return;
+        }
+
+        if (attemptsLeft === 2) {
+
+            result.textContent =
+                "Not quite. Look more closely.";
+        }
+
+        else if (attemptsLeft === 1) {
+
+            result.textContent =
+                "One final attempt. The answer is closer than it seems.";
+        }
+
+    } else {
+
+        result.textContent =
+            "Not quite. Try again.";
+    }
+}
+
+
+/* =========================================================
+   MISSION CLOSE
+========================================================= */
+
+function closeMission() {
+
+    document
+        .getElementById("missionOverlay")
+        .classList.remove("open");
+
+    currentMission = null;
+}
+
+
+function closeMissionOutside(event) {
+
+    if (event.target.id === "missionOverlay") {
+        closeMission();
+    }
+}
+
+
+/* =========================================================
+   ESC KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+
+            closeWorld();
+            closeMission();
+        }
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+updateUI();
+
+</script>
+
+</body>
+  </html>
