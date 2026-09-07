@@ -1,1 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>AETHER Official Shop</title>
+
+<style>
+
+:root {
+    --bg: #050712;
+    --bg-soft: #0b1020;
+    --panel: #10172a;
+    --panel-light: #17213a;
+    --line: rgba(160,185,255,0.20);
+
+    --text: #d9e4ff;
+    --muted: #8fa6d8;
+
+    --accent: #a9c0ff;
+    --gold: #ffd978;
+
+    --shadow: 0 25px 70px rgba(0,0,0,0.55);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 5%,
+            rgba(100,130,255,0.14),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(100,60,200,0.08),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page {
+
+    width: min(1450px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        18px
+        18px
+        80px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    position: relative;
+
+    width: 100%;
+
+    border-radius: 26px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 0 0 1px rgba(180,205,255,0.16),
+        0 30px 90px rgba(0,0,0,0.65);
+
+    background: #050712;
+}
+
+.hero-image {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    object-fit: cover;
+}
+
+
+/* subtle bottom fade */
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 22%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(5,7,18,0.72)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   COIN BAR
+===================================================== */
+
+.coin-area {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 28px;
+}
+
+.coin-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 250px;
+
+    padding: 16px 24px;
+
+    border-radius: 18px;
+
+    border: 1px solid
+        rgba(255,217,120,0.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,35,60,0.92),
+            rgba(12,17,34,0.92)
+        );
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.40);
+}
+
+.coin-icon {
+
+    font-size: 30px;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,217,120,0.45)
+        );
+}
+
+.coin-label {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 0.25em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 4px;
+}
+
+.coin-value {
+
+    color: var(--gold);
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.04em;
+}
+
+
+/* =====================================================
+   INTRO
+===================================================== */
+
+.intro {
+
+    text-align: center;
+
+    margin:
+        60px auto
+        35px;
+
+    max-width: 700px;
+}
+
+.intro-kicker {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing: 0.35em;
+
+    text-transform: uppercase;
+}
+
+.intro h1 {
+
+    margin:
+        9px 0
+        12px;
+
+    font-size:
+        clamp(30px, 6vw, 48px);
+
+    letter-spacing: 0.08em;
+}
+
+.intro p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   SHOP NAVIGATION
+===================================================== */
+
+.shop-nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 45px;
+}
+
+.shop-nav button {
+
+    border: 1px solid var(--line);
+
+    border-radius: 999px;
+
+    padding: 10px 18px;
+
+    background:
+        rgba(16,23,42,0.78);
+
+    color: var(--muted);
+
+    cursor: pointer;
+
+    letter-spacing: 0.08em;
+
+    font-size: 11px;
+
+    transition: 0.2s ease;
+}
+
+.shop-nav button:hover {
+
+    color: var(--text);
+
+    border-color:
+        rgba(190,210,255,0.45);
+
+    background:
+        rgba(120,150,255,0.10);
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.section {
+
+    margin-top: 55px;
+}
+
+.section-heading {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.section-heading .small {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+
+    margin:
+        7px 0
+        8px;
+
+    font-size:
+        clamp(24px, 5vw, 36px);
+
+    letter-spacing: 0.08em;
+}
+
+.section-heading p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   SHOP GRID
+===================================================== */
+
+.shop-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.product {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 1px solid var(--line);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23,33,58,0.82),
+            rgba(10,15,29,0.92)
+        );
+
+    min-height: 300px;
+
+    padding: 26px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,0.32);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.product:hover {
+
+    transform:
+        translateY(-5px);
+
+    border-color:
+        rgba(180,205,255,0.38);
+
+    box-shadow:
+        0 22px 55px
+        rgba(0,0,0,0.48);
+}
+
+.product-glow {
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(140,170,255,0.08);
+
+    filter: blur(35px);
+
+    top: -80px;
+    right: -60px;
+}
+
+.product-icon {
+
+    font-size: 48px;
+
+    margin-bottom: 20px;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.product h3 {
+
+    margin: 0 0 9px;
+
+    font-size: 21px;
+
+    letter-spacing: 0.04em;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.product p {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.product-bottom {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.price {
+
+    color: var(--gold);
+
+    font-weight: 800;
+
+    font-size: 17px;
+}
+
+.coming {
+
+    border: 1px solid
+        rgba(160,185,255,0.18);
+
+    border-radius: 999px;
+
+    padding: 7px 11px;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 0.16em;
+
+    text-transform: uppercase;
+}
+
+
+/* =====================================================
+   FEATURED
+===================================================== */
+
+.featured {
+
+    margin-top: 55px;
+
+    padding: 32px;
+
+    border-radius: 24px;
+
+    border: 1px solid
+        rgba(255,217,120,0.16);
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(255,217,120,0.08),
+            transparent 55%
+        ),
+        rgba(16,23,42,0.72);
+
+    text-align: center;
+}
+
+.featured h2 {
+
+    margin:
+        8px 0
+        12px;
+
+    font-size: 27px;
+
+    letter-spacing: 0.08em;
+}
+
+.featured p {
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    color: var(--muted);
+
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.shop-footer {
+
+    margin-top: 70px;
+
+    text-align: center;
+
+    color:
+        rgba(143,166,216,0.48);
+
+    font-size: 10px;
+
+    letter-spacing: 0.22em;
+
+    text-transform: uppercase;
+}
+
+.footer-symbol {
+
+    font-size: 24px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .page {
+
+        padding:
+            10px
+            10px
+            60px;
+    }
+
+    .hero {
+
+        border-radius: 17px;
+    }
+
+    .shop-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .product {
+
+        min-height: 250px;
+    }
+
+    .coin-card {
+
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .intro {
+
+        margin-top: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .intro h1 {
+
+        font-size: 27px;
+    }
+
+    .intro p {
+
+        font-size: 13px;
+    }
+
+    .featured {
+
+        padding: 25px 18px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <img
+        src="shop/shop-hero.png"
+        alt="AETHER Official Shop"
+        class="hero-image"
+    >
+
+</section>
+
+
+<!-- =====================================================
+     AETHER COINS
+===================================================== -->
+
+<div class="coin-area">
+
+    <div class="coin-card">
+
+        <div class="coin-icon">
+            🪙
+        </div>
+
+        <div>
+
+            <div class="coin-label">
+                AETHER COINS
+            </div>
+
+            <div
+                class="coin-value"
+                id="coinBalance"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section class="intro">
+
+    <div class="intro-kicker">
+        AETHER OFFICIAL SHOP
+    </div>
+
+    <h1>
+        WEAR THE WORLDS.
+    </h1>
+
+    <p>
+        Discover exclusive pieces from the AETHERVERSE.
+        Collect memories, carry the worlds with you
+        and keep a part of AETHER close.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     SHOP NAVIGATION
+===================================================== -->
+
+<nav class="shop-nav">
+
+    <button onclick="scrollToSection('exclusives')">
+        AETHER EXCLUSIVES
+    </button>
+
+    <button onclick="scrollToSection('memories')">
+        MEMORIES
+    </button>
+
+    <button onclick="scrollToSection('specials')">
+        SPECIALS
+    </button>
+
+</nav>
+
+
+<!-- =====================================================
+     AETHER EXCLUSIVES
+===================================================== -->
+
+<section
+    class="section"
+    id="exclusives"
+>
+
+    <div class="section-heading">
+
+        <div class="small">
+            SHOP COLLECTION
+        </div>
+
+        <h2>
+            AETHER EXCLUSIVES
+        </h2>
+
+        <p>
+            Items created for those who walk the path.
+        </p>
+
+    </div>
+
+
+    <div class="shop-grid">
+
+
+        <article class="product">
+
+            <div class="product-glow"></div>
+
+            <div>
+
+                <div class="product-icon">
+                    ✦
+                </div>
+
+                <h3>
+                    AETHER EMBLEM
+                </h3>
+
+                <p>
+                    A digital emblem carrying
+                    the symbol of AETHER.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 100
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-glow"></div>
+
+            <div>
+
+                <div class="product-icon">
+                    🌌
+                </div>
+
+                <h3>
+                    AETHER STAR
+                </h3>
+
+                <p>
+                    A small piece of the
+                    AETHERVERSE to keep.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 150
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-glow"></div>
+
+            <div>
+
+                <div class="product-icon">
+                    💠
+                </div>
+
+                <h3>
+                    AETHER CRYSTAL
+                </h3>
+
+                <p>
+                    A luminous relic inspired
+                    by the seven worlds.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 250
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEMORIES
+===================================================== -->
+
+<section
+    class="section"
+    id="memories"
+>
+
+    <div class="section-heading">
+
+        <div class="small">
+            KEEP THEM CLOSE
+        </div>
+
+        <h2>
+            MEMORIES
+        </h2>
+
+        <p>
+            Pieces of moments that belong to AETHER.
+        </p>
+
+    </div>
+
+
+    <div class="shop-grid">
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                📖
+            </div>
+
+            <div>
+
+                <h3>
+                    AETHER MEMORY
+                </h3>
+
+                <p>
+                    A digital memory from
+                    somewhere inside the universe.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 200
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                💫
+            </div>
+
+            <div>
+
+                <h3>
+                    WORLD MEMORY
+                </h3>
+
+                <p>
+                    A memory connected to
+                    one of the seven worlds.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 300
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                🕯️
+            </div>
+
+            <div>
+
+                <h3>
+                    FORGOTTEN MEMORY
+                </h3>
+
+                <p>
+                    Some memories are not meant
+                    to be found immediately.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 500
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SPECIALS
+===================================================== -->
+
+<section
+    class="section"
+    id="specials"
+>
+
+    <div class="section-heading">
+
+        <div class="small">
+            RARE FINDS
+        </div>
+
+        <h2>
+            SPECIALS
+        </h2>
+
+        <p>
+            Limited pieces. Rare moments. Hidden treasures.
+        </p>
+
+    </div>
+
+
+    <div class="shop-grid">
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                👑
+            </div>
+
+            <div>
+
+                <h3>
+                    AETHER ROYAL
+                </h3>
+
+                <p>
+                    A special item reserved
+                    for rare occasions.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 750
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                🌠
+            </div>
+
+            <div>
+
+                <h3>
+                    SEVEN WORLDS
+                </h3>
+
+                <p>
+                    One collection connecting
+                    all seven worlds.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 1000
+                </div>
+
+                <div class="coming">
+                    COMING SOON
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article class="product">
+
+            <div class="product-icon">
+                ❔
+            </div>
+
+            <div>
+
+                <h3>
+                    UNKNOWN
+                </h3>
+
+                <p>
+                    Something is waiting beyond
+                    what you already know.
+                </p>
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    🪙 ???
+                </div>
+
+                <div class="coming">
+                    LOCKED
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED MESSAGE
+===================================================== -->
+
+<section class="featured">
+
+    <div class="small">
+        AETHER
+    </div>
+
+    <h2>
+        MORE THAN MERCH.
+    </h2>
+
+    <p>
+        Every item should feel like a piece
+        of the world you discovered.
+        Something earned, something remembered,
+        something that belongs to your journey.
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="shop-footer">
+
+    <div class="footer-symbol">
+        ✦
+    </div>
+
+    FOR HALO. ALWAYS.
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   SHOP NAVIGATION
+===================================================== */
+
+function scrollToSection(id) {
+
+    const section =
+        document.getElementById(id);
+
+    if (!section) return;
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =====================================================
+   AETHER COINS
+===================================================== */
+
+/*
+   TEMPORARY DISPLAY
+
+   The balance is intentionally isolated here.
+
+   AETHER COINS are completely independent
+   from HALO POINTS.
+
+   The real Supabase wallet will be connected
+   in the next step.
+*/
+
+let aetherCoins = 0;
+
+document.getElementById("coinBalance").textContent =
+    aetherCoins.toLocaleString();
+
+
+</script>
+
+</body>
+  </html>
