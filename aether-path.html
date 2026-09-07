@@ -989,7 +989,23 @@ button {
 </div>
 
 
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
 
 /* =========================================================
    AETHER PATH DATA
@@ -1296,7 +1312,7 @@ const worlds = {
    STATE
 ========================================================= */
 
-let coins = Number(localStorage.getItem("aether_path_coins") || 0);
+let coins = 0;
 
 let completedMissions =
     JSON.parse(
@@ -1319,7 +1335,8 @@ let attemptsLeft = 3;
 
 function updateUI() {
 
-    document.getElementById("coinDisplay").textContent = coins;
+    document.getElementById("coinDisplay").textContent =
+        coins.toLocaleString();
 
     document.getElementById("missionCount").textContent =
         completedMissions.length;
@@ -1337,11 +1354,6 @@ function updateUI() {
         `${(discoveredWorlds.length / 7) * 100}%`;
 
     localStorage.setItem(
-        "aether_path_coins",
-        coins
-    );
-
-    localStorage.setItem(
         "aether_path_completed",
         JSON.stringify(completedMissions)
     );
@@ -1350,6 +1362,151 @@ function updateUI() {
         "aether_path_worlds",
         JSON.stringify(discoveredWorlds)
     );
+}
+
+
+/* =========================================================
+   AETHER COINS — SUPABASE
+========================================================= */
+
+async function loadAetherCoins() {
+
+    const {
+        data: { user },
+        error: userError
+    } = await supabaseClient.auth.getUser();
+
+    if (userError || !user) {
+
+        console.error(
+            "AETHER COIN USER ERROR:",
+            userError
+        );
+
+        window.location.replace("halo.html");
+
+        return;
+    }
+
+    /*
+        One-time migration of the old local Path balance.
+
+        This prevents already-earned local coins from being lost.
+    */
+
+    const migrationKey =
+        "aether_path_coins_migrated";
+
+    const alreadyMigrated =
+        localStorage.getItem(migrationKey);
+
+    const oldLocalCoins =
+        Number(
+            localStorage.getItem("aether_path_coins") || 0
+        );
+
+    if (!alreadyMigrated && oldLocalCoins > 0) {
+
+        const {
+            data: migratedBalance,
+            error: migrationError
+        } = await supabaseClient.rpc(
+            "award_aether_coins",
+            {
+                p_amount: oldLocalCoins,
+                p_source_type: "AETHER_PATH_MIGRATION",
+                p_source_key: "legacy_local_balance",
+                p_description:
+                    "Migration of existing THE AETHER PATH local coin balance"
+            }
+        );
+
+        if (migrationError) {
+
+            console.error(
+                "AETHER COIN MIGRATION ERROR:",
+                migrationError
+            );
+
+            return;
+        }
+
+        coins =
+            Number(
+                migratedBalance || 0
+            );
+
+        localStorage.setItem(
+            migrationKey,
+            "true"
+        );
+
+        localStorage.removeItem(
+            "aether_path_coins"
+        );
+
+        updateUI();
+
+        return;
+    }
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "get_aether_coin_balance"
+    );
+
+    if (error) {
+
+        console.error(
+            "AETHER COIN BALANCE ERROR:",
+            error
+        );
+
+        return;
+    }
+
+    coins =
+        Number(data || 0);
+
+    updateUI();
+}
+
+
+async function awardMissionCoins(mission) {
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+        "award_aether_coins",
+        {
+            p_amount: mission.reward,
+            p_source_type: "AETHER_PATH",
+            p_source_key:
+                `mission_${String(mission.number).padStart(2, "0")}`,
+            p_description:
+                `THE AETHER PATH — Mission ${String(mission.number).padStart(2, "0")}`
+        }
+    );
+
+    if (error) {
+
+        console.error(
+            "AETHER COIN AWARD ERROR:",
+            error
+        );
+
+        return false;
+    }
+
+    coins =
+        Number(data || 0);
+
+    updateUI();
+
+    return true;
 }
 
 
@@ -1395,7 +1552,9 @@ function openWorld(worldKey) {
         card.className = "mission-card";
 
         const completed =
-            completedMissions.includes(mission.number);
+            completedMissions.includes(
+                mission.number
+            );
 
         card.innerHTML = `
             <div class="mission-number">
@@ -1555,7 +1714,7 @@ function renderAttempts() {
    ANSWER
 ========================================================= */
 
-function answerMission(answer) {
+async function answerMission(answer) {
 
     if (!currentMission) return;
 
@@ -1580,22 +1739,67 @@ function answerMission(answer) {
             currentMission.number
         );
 
-        coins += currentMission.reward;
+        localStorage.setItem(
+            "aether_path_completed",
+            JSON.stringify(completedMissions)
+        );
 
-        updateUI();
+        const buttons =
+            document.querySelectorAll(
+                ".answer-button"
+            );
+
+        buttons.forEach(button => {
+            button.disabled = true;
+            button.style.opacity = "0.5";
+        });
+
+        result.innerHTML =
+            "✦ MISSION COMPLETE ✦<br><br>Processing AETHER Coin reward...";
+
+        const success =
+            await awardMissionCoins(
+                currentMission
+            );
+
+        if (!success) {
+
+            /*
+                Roll back the completion locally if
+                Supabase could not award the coins.
+            */
+
+            completedMissions =
+                completedMissions.filter(
+                    number =>
+                        number !== currentMission.number
+                );
+
+            localStorage.setItem(
+                "aether_path_completed",
+                JSON.stringify(
+                    completedMissions
+                )
+            );
+
+            result.innerHTML =
+                "The path could not record your AETHER Coin reward.<br><br>Please try again.";
+
+            buttons.forEach(button => {
+                button.disabled = false;
+                button.style.opacity = "1";
+            });
+
+            updateUI();
+
+            return;
+        }
 
         result.innerHTML =
             `✦ MISSION COMPLETE ✦
              <div class="reward">
                 +${currentMission.reward} AETHER Coins
              </div>`;
-
-        document
-            .querySelectorAll(".answer-button")
-            .forEach(button => {
-                button.disabled = true;
-                button.style.opacity = "0.5";
-            });
 
         return;
     }
@@ -1687,6 +1891,8 @@ document.addEventListener(
 ========================================================= */
 
 updateUI();
+
+loadAetherCoins();
 
 </script>
 
