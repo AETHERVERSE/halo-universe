@@ -7,7 +7,6 @@
 <title>AETHER Official Shop</title>
 
 <style>
-
 :root {
     --bg: #050712;
     --bg-soft: #0b1020;
@@ -60,21 +59,11 @@ body {
         sans-serif;
 }
 
-
-/* =====================================================
-   PAGE
-===================================================== */
-
 .page {
     width: min(1450px, 100%);
     margin: 0 auto;
-
-    padding:
-        18px
-        18px
-        80px;
+    padding: 18px 18px 80px;
 }
-
 
 /* =====================================================
    HERO
@@ -82,11 +71,8 @@ body {
 
 .hero {
     position: relative;
-
     width: 100%;
-
     border-radius: 26px;
-
     overflow: hidden;
 
     box-shadow:
@@ -98,10 +84,8 @@ body {
 
 .hero-image {
     display: block;
-
     width: 100%;
     height: auto;
-
     object-fit: cover;
 }
 
@@ -109,7 +93,6 @@ body {
     content: "";
 
     position: absolute;
-
     left: 0;
     right: 0;
     bottom: 0;
@@ -126,24 +109,19 @@ body {
     pointer-events: none;
 }
 
-
 /* =====================================================
-   COIN BAR
+   COINS
 ===================================================== */
 
 .coin-area {
     display: flex;
-
     justify-content: center;
-
     margin-top: 28px;
 }
 
 .coin-card {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
 
     min-width: 250px;
@@ -198,7 +176,6 @@ body {
     letter-spacing: 0.04em;
 }
 
-
 /* =====================================================
    PATH BUTTON
 ===================================================== */
@@ -234,8 +211,7 @@ body {
 
     text-transform: uppercase;
 
-    transition:
-        0.2s ease;
+    transition: 0.2s ease;
 }
 
 .path-button:hover {
@@ -250,7 +226,6 @@ body {
     transform:
         translateY(-2px);
 }
-
 
 /* =====================================================
    INTRO
@@ -297,9 +272,8 @@ body {
     font-size: 15px;
 }
 
-
 /* =====================================================
-   SHOP NAVIGATION
+   NAVIGATION
 ===================================================== */
 
 .shop-nav {
@@ -345,17 +319,19 @@ body {
         rgba(120,150,255,0.10);
 }
 
-
 /* =====================================================
-   LOADING / ERROR
+   STATUS
 ===================================================== */
 
 .shop-status {
     max-width: 700px;
 
-    margin: 20px auto 45px;
+    margin:
+        20px auto
+        45px;
 
-    padding: 15px 18px;
+    padding:
+        15px 18px;
 
     border-radius: 14px;
 
@@ -390,7 +366,6 @@ body {
 .hidden {
     display: none !important;
 }
-
 
 /* =====================================================
    SECTION
@@ -435,7 +410,6 @@ body {
     line-height: 1.6;
 }
 
-
 /* =====================================================
    SHOP GRID
 ===================================================== */
@@ -449,9 +423,8 @@ body {
     gap: 18px;
 }
 
-
 /* =====================================================
-   PRODUCT CARD
+   PRODUCT
 ===================================================== */
 
 .product {
@@ -535,7 +508,8 @@ body {
 }
 
 .product h3 {
-    margin: 0 0 9px;
+    margin:
+        0 0 9px;
 
     font-size: 21px;
 
@@ -560,9 +534,8 @@ body {
     z-index: 1;
 }
 
-
 /* =====================================================
-   PRODUCT DETAILS
+   DETAILS
 ===================================================== */
 
 .product-detail {
@@ -597,6 +570,7 @@ body {
 
 .detail-list {
     margin: 0;
+
     padding-left: 18px;
 
     color: var(--text);
@@ -609,7 +583,6 @@ body {
 .detail-list li {
     margin-bottom: 2px;
 }
-
 
 /* =====================================================
    SELECT
@@ -644,7 +617,6 @@ body {
         rgba(169,192,255,0.55);
 }
 
-
 /* =====================================================
    PRODUCT BOTTOM
 ===================================================== */
@@ -672,7 +644,6 @@ body {
 
     font-size: 17px;
 }
-
 
 /* =====================================================
    BUY BUTTON
@@ -742,7 +713,6 @@ body {
     transform: none;
 }
 
-
 /* =====================================================
    FEATURED
 ===================================================== */
@@ -798,7 +768,6 @@ body {
     line-height: 1.7;
 }
 
-
 /* =====================================================
    FOOTER
 ===================================================== */
@@ -809,45 +778,40 @@ body {
     text-align: center;
 
     color:
-        rgba(143,166,216,0.48);
+        rgba(143,166,216,0.55);
 
     font-size: 10px;
 
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
 
     text-transform: uppercase;
 }
 
-.footer-symbol {
-    font-size: 24px;
-
-    margin-bottom: 12px;
-}
-
-
 /* =====================================================
-   MOBILE
+   RESPONSIVE
 ===================================================== */
 
-@media (max-width: 1000px) {
-
+@media (max-width: 900px) {
     .shop-grid {
         grid-template-columns:
             repeat(2, 1fr);
     }
 }
 
-@media (max-width: 800px) {
-
+@media (max-width: 620px) {
     .page {
         padding:
-            10px
-            10px
+            12px
+            12px
             60px;
     }
 
     .hero {
-        border-radius: 17px;
+        border-radius: 18px;
+    }
+
+    .intro {
+        margin-top: 45px;
     }
 
     .shop-grid {
@@ -856,301 +820,253 @@ body {
     }
 
     .product {
-        min-height: 250px;
+        min-height: 280px;
     }
 
     .coin-card {
-        width: 100%;
-
-        justify-content: center;
-    }
-
-    .intro {
-        margin-top: 45px;
+        min-width: 220px;
     }
 }
-
-@media (max-width: 480px) {
-
-    .intro h1 {
-        font-size: 27px;
-    }
-
-    .intro p {
-        font-size: 13px;
-    }
-
-    .featured {
-        padding: 25px 18px;
-    }
-
-    .product-bottom {
-        align-items: flex-end;
-    }
-}
-
 </style>
 </head>
-
 
 <body>
 
 <div class="page">
 
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+    <section class="hero">
+        <img
+            src="shop/shop-hero.png"
+            alt="AETHER Official Shop"
+            class="hero-image"
+        >
+    </section>
 
-<section class="hero">
+    <!-- =================================================
+         COINS
+    ================================================== -->
 
-    <img
-        src="shop/shop-hero.png"
-        alt="AETHER Official Shop"
-        class="hero-image"
+    <div class="coin-area">
+
+        <div class="coin-card">
+
+            <div class="coin-icon">
+                🪙
+            </div>
+
+            <div>
+
+                <div class="coin-label">
+                    AETHER Coins
+                </div>
+
+                <div
+                    class="coin-value"
+                    id="coinBalance"
+                >
+                    —
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =================================================
+         PATH
+    ================================================== -->
+
+    <a
+        href="aether-path.html"
+        class="path-button"
+    >
+        ← Return to THE AETHER PATH
+    </a>
+
+    <!-- =================================================
+         INTRO
+    ================================================== -->
+
+    <section class="intro">
+
+        <div class="intro-kicker">
+            AETHER OFFICIAL SHOP
+        </div>
+
+        <h1>
+            WEAR THE WORLDS.
+        </h1>
+
+        <p>
+            Discover exclusive pieces from the AETHERVERSE.
+            Collect memories, carry the worlds with you
+            and keep a part of AETHER close.
+        </p>
+
+    </section>
+
+    <!-- =================================================
+         NAVIGATION
+    ================================================== -->
+
+    <nav class="shop-nav">
+
+        <button
+            type="button"
+            onclick="scrollToSection('aether-exclusives')"
+        >
+            AETHER EXCLUSIVES
+        </button>
+
+        <button
+            type="button"
+            onclick="scrollToSection('memories')"
+        >
+            MEMORIES
+        </button>
+
+        <button
+            type="button"
+            onclick="scrollToSection('specials')"
+        >
+            SPECIALS
+        </button>
+
+    </nav>
+
+    <!-- =================================================
+         STATUS
+    ================================================== -->
+
+    <div
+        id="shopStatus"
+        class="shop-status hidden"
+    ></div>
+
+    <!-- =================================================
+         SHOP SECTIONS
+    ================================================== -->
+
+    <section
+        id="aether-exclusives"
+        class="section"
     >
 
-</section>
+        <div class="section-heading">
 
-
-<!-- =====================================================
-     AETHER COINS
-===================================================== -->
-
-<div class="coin-area">
-
-    <div class="coin-card">
-
-        <div class="coin-icon">
-            🪙
-        </div>
-
-        <div>
-
-            <div class="coin-label">
-                AETHER COINS
+            <div class="small">
+                SHOP COLLECTION
             </div>
 
-            <div
-                class="coin-value"
-                id="coinBalance"
-            >
-                0
+            <h2>
+                AETHER EXCLUSIVES
+            </h2>
+
+            <p>
+                Items created for those who walk the path.
+            </p>
+
+        </div>
+
+        <div
+            id="aetherExclusivesGrid"
+            class="shop-grid"
+        ></div>
+
+    </section>
+
+
+    <section
+        id="memories"
+        class="section"
+    >
+
+        <div class="section-heading">
+
+            <div class="small">
+                KEEP THEM CLOSE
             </div>
 
+            <h2>
+                MEMORIES
+            </h2>
+
+            <p>
+                Pieces of moments that belong to AETHER.
+            </p>
+
         </div>
 
-    </div>
+        <div
+            id="memoriesGrid"
+            class="shop-grid"
+        ></div>
 
-</div>
-
-
-<!-- =====================================================
-     PATH NAVIGATION
-===================================================== -->
-
-<a
-    href="aether-path.html"
-    class="path-button"
->
-    ← THE AETHER PATH
-</a>
+    </section>
 
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+    <section
+        id="specials"
+        class="section"
+    >
 
-<section class="intro">
+        <div class="section-heading">
 
-    <div class="intro-kicker">
-        AETHER OFFICIAL SHOP
-    </div>
+            <div class="small">
+                RARE FINDS
+            </div>
 
-    <h1>
-        WEAR THE WORLDS.
-    </h1>
+            <h2>
+                SPECIALS
+            </h2>
 
-    <p>
-        Discover exclusive pieces from the AETHERVERSE.
-        Collect memories, carry the worlds with you
-        and keep a part of AETHER close.
-    </p>
+            <p>
+                Limited pieces. Rare moments. Hidden treasures.
+            </p>
 
-</section>
+        </div>
 
+        <div
+            id="specialsGrid"
+            class="shop-grid"
+        ></div>
 
-<!-- =====================================================
-     SHOP NAVIGATION
-===================================================== -->
+    </section>
 
-<nav class="shop-nav">
+    <!-- =================================================
+         FEATURED
+    ================================================== -->
 
-    <button onclick="scrollToSection('exclusives')">
-        AETHER EXCLUSIVES
-    </button>
-
-    <button onclick="scrollToSection('memories')">
-        MEMORIES
-    </button>
-
-    <button onclick="scrollToSection('specials')">
-        SPECIALS
-    </button>
-
-</nav>
-
-
-<!-- =====================================================
-     STATUS
-===================================================== -->
-
-<div
-    id="shopStatus"
-    class="shop-status hidden"
-></div>
-
-
-<!-- =====================================================
-     AETHER EXCLUSIVES
-===================================================== -->
-
-<section
-    class="section"
-    id="exclusives"
->
-
-    <div class="section-heading">
+    <section class="featured">
 
         <div class="small">
-            SHOP COLLECTION
+            AETHER EXCLUSIVE
         </div>
 
         <h2>
-            AETHER EXCLUSIVES
+            KEEP A PIECE OF THE WORLDS.
         </h2>
 
         <p>
-            Items created for those who walk the path.
+            Every item carries a small piece of the
+            AETHERVERSE. Collect what speaks to you
+            and keep the worlds close.
         </p>
 
-    </div>
+    </section>
 
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
 
-    <div
-        class="shop-grid"
-        id="exclusivesGrid"
-    ></div>
-
-</section>
-
-
-<!-- =====================================================
-     MEMORIES
-===================================================== -->
-
-<section
-    class="section"
-    id="memories"
->
-
-    <div class="section-heading">
-
-        <div class="small">
-            KEEP THEM CLOSE
-        </div>
-
-        <h2>
-            MEMORIES
-        </h2>
-
-        <p>
-            Pieces of moments that belong to AETHER.
-        </p>
-
-    </div>
-
-
-    <div
-        class="shop-grid"
-        id="memoriesGrid"
-    ></div>
-
-</section>
-
-
-<!-- =====================================================
-     SPECIALS
-===================================================== -->
-
-<section
-    class="section"
-    id="specials"
->
-
-    <div class="section-heading">
-
-        <div class="small">
-            RARE FINDS
-        </div>
-
-        <h2>
-            SPECIALS
-        </h2>
-
-        <p>
-            Limited pieces. Rare moments. Hidden treasures.
-        </p>
-
-    </div>
-
-
-    <div
-        class="shop-grid"
-        id="specialsGrid"
-    ></div>
-
-</section>
-
-
-<!-- =====================================================
-     FEATURED MESSAGE
-===================================================== -->
-
-<section class="featured">
-
-    <div class="small">
-        AETHER
-    </div>
-
-    <h2>
-        MORE THAN MERCH.
-    </h2>
-
-    <p>
-        Every item should feel like a piece
-        of the world you discovered.
-        Something earned, something remembered,
-        something that belongs to your journey.
-    </p>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="shop-footer">
-
-    <div class="footer-symbol">
-        ✦
-    </div>
-
-    FOR HALO. ALWAYS.
-
-</footer>
-
+    <footer class="shop-footer">
+        AETHERVERSE ENTERTAINMENT · AETHER OFFICIAL SHOP
+    </footer>
 
 </div>
 
@@ -1163,21 +1079,17 @@ body {
 
 <script>
 
-/* =====================================================
-   SUPABASE
-===================================================== */
-
 const SUPABASE_URL =
-"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
 /* =====================================================
@@ -1188,237 +1100,206 @@ let currentUser = null;
 
 let shopItems = [];
 
-let ownedItems = [];
+let ownedKeys = new Set();
 
 
 /* =====================================================
-   CATEGORY MAP
+   ICONS
 ===================================================== */
 
-const categoryMap = {
+const ICONS = {
+
+    wallpaper:
+        "🖼️",
+
+    member_card_special:
+        "🪪",
+
+    profile_frame:
+        "🖼️",
+
+    rare_card:
+        "👑",
+
+    exclusive_content:
+        "🔐",
+
+    legendary_artifact:
+        "👑",
+
+    member_message:
+        "💬",
+
+    halo_pack:
+        "💜",
+
+    member_pack:
+        "🌟",
+
+    guardian_pack:
+        "🐦‍⬛",
+
+    exclusive_pack_18:
+        "🔥"
+};
+
+
+/* =====================================================
+   CATEGORY MAPPING
+===================================================== */
+
+const CATEGORY_TARGETS = {
 
     AETHER_EXCLUSIVES:
-        "exclusives",
+        "aetherExclusivesGrid",
 
     MEMORIES:
-        "memories",
+        "memoriesGrid",
 
     SPECIALS:
-        "specials"
-
+        "specialsGrid"
 };
 
 
 /* =====================================================
-   ICON MAP
+   HELPERS
 ===================================================== */
 
-const iconMap = {
+function escapeHtml(value) {
 
-    wallpaper: "🖼️",
+    if (value === null || value === undefined) {
+        return "";
+    }
 
-    member_card_special: "🪪",
-
-    profile_frame: "🖼️",
-
-    rare_card: "👑",
-
-    exclusive_content: "🔐",
-
-    legendary_artifact: "👑",
-
-    member_message: "💬",
-
-    halo_pack: "💜",
-
-    member_pack: "🌟",
-
-    guardian_pack: "🐾",
-
-    exclusive_pack_18: "🔥"
-
-};
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 
-/* =====================================================
-   STATUS
-===================================================== */
+function scrollToSection(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return;
+    }
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
 
 function showStatus(
     message,
     type = ""
 ) {
 
-    const element =
-        document.getElementById(
-            "shopStatus"
-        );
+    const status =
+        document.getElementById("shopStatus");
 
-    if (!element) return;
+    status.textContent = message;
 
-    element.textContent =
-        message;
+    status.className =
+        "shop-status" +
+        (type ? " " + type : "");
 
-    element.className =
-        "shop-status";
+    status.classList.remove("hidden");
+}
 
-    if (type) {
 
-        element.classList.add(
-            type
-        );
+function hideStatus() {
 
-    }
+    const status =
+        document.getElementById("shopStatus");
 
-    element.classList.remove(
-        "hidden"
-    );
+    status.classList.add("hidden");
+}
 
-    clearTimeout(
-        showStatus.timeout
-    );
 
-    showStatus.timeout =
-        setTimeout(() => {
+function getItemIcon(item) {
 
-            element.classList.add(
-                "hidden"
-            );
-
-        }, 5000);
-
+    return ICONS[item.item_key] || "✦";
 }
 
 
 /* =====================================================
-   ESCAPE HTML
+   AUTH
 ===================================================== */
 
-function escapeHtml(value) {
-
-    return String(value ?? "")
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
-}
-
-
-/* =====================================================
-   FORMAT COINS
-===================================================== */
-
-function formatCoins(
-    value
-) {
-
-    return Number(
-        value || 0
-    ).toLocaleString();
-
-}
-
-
-/* =====================================================
-   LOAD USER
-===================================================== */
-
-async function loadUser() {
+async function getCurrentUser() {
 
     const {
         data,
         error
     } =
-    await supabaseClient.auth.getUser();
+        await supabaseClient.auth.getUser();
 
-
-    if (
-        error ||
-        !data ||
-        !data.user
-    ) {
-
-        console.error(
-            "AETHER SHOP USER ERROR:",
-            error
-        );
-
-        window.location.replace(
-            "halo.html"
-        );
-
-        return null;
-
+    if (error) {
+        throw error;
     }
 
-
-    currentUser =
-        data.user;
-
-    return currentUser;
-
+    return data.user;
 }
 
 
 /* =====================================================
-   LOAD COINS
+   COINS
 ===================================================== */
 
 async function loadAetherCoins() {
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient.rpc(
-        "get_aether_coin_balance"
-    );
+    const balanceElement =
+        document.getElementById("coinBalance");
 
+    try {
 
-    if (error) {
+        if (!currentUser) {
+            balanceElement.textContent = "—";
+            return;
+        }
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "get_aether_coin_balance"
+            );
+
+        if (error) {
+            throw error;
+        }
+
+        balanceElement.textContent =
+            Number(data || 0);
+
+    } catch (error) {
 
         console.error(
-            "AETHER COIN BALANCE ERROR:",
+            "AETHER Coin loading failed:",
             error
         );
 
-        document.getElementById(
-            "coinBalance"
-        ).textContent =
-            "—";
+        /*
+         * IMPORTANT:
+         * Coin loading must never prevent
+         * the actual shop from rendering.
+         */
 
-        return;
-
+        balanceElement.textContent = "—";
     }
-
-
-    document.getElementById(
-        "coinBalance"
-    ).textContent =
-        formatCoins(data);
-
 }
 
 
 /* =====================================================
-   LOAD SHOP ITEMS
+   SHOP ITEMS
 ===================================================== */
 
 async function loadShopItems() {
@@ -1427,88 +1308,79 @@ async function loadShopItems() {
         data,
         error
     } =
-    await supabaseClient
-        .from(
-            "aether_shop_items"
-        )
-        .select(
-            "id,item_key,title,description,category,price,content_type,content_data,is_active,is_purchasable"
-        )
-        .eq(
-            "is_active",
-            true
-        )
-        .eq(
-            "is_purchasable",
-            true
-        )
-        .order(
-            "created_at",
-            {
+        await supabaseClient
+            .from("aether_shop_items")
+            .select("*")
+            .eq("is_active", true)
+            .eq("is_purchasable", true)
+            .order("category", {
                 ascending: true
-            }
-        );
-
+            })
+            .order("price", {
+                ascending: true
+            });
 
     if (error) {
-
-        console.error(
-            "AETHER SHOP ITEMS ERROR:",
-            error
-        );
-
         throw error;
-
     }
 
-
     shopItems =
-        data || [];
-
+        Array.isArray(data)
+            ? data
+            : [];
 }
 
 
 /* =====================================================
-   LOAD OWNERSHIP
+   OWNERSHIP
 ===================================================== */
 
 async function loadOwnership() {
 
-    if (!currentUser) return;
+    ownedKeys = new Set();
 
+    if (!currentUser) {
+        return;
+    }
 
     const {
         data,
         error
     } =
-    await supabaseClient
-        .from(
-            "aether_shop_ownership"
-        )
-        .select(
-            "shop_item_id,source_key"
-        )
-        .eq(
-            "user_id",
-            currentUser.id
-        );
-
+        await supabaseClient
+            .from("aether_shop_ownership")
+            .select(
+                "shop_item_id, source_key"
+            )
+            .eq(
+                "user_id",
+                currentUser.id
+            );
 
     if (error) {
-
-        console.error(
-            "AETHER SHOP OWNERSHIP ERROR:",
-            error
-        );
-
         throw error;
-
     }
 
+    if (!Array.isArray(data)) {
+        return;
+    }
 
-    ownedItems =
-        data || [];
+    data.forEach(row => {
 
+        if (row.source_key) {
+            ownedKeys.add(
+                String(row.source_key)
+            );
+        }
+
+        if (row.shop_item_id) {
+            ownedKeys.add(
+                "id:" +
+                String(row.shop_item_id)
+            );
+        }
+
+    });
 }
 
 
@@ -1521,598 +1393,291 @@ function isOwned(
     selectionKey = null
 ) {
 
-    const ownershipKey =
-        selectionKey ||
-        item.item_key;
+    const key =
+        selectionKey
+            ? String(selectionKey)
+            : String(item.item_key);
 
+    if (ownedKeys.has(key)) {
+        return true;
+    }
 
-    return ownedItems.some(
-        ownership =>
-            ownership.shop_item_id === item.id &&
-            ownership.source_key === ownershipKey
-    );
+    if (
+        ownedKeys.has(
+            "id:" +
+            String(item.id)
+        )
+    ) {
+        return true;
+    }
 
+    return false;
 }
 
 
 /* =====================================================
-   GET OPTIONS
+   OPTIONS
 ===================================================== */
 
-function getOptions(
-    item
-) {
+function getOptions(item) {
 
-    if (
-        item.content_type !==
-        "selectable_content"
-    ) {
-
+    if (!item.content_data) {
         return [];
-
     }
 
-
     if (
-        !item.content_data ||
         !Array.isArray(
             item.content_data.options
         )
     ) {
-
         return [];
-
     }
-
 
     return item.content_data.options;
-
 }
 
 
 /* =====================================================
-   GET GUARANTEED CONTENT
+   DEFAULT SELECTION
 ===================================================== */
 
-function getGuaranteed(
-    item
-) {
-
-    if (
-        !item.content_data ||
-        !Array.isArray(
-            item.content_data.guaranteed
-        )
-    ) {
-
-        return [];
-
-    }
-
-
-    return item.content_data.guaranteed;
-
-}
-
-
-/* =====================================================
-   CONTENT TYPE LABEL
-===================================================== */
-
-function getContentTypeLabel(
-    item
-) {
-
-    switch (
-        item.content_type
-    ) {
-
-        case "selectable_content":
-            return "CHOOSE YOUR CONTENT";
-
-        case "digital_collectible":
-            return "DIGITAL COLLECTIBLE";
-
-        case "digital_asset":
-            return "DIGITAL ASSET";
-
-        case "exclusive_content":
-            return "EXCLUSIVE EDITION";
-
-        case "voice_message":
-            return "VOICE MESSAGE";
-
-        case "legendary_artifact":
-            return "LEGENDARY RELIC";
-
-        case "pack":
-            return "GUARANTEED PACK";
-
-        case "mature_pack":
-            return "MATURE COLLECTION";
-
-        default:
-            return "AETHER EXCLUSIVE";
-
-    }
-
-}
-
-
-/* =====================================================
-   BUILD GUARANTEED LIST
-===================================================== */
-
-function buildGuaranteedList(
-    item
-) {
-
-    const guaranteed =
-        getGuaranteed(item);
-
-
-    if (!guaranteed.length) {
-
-        return "";
-
-    }
-
-
-    const list =
-        guaranteed
-            .map(
-                entry => {
-
-                    const count =
-                        entry.count
-                            ? ` × ${entry.count}`
-                            : "";
-
-                    return `
-                        <li>
-                            ${escapeHtml(
-                                entry.type || "AETHER Item"
-                            )}
-                            ${count}
-                        </li>
-                    `;
-
-                }
-            )
-            .join("");
-
-
-    return `
-        <div class="product-detail">
-
-            <div class="detail-label">
-                GUARANTEED CONTENT
-            </div>
-
-            <ul class="detail-list">
-                ${list}
-            </ul>
-
-        </div>
-    `;
-
-}
-
-
-/* =====================================================
-   BUILD DESCRIPTION DETAILS
-===================================================== */
-
-function buildContentDetails(
-    item
-) {
-
-    const data =
-        item.content_data || {};
-
-    const lines = [];
-
-
-    if (data.member) {
-
-        lines.push(
-            `Member: ${data.member}`
-        );
-
-    }
-
-
-    if (data.world) {
-
-        lines.push(
-            `World: ${data.world}`
-        );
-
-    }
-
-
-    if (data.guardian) {
-
-        lines.push(
-            `Guardian: ${data.guardian}`
-        );
-
-    }
-
-
-    if (data.rarity) {
-
-        lines.push(
-            `Rarity: ${data.rarity}`
-        );
-
-    }
-
-
-    if (data.image_count) {
-
-        lines.push(
-            `${data.image_count} exclusive photos`
-        );
-
-    }
-
-
-    if (
-        item.content_type ===
-        "mature_pack"
-    ) {
-
-        lines.push(
-            "18+ mature photoshoot edition"
-        );
-
-    }
-
-
-    if (!lines.length) {
-
-        return "";
-
-    }
-
-
-    return `
-        <div class="product-detail">
-
-            <div class="detail-label">
-                EDITION DETAILS
-            </div>
-
-            <ul class="detail-list">
-
-                ${lines
-                    .map(
-                        line =>
-                            `<li>${escapeHtml(line)}</li>`
-                    )
-                    .join("")}
-
-            </ul>
-
-        </div>
-    `;
-
-}
-
-
-/* =====================================================
-   BUILD SELECTOR
-===================================================== */
-
-function buildSelector(
-    item,
-    options
-) {
-
-    if (!options.length) {
-
-        return "";
-
-    }
-
-
-    const id =
-        `selection-${item.item_key}`;
-
-
-    const optionMarkup =
-        options
-            .map(
-                option => {
-
-                    return `
-                        <option
-                            value="${escapeHtml(
-                                option.key
-                            )}"
-                        >
-                            ${escapeHtml(
-                                option.title
-                            )}
-                        </option>
-                    `;
-
-                }
-            )
-            .join("");
-
-
-    return `
-        <div>
-
-            <div class="detail-label">
-                ${getContentTypeLabel(item)}
-            </div>
-
-            <select
-                class="product-select"
-                id="${escapeHtml(id)}"
-                aria-label="${escapeHtml(
-                    item.title
-                )}"
-            >
-
-                ${optionMarkup}
-
-            </select>
-
-        </div>
-    `;
-
-}
-
-
-/* =====================================================
-   BUILD PRODUCT
-===================================================== */
-
-function buildProduct(
-    item
-) {
+function getDefaultSelection(item) {
 
     const options =
         getOptions(item);
 
-    const icon =
-        iconMap[
-            item.item_key
-        ] || "✦";
-
-
-    const allOwned =
-        options.length
-            ? options.every(
-                option =>
-                    isOwned(
-                        item,
-                        option.key
-                    )
-            )
-            : isOwned(item);
-
-
-    const product =
-        document.createElement(
-            "article"
-        );
-
-    product.className =
-        "product";
-
-    if (allOwned) {
-
-        product.classList.add(
-            "owned"
-        );
-
+    if (!options.length) {
+        return null;
     }
 
-
-    const selectionMarkup =
-        buildSelector(
-            item,
-            options
-        );
-
-
-    const guaranteedMarkup =
-        buildGuaranteedList(
-            item
-        );
-
-
-    const detailMarkup =
-        buildContentDetails(
-            item
-        );
-
-
-    const initialOwned =
-        options.length
-            ? isOwned(
-                item,
-                options[0].key
-            )
-            : isOwned(item);
-
-
-    product.innerHTML = `
-
-        <div class="product-glow"></div>
-
-        <div>
-
-            <div class="product-icon">
-                ${icon}
-            </div>
-
-            <h3>
-                ${escapeHtml(
-                    item.title
-                )}
-            </h3>
-
-            <p>
-                ${escapeHtml(
-                    item.description
-                )}
-            </p>
-
-            ${detailMarkup}
-
-            ${guaranteedMarkup}
-
-            ${
-                selectionMarkup
-                    ? `
-                        <div
-                            style="
-                                margin-top:16px;
-                                position:relative;
-                                z-index:2;
-                            "
-                        >
-                            ${selectionMarkup}
-                        </div>
-                    `
-                    : ""
-            }
-
-        </div>
-
-        <div class="product-bottom">
-
-            <div class="price">
-                🪙 ${formatCoins(
-                    item.price
-                )}
-            </div>
-
-            <button
-                class="buy-button ${
-                    initialOwned
-                        ? "owned-button"
-                        : ""
-                }"
-                type="button"
-                data-item-key="${escapeHtml(
-                    item.item_key
-                )}"
-            >
-                ${
-                    initialOwned
-                        ? "OWNED"
-                        : "BUY"
-                }
-            </button>
-
-        </div>
-
-    `;
-
-
-    const button =
-        product.querySelector(
-            ".buy-button"
-        );
-
-
-    const selector =
-        product.querySelector(
-            ".product-select"
-        );
-
-
-    if (selector) {
-
-        selector.addEventListener(
-            "change",
-            () => {
-
-                const selectedKey =
-                    selector.value;
-
-                const owned =
-                    isOwned(
-                        item,
-                        selectedKey
-                    );
-
-
-                updateBuyButton(
-                    button,
-                    owned
-                );
-
-            }
-        );
-
-    }
-
-
-    button.addEventListener(
-        "click",
-        () => {
-
-            purchaseItem(
-                item,
-                selector,
-                button
-            );
-
-        }
-    );
-
-
-    return product;
-
+    return options[0].key ||
+           options[0].selection_key ||
+           options[0].id ||
+           null;
 }
 
 
 /* =====================================================
-   UPDATE BUY BUTTON
+   OPTION LABEL
 ===================================================== */
 
-function updateBuyButton(
-    button,
-    owned
-) {
+function getOptionLabel(option) {
 
-    if (!button) return;
-
-
-    if (owned) {
-
-        button.textContent =
-            "OWNED";
-
-        button.classList.add(
-            "owned-button"
-        );
-
-        button.disabled =
-            true;
-
-    } else {
-
-        button.textContent =
-            "BUY";
-
-        button.classList.remove(
-            "owned-button"
-        );
-
-        button.disabled =
-            false;
-
+    if (!option) {
+        return "";
     }
 
+    return (
+        option.label ||
+        option.title ||
+        option.name ||
+        option.member ||
+        option.key ||
+        ""
+    );
+}
+
+
+/* =====================================================
+   OPTION KEY
+===================================================== */
+
+function getOptionKey(option) {
+
+    if (!option) {
+        return "";
+    }
+
+    return (
+        option.key ||
+        option.selection_key ||
+        option.id ||
+        ""
+    );
+}
+
+
+/* =====================================================
+   ITEM DETAILS
+===================================================== */
+
+function getDetails(item) {
+
+    const details = [];
+
+    const data =
+        item.content_data || {};
+
+    if (data.member) {
+        details.push(
+            data.member
+        );
+    }
+
+    if (data.world) {
+        details.push(
+            data.world
+        );
+    }
+
+    if (data.description) {
+        details.push(
+            data.description
+        );
+    }
+
+    if (Array.isArray(data.includes)) {
+
+        data.includes.forEach(
+            entry => details.push(
+                String(entry)
+            )
+        );
+    }
+
+    return details;
+}
+
+
+/* =====================================================
+   PRODUCT HTML
+===================================================== */
+
+function createProductCard(item) {
+
+    const options =
+        getOptions(item);
+
+    const selectable =
+        options.length > 0;
+
+    const defaultSelection =
+        getDefaultSelection(item);
+
+    const initiallyOwned =
+        isOwned(
+            item,
+            selectable
+                ? defaultSelection
+                : null
+        );
+
+    const icon =
+        getItemIcon(item);
+
+    const details =
+        getDetails(item);
+
+    let detailsHtml = "";
+
+    if (details.length) {
+
+        detailsHtml = `
+            <div class="product-detail">
+
+                <div class="detail-label">
+                    INCLUDED
+                </div>
+
+                <ul class="detail-list">
+
+                    ${details.map(
+                        detail => `
+                            <li>
+                                ${escapeHtml(detail)}
+                            </li>
+                        `
+                    ).join("")}
+
+                </ul>
+
+            </div>
+        `;
+    }
+
+    let selectorHtml = "";
+
+    if (selectable) {
+
+        selectorHtml = `
+            <select
+                class="product-select"
+                data-item-key="${escapeHtml(item.item_key)}"
+                onchange="refreshProductState('${escapeHtml(item.item_key)}')"
+            >
+
+                ${options.map(
+                    option => {
+
+                        const key =
+                            getOptionKey(option);
+
+                        const label =
+                            getOptionLabel(option);
+
+                        return `
+                            <option
+                                value="${escapeHtml(key)}"
+                            >
+                                ${escapeHtml(label)}
+                            </option>
+                        `;
+                    }
+                ).join("")}
+
+            </select>
+        `;
+    }
+
+    return `
+        <article
+            class="product ${initiallyOwned ? "owned" : ""}"
+            id="product-${escapeHtml(item.item_key)}"
+            data-item-key="${escapeHtml(item.item_key)}"
+        >
+
+            <div class="product-glow"></div>
+
+            <div>
+
+                <div class="product-icon">
+                    ${icon}
+                </div>
+
+                <h3>
+                    ${escapeHtml(item.title)}
+                </h3>
+
+                <p>
+                    ${escapeHtml(item.description || "")}
+                </p>
+
+                ${detailsHtml}
+
+                ${selectorHtml}
+
+            </div>
+
+            <div class="product-bottom">
+
+                <div class="price">
+                    ${Number(item.price || 0)} 🪙
+                </div>
+
+                <button
+                    type="button"
+                    class="buy-button ${initiallyOwned ? "owned-button" : ""}"
+                    data-buy-item="${escapeHtml(item.item_key)}"
+                    onclick="purchaseItem('${escapeHtml(item.item_key)}')"
+                    ${initiallyOwned ? "disabled" : ""}
+                >
+                    ${initiallyOwned ? "OWNED" : "PURCHASE"}
+                </button>
+
+            </div>
+
+        </article>
+    `;
 }
 
 
@@ -2122,60 +1687,145 @@ function updateBuyButton(
 
 function renderShop() {
 
-    const grids = {
+    Object.values(
+        CATEGORY_TARGETS
+    ).forEach(targetId => {
 
-        AETHER_EXCLUSIVES:
-            document.getElementById(
-                "exclusivesGrid"
-            ),
+        const element =
+            document.getElementById(targetId);
 
-        MEMORIES:
-            document.getElementById(
-                "memoriesGrid"
-            ),
+        if (element) {
+            element.innerHTML = "";
+        }
 
-        SPECIALS:
-            document.getElementById(
-                "specialsGrid"
-            )
-
-    };
+    });
 
 
-    Object.values(grids)
-        .forEach(
-            grid => {
+    if (!shopItems.length) {
 
-                if (grid) {
-
-                    grid.innerHTML =
-                        "";
-
-                }
-
-            }
+        showStatus(
+            "No shop items are currently available.",
+            "error"
         );
 
-
-    shopItems.forEach(
-        item => {
-
-            const grid =
-                grids[
-                    item.category
-                ];
+        return;
+    }
 
 
-            if (!grid) return;
+    shopItems.forEach(item => {
 
+        const targetId =
+            CATEGORY_TARGETS[
+                item.category
+            ];
 
-            grid.appendChild(
-                buildProduct(item)
+        if (!targetId) {
+            return;
+        }
+
+        const grid =
+            document.getElementById(
+                targetId
             );
 
+        if (!grid) {
+            return;
         }
-    );
 
+        grid.insertAdjacentHTML(
+            "beforeend",
+            createProductCard(item)
+        );
+
+    });
+
+    hideStatus();
+}
+
+
+/* =====================================================
+   REFRESH PRODUCT STATE
+===================================================== */
+
+function refreshProductState(
+    itemKey
+) {
+
+    const item =
+        shopItems.find(
+            current =>
+                current.item_key === itemKey
+        );
+
+    if (!item) {
+        return;
+    }
+
+    const card =
+        document.getElementById(
+            "product-" +
+            itemKey
+        );
+
+    if (!card) {
+        return;
+    }
+
+    const select =
+        card.querySelector(
+            ".product-select"
+        );
+
+    const button =
+        card.querySelector(
+            ".buy-button"
+        );
+
+    if (!button) {
+        return;
+    }
+
+    const selectionKey =
+        select
+            ? select.value
+            : null;
+
+    const owned =
+        isOwned(
+            item,
+            selectionKey
+        );
+
+    if (owned) {
+
+        card.classList.add(
+            "owned"
+        );
+
+        button.classList.add(
+            "owned-button"
+        );
+
+        button.disabled = true;
+
+        button.textContent =
+            "OWNED";
+
+    } else {
+
+        card.classList.remove(
+            "owned"
+        );
+
+        button.classList.remove(
+            "owned-button"
+        );
+
+        button.disabled = false;
+
+        button.textContent =
+            "PURCHASE";
+    }
 }
 
 
@@ -2184,32 +1834,41 @@ function renderShop() {
 ===================================================== */
 
 async function purchaseItem(
-    item,
-    selector,
-    button
+    itemKey
 ) {
 
-    if (!currentUser) {
-
-        window.location.replace(
-            "halo.html"
+    const item =
+        shopItems.find(
+            current =>
+                current.item_key === itemKey
         );
 
+    if (!item) {
         return;
-
     }
 
 
-    let selectionKey =
-        null;
+    const card =
+        document.getElementById(
+            "product-" +
+            itemKey
+        );
 
-
-    if (selector) {
-
-        selectionKey =
-            selector.value;
-
+    if (!card) {
+        return;
     }
+
+
+    const select =
+        card.querySelector(
+            ".product-select"
+        );
+
+
+    const selectionKey =
+        select
+            ? select.value
+            : null;
 
 
     if (
@@ -2219,335 +1878,289 @@ async function purchaseItem(
         )
     ) {
 
-        return;
+        showStatus(
+            "You already own this item.",
+            "success"
+        );
 
+        return;
     }
 
 
-    const confirmed =
-        window.confirm(
-            `Purchase "${item.title}" for ${formatCoins(item.price)} AETHER Coins?`
+    const button =
+        card.querySelector(
+            ".buy-button"
         );
 
 
-    if (!confirmed) {
+    if (button) {
 
-        return;
+        button.disabled = true;
 
+        button.textContent =
+            "PURCHASING...";
     }
 
 
-    button.disabled =
-        true;
+    try {
 
-    button.textContent =
-        "BUYING...";
+        if (!currentUser) {
 
+            window.location.href =
+                "halo.html";
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient.rpc(
-        "purchase_aether_shop_item",
-        {
-            p_item_key:
-                item.item_key,
-
-            p_selection_key:
-                selectionKey
+            return;
         }
-    );
 
 
-    if (error) {
+        /*
+         * IMPORTANT:
+         *
+         * Always call the two-parameter
+         * overload.
+         *
+         * For normal products selectionKey
+         * is null.
+         *
+         * For selectable products it contains
+         * the selected option key.
+         */
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "purchase_aether_shop_item",
+                {
+                    p_item_key:
+                        item.item_key,
+
+                    p_selection_key:
+                        selectionKey
+                }
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            throw new Error(
+                data &&
+                data.error
+                    ? data.error
+                    : "Purchase failed."
+            );
+        }
+
+
+        /*
+         * Update local ownership state.
+         */
+
+        ownedKeys.add(
+            selectionKey ||
+            item.item_key
+        );
+
+
+        /*
+         * Update balance immediately
+         * using the returned value.
+         */
+
+        const balanceElement =
+            document.getElementById(
+                "coinBalance"
+            );
+
+        if (
+            balanceElement &&
+            data.balance !== undefined
+        ) {
+
+            balanceElement.textContent =
+                Number(data.balance);
+        }
+
+
+        /*
+         * Refresh product state.
+         */
+
+        refreshProductState(
+            item.item_key
+        );
+
+
+        showStatus(
+            "Purchase successful. Your AETHER item has been added to your collection.",
+            "success"
+        );
+
+
+    } catch (error) {
 
         console.error(
-            "AETHER SHOP PURCHASE ERROR:",
+            "AETHER Shop purchase failed:",
             error
         );
 
 
-        button.disabled =
-            false;
-
-        updateBuyButton(
-            button,
-            false
+        showStatus(
+            error &&
+            error.message
+                ? error.message
+                : "The purchase could not be completed.",
+            "error"
         );
 
 
-        const message =
-            getPurchaseErrorMessage(
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "PURCHASE";
+        }
+    }
+}
+
+
+/* =====================================================
+   SHOP INITIALIZATION
+===================================================== */
+
+async function startShop() {
+
+    /*
+     * AUTHENTICATION
+     *
+     * Authentication failure should still stop
+     * the page because purchases require a user.
+     */
+
+    try {
+
+        currentUser =
+            await getCurrentUser();
+
+    } catch (error) {
+
+        console.error(
+            "Authentication failed:",
+            error
+        );
+
+        window.location.href =
+            "halo.html";
+
+        return;
+    }
+
+
+    if (!currentUser) {
+
+        window.location.href =
+            "halo.html";
+
+        return;
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * SHOP ITEMS
+     * --------------------------------------------------
+     *
+     * This is the critical change.
+     *
+     * Products are loaded independently.
+     * Ownership or coin errors cannot hide
+     * the shop anymore.
+     */
+
+    try {
+
+        await loadShopItems();
+
+        renderShop();
+
+    } catch (error) {
+
+        console.error(
+            "Shop item loading failed:",
+            error
+        );
+
+        showStatus(
+            "The AETHER Shop could not be loaded. Please try again.",
+            "error"
+        );
+
+        return;
+    }
+
+
+    /*
+     * --------------------------------------------------
+     * COINS
+     * --------------------------------------------------
+     */
+
+    loadAetherCoins()
+        .catch(error => {
+
+            console.error(
+                "Coin loading failed:",
                 error
             );
 
+        });
+
+
+    /*
+     * --------------------------------------------------
+     * OWNERSHIP
+     * --------------------------------------------------
+     *
+     * Ownership is deliberately loaded after
+     * the products are already visible.
+     */
+
+    try {
+
+        await loadOwnership();
+
+        renderShop();
+
+    } catch (error) {
+
+        console.error(
+            "Ownership loading failed:",
+            error
+        );
+
+        /*
+         * IMPORTANT:
+         *
+         * Do NOT remove or hide the shop.
+         *
+         * The products are still usable.
+         */
 
         showStatus(
-            message,
+            "Your collection status could not be loaded. Shop items are still available.",
             "error"
         );
-
-
-        return;
-
     }
-
-
-    if (
-        !data ||
-        data.success !== true
-    ) {
-
-        button.disabled =
-            false;
-
-        updateBuyButton(
-            button,
-            false
-        );
-
-
-        showStatus(
-            "The purchase could not be completed.",
-            "error"
-        );
-
-
-        return;
-
-    }
-
-
-    const ownershipKey =
-        selectionKey ||
-        item.item_key;
-
-
-    ownedItems.push({
-
-        shop_item_id:
-            item.id,
-
-        source_key:
-            ownershipKey
-
-    });
-
-
-    updateBuyButton(
-        button,
-        true
-    );
-
-
-    document.getElementById(
-        "coinBalance"
-    ).textContent =
-        formatCoins(
-            data.balance
-        );
-
-
-    showStatus(
-        "Purchase successful. The item is now yours.",
-        "success"
-    );
-
-
-    updateAllOwnedStates();
-
-}
-
-
-/* =====================================================
-   PURCHASE ERROR MESSAGE
-===================================================== */
-
-function getPurchaseErrorMessage(
-    error
-) {
-
-    const message =
-        String(
-            error?.message || ""
-        );
-
-
-    if (
-        message.includes(
-            "Insufficient AETHER Coins"
-        )
-    ) {
-
-        return "You do not have enough AETHER Coins for this item.";
-
-    }
-
-
-    if (
-        message.includes(
-            "already owned"
-        )
-    ) {
-
-        return "You already own this item.";
-
-    }
-
-
-    if (
-        message.includes(
-            "Invalid shop selection"
-        ) ||
-        message.includes(
-            "variant"
-        )
-    ) {
-
-        return "That selection is no longer available.";
-
-    }
-
-
-    if (
-        message.includes(
-            "Not authenticated"
-        )
-    ) {
-
-        return "Please sign in again.";
-
-    }
-
-
-    return "The purchase could not be completed. Please try again.";
-
-}
-
-
-/* =====================================================
-   UPDATE ALL OWNED STATES
-===================================================== */
-
-function updateAllOwnedStates() {
-
-    document
-        .querySelectorAll(
-            ".product"
-        )
-        .forEach(
-            product => {
-
-                const itemKey =
-                    product
-                        .querySelector(
-                            ".buy-button"
-                        )
-                        ?.dataset
-                        .itemKey;
-
-
-                if (!itemKey) return;
-
-
-                const item =
-                    shopItems.find(
-                        shopItem =>
-                            shopItem.item_key ===
-                            itemKey
-                    );
-
-
-                if (!item) return;
-
-
-                const selector =
-                    product.querySelector(
-                        ".product-select"
-                    );
-
-
-                const selectedKey =
-                    selector
-                        ? selector.value
-                        : null;
-
-
-                const button =
-                    product.querySelector(
-                        ".buy-button"
-                    );
-
-
-                const owned =
-                    isOwned(
-                        item,
-                        selectedKey
-                    );
-
-
-                updateBuyButton(
-                    button,
-                    owned
-                );
-
-
-                const options =
-                    getOptions(item);
-
-
-                if (
-                    options.length &&
-                    options.every(
-                        option =>
-                            isOwned(
-                                item,
-                                option.key
-                            )
-                    )
-                ) {
-
-                    product.classList.add(
-                        "owned"
-                    );
-
-                } else if (
-                    !options.length &&
-                    isOwned(item)
-                ) {
-
-                    product.classList.add(
-                        "owned"
-                    );
-
-                }
-
-            }
-        );
-
-}
-
-
-/* =====================================================
-   SHOP NAVIGATION
-===================================================== */
-
-function scrollToSection(
-    id
-) {
-
-    const section =
-        document.getElementById(id);
-
-
-    if (!section) return;
-
-
-    section.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
 
 }
 
@@ -2556,66 +2169,9 @@ function scrollToSection(
    START
 ===================================================== */
 
-async function startShop() {
-
-    try {
-
-        showStatus(
-            "Loading the AETHER Shop..."
-        );
-
-
-        const user =
-            await loadUser();
-
-
-        if (!user) {
-
-            return;
-
-        }
-
-
-        await Promise.all([
-            loadAetherCoins(),
-            loadShopItems(),
-            loadOwnership()
-        ]);
-
-
-        renderShop();
-
-
-        document
-            .getElementById(
-                "shopStatus"
-            )
-            .classList.add(
-                "hidden"
-            );
-
-
-    } catch (error) {
-
-        console.error(
-            "AETHER SHOP START ERROR:",
-            error
-        );
-
-
-        showStatus(
-            "The AETHER Shop could not be loaded. Please try again.",
-            "error"
-        );
-
-    }
-
-}
-
-
 startShop();
 
 </script>
 
 </body>
-    </html>
+</html>
