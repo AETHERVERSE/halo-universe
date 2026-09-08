@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MY AETHER COLLECTION | AETHERVERSE</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,rgba(255,255,255,.08),transparent 35%),linear-gradient(180deg,#090b13 0%,#05060b 100%);color:#fff}
+a{color:inherit;text-decoration:none}.page{width:100%;max-width:1100px;margin:0 auto;padding:28px 18px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:48px}.brand{font-size:13px;letter-spacing:4px;font-weight:700;opacity:.75}nav{display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-end}nav a{font-size:11px;letter-spacing:1.4px;opacity:.62}nav a:hover{opacity:1}
+.hero{text-align:center;margin-bottom:35px}.eyebrow{font-size:11px;letter-spacing:5px;opacity:.5;margin-bottom:14px}.hero h1{margin:0;font-size:clamp(32px,7vw,62px);letter-spacing:5px;font-weight:300}.hero p{max-width:650px;margin:16px auto 0;line-height:1.7;font-size:14px;opacity:.62}
+.counter{text-align:center;font-size:11px;letter-spacing:2px;opacity:.45;margin-bottom:28px}.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-bottom:30px}.filter{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.035);color:#fff;padding:10px 15px;border-radius:999px;font-size:10px;letter-spacing:1.3px;cursor:pointer}.filter.active{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.4)}
+.status{text-align:center;min-height:22px;margin-bottom:22px;font-size:13px;opacity:.65}.status.error{color:#ff9b9b;opacity:1}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.card{border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:23px;background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));box-shadow:0 18px 50px rgba(0,0,0,.22)}.category{font-size:10px;letter-spacing:2px;opacity:.45;margin-bottom:14px}.card h2{margin:0 0 10px;font-size:23px;font-weight:400}.description{margin:0 0 18px;font-size:13px;line-height:1.65;opacity:.62}.meta{display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:1.2px;opacity:.4;margin-bottom:18px}.asset-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.asset{border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:11px;background:rgba(0,0,0,.16)}.asset-title{font-size:11px;line-height:1.4;opacity:.82;margin-bottom:9px}.asset button{display:inline-flex;align-items:center;justify-content:center;width:100%;border:1px solid rgba(160,180,255,.28);background:rgba(100,120,190,.08);color:#b9c9ff;border-radius:10px;padding:9px 8px;font-size:9px;letter-spacing:1.2px;cursor:pointer}.asset button:hover{background:rgba(100,120,190,.16)}.locked{padding:18px 10px;text-align:center;border:1px dashed rgba(255,255,255,.12);border-radius:10px;font-size:10px;letter-spacing:1px;opacity:.4}.empty{text-align:center;padding:65px 20px;border:1px dashed rgba(255,255,255,.12);border-radius:20px;opacity:.7}.empty h2{margin:0 0 10px;font-weight:400;letter-spacing:2px}.empty p{margin:0;font-size:13px;line-height:1.7;opacity:.65}
+@media(max-width:700px){.page{padding:20px 14px 50px}header{align-items:flex-start;flex-direction:column;margin-bottom:38px}nav{justify-content:flex-start}.grid{grid-template-columns:1fr}.asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero h1{letter-spacing:3px}}
+</style>
+</head>
+<body>
+<div class="page">
+<header><div class="brand">AETHERVERSE</div><nav><a href="aether-shop.html">AETHER SHOP</a><a href="halo-home.html">MY HALO</a><a href="explore.html">EXPLORE</a><a href="codex.html">CODEX</a><a href="#" id="logoutButton">LOG OUT</a></nav></header>
+<section class="hero"><div class="eyebrow">YOUR PERSONAL AETHER ARCHIVE</div><h1>MY AETHER COLLECTION</h1><p>Everything you purchase from the AETHER Official Shop is kept here as part of your personal collection.</p></section>
+<div id="counter" class="counter">0 PURCHASES</div>
+<div class="filters"><button class="filter active" data-filter="ALL">ALL</button><button class="filter" data-filter="AETHER EXCLUSIVES">AETHER EXCLUSIVES</button><button class="filter" data-filter="MEMORIES">MEMORIES</button><button class="filter" data-filter="SPECIALS">SPECIALS</button></div>
+<div id="status" class="status">Loading your collection...</div>
+<main id="collection" class="grid"></main>
+</div>
+<script>
+const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
+const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const BUCKET="aether-shop-assets";
+let items=[];let filter="ALL";
+const status=document.getElementById("status");const collection=document.getElementById("collection");const counter=document.getElementById("counter");
+function setStatus(text,error=false){status.textContent=text;status.className=error?"status error":"status"}
+function escapeHtml(value){return String(value??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
+function selectedTitle(item){const data=item.content_data||{};if(item.source_key&&Array.isArray(data.options)){const option=data.options.find(x=>x.key===item.source_key);if(option)return option.title}return data.title||item.title}
+function formatDate(value){try{return new Date(value).toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"})}catch{return ""}}
+async function signedUrl(fileName){const {data,error}=await supabaseClient.storage.from(BUCKET).createSignedUrl(fileName,60);if(error)throw error;return data.signedUrl}
+async function downloadAsset(asset,button){button.disabled=true;button.textContent="PREPARING...";try{const url=await signedUrl(asset.file_name);const response=await fetch(url);if(!response.ok)throw new Error("Download failed");const blob=await response.blob();const objectUrl=URL.createObjectURL(blob);const a=document.createElement("a");a.href=objectUrl;a.download=asset.file_name.split("/").pop();document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(objectUrl),1000);button.textContent="DOWNLOADED"}catch(error){console.error(error);button.textContent="DOWNLOAD FAILED";setTimeout(()=>button.textContent="DOWNLOAD",1800)}finally{button.disabled=false}}
+async function render(){const visible=filter==="ALL"?items:items.filter(x=>x.category===filter);counter.textContent=`${items.length} PURCHASE${items.length===1?"":"S"} IN YOUR COLLECTION`;if(!visible.length){collection.innerHTML='<div class="empty"><h2>YOUR COLLECTION IS WAITING</h2><p>Visit the AETHER Official Shop to discover something new.</p></div>';return}collection.innerHTML=visible.map(item=>{const assets=Array.isArray(item.assets)?item.assets:[];const variant=selectedTitle(item);return `<article class="card"><div class="category">${escapeHtml(item.category)}</div><h2>${escapeHtml(variant)}</h2><p class="description">${escapeHtml(item.description||"A piece from the AETHER Official Shop.")}</p><div class="meta"><span>OWNED</span><span>${escapeHtml(formatDate(item.acquired_at))}</span></div><div class="asset-grid">${assets.length?assets.map(asset=>`<div class="asset"><div class="asset-title">${escapeHtml(asset.title)}</div>${asset.downloadable?'<div class="locked">IMAGE — DOWNLOAD AVAILABLE</div>':asset.asset_type==="audio"?'<div class="locked">AUDIO — PLAY ONLY</div>':'<div class="locked">COLLECTION ITEM</div>'}${asset.downloadable?`<button type="button" class="download-button" data-file="${escapeHtml(asset.file_name)}">DOWNLOAD</button>`:asset.asset_type==="audio"?`<button type="button" class="play-button" data-file="${escapeHtml(asset.file_name)}">PLAY</button>`:""}</div>`).join(""):'<div class="locked" style="grid-column:1/-1">CONTENT WILL APPEAR HERE WHEN THE ASSET IS READY.</div>'}</div></article>`}).join("");
+collection.querySelectorAll(".download-button").forEach(button=>button.addEventListener("click",()=>downloadAsset({file_name:button.dataset.file},button)));
+collection.querySelectorAll(".play-button").forEach(button=>button.addEventListener("click",async()=>{button.disabled=true;button.textContent="LOADING...";try{const url=await signedUrl(button.dataset.file);const audio=new Audio(url);await audio.play();button.textContent="PLAYING";audio.onended=()=>button.textContent="PLAY"}catch(e){console.error(e);button.textContent="PLAY FAILED"}finally{button.disabled=false}}))}
+async function load(){try{const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();if(sessionError||!sessionData.session){window.location.replace("halo.html");return}const {data,error}=await supabaseClient.rpc("get_aether_shop_collection");if(error)throw error;items=Array.isArray(data)?data:[];setStatus("");await render()}catch(error){console.error(error);setStatus("Your AETHER Collection could not be loaded. Please try again.",true)}}
+document.querySelectorAll(".filter").forEach(button=>button.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));button.classList.add("active");filter=button.dataset.filter;render()}));
+document.getElementById("logoutButton").addEventListener("click",async e=>{e.preventDefault();await supabaseClient.auth.signOut();window.location.replace("halo.html")});
+load();
+</script>
+</body>
+</html>
