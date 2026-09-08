@@ -21,6 +21,9 @@
     --accent: #a9c0ff;
     --gold: #ffd978;
 
+    --success: #9ee6c0;
+    --danger: #ff9d9d;
+
     --shadow: 0 25px 70px rgba(0,0,0,0.55);
 }
 
@@ -63,9 +66,7 @@ body {
 ===================================================== */
 
 .page {
-
     width: min(1450px, 100%);
-
     margin: 0 auto;
 
     padding:
@@ -80,7 +81,6 @@ body {
 ===================================================== */
 
 .hero {
-
     position: relative;
 
     width: 100%;
@@ -97,21 +97,15 @@ body {
 }
 
 .hero-image {
-
     display: block;
 
     width: 100%;
-
     height: auto;
 
     object-fit: cover;
 }
 
-
-/* subtle bottom fade */
-
 .hero::after {
-
     content: "";
 
     position: absolute;
@@ -138,7 +132,6 @@ body {
 ===================================================== */
 
 .coin-area {
-
     display: flex;
 
     justify-content: center;
@@ -147,7 +140,6 @@ body {
 }
 
 .coin-card {
-
     display: flex;
 
     align-items: center;
@@ -175,7 +167,6 @@ body {
 }
 
 .coin-icon {
-
     font-size: 30px;
 
     filter:
@@ -186,7 +177,6 @@ body {
 }
 
 .coin-label {
-
     color: var(--muted);
 
     font-size: 10px;
@@ -199,7 +189,6 @@ body {
 }
 
 .coin-value {
-
     color: var(--gold);
 
     font-size: 24px;
@@ -215,7 +204,6 @@ body {
 ===================================================== */
 
 .path-button {
-
     display: block;
 
     width: min(320px, 100%);
@@ -251,7 +239,6 @@ body {
 }
 
 .path-button:hover {
-
     color: var(--text);
 
     border-color:
@@ -270,7 +257,6 @@ body {
 ===================================================== */
 
 .intro {
-
     text-align: center;
 
     margin:
@@ -281,7 +267,6 @@ body {
 }
 
 .intro-kicker {
-
     color: var(--muted);
 
     font-size: 11px;
@@ -292,7 +277,6 @@ body {
 }
 
 .intro h1 {
-
     margin:
         9px 0
         12px;
@@ -304,7 +288,6 @@ body {
 }
 
 .intro p {
-
     margin: 0;
 
     color: var(--muted);
@@ -320,7 +303,6 @@ body {
 ===================================================== */
 
 .shop-nav {
-
     display: flex;
 
     justify-content: center;
@@ -333,7 +315,6 @@ body {
 }
 
 .shop-nav button {
-
     border: 1px solid var(--line);
 
     border-radius: 999px;
@@ -355,7 +336,6 @@ body {
 }
 
 .shop-nav button:hover {
-
     color: var(--text);
 
     border-color:
@@ -367,23 +347,66 @@ body {
 
 
 /* =====================================================
+   LOADING / ERROR
+===================================================== */
+
+.shop-status {
+    max-width: 700px;
+
+    margin: 20px auto 45px;
+
+    padding: 15px 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--line);
+
+    background:
+        rgba(16,23,42,0.72);
+
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.shop-status.error {
+    border-color:
+        rgba(255,120,120,0.25);
+
+    color: var(--danger);
+}
+
+.shop-status.success {
+    border-color:
+        rgba(120,220,170,0.25);
+
+    color: var(--success);
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
    SECTION
 ===================================================== */
 
 .section {
-
     margin-top: 55px;
 }
 
 .section-heading {
-
     text-align: center;
 
     margin-bottom: 25px;
 }
 
 .section-heading .small {
-
     color: var(--muted);
 
     font-size: 10px;
@@ -394,7 +417,6 @@ body {
 }
 
 .section-heading h2 {
-
     margin:
         7px 0
         8px;
@@ -406,7 +428,6 @@ body {
 }
 
 .section-heading p {
-
     margin: 0;
 
     color: var(--muted);
@@ -420,7 +441,6 @@ body {
 ===================================================== */
 
 .shop-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -435,7 +455,6 @@ body {
 ===================================================== */
 
 .product {
-
     position: relative;
 
     overflow: hidden;
@@ -472,7 +491,6 @@ body {
 }
 
 .product:hover {
-
     transform:
         translateY(-5px);
 
@@ -484,8 +502,12 @@ body {
         rgba(0,0,0,0.48);
 }
 
-.product-glow {
+.product.owned {
+    border-color:
+        rgba(158,230,192,0.28);
+}
 
+.product-glow {
     position: absolute;
 
     width: 180px;
@@ -503,7 +525,6 @@ body {
 }
 
 .product-icon {
-
     font-size: 48px;
 
     margin-bottom: 20px;
@@ -514,7 +535,6 @@ body {
 }
 
 .product h3 {
-
     margin: 0 0 9px;
 
     font-size: 21px;
@@ -527,7 +547,6 @@ body {
 }
 
 .product p {
-
     margin: 0;
 
     color: var(--muted);
@@ -541,8 +560,96 @@ body {
     z-index: 1;
 }
 
-.product-bottom {
 
+/* =====================================================
+   PRODUCT DETAILS
+===================================================== */
+
+.product-detail {
+    margin-top: 18px;
+
+    padding: 14px;
+
+    border-radius: 14px;
+
+    border: 1px solid
+        rgba(160,185,255,0.12);
+
+    background:
+        rgba(5,7,18,0.30);
+
+    position: relative;
+
+    z-index: 1;
+}
+
+.detail-label {
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 8px;
+}
+
+.detail-list {
+    margin: 0;
+    padding-left: 18px;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.detail-list li {
+    margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   SELECT
+===================================================== */
+
+.product-select {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 11px 12px;
+
+    border-radius: 12px;
+
+    border: 1px solid
+        rgba(160,185,255,0.20);
+
+    background:
+        #0b1020;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+.product-select:focus {
+    border-color:
+        rgba(169,192,255,0.55);
+}
+
+
+/* =====================================================
+   PRODUCT BOTTOM
+===================================================== */
+
+.product-bottom {
     margin-top: 25px;
 
     display: flex;
@@ -559,7 +666,6 @@ body {
 }
 
 .price {
-
     color: var(--gold);
 
     font-weight: 800;
@@ -567,22 +673,73 @@ body {
     font-size: 17px;
 }
 
-.coming {
 
+/* =====================================================
+   BUY BUTTON
+===================================================== */
+
+.buy-button {
     border: 1px solid
-        rgba(160,185,255,0.18);
+        rgba(169,192,255,0.30);
 
     border-radius: 999px;
 
-    padding: 7px 11px;
+    padding: 9px 15px;
 
-    color: var(--muted);
+    background:
+        rgba(120,150,255,0.10);
+
+    color: var(--accent);
+
+    cursor: pointer;
 
     font-size: 9px;
 
-    letter-spacing: 0.16em;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
 
     text-transform: uppercase;
+
+    transition:
+        0.2s ease;
+}
+
+.buy-button:hover {
+    color: var(--text);
+
+    border-color:
+        rgba(190,210,255,0.55);
+
+    background:
+        rgba(120,150,255,0.18);
+
+    transform:
+        translateY(-1px);
+}
+
+.buy-button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+.buy-button.owned-button {
+    color: var(--success);
+
+    border-color:
+        rgba(158,230,192,0.25);
+
+    background:
+        rgba(100,180,140,0.08);
+
+    cursor: default;
+}
+
+.buy-button.owned-button:hover {
+    transform: none;
 }
 
 
@@ -591,7 +748,6 @@ body {
 ===================================================== */
 
 .featured {
-
     margin-top: 55px;
 
     padding: 32px;
@@ -612,8 +768,17 @@ body {
     text-align: center;
 }
 
-.featured h2 {
+.featured .small {
+    color: var(--muted);
 
+    font-size: 10px;
+
+    letter-spacing: 0.3em;
+
+    text-transform: uppercase;
+}
+
+.featured h2 {
     margin:
         8px 0
         12px;
@@ -624,7 +789,6 @@ body {
 }
 
 .featured p {
-
     max-width: 600px;
 
     margin: 0 auto;
@@ -640,7 +804,6 @@ body {
 ===================================================== */
 
 .shop-footer {
-
     margin-top: 70px;
 
     text-align: center;
@@ -656,7 +819,6 @@ body {
 }
 
 .footer-symbol {
-
     font-size: 24px;
 
     margin-bottom: 12px;
@@ -667,10 +829,17 @@ body {
    MOBILE
 ===================================================== */
 
+@media (max-width: 1000px) {
+
+    .shop-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 800px) {
 
     .page {
-
         padding:
             10px
             10px
@@ -678,30 +847,25 @@ body {
     }
 
     .hero {
-
         border-radius: 17px;
     }
 
     .shop-grid {
-
         grid-template-columns:
             1fr;
     }
 
     .product {
-
         min-height: 250px;
     }
 
     .coin-card {
-
         width: 100%;
 
         justify-content: center;
     }
 
     .intro {
-
         margin-top: 45px;
     }
 }
@@ -709,20 +873,20 @@ body {
 @media (max-width: 480px) {
 
     .intro h1 {
-
         font-size: 27px;
     }
 
     .intro p {
-
         font-size: 13px;
     }
 
     .featured {
-
         padding: 25px 18px;
     }
 
+    .product-bottom {
+        align-items: flex-end;
+    }
 }
 
 </style>
@@ -838,6 +1002,16 @@ body {
 
 
 <!-- =====================================================
+     STATUS
+===================================================== -->
+
+<div
+    id="shopStatus"
+    class="shop-status hidden"
+></div>
+
+
+<!-- =====================================================
      AETHER EXCLUSIVES
 ===================================================== -->
 
@@ -863,117 +1037,10 @@ body {
     </div>
 
 
-    <div class="shop-grid">
-
-
-        <article class="product">
-
-            <div class="product-glow"></div>
-
-            <div>
-
-                <div class="product-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    AETHER EMBLEM
-                </h3>
-
-                <p>
-                    A digital emblem carrying
-                    the symbol of AETHER.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 100
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-glow"></div>
-
-            <div>
-
-                <div class="product-icon">
-                    🌌
-                </div>
-
-                <h3>
-                    AETHER STAR
-                </h3>
-
-                <p>
-                    A small piece of the
-                    AETHERVERSE to keep.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 150
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-glow"></div>
-
-            <div>
-
-                <div class="product-icon">
-                    💠
-                </div>
-
-                <h3>
-                    AETHER CRYSTAL
-                </h3>
-
-                <p>
-                    A luminous relic inspired
-                    by the seven worlds.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 250
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
+    <div
+        class="shop-grid"
+        id="exclusivesGrid"
+    ></div>
 
 </section>
 
@@ -1004,111 +1071,10 @@ body {
     </div>
 
 
-    <div class="shop-grid">
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                📖
-            </div>
-
-            <div>
-
-                <h3>
-                    AETHER MEMORY
-                </h3>
-
-                <p>
-                    A digital memory from
-                    somewhere inside the universe.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 200
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                💫
-            </div>
-
-            <div>
-
-                <h3>
-                    WORLD MEMORY
-                </h3>
-
-                <p>
-                    A memory connected to
-                    one of the seven worlds.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 300
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                🕯️
-            </div>
-
-            <div>
-
-                <h3>
-                    FORGOTTEN MEMORY
-                </h3>
-
-                <p>
-                    Some memories are not meant
-                    to be found immediately.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 500
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
+    <div
+        class="shop-grid"
+        id="memoriesGrid"
+    ></div>
 
 </section>
 
@@ -1139,111 +1105,10 @@ body {
     </div>
 
 
-    <div class="shop-grid">
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                👑
-            </div>
-
-            <div>
-
-                <h3>
-                    AETHER ROYAL
-                </h3>
-
-                <p>
-                    A special item reserved
-                    for rare occasions.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 750
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                🌠
-            </div>
-
-            <div>
-
-                <h3>
-                    SEVEN WORLDS
-                </h3>
-
-                <p>
-                    One collection connecting
-                    all seven worlds.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 1000
-                </div>
-
-                <div class="coming">
-                    COMING SOON
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="product">
-
-            <div class="product-icon">
-                ❔
-            </div>
-
-            <div>
-
-                <h3>
-                    UNKNOWN
-                </h3>
-
-                <p>
-                    Something is waiting beyond
-                    what you already know.
-                </p>
-
-            </div>
-
-            <div class="product-bottom">
-
-                <div class="price">
-                    🪙 ???
-                </div>
-
-                <div class="coming">
-                    LOCKED
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
+    <div
+        class="shop-grid"
+        id="specialsGrid"
+    ></div>
 
 </section>
 
@@ -1290,7 +1155,9 @@ body {
 </div>
 
 
-<!-- SUPABASE -->
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -1314,36 +1181,207 @@ window.supabase.createClient(
 
 
 /* =====================================================
-   AETHER COINS
+   STATE
 ===================================================== */
 
-async function loadAetherCoins() {
+let currentUser = null;
+
+let shopItems = [];
+
+let ownedItems = [];
+
+
+/* =====================================================
+   CATEGORY MAP
+===================================================== */
+
+const categoryMap = {
+
+    AETHER_EXCLUSIVES:
+        "exclusives",
+
+    MEMORIES:
+        "memories",
+
+    SPECIALS:
+        "specials"
+
+};
+
+
+/* =====================================================
+   ICON MAP
+===================================================== */
+
+const iconMap = {
+
+    wallpaper: "🖼️",
+
+    member_card_special: "🪪",
+
+    profile_frame: "🖼️",
+
+    rare_card: "👑",
+
+    exclusive_content: "🔐",
+
+    legendary_artifact: "👑",
+
+    member_message: "💬",
+
+    halo_pack: "💜",
+
+    member_pack: "🌟",
+
+    guardian_pack: "🐾",
+
+    exclusive_pack_18: "🔥"
+
+};
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function showStatus(
+    message,
+    type = ""
+) {
+
+    const element =
+        document.getElementById(
+            "shopStatus"
+        );
+
+    if (!element) return;
+
+    element.textContent =
+        message;
+
+    element.className =
+        "shop-status";
+
+    if (type) {
+
+        element.classList.add(
+            type
+        );
+
+    }
+
+    element.classList.remove(
+        "hidden"
+    );
+
+    clearTimeout(
+        showStatus.timeout
+    );
+
+    showStatus.timeout =
+        setTimeout(() => {
+
+            element.classList.add(
+                "hidden"
+            );
+
+        }, 5000);
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =====================================================
+   FORMAT COINS
+===================================================== */
+
+function formatCoins(
+    value
+) {
+
+    return Number(
+        value || 0
+    ).toLocaleString();
+
+}
+
+
+/* =====================================================
+   LOAD USER
+===================================================== */
+
+async function loadUser() {
 
     const {
-        data: { user },
-        error: userError
+        data,
+        error
     } =
     await supabaseClient.auth.getUser();
 
 
     if (
-        userError ||
-        !user
+        error ||
+        !data ||
+        !data.user
     ) {
 
         console.error(
-            "AETHER COIN USER ERROR:",
-            userError
+            "AETHER SHOP USER ERROR:",
+            error
         );
 
         window.location.replace(
             "halo.html"
         );
 
-        return;
+        return null;
 
     }
 
+
+    currentUser =
+        data.user;
+
+    return currentUser;
+
+}
+
+
+/* =====================================================
+   LOAD COINS
+===================================================== */
+
+async function loadAetherCoins() {
 
     const {
         data,
@@ -1371,14 +1409,1122 @@ async function loadAetherCoins() {
     }
 
 
-    const balance =
-        Number(data || 0);
+    document.getElementById(
+        "coinBalance"
+    ).textContent =
+        formatCoins(data);
+
+}
+
+
+/* =====================================================
+   LOAD SHOP ITEMS
+===================================================== */
+
+async function loadShopItems() {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from(
+            "aether_shop_items"
+        )
+        .select(
+            "id,item_key,title,description,category,price,content_type,content_data,is_active,is_purchasable"
+        )
+        .eq(
+            "is_active",
+            true
+        )
+        .eq(
+            "is_purchasable",
+            true
+        )
+        .order(
+            "created_at",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "AETHER SHOP ITEMS ERROR:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    shopItems =
+        data || [];
+
+}
+
+
+/* =====================================================
+   LOAD OWNERSHIP
+===================================================== */
+
+async function loadOwnership() {
+
+    if (!currentUser) return;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from(
+            "aether_shop_ownership"
+        )
+        .select(
+            "shop_item_id,source_key"
+        )
+        .eq(
+            "user_id",
+            currentUser.id
+        );
+
+
+    if (error) {
+
+        console.error(
+            "AETHER SHOP OWNERSHIP ERROR:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    ownedItems =
+        data || [];
+
+}
+
+
+/* =====================================================
+   OWNERSHIP CHECK
+===================================================== */
+
+function isOwned(
+    item,
+    selectionKey = null
+) {
+
+    const ownershipKey =
+        selectionKey ||
+        item.item_key;
+
+
+    return ownedItems.some(
+        ownership =>
+            ownership.shop_item_id === item.id &&
+            ownership.source_key === ownershipKey
+    );
+
+}
+
+
+/* =====================================================
+   GET OPTIONS
+===================================================== */
+
+function getOptions(
+    item
+) {
+
+    if (
+        item.content_type !==
+        "selectable_content"
+    ) {
+
+        return [];
+
+    }
+
+
+    if (
+        !item.content_data ||
+        !Array.isArray(
+            item.content_data.options
+        )
+    ) {
+
+        return [];
+
+    }
+
+
+    return item.content_data.options;
+
+}
+
+
+/* =====================================================
+   GET GUARANTEED CONTENT
+===================================================== */
+
+function getGuaranteed(
+    item
+) {
+
+    if (
+        !item.content_data ||
+        !Array.isArray(
+            item.content_data.guaranteed
+        )
+    ) {
+
+        return [];
+
+    }
+
+
+    return item.content_data.guaranteed;
+
+}
+
+
+/* =====================================================
+   CONTENT TYPE LABEL
+===================================================== */
+
+function getContentTypeLabel(
+    item
+) {
+
+    switch (
+        item.content_type
+    ) {
+
+        case "selectable_content":
+            return "CHOOSE YOUR CONTENT";
+
+        case "digital_collectible":
+            return "DIGITAL COLLECTIBLE";
+
+        case "digital_asset":
+            return "DIGITAL ASSET";
+
+        case "exclusive_content":
+            return "EXCLUSIVE EDITION";
+
+        case "voice_message":
+            return "VOICE MESSAGE";
+
+        case "legendary_artifact":
+            return "LEGENDARY RELIC";
+
+        case "pack":
+            return "GUARANTEED PACK";
+
+        case "mature_pack":
+            return "MATURE COLLECTION";
+
+        default:
+            return "AETHER EXCLUSIVE";
+
+    }
+
+}
+
+
+/* =====================================================
+   BUILD GUARANTEED LIST
+===================================================== */
+
+function buildGuaranteedList(
+    item
+) {
+
+    const guaranteed =
+        getGuaranteed(item);
+
+
+    if (!guaranteed.length) {
+
+        return "";
+
+    }
+
+
+    const list =
+        guaranteed
+            .map(
+                entry => {
+
+                    const count =
+                        entry.count
+                            ? ` × ${entry.count}`
+                            : "";
+
+                    return `
+                        <li>
+                            ${escapeHtml(
+                                entry.type || "AETHER Item"
+                            )}
+                            ${count}
+                        </li>
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    return `
+        <div class="product-detail">
+
+            <div class="detail-label">
+                GUARANTEED CONTENT
+            </div>
+
+            <ul class="detail-list">
+                ${list}
+            </ul>
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   BUILD DESCRIPTION DETAILS
+===================================================== */
+
+function buildContentDetails(
+    item
+) {
+
+    const data =
+        item.content_data || {};
+
+    const lines = [];
+
+
+    if (data.member) {
+
+        lines.push(
+            `Member: ${data.member}`
+        );
+
+    }
+
+
+    if (data.world) {
+
+        lines.push(
+            `World: ${data.world}`
+        );
+
+    }
+
+
+    if (data.guardian) {
+
+        lines.push(
+            `Guardian: ${data.guardian}`
+        );
+
+    }
+
+
+    if (data.rarity) {
+
+        lines.push(
+            `Rarity: ${data.rarity}`
+        );
+
+    }
+
+
+    if (data.image_count) {
+
+        lines.push(
+            `${data.image_count} exclusive photos`
+        );
+
+    }
+
+
+    if (
+        item.content_type ===
+        "mature_pack"
+    ) {
+
+        lines.push(
+            "18+ mature photoshoot edition"
+        );
+
+    }
+
+
+    if (!lines.length) {
+
+        return "";
+
+    }
+
+
+    return `
+        <div class="product-detail">
+
+            <div class="detail-label">
+                EDITION DETAILS
+            </div>
+
+            <ul class="detail-list">
+
+                ${lines
+                    .map(
+                        line =>
+                            `<li>${escapeHtml(line)}</li>`
+                    )
+                    .join("")}
+
+            </ul>
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   BUILD SELECTOR
+===================================================== */
+
+function buildSelector(
+    item,
+    options
+) {
+
+    if (!options.length) {
+
+        return "";
+
+    }
+
+
+    const id =
+        `selection-${item.item_key}`;
+
+
+    const optionMarkup =
+        options
+            .map(
+                option => {
+
+                    return `
+                        <option
+                            value="${escapeHtml(
+                                option.key
+                            )}"
+                        >
+                            ${escapeHtml(
+                                option.title
+                            )}
+                        </option>
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    return `
+        <div>
+
+            <div class="detail-label">
+                ${getContentTypeLabel(item)}
+            </div>
+
+            <select
+                class="product-select"
+                id="${escapeHtml(id)}"
+                aria-label="${escapeHtml(
+                    item.title
+                )}"
+            >
+
+                ${optionMarkup}
+
+            </select>
+
+        </div>
+    `;
+
+}
+
+
+/* =====================================================
+   BUILD PRODUCT
+===================================================== */
+
+function buildProduct(
+    item
+) {
+
+    const options =
+        getOptions(item);
+
+    const icon =
+        iconMap[
+            item.item_key
+        ] || "✦";
+
+
+    const allOwned =
+        options.length
+            ? options.every(
+                option =>
+                    isOwned(
+                        item,
+                        option.key
+                    )
+            )
+            : isOwned(item);
+
+
+    const product =
+        document.createElement(
+            "article"
+        );
+
+    product.className =
+        "product";
+
+    if (allOwned) {
+
+        product.classList.add(
+            "owned"
+        );
+
+    }
+
+
+    const selectionMarkup =
+        buildSelector(
+            item,
+            options
+        );
+
+
+    const guaranteedMarkup =
+        buildGuaranteedList(
+            item
+        );
+
+
+    const detailMarkup =
+        buildContentDetails(
+            item
+        );
+
+
+    const initialOwned =
+        options.length
+            ? isOwned(
+                item,
+                options[0].key
+            )
+            : isOwned(item);
+
+
+    product.innerHTML = `
+
+        <div class="product-glow"></div>
+
+        <div>
+
+            <div class="product-icon">
+                ${icon}
+            </div>
+
+            <h3>
+                ${escapeHtml(
+                    item.title
+                )}
+            </h3>
+
+            <p>
+                ${escapeHtml(
+                    item.description
+                )}
+            </p>
+
+            ${detailMarkup}
+
+            ${guaranteedMarkup}
+
+            ${
+                selectionMarkup
+                    ? `
+                        <div
+                            style="
+                                margin-top:16px;
+                                position:relative;
+                                z-index:2;
+                            "
+                        >
+                            ${selectionMarkup}
+                        </div>
+                    `
+                    : ""
+            }
+
+        </div>
+
+        <div class="product-bottom">
+
+            <div class="price">
+                🪙 ${formatCoins(
+                    item.price
+                )}
+            </div>
+
+            <button
+                class="buy-button ${
+                    initialOwned
+                        ? "owned-button"
+                        : ""
+                }"
+                type="button"
+                data-item-key="${escapeHtml(
+                    item.item_key
+                )}"
+            >
+                ${
+                    initialOwned
+                        ? "OWNED"
+                        : "BUY"
+                }
+            </button>
+
+        </div>
+
+    `;
+
+
+    const button =
+        product.querySelector(
+            ".buy-button"
+        );
+
+
+    const selector =
+        product.querySelector(
+            ".product-select"
+        );
+
+
+    if (selector) {
+
+        selector.addEventListener(
+            "change",
+            () => {
+
+                const selectedKey =
+                    selector.value;
+
+                const owned =
+                    isOwned(
+                        item,
+                        selectedKey
+                    );
+
+
+                updateBuyButton(
+                    button,
+                    owned
+                );
+
+            }
+        );
+
+    }
+
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            purchaseItem(
+                item,
+                selector,
+                button
+            );
+
+        }
+    );
+
+
+    return product;
+
+}
+
+
+/* =====================================================
+   UPDATE BUY BUTTON
+===================================================== */
+
+function updateBuyButton(
+    button,
+    owned
+) {
+
+    if (!button) return;
+
+
+    if (owned) {
+
+        button.textContent =
+            "OWNED";
+
+        button.classList.add(
+            "owned-button"
+        );
+
+        button.disabled =
+            true;
+
+    } else {
+
+        button.textContent =
+            "BUY";
+
+        button.classList.remove(
+            "owned-button"
+        );
+
+        button.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER SHOP
+===================================================== */
+
+function renderShop() {
+
+    const grids = {
+
+        AETHER_EXCLUSIVES:
+            document.getElementById(
+                "exclusivesGrid"
+            ),
+
+        MEMORIES:
+            document.getElementById(
+                "memoriesGrid"
+            ),
+
+        SPECIALS:
+            document.getElementById(
+                "specialsGrid"
+            )
+
+    };
+
+
+    Object.values(grids)
+        .forEach(
+            grid => {
+
+                if (grid) {
+
+                    grid.innerHTML =
+                        "";
+
+                }
+
+            }
+        );
+
+
+    shopItems.forEach(
+        item => {
+
+            const grid =
+                grids[
+                    item.category
+                ];
+
+
+            if (!grid) return;
+
+
+            grid.appendChild(
+                buildProduct(item)
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   PURCHASE
+===================================================== */
+
+async function purchaseItem(
+    item,
+    selector,
+    button
+) {
+
+    if (!currentUser) {
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return;
+
+    }
+
+
+    let selectionKey =
+        null;
+
+
+    if (selector) {
+
+        selectionKey =
+            selector.value;
+
+    }
+
+
+    if (
+        isOwned(
+            item,
+            selectionKey
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const confirmed =
+        window.confirm(
+            `Purchase "${item.title}" for ${formatCoins(item.price)} AETHER Coins?`
+        );
+
+
+    if (!confirmed) {
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "BUYING...";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.rpc(
+        "purchase_aether_shop_item",
+        {
+            p_item_key:
+                item.item_key,
+
+            p_selection_key:
+                selectionKey
+        }
+    );
+
+
+    if (error) {
+
+        console.error(
+            "AETHER SHOP PURCHASE ERROR:",
+            error
+        );
+
+
+        button.disabled =
+            false;
+
+        updateBuyButton(
+            button,
+            false
+        );
+
+
+        const message =
+            getPurchaseErrorMessage(
+                error
+            );
+
+
+        showStatus(
+            message,
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        !data ||
+        data.success !== true
+    ) {
+
+        button.disabled =
+            false;
+
+        updateBuyButton(
+            button,
+            false
+        );
+
+
+        showStatus(
+            "The purchase could not be completed.",
+            "error"
+        );
+
+
+        return;
+
+    }
+
+
+    const ownershipKey =
+        selectionKey ||
+        item.item_key;
+
+
+    ownedItems.push({
+
+        shop_item_id:
+            item.id,
+
+        source_key:
+            ownershipKey
+
+    });
+
+
+    updateBuyButton(
+        button,
+        true
+    );
 
 
     document.getElementById(
         "coinBalance"
     ).textContent =
-        balance.toLocaleString();
+        formatCoins(
+            data.balance
+        );
+
+
+    showStatus(
+        "Purchase successful. The item is now yours.",
+        "success"
+    );
+
+
+    updateAllOwnedStates();
+
+}
+
+
+/* =====================================================
+   PURCHASE ERROR MESSAGE
+===================================================== */
+
+function getPurchaseErrorMessage(
+    error
+) {
+
+    const message =
+        String(
+            error?.message || ""
+        );
+
+
+    if (
+        message.includes(
+            "Insufficient AETHER Coins"
+        )
+    ) {
+
+        return "You do not have enough AETHER Coins for this item.";
+
+    }
+
+
+    if (
+        message.includes(
+            "already owned"
+        )
+    ) {
+
+        return "You already own this item.";
+
+    }
+
+
+    if (
+        message.includes(
+            "Invalid shop selection"
+        ) ||
+        message.includes(
+            "variant"
+        )
+    ) {
+
+        return "That selection is no longer available.";
+
+    }
+
+
+    if (
+        message.includes(
+            "Not authenticated"
+        )
+    ) {
+
+        return "Please sign in again.";
+
+    }
+
+
+    return "The purchase could not be completed. Please try again.";
+
+}
+
+
+/* =====================================================
+   UPDATE ALL OWNED STATES
+===================================================== */
+
+function updateAllOwnedStates() {
+
+    document
+        .querySelectorAll(
+            ".product"
+        )
+        .forEach(
+            product => {
+
+                const itemKey =
+                    product
+                        .querySelector(
+                            ".buy-button"
+                        )
+                        ?.dataset
+                        .itemKey;
+
+
+                if (!itemKey) return;
+
+
+                const item =
+                    shopItems.find(
+                        shopItem =>
+                            shopItem.item_key ===
+                            itemKey
+                    );
+
+
+                if (!item) return;
+
+
+                const selector =
+                    product.querySelector(
+                        ".product-select"
+                    );
+
+
+                const selectedKey =
+                    selector
+                        ? selector.value
+                        : null;
+
+
+                const button =
+                    product.querySelector(
+                        ".buy-button"
+                    );
+
+
+                const owned =
+                    isOwned(
+                        item,
+                        selectedKey
+                    );
+
+
+                updateBuyButton(
+                    button,
+                    owned
+                );
+
+
+                const options =
+                    getOptions(item);
+
+
+                if (
+                    options.length &&
+                    options.every(
+                        option =>
+                            isOwned(
+                                item,
+                                option.key
+                            )
+                    )
+                ) {
+
+                    product.classList.add(
+                        "owned"
+                    );
+
+                } else if (
+                    !options.length &&
+                    isOwned(item)
+                ) {
+
+                    product.classList.add(
+                        "owned"
+                    );
+
+                }
+
+            }
+        );
 
 }
 
@@ -1387,17 +2533,22 @@ async function loadAetherCoins() {
    SHOP NAVIGATION
 ===================================================== */
 
-function scrollToSection(id) {
+function scrollToSection(
+    id
+) {
 
     const section =
         document.getElementById(id);
 
+
     if (!section) return;
+
 
     section.scrollIntoView({
         behavior: "smooth",
         block: "start"
     });
+
 }
 
 
@@ -1405,7 +2556,64 @@ function scrollToSection(id) {
    START
 ===================================================== */
 
-loadAetherCoins();
+async function startShop() {
+
+    try {
+
+        showStatus(
+            "Loading the AETHER Shop..."
+        );
+
+
+        const user =
+            await loadUser();
+
+
+        if (!user) {
+
+            return;
+
+        }
+
+
+        await Promise.all([
+            loadAetherCoins(),
+            loadShopItems(),
+            loadOwnership()
+        ]);
+
+
+        renderShop();
+
+
+        document
+            .getElementById(
+                "shopStatus"
+            )
+            .classList.add(
+                "hidden"
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "AETHER SHOP START ERROR:",
+            error
+        );
+
+
+        showStatus(
+            "The AETHER Shop could not be loaded. Please try again.",
+            "error"
+        );
+
+    }
+
+}
+
+
+startShop();
 
 </script>
 
