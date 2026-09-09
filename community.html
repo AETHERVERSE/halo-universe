@@ -1317,6 +1317,82 @@ window.supabase.createClient(
 );
 
 
+/* =========================================================
+   PROTECTED COMMUNITY PAGE
+========================================================= */
+
+async function requireCommunitySession() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if (
+            error
+        ) {
+
+            console.error(
+                "COMMUNITY SESSION ERROR:",
+                error
+            );
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return false;
+
+        }
+
+
+        const session =
+            data &&
+            data.session
+                ? data.session
+                : null;
+
+
+        if (
+            !session ||
+            !session.user
+        ) {
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "COMMUNITY SESSION CHECK ERROR:",
+            error
+        );
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return false;
+
+    }
+
+}
+
+
 const reactionTypes = [
 
     {
@@ -2965,6 +3041,7 @@ async function sendMessage() {
      * Then ask AETHER whether the HALO
      * directly addressed a member.
      */
+
     requestAetherReply(
         data.id,
         data.message
@@ -3154,6 +3231,17 @@ function subscribeToReactions() {
 
 async function initializeCommunity() {
 
+    const authorized =
+        await requireCommunitySession();
+
+
+    if (!authorized) {
+
+        return;
+
+    }
+
+
     const {
         data: { user },
         error
@@ -3165,23 +3253,9 @@ async function initializeCommunity() {
         !user
     ) {
 
-        currentUser =
-            null;
-
-        haloIdentity.textContent =
-            "LOGIN REQUIRED";
-
-        chatStatus.textContent =
-            "HALO LOGIN REQUIRED";
-
-        loginWarning.style.display =
-            "block";
-
-        composer.style.display =
-            "none";
-
-        aetherControl.style.display =
-            "none";
+        window.location.replace(
+            "halo.html"
+        );
 
         return;
 
