@@ -1612,24 +1612,16 @@ function displayAdminRank() {
    CHECK AETHER ADMIN
 ========================= */
 
-async function isAetherAdmin(userId) {
+async function isAetherAdmin() {
 
     const {
         data,
         error
     } =
     await supabaseClient
-
-        .from("aether_admins")
-
-        .select("user_id")
-
-        .eq(
-            "user_id",
-            userId
-        )
-
-        .maybeSingle();
+        .rpc(
+            "is_aether_admin"
+        );
 
 
     if (error) {
@@ -1644,7 +1636,7 @@ async function isAetherAdmin(userId) {
     }
 
 
-    return !!data;
+    return data === true;
 
 }
 
@@ -2005,9 +1997,7 @@ async function loadHaloData() {
         ========================= */
 
         const admin =
-            await isAetherAdmin(
-                user.id
-            );
+            await isAetherAdmin();
 
 
         /* =========================
