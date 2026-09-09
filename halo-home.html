@@ -169,6 +169,42 @@ h1 {
 
 
 /* =========================
+   ADMIN RANK
+========================= */
+
+.rank-card.admin-rank {
+
+    border-color: #9c8fe0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #30275f,
+            #181633
+        );
+
+}
+
+.rank-card.admin-rank .rank-name {
+
+    letter-spacing: 4px;
+
+}
+
+.admin-status {
+
+    color: #cdb9ff;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 2px;
+
+    margin-top: 8px;
+
+}
+
+
+/* =========================
    RANK PROGRESS
 ========================= */
 
@@ -733,7 +769,7 @@ id="haloEmail">
 
 <!-- HALO RANK -->
 
-<section class="rank-card">
+<section class="rank-card" id="rankCard">
 
 <div class="rank-label">
 ✦ YOUR HALO RANK ✦
@@ -755,7 +791,7 @@ id="rankPoints">
 
 </div>
 
-<div class="progress-container">
+<div class="progress-container" id="progressContainer">
 
 <div
 class="progress-bar"
@@ -1373,7 +1409,7 @@ const ranks = [
 
 
 /* =========================
-   DISPLAY RANK
+   DISPLAY NORMAL RANK
 ========================= */
 
 function displayRank(points) {
@@ -1503,6 +1539,112 @@ function displayRank(points) {
 
         "Next rank: " +
         nextRank.name;
+
+}
+
+
+/* =========================
+   DISPLAY AETHER ADMIN
+========================= */
+
+function displayAdminRank() {
+
+    const rankCard =
+        document.getElementById(
+            "rankCard"
+        );
+
+    const rankName =
+        document.getElementById(
+            "rankName"
+        );
+
+    const rankPoints =
+        document.getElementById(
+            "rankPoints"
+        );
+
+    const progressContainer =
+        document.getElementById(
+            "progressContainer"
+        );
+
+    const progressText =
+        document.getElementById(
+            "progressText"
+        );
+
+    const nextRank =
+        document.getElementById(
+            "nextRank"
+        );
+
+
+    rankCard.classList.add(
+        "admin-rank"
+    );
+
+
+    rankName.textContent =
+        "AETHER ADMIN";
+
+
+    rankPoints.textContent =
+        "SPECIAL ADMIN STATUS";
+
+
+    progressContainer.style.display =
+        "none";
+
+
+    progressText.textContent =
+        "✦ This status is reserved exclusively for the AETHER ADMIN. ✦";
+
+
+    nextRank.textContent =
+        "Not obtainable through HALO Points";
+
+
+}
+
+
+/* =========================
+   CHECK AETHER ADMIN
+========================= */
+
+async function isAetherAdmin(userId) {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+        .from("aether_admins")
+
+        .select("user_id")
+
+        .eq(
+            "user_id",
+            userId
+        )
+
+        .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "AETHER ADMIN CHECK ERROR:",
+            error
+        );
+
+        return false;
+
+    }
+
+
+    return !!data;
 
 }
 
@@ -1858,7 +2000,19 @@ async function loadHaloData() {
         }
 
 
-        /* HALO ID */
+        /* =========================
+           AETHER ADMIN CHECK
+        ========================= */
+
+        const admin =
+            await isAetherAdmin(
+                user.id
+            );
+
+
+        /* =========================
+           HALO ID
+        ========================= */
 
         const {
             data: profile,
@@ -1875,7 +2029,7 @@ async function loadHaloData() {
                 user.id
             )
 
-            .single();
+            .maybeSingle();
 
 
         if (
@@ -1890,7 +2044,16 @@ async function loadHaloData() {
         }
 
 
-        if (profile) {
+        if (admin) {
+
+            document.getElementById(
+                "haloEmail"
+            ).textContent =
+                "AETHER ADMIN • NO HALO ID ASSIGNED";
+
+        }
+
+        else if (profile) {
 
             document.getElementById(
                 "haloEmail"
@@ -1901,8 +2064,19 @@ async function loadHaloData() {
 
         }
 
+        else {
 
-        /* HALO POINTS */
+            document.getElementById(
+                "haloEmail"
+            ).textContent =
+                "NO HALO ID ASSIGNED";
+
+        }
+
+
+        /* =========================
+           HALO POINTS
+        ========================= */
 
         const {
             data: pointsData,
@@ -1929,12 +2103,14 @@ async function loadHaloData() {
                 pointsError
             );
 
-            document.getElementById(
-                "rankName"
-            ).textContent =
-                "POINTS ERROR";
+            if (!admin) {
 
-            return;
+                document.getElementById(
+                    "rankName"
+                ).textContent =
+                    "POINTS ERROR";
+
+            }
 
         }
 
@@ -1956,7 +2132,24 @@ async function loadHaloData() {
         }
 
 
-        displayRank(points);
+        /* =========================
+           DISPLAY RANK
+        ========================= */
+
+        if (admin) {
+
+            displayAdminRank();
+
+        }
+
+        else {
+
+            displayRank(
+                points
+            );
+
+        }
+
 
         await loadCodexProgress(
             user.id
