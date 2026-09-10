@@ -462,6 +462,8 @@ h1 {
 
     cursor: pointer;
 
+    text-decoration: none;
+
     transition:
         background 0.2s ease,
         border-color 0.2s ease,
@@ -475,26 +477,6 @@ h1 {
     border-color: #c8bdff;
 
     transform: translateY(-2px);
-}
-
-.music-button:disabled {
-
-    cursor: default;
-
-    transform: none;
-
-    opacity: 0.8;
-}
-
-.music-status {
-
-    margin-top: 12px;
-
-    color: #aaa0e6;
-
-    font-size: 0.75rem;
-
-    line-height: 1.5;
 }
 
 
@@ -896,28 +878,23 @@ AETHER MUSIC
 </h3>
 
 <p>
-Discover an AETHER song and let the stars speak.
+Explore the complete BREAK THE BUBBLE album
+and discover every AETHER song.
 </p>
 
 <span class="points-value">
-+5 STAR POINTS
++5 STAR POINTS PER SONG
 </span>
 
 <br>
 
-<button
-id="breakBubbleButton"
+<a
+href="aether-music.html"
 class="music-button">
 
-✦ DISCOVER BREAK THE BUBBLE
+✦ OPEN AETHER MUSIC →
 
-</button>
-
-<div
-id="breakBubbleStatus"
-class="music-status">
-
-</div>
+</a>
 
 </div>
 
@@ -1772,183 +1749,6 @@ async function loadCodexProgress(userId) {
 
 
 /* =========================
-   CHECK BREAK THE BUBBLE
-========================= */
-
-async function checkBreakTheBubble(userId) {
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-
-        .from("halo_point_events")
-
-        .select("action_key")
-
-        .eq(
-            "user_id",
-            userId
-        )
-        .eq(
-            "action_key",
-            "music_break_the_bubble"
-        )
-        .maybeSingle();
-
-
-    if (error) {
-
-        console.error(
-            "MUSIC CHECK ERROR:",
-            error
-        );
-
-        return;
-
-    }
-
-
-    const button =
-        document.getElementById(
-            "breakBubbleButton"
-        );
-
-    const status =
-        document.getElementById(
-            "breakBubbleStatus"
-        );
-
-
-    if (data) {
-
-        button.textContent =
-            "✓ ALREADY DISCOVERED";
-
-        button.disabled =
-            true;
-
-        status.textContent =
-            "Break the Bubble is already part of your HALO journey. ✦";
-
-    }
-
-}
-
-
-/* =========================
-   DISCOVER BREAK THE BUBBLE
-========================= */
-
-async function discoverBreakTheBubble() {
-
-    const button =
-        document.getElementById(
-            "breakBubbleButton"
-        );
-
-    const status =
-        document.getElementById(
-            "breakBubbleStatus"
-        );
-
-
-    button.disabled =
-        true;
-
-    button.textContent =
-        "DISCOVERING...";
-
-
-    const {
-        data: { user },
-        error: userError
-    } =
-    await supabaseClient.auth.getUser();
-
-
-    if (
-        userError ||
-        !user
-    ) {
-
-        window.location.replace(
-            "halo.html"
-        );
-
-        return;
-
-    }
-
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient.rpc(
-        "add_halo_points",
-        {
-            p_user_id:
-                user.id,
-
-            p_action_key:
-                "music_break_the_bubble"
-        }
-    );
-
-
-    if (error) {
-
-        console.error(
-            "BREAK THE BUBBLE ERROR:",
-            error
-        );
-
-
-        button.disabled =
-            false;
-
-        button.textContent =
-            "✦ DISCOVER BREAK THE BUBBLE";
-
-        status.textContent =
-            "Could not record this discovery.";
-
-        return;
-
-    }
-
-
-    if (
-        Number(data) === 5
-    ) {
-
-        button.textContent =
-            "✓ DISCOVERED • +5 STAR POINTS";
-
-        status.textContent =
-            "Break the Bubble has been added to your journey. ✦";
-
-
-        await loadHaloData();
-
-    }
-
-    else {
-
-        button.textContent =
-            "✓ ALREADY DISCOVERED";
-
-        status.textContent =
-            "This music memory is already part of your journey.";
-
-    }
-
-}
-
-
-/* =========================
    LOAD HALO DATA
 ========================= */
 
@@ -2145,10 +1945,6 @@ async function loadHaloData() {
             user.id
         );
 
-        await checkBreakTheBubble(
-            user.id
-        );
-
     }
 
 
@@ -2240,16 +2036,6 @@ async function logoutHalo() {
 /* =========================
    BUTTONS
 ========================= */
-
-document
-    .getElementById(
-        "breakBubbleButton"
-    )
-    .addEventListener(
-        "click",
-        discoverBreakTheBubble
-    );
-
 
 document
     .getElementById(
