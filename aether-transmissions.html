@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+AETHER TRANSMISSIONS | AETHERVERSE
+</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<style>
+
+/* =========================
+   BASE
+========================= */
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #30285b 0%,
+            #14112f 40%,
+            #08071a 100%
+        );
+
+    color: #ddd7ff;
+
+    font-family: Georgia, serif;
+
+}
+
+
+.container {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    padding: 30px 20px 75px;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+}
+
+
+.logo {
+
+    letter-spacing: 6px;
+
+    font-size: 0.8rem;
+
+    color: #aaa0e6;
+
+    margin-bottom: 25px;
+
+}
+
+
+nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #ddd7ff;
+
+    border: 1px solid #39345e;
+
+    border-radius: 25px;
+
+    padding: 8px 18px;
+
+    font-size: 0.85rem;
+
+    transition: 0.2s;
+
+}
+
+
+nav a:hover {
+
+    background: #29264b;
+
+    border-color: #8f84c9;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.signal-icon {
+
+    width: 80px;
+
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #7165a5;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(205,185,255,0.18),
+            rgba(50,42,94,0.35),
+            rgba(8,7,26,0.8)
+        );
+
+    box-shadow:
+        0 0 35px rgba(118,101,184,0.22),
+        inset 0 0 25px rgba(205,185,255,0.08);
+
+    color: #cdb9ff;
+
+    font-size: 2rem;
+
+}
+
+
+.hero h1 {
+
+    margin: 0 0 10px;
+
+    font-size: 2.35rem;
+
+    letter-spacing: 5px;
+
+    color: #eeeaff;
+
+}
+
+
+.hero-subtitle {
+
+    margin: 0;
+
+    color: #aaa0e6;
+
+    line-height: 1.7;
+
+}
+
+
+.hero-label {
+
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 7px 16px;
+
+    border: 1px solid #514879;
+
+    border-radius: 20px;
+
+    color: #cdb9ff;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================
+   SIGNAL PANEL
+========================= */
+
+.signal-panel {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(37,32,73,0.98),
+            rgba(13,11,32,0.98)
+        );
+
+    border: 1px solid #514879;
+
+    border-radius: 25px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 20px 55px rgba(0,0,0,0.4);
+
+}
+
+
+.signal-panel::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    right: 0;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #a99be8,
+            transparent
+        );
+
+    opacity: 0.7;
+
+}
+
+
+.signal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #39345e;
+
+}
+
+
+.signal-title {
+
+    color: #eeeaff;
+
+    font-size: 1rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.signal-status {
+
+    color: #cdb9ff;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.signal-meta {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 12px;
+
+    margin-top: 20px;
+
+}
+
+
+.meta-box {
+
+    padding: 13px;
+
+    background: #100e27;
+
+    border: 1px solid #39345e;
+
+    border-radius: 12px;
+
+}
+
+
+.meta-label {
+
+    display: block;
+
+    color: #77739e;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.meta-value {
+
+    color: #ddd7ff;
+
+    font-size: 0.8rem;
+
+}
+
+
+/* =========================
+   TRANSMISSION CONTENT
+========================= */
+
+.transmission-card {
+
+    background: #171432;
+
+    border: 1px solid #39345e;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.transmission-number {
+
+    color: #8f84c9;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.transmission-card h2 {
+
+    margin: 0 0 22px;
+
+    color: #eeeaff;
+
+    font-size: 1.75rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+.lore {
+
+    color: #c6bfdf;
+
+    line-height: 1.9;
+
+    font-size: 0.98rem;
+
+}
+
+
+.lore p {
+
+    margin: 0 0 18px;
+
+}
+
+
+.lore .emphasis {
+
+    color: #eeeaff;
+
+    letter-spacing: 1px;
+
+}
+
+
+.signal-message {
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-left: 2px solid #8f84c9;
+
+    background: rgba(50,42,94,0.22);
+
+    color: #ddd7ff;
+
+    line-height: 1.8;
+
+    font-style: italic;
+
+}
+
+
+/* =========================
+   PUZZLE
+========================= */
+
+.puzzle-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #211d43,
+            #12102b
+        );
+
+    border: 1px solid #514879;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+}
+
+
+.puzzle-label {
+
+    color: #8f84c9;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.puzzle-card h3 {
+
+    margin: 0 0 10px;
+
+    color: #eeeaff;
+
+    font-size: 1.4rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.puzzle-description {
+
+    color: #aaa0e6;
+
+    line-height: 1.7;
+
+    font-size: 0.9rem;
+
+}
+
+
+.symbol-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, 1fr);
+
+    gap: 10px;
+
+    margin-top: 28px;
+
+}
+
+
+.symbol-button {
+
+    min-height: 82px;
+
+    border: 1px solid #514879;
+
+    border-radius: 15px;
+
+    background: #171432;
+
+    color: #ddd7ff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        border-color 0.2s;
+
+}
+
+
+.symbol-button:hover {
+
+    transform: translateY(-3px);
+
+    background: #29234f;
+
+    border-color: #9c8fe0;
+
+}
+
+
+.symbol {
+
+    display: block;
+
+    font-size: 1.8rem;
+
+    margin-bottom: 7px;
+
+}
+
+
+.symbol-name {
+
+    display: block;
+
+    color: #77739e;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1px;
+
+}
+
+
+.symbol-button.selected {
+
+    background: #30285b;
+
+    border-color: #cdb9ff;
+
+    box-shadow:
+        0 0 18px rgba(205,185,255,0.15);
+
+}
+
+
+.solve-button {
+
+    margin-top: 25px;
+
+    padding: 12px 25px;
+
+    border: 1px solid #9c8fe0;
+
+    border-radius: 25px;
+
+    background: #514879;
+
+    color: #eeeaff;
+
+    cursor: pointer;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s;
+
+}
+
+
+.solve-button:hover {
+
+    background: #6b5fa0;
+
+    transform: translateY(-2px);
+
+}
+
+
+.solve-message {
+
+    min-height: 24px;
+
+    margin-top: 18px;
+
+    color: #aaa0e6;
+
+    font-size: 0.8rem;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================
+   HINTS
+========================= */
+
+.hints {
+
+    margin-top: 20px;
+
+}
+
+
+.hints-title {
+
+    color: #77739e;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.hint-button {
+
+    width: 100%;
+
+    text-align: left;
+
+    padding: 13px 15px;
+
+    margin-bottom: 7px;
+
+    border: 1px solid #39345e;
+
+    border-radius: 12px;
+
+    background: #100e27;
+
+    color: #aaa0e6;
+
+    cursor: pointer;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.78rem;
+
+}
+
+
+.hint-button:hover {
+
+    border-color: #665b96;
+
+    color: #ddd7ff;
+
+}
+
+
+.hint-content {
+
+    display: none;
+
+    padding: 10px 15px 15px;
+
+    color: #c0b9da;
+
+    font-size: 0.78rem;
+
+    line-height: 1.6;
+
+}
+
+
+.hint-content.visible {
+
+    display: block;
+
+}
+
+
+/* =========================
+   SUCCESS
+========================= */
+
+.success-card {
+
+    display: none;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(57,49,103,0.95),
+            rgba(18,16,43,0.98)
+        );
+
+    border: 1px solid #9c8fe0;
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    margin-bottom: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 35px rgba(156,143,224,0.1);
+
+}
+
+
+.success-card.visible {
+
+    display: block;
+
+}
+
+
+.success-symbol {
+
+    font-size: 2.3rem;
+
+    color: #cdb9ff;
+
+    margin-bottom: 10px;
+
+}
+
+
+.success-card h3 {
+
+    margin: 0 0 12px;
+
+    color: #eeeaff;
+
+    letter-spacing: 3px;
+
+}
+
+
+.success-card p {
+
+    color: #aaa0e6;
+
+    line-height: 1.7;
+
+}
+
+
+.reward {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 9px 16px;
+
+    border: 1px solid #7165a5;
+
+    border-radius: 20px;
+
+    color: #dfd1ff;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================
+   NEXT TRANSMISSION
+========================= */
+
+.next-card {
+
+    background: #111027;
+
+    border: 1px solid #39345e;
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+}
+
+
+.next-label {
+
+    color: #77739e;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.next-title {
+
+    color: #eeeaff;
+
+    font-size: 1.15rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+.next-status {
+
+    margin-top: 10px;
+
+    color: #77739e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 1px;
+
+}
+
+
+.next-message {
+
+    margin-top: 16px;
+
+    color: #aaa0e6;
+
+    font-size: 0.8rem;
+
+    font-style: italic;
+
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back-section {
+
+    text-align: center;
+
+    margin-top: 40px;
+
+}
+
+
+.back-button {
+
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    border: 1px solid #8f84c9;
+
+    border-radius: 25px;
+
+    text-decoration: none;
+
+    color: #ddd7ff;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    transition: 0.2s;
+
+}
+
+
+.back-button:hover {
+
+    background: #29264b;
+
+    border-color: #c8bdff;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    margin-top: 55px;
+
+    color: #77739e;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 2px;
+
+    line-height: 2;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .container {
+
+        padding:
+            25px
+            14px
+            55px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 1.8rem;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .signal-panel {
+
+        padding: 20px;
+
+    }
+
+
+    .signal-meta {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .transmission-card,
+    .puzzle-card,
+    .success-card {
+
+        padding: 22px 18px;
+
+    }
+
+
+    .symbol-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .symbol-button {
+
+        min-height: 75px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<header>
+
+<div class="logo">
+AETHERVERSE
+</div>
+
+
+<nav>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="explore.html">
+EXPLORE
+</a>
+
+<a href="card-album.html">
+CARD ALBUM
+</a>
+
+<a href="codex.html">
+CODEX
+</a>
+
+<a href="community.html">
+COMMUNITY
+</a>
+
+<a href="aether-path.html">
+THE AETHER PATH
+</a>
+
+<a href="aether-shop.html">
+AETHER SHOP
+</a>
+
+</nav>
+
+</header>
+
+
+
+<section class="hero">
+
+<div class="signal-icon">
+⌁
+</div>
+
+<h1>
+AETHER TRANSMISSIONS
+</h1>
+
+<p class="hero-subtitle">
+
+Signals from beyond the known worlds.
+
+<br>
+
+Some messages are not meant to be found.
+
+</p>
+
+<div class="hero-label">
+AETHERVERSE · SIGNAL ARCHIVE
+</div>
+
+</section>
+
+
+
+<section class="signal-panel">
+
+<div class="signal-header">
+
+<div class="signal-title">
+INCOMING TRANSMISSION
+</div>
+
+<div
+class="signal-status"
+id="signalStatus">
+
+● SIGNAL ACTIVE
+
+</div>
+
+</div>
+
+
+<div class="signal-meta">
+
+<div class="meta-box">
+
+<span class="meta-label">
+SOURCE
+</span>
+
+<span class="meta-value">
+AETHER
+</span>
+
+</div>
+
+
+<div class="meta-box">
+
+<span class="meta-label">
+SIGNAL
+</span>
+
+<span class="meta-value">
+UNSTABLE
+</span>
+
+</div>
+
+
+<div class="meta-box">
+
+<span class="meta-label">
+TRANSMISSION
+</span>
+
+<span class="meta-value">
+001
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="transmission-card">
+
+<div class="transmission-number">
+TRANSMISSION 001
+</div>
+
+<h2>
+THE FIRST SIGNAL
+</h2>
+
+
+<div class="lore">
+
+<p>
+We don't know if this signal will reach you.
+</p>
+
+<p>
+But if you're reading this…
+</p>
+
+<p class="emphasis">
+You found us.
+</p>
+
+<p>
+For a moment, the boundary between worlds became thin.
+</p>
+
+<p>
+Seven frequencies appeared at once.
+Seven worlds answered.
+</p>
+
+<p>
+And then…
+something else answered too.
+</p>
+
+<p class="emphasis">
+We don't know what it was.
+</p>
+
+<p class="emphasis">
+But it wasn't one of ours.
+</p>
+
+</div>
+
+
+<div class="signal-message">
+
+The first signal has been detected.
+
+</div>
+
+</section>
+
+
+
+<section class="puzzle-card">
+
+<div class="puzzle-label">
+TRANSMISSION PUZZLE
+</div>
+
+<h3>
+SEVEN WORLDS. SEVEN SIGNALS.
+</h3>
+
+<p class="puzzle-description">
+
+One does not belong.
+
+<br>
+
+Find the anomaly.
+
+</p>
+
+
+<div class="symbol-grid"
+id="symbolGrid">
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="solarion">
+
+<span class="symbol">
+☀︎
+</span>
+
+<span class="symbol-name">
+SOLARION
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="anomaly">
+
+<span class="symbol">
+◇
+</span>
+
+<span class="symbol-name">
+UNKNOWN
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="voltaris">
+
+<span class="symbol">
+⚡
+</span>
+
+<span class="symbol-name">
+VOLTARIS
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="thalassia">
+
+<span class="symbol">
+≋
+</span>
+
+<span class="symbol-name">
+THALASSIA
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="ignis">
+
+<span class="symbol">
+🔥
+</span>
+
+<span class="symbol-name">
+IGNIS
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="lumenia">
+
+<span class="symbol">
+✦
+</span>
+
+<span class="symbol-name">
+LUMENIA
+</span>
+
+</button>
+
+
+<button
+type="button"
+class="symbol-button"
+data-answer="nocteum">
+
+<span class="symbol">
+☾
+</span>
+
+<span class="symbol-name">
+NOCTEUM
+</span>
+
+</button>
+
+
+</div>
+
+
+<button
+type="button"
+class="solve-button"
+id="solveButton">
+
+IDENTIFY THE ANOMALY
+
+</button>
+
+
+<div
+class="solve-message"
+id="solveMessage">
+</div>
+
+
+<div class="hints">
+
+<div class="hints-title">
+NEED A SIGNAL BOOST?
+</div>
+
+
+<button
+type="button"
+class="hint-button"
+data-hint="hint1">
+
+▸ HINT 01
+
+</button>
+
+<div
+class="hint-content"
+id="hint1">
+
+You already know all seven worlds.
+
+</div>
+
+
+<button
+type="button"
+class="hint-button"
+data-hint="hint2">
+
+▸ HINT 02
+
+</button>
+
+<div
+class="hint-content"
+id="hint2">
+
+Look at the symbols. One of them has never represented an AETHER world.
+
+</div>
+
+
+<button
+type="button"
+class="hint-button"
+data-hint="hint3">
+
+▸ HINT 03
+
+</button>
+
+<div
+class="hint-content"
+id="hint3">
+
+Six belong to worlds you have already encountered. One does not.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section
+class="success-card"
+id="successCard">
+
+<div class="success-symbol">
+✦
+</div>
+
+<h3>
+SIGNAL MATCH CONFIRMED
+</h3>
+
+<p>
+
+ANOMALY IDENTIFIED.
+
+<br><br>
+
+The signal has stabilized.
+
+</p>
+
+<div class="reward">
+✦ +10 HALO POINTS
+</div>
+
+</section>
+
+
+
+<section class="next-card">
+
+<div class="next-label">
+NEXT TRANSMISSION
+</div>
+
+<div class="next-title">
+TRANSMISSION 002
+</div>
+
+<div
+class="next-status"
+id="nextStatus">
+
+🔒 LOCKED
+
+</div>
+
+<div class="next-message">
+
+The signal is waiting.
+
+</div>
+
+</section>
+
+
+
+<section class="back-section">
+
+<a
+href="halo-home.html"
+class="back-button">
+
+← RETURN TO MY HALO
+
+</a>
+
+</section>
+
+
+
+<footer>
+
+AETHERVERSE · AETHER TRANSMISSIONS
+
+<br>
+
+TRANSMISSION 001 · THE FIRST SIGNAL
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+
+const SUPABASE_ANON_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+
+
+/* =========================
+   SESSION
+========================= */
+
+async function requireHaloSession() {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient.auth.getSession();
+
+
+    if (
+        error ||
+        !data ||
+        !data.session
+    ) {
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return null;
+
+    }
+
+
+    return data.session;
+
+}
+
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const symbolButtons =
+document.querySelectorAll(
+    ".symbol-button"
+);
+
+
+const solveButton =
+document.getElementById(
+    "solveButton"
+);
+
+
+const solveMessage =
+document.getElementById(
+    "solveMessage"
+);
+
+
+const successCard =
+document.getElementById(
+    "successCard"
+);
+
+
+const nextStatus =
+document.getElementById(
+    "nextStatus"
+);
+
+
+const signalStatus =
+document.getElementById(
+    "signalStatus"
+);
+
+
+
+let selectedAnswer = null;
+
+
+
+/* =========================
+   SYMBOL SELECTION
+========================= */
+
+symbolButtons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                symbolButtons.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    }
+                );
+
+
+                button.classList.add(
+                    "selected"
+                );
+
+
+                selectedAnswer =
+                    button.dataset.answer;
+
+
+                solveMessage.textContent =
+                    "";
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================
+   PUZZLE DEMO
+========================= */
+
+solveButton.addEventListener(
+    "click",
+    () => {
+
+        if (!selectedAnswer) {
+
+            solveMessage.textContent =
+                "Select a signal first.";
+
+            return;
+
+        }
+
+
+        /*
+         * Temporary visual test only.
+         *
+         * The final answer validation,
+         * HALO Points and progress storage
+         * will be handled securely through
+         * Supabase in the next step.
+         */
+
+        if (
+            selectedAnswer ===
+            "anomaly"
+        ) {
+
+            successCard.classList.add(
+                "visible"
+            );
+
+
+            signalStatus.textContent =
+                "● SIGNAL STABILIZED";
+
+
+            nextStatus.textContent =
+                "🔓 UNLOCKED";
+
+
+            solveMessage.textContent =
+                "Signal match confirmed.";
+
+        }
+        else {
+
+            solveMessage.textContent =
+                "The signal does not match. Try again.";
+
+        }
+
+    }
+);
+
+
+
+/* =========================
+   HINTS
+========================= */
+
+document
+.querySelectorAll(
+    ".hint-button"
+)
+.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const hintId =
+                    button.dataset.hint;
+
+
+                const hint =
+                    document.getElementById(
+                        hintId
+                    );
+
+
+                hint.classList.toggle(
+                    "visible"
+                );
+
+
+                if (
+                    hint.classList.contains(
+                        "visible"
+                    )
+                ) {
+
+                    button.textContent =
+                        "▾ " +
+                        button.textContent
+                            .replace(
+                                "▸ ",
+                                ""
+                            );
+
+                }
+                else {
+
+                    button.textContent =
+                        "▸ " +
+                        button.textContent
+                            .replace(
+                                "▾ ",
+                                ""
+                            );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================
+   START
+========================= */
+
+async function startTransmissionPage() {
+
+    const session =
+        await requireHaloSession();
+
+
+    if (!session) {
+
+        return;
+
+    }
+
+}
+
+
+startTransmissionPage();
+
+</script>
+
+
+</body>
+
+  </html>
