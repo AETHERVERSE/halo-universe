@@ -390,6 +390,12 @@ h1 {
         transform 0.2s,
         background 0.2s,
         border-color 0.2s;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    display: block;
 }
 
 .points-card:hover {
@@ -1067,9 +1073,11 @@ Solve mysteries and discover hidden pieces of the universe.
 </a>
 
 
-<!-- SPECIAL -->
+<!-- SPECIAL CHALLENGES -->
 
-<div class="points-card">
+<a
+href="aether-special-challenges.html"
+class="points-card">
 
 <div class="points-icon">
 🌟
@@ -1084,14 +1092,14 @@ Take part in special HALO challenges and limited experiences.
 </p>
 
 <span class="points-value">
-+25 STAR POINTS
++10 HALO POINTS
 </span>
 
 <div class="music-status">
-SPECIAL EVENTS ONLY
+✦ ENTER SPECIAL CHALLENGES
 </div>
 
-</div>
+</a>
 
 
 </div>
@@ -1712,11 +1720,11 @@ async function loadCodexProgress(userId) {
             event.action_key.startsWith(
                 "codex_"
             )
-        );
+    );
 
 
     const discovered =
-        codexEvents.length;
+    codexEvents.length;
 
 
     const codexPoints =
@@ -1920,7 +1928,7 @@ async function loadHaloData() {
 
         /* =========================
            HALO POINTS
-        ========================= */
+========================= */
 
         const {
             data: pointsData,
@@ -1978,7 +1986,7 @@ async function loadHaloData() {
 
         /* =========================
            DISPLAY RANK
-        ========================= */
+========================= */
 
         if (admin) {
 
