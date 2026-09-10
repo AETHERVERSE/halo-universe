@@ -1040,7 +1040,9 @@ Take part in the HALO community and connect with AETHER.
 
 <!-- PUZZLES -->
 
-<div class="points-card">
+<a
+href="aether-puzzles-events.html"
+class="points-card">
 
 <div class="points-icon">
 🧩
@@ -1059,10 +1061,10 @@ Solve mysteries and discover hidden pieces of the universe.
 </span>
 
 <div class="music-status">
-COMING WITH EVENTS
+✦ ENTER PUZZLES & EVENTS
 </div>
 
-</div>
+</a>
 
 
 <!-- SPECIAL -->
@@ -1705,11 +1707,11 @@ async function loadCodexProgress(userId) {
 
 
     const codexEvents =
-        data.filter(
-            event =>
-                event.action_key.startsWith(
-                    "codex_"
-                )
+    data.filter(
+        event =>
+            event.action_key.startsWith(
+                "codex_"
+            )
         );
 
 
@@ -1718,15 +1720,15 @@ async function loadCodexProgress(userId) {
 
 
     const codexPoints =
-        codexEvents.reduce(
-            (
-                total,
-                event
-            ) =>
-                total +
-                Number(event.points || 0),
-            0
-        );
+    codexEvents.reduce(
+        (
+            total,
+            event
+        ) =>
+            total +
+            Number(event.points || 0),
+        0
+    );
 
 
     const totalCodex =
