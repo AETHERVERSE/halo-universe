@@ -521,6 +521,50 @@ h1 {
 
 
 /* =========================
+   TRANSMISSION BUTTON
+========================= */
+
+.transmission-button {
+
+    display: inline-block;
+
+    margin-top: 18px;
+
+    padding: 10px 20px;
+
+    border: 1px solid #8f84c9;
+
+    border-radius: 25px;
+
+    background: transparent;
+
+    color: #ddd7ff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.transmission-button:hover {
+
+    background: #29264b;
+
+    border-color: #c8bdff;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
    DASHBOARD
 ========================= */
 
@@ -952,9 +996,15 @@ Receive signals and fragments from the AETHER universe.
 +10 STAR POINTS
 </span>
 
-<div class="music-status">
-COMING WITH TRANSMISSIONS
-</div>
+<br>
+
+<a
+href="aether-transmissions.html"
+class="transmission-button">
+
+✦ OPEN TRANSMISSIONS →
+
+</a>
 
 </div>
 
@@ -1087,7 +1137,9 @@ Your HALO identity, memories and personal AETHER journey.
 </div>
 
 
-<div class="dashboard-card">
+<a
+href="aether-transmissions.html"
+class="dashboard-card">
 
 <div class="icon">
 📡
@@ -1101,7 +1153,7 @@ TRANSMISSIONS
 Messages, signals and fragments from the AETHER universe.
 </p>
 
-</div>
+</a>
 
 
 <div class="dashboard-card">
