@@ -211,18 +211,6 @@ button {
     outline: none;
 }
 
-/*
-    Positions correspond to the supplied map.
-
-    Solarion   top center
-    Hollow     upper left
-    Voltaris   upper right
-    Lumenia    left
-    Thalassia  right
-    Nocteum    lower left
-    Ignis      lower right
-*/
-
 .hotspot-solarion {
     left: 50%;
     top: 19%;
@@ -407,6 +395,25 @@ button {
     flex-direction: column;
     text-align: center;
     padding: 8px;
+    cursor: pointer;
+    transition: 0.25s ease;
+    color: var(--text);
+}
+
+.guardian:hover,
+.guardian:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(210,225,255,0.55);
+    background:
+        radial-gradient(circle at center, rgba(150,180,255,0.13), transparent 65%),
+        linear-gradient(145deg, #151f38, #090e1c);
+    box-shadow:
+        0 0 25px rgba(150,180,255,0.20),
+        0 12px 35px rgba(0,0,0,0.35);
+}
+
+.guardian:focus {
+    outline: none;
 }
 
 .guardian-icon {
@@ -677,7 +684,7 @@ button {
         <div class="section-heading">
             <div class="small">THE AETHER PATH</div>
             <h2>THE SEVEN WORLDS</h2>
-            <p>Choose a world and begin your mission.</p>
+            <p>Choose a world and begin your member mission.</p>
         </div>
 
 
@@ -741,7 +748,7 @@ button {
         </div>
 
         <div class="map-hint">
-            ✦ Tap a world to enter its path ✦
+            ✦ Tap a world to enter its member path ✦
         </div>
 
     </section>
@@ -753,45 +760,86 @@ button {
         <div class="section-heading">
             <div class="small">THE SEVEN GUARDIANS</div>
             <h2>GUARDIAN PATH</h2>
-            <p>Seven Guardians. Seven different challenges.</p>
+            <p>Choose a Guardian and begin a separate Guardian mission.</p>
         </div>
 
         <div class="guardian-grid">
 
-            <div class="guardian">
+            <button
+                class="guardian"
+                aria-label="Open Solis Guardian Mission"
+                onclick="openGuardian('SOLIS')">
+
                 <div class="guardian-icon">🦁</div>
-                <div class="guardian-name">SOLEN'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">SOLIS</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Umbra Guardian Mission"
+                onclick="openGuardian('UMBRA')">
+
                 <div class="guardian-icon">🐆</div>
-                <div class="guardian-name">VEX'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">UMBRA</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Volt Guardian Mission"
+                onclick="openGuardian('VOLT')">
+
                 <div class="guardian-icon">🐺</div>
-                <div class="guardian-name">KAIRO'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">VOLT</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Thalos Guardian Mission"
+                onclick="openGuardian('THALOS')">
+
                 <div class="guardian-icon">🐬</div>
-                <div class="guardian-name">RIVEN'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">THALOS</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Pyra Guardian Mission"
+                onclick="openGuardian('PYRA')">
+
                 <div class="guardian-icon">🔥</div>
-                <div class="guardian-name">ZENITH'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">PYRA</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Lumen Guardian Mission"
+                onclick="openGuardian('LUMEN')">
+
                 <div class="guardian-icon">🐈</div>
-                <div class="guardian-name">LUX'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">LUMEN</div>
 
-            <div class="guardian">
+            </button>
+
+
+            <button
+                class="guardian"
+                aria-label="Open Noctis Guardian Mission"
+                onclick="openGuardian('NOCTIS')">
+
                 <div class="guardian-icon">🐦‍⬛</div>
-                <div class="guardian-name">NERO'S GUARDIAN</div>
-            </div>
+                <div class="guardian-name">NOCTIS</div>
+
+            </button>
 
         </div>
 
@@ -841,7 +889,9 @@ button {
                     </div>
                 </div>
 
-                <div class="progress-number">
+                <div
+                    class="progress-number"
+                    id="guardianCount">
                     0/7
                 </div>
 
@@ -906,7 +956,7 @@ button {
         </button>
 
         <div class="world-kicker" id="worldKicker">
-            WORLD
+            WORLD PATH
         </div>
 
         <h2 id="worldTitle">
@@ -926,6 +976,52 @@ button {
         <div
             class="mission-list"
             id="missionList">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     GUARDIAN OVERLAY
+========================= -->
+
+<div
+    class="overlay"
+    id="guardianOverlay"
+    onclick="closeGuardianOutside(event)"
+>
+
+    <div class="world-panel">
+
+        <button
+            class="close-button"
+            onclick="closeGuardian()">
+            ×
+        </button>
+
+        <div class="world-kicker">
+            GUARDIAN PATH
+        </div>
+
+        <h2 id="guardianTitle">
+            SOLIS
+        </h2>
+
+        <div
+            class="world-member"
+            id="guardianMember">
+        </div>
+
+        <div
+            class="world-description"
+            id="guardianDescription">
+        </div>
+
+        <div
+            class="mission-list"
+            id="guardianMissionList">
         </div>
 
     </div>
@@ -1008,7 +1104,7 @@ const supabaseClient =
 
 
 /* =========================================================
-   AETHER PATH DATA
+   AETHER PATH — MEMBER MISSIONS
 ========================================================= */
 
 const worlds = {
@@ -1309,6 +1405,189 @@ const worlds = {
 
 
 /* =========================================================
+   AETHER PATH — GUARDIAN MISSIONS
+========================================================= */
+
+const guardians = {
+
+    SOLIS: {
+        member: "Solen's Guardian",
+        description:
+            "Solis, the golden lion of Solarion, watches over courage and the first light.",
+        missions: [
+            {
+                number: 15,
+                title: "THE LION'S CALL",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "A warm golden light spreads across Solarion. Solis stands at the edge of the light and waits for you to recognize the bond.",
+                question:
+                    "Which virtue does Solis represent?",
+                answers: [
+                    "Courage",
+                    "Trust",
+                    "Wisdom"
+                ],
+                correct: "Courage"
+            }
+        ]
+    },
+
+
+    UMBRA: {
+        member: "Vex's Guardian",
+        description:
+            "Umbra, the black panther of Hollow, moves through shadows and guards the truth hidden within them.",
+        missions: [
+            {
+                number: 16,
+                title: "THE SHADOW WITHIN",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "Hollow falls silent. Umbra disappears into the shadows, leaving behind only a single purple crystal.",
+                question:
+                    "What does Umbra represent?",
+                answers: [
+                    "Trust",
+                    "Hope",
+                    "Compassion"
+                ],
+                correct: "Trust"
+            }
+        ]
+    },
+
+
+    VOLT: {
+        member: "Kairo's Guardian",
+        description:
+            "Volt, the wolf of Voltaris, carries the energy of unity through storms and endless motion.",
+        missions: [
+            {
+                number: 17,
+                title: "THE STORM'S BOND",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "Lightning races across the sky. Volt stands in the center of the storm, waiting for the signal that brings everything together.",
+                question:
+                    "Which virtue does Volt protect?",
+                answers: [
+                    "Unity",
+                    "Courage",
+                    "Kindness"
+                ],
+                correct: "Unity"
+            }
+        ]
+    },
+
+
+    THALOS: {
+        member: "Riven's Guardian",
+        description:
+            "Thalos, the dolphin of Thalassia, carries memories through the endless sea and protects the bonds between souls.",
+        missions: [
+            {
+                number: 18,
+                title: "THE TIDAL MEMORY",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "The ocean grows still. Thalos circles beneath the surface and reveals a memory carried by the tide.",
+                question:
+                    "Which virtue belongs to Thalos?",
+                answers: [
+                    "Kindness",
+                    "Wisdom",
+                    "Hope"
+                ],
+                correct: "Kindness"
+            }
+        ]
+    },
+
+
+    PYRA: {
+        member: "Zenith's Guardian",
+        description:
+            "Pyra, the phoenix of Ignis, rises from flame and reminds the world that every ending can become a beginning.",
+        missions: [
+            {
+                number: 19,
+                title: "THE FIRE THAT RISES",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "The flames of Ignis burn brighter. Pyra rises from the fire, but the path forward appears only when you understand what the flame protects.",
+                question:
+                    "Which virtue does Pyra represent?",
+                answers: [
+                    "Hope",
+                    "Trust",
+                    "Compassion"
+                ],
+                correct: "Hope"
+            }
+        ]
+    },
+
+
+    LUMEN: {
+        member: "Lux's Guardian",
+        description:
+            "Lumen, the white cat of Lumenia, carries gentle light and watches over the hearts of those who need it.",
+        missions: [
+            {
+                number: 20,
+                title: "THE GENTLE LIGHT",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "A soft light appears in the darkness. Lumen approaches without fear and waits for you to understand its message.",
+                question:
+                    "Which virtue belongs to Lumen?",
+                answers: [
+                    "Compassion",
+                    "Unity",
+                    "Courage"
+                ],
+                correct: "Compassion"
+            }
+        ]
+    },
+
+
+    NOCTIS: {
+        member: "Nero's Guardian",
+        description:
+            "Noctis, the raven of Nocteum, watches from the night and remembers what others have forgotten.",
+        missions: [
+            {
+                number: 21,
+                title: "THE RAVEN REMEMBERS",
+                type: "Guardian Mission",
+                reward: 30,
+                story:
+                    "The stars disappear above Nocteum. Noctis watches from the darkness, carrying one final piece of forgotten knowledge.",
+                question:
+                    "Which virtue does Noctis represent?",
+                answers: [
+                    "Wisdom",
+                    "Hope",
+                    "Kindness"
+                ],
+                correct: "Wisdom"
+            }
+        ]
+    }
+
+};
+
+
+/* =========================================================
    STATE
 ========================================================= */
 
@@ -1347,11 +1626,33 @@ function updateUI() {
     document.getElementById("worldCount").textContent =
         `${discoveredWorlds.length}/7`;
 
+    const guardianMissionNumbers = [
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+    ];
+
+    const completedGuardians =
+        guardianMissionNumbers.filter(
+            number =>
+                completedMissions.includes(number)
+        ).length;
+
+    document.getElementById("guardianCount").textContent =
+        `${completedGuardians}/7`;
+
     document.getElementById("missionProgress").style.width =
-        `${(completedMissions.length / 21) * 100}%`;
+        `${Math.min((completedMissions.length / 21) * 100, 100)}%`;
 
     document.getElementById("worldProgress").style.width =
-        `${(discoveredWorlds.length / 7) * 100}%`;
+        `${Math.min((discoveredWorlds.length / 7) * 100, 100)}%`;
+
+    document.getElementById("guardianProgress").style.width =
+        `${Math.min((completedGuardians / 7) * 100, 100)}%`;
 
     localStorage.setItem(
         "aether_path_completed",
@@ -1387,12 +1688,6 @@ async function loadAetherCoins() {
 
         return;
     }
-
-    /*
-        One-time migration of the old local Path balance.
-
-        This prevents already-earned local coins from being lost.
-    */
 
     const migrationKey =
         "aether_path_coins_migrated";
@@ -1511,7 +1806,7 @@ async function awardMissionCoins(mission) {
 
 
 /* =========================================================
-   WORLD PANEL
+   WORLD PANEL — MEMBER MISSIONS
 ========================================================= */
 
 function openWorld(worldKey) {
@@ -1528,7 +1823,7 @@ function openWorld(worldKey) {
     }
 
     document.getElementById("worldKicker").textContent =
-        "WORLD PATH";
+        "WORLD PATH • MEMBER MISSION";
 
     document.getElementById("worldTitle").textContent =
         worldKey;
@@ -1600,6 +1895,85 @@ function closeOverlayOutside(event) {
 
 
 /* =========================================================
+   GUARDIAN PANEL — GUARDIAN MISSIONS
+========================================================= */
+
+function openGuardian(guardianKey) {
+
+    const guardian = guardians[guardianKey];
+
+    if (!guardian) return;
+
+    document.getElementById("guardianTitle").textContent =
+        guardianKey;
+
+    document.getElementById("guardianMember").textContent =
+        guardian.member;
+
+    document.getElementById("guardianDescription").textContent =
+        guardian.description;
+
+    const list =
+        document.getElementById("guardianMissionList");
+
+    list.innerHTML = "";
+
+    guardian.missions.forEach(mission => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "mission-card";
+
+        const completed =
+            completedMissions.includes(
+                mission.number
+            );
+
+        card.innerHTML = `
+            <div class="mission-number">
+                GUARDIAN MISSION ${String(mission.number).padStart(2, "0")}
+            </div>
+
+            <h3>${mission.title}</h3>
+
+            <div class="mission-meta">
+                ${mission.type} • ${mission.reward} AETHER Coins
+            </div>
+
+            <button
+                class="mission-button"
+                onclick="startMission(${mission.number})">
+                ${completed ? "COMPLETED" : "BEGIN GUARDIAN MISSION"}
+            </button>
+        `;
+
+        list.appendChild(card);
+    });
+
+    document
+        .getElementById("guardianOverlay")
+        .classList.add("open");
+}
+
+
+function closeGuardian() {
+
+    document
+        .getElementById("guardianOverlay")
+        .classList.remove("open");
+}
+
+
+function closeGuardianOutside(event) {
+
+    if (event.target.id === "guardianOverlay") {
+        closeGuardian();
+    }
+}
+
+
+/* =========================================================
    FIND MISSION
 ========================================================= */
 
@@ -1609,6 +1983,16 @@ function findMission(number) {
 
         const found =
             worlds[key].missions.find(
+                mission => mission.number === number
+            );
+
+        if (found) return found;
+    }
+
+    for (const key in guardians) {
+
+        const found =
+            guardians[key].missions.find(
                 mission => mission.number === number
             );
 
@@ -1636,6 +2020,7 @@ function startMission(number) {
         mission.attempts ? 3 : 999;
 
     closeWorld();
+    closeGuardian();
 
     document.getElementById("missionType").textContent =
         mission.type;
@@ -1764,11 +2149,6 @@ async function answerMission(answer) {
 
         if (!success) {
 
-            /*
-                Roll back the completion locally if
-                Supabase could not award the coins.
-            */
-
             completedMissions =
                 completedMissions.filter(
                     number =>
@@ -1880,6 +2260,7 @@ document.addEventListener(
         if (event.key === "Escape") {
 
             closeWorld();
+            closeGuardian();
             closeMission();
         }
     }
@@ -1897,4 +2278,4 @@ loadAetherCoins();
 </script>
 
 </body>
-    </html>
+            </html>
