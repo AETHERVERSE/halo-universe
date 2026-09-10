@@ -1,1 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Special Challenges | AETHERVERSE</title>
+
+<style>
+
+body {
+    margin: 0;
+    background: #0f0d2b;
+    color: #ddd7ff;
+    font-family: Georgia, serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 20px 60px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.logo {
+    letter-spacing: 6px;
+    font-size: 0.8rem;
+    color: #aaa0e6;
+    margin-bottom: 25px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav a,
+.logout-nav-button {
+    text-decoration: none;
+    color: #ddd7ff;
+    border: 1px solid #39345e;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-family: Georgia, serif;
+    cursor: pointer;
+}
+
+nav a:hover,
+.logout-nav-button:hover {
+    background: #29264b;
+    border-color: #8f84c9;
+}
+
+.logout-nav-button {
+    background: transparent;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.hero-symbol {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+    margin: 10px 0;
+}
+
+.subtitle {
+    color: #aaa0e6;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   SECTION CARDS
+========================= */
+
+.challenge-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #252052,
+            #181633
+        );
+
+    border: 1px solid #514879;
+
+    border-radius: 22px;
+
+    padding: 32px 28px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+
+}
+
+.challenge-label {
+
+    color: #aaa0e6;
+
+    font-size: 0.78rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+
+}
+
+.challenge-title {
+
+    color: #eeeaff;
+
+    font-size: 1.8rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+.challenge-subtitle {
+
+    color: #cdb9ff;
+
+    font-size: 0.95rem;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 25px;
+
+}
+
+.challenge-description {
+
+    color: #c4c1d7;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =========================
+   SONG INFO
+========================= */
+
+.song-card {
+
+    background: #1d1a3d;
+
+    border: 1px solid #39345e;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    margin-bottom: 25px;
+
+}
+
+.song-label {
+
+    color: #77739e;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 8px;
+
+}
+
+.song-name {
+
+    color: #eeeaff;
+
+    font-size: 1.4rem;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* =========================
+   LYRIC
+========================= */
+
+.lyric-box {
+
+    background: #100e29;
+
+    border: 1px solid #39345e;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    margin: 25px 0;
+
+    text-align: center;
+
+    line-height: 2;
+
+}
+
+.lyric-line {
+
+    color: #ddd7ff;
+
+    font-size: 1.05rem;
+
+}
+
+.lyric-gap {
+
+    display: inline-block;
+
+    min-width: 120px;
+
+    border-bottom: 1px solid #aaa0e6;
+
+    margin: 0 5px;
+
+    color: #aaa0e6;
+
+}
+
+
+/* =========================
+   ANSWERS
+========================= */
+
+.answers {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-top: 25px;
+
+}
+
+.answer-button {
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    border: 1px solid #39345e;
+
+    background: #1d1a3d;
+
+    color: #ddd7ff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.95rem;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+.answer-button:hover {
+
+    background: #29264b;
+
+    border-color: #8f84c9;
+
+    transform: translateY(-2px);
+
+}
+
+.answer-button.selected {
+
+    background: #30275f;
+
+    border-color: #cdb9ff;
+
+}
+
+
+/* =========================
+   SOLVE BUTTON
+========================= */
+
+.solve-button {
+
+    display: block;
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px 20px;
+
+    border: 1px solid #8f84c9;
+
+    border-radius: 25px;
+
+    background: transparent;
+
+    color: #ddd7ff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+.solve-button:hover {
+
+    background: #29264b;
+
+    border-color: #cdb9ff;
+
+    transform: translateY(-2px);
+
+}
+
+.solve-button:disabled {
+
+    opacity: 0.5;
+
+    cursor: default;
+
+    transform: none;
+
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.result {
+
+    display: none;
+
+    margin-top: 25px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    line-height: 1.8;
+
+}
+
+.result.success {
+
+    display: block;
+
+    background: #211d46;
+
+    border: 1px solid #8f84c9;
+
+    color: #ddd7ff;
+
+}
+
+.result.error {
+
+    display: block;
+
+    background: #21182f;
+
+    border: 1px solid #5d456f;
+
+    color: #d9c5e8;
+
+}
+
+.result-title {
+
+    font-size: 1.2rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* =========================
+   REWARD
+========================= */
+
+.reward {
+
+    margin-top: 18px;
+
+    color: #dfd1ff;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-button {
+
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 20px;
+
+    border: 1px solid #8f84c9;
+
+    border-radius: 25px;
+
+    color: #ddd7ff;
+
+    text-decoration: none;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+.back-button:hover {
+
+    background: #29264b;
+
+    border-color: #c8bdff;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    margin-top: 55px;
+
+    color: #77739e;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+
+    line-height: 2;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .challenge-title {
+        font-size: 1.45rem;
+    }
+
+    .answers {
+        grid-template-columns: 1fr;
+    }
+
+    .challenge-card {
+        padding: 25px 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<header>
+
+<div class="logo">
+AETHERVERSE
+</div>
+
+<nav>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="aether-music.html">
+AETHER MUSIC
+</a>
+
+<a href="codex.html">
+CODEX
+</a>
+
+<a href="aether-transmissions.html">
+TRANSMISSIONS
+</a>
+
+<a href="aether-puzzles-events.html">
+PUZZLES & EVENTS
+</a>
+
+<button
+type="button"
+id="logoutButton"
+class="logout-nav-button">
+
+↪ LOG OUT
+
+</button>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-symbol">
+🌟
+</div>
+
+<h1>
+SPECIAL CHALLENGES
+</h1>
+
+<p class="subtitle">
+
+Rare challenges for HALOs who want to look a little closer.
+
+<br>
+
+Listen carefully. Remember everything. Some answers are hidden in plain sight.
+
+</p>
+
+</section>
+
+
+<!-- ACTIVE CHALLENGE -->
+
+<section class="challenge-card">
+
+<div class="challenge-label">
+✦ SPECIAL CHALLENGE #001 ✦
+</div>
+
+<div class="challenge-title">
+LYRIC GAP
+</div>
+
+<div class="challenge-subtitle">
+NEW HORIZON
+</div>
+
+<p class="challenge-description">
+
+One line from an AETHER song has disappeared.
+
+Complete the lyric and prove that you were listening.
+
+</p>
+
+
+<div class="song-card">
+
+<div class="song-label">
+AETHER • BREAK THE BUBBLE
+</div>
+
+<div class="song-name">
+NEW HORIZON
+</div>
+
+</div>
+
+
+<div class="lyric-box">
+
+<div class="lyric-line">
+This is our new horizon.
+</div>
+
+<div class="lyric-line">
+A sky we've
+<span class="lyric-gap">
+__________
+</span>
+</div>
+
+<div class="lyric-line">
+끝없이 펼쳐져
+</div>
+
+<div class="lyric-line">
+Beyond our wildest dreams.
+</div>
+
+</div>
+
+
+<div class="answers">
+
+<button
+type="button"
+class="answer-button"
+data-answer="never seen">
+
+never seen
+
+</button>
+
+<button
+type="button"
+class="answer-button"
+data-answer="never known">
+
+never known
+
+</button>
+
+<button
+type="button"
+class="answer-button"
+data-answer="never dreamed">
+
+never dreamed
+
+</button>
+
+<button
+type="button"
+class="answer-button"
+data-answer="never reached">
+
+never reached
+
+</button>
+
+</div>
+
+
+<button
+type="button"
+id="solveButton"
+class="solve-button">
+
+✦ SUBMIT ANSWER
+
+</button>
+
+
+<div
+id="result"
+class="result">
+</div>
+
+</section>
+
+
+<a
+href="halo-home.html"
+class="back-button">
+
+← BACK TO MY HALO
+
+</a>
+
+
+<footer>
+
+ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+<br><br>
+
+#WEAREHALO • #WEAREAETHER
+
+</footer>
+
+
+</div>
+
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================
+   PROTECTED PAGE
+========================= */
+
+async function requireSession() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.getSession();
+
+
+        if (
+            error ||
+            !data ||
+            !data.session ||
+            !data.session.user
+        ) {
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "SPECIAL CHALLENGE SESSION ERROR:",
+            error
+        );
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================
+   STATE
+========================= */
+
+let selectedAnswer = null;
+
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+document
+    .querySelectorAll(
+        ".answer-button"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".answer-button"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList.remove(
+                                    "selected"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    selectedAnswer =
+                        button.dataset.answer;
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================
+   RESULT
+========================= */
+
+function showResult(
+    type,
+    title,
+    message,
+    reward = ""
+) {
+
+    const result =
+        document.getElementById(
+            "result"
+        );
+
+
+    result.className =
+        "result " +
+        type;
+
+
+    result.innerHTML =
+
+        "<div class='result-title'>" +
+        title +
+        "</div>" +
+
+        "<div>" +
+        message +
+        "</div>" +
+
+        (
+            reward
+                ? "<div class='reward'>" +
+                  reward +
+                  "</div>"
+                : ""
+        );
+
+}
+
+
+/* =========================
+   SUBMIT CHALLENGE
+========================= */
+
+async function submitChallenge() {
+
+    const button =
+        document.getElementById(
+            "solveButton"
+        );
+
+
+    if (!selectedAnswer) {
+
+        showResult(
+            "error",
+            "SELECT AN ANSWER",
+            "Choose the lyric you believe is correct."
+        );
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "CHECKING...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .rpc(
+                "solve_special_challenge_001",
+                {
+                    p_answer:
+                        selectedAnswer
+                }
+            );
+
+
+        if (error) {
+
+            console.error(
+                "SPECIAL CHALLENGE ERROR:",
+                error
+            );
+
+            showResult(
+                "error",
+                "SIGNAL ERROR",
+                "Something went wrong while checking your answer. Please try again."
+            );
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "✦ SUBMIT ANSWER";
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.success
+        ) {
+
+            showResult(
+                "success",
+                "✦ CHALLENGE COMPLETE ✦",
+                "You remembered the missing line.",
+                "+10 HALO POINTS"
+            );
+
+
+            button.textContent =
+                "✓ COMPLETED";
+
+
+            document
+                .querySelectorAll(
+                    ".answer-button"
+                )
+                .forEach(
+                    item =>
+                        item.disabled =
+                            true
+                );
+
+
+            return;
+
+        }
+
+
+        showResult(
+            "error",
+            "NOT QUITE",
+            "That lyric doesn't match. Listen again and try once more."
+        );
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "✦ TRY AGAIN";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "SPECIAL CHALLENGE ERROR:",
+            error
+        );
+
+        showResult(
+            "error",
+            "SIGNAL ERROR",
+            "Something went wrong while checking your answer."
+        );
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "✦ SUBMIT ANSWER";
+
+    }
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+document
+    .getElementById(
+        "solveButton"
+    )
+    .addEventListener(
+        "click",
+        submitChallenge
+    );
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout() {
+
+    const button =
+        document.getElementById(
+            "logoutButton"
+        );
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "LOGGING OUT...";
+
+
+    const {
+        error
+    } =
+    await supabaseClient.auth.signOut();
+
+
+    if (error) {
+
+        console.error(
+            "LOGOUT ERROR:",
+            error
+        );
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "↪ LOG OUT";
+
+        return;
+
+    }
+
+
+    window.location.replace(
+        "halo.html"
+    );
+
+}
+
+
+document
+    .getElementById(
+        "logoutButton"
+    )
+    .addEventListener(
+        "click",
+        logout
+    );
+
+
+/* =========================
+   START
+========================= */
+
+requireSession();
+
+</script>
+
+</body>
+
+  </html>
