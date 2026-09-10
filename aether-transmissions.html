@@ -602,6 +602,13 @@ nav a:hover {
 }
 
 
+.symbol-button:disabled {
+
+    cursor: default;
+
+}
+
+
 .solve-button {
 
     margin-top: 25px;
@@ -632,6 +639,17 @@ nav a:hover {
     background: #6b5fa0;
 
     transform: translateY(-2px);
+
+}
+
+
+.solve-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: default;
+
+    transform: none;
 
 }
 
@@ -1568,18 +1586,41 @@ window.supabase.createClient(
 
 async function requireHaloSession() {
 
-    const {
-        data,
-        error
-    } =
-    await supabaseClient.auth.getSession();
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.auth.getSession();
 
 
-    if (
-        error ||
-        !data ||
-        !data.session
-    ) {
+        if (
+            error ||
+            !data ||
+            !data.session ||
+            !data.session.user
+        ) {
+
+            window.location.replace(
+                "halo.html"
+            );
+
+            return null;
+
+        }
+
+
+        return data.session;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "TRANSMISSION SESSION ERROR:",
+            error
+        );
 
         window.location.replace(
             "halo.html"
@@ -1588,9 +1629,6 @@ async function requireHaloSession() {
         return null;
 
     }
-
-
-    return data.session;
 
 }
 
@@ -1638,6 +1676,157 @@ document.getElementById(
 
 
 let selectedAnswer = null;
+let currentSession = null;
+
+
+
+/* =========================
+   SHOW SOLVED STATE
+========================= */
+
+function showSolvedState() {
+
+    successCard.classList.add(
+        "visible"
+    );
+
+
+    signalStatus.textContent =
+        "● SIGNAL STABILIZED";
+
+
+    nextStatus.textContent =
+        "🔓 UNLOCKED";
+
+
+    solveMessage.textContent =
+        "Signal match confirmed. This transmission has already been solved.";
+
+
+    solveButton.disabled =
+        true;
+
+
+    solveButton.textContent =
+        "TRANSMISSION SOLVED";
+
+
+    symbolButtons.forEach(
+        button => {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+}
+
+
+
+/* =========================
+   LOAD TRANSMISSION PROGRESS
+========================= */
+
+async function loadTransmissionProgress() {
+
+    if (
+        !currentSession ||
+        !currentSession.user
+    ) {
+
+        return;
+
+    }
+
+
+    const {
+        data: transmission,
+        error: transmissionError
+    } =
+    await supabaseClient
+
+        .from("aether_transmissions")
+
+        .select("id")
+
+        .eq(
+            "transmission_number",
+            1
+        )
+
+        .limit(1)
+        .maybeSingle();
+
+
+    if (transmissionError) {
+
+        console.error(
+            "TRANSMISSION LOAD ERROR:",
+            transmissionError
+        );
+
+        return;
+
+    }
+
+
+    if (!transmission) {
+
+        console.error(
+            "TRANSMISSION 001 NOT FOUND."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data: progress,
+        error: progressError
+    } =
+    await supabaseClient
+
+        .from("aether_transmission_progress")
+
+        .select("status")
+
+        .eq(
+            "user_id",
+            currentSession.user.id
+        )
+
+        .eq(
+            "transmission_id",
+            transmission.id
+        )
+
+        .maybeSingle();
+
+
+    if (progressError) {
+
+        console.error(
+            "TRANSMISSION PROGRESS ERROR:",
+            progressError
+        );
+
+        return;
+
+    }
+
+
+    if (
+        progress &&
+        progress.status === "solved"
+    ) {
+
+        showSolvedState();
+
+    }
+
+}
 
 
 
@@ -1651,6 +1840,15 @@ symbolButtons.forEach(
         button.addEventListener(
             "click",
             () => {
+
+                if (
+                    solveButton.disabled
+                ) {
+
+                    return;
+
+                }
+
 
                 symbolButtons.forEach(
                     item => {
@@ -1684,14 +1882,28 @@ symbolButtons.forEach(
 
 
 /* =========================
-   PUZZLE DEMO
+   SOLVE TRANSMISSION
 ========================= */
 
 solveButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
-        if (!selectedAnswer) {
+        if (
+            !currentSession
+        ) {
+
+            solveMessage.textContent =
+                "Your HALO session could not be verified.";
+
+            return;
+
+        }
+
+
+        if (
+            !selectedAnswer
+        ) {
 
             solveMessage.textContent =
                 "Select a signal first.";
@@ -1701,41 +1913,146 @@ solveButton.addEventListener(
         }
 
 
-        /*
-         * Temporary visual test only.
-         *
-         * The final answer validation,
-         * HALO Points and progress storage
-         * will be handled securely through
-         * Supabase in the next step.
-         */
-
-        if (
-            selectedAnswer ===
-            "anomaly"
-        ) {
-
-            successCard.classList.add(
-                "visible"
-            );
+        solveButton.disabled =
+            true;
 
 
-            signalStatus.textContent =
-                "● SIGNAL STABILIZED";
+        solveButton.textContent =
+            "ANALYZING SIGNAL...";
 
 
-            nextStatus.textContent =
-                "🔓 UNLOCKED";
+        solveMessage.textContent =
+            "The signal is being analyzed...";
 
 
-            solveMessage.textContent =
-                "Signal match confirmed.";
+        try {
 
-        }
-        else {
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+
+                .rpc(
+                    "solve_aether_transmission_001",
+                    {
+                        p_answer:
+                            selectedAnswer
+                    }
+                );
+
+
+            if (error) {
+
+                console.error(
+                    "TRANSMISSION SOLVE ERROR:",
+                    error
+                );
+
+
+                solveMessage.textContent =
+                    "The signal could not be verified. Please try again.";
+
+
+                solveButton.disabled =
+                    false;
+
+
+                solveButton.textContent =
+                    "IDENTIFY THE ANOMALY";
+
+
+                return;
+
+            }
+
+
+            if (
+                data &&
+                data.success === true
+            ) {
+
+                successCard.classList.add(
+                    "visible"
+                );
+
+
+                signalStatus.textContent =
+                    "● SIGNAL STABILIZED";
+
+
+                nextStatus.textContent =
+                    "🔓 UNLOCKED";
+
+
+                if (
+                    data.status ===
+                    "already_solved"
+                ) {
+
+                    solveMessage.textContent =
+                        "Signal match confirmed. This transmission was already solved.";
+
+                }
+
+                else {
+
+                    solveMessage.textContent =
+                        "Signal match confirmed. The signal has stabilized.";
+
+                }
+
+
+                solveButton.textContent =
+                    "TRANSMISSION SOLVED";
+
+
+                symbolButtons.forEach(
+                    button => {
+
+                        button.disabled =
+                            true;
+
+                    }
+                );
+
+
+                return;
+
+            }
+
 
             solveMessage.textContent =
                 "The signal does not match. Try again.";
+
+
+            solveButton.disabled =
+                false;
+
+
+            solveButton.textContent =
+                "IDENTIFY THE ANOMALY";
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "TRANSMISSION SOLVE ERROR:",
+                error
+            );
+
+
+            solveMessage.textContent =
+                "The signal could not be verified. Please try again.";
+
+
+            solveButton.disabled =
+                false;
+
+
+            solveButton.textContent =
+                "IDENTIFY THE ANOMALY";
 
         }
 
@@ -1789,6 +2106,7 @@ document
                             );
 
                 }
+
                 else {
 
                     button.textContent =
@@ -1815,15 +2133,20 @@ document
 
 async function startTransmissionPage() {
 
-    const session =
+    currentSession =
         await requireHaloSession();
 
 
-    if (!session) {
+    if (
+        !currentSession
+    ) {
 
         return;
 
     }
+
+
+    await loadTransmissionProgress();
 
 }
 
@@ -1835,4 +2158,4 @@ startTransmissionPage();
 
 </body>
 
-  </html>
+   </html>
