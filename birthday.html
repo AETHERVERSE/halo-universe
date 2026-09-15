@@ -108,6 +108,70 @@ h1 {
 
 
 /* =========================
+   ADMIN PREVIEW
+========================= */
+
+.admin-preview {
+    display: none;
+
+    max-width: 760px;
+
+    margin:
+        0
+        auto
+        28px;
+
+    padding:
+        14px
+        18px;
+
+    border:
+        1px solid
+        #d6a84f;
+
+    border-radius:
+        18px;
+
+    background:
+        rgba(
+            214,
+            168,
+            79,
+            0.08
+        );
+
+    color:
+        #ffe9a8;
+
+    text-align:
+        center;
+
+    letter-spacing:
+        1.5px;
+
+    font-size:
+        0.78rem;
+
+    line-height:
+        1.6;
+}
+
+.admin-preview strong {
+    display:
+        block;
+
+    color:
+        #fff1b8;
+
+    letter-spacing:
+        3px;
+
+    margin-bottom:
+        4px;
+}
+
+
+/* =========================
    NAV
 ========================= */
 
@@ -958,6 +1022,20 @@ and make a memory that stays.
 </header>
 
 
+<div
+id="adminPreview"
+class="admin-preview">
+
+<strong>
+🧪 ADMIN PREVIEW — NOT LIVE
+</strong>
+
+This Birthday is being previewed by an AETHER administrator.
+The real birthday date, card claim and wish system remain protected.
+
+</div>
+
+
 <!-- =========================
      BIRTHDAY NAVIGATION
 ========================= -->
@@ -1082,20 +1160,100 @@ let timer = null;
 
 
 /* =========================
+   ADMIN TEST MODE
+========================= */
+
+let isAetherAdmin = false;
+
+let adminTestMember = null;
+
+let adminPreview = false;
+
+
+function getTestMember() {
+
+    const params =
+        new URLSearchParams(
+            location.search
+        );
+
+    return params.get("test");
+
+}
+
+
+async function checkAdminAccess() {
+
+    const requestedMember =
+        getTestMember();
+
+
+    if (!requestedMember) {
+        return false;
+    }
+
+
+    if (
+        !MEMBERS.some(
+            member =>
+                member.key ===
+                requestedMember
+        )
+    ) {
+
+        return false;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .rpc(
+            "is_aether_admin"
+        );
+
+
+    if (
+        error ||
+        data !== true
+    ) {
+
+        return false;
+
+    }
+
+
+    isAetherAdmin =
+        true;
+
+    adminTestMember =
+        requestedMember;
+
+    adminPreview =
+        true;
+
+
+    document.getElementById(
+        "adminPreview"
+    )
+    .style.display =
+        "block";
+
+
+    return true;
+
+}
+
+
+/* =========================
    SERVER CLOCK
 ========================= */
 
-/*
-   The birthday system uses Supabase/Postgres
-   time instead of trusting the visitor's
-   device clock.
-
-   The small offset compensates for network
-   latency by using the midpoint between the
-   request start and response time.
-*/
-
 let serverTimeOffset = 0;
+
 
 async function syncServerClock() {
 
@@ -1204,6 +1362,28 @@ function state(event) {
         return "unknown";
     }
 
+
+    /*
+       ADMIN PREVIEW:
+       Only the selected test member
+       is visually treated as live.
+
+       This affects the frontend only.
+       Production database RPCs still use
+       the real server time.
+    */
+
+    if (
+        adminPreview &&
+        event.member_key ===
+        adminTestMember
+    ) {
+
+        return "live";
+
+    }
+
+
     const now =
         serverNow();
 
@@ -1217,15 +1397,19 @@ function state(event) {
             event.end_at
         );
 
+
     if (now < start) {
         return "locked";
     }
+
 
     if (now < end) {
         return "live";
     }
 
+
     return "expired";
+
 }
 
 
@@ -1250,8 +1434,10 @@ function renderMembers() {
                             member.key
                     );
 
+
                 const currentState =
                     state(event);
+
 
                 const date =
                     event
@@ -1260,20 +1446,39 @@ function renderMembers() {
                         )
                         : "Birthday date to be configured";
 
-                const text =
-                    event
-                        ? (
-                            currentState === "locked"
-                                ? "🔒 OPENS ON " + date
-                                : currentState === "live"
-                                    ? "✨ BIRTHDAY IS LIVE"
-                                    : "🌊 BIRTHDAY EVENT ENDED"
-                        )
-                        : "Birthday event coming soon";
+
+                let text;
+
+
+                if (
+                    adminPreview &&
+                    member.key ===
+                    adminTestMember
+                ) {
+
+                    text =
+                        "🧪 ADMIN PREVIEW";
+
+                } else {
+
+                    text =
+                        event
+                            ? (
+                                currentState === "locked"
+                                    ? "🔒 OPENS ON " + date
+                                    : currentState === "live"
+                                        ? "✨ BIRTHDAY IS LIVE"
+                                        : "🌊 BIRTHDAY EVENT ENDED"
+                            )
+                            : "Birthday event coming soon";
+
+                }
+
 
                 const live =
                     event &&
                     currentState === "live";
+
 
                 return `
 
@@ -1349,9 +1554,16 @@ async function load() {
 
 
     /*
-       Synchronise the visible Birthday
-       status with Supabase server time
-       before rendering any event.
+       Check optional admin preview
+       before rendering the Birthday page.
+    */
+
+    await checkAdminAccess();
+
+
+    /*
+       Synchronise visible Birthday status
+       with Supabase server time.
     */
 
     await syncServerClock();
@@ -1393,21 +1605,31 @@ async function load() {
     events =
         data || [];
 
+
     renderMembers();
 
 
-    const key =
+    const params =
         new URLSearchParams(
             location.search
-        )
-        .get("member");
+        );
+
+
+    const requestedMember =
+        params.get("member");
+
+
+    const memberKey =
+        adminPreview
+            ? adminTestMember
+            : requestedMember;
 
 
     const event =
         events.find(
             item =>
                 item.member_key ===
-                key
+                memberKey
         );
 
 
@@ -1416,7 +1638,9 @@ async function load() {
         state(event) === "live"
     ) {
 
-        openBirthday(key);
+        openBirthday(
+            memberKey
+        );
 
     }
 
@@ -1437,9 +1661,17 @@ function openBirthday(key) {
         );
 
 
+    if (!event) {
+        return;
+    }
+
+
+    const currentState =
+        state(event);
+
+
     if (
-        !event ||
-        state(event) !== "live"
+        currentState !== "live"
     ) {
 
         return;
@@ -1459,6 +1691,11 @@ function openBirthday(key) {
         );
 
 
+    if (!member) {
+        return;
+    }
+
+
     const detail =
         document.getElementById(
             "detail"
@@ -1467,6 +1704,28 @@ function openBirthday(key) {
 
     detail.style.display =
         "block";
+
+
+    const previewText =
+        adminPreview &&
+        key === adminTestMember
+            ? `
+                <div
+                class="locked-note"
+                style="
+                    color:#ffe9a8;
+                    border:1px solid #d6a84f;
+                    border-radius:16px;
+                    padding:12px;
+                    margin:20px auto;
+                    max-width:600px;
+                ">
+                    🧪 ADMIN PREVIEW — This is a visual test.
+                    Real card claiming and wishes remain disabled
+                    until the actual birthday window opens.
+                </div>
+              `
+            : "";
 
 
     detail.innerHTML = `
@@ -1499,6 +1758,9 @@ BIRTHDAY
 </div>
 
 
+${previewText}
+
+
 <img
 class="birthday-art"
 src="${esc(
@@ -1512,7 +1774,9 @@ alt="${member.name} Birthday"
 <div class="timer">
 
 <div class="timer-label">
-BIRTHDAY EVENT • 72 HOURS
+${adminPreview
+    ? "ADMIN PREVIEW • SIMULATED 72 HOURS"
+    : "BIRTHDAY EVENT • 72 HOURS"}
 </div>
 
 <div
@@ -1524,7 +1788,9 @@ class="countdown">
 <div
 id="timerNote"
 class="status">
-The birthday window is open.
+${adminPreview
+    ? "Preview timer — the real event is not live yet."
+    : "The birthday window is open."}
 </div>
 
 </div>
@@ -1595,8 +1861,14 @@ One claim per HALO.
 
 <button
 id="claimCard"
-class="claim">
-COLLECT CARD ✦
+class="claim"
+${adminPreview ? "disabled" : ""}
+>
+
+${adminPreview
+    ? "ADMIN PREVIEW — CLAIM LOCKED"
+    : "COLLECT CARD ✦"}
+
 </button>
 
 </div>
@@ -1684,19 +1956,31 @@ AUDIO COMING SOON
 id="wishText"
 maxlength="500"
 placeholder="Write your birthday wish..."
+${adminPreview ? "disabled" : ""}
 ></textarea>
 
 <br>
 
 <button
 id="sendWish"
-class="wish-button">
-SEND WISH ✨
+class="wish-button"
+${adminPreview ? "disabled" : ""}
+>
+
+${adminPreview
+    ? "ADMIN PREVIEW — WISHES LOCKED"
+    : "SEND WISH ✨"}
+
 </button>
 
 <div
 id="wishStatus"
 class="wish-status">
+
+${adminPreview
+    ? "Real wishes can be sent when the birthday event is actually live."
+    : ""}
+
 </div>
 
 </div>
@@ -1734,18 +2018,38 @@ href="birthday.html">
 `;
 
 
-    document.getElementById(
-        "claimCard"
-    )
-    .onclick =
-        claimCard;
+    const claimButton =
+        document.getElementById(
+            "claimCard"
+        );
 
 
-    document.getElementById(
-        "sendWish"
-    )
-    .onclick =
-        sendWish;
+    if (
+        claimButton &&
+        !adminPreview
+    ) {
+
+        claimButton.onclick =
+            claimCard;
+
+    }
+
+
+    const wishButton =
+        document.getElementById(
+            "sendWish"
+        );
+
+
+    if (
+        wishButton &&
+        !adminPreview
+    ) {
+
+        wishButton.onclick =
+            sendWish;
+
+    }
 
 
     loadWishes();
@@ -1772,17 +2076,48 @@ function startTimer() {
     );
 
 
+    /*
+       In admin preview we simulate
+       a complete 72-hour window.
+       This is visual only.
+    */
+
+    const previewEnd =
+        adminPreview
+            ? serverNow() +
+              72 * 60 * 60 * 1000
+            : null;
+
+
     const tick =
         () => {
 
-            const left =
-                Math.max(
-                    0,
-                    Date.parse(
-                        activeEvent.end_at
-                    ) -
-                    serverNow()
-                );
+            let left;
+
+
+            if (
+                adminPreview
+            ) {
+
+                left =
+                    Math.max(
+                        0,
+                        previewEnd -
+                        serverNow()
+                    );
+
+            } else {
+
+                left =
+                    Math.max(
+                        0,
+                        Date.parse(
+                            activeEvent.end_at
+                        ) -
+                        serverNow()
+                    );
+
+            }
 
 
             const hours =
@@ -1840,11 +2175,20 @@ function startTimer() {
 
             if (!left) {
 
-                document.getElementById(
-                    "timerNote"
-                )
-                .textContent =
-                    "The birthday event has ended.";
+                const note =
+                    document.getElementById(
+                        "timerNote"
+                    );
+
+
+                if (note) {
+
+                    note.textContent =
+                        adminPreview
+                            ? "Preview timer completed."
+                            : "The birthday event has ended.";
+
+                }
 
 
                 clearInterval(
@@ -1876,6 +2220,15 @@ function startTimer() {
 ========================= */
 
 async function claimCard() {
+
+    if (
+        adminPreview
+    ) {
+
+        return;
+
+    }
+
 
     const button =
         document.getElementById(
@@ -1934,15 +2287,26 @@ async function claimCard() {
 
 async function sendWish() {
 
+    if (
+        adminPreview
+    ) {
+
+        return;
+
+    }
+
+
     const input =
         document.getElementById(
             "wishText"
         );
 
+
     const status =
         document.getElementById(
             "wishStatus"
         );
+
 
     const button =
         document.getElementById(
@@ -2042,6 +2406,11 @@ async function loadWishes() {
         );
 
 
+    if (!wall) {
+        return;
+    }
+
+
     const {
         data,
         error
@@ -2109,13 +2478,6 @@ ${esc(
 /* =========================
    SERVER CLOCK RESYNC
 ========================= */
-
-/*
-   Re-sync every 5 minutes.
-   This keeps the visible timer/status
-   aligned with Supabase even during a
-   long-open Birthday page.
-*/
 
 setInterval(
     async () => {
