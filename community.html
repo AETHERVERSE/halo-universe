@@ -276,8 +276,7 @@ nav a:hover {
     text-align: left;
 }
 
-.creator-select,
-.creator-input {
+.creator-select {
     width: 100%;
 
     min-height: 45px;
@@ -304,8 +303,7 @@ nav a:hover {
     outline: none;
 }
 
-.creator-select:focus,
-.creator-input:focus {
+.creator-select:focus {
     border-color:
         #9c8fe0;
 }
@@ -947,7 +945,7 @@ nav a:hover {
 
 
 /* =========================================================
-   AETHER TYPING INDICATOR
+   AETHER TYPING
 ========================================================= */
 
 .aether-typing {
@@ -967,6 +965,7 @@ nav a:hover {
     color: #8f88b5;
 
     font-size: 0.7rem;
+
     letter-spacing: 0.6px;
 
     animation:
@@ -1625,10 +1624,6 @@ Trigger a predefined AETHER conversation scene.
 THE IDEA
 </option>
 
-<option value="LIVE_TEST_002">
-LIVE TEST 002
-</option>
-
 </select>
 
 
@@ -1822,9 +1817,7 @@ async function requireCommunitySession() {
         await supabaseClient.auth.getSession();
 
 
-        if (
-            error
-        ) {
+        if (error) {
 
             console.error(
                 "COMMUNITY SESSION ERROR:",
@@ -2585,7 +2578,7 @@ function showLocalAetherTyping(
 
 
 /* =========================================================
-   AETHER TYPING INDICATOR
+   AETHER TYPING
 ========================================================= */
 
 function showAetherTyping(
@@ -2756,7 +2749,7 @@ async function loadAetherMembers() {
 
 
 /* =========================================================
-   AETHER HALO WELCOME
+   HALO WELCOME
 ========================================================= */
 
 async function triggerHaloWelcome() {
@@ -2973,11 +2966,17 @@ function buildMessageElement(
 ) {
 
     const aetherMember =
-        aetherMembersCache.find(
-            member =>
-                member.user_id ===
-                message.user_id
-        );
+        message.author_member_key
+            ? aetherMembersCache.find(
+                member =>
+                    member.member_key ===
+                    message.author_member_key
+            )
+            : aetherMembersCache.find(
+                member =>
+                    member.user_id ===
+                    message.user_id
+            );
 
     const isAether =
         Boolean(
@@ -3002,6 +3001,12 @@ function buildMessageElement(
 
     if (isAether) {
 
+        const badge =
+            aetherMember.member_key ===
+            "elyra"
+                ? "ELYRA"
+                : "AETHER";
+
         messageElement.innerHTML = `
 
             <div class="sender">
@@ -3013,7 +3018,7 @@ function buildMessageElement(
                 </span>
 
                 <span class="aether-badge">
-                    AETHER
+                    ${badge}
                 </span>
 
                 <span class="sender-role">
@@ -3246,7 +3251,7 @@ async function loadMessages() {
         )
 
         .select(
-            "id, user_id, message, created_at, scene_id, scene_order"
+            "id, user_id, author_member_key, message, created_at, scene_id, scene_order"
         )
 
         .order(
@@ -3867,6 +3872,7 @@ async function sendMessage() {
     composerMessage.textContent =
         "Sending...";
 
+
     const {
         data,
         error
@@ -3888,10 +3894,11 @@ async function sendMessage() {
         })
 
         .select(
-            "id, user_id, message, created_at, scene_id, scene_order"
+            "id, user_id, author_member_key, message, created_at, scene_id, scene_order"
         )
 
         .single();
+
 
     if (error) {
 
@@ -3912,6 +3919,7 @@ async function sendMessage() {
         return;
 
     }
+
 
     messageInput.value =
         "";
@@ -4173,6 +4181,7 @@ async function initializeCommunity() {
 
         .maybeSingle();
 
+
     if (profile) {
 
         haloIdentity.textContent =
@@ -4186,6 +4195,7 @@ async function initializeCommunity() {
             "HALO";
 
     }
+
 
     loginWarning.style.display =
         "none";
