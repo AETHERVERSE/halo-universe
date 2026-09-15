@@ -1713,7 +1713,6 @@ function displayAdminRank() {
     nextRank.textContent =
         "Not obtainable through HALO Points";
 
-
 }
 
 
@@ -1881,7 +1880,7 @@ async function loadCodexProgress(userId) {
 
 
 /* =========================
-   DAILY HALO LOGIN STATUS
+   DAILY HALO DATE KEY
 ========================= */
 
 function getBerlinDateKey() {
@@ -1900,6 +1899,77 @@ function getBerlinDateKey() {
 
 }
 
+
+/* =========================
+   CLAIM DAILY HALO REWARD
+========================= */
+
+async function claimDailyHaloReward(userId) {
+
+    try {
+
+        console.log(
+            "DAILY HALO: requesting daily reward..."
+        );
+
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+            .rpc(
+                "grant_daily_halo_login_points",
+                {
+                    p_user_id: userId
+                }
+            );
+
+
+        if (error) {
+
+            console.error(
+                "DAILY HALO REWARD ERROR:",
+                error
+            );
+
+            return 0;
+
+        }
+
+
+        const reward =
+            Number(data || 0);
+
+
+        console.log(
+            "DAILY HALO REWARD RESULT:",
+            reward
+        );
+
+
+        return reward;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "DAILY HALO REWARD EXCEPTION:",
+            error
+        );
+
+        return 0;
+
+    }
+
+}
+
+
+/* =========================
+   LOAD DAILY HALO STATUS
+========================= */
 
 async function loadDailyHaloStatus(userId) {
 
@@ -2020,6 +2090,12 @@ async function loadDailyHaloStatus(userId) {
             "DAILY HALO LOAD ERROR:",
             error
         );
+
+        title.textContent =
+            "Daily Halo status unavailable.";
+
+        points.textContent =
+            "+10 HALO POINTS PER DAY";
 
     }
 
@@ -2143,8 +2219,28 @@ async function loadHaloData() {
 
 
         /* =========================
+           DAILY HALO REWARD
+           
+           IMPORTANT:
+           The reward MUST be claimed
+           BEFORE halo_points are loaded.
+        ========================= */
+
+        const dailyReward =
+            await claimDailyHaloReward(
+                user.id
+            );
+
+
+        console.log(
+            "DAILY HALO POINTS ADDED:",
+            dailyReward
+        );
+
+
+        /* =========================
            HALO POINTS
-========================= */
+        ========================= */
 
         const {
             data: pointsData,
@@ -2202,7 +2298,7 @@ async function loadHaloData() {
 
         /* =========================
            DISPLAY RANK
-========================= */
+        ========================= */
 
         if (admin) {
 
@@ -2219,10 +2315,18 @@ async function loadHaloData() {
         }
 
 
+        /* =========================
+           CODEX
+        ========================= */
+
         await loadCodexProgress(
             user.id
         );
 
+
+        /* =========================
+           DAILY HALO STATUS
+        ========================= */
 
         await loadDailyHaloStatus(
             user.id
