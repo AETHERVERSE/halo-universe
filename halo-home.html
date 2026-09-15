@@ -120,6 +120,90 @@ h1 {
 
 
 /* =========================
+   DAILY HALO
+========================= */
+
+.daily-halo-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            #252052,
+            #181633
+        );
+
+    border: 1px solid #514879;
+
+    border-radius: 22px;
+
+    padding: 28px 25px;
+
+    margin-bottom: 40px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,0.25);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.daily-halo-card.claimed {
+
+    border-color: #8f84c9;
+
+    box-shadow:
+        0 15px 45px
+        rgba(143,132,201,0.18);
+}
+
+.daily-halo-icon {
+
+    font-size: 2rem;
+
+    color: #cdb9ff;
+
+    margin-bottom: 10px;
+}
+
+.daily-halo-label {
+
+    color: #aaa0e6;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+}
+
+.daily-halo-title {
+
+    color: #eeeaff;
+
+    font-size: 1.1rem;
+
+    letter-spacing: 1px;
+
+    line-height: 1.6;
+}
+
+.daily-halo-points {
+
+    margin-top: 10px;
+
+    color: #dfd1ff;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
    HALO RANK
 ========================= */
 
@@ -795,6 +879,40 @@ Your journey through AETHER continues.
 class="email"
 id="haloEmail">
 </p>
+
+</section>
+
+
+<!-- DAILY HALO -->
+
+<section
+class="daily-halo-card"
+id="dailyHaloCard"
+aria-live="polite">
+
+<div class="daily-halo-icon">
+✦
+</div>
+
+<div class="daily-halo-label">
+DAILY HALO
+</div>
+
+<div
+class="daily-halo-title"
+id="dailyHaloTitle">
+
+CHECKING TODAY'S LIGHT...
+
+</div>
+
+<div
+class="daily-halo-points"
+id="dailyHaloPoints">
+
++10 HALO POINTS
+
+</div>
 
 </section>
 
@@ -1746,8 +1864,8 @@ async function loadCodexProgress(userId) {
     else {
 
         const remaining =
-            totalCodex -
-            discovered;
+        totalCodex -
+        discovered;
 
 
         document.getElementById(
@@ -1756,6 +1874,152 @@ async function loadCodexProgress(userId) {
 
             remaining +
             " Codex memories remain to be discovered. ✦";
+
+    }
+
+}
+
+
+/* =========================
+   DAILY HALO LOGIN STATUS
+========================= */
+
+function getBerlinDateKey() {
+
+    return new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone: "Europe/Berlin",
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit"
+        }
+    ).format(
+        new Date()
+    );
+
+}
+
+
+async function loadDailyHaloStatus(userId) {
+
+    const card =
+        document.getElementById(
+            "dailyHaloCard"
+        );
+
+    const title =
+        document.getElementById(
+            "dailyHaloTitle"
+        );
+
+    const points =
+        document.getElementById(
+            "dailyHaloPoints"
+        );
+
+
+    if (
+        !card ||
+        !title ||
+        !points
+    ) {
+
+        return;
+
+    }
+
+
+    const today =
+        getBerlinDateKey();
+
+
+    const actionKey =
+        "daily_login_" +
+        today;
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+            .from("halo_point_events")
+
+            .select(
+                "id, points, created_at"
+            )
+
+            .eq(
+                "user_id",
+                userId
+            )
+
+            .eq(
+                "action_key",
+                actionKey
+            )
+
+            .maybeSingle();
+
+
+        if (error) {
+
+            console.error(
+                "DAILY HALO STATUS ERROR:",
+                error
+            );
+
+            title.textContent =
+                "Daily Halo status unavailable.";
+
+            points.textContent =
+                "+10 HALO POINTS PER DAY";
+
+            return;
+
+        }
+
+
+        if (data) {
+
+            card.classList.add(
+                "claimed"
+            );
+
+            title.textContent =
+                "✦ TODAY'S HALO IS ACTIVE ✦";
+
+            points.textContent =
+                "+10 HALO POINTS • CLAIMED TODAY";
+
+        }
+
+        else {
+
+            card.classList.remove(
+                "claimed"
+            );
+
+            title.textContent =
+                "Your next Daily Halo reward awaits at your next login.";
+
+            points.textContent =
+                "+10 HALO POINTS PER DAY";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "DAILY HALO LOAD ERROR:",
+            error
+        );
 
     }
 
@@ -1956,6 +2220,11 @@ async function loadHaloData() {
 
 
         await loadCodexProgress(
+            user.id
+        );
+
+
+        await loadDailyHaloStatus(
             user.id
         );
 
