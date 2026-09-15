@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday | AETHERVERSE</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #07131b;
+    --panel: #0c2029;
+    --line: #2d6870;
+    --text: #e9ffff;
+    --muted: #a9cdd1;
+    --accent: #72e4df;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #247d86 0%,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 10% 35%,
+            #123f4b 0%,
+            transparent 28%
+        ),
+        linear-gradient(
+            180deg,
+            #06151b,
+            #0b2832,
+            #102f36
+        );
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    padding: 22px 18px 70px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    padding: 38px 12px 24px;
+}
+
+.logo {
+    letter-spacing: 8px;
+    color: var(--accent);
+    font-size: 0.82rem;
+}
+
+.eyebrow {
+    margin-top: 18px;
+
+    color: #9fc8cd;
+
+    letter-spacing: 5px;
+
+    font-size: 0.75rem;
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+
+    letter-spacing: 10px;
+
+    margin: 10px 0;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+    max-width: 700px;
+
+    margin:
+        0
+        auto
+        35px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin:
+        5px
+        0
+        38px;
+}
+
+nav a {
+    padding:
+        9px
+        15px;
+
+    border:
+        1px solid
+        #396b73;
+
+    border-radius:
+        30px;
+
+    text-decoration:
+        none;
+
+    color:
+        #cfe8eb;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
+}
+
+nav a:hover {
+    border-color:
+        var(--accent);
+
+    color:
+        var(--accent);
+}
+
+
+/* =========================
+   MEMBER GRID
+========================= */
+
+.member-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                220px,
+                1fr
+            )
+        );
+
+    gap: 16px;
+}
+
+
+/* =========================
+   MEMBER CARD
+========================= */
+
+.member-card {
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        22px;
+
+    padding:
+        24px
+        20px;
+
+    background:
+        rgba(
+            5,
+            22,
+            29,
+            0.72
+        );
+
+    min-height:
+        175px;
+
+    text-align:
+        center;
+
+    transition:
+        0.25s;
+}
+
+.member-card.live {
+    border-color:
+        var(--accent);
+
+    box-shadow:
+        0 0 35px
+        rgba(
+            114,
+            228,
+            223,
+            0.11
+        );
+
+    cursor:
+        pointer;
+}
+
+.member-card.live:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        rgba(
+            12,
+            42,
+            49,
+            0.9
+        );
+}
+
+.member-card.expired {
+    opacity:
+        0.78;
+}
+
+.member-symbol {
+    font-size:
+        2rem;
+
+    margin-bottom:
+        9px;
+}
+
+.member-name {
+    font-size:
+        1.45rem;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--accent);
+
+    font-weight:
+        700;
+}
+
+.birthday-date {
+    margin-top:
+        7px;
+
+    font-weight:
+        700;
+
+    color:
+        #ffffff;
+}
+
+.status {
+    margin-top:
+        16px;
+
+    font-size:
+        0.78rem;
+
+    letter-spacing:
+        1.5px;
+
+    color:
+        #9bbcc0;
+}
+
+.live .status {
+    color:
+        #b9ffff;
+}
+
+
+/* =========================
+   DETAIL
+========================= */
+
+#detail {
+    display:
+        none;
+
+    margin-top:
+        35px;
+}
+
+.detail-shell {
+    border:
+        1px solid
+        #57999c;
+
+    border-radius:
+        30px;
+
+    padding:
+        28px
+        22px
+        34px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(
+                82,
+                225,
+                218,
+                0.12
+            ),
+            transparent 55%
+        ),
+        rgba(
+            5,
+            20,
+            27,
+            0.9
+        );
+
+    box-shadow:
+        0 0 65px
+        rgba(
+            65,
+            210,
+            205,
+            0.12
+        );
+}
+
+.detail-title {
+    text-align:
+        center;
+}
+
+.detail-title .member-name {
+    font-size:
+        clamp(
+            2.3rem,
+            8vw,
+            4.5rem
+        );
+
+    letter-spacing:
+        7px;
+}
+
+.detail-title .birthday-date {
+    font-size:
+        1rem;
+
+    letter-spacing:
+        2px;
+}
+
+
+/* =========================
+   BIRTHDAY ART
+========================= */
+
+.birthday-art {
+    display:
+        block;
+
+    width:
+        100%;
+
+    max-width:
+        600px;
+
+    max-height:
+        620px;
+
+    object-fit:
+        cover;
+
+    margin:
+        24px
+        auto;
+
+    border-radius:
+        25px;
+
+    border:
+        1px solid
+        #4b8b90;
+
+    box-shadow:
+        0 15px 45px
+        rgba(
+            0,
+            0,
+            0,
+            0.35
+        );
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    max-width:
+        760px;
+
+    margin:
+        24px
+        auto;
+
+    padding:
+        28px
+        24px;
+
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        24px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+
+    line-height:
+        1.9;
+
+    color:
+        #d4edef;
+}
+
+.message h2,
+.section-title {
+    text-align:
+        center;
+
+    color:
+        var(--accent);
+
+    letter-spacing:
+        3px;
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+.timer {
+    max-width:
+        600px;
+
+    margin:
+        25px
+        auto;
+
+    text-align:
+        center;
+
+    border:
+        1px solid
+        #57999c;
+
+    border-radius:
+        22px;
+
+    padding:
+        22px;
+
+    background:
+        rgba(
+            114,
+            228,
+            223,
+            0.05
+        );
+}
+
+.timer-label {
+    color:
+        #9fc8cd;
+
+    letter-spacing:
+        3px;
+
+    font-size:
+        0.75rem;
+}
+
+.countdown {
+    font-size:
+        clamp(
+            2rem,
+            7vw,
+            3.5rem
+        );
+
+    letter-spacing:
+        4px;
+
+    margin:
+        10px 0;
+}
+
+
+/* =========================
+   SPECIALS
+========================= */
+
+.specials {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                200px,
+                1fr
+            )
+        );
+
+    gap:
+        15px;
+
+    margin-top:
+        20px;
+}
+
+.special {
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        20px;
+
+    padding:
+        22px;
+
+    text-align:
+        center;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        );
+}
+
+.special-icon {
+    font-size:
+        2rem;
+}
+
+.special h3 {
+    color:
+        #dffbfc;
+
+    letter-spacing:
+        1px;
+}
+
+.special p {
+    color:
+        #a9cdd1;
+
+    line-height:
+        1.6;
+
+    font-size:
+        0.9rem;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    font-family:
+        Georgia,
+        serif;
+}
+
+.claim,
+.wish-button {
+    display:
+        inline-block;
+
+    margin-top:
+        8px;
+
+    padding:
+        10px
+        18px;
+
+    border-radius:
+        24px;
+
+    border:
+        1px solid
+        var(--accent);
+
+    background:
+        transparent;
+
+    color:
+        #dffbfc;
+
+    cursor:
+        pointer;
+}
+
+.claim:disabled,
+.wish-button:disabled {
+    opacity:
+        0.45;
+
+    cursor:
+        default;
+}
+
+
+/* =========================
+   WISH AREA
+========================= */
+
+.wish-area {
+    max-width:
+        760px;
+
+    margin:
+        42px
+        auto
+        0;
+}
+
+.wish-form {
+    padding:
+        22px;
+
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        22px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.03
+        );
+
+    text-align:
+        center;
+}
+
+.wish-form textarea {
+    width:
+        100%;
+
+    min-height:
+        110px;
+
+    resize:
+        vertical;
+
+    background:
+        #07171e;
+
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        15px;
+
+    padding:
+        13px;
+
+    color:
+        #e9ffff;
+
+    font-family:
+        Georgia,
+        serif;
+}
+
+.wish-status {
+    min-height:
+        22px;
+
+    margin-top:
+        10px;
+
+    color:
+        #9fc8cd;
+
+    font-size:
+        0.82rem;
+}
+
+.wish-wall {
+    margin-top:
+        28px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                210px,
+                1fr
+            )
+        );
+
+    gap:
+        13px;
+}
+
+.wish {
+    padding:
+        19px;
+
+    border:
+        1px solid
+        #315e65;
+
+    border-radius:
+        18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(
+                18,
+                61,
+                69,
+                0.75
+            ),
+            rgba(
+                6,
+                24,
+                31,
+                0.8
+            )
+        );
+
+    min-height:
+        120px;
+}
+
+.wish p {
+    margin:
+        0;
+
+    color:
+        #d7eff1;
+
+    line-height:
+        1.7;
+
+    font-size:
+        0.92rem;
+}
+
+.wish small {
+    display:
+        block;
+
+    margin-top:
+        12px;
+
+    color:
+        var(--accent);
+
+    letter-spacing:
+        1px;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back {
+    display:
+        block;
+
+    width:
+        max-content;
+
+    margin:
+        28px
+        auto
+        0;
+
+    padding:
+        10px
+        19px;
+
+    border:
+        1px solid
+        #396b73;
+
+    border-radius:
+        25px;
+
+    color:
+        #bfe5e7;
+
+    text-decoration:
+        none;
+}
+
+.locked-note {
+    text-align:
+        center;
+
+    color:
+        #89adb1;
+
+    margin:
+        24px
+        0;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align:
+        center;
+
+    margin-top:
+        55px;
+
+    color:
+        #73999e;
+
+    letter-spacing:
+        2px;
+
+    font-size:
+        0.72rem;
+
+    line-height:
+        2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .member-grid {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .member-card {
+        min-height:
+            160px;
+
+        padding:
+            20px
+            12px;
+    }
+
+    .member-name {
+        font-size:
+            1.15rem;
+    }
+
+    .specials,
+    .wish-wall {
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+<header>
+
+<div class="logo">
+AETHERVERSE
+</div>
+
+<div class="eyebrow">
+A MOMENT MADE FOR HALO
+</div>
+
+<h1>
+BIRTHDAY
+</h1>
+
+<p class="intro">
+Every AETHER star gets one special moment each year.
+Celebrate, collect the birthday special, leave a wish —
+and make a memory that stays.
+</p>
+
+</header>
+
+
+<nav>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="members.html">
+MEMBERS
+</a>
+
+<a href="card-album.html">
+CARD ALBUM
+</a>
+
+<a href="explore.html">
+EXPLORE
+</a>
+
+</nav>
+
+
+<section
+id="memberGrid"
+class="member-grid">
+</section>
+
+
+<section
+id="detail">
+</section>
+
+
+<footer>
+
+ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+<br><br>
+
+#WEAREHALO • #WEAREAETHER
+
+</footer>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+
+<script>
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient =
+window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================
+   MEMBERS
+========================= */
+
+const MEMBERS = [
+
+{
+    key: "solen",
+    name: "SOLEN",
+    symbol: "☀️"
+},
+
+{
+    key: "vex",
+    name: "VEX",
+    symbol: "🌑"
+},
+
+{
+    key: "kairo",
+    name: "KAIRO",
+    symbol: "⚡"
+},
+
+{
+    key: "riven",
+    name: "RIVEN",
+    symbol: "🌊"
+},
+
+{
+    key: "zenith",
+    name: "ZENITH",
+    symbol: "🔥"
+},
+
+{
+    key: "lux",
+    name: "LUX",
+    symbol: "✨"
+},
+
+{
+    key: "nero",
+    name: "NERO",
+    symbol: "🌙"
+}
+
+];
+
+
+let events = [];
+
+let activeEvent = null;
+
+let timer = null;
+
+
+/* =========================
+   ESCAPE HTML
+========================= */
+
+const esc =
+value =>
+String(
+    value ?? ""
+)
+.replace(
+    /[&<>'"]/g,
+    character => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;"
+    }[character])
+);
+
+
+/* =========================
+   DATE
+========================= */
+
+function dateOnly(value) {
+
+    return new Intl.DateTimeFormat(
+        "de-DE",
+        {
+            day: "2-digit",
+            month: "2-digit"
+        }
+    )
+    .format(
+        new Date(
+            value + "T12:00:00"
+        )
+    );
+
+}
+
+
+/* =========================
+   EVENT STATE
+========================= */
+
+function state(event) {
+
+    if (!event) {
+        return "unknown";
+    }
+
+    const now =
+        Date.now();
+
+    const start =
+        Date.parse(
+            event.start_at
+        );
+
+    const end =
+        Date.parse(
+            event.end_at
+        );
+
+    if (now < start) {
+        return "locked";
+    }
+
+    if (now < end) {
+        return "live";
+    }
+
+    return "expired";
+}
+
+
+/* =========================
+   MEMBER CARDS
+========================= */
+
+function renderMembers() {
+
+    document.getElementById(
+        "memberGrid"
+    )
+    .innerHTML =
+        MEMBERS
+        .map(
+            member => {
+
+                const event =
+                    events.find(
+                        item =>
+                            item.member_key ===
+                            member.key
+                    );
+
+                const currentState =
+                    state(event);
+
+                const date =
+                    event
+                        ? dateOnly(
+                            event.birthday_date
+                        )
+                        : "Birthday date to be configured";
+
+                const text =
+                    event
+                        ? (
+                            currentState === "locked"
+                                ? "🔒 OPENS ON " + date
+                                : currentState === "live"
+                                    ? "✨ BIRTHDAY IS LIVE"
+                                    : "🌊 BIRTHDAY EVENT ENDED"
+                        )
+                        : "Birthday event coming soon";
+
+                const live =
+                    event &&
+                    currentState === "live";
+
+                return `
+
+<div
+class="member-card
+${live ? "live" : ""}
+${currentState === "expired" ? "expired" : ""}"
+
+${live
+    ? `onclick="openBirthday('${member.key}')"`
+    : ""
+}
+>
+
+<div class="member-symbol">
+${member.symbol}
+</div>
+
+<div class="member-name">
+${member.name}
+</div>
+
+<div class="birthday-date">
+
+<strong>
+${esc(date)}
+</strong>
+
+${event ? " Birthday" : ""}
+
+</div>
+
+<div class="status">
+${esc(text)}
+</div>
+
+</div>
+
+`;
+
+            }
+        )
+        .join("");
+
+}
+
+
+/* =========================
+   LOAD EVENTS
+========================= */
+
+async function load() {
+
+    const {
+        data: sessionData,
+        error: sessionError
+    } =
+    await supabaseClient.auth.getSession();
+
+
+    if (
+        sessionError ||
+        !sessionData.session
+    ) {
+
+        location.replace(
+            "halo.html"
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from("birthday_events")
+        .select("*")
+        .eq(
+            "is_active",
+            true
+        )
+        .order(
+            "birthday_date"
+        );
+
+
+    if (error) {
+
+        document.getElementById(
+            "memberGrid"
+        )
+        .innerHTML =
+            `
+            <div class="locked-note">
+                Birthday could not be loaded right now.
+            </div>
+            `;
+
+        return;
+
+    }
+
+
+    events =
+        data || [];
+
+    renderMembers();
+
+
+    const key =
+        new URLSearchParams(
+            location.search
+        )
+        .get("member");
+
+
+    const event =
+        events.find(
+            item =>
+                item.member_key ===
+                key
+        );
+
+
+    if (
+        event &&
+        state(event) === "live"
+    ) {
+
+        openBirthday(key);
+
+    }
+
+}
+
+
+/* =========================
+   OPEN BIRTHDAY
+========================= */
+
+function openBirthday(key) {
+
+    const event =
+        events.find(
+            item =>
+                item.member_key ===
+                key
+        );
+
+
+    if (
+        !event ||
+        state(event) !== "live"
+    ) {
+
+        return;
+
+    }
+
+
+    activeEvent =
+        event;
+
+
+    const member =
+        MEMBERS.find(
+            item =>
+                item.key ===
+                key
+        );
+
+
+    const detail =
+        document.getElementById(
+            "detail"
+        );
+
+
+    detail.style.display =
+        "block";
+
+
+    detail.innerHTML = `
+
+<div class="detail-shell">
+
+
+<div class="detail-title">
+
+<div class="member-symbol">
+${member.symbol}
+</div>
+
+<div class="member-name">
+${member.name}
+</div>
+
+<div class="birthday-date">
+
+<strong>
+${dateOnly(
+    event.birthday_date
+)}
+</strong>
+
+BIRTHDAY
+
+</div>
+
+</div>
+
+
+<img
+class="birthday-art"
+src="${esc(
+    event.snapshot_url ||
+    "images/file_00000000c1b88243828f3bb7fe1cc29a.png"
+)}"
+alt="${member.name} Birthday"
+>
+
+
+<div class="timer">
+
+<div class="timer-label">
+BIRTHDAY EVENT • 72 HOURS
+</div>
+
+<div
+id="countdown"
+class="countdown">
+--:--:--
+</div>
+
+<div
+id="timerNote"
+class="status">
+The birthday window is open.
+</div>
+
+</div>
+
+
+<div class="message">
+
+<h2>
+A MESSAGE FROM ${member.name}
+</h2>
+
+<p>
+${esc(
+    event.birthday_message ||
+    "HALO, thank you for being here with me today. Let us make this birthday a memory we can keep."
+)}
+</p>
+
+</div>
+
+
+<h2 class="section-title">
+BIRTHDAY SPECIALS
+</h2>
+
+
+<div class="specials">
+
+
+<div class="special">
+
+<div class="special-icon">
+🎙️
+</div>
+
+<h3>
+VOICE MESSAGE
+</h3>
+
+<p>
+A personal birthday message from
+${member.name} to HALO.
+</p>
+
+<button
+class="claim"
+disabled>
+VOICE COMING SOON
+</button>
+
+</div>
+
+
+<div class="special">
+
+<div class="special-icon">
+🃏
+</div>
+
+<h3>
+BIRTHDAY CARD
+</h3>
+
+<p>
+Exclusive card for your AETHER album.
+One claim per HALO.
+</p>
+
+<button
+id="claimCard"
+class="claim">
+COLLECT CARD ✦
+</button>
+
+</div>
+
+
+<div class="special">
+
+<div class="special-icon">
+💌
+</div>
+
+<h3>
+BIRTHDAY LETTER
+</h3>
+
+<p>
+A private birthday letter from
+${member.name}.
+</p>
+
+<button
+class="claim"
+disabled>
+LETTER COMING SOON
+</button>
+
+</div>
+
+
+<div class="special">
+
+<div class="special-icon">
+📸
+</div>
+
+<h3>
+BIRTHDAY SNAPSHOT
+</h3>
+
+<p>
+A little moment from today's celebration.
+</p>
+
+</div>
+
+
+<div class="special">
+
+<div class="special-icon">
+🎵
+</div>
+
+<h3>
+BIRTHDAY MOMENT
+</h3>
+
+<p>
+A tiny exclusive audio moment from
+${member.name}.
+</p>
+
+<button
+class="claim"
+disabled>
+AUDIO COMING SOON
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="wish-area">
+
+
+<h2 class="section-title">
+✨ MAKE A WISH FOR ${member.name}
+</h2>
+
+
+<div class="wish-form">
+
+<textarea
+id="wishText"
+maxlength="500"
+placeholder="Write your birthday wish..."
+></textarea>
+
+<br>
+
+<button
+id="sendWish"
+class="wish-button">
+SEND WISH ✨
+</button>
+
+<div
+id="wishStatus"
+class="wish-status">
+</div>
+
+</div>
+
+
+<h2
+class="section-title"
+style="margin-top:34px">
+
+💌 ${member.name}'S BIRTHDAY WISH WALL
+
+</h2>
+
+
+<div
+id="wishWall"
+class="wish-wall">
+</div>
+
+
+</div>
+
+
+<a
+class="back"
+href="birthday.html">
+
+← BACK TO BIRTHDAYS
+
+</a>
+
+
+</div>
+
+`;
+
+
+    document.getElementById(
+        "claimCard"
+    )
+    .onclick =
+        claimCard;
+
+
+    document.getElementById(
+        "sendWish"
+    )
+    .onclick =
+        sendWish;
+
+
+    loadWishes();
+
+    startTimer();
+
+
+    detail.scrollIntoView({
+        behavior:
+            "smooth"
+    });
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+function startTimer() {
+
+    clearInterval(
+        timer
+    );
+
+
+    const tick =
+        () => {
+
+            const left =
+                Math.max(
+                    0,
+                    Date.parse(
+                        activeEvent.end_at
+                    ) -
+                    Date.now()
+                );
+
+
+            const hours =
+                Math.floor(
+                    left /
+                    3600000
+                );
+
+
+            const minutes =
+                Math.floor(
+                    left %
+                    3600000 /
+                    60000
+                );
+
+
+            const seconds =
+                Math.floor(
+                    left %
+                    60000 /
+                    1000
+                );
+
+
+            const element =
+                document.getElementById(
+                    "countdown"
+                );
+
+
+            if (!element) {
+                return;
+            }
+
+
+            element.textContent =
+                [
+                    hours,
+                    minutes,
+                    seconds
+                ]
+                .map(
+                    value =>
+                        String(
+                            value
+                        )
+                        .padStart(
+                            2,
+                            "0"
+                        )
+                )
+                .join(":");
+
+
+            if (!left) {
+
+                document.getElementById(
+                    "timerNote"
+                )
+                .textContent =
+                    "The birthday event has ended.";
+
+
+                clearInterval(
+                    timer
+                );
+
+
+                renderMembers();
+
+            }
+
+        };
+
+
+    tick();
+
+
+    timer =
+        setInterval(
+            tick,
+            1000
+        );
+
+}
+
+
+/* =========================
+   CLAIM CARD
+========================= */
+
+async function claimCard() {
+
+    const button =
+        document.getElementById(
+            "claimCard"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .rpc(
+            "claim_birthday_card",
+            {
+                p_event_id:
+                    activeEvent.id
+            }
+        );
+
+
+    if (error) {
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            (
+                error.message || ""
+            )
+            .includes(
+                "ALREADY_CLAIMED"
+            )
+                ? "ALREADY COLLECTED"
+                : "COLLECT CARD ✦";
+
+
+        return;
+
+    }
+
+
+    button.textContent =
+        "✓ ADDED TO YOUR COLLECTION";
+
+}
+
+
+/* =========================
+   SEND WISH
+========================= */
+
+async function sendWish() {
+
+    const input =
+        document.getElementById(
+            "wishText"
+        );
+
+    const status =
+        document.getElementById(
+            "wishStatus"
+        );
+
+    const button =
+        document.getElementById(
+            "sendWish"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        status.textContent =
+            "Write a little wish first. 💙";
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+
+    const {
+        error
+    } =
+    await supabaseClient
+        .rpc(
+            "submit_birthday_wish",
+            {
+                p_event_id:
+                    activeEvent.id,
+
+                p_message:
+                    text
+            }
+        );
+
+
+    if (error) {
+
+        status.textContent =
+            (
+                error.message || ""
+            )
+            .includes(
+                "WISH_ALREADY_SENT"
+            )
+                ? "You already sent a wish for this birthday. 💙"
+                : "Your wish could not be sent right now.";
+
+
+        button.disabled =
+            false;
+
+        return;
+
+    }
+
+
+    input.value =
+        "";
+
+
+    status.textContent =
+        "Your wish has reached Riven. ✨";
+
+
+    await loadWishes();
+
+
+    button.disabled =
+        false;
+
+}
+
+
+/* =========================
+   LOAD WISHES
+========================= */
+
+async function loadWishes() {
+
+    const wall =
+        document.getElementById(
+            "wishWall"
+        );
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from(
+            "birthday_wishes"
+        )
+        .select(
+            "message,created_at"
+        )
+        .eq(
+            "event_id",
+            activeEvent.id
+        )
+        .order(
+            "created_at",
+            {
+                ascending:
+                    false
+            }
+        );
+
+
+    if (error) {
+        return;
+    }
+
+
+    wall.innerHTML =
+        (
+            data || []
+        )
+        .map(
+            wish => `
+
+<div class="wish">
+
+<p>
+${esc(
+    wish.message
+)}
+</p>
+
+<small>
+💙 HALO
+</small>
+
+</div>
+
+`
+        )
+        .join("")
+        ||
+
+        `
+        <div class="locked-note">
+            Be the first HALO to leave a birthday wish. ✨
+        </div>
+        `;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+load();
+
+</script>
+
+</body>
+  </html>
