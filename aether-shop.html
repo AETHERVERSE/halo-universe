@@ -292,8 +292,10 @@ const CATEGORY_TARGETS = {
 function escapeHtml(value) {
     if (value === null || value === undefined) return "";
     return String(value)
-        .replace(/&/g, "&amp;").replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
 }
 
@@ -331,8 +333,11 @@ async function loadAetherCoins() {
             balanceElement.textContent = "—";
             return;
         }
+
         const { data, error } = await supabaseClient.rpc("get_aether_coin_balance");
+
         if (error) throw error;
+
         balanceElement.textContent = Number(data || 0);
     } catch (error) {
         console.error("AETHER Coin loading failed:", error);
@@ -348,19 +353,26 @@ async function loadShopItems() {
         .eq("is_purchasable", true)
         .order("category", { ascending: true })
         .order("price", { ascending: true });
+
     if (error) throw error;
+
     shopItems = Array.isArray(data) ? data : [];
 }
 
 async function loadOwnership() {
     ownedKeys = new Set();
+
     if (!currentUser) return;
+
     const { data, error } = await supabaseClient
         .from("aether_shop_ownership")
         .select("shop_item_id, source_key")
         .eq("user_id", currentUser.id);
+
     if (error) throw error;
+
     if (!Array.isArray(data)) return;
+
     data.forEach(row => {
         if (row.source_key) {
             ownedKeys.add(String(row.source_key));
@@ -378,33 +390,65 @@ function isOwned(item, selectionKey = null) {
 
 function getOptions(item) {
     if (!item.content_data) return [];
-    if (!Array.isArray(item.content_data.options)) return [];
-    return item.content_data.options;
+
+    if (Array.isArray(item.content_data.options)) {
+        return item.content_data.options;
+    }
+
+    if (Array.isArray(item.content_data.variants)) {
+        return item.content_data.variants;
+    }
+
+    return [];
 }
 
 function getDefaultSelection(item) {
     const options = getOptions(item);
+
     if (!options.length) return null;
-    return options[0].key || options[0].selection_key || options[0].id || null;
+
+    return options[0].key
+        || options[0].selection_key
+        || options[0].id
+        || null;
 }
 
 function getOptionLabel(option) {
     if (!option) return "";
-    return option.label || option.title || option.name || option.member || option.key || "";
+
+    if (option.member && option.title) {
+        return `${option.member} — ${option.title}`;
+    }
+
+    return option.label
+        || option.title
+        || option.name
+        || option.member
+        || option.key
+        || "";
 }
 
 function getOptionKey(option) {
     if (!option) return "";
-    return option.key || option.selection_key || option.id || "";
+
+    return option.key
+        || option.selection_key
+        || option.id
+        || "";
 }
 
 function getDetails(item) {
     const details = [];
     const data = item.content_data || {};
+
     if (data.member) details.push(data.member);
     if (data.world) details.push(data.world);
     if (data.description) details.push(data.description);
-    if (Array.isArray(data.includes)) data.includes.forEach(entry => details.push(String(entry)));
+
+    if (Array.isArray(data.includes)) {
+        data.includes.forEach(entry => details.push(String(entry)));
+    }
+
     return details;
 }
 
@@ -412,11 +456,17 @@ function createProductCard(item) {
     const options = getOptions(item);
     const selectable = options.length > 0;
     const defaultSelection = getDefaultSelection(item);
-    const initiallyOwned = isOwned(item, selectable ? defaultSelection : null);
+
+    const initiallyOwned = isOwned(
+        item,
+        selectable ? defaultSelection : null
+    );
+
     const icon = getItemIcon(item);
     const details = getDetails(item);
 
     let detailsHtml = "";
+
     if (details.length) {
         detailsHtml = `
             <div class="product-detail">
@@ -429,16 +479,28 @@ function createProductCard(item) {
     }
 
     let selectorHtml = "";
+
     if (selectable) {
         selectorHtml = `
+            <div class="detail-label" style="margin-top:18px;">
+                CHOOSE YOUR ARTIFACT
+            </div>
+
             <select class="product-select"
                 data-item-key="${escapeHtml(item.item_key)}"
                 onchange="refreshProductState('${escapeHtml(item.item_key)}')">
+
                 ${options.map(option => {
                     const key = getOptionKey(option);
                     const label = getOptionLabel(option);
-                    return `<option value="${escapeHtml(key)}">${escapeHtml(label)}</option>`;
+
+                    return `
+                        <option value="${escapeHtml(key)}">
+                            ${escapeHtml(label)}
+                        </option>
+                    `;
                 }).join("")}
+
             </select>
         `;
     }
@@ -447,24 +509,37 @@ function createProductCard(item) {
         <article class="product ${initiallyOwned ? "owned" : ""}"
             id="product-${escapeHtml(item.item_key)}"
             data-item-key="${escapeHtml(item.item_key)}">
+
             <div class="product-glow"></div>
+
             <div>
                 <div class="product-icon">${icon}</div>
+
                 <h3>${escapeHtml(item.title)}</h3>
+
                 <p>${escapeHtml(item.description || "")}</p>
+
                 ${detailsHtml}
+
                 ${selectorHtml}
             </div>
+
             <div class="product-bottom">
-                <div class="price">${Number(item.price || 0)} 🪙</div>
+                <div class="price">
+                    ${Number(item.price || 0)} 🪙
+                </div>
+
                 <button type="button"
                     class="buy-button ${initiallyOwned ? "owned-button" : ""}"
                     data-buy-item="${escapeHtml(item.item_key)}"
                     onclick="purchaseItem('${escapeHtml(item.item_key)}')"
                     ${initiallyOwned ? "disabled" : ""}>
+
                     ${initiallyOwned ? "OWNED" : "PURCHASE"}
+
                 </button>
             </div>
+
         </article>
     `;
 }
@@ -472,65 +547,113 @@ function createProductCard(item) {
 function renderShop() {
     Object.values(CATEGORY_TARGETS).forEach(targetId => {
         const element = document.getElementById(targetId);
-        if (element) element.innerHTML = "";
+
+        if (element) {
+            element.innerHTML = "";
+        }
     });
 
     if (!shopItems.length) {
-        showStatus("No shop items are currently available.", "error");
+        showStatus(
+            "No shop items are currently available.",
+            "error"
+        );
         return;
     }
 
     shopItems.forEach(item => {
         const targetId = CATEGORY_TARGETS[item.category];
+
         if (!targetId) return;
+
         const grid = document.getElementById(targetId);
+
         if (!grid) return;
-        grid.insertAdjacentHTML("beforeend", createProductCard(item));
+
+        grid.insertAdjacentHTML(
+            "beforeend",
+            createProductCard(item)
+        );
     });
 
     hideStatus();
 }
 
 function refreshProductState(itemKey) {
-    const item = shopItems.find(current => current.item_key === itemKey);
+    const item = shopItems.find(
+        current => current.item_key === itemKey
+    );
+
     if (!item) return;
-    const card = document.getElementById("product-" + itemKey);
+
+    const card = document.getElementById(
+        "product-" + itemKey
+    );
+
     if (!card) return;
+
     const select = card.querySelector(".product-select");
     const button = card.querySelector(".buy-button");
+
     if (!button) return;
-    const selectionKey = select ? select.value : null;
-    const owned = isOwned(item, selectionKey);
+
+    const selectionKey = select
+        ? select.value
+        : null;
+
+    const owned = isOwned(
+        item,
+        selectionKey
+    );
 
     if (owned) {
         card.classList.add("owned");
+
         button.classList.add("owned-button");
+
         button.disabled = true;
+
         button.textContent = "OWNED";
     } else {
         card.classList.remove("owned");
+
         button.classList.remove("owned-button");
+
         button.disabled = false;
+
         button.textContent = "PURCHASE";
     }
 }
 
 async function purchaseItem(itemKey) {
-    const item = shopItems.find(current => current.item_key === itemKey);
+    const item = shopItems.find(
+        current => current.item_key === itemKey
+    );
+
     if (!item) return;
 
-    const card = document.getElementById("product-" + itemKey);
+    const card = document.getElementById(
+        "product-" + itemKey
+    );
+
     if (!card) return;
 
     const select = card.querySelector(".product-select");
-    const selectionKey = select ? select.value : null;
+
+    const selectionKey = select
+        ? select.value
+        : null;
 
     if (isOwned(item, selectionKey)) {
-        showStatus("You already own this item.", "success");
+        showStatus(
+            "You already own this item.",
+            "success"
+        );
         return;
     }
 
     const button = card.querySelector(".buy-button");
+
     if (button) {
         button.disabled = true;
         button.textContent = "PURCHASING...";
@@ -553,14 +676,26 @@ async function purchaseItem(itemKey) {
         if (error) throw error;
 
         if (!data || data.success !== true) {
-            throw new Error(data && data.error ? data.error : "Purchase failed.");
+            throw new Error(
+                data && data.error
+                    ? data.error
+                    : "Purchase failed."
+            );
         }
 
-        ownedKeys.add(selectionKey || item.item_key);
+        ownedKeys.add(
+            selectionKey || item.item_key
+        );
 
-        const balanceElement = document.getElementById("coinBalance");
-        if (balanceElement && data.balance !== undefined) {
-            balanceElement.textContent = Number(data.balance);
+        const balanceElement =
+            document.getElementById("coinBalance");
+
+        if (
+            balanceElement &&
+            data.balance !== undefined
+        ) {
+            balanceElement.textContent =
+                Number(data.balance);
         }
 
         refreshProductState(item.item_key);
@@ -569,12 +704,20 @@ async function purchaseItem(itemKey) {
             "Purchase successful. Your AETHER item has been added to your collection.",
             "success"
         );
+
     } catch (error) {
-        console.error("AETHER Shop purchase failed:", error);
+        console.error(
+            "AETHER Shop purchase failed:",
+            error
+        );
+
         showStatus(
-            error && error.message ? error.message : "The purchase could not be completed.",
+            error && error.message
+                ? error.message
+                : "The purchase could not be completed.",
             "error"
         );
+
         if (button) {
             button.disabled = false;
             button.textContent = "PURCHASE";
@@ -585,8 +728,13 @@ async function purchaseItem(itemKey) {
 async function startShop() {
     try {
         currentUser = await getCurrentUser();
+
     } catch (error) {
-        console.error("Authentication failed:", error);
+        console.error(
+            "Authentication failed:",
+            error
+        );
+
         window.location.href = "halo.html";
         return;
     }
@@ -599,21 +747,38 @@ async function startShop() {
     try {
         await loadShopItems();
         renderShop();
+
     } catch (error) {
-        console.error("Shop item loading failed:", error);
-        showStatus("The AETHER Shop could not be loaded. Please try again.", "error");
+        console.error(
+            "Shop item loading failed:",
+            error
+        );
+
+        showStatus(
+            "The AETHER Shop could not be loaded. Please try again.",
+            "error"
+        );
+
         return;
     }
 
     loadAetherCoins().catch(error => {
-        console.error("Coin loading failed:", error);
+        console.error(
+            "Coin loading failed:",
+            error
+        );
     });
 
     try {
         await loadOwnership();
         renderShop();
+
     } catch (error) {
-        console.error("Ownership loading failed:", error);
+        console.error(
+            "Ownership loading failed:",
+            error
+        );
+
         showStatus(
             "Your collection status could not be loaded. Shop items are still available.",
             "error"
@@ -623,5 +788,6 @@ async function startShop() {
 
 startShop();
 </script>
+
 </body>
 </html>
