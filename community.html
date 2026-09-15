@@ -218,6 +218,334 @@ nav a:hover {
     margin-bottom: 14px;
 }
 
+
+/* =========================================================
+   COMMUNITY CREATOR
+========================================================= */
+
+.creator-divider {
+    height: 1px;
+
+    margin:
+        22px
+        0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #514879,
+            transparent
+        );
+}
+
+.creator-title {
+    color: #eeeaff;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 2.5px;
+
+    margin-bottom: 7px;
+}
+
+.creator-subtitle {
+    color: #8f88b5;
+
+    font-size: 0.68rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 14px;
+}
+
+.creator-label {
+    display: block;
+
+    color: #aaa0e6;
+
+    font-size: 0.62rem;
+
+    letter-spacing: 1.5px;
+
+    margin:
+        12px
+        0
+        6px;
+
+    text-align: left;
+}
+
+.creator-select,
+.creator-input {
+    width: 100%;
+
+    min-height: 45px;
+
+    padding:
+        10px
+        13px;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 15px;
+
+    background:
+        #0e0c25;
+
+    color: #eeeaff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.82rem;
+
+    outline: none;
+}
+
+.creator-select:focus,
+.creator-input:focus {
+    border-color:
+        #9c8fe0;
+}
+
+.creator-textarea {
+    width: 100%;
+
+    min-height: 130px;
+
+    resize: vertical;
+
+    padding:
+        13px
+        14px;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 15px;
+
+    background:
+        #0e0c25;
+
+    color: #eeeaff;
+
+    font-family: Georgia, serif;
+
+    font-size: 0.88rem;
+
+    line-height: 1.6;
+
+    outline: none;
+}
+
+.creator-textarea::placeholder {
+    color: #77739e;
+}
+
+.creator-textarea:focus {
+    border-color:
+        #9c8fe0;
+}
+
+.creator-counter {
+    text-align: right;
+
+    color: #706b91;
+
+    font-size: 0.6rem;
+
+    margin-top: 4px;
+}
+
+.creator-preview {
+    display: none;
+
+    margin-top: 15px;
+
+    padding:
+        15px;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 16px;
+
+    background:
+        #15132f;
+
+    text-align: left;
+}
+
+.creator-preview.visible {
+    display: block;
+}
+
+.creator-preview-label {
+    color: #8f88b5;
+
+    font-size: 0.58rem;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 8px;
+}
+
+.creator-preview-sender {
+    color: #ddd7ff;
+
+    font-size: 0.78rem;
+
+    margin-bottom: 6px;
+}
+
+.creator-preview-badge {
+    display: inline-block;
+
+    color: #d8ceff;
+
+    border:
+        1px solid
+        #514879;
+
+    border-radius: 15px;
+
+    padding:
+        3px
+        8px;
+
+    font-size: 0.55rem;
+
+    letter-spacing: 1px;
+
+    margin-left: 5px;
+}
+
+.creator-preview-message {
+    padding:
+        12px
+        14px;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 15px;
+
+    background:
+        #1d1a3d;
+
+    color: #eeeaff;
+
+    font-size: 0.84rem;
+
+    line-height: 1.6;
+
+    word-break: break-word;
+}
+
+.creator-actions {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+.creator-preview-button,
+.creator-post-button {
+    flex: 1;
+
+    min-height: 45px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #292451,
+            #393064
+        );
+
+    color: #eeeaff;
+
+    font-family: Georgia, serif;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.creator-preview-button:hover,
+.creator-post-button:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #393064,
+            #4a3f78
+        );
+
+    border-color:
+        #c8bdff;
+}
+
+.creator-post-button:disabled,
+.creator-preview-button:disabled {
+    opacity: 0.6;
+
+    cursor: default;
+
+    transform: none;
+}
+
+.creator-message {
+    min-height: 18px;
+
+    margin-top: 10px;
+
+    color: #aaa0e6;
+
+    font-size: 0.7rem;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   SCENE CONTROL
+========================================================= */
+
+.scene-divider {
+    height: 1px;
+
+    margin:
+        22px
+        0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #514879,
+            transparent
+        );
+}
+
 .scene-select {
     width: 100%;
     min-height: 45px;
@@ -1030,6 +1358,10 @@ footer {
             9px;
     }
 
+    .creator-actions {
+        flex-direction: column;
+    }
+
 }
 
 </style>
@@ -1122,7 +1454,165 @@ AETHER CONTROL
 </div>
 
 <div class="aether-control-subtitle">
-Admin access • AETHER conversation engine
+Admin access • Community &amp; AETHER conversation control
+</div>
+
+
+<!-- =====================================================
+     COMMUNITY CREATOR
+===================================================== -->
+
+<div class="creator-divider"></div>
+
+<div class="creator-title">
+✦ COMMUNITY CREATOR CONTROL
+</div>
+
+<div class="creator-subtitle">
+Write directly as an AETHER member or Elyra.
+Only AETHER administrators can use this control.
+</div>
+
+
+<label
+    class="creator-label"
+    for="creatorAuthor"
+>
+AUTHOR
+</label>
+
+<select
+    id="creatorAuthor"
+    class="creator-select"
+>
+
+<option value="solen">
+☀️ Solen
+</option>
+
+<option value="vex">
+🖤 Vex
+</option>
+
+<option value="kairo">
+⚡ Kairo
+</option>
+
+<option value="riven">
+🌊 Riven
+</option>
+
+<option value="zenith">
+🔥 Zenith
+</option>
+
+<option value="lux">
+🤍 Lux
+</option>
+
+<option value="nero">
+🌌 Nero
+</option>
+
+<option value="elyra">
+✦ Elyra — The Voice Between Worlds
+</option>
+
+</select>
+
+
+<label
+    class="creator-label"
+    for="creatorMessage"
+>
+MESSAGE
+</label>
+
+<textarea
+    id="creatorMessage"
+    class="creator-textarea"
+    maxlength="1000"
+    placeholder="Write a community message..."
+></textarea>
+
+<div
+    class="creator-counter"
+    id="creatorCounter"
+>
+0 / 1000
+</div>
+
+
+<div
+    class="creator-preview"
+    id="creatorPreview"
+>
+
+<div class="creator-preview-label">
+PREVIEW
+</div>
+
+<div
+    class="creator-preview-sender"
+    id="creatorPreviewSender"
+>
+AETHER
+
+<span class="creator-preview-badge">
+AETHER
+</span>
+
+</div>
+
+<div
+    class="creator-preview-message"
+    id="creatorPreviewMessage"
+>
+Your message will appear here.
+</div>
+
+</div>
+
+
+<div class="creator-actions">
+
+<button
+    type="button"
+    id="creatorPreviewButton"
+    class="creator-preview-button"
+>
+PREVIEW ✦
+</button>
+
+<button
+    type="button"
+    id="creatorPostButton"
+    class="creator-post-button"
+>
+POST ✦
+</button>
+
+</div>
+
+
+<div
+    class="creator-message"
+    id="creatorMessageStatus"
+></div>
+
+
+<!-- =====================================================
+     SCENE CONTROL
+===================================================== -->
+
+<div class="scene-divider"></div>
+
+<div class="creator-title">
+⚡ AETHER SCENE CONTROL
+</div>
+
+<div class="creator-subtitle">
+Trigger a predefined AETHER conversation scene.
 </div>
 
 
@@ -1478,6 +1968,61 @@ document.getElementById(
     "aetherControl"
 );
 
+
+/* =========================================================
+   CREATOR ELEMENTS
+========================================================= */
+
+const creatorAuthor =
+document.getElementById(
+    "creatorAuthor"
+);
+
+const creatorMessage =
+document.getElementById(
+    "creatorMessage"
+);
+
+const creatorCounter =
+document.getElementById(
+    "creatorCounter"
+);
+
+const creatorPreview =
+document.getElementById(
+    "creatorPreview"
+);
+
+const creatorPreviewSender =
+document.getElementById(
+    "creatorPreviewSender"
+);
+
+const creatorPreviewMessage =
+document.getElementById(
+    "creatorPreviewMessage"
+);
+
+const creatorPreviewButton =
+document.getElementById(
+    "creatorPreviewButton"
+);
+
+const creatorPostButton =
+document.getElementById(
+    "creatorPostButton"
+);
+
+const creatorMessageStatus =
+document.getElementById(
+    "creatorMessageStatus"
+);
+
+
+/* =========================================================
+   SCENE ELEMENTS
+========================================================= */
+
 const sceneSelect =
 document.getElementById(
     "sceneSelect"
@@ -1519,6 +2064,63 @@ let reactionChannel = null;
 let typingChannel = null;
 
 let typingTimeout = null;
+
+
+/* =========================================================
+   CREATOR AUTHOR DATA
+========================================================= */
+
+const creatorAuthors = {
+
+    solen: {
+        name: "Solen",
+        badge: "AETHER",
+        role: "Leader"
+    },
+
+    vex: {
+        name: "Vex",
+        badge: "AETHER",
+        role: "Protector"
+    },
+
+    kairo: {
+        name: "Kairo",
+        badge: "AETHER",
+        role: "Main Energy"
+    },
+
+    riven: {
+        name: "Riven",
+        badge: "AETHER",
+        role: "Emotional Heart"
+    },
+
+    zenith: {
+        name: "Zenith",
+        badge: "AETHER",
+        role: "Mood Maker"
+    },
+
+    lux: {
+        name: "Lux",
+        badge: "AETHER",
+        role: "Angel / Comfort Member"
+    },
+
+    nero: {
+        name: "Nero",
+        badge: "AETHER",
+        role: "Maknae"
+    },
+
+    elyra: {
+        name: "Elyra",
+        badge: "ELYRA",
+        role: "The Voice Between Worlds"
+    }
+
+};
 
 
 /* =========================================================
@@ -1576,6 +2178,310 @@ function scrollToBottom() {
         messagesContainer.scrollHeight;
 
 }
+
+
+/* =========================================================
+   CREATOR PREVIEW
+========================================================= */
+
+function updateCreatorPreview() {
+
+    const author =
+        creatorAuthors[
+            creatorAuthor.value
+        ];
+
+    if (!author) {
+
+        return;
+
+    }
+
+    creatorPreviewSender.innerHTML = `
+
+        <span>
+            ${escapeHtml(
+                author.name
+            )}
+        </span>
+
+        <span class="creator-preview-badge">
+            ${escapeHtml(
+                author.badge
+            )}
+        </span>
+
+        <span
+            style="
+                color:#8f88b5;
+                font-size:0.65rem;
+                margin-left:6px;
+            "
+        >
+            ${escapeHtml(
+                author.role
+            )}
+        </span>
+
+    `;
+
+    const text =
+        creatorMessage.value.trim();
+
+    if (text) {
+
+        creatorPreviewMessage.textContent =
+            text;
+
+    }
+
+    else {
+
+        creatorPreviewMessage.textContent =
+            "Your message will appear here.";
+
+    }
+
+    creatorPreview.classList.add(
+        "visible"
+    );
+
+}
+
+
+function updateCreatorCounter() {
+
+    const length =
+        creatorMessage.value.length;
+
+    creatorCounter.textContent =
+        length +
+        " / 1000";
+
+}
+
+
+creatorAuthor.addEventListener(
+    "change",
+    function() {
+
+        updateCreatorPreview();
+
+        creatorMessageStatus.textContent =
+            "";
+
+    }
+);
+
+
+creatorMessage.addEventListener(
+    "input",
+    function() {
+
+        updateCreatorCounter();
+
+        if (
+            creatorPreview.classList.contains(
+                "visible"
+            )
+        ) {
+
+            updateCreatorPreview();
+
+        }
+
+    }
+);
+
+
+creatorPreviewButton.addEventListener(
+    "click",
+    function() {
+
+        updateCreatorPreview();
+
+        creatorMessageStatus.textContent =
+            "";
+
+    }
+);
+
+
+/* =========================================================
+   AETHER CREATOR POST
+========================================================= */
+
+async function postAsAetherMember() {
+
+    if (!currentUser) {
+
+        creatorMessageStatus.textContent =
+            "Please log in first.";
+
+        return;
+
+    }
+
+    const authorKey =
+        creatorAuthor.value;
+
+    const message =
+        creatorMessage.value.trim();
+
+    if (!authorKey) {
+
+        creatorMessageStatus.textContent =
+            "Please select an author.";
+
+        return;
+
+    }
+
+    if (!message) {
+
+        creatorMessageStatus.textContent =
+            "Write a message first. ✦";
+
+        return;
+
+    }
+
+    if (message.length > 1000) {
+
+        creatorMessageStatus.textContent =
+            "Your message is too long.";
+
+        return;
+
+    }
+
+    creatorPostButton.disabled =
+        true;
+
+    creatorPreviewButton.disabled =
+        true;
+
+    creatorAuthor.disabled =
+        true;
+
+    creatorMessage.disabled =
+        true;
+
+    creatorMessageStatus.textContent =
+        "Publishing...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "create_community_aether_message",
+            {
+                p_member_key:
+                    authorKey,
+
+                p_message:
+                    message
+            }
+        );
+
+
+        if (error) {
+
+            console.error(
+                "CREATOR POST ERROR:",
+                error
+            );
+
+            if (
+                error.message &&
+                error.message
+                    .toLowerCase()
+                    .includes(
+                        "admin access"
+                    )
+            ) {
+
+                creatorMessageStatus.textContent =
+                    "AETHER admin access required.";
+
+            }
+
+            else {
+
+                creatorMessageStatus.textContent =
+                    error.message ||
+                    "Could not publish the message.";
+
+            }
+
+            return;
+
+        }
+
+
+        console.log(
+            "✦ COMMUNITY CREATOR POST:",
+            data
+        );
+
+
+        creatorMessage.value =
+            "";
+
+        updateCreatorCounter();
+
+        creatorPreview.classList.remove(
+            "visible"
+        );
+
+        creatorMessageStatus.textContent =
+            "✦ Message published.";
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "CREATOR POST REQUEST ERROR:",
+            error
+        );
+
+        creatorMessageStatus.textContent =
+            "Could not publish the message.";
+
+    }
+
+    finally {
+
+        creatorPostButton.disabled =
+            false;
+
+        creatorPreviewButton.disabled =
+            false;
+
+        creatorAuthor.disabled =
+            false;
+
+        creatorMessage.disabled =
+            false;
+
+    }
+
+}
+
+
+creatorPostButton.addEventListener(
+    "click",
+    function() {
+
+        postAsAetherMember();
+
+    }
+);
 
 
 /* =========================================================
@@ -2814,15 +3720,6 @@ async function requestAetherReply(
         );
 
 
-    /*
-     * Direct member mention:
-     * show that specific AETHER member typing.
-     *
-     * Conversation continuation:
-     * no member name was mentioned, so let the
-     * database determine the recent conversation partner.
-     */
-
     if (mentionedMember) {
 
         showLocalAetherTyping(
@@ -2854,10 +3751,6 @@ async function requestAetherReply(
 
     }
 
-
-    /*
-     * Small natural pause before AETHER answers.
-     */
 
     const delay =
         1500 +
@@ -2924,6 +3817,7 @@ async function requestAetherReply(
         hideAetherTyping();
 
     }
+
 
 }
 
@@ -3033,14 +3927,6 @@ async function sendMessage() {
 
     messageInput.focus();
 
-
-    /*
-     * Let the normal Realtime INSERT render
-     * the HALO message first.
-     *
-     * Then ask AETHER whether the HALO
-     * directly addressed a member.
-     */
 
     requestAetherReply(
         data.id,
@@ -3307,9 +4193,6 @@ async function initializeCommunity() {
     composer.style.display =
         "block";
 
-    /*
-     * Subscribe BEFORE triggering the welcome.
-     */
 
     subscribeToMessages();
 
@@ -3319,9 +4202,6 @@ async function initializeCommunity() {
 
     await loadMessages();
 
-    /*
-     * First-community-visit welcome.
-     */
 
     await triggerHaloWelcome();
 
