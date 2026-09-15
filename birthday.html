@@ -1082,6 +1082,76 @@ let timer = null;
 
 
 /* =========================
+   SERVER CLOCK
+========================= */
+
+/*
+   The birthday system uses Supabase/Postgres
+   time instead of trusting the visitor's
+   device clock.
+
+   The small offset compensates for network
+   latency by using the midpoint between the
+   request start and response time.
+*/
+
+let serverTimeOffset = 0;
+
+async function syncServerClock() {
+
+    const clientSentAt =
+        Date.now();
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .rpc(
+            "get_server_time"
+        );
+
+
+    const clientReceivedAt =
+        Date.now();
+
+
+    if (
+        !error &&
+        data
+    ) {
+
+        const midpoint =
+            clientSentAt +
+            (
+                clientReceivedAt -
+                clientSentAt
+            ) / 2;
+
+
+        serverTimeOffset =
+            new Date(
+                data
+            ).getTime() -
+            midpoint;
+
+    }
+
+}
+
+
+function serverNow() {
+
+    return (
+        Date.now() +
+        serverTimeOffset
+    );
+
+}
+
+
+/* =========================
    ESCAPE HTML
 ========================= */
 
@@ -1135,7 +1205,7 @@ function state(event) {
     }
 
     const now =
-        Date.now();
+        serverNow();
 
     const start =
         Date.parse(
@@ -1276,6 +1346,15 @@ async function load() {
         return;
 
     }
+
+
+    /*
+       Synchronise the visible Birthday
+       status with Supabase server time
+       before rendering any event.
+    */
+
+    await syncServerClock();
 
 
     const {
@@ -1702,7 +1781,7 @@ function startTimer() {
                     Date.parse(
                         activeEvent.end_at
                     ) -
-                    Date.now()
+                    serverNow()
                 );
 
 
@@ -1930,8 +2009,16 @@ async function sendWish() {
         "";
 
 
+    const member =
+        MEMBERS.find(
+            item =>
+                item.key ===
+                activeEvent.member_key
+        );
+
+
     status.textContent =
-        "Your wish has reached Riven. ✨";
+        `Your wish has reached ${member ? member.name : "AETHER"}. ✨`;
 
 
     await loadWishes();
@@ -2017,6 +2104,29 @@ ${esc(
         `;
 
 }
+
+
+/* =========================
+   SERVER CLOCK RESYNC
+========================= */
+
+/*
+   Re-sync every 5 minutes.
+   This keeps the visible timer/status
+   aligned with Supabase even during a
+   long-open Birthday page.
+*/
+
+setInterval(
+    async () => {
+
+        await syncServerClock();
+
+        renderMembers();
+
+    },
+    5 * 60 * 1000
+);
 
 
 /* =========================
