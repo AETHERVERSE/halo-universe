@@ -263,6 +263,19 @@ nav a:hover{
 
 
 /* =========================================================
+   BIRTHDAY VOICE MESSAGE
+========================================================= */
+
+.birthday-voice-audio{
+  display:block;
+  width:100%;
+  margin:18px auto 4px;
+  border-radius:14px;
+  accent-color:var(--accent);
+}
+
+
+/* =========================================================
    MESSAGE
 ========================================================= */
 
@@ -804,6 +817,10 @@ footer{
   .birthday-card-image,
   .birthday-moment-video{
     border-radius:18px;
+  }
+
+  .birthday-voice-audio{
+    width:100%;
   }
 
   .letter-modal{
@@ -2127,12 +2144,31 @@ function openBirthday(
           ${
             hasVoice
             ?`
-              <button
-                class="claim"
-                disabled
+              <audio
+                class="birthday-voice-audio"
+                controls
+                preload="metadata"
               >
-                PLAY VOICE ✦
-              </button>
+
+                <source
+                  src="${esc(ev.voice_url)}"
+                  type="audio/mpeg"
+                >
+
+                Your browser does not support
+                audio playback.
+
+              </audio>
+
+              ${
+                allowed
+                ?`
+                  <div class="special-status">
+                    ✓ REAL VOICE MESSAGE • PREVIEW
+                  </div>
+                `
+                :""
+              }
             `
             :`
               <div class="special-status">
