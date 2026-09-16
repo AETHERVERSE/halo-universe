@@ -399,6 +399,170 @@ button{
 
 
 /* =========================================================
+   BIRTHDAY LETTER MODAL
+========================================================= */
+
+.letter-modal{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(1,8,13,.82);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:
+    opacity .28s ease,
+    visibility .28s ease;
+}
+
+.letter-modal.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+.letter-modal-shell{
+  position:relative;
+  width:min(760px,100%);
+  max-height:min(88vh,900px);
+  display:flex;
+  flex-direction:column;
+  border:1px solid #57999c;
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(114,228,223,.15),
+      transparent 45%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(10,38,47,.98),
+      rgba(5,20,27,.99)
+    );
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.65),
+    0 0 55px rgba(114,228,223,.10);
+  transform:translateY(25px) scale(.97);
+  transition:
+    transform .32s ease,
+    opacity .32s ease;
+  opacity:0;
+}
+
+.letter-modal.open .letter-modal-shell{
+  transform:translateY(0) scale(1);
+  opacity:1;
+}
+
+.letter-modal-top{
+  flex:0 0 auto;
+  padding:26px 54px 20px 24px;
+  text-align:center;
+  border-bottom:1px solid rgba(87,153,156,.35);
+  background:rgba(255,255,255,.025);
+}
+
+.letter-modal-icon{
+  font-size:2.1rem;
+  margin-bottom:8px;
+}
+
+.letter-modal-title{
+  margin:0;
+  color:var(--accent);
+  letter-spacing:3px;
+  font-size:clamp(1.15rem,4vw,1.55rem);
+}
+
+.letter-modal-subtitle{
+  margin-top:8px;
+  color:#9fc8cd;
+  font-size:.78rem;
+  letter-spacing:2px;
+}
+
+.letter-close{
+  position:absolute;
+  top:16px;
+  right:16px;
+  width:40px;
+  height:40px;
+  border:1px solid #396b73;
+  border-radius:50%;
+  background:rgba(255,255,255,.04);
+  color:#cfe8eb;
+  font-size:1.1rem;
+  line-height:1;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.letter-close:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+  background:rgba(114,228,223,.08);
+}
+
+.letter-content{
+  flex:1 1 auto;
+  overflow-y:auto;
+  padding:28px 30px 20px;
+  color:#d9eff1;
+  line-height:1.95;
+  font-size:1rem;
+  white-space:pre-line;
+  overscroll-behavior:contain;
+}
+
+.letter-content::-webkit-scrollbar{
+  width:7px;
+}
+
+.letter-content::-webkit-scrollbar-track{
+  background:rgba(255,255,255,.025);
+}
+
+.letter-content::-webkit-scrollbar-thumb{
+  background:#396b73;
+  border-radius:10px;
+}
+
+.letter-content::-webkit-scrollbar-thumb:hover{
+  background:var(--accent);
+}
+
+.letter-content p{
+  margin:0;
+  white-space:pre-line;
+}
+
+.letter-modal-bottom{
+  flex:0 0 auto;
+  padding:16px 20px 20px;
+  text-align:center;
+  border-top:1px solid rgba(87,153,156,.3);
+  background:rgba(255,255,255,.025);
+}
+
+.letter-close-button{
+  min-width:170px;
+  margin:0;
+}
+
+body.letter-modal-open{
+  overflow:hidden;
+}
+
+
+/* =========================================================
    WISHES
 ========================================================= */
 
@@ -642,6 +806,41 @@ footer{
     border-radius:18px;
   }
 
+  .letter-modal{
+    padding:10px;
+    align-items:center;
+  }
+
+  .letter-modal-shell{
+    max-height:92vh;
+    border-radius:22px;
+  }
+
+  .letter-modal-top{
+    padding:22px 48px 17px 18px;
+  }
+
+  .letter-modal-title{
+    letter-spacing:2px;
+  }
+
+  .letter-content{
+    padding:22px 18px 18px;
+    font-size:.94rem;
+    line-height:1.85;
+  }
+
+  .letter-close{
+    top:12px;
+    right:12px;
+    width:38px;
+    height:38px;
+  }
+
+  .letter-modal-bottom{
+    padding:13px 15px 16px;
+  }
+
   h1{
     letter-spacing:7px;
   }
@@ -728,6 +927,82 @@ footer{
 
   #WEAREHALO • #WEAREAETHER
 </footer>
+
+</div>
+
+
+<!-- =========================================================
+     BIRTHDAY LETTER MODAL
+========================================================= -->
+
+<div
+  id="letterModal"
+  class="letter-modal"
+  aria-hidden="true"
+>
+
+  <div
+    class="letter-modal-shell"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="letterModalTitle"
+  >
+
+    <button
+      id="letterCloseTop"
+      class="letter-close"
+      type="button"
+      aria-label="Close birthday letter"
+    >
+      ✕
+    </button>
+
+
+    <div class="letter-modal-top">
+
+      <div
+        id="letterModalIcon"
+        class="letter-modal-icon"
+      >
+        💌
+      </div>
+
+      <h2
+        id="letterModalTitle"
+        class="letter-modal-title"
+      >
+        A LETTER FROM AETHER
+      </h2>
+
+      <div
+        id="letterModalSubtitle"
+        class="letter-modal-subtitle"
+      >
+        A PERSONAL MESSAGE FOR HALO
+      </div>
+
+    </div>
+
+
+    <div
+      id="letterContent"
+      class="letter-content"
+    ></div>
+
+
+    <div class="letter-modal-bottom">
+
+      <button
+        id="letterCloseBottom"
+        class="claim letter-close-button"
+        type="button"
+      >
+        CLOSE LETTER ✦
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
@@ -2095,38 +2370,6 @@ function openBirthday(
 
 
       <!-- =================================================
-           LETTER BOX
-      ================================================== -->
-
-      ${
-        hasLetter
-        ?`
-          <div
-            id="letterBox"
-            class="message"
-            style="
-              display:none;
-              white-space:pre-line;
-            "
-          >
-
-            <h2>
-              A LETTER FROM ${m.name}
-            </h2>
-
-            <p>
-              ${esc(
-                ev.letter_text
-              )}
-            </p>
-
-          </div>
-        `
-        :""
-      }
-
-
-      <!-- =================================================
            CARD PREVIEW
       ================================================== -->
 
@@ -2301,8 +2544,7 @@ function openBirthday(
 
 
   /* =======================================================
-     LETTER ACTION
-     Works for HALO AND ADMIN PREVIEW.
+     LETTER MODAL
   ======================================================= */
 
   const letterButton=
@@ -2318,33 +2560,11 @@ function openBirthday(
 
     letterButton.onclick=()=>{
 
-      const box=
-        document.getElementById(
-          "letterBox"
-        );
-
-
-      if(!box)return;
-
-
-      const isOpen=
-        box.style.display==="block";
-
-
-      box.style.display=
-        isOpen
-          ?"none"
-          :"block";
-
-
-      if(!isOpen){
-
-        box.scrollIntoView({
-          behavior:"smooth",
-          block:"center"
-        });
-
-      }
+      openLetterModal(
+        m,
+        ev.letter_text,
+        allowed
+      );
 
     };
 
@@ -2363,6 +2583,244 @@ function openBirthday(
   });
 
 }
+
+
+/* =========================================================
+   LETTER MODAL FUNCTIONS
+========================================================= */
+
+function openLetterModal(
+  member,
+  letter,
+  isPreview=false
+){
+
+  const modal=
+    document.getElementById(
+      "letterModal"
+    );
+
+
+  const title=
+    document.getElementById(
+      "letterModalTitle"
+    );
+
+
+  const subtitle=
+    document.getElementById(
+      "letterModalSubtitle"
+    );
+
+
+  const content=
+    document.getElementById(
+      "letterContent"
+    );
+
+
+  const icon=
+    document.getElementById(
+      "letterModalIcon"
+    );
+
+
+  if(
+    !modal ||
+    !title ||
+    !subtitle ||
+    !content
+  ){
+
+    return;
+
+  }
+
+
+  title.textContent=
+    `A LETTER FROM ${member.name}`;
+
+
+  subtitle.textContent=
+    isPreview
+      ?"ADMIN PREVIEW • PERSONAL MESSAGE FOR HALO"
+      :"A PERSONAL MESSAGE FOR HALO";
+
+
+  if(icon){
+
+    icon.textContent=
+      "💌";
+
+  }
+
+
+  content.innerHTML=
+    `<p>${esc(letter)}</p>`;
+
+
+  modal.classList.add(
+    "open"
+  );
+
+
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
+
+
+  document.body.classList.add(
+    "letter-modal-open"
+  );
+
+
+  content.scrollTop=0;
+
+
+  setTimeout(
+    ()=>{
+
+      const close=
+        document.getElementById(
+          "letterCloseTop"
+        );
+
+      if(close){
+
+        close.focus();
+
+      }
+
+    },
+    50
+  );
+
+}
+
+
+function closeLetterModal(){
+
+  const modal=
+    document.getElementById(
+      "letterModal"
+    );
+
+
+  if(!modal)return;
+
+
+  modal.classList.remove(
+    "open"
+  );
+
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.classList.remove(
+    "letter-modal-open"
+  );
+
+}
+
+
+/* =========================================================
+   LETTER MODAL EVENTS
+========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    const modal=
+      document.getElementById(
+        "letterModal"
+      );
+
+
+    const closeTop=
+      document.getElementById(
+        "letterCloseTop"
+      );
+
+
+    const closeBottom=
+      document.getElementById(
+        "letterCloseBottom"
+      );
+
+
+    if(closeTop){
+
+      closeTop.onclick=
+        closeLetterModal;
+
+    }
+
+
+    if(closeBottom){
+
+      closeBottom.onclick=
+        closeLetterModal;
+
+    }
+
+
+    if(modal){
+
+      modal.addEventListener(
+        "click",
+        event=>{
+
+          if(
+            event.target===
+            modal
+          ){
+
+            closeLetterModal();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      event=>{
+
+        if(
+          event.key==="Escape"
+        ){
+
+          const open=
+            document
+              .getElementById(
+                "letterModal"
+              )
+              ?.classList
+              .contains("open");
+
+
+          if(open){
+
+            closeLetterModal();
+
+          }
+
+        }
+
+      }
+    );
+
+  }
+);
 
 
 /* =========================================================
