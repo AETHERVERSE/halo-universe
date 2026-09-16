@@ -89,7 +89,10 @@ nav a:hover{
   color:var(--accent);
 }
 
-/* MEMBER GRID */
+
+/* =========================================================
+   MEMBER GRID
+========================================================= */
 
 .member-grid{
   display:grid;
@@ -158,7 +161,10 @@ nav a:hover{
   color:#b9ffff;
 }
 
-/* DETAIL */
+
+/* =========================================================
+   DETAIL
+========================================================= */
 
 #detail{
   display:none;
@@ -189,7 +195,10 @@ nav a:hover{
   letter-spacing:2px;
 }
 
-/* IMAGES */
+
+/* =========================================================
+   IMAGES
+========================================================= */
 
 .image-block{
   margin:28px auto 34px;
@@ -234,7 +243,28 @@ nav a:hover{
   background:#07171e;
 }
 
-/* MESSAGE */
+
+/* =========================================================
+   BIRTHDAY MOMENT VIDEO
+========================================================= */
+
+.birthday-moment-video{
+  display:block;
+  width:100%;
+  max-width:430px;
+  max-height:760px;
+  margin:auto;
+  border-radius:25px;
+  border:1px solid #4b8b90;
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+  background:#02080d;
+  object-fit:contain;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
 
 .message{
   max-width:760px;
@@ -258,7 +288,10 @@ nav a:hover{
   white-space:pre-line;
 }
 
-/* TIMER */
+
+/* =========================================================
+   TIMER
+========================================================= */
 
 .timer{
   max-width:600px;
@@ -282,7 +315,10 @@ nav a:hover{
   margin:10px 0;
 }
 
-/* SPECIALS */
+
+/* =========================================================
+   SPECIALS
+========================================================= */
 
 .specials{
   display:grid;
@@ -329,7 +365,10 @@ nav a:hover{
   letter-spacing:1px;
 }
 
-/* BUTTONS */
+
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 button{
   font-family:Georgia,serif;
@@ -358,7 +397,10 @@ button{
   cursor:default;
 }
 
-/* WISHES */
+
+/* =========================================================
+   WISHES
+========================================================= */
 
 .wish-area{
   max-width:760px;
@@ -425,7 +467,10 @@ button{
   letter-spacing:1px;
 }
 
-/* OTHER */
+
+/* =========================================================
+   OTHER
+========================================================= */
 
 .back{
   display:block;
@@ -453,7 +498,10 @@ footer{
   line-height:2;
 }
 
-/* ADMIN */
+
+/* =========================================================
+   ADMIN
+========================================================= */
 
 .admin-preview{
   display:none;
@@ -552,7 +600,10 @@ footer{
   letter-spacing:1.5px;
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:600px){
 
@@ -586,7 +637,8 @@ footer{
 
   .birthday-snapshot,
   .birthday-art,
-  .birthday-card-image{
+  .birthday-card-image,
+  .birthday-moment-video{
     border-radius:18px;
   }
 
@@ -603,7 +655,11 @@ footer{
 
 <header>
   <div class="logo">AETHERVERSE</div>
-  <div class="eyebrow">A MOMENT MADE FOR HALO</div>
+
+  <div class="eyebrow">
+    A MOMENT MADE FOR HALO
+  </div>
+
   <h1>BIRTHDAY</h1>
 
   <p class="intro">
@@ -613,45 +669,80 @@ footer{
   </p>
 </header>
 
+
 <div id="adminPreview" class="admin-preview">
-  <strong>🧪 ADMIN PREVIEW — HALO VIEW</strong>
+
+  <strong>
+    🧪 ADMIN PREVIEW — HALO VIEW
+  </strong>
+
   <span id="adminPreviewText">
     You are viewing the Birthday experience exactly as a HALO will see it.
     Real claims and wishes remain protected.
   </span>
+
 </div>
+
 
 <div id="adminError" class="admin-error"></div>
 
+
 <div id="adminPanel" class="admin-panel">
+
   <select id="adminMemberSelect"></select>
-  <button id="adminOpenButton" class="claim">
+
+  <button
+    id="adminOpenButton"
+    class="claim"
+  >
     OPEN HALO VIEW ✦
   </button>
+
 </div>
 
+
 <nav>
-  <a href="halo-home.html">MY HALO</a>
-  <a href="card-album.html">CARD ALBUM</a>
+  <a href="halo-home.html">
+    MY HALO
+  </a>
+
+  <a href="card-album.html">
+    CARD ALBUM
+  </a>
 </nav>
 
-<section id="memberGrid" class="member-grid"></section>
+
+<section
+  id="memberGrid"
+  class="member-grid"
+></section>
+
 
 <section id="detail"></section>
 
+
 <footer>
   ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
   <br><br>
+
   #WEAREHALO • #WEAREAETHER
 </footer>
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
-const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
-const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const SUPABASE_URL=
+  "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY=
+  "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
 
 const supabaseClient=
   window.supabase.createClient(
@@ -665,13 +756,49 @@ const supabaseClient=
 ========================================================= */
 
 const MEMBERS=[
-  {key:"solen",name:"SOLEN",symbol:"☀️"},
-  {key:"vex",name:"VEX",symbol:"🌑"},
-  {key:"kairo",name:"KAIRO",symbol:"⚡"},
-  {key:"riven",name:"RIVEN",symbol:"🌊"},
-  {key:"zenith",name:"ZENITH",symbol:"🔥"},
-  {key:"lux",name:"LUX",symbol:"✨"},
-  {key:"nero",name:"NERO",symbol:"🌙"}
+
+  {
+    key:"solen",
+    name:"SOLEN",
+    symbol:"☀️"
+  },
+
+  {
+    key:"vex",
+    name:"VEX",
+    symbol:"🌑"
+  },
+
+  {
+    key:"kairo",
+    name:"KAIRO",
+    symbol:"⚡"
+  },
+
+  {
+    key:"riven",
+    name:"RIVEN",
+    symbol:"🌊"
+  },
+
+  {
+    key:"zenith",
+    name:"ZENITH",
+    symbol:"🔥"
+  },
+
+  {
+    key:"lux",
+    name:"LUX",
+    symbol:"✨"
+  },
+
+  {
+    key:"nero",
+    name:"NERO",
+    symbol:"🌙"
+  }
+
 ];
 
 
@@ -711,8 +838,11 @@ const esc=v=>
 
 
 function dateOnly(v){
+
   const d=
-    new Date(v+"T12:00:00");
+    new Date(
+      v+"T12:00:00"
+    );
 
   return String(
     d.getUTCDate()
@@ -725,6 +855,7 @@ function dateOnly(v){
 
 
 function dateLong(v){
+
   return new Intl.DateTimeFormat(
     "en-US",
     {
@@ -732,7 +863,25 @@ function dateLong(v){
       month:"long"
     }
   ).format(
-    new Date(v+"T12:00:00")
+    new Date(
+      v+"T12:00:00"
+    )
+  );
+}
+
+
+/* =========================================================
+   BIRTHDAY MOMENT VIDEO URL
+========================================================= */
+
+function birthdayMomentUrl(key){
+
+  return (
+    "https://raw.githubusercontent.com/" +
+    "AETHERVERSE/halo-universe/main/images/birthday/" +
+    "birthday-moment-" +
+    key +
+    "-2026.mp4"
   );
 }
 
@@ -748,9 +897,11 @@ function requestedPreviewMember(){
       location.search
     );
 
-  return params.get("test")
-    ||params.get("preview")
-    ||null;
+  return (
+    params.get("test") ||
+    params.get("preview") ||
+    null
+  );
 }
 
 
@@ -763,10 +914,15 @@ async function checkAdminAccess(){
   const requested=
     requestedPreviewMember();
 
-  const {data,error}=
+
+  const {
+    data,
+    error
+  }=
     await supabaseClient.rpc(
       "is_aether_admin"
     );
+
 
   isAetherAdmin=
     !error &&
@@ -788,7 +944,10 @@ async function checkAdminAccess(){
 
     box.textContent=
       "ADMIN PREVIEW CHECK FAILED: "+
-      (error.message||"Unknown error");
+      (
+        error.message ||
+        "Unknown error"
+      );
 
     console.error(
       "is_aether_admin failed",
@@ -800,6 +959,7 @@ async function checkAdminAccess(){
 
 
   if(!isAetherAdmin){
+
     return false;
   }
 
@@ -809,12 +969,15 @@ async function checkAdminAccess(){
       "adminMemberSelect"
     );
 
+
   select.innerHTML=
     MEMBERS.map(
       m=>
-        `<option value="${m.key}">
+        `
+        <option value="${m.key}">
           ${m.name}
-        </option>`
+        </option>
+        `
     ).join("");
 
 
@@ -834,9 +997,11 @@ async function checkAdminAccess(){
   document.getElementById(
     "adminOpenButton"
   ).onclick=()=>{
+
     startAdminPreview(
       select.value
     );
+
   };
 
 
@@ -846,8 +1011,13 @@ async function checkAdminAccess(){
       m=>m.key===requested
     )
   ){
-    startAdminPreview(requested);
+
+    startAdminPreview(
+      requested
+    );
+
   }
+
 
   return true;
 }
@@ -861,15 +1031,20 @@ function startAdminPreview(key){
 
   if(!isAetherAdmin)return;
 
+
   if(
     !MEMBERS.some(
       m=>m.key===key
     )
-  )return;
+  ){
+
+    return;
+  }
 
 
   adminPreview=true;
   adminTestMember=key;
+
 
   previewTimerEnd=
     serverNow()+
@@ -897,12 +1072,16 @@ function startAdminPreview(key){
 
   renderMembers();
 
+
   if(events.length){
+
     openBirthday(
       key,
       true
     );
+
   }
+
 }
 
 
@@ -912,30 +1091,51 @@ function startAdminPreview(key){
 
 async function syncServerClock(){
 
-  const sent=Date.now();
+  const sent=
+    Date.now();
 
-  const {data,error}=
+
+  const {
+    data,
+    error
+  }=
     await supabaseClient.rpc(
       "get_server_time"
     );
 
-  const received=Date.now();
 
-  if(!error&&data){
+  const received=
+    Date.now();
+
+
+  if(
+    !error &&
+    data
+  ){
 
     const midpoint=
       sent+
-      (received-sent)/2;
+      (
+        received-sent
+      )/2;
+
 
     serverTimeOffset=
-      new Date(data).getTime()-
+      new Date(
+        data
+      ).getTime()-
       midpoint;
+
   }
+
 }
 
 
 function serverNow(){
-  return Date.now()+serverTimeOffset;
+
+  return Date.now()+
+    serverTimeOffset;
+
 }
 
 
@@ -945,29 +1145,53 @@ function serverNow(){
 
 function state(ev){
 
-  if(!ev)return "unknown";
+  if(!ev){
+
+    return "unknown";
+
+  }
 
 
   if(
     adminPreview &&
-    ev.member_key===adminTestMember
+    ev.member_key===
+      adminTestMember
   ){
+
     return "live";
+
   }
 
 
-  const n=serverNow();
+  const n=
+    serverNow();
+
 
   const s=
-    Date.parse(ev.start_at);
+    Date.parse(
+      ev.start_at
+    );
+
 
   const e=
-    Date.parse(ev.end_at);
+    Date.parse(
+      ev.end_at
+    );
 
 
-  if(n<s)return "locked";
+  if(n<s){
 
-  if(n<e)return "live";
+    return "locked";
+
+  }
+
+
+  if(n<e){
+
+    return "live";
+
+  }
+
 
   return "expired";
 }
@@ -983,98 +1207,138 @@ function renderMembers(){
     "memberGrid"
   ).innerHTML=
 
-  MEMBERS.map(m=>{
+  MEMBERS.map(
+    m=>{
 
-    const ev=
-      events.find(
-        x=>x.member_key===m.key
-      );
-
-
-    const st=state(ev);
-
-    const date=
-      ev
-        ?dateOnly(ev.birthday_date)
-        :"Birthday date to be configured";
+      const ev=
+        events.find(
+          x=>
+            x.member_key===
+            m.key
+        );
 
 
-    const preview=
-      adminPreview &&
-      m.key===adminTestMember;
+      const st=
+        state(ev);
 
 
-    let text;
+      const date=
+        ev
+          ?dateOnly(
+            ev.birthday_date
+          )
+          :"Birthday date to be configured";
 
 
-    if(preview){
+      const preview=
+        adminPreview &&
+        m.key===
+          adminTestMember;
 
-      text="🧪 HALO VIEW — OPEN";
 
-    }else if(ev){
+      let text;
 
-      if(st==="locked"){
+
+      if(preview){
+
         text=
-          "🔒 OPENS ON "+
-          date;
-      }else if(st==="live"){
+          "🧪 HALO VIEW — OPEN";
+
+      }
+      else if(ev){
+
+        if(st==="locked"){
+
+          text=
+            "🔒 OPENS ON "+
+            date;
+
+        }
+        else if(st==="live"){
+
+          text=
+            "✨ BIRTHDAY IS LIVE";
+
+        }
+        else{
+
+          text=
+            "🌊 BIRTHDAY EVENT ENDED";
+
+        }
+
+      }
+      else{
+
         text=
-          "✨ BIRTHDAY IS LIVE";
-      }else{
-        text=
-          "🌊 BIRTHDAY EVENT ENDED";
+          "Birthday event coming soon";
+
       }
 
-    }else{
 
-      text=
-        "Birthday event coming soon";
+      const clickable=
+        adminPreview ||
+        st==="live";
+
+
+      return `
+
+        <div
+          class="
+            member-card
+            ${clickable?"admin-clickable":""}
+            ${
+              st==="expired"&&!preview
+              ?"expired"
+              :""
+            }
+            ${
+              preview
+              ?"admin-selected"
+              :""
+            }
+          "
+          ${
+            clickable
+            ?`
+              onclick="openBirthday(
+                '${m.key}',
+                ${adminPreview}
+              )"
+            `
+            :""
+          }
+        >
+
+          <div class="member-symbol">
+            ${m.symbol}
+          </div>
+
+          <div class="member-name">
+            ${m.name}
+          </div>
+
+          <div class="birthday-date">
+
+            <strong>
+              ${esc(date)}
+            </strong>
+
+            ${ev?" Birthday":""}
+
+          </div>
+
+          <div class="status">
+            ${esc(text)}
+          </div>
+
+        </div>
+
+      `;
+
     }
+  ).join("");
 
-
-    const clickable=
-      adminPreview ||
-      st==="live";
-
-
-    return `
-      <div
-        class="
-          member-card
-          ${clickable?"admin-clickable":""}
-          ${st==="expired"&&!preview?"expired":""}
-          ${preview?"admin-selected":""}
-        "
-        ${
-          clickable
-          ?`onclick="openBirthday('${m.key}',${adminPreview})"`
-          :""
-        }
-      >
-
-        <div class="member-symbol">
-          ${m.symbol}
-        </div>
-
-        <div class="member-name">
-          ${m.name}
-        </div>
-
-        <div class="birthday-date">
-          <strong>
-            ${esc(date)}
-          </strong>
-          ${ev?" Birthday":""}
-        </div>
-
-        <div class="status">
-          ${esc(text)}
-        </div>
-
-      </div>
-    `;
-
-  }).join("");
 }
 
 
@@ -1096,7 +1360,10 @@ async function load(){
     !sessionData.session
   ){
 
-    location.replace("halo.html");
+    location.replace(
+      "halo.html"
+    );
+
     return;
   }
 
@@ -1113,8 +1380,13 @@ async function load(){
     await supabaseClient
       .from("birthday_events")
       .select("*")
-      .eq("is_active",true)
-      .order("birthday_date");
+      .eq(
+        "is_active",
+        true
+      )
+      .order(
+        "birthday_date"
+      );
 
 
   if(error){
@@ -1129,14 +1401,18 @@ async function load(){
       `;
 
     console.error(error);
+
     return;
   }
 
 
-  events=data||[];
+  events=
+    data||[];
 
 
-  /* Load Birthday Cards */
+  /* =======================================================
+     LOAD BIRTHDAY CARDS
+  ======================================================= */
 
   const {
     data:cardData,
@@ -1147,12 +1423,21 @@ async function load(){
       .select(
         "id,card_number,card_key,title,image_url,is_active"
       )
-      .eq("set_key","BIRTHDAY_CARDS")
-      .eq("is_active",true);
+      .eq(
+        "set_key",
+        "BIRTHDAY_CARDS"
+      )
+      .eq(
+        "is_active",
+        true
+      );
 
 
   if(!cardError){
-    cards=cardData||[];
+
+    cards=
+      cardData||[];
+
   }
 
 
@@ -1173,7 +1458,9 @@ async function load(){
 
     const ev=
       events.find(
-        x=>x.member_key===requested
+        x=>
+          x.member_key===
+          requested
       );
 
 
@@ -1185,7 +1472,9 @@ async function load(){
       openBirthday(
         requested
       );
+
     }
+
   }
 
 
@@ -1198,7 +1487,9 @@ async function load(){
       adminTestMember,
       true
     );
+
   }
+
 }
 
 
@@ -1213,7 +1504,9 @@ function openBirthday(
 
   const ev=
     events.find(
-      x=>x.member_key===key
+      x=>
+        x.member_key===
+        key
     );
 
 
@@ -1223,23 +1516,29 @@ function openBirthday(
   const allowed=
     adminPreview &&
     isAetherAdmin &&
-    key===adminTestMember;
+    key===
+      adminTestMember;
 
 
   if(
     !allowed &&
     state(ev)!=="live"
   ){
+
     return;
+
   }
 
 
-  activeEvent=ev;
+  activeEvent=
+    ev;
 
 
   const m=
     MEMBERS.find(
-      x=>x.key===key
+      x=>
+        x.key===
+        key
     );
 
 
@@ -1260,27 +1559,47 @@ function openBirthday(
     );
 
 
-  d.style.display="block";
+  d.style.display=
+    "block";
 
 
-  /*
-    IMPORTANT:
-    moment_url is the existing Birthday Artwork.
-    It points to:
-    birthday-riven-2026.png
-    birthday-vex-2026.png
-    etc.
-  */
+  /* =======================================================
+     BIRTHDAY ARTWORK
+     
+     moment_url is the existing Birthday Artwork.
+     It points to:
+     birthday-riven-2026.png
+     birthday-vex-2026.png
+     etc.
+  ======================================================= */
 
   const artwork=
     ev.moment_url||
     "";
 
 
+  /* =======================================================
+     SNAPSHOT
+  ======================================================= */
+
   const snapshot=
     ev.snapshot_url||
     "";
 
+
+  /* =======================================================
+     BIRTHDAY MOMENT VIDEO
+  ======================================================= */
+
+  const birthdayMomentVideo=
+    birthdayMomentUrl(
+      key
+    );
+
+
+  /* =======================================================
+     MESSAGE
+  ======================================================= */
 
   const message=
     ev.birthday_message||
@@ -1299,6 +1618,7 @@ function openBirthday(
 
     <div class="detail-shell">
 
+
       <div class="detail-title">
 
         <div class="member-symbol">
@@ -1310,10 +1630,15 @@ function openBirthday(
         </div>
 
         <div class="birthday-date">
+
           <strong>
-            ${dateOnly(ev.birthday_date)}
+            ${dateOnly(
+              ev.birthday_date
+            )}
           </strong>
+
           BIRTHDAY
+
         </div>
 
       </div>
@@ -1333,6 +1658,7 @@ function openBirthday(
               margin:20px auto;
             "
           >
+
             🧪 ADMIN PREVIEW — FULL HALO VIEW
 
             <br>
@@ -1348,7 +1674,6 @@ function openBirthday(
 
       <!-- =================================================
            BIRTHDAY ARTWORK
-           REAL UPLOADED BIRTHDAY IMAGE
       ================================================== -->
 
       <div class="image-block">
@@ -1356,6 +1681,7 @@ function openBirthday(
         <div class="image-label">
           ✨ BIRTHDAY ARTWORK
         </div>
+
 
         ${
           artwork
@@ -1400,6 +1726,7 @@ function openBirthday(
         <div class="image-label">
           📸 BIRTHDAY SNAPSHOT
         </div>
+
 
         ${
           snapshot
@@ -1459,12 +1786,15 @@ function openBirthday(
       <div class="timer">
 
         <div class="timer-label">
+
           ${
             allowed
             ?"ADMIN PREVIEW • SIMULATED 72 HOURS"
             :"BIRTHDAY EVENT • 72 HOURS"
           }
+
         </div>
+
 
         <div
           id="countdown"
@@ -1473,15 +1803,18 @@ function openBirthday(
           --:--:--
         </div>
 
+
         <div
           id="timerNote"
           class="status"
         >
+
           ${
             allowed
             ?"Preview timer — simulated HALO view."
             :"The birthday window is open."
           }
+
         </div>
 
       </div>
@@ -1499,12 +1832,16 @@ function openBirthday(
       <div class="specials">
 
 
-        <!-- VOICE -->
+        <!-- =================================================
+             VOICE MESSAGE
+        ================================================== -->
 
-        <div class="
-          special
-          ${hasVoice?"configured":"missing"}
-        ">
+        <div
+          class="
+            special
+            ${hasVoice?"configured":"missing"}
+          "
+        >
 
           <div class="special-icon">
             🎙️
@@ -1518,6 +1855,7 @@ function openBirthday(
             A personal birthday message
             from ${m.name} to HALO.
           </p>
+
 
           ${
             hasVoice
@@ -1552,12 +1890,16 @@ function openBirthday(
         </div>
 
 
-        <!-- BIRTHDAY CARD -->
+        <!-- =================================================
+             BIRTHDAY CARD
+        ================================================== -->
 
-        <div class="
-          special
-          ${activeCard?"configured":"missing"}
-        ">
+        <div
+          class="
+            special
+            ${activeCard?"configured":"missing"}
+          "
+        >
 
           <div class="special-icon">
             🃏
@@ -1572,6 +1914,7 @@ function openBirthday(
             One claim per HALO.
           </p>
 
+
           ${
             activeCard
             ?`
@@ -1580,11 +1923,13 @@ function openBirthday(
                 id="claimCard"
                 ${allowed?"disabled":""}
               >
+
                 ${
                   allowed
                   ?"ADMIN PREVIEW — CLAIM LOCKED"
                   :"COLLECT CARD ✦"
                 }
+
               </button>
             `
             :`
@@ -1597,12 +1942,16 @@ function openBirthday(
         </div>
 
 
-        <!-- LETTER -->
+        <!-- =================================================
+             LETTER
+        ================================================== -->
 
-        <div class="
-          special
-          ${hasLetter?"configured":"missing"}
-        ">
+        <div
+          class="
+            special
+            ${hasLetter?"configured":"missing"}
+          "
+        >
 
           <div class="special-icon">
             💌
@@ -1617,6 +1966,7 @@ function openBirthday(
             from ${m.name}.
           </p>
 
+
           ${
             hasLetter
             ?`
@@ -1625,11 +1975,13 @@ function openBirthday(
                 class="claim"
                 ${allowed?"disabled":""}
               >
+
                 ${
                   allowed
                   ?"ADMIN PREVIEW — LETTER"
                   :"OPEN LETTER ✦"
                 }
+
               </button>
             `
             :`
@@ -1642,7 +1994,9 @@ function openBirthday(
         </div>
 
 
-        <!-- SNAPSHOT -->
+        <!-- =================================================
+             SNAPSHOT
+        ================================================== -->
 
         <div class="special configured">
 
@@ -1669,15 +2023,14 @@ function openBirthday(
         </div>
 
 
-        <!-- BIRTHDAY MOMENT -->
+        <!-- =================================================
+             BIRTHDAY MOMENT
+        ================================================== -->
 
-        <div class="
-          special
-          ${artwork?"configured":"missing"}
-        ">
+        <div class="special configured">
 
           <div class="special-icon">
-            ✨
+            🎬
           </div>
 
           <h3>
@@ -1685,27 +2038,73 @@ function openBirthday(
           </h3>
 
           <p>
-            A special visual moment
-            from ${m.name}.
+            A little birthday moment
+            from ${m.name}, made especially
+            for HALO.
           </p>
 
-          ${
-            artwork
-            ?`
-              <div
-                class="special-status"
-                style="color:#72e4df"
-              >
-                ✓ AVAILABLE ABOVE
-              </div>
-            `
-            :`
-              <div class="special-status">
-                NOT CONFIGURED YET
-              </div>
-            `
-          }
+          <button
+            class="claim"
+            type="button"
+            onclick="
+              document
+                .getElementById('birthdayMomentVideo')
+                .scrollIntoView({
+                  behavior:'smooth',
+                  block:'center'
+                });
+            "
+          >
+            ▶ WATCH MOMENT ✦
+          </button>
 
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           BIRTHDAY MOMENT VIDEO
+      ================================================== -->
+
+      <div class="image-block">
+
+        <div class="image-label">
+          🎬 BIRTHDAY MOMENT
+        </div>
+
+
+        <video
+          id="birthdayMomentVideo"
+          class="birthday-moment-video"
+          controls
+          playsinline
+          preload="metadata"
+          poster="${esc(artwork)}"
+        >
+
+          <source
+            src="${esc(
+              birthdayMomentVideo
+            )}"
+            type="video/mp4"
+          >
+
+          Your browser does not support video playback.
+
+        </video>
+
+
+        <div
+          class="locked-note"
+          style="
+            font-size:.8rem;
+            letter-spacing:1px;
+          "
+        >
+          A little moment made especially
+          for HALO. ✨
         </div>
 
       </div>
@@ -1732,7 +2131,9 @@ function openBirthday(
             </h2>
 
             <p>
-              ${esc(ev.letter_text)}
+              ${esc(
+                ev.letter_text
+              )}
             </p>
 
           </div>
@@ -1754,13 +2155,18 @@ function openBirthday(
               🃏 BIRTHDAY CARD PREVIEW
             </div>
 
+
             ${
               activeCard.image_url
               ?`
                 <img
                   class="birthday-card-image"
-                  src="${esc(activeCard.image_url)}"
-                  alt="${esc(activeCard.title)}"
+                  src="${esc(
+                    activeCard.image_url
+                  )}"
+                  alt="${esc(
+                    activeCard.title
+                  )}"
                 >
               `
               :`
@@ -1771,6 +2177,7 @@ function openBirthday(
               `
             }
 
+
             <div
               class="locked-note"
               style="
@@ -1779,7 +2186,9 @@ function openBirthday(
               "
             >
               CARD #${activeCard.card_number}
-              • ${esc(activeCard.title)}
+              • ${esc(
+                activeCard.title
+              )}
             </div>
 
           </div>
@@ -1808,29 +2217,36 @@ function openBirthday(
             ${allowed?"disabled":""}
           ></textarea>
 
+
           <br>
+
 
           <button
             id="sendWish"
             class="wish-button"
             ${allowed?"disabled":""}
           >
+
             ${
               allowed
               ?"ADMIN PREVIEW — WISHES LOCKED"
               :"SEND WISH ✨"
             }
+
           </button>
+
 
           <div
             id="wishStatus"
             class="wish-status"
           >
+
             ${
               allowed
               ?"Real wishes can be sent during the actual birthday window."
               :""
             }
+
           </div>
 
         </div>
@@ -1860,6 +2276,7 @@ function openBirthday(
       </a>
 
     </div>
+
   `;
 
 
@@ -1874,8 +2291,12 @@ function openBirthday(
         "claimCard"
       );
 
+
     if(claim){
-      claim.onclick=claimCard;
+
+      claim.onclick=
+        claimCard;
+
     }
 
 
@@ -1884,8 +2305,12 @@ function openBirthday(
         "sendWish"
       );
 
+
     if(wish){
-      wish.onclick=sendWish;
+
+      wish.onclick=
+        sendWish;
+
     }
 
 
@@ -1907,7 +2332,9 @@ function openBirthday(
             "letterBox"
           );
 
+
         if(!box)return;
+
 
         box.style.display=
           box.style.display==="block"
@@ -1927,17 +2354,23 @@ function openBirthday(
         }
 
       };
+
     }
+
   }
 
 
   loadWishes();
 
-  startTimer(allowed);
+  startTimer(
+    allowed
+  );
+
 
   d.scrollIntoView({
     behavior:"smooth"
   });
+
 }
 
 
@@ -1949,7 +2382,9 @@ function startTimer(
   isPreview=false
 ){
 
-  clearInterval(timer);
+  clearInterval(
+    timer
+  );
 
 
   if(
@@ -1960,6 +2395,7 @@ function startTimer(
     previewTimerEnd=
       serverNow()+
       72*60*60*1000;
+
   }
 
 
@@ -2012,7 +2448,10 @@ function startTimer(
         .map(
           x=>
             String(x)
-              .padStart(2,"0")
+              .padStart(
+                2,
+                "0"
+              )
         )
         .join(":");
 
@@ -2031,12 +2470,17 @@ function startTimer(
           isPreview
             ?"Preview timer completed."
             :"The birthday event has ended.";
+
       }
 
 
-      clearInterval(timer);
+      clearInterval(
+        timer
+      );
+
 
       renderMembers();
+
     }
 
   };
@@ -2044,11 +2488,13 @@ function startTimer(
 
   tick();
 
+
   timer=
     setInterval(
       tick,
       1000
     );
+
 }
 
 
@@ -2072,7 +2518,8 @@ async function claimCard(){
   if(!b)return;
 
 
-  b.disabled=true;
+  b.disabled=
+    true;
 
 
   const {error}=
@@ -2087,7 +2534,9 @@ async function claimCard(){
 
   if(error){
 
-    b.disabled=false;
+    b.disabled=
+      false;
+
 
     b.textContent=
       (error.message||"")
@@ -2097,12 +2546,15 @@ async function claimCard(){
         ?"ALREADY COLLECTED"
         :"COLLECT CARD ✦";
 
+
     return;
+
   }
 
 
   b.textContent=
     "✓ ADDED TO YOUR COLLECTION";
+
 }
 
 
@@ -2135,7 +2587,15 @@ async function sendWish(){
     );
 
 
-  if(!input||!status||!b)return;
+  if(
+    !input ||
+    !status ||
+    !b
+  ){
+
+    return;
+
+  }
 
 
   const text=
@@ -2148,10 +2608,12 @@ async function sendWish(){
       "Write a little wish first. 💙";
 
     return;
+
   }
 
 
-  b.disabled=true;
+  b.disabled=
+    true;
 
 
   const {error}=
@@ -2160,6 +2622,7 @@ async function sendWish(){
       {
         p_event_id:
           activeEvent.id,
+
         p_message:
           text
       }
@@ -2177,9 +2640,12 @@ async function sendWish(){
           :"Your wish could not be sent right now.";
 
 
-    b.disabled=false;
+    b.disabled=
+      false;
+
 
     return;
+
   }
 
 
@@ -2195,13 +2661,17 @@ async function sendWish(){
 
 
   status.textContent=
-    `Your wish has reached ${m?m.name:"AETHER"}. ✨`;
+    `Your wish has reached ${
+      m?m.name:"AETHER"
+    }. ✨`;
 
 
   await loadWishes();
 
 
-  b.disabled=false;
+  b.disabled=
+    false;
+
 }
 
 
@@ -2218,6 +2688,9 @@ async function loadWishes(){
 
 
   if(!wall)return;
+
+
+  if(!activeEvent)return;
 
 
   const {
@@ -2251,6 +2724,7 @@ async function loadWishes(){
       `;
 
     return;
+
   }
 
 
@@ -2259,10 +2733,13 @@ async function loadWishes(){
       .map(
         w=>
           `
+
           <div class="wish">
 
             <p>
-              ${esc(w.message)}
+              ${esc(
+                w.message
+              )}
             </p>
 
             <small>
@@ -2270,6 +2747,7 @@ async function loadWishes(){
             </small>
 
           </div>
+
           `
       )
       .join("")
@@ -2279,6 +2757,7 @@ async function loadWishes(){
         Be the first HALO to leave a birthday wish. ✨
       </div>
       `;
+
 }
 
 
@@ -2288,9 +2767,12 @@ async function loadWishes(){
 
 setInterval(
   async()=>{
+
     await syncServerClock();
 
+
     renderMembers();
+
 
     if(
       activeEvent &&
@@ -2299,6 +2781,7 @@ setInterval(
     ){
 
       renderMembers();
+
     }
 
   },
@@ -2311,6 +2794,7 @@ setInterval(
 ========================================================= */
 
 load();
+
 </script>
 
 </body>
