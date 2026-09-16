@@ -1565,12 +1565,6 @@ function openBirthday(
 
   /* =======================================================
      BIRTHDAY ARTWORK
-     
-     moment_url is the existing Birthday Artwork.
-     It points to:
-     birthday-riven-2026.png
-     birthday-vex-2026.png
-     etc.
   ======================================================= */
 
   const artwork=
@@ -1832,9 +1826,7 @@ function openBirthday(
       <div class="specials">
 
 
-        <!-- =================================================
-             VOICE MESSAGE
-        ================================================== -->
+        <!-- VOICE MESSAGE -->
 
         <div
           class="
@@ -1890,9 +1882,7 @@ function openBirthday(
         </div>
 
 
-        <!-- =================================================
-             BIRTHDAY CARD
-        ================================================== -->
+        <!-- BIRTHDAY CARD -->
 
         <div
           class="
@@ -1942,9 +1932,7 @@ function openBirthday(
         </div>
 
 
-        <!-- =================================================
-             LETTER
-        ================================================== -->
+        <!-- LETTER -->
 
         <div
           class="
@@ -1973,12 +1961,12 @@ function openBirthday(
               <button
                 id="letterButton"
                 class="claim"
-                ${allowed?"disabled":""}
+                type="button"
               >
 
                 ${
                   allowed
-                  ?"ADMIN PREVIEW — LETTER"
+                  ?"PREVIEW LETTER ✦"
                   :"OPEN LETTER ✦"
                 }
 
@@ -1994,9 +1982,7 @@ function openBirthday(
         </div>
 
 
-        <!-- =================================================
-             SNAPSHOT
-        ================================================== -->
+        <!-- SNAPSHOT -->
 
         <div class="special configured">
 
@@ -2023,9 +2009,7 @@ function openBirthday(
         </div>
 
 
-        <!-- =================================================
-             BIRTHDAY MOMENT
-        ================================================== -->
+        <!-- BIRTHDAY MOMENT -->
 
         <div class="special configured">
 
@@ -2281,7 +2265,7 @@ function openBirthday(
 
 
   /* =======================================================
-     REAL USER ACTIONS ONLY
+     REAL USER ACTIONS
   ======================================================= */
 
   if(!allowed){
@@ -2313,49 +2297,56 @@ function openBirthday(
 
     }
 
-
-    const letterButton=
-      document.getElementById(
-        "letterButton"
-      );
+  }
 
 
-    if(
-      letterButton &&
-      ev.letter_text
-    ){
+  /* =======================================================
+     LETTER ACTION
+     Works for HALO AND ADMIN PREVIEW.
+  ======================================================= */
 
-      letterButton.onclick=()=>{
-
-        const box=
-          document.getElementById(
-            "letterBox"
-          );
+  const letterButton=
+    document.getElementById(
+      "letterButton"
+    );
 
 
-        if(!box)return;
+  if(
+    letterButton &&
+    ev.letter_text
+  ){
+
+    letterButton.onclick=()=>{
+
+      const box=
+        document.getElementById(
+          "letterBox"
+        );
 
 
-        box.style.display=
-          box.style.display==="block"
-            ?"none"
-            :"block";
+      if(!box)return;
 
 
-        if(
-          box.style.display==="block"
-        ){
+      const isOpen=
+        box.style.display==="block";
 
-          box.scrollIntoView({
-            behavior:"smooth",
-            block:"center"
-          });
 
-        }
+      box.style.display=
+        isOpen
+          ?"none"
+          :"block";
 
-      };
 
-    }
+      if(!isOpen){
+
+        box.scrollIntoView({
+          behavior:"smooth",
+          block:"center"
+        });
+
+      }
+
+    };
 
   }
 
