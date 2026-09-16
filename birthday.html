@@ -4,270 +4,2247 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday | AETHERVERSE</title>
+
 <style>
 *{box-sizing:border-box}
-:root{--bg:#07131b;--panel:#0c2029;--line:#2d6870;--text:#e9ffff;--muted:#a9cdd1;--accent:#72e4df}
-body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:var(--text);background:radial-gradient(circle at 50% 0%,#247d86 0%,transparent 28%),radial-gradient(circle at 10% 35%,#123f4b 0%,transparent 28%),linear-gradient(180deg,#06151b,#0b2832,#102f36)}
-.container{max-width:1050px;margin:auto;padding:22px 18px 70px}
-header{text-align:center;padding:38px 12px 24px}.logo{letter-spacing:8px;color:var(--accent);font-size:.82rem}.eyebrow{margin-top:18px;color:#9fc8cd;letter-spacing:5px;font-size:.75rem}h1{font-size:clamp(3rem,10vw,6rem);letter-spacing:10px;margin:10px 0}
-.intro{max-width:700px;margin:0 auto 35px;text-align:center;color:var(--muted);line-height:1.8}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin:5px 0 38px}nav a{padding:9px 15px;border:1px solid #396b73;border-radius:30px;text-decoration:none;color:#cfe8eb;background:rgba(255,255,255,.03)}
-nav a:hover{border-color:var(--accent);color:var(--accent)}
-.member-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
-.member-card{border:1px solid #315e65;border-radius:22px;padding:24px 20px;background:rgba(5,22,29,.72);min-height:175px;text-align:center;transition:.25s}
-.member-card.live{border-color:var(--accent);box-shadow:0 0 35px rgba(114,228,223,.11);cursor:pointer}.member-card.live:hover{transform:translateY(-4px);background:rgba(12,42,49,.9)}.member-card.expired{opacity:.78}
-.member-symbol{font-size:2rem;margin-bottom:9px}.member-name{font-size:1.45rem;letter-spacing:4px;color:var(--accent);font-weight:700}.birthday-date{margin-top:7px;font-weight:700;color:#fff}.status{margin-top:16px;font-size:.78rem;letter-spacing:1.5px;color:#9bbcc0}.live .status{color:#b9ffff}
-#detail{display:none;margin-top:35px}.detail-shell{border:1px solid #57999c;border-radius:30px;padding:28px 22px 34px;background:radial-gradient(circle at 50% 20%,rgba(82,225,218,.12),transparent 55%),rgba(5,20,27,.9);box-shadow:0 0 65px rgba(65,210,205,.12)}
-.detail-title{text-align:center}.detail-title .member-name{font-size:clamp(2.3rem,8vw,4.5rem);letter-spacing:7px}.detail-title .birthday-date{font-size:1rem;letter-spacing:2px}
-.birthday-art{display:block;width:100%;max-width:600px;max-height:620px;object-fit:cover;margin:24px auto;border-radius:25px;border:1px solid #4b8b90;box-shadow:0 15px 45px rgba(0,0,0,.35)}
-.message{max-width:760px;margin:24px auto;padding:28px 24px;border:1px solid #315e65;border-radius:24px;background:rgba(255,255,255,.035);line-height:1.9;color:#d4edef}.message h2,.section-title{text-align:center;color:var(--accent);letter-spacing:3px}
-.timer{max-width:600px;margin:25px auto;text-align:center;border:1px solid #57999c;border-radius:22px;padding:22px;background:rgba(114,228,223,.05)}.timer-label{color:#9fc8cd;letter-spacing:3px;font-size:.75rem}.countdown{font-size:clamp(2rem,7vw,3.5rem);letter-spacing:4px;margin:10px 0}
-.specials{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:20px}.special{border:1px solid #315e65;border-radius:20px;padding:22px;text-align:center;background:rgba(255,255,255,.035)}.special-icon{font-size:2rem}.special h3{color:#dffbfc;letter-spacing:1px}.special p{color:#a9cdd1;line-height:1.6;font-size:.9rem}
-button{font-family:Georgia,serif}.claim,.wish-button{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:24px;border:1px solid var(--accent);background:transparent;color:#dffbfc;cursor:pointer}.claim:disabled,.wish-button:disabled{opacity:.45;cursor:default}
-.wish-area{max-width:760px;margin:42px auto 0}.wish-form{padding:22px;border:1px solid #315e65;border-radius:22px;background:rgba(255,255,255,.03);text-align:center}.wish-form textarea{width:100%;min-height:110px;resize:vertical;background:#07171e;border:1px solid #315e65;border-radius:15px;padding:13px;color:#e9ffff;font-family:Georgia,serif}.wish-status{min-height:22px;margin-top:10px;color:#9fc8cd;font-size:.82rem}.wish-wall{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:13px}.wish{padding:19px;border:1px solid #315e65;border-radius:18px;background:linear-gradient(145deg,rgba(18,61,69,.75),rgba(6,24,31,.8));min-height:120px}.wish p{margin:0;color:#d7eff1;line-height:1.7;font-size:.92rem}.wish small{display:block;margin-top:12px;color:var(--accent);letter-spacing:1px}
-.back{display:block;width:max-content;margin:28px auto 0;padding:10px 19px;border:1px solid #396b73;border-radius:25px;color:#bfe5e7;text-decoration:none}
-.locked-note{text-align:center;color:#89adb1;margin:24px 0}footer{text-align:center;margin-top:55px;color:#73999e;letter-spacing:2px;font-size:.72rem;line-height:2}
-@media(max-width:600px){.member-grid{grid-template-columns:1fr 1fr}.member-card{min-height:160px;padding:20px 12px}.member-name{font-size:1.15rem}.specials,.wish-wall{grid-template-columns:1fr}}
 
-.admin-preview{display:none;max-width:760px;margin:0 auto 28px;padding:14px 18px;border:1px solid #d6a84f;border-radius:18px;background:rgba(214,168,79,.08);color:#ffe9a8;text-align:center;letter-spacing:1.5px;font-size:.78rem;line-height:1.6}.admin-preview strong{display:block;color:#fff1b8;letter-spacing:3px;margin-bottom:4px}.admin-panel{display:none;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:0 auto 24px}.admin-panel button{margin:0}.admin-panel select{padding:9px 13px;border:1px solid #d6a84f;border-radius:22px;background:#07171e;color:#ffe9a8;font-family:Georgia,serif}.admin-error{display:none;max-width:760px;margin:0 auto 24px;padding:14px 18px;border:1px solid #a85b5b;border-radius:18px;background:rgba(168,91,91,.08);color:#ffd2d2;text-align:center}
+:root{
+  --bg:#07131b;
+  --panel:#0c2029;
+  --line:#2d6870;
+  --text:#e9ffff;
+  --muted:#a9cdd1;
+  --accent:#72e4df;
+  --gold:#d6a84f;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Georgia,"Times New Roman",serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% 0%,#247d86 0%,transparent 28%),
+    radial-gradient(circle at 10% 35%,#123f4b 0%,transparent 28%),
+    linear-gradient(180deg,#06151b,#0b2832,#102f36);
+}
+
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:22px 18px 70px;
+}
+
+header{
+  text-align:center;
+  padding:38px 12px 24px;
+}
+
+.logo{
+  letter-spacing:8px;
+  color:var(--accent);
+  font-size:.82rem;
+}
+
+.eyebrow{
+  margin-top:18px;
+  color:#9fc8cd;
+  letter-spacing:5px;
+  font-size:.75rem;
+}
+
+h1{
+  font-size:clamp(3rem,10vw,6rem);
+  letter-spacing:10px;
+  margin:10px 0;
+}
+
+.intro{
+  max-width:700px;
+  margin:0 auto 35px;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin:5px 0 38px;
+}
+
+nav a{
+  padding:9px 15px;
+  border:1px solid #396b73;
+  border-radius:30px;
+  text-decoration:none;
+  color:#cfe8eb;
+  background:rgba(255,255,255,.03);
+}
+
+nav a:hover{
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+/* MEMBER GRID */
+
+.member-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+
+.member-card{
+  border:1px solid #315e65;
+  border-radius:22px;
+  padding:24px 20px;
+  background:rgba(5,22,29,.72);
+  min-height:175px;
+  text-align:center;
+  transition:.25s;
+}
+
+.member-card.live,
+.member-card.admin-clickable{
+  border-color:var(--accent);
+  box-shadow:0 0 35px rgba(114,228,223,.11);
+  cursor:pointer;
+}
+
+.member-card.live:hover,
+.member-card.admin-clickable:hover{
+  transform:translateY(-4px);
+  background:rgba(12,42,49,.9);
+}
+
+.member-card.expired{
+  opacity:.78;
+}
+
+.member-card.admin-selected{
+  border-color:var(--gold);
+  box-shadow:0 0 35px rgba(214,168,79,.18);
+}
+
+.member-symbol{
+  font-size:2rem;
+  margin-bottom:9px;
+}
+
+.member-name{
+  font-size:1.45rem;
+  letter-spacing:4px;
+  color:var(--accent);
+  font-weight:700;
+}
+
+.birthday-date{
+  margin-top:7px;
+  font-weight:700;
+  color:#fff;
+}
+
+.status{
+  margin-top:16px;
+  font-size:.78rem;
+  letter-spacing:1.5px;
+  color:#9bbcc0;
+}
+
+.live .status{
+  color:#b9ffff;
+}
+
+/* DETAIL */
+
+#detail{
+  display:none;
+  margin-top:35px;
+}
+
+.detail-shell{
+  border:1px solid #57999c;
+  border-radius:30px;
+  padding:28px 22px 34px;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(82,225,218,.12),transparent 55%),
+    rgba(5,20,27,.9);
+  box-shadow:0 0 65px rgba(65,210,205,.12);
+}
+
+.detail-title{
+  text-align:center;
+}
+
+.detail-title .member-name{
+  font-size:clamp(2.3rem,8vw,4.5rem);
+  letter-spacing:7px;
+}
+
+.detail-title .birthday-date{
+  font-size:1rem;
+  letter-spacing:2px;
+}
+
+/* IMAGES */
+
+.image-block{
+  margin:28px auto 34px;
+  max-width:760px;
+}
+
+.image-label{
+  text-align:center;
+  color:var(--accent);
+  letter-spacing:3px;
+  font-size:.78rem;
+  margin-bottom:12px;
+}
+
+.birthday-snapshot,
+.birthday-art,
+.birthday-card-image{
+  display:block;
+  width:100%;
+  margin:auto;
+  border-radius:25px;
+  border:1px solid #4b8b90;
+  box-shadow:0 15px 45px rgba(0,0,0,.35);
+}
+
+.birthday-snapshot{
+  max-height:720px;
+  object-fit:contain;
+  background:#07171e;
+}
+
+.birthday-art{
+  max-height:720px;
+  object-fit:contain;
+  background:#07171e;
+}
+
+.birthday-card-image{
+  max-width:430px;
+  max-height:620px;
+  object-fit:contain;
+  background:#07171e;
+}
+
+/* MESSAGE */
+
+.message{
+  max-width:760px;
+  margin:24px auto;
+  padding:28px 24px;
+  border:1px solid #315e65;
+  border-radius:24px;
+  background:rgba(255,255,255,.035);
+  line-height:1.9;
+  color:#d4edef;
+}
+
+.message h2,
+.section-title{
+  text-align:center;
+  color:var(--accent);
+  letter-spacing:3px;
+}
+
+.message p{
+  white-space:pre-line;
+}
+
+/* TIMER */
+
+.timer{
+  max-width:600px;
+  margin:25px auto;
+  text-align:center;
+  border:1px solid #57999c;
+  border-radius:22px;
+  padding:22px;
+  background:rgba(114,228,223,.05);
+}
+
+.timer-label{
+  color:#9fc8cd;
+  letter-spacing:3px;
+  font-size:.75rem;
+}
+
+.countdown{
+  font-size:clamp(2rem,7vw,3.5rem);
+  letter-spacing:4px;
+  margin:10px 0;
+}
+
+/* SPECIALS */
+
+.specials{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.special{
+  border:1px solid #315e65;
+  border-radius:20px;
+  padding:22px;
+  text-align:center;
+  background:rgba(255,255,255,.035);
+}
+
+.special.configured{
+  border-color:#57999c;
+}
+
+.special.missing{
+  border-color:#735f35;
+}
+
+.special-icon{
+  font-size:2rem;
+}
+
+.special h3{
+  color:#dffbfc;
+  letter-spacing:1px;
+}
+
+.special p{
+  color:#a9cdd1;
+  line-height:1.6;
+  font-size:.9rem;
+}
+
+.special-status{
+  margin-top:12px;
+  color:#d6a84f;
+  font-size:.72rem;
+  letter-spacing:1px;
+}
+
+/* BUTTONS */
+
+button{
+  font-family:Georgia,serif;
+}
+
+.claim,
+.wish-button{
+  display:inline-block;
+  margin-top:8px;
+  padding:10px 18px;
+  border-radius:24px;
+  border:1px solid var(--accent);
+  background:transparent;
+  color:#dffbfc;
+  cursor:pointer;
+}
+
+.claim:hover,
+.wish-button:hover{
+  background:rgba(114,228,223,.08);
+}
+
+.claim:disabled,
+.wish-button:disabled{
+  opacity:.45;
+  cursor:default;
+}
+
+/* WISHES */
+
+.wish-area{
+  max-width:760px;
+  margin:42px auto 0;
+}
+
+.wish-form{
+  padding:22px;
+  border:1px solid #315e65;
+  border-radius:22px;
+  background:rgba(255,255,255,.03);
+  text-align:center;
+}
+
+.wish-form textarea{
+  width:100%;
+  min-height:110px;
+  resize:vertical;
+  background:#07171e;
+  border:1px solid #315e65;
+  border-radius:15px;
+  padding:13px;
+  color:#e9ffff;
+  font-family:Georgia,serif;
+}
+
+.wish-status{
+  min-height:22px;
+  margin-top:10px;
+  color:#9fc8cd;
+  font-size:.82rem;
+}
+
+.wish-wall{
+  margin-top:28px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:13px;
+}
+
+.wish{
+  padding:19px;
+  border:1px solid #315e65;
+  border-radius:18px;
+  background:linear-gradient(
+    145deg,
+    rgba(18,61,69,.75),
+    rgba(6,24,31,.8)
+  );
+  min-height:120px;
+}
+
+.wish p{
+  margin:0;
+  color:#d7eff1;
+  line-height:1.7;
+  font-size:.92rem;
+}
+
+.wish small{
+  display:block;
+  margin-top:12px;
+  color:var(--accent);
+  letter-spacing:1px;
+}
+
+/* OTHER */
+
+.back{
+  display:block;
+  width:max-content;
+  margin:28px auto 0;
+  padding:10px 19px;
+  border:1px solid #396b73;
+  border-radius:25px;
+  color:#bfe5e7;
+  text-decoration:none;
+}
+
+.locked-note{
+  text-align:center;
+  color:#89adb1;
+  margin:24px 0;
+}
+
+footer{
+  text-align:center;
+  margin-top:55px;
+  color:#73999e;
+  letter-spacing:2px;
+  font-size:.72rem;
+  line-height:2;
+}
+
+/* ADMIN */
+
+.admin-preview{
+  display:none;
+  max-width:760px;
+  margin:0 auto 28px;
+  padding:16px 18px;
+  border:1px solid var(--gold);
+  border-radius:18px;
+  background:rgba(214,168,79,.08);
+  color:#ffe9a8;
+  text-align:center;
+  letter-spacing:1.5px;
+  font-size:.78rem;
+  line-height:1.6;
+}
+
+.admin-preview strong{
+  display:block;
+  color:#fff1b8;
+  letter-spacing:3px;
+  margin-bottom:4px;
+}
+
+.admin-panel{
+  display:none;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:0 auto 24px;
+}
+
+.admin-panel button{
+  margin:0;
+}
+
+.admin-panel select{
+  padding:9px 13px;
+  border:1px solid var(--gold);
+  border-radius:22px;
+  background:#07171e;
+  color:#ffe9a8;
+  font-family:Georgia,serif;
+}
+
+.admin-error{
+  display:none;
+  max-width:760px;
+  margin:0 auto 24px;
+  padding:14px 18px;
+  border:1px solid #a85b5b;
+  border-radius:18px;
+  background:rgba(168,91,91,.08);
+  color:#ffd2d2;
+  text-align:center;
+}
+
+.admin-section{
+  max-width:760px;
+  margin:0 auto 28px;
+  padding:16px;
+  border:1px solid rgba(214,168,79,.45);
+  border-radius:20px;
+  background:rgba(214,168,79,.04);
+}
+
+.admin-section-title{
+  text-align:center;
+  color:#ffe9a8;
+  letter-spacing:2px;
+  font-size:.78rem;
+  margin-bottom:12px;
+}
+
+.admin-actions{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.admin-actions button{
+  margin:0;
+}
+
+.preview-disabled{
+  position:relative;
+}
+
+.preview-disabled::after{
+  content:"PREVIEW ONLY";
+  display:block;
+  margin-top:10px;
+  color:#d6a84f;
+  font-size:.68rem;
+  letter-spacing:1.5px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .container{
+    padding-left:12px;
+    padding-right:12px;
+  }
+
+  .member-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .member-card{
+    min-height:160px;
+    padding:20px 12px;
+  }
+
+  .member-name{
+    font-size:1.15rem;
+  }
+
+  .specials,
+  .wish-wall{
+    grid-template-columns:1fr;
+  }
+
+  .detail-shell{
+    padding:22px 14px 30px;
+    border-radius:24px;
+  }
+
+  .birthday-snapshot,
+  .birthday-art,
+  .birthday-card-image{
+    border-radius:18px;
+  }
+
+  h1{
+    letter-spacing:7px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
 <header>
-<div class="logo">AETHERVERSE</div>
-<div class="eyebrow">A MOMENT MADE FOR HALO</div>
-<h1>BIRTHDAY</h1>
-<p class="intro">Every AETHER star gets one special moment each year. Celebrate, collect the birthday special, leave a wish — and make a memory that stays.</p>
+  <div class="logo">AETHERVERSE</div>
+  <div class="eyebrow">A MOMENT MADE FOR HALO</div>
+  <h1>BIRTHDAY</h1>
+
+  <p class="intro">
+    Every AETHER star gets one special moment each year.
+    Celebrate, collect the birthday special, leave a wish —
+    and make a memory that stays.
+  </p>
 </header>
-<div id="adminPreview" class="admin-preview"><strong>🧪 ADMIN PREVIEW — NOT LIVE</strong><span id="adminPreviewText">This is an administrator-only Birthday preview. The real birthday window and server-side collection rules remain unchanged.</span></div>
-<div id="adminError" class="admin-error"></div>
-<div id="adminPanel" class="admin-panel"><select id="adminMemberSelect"></select><button id="adminOpenButton" class="claim">OPEN ADMIN PREVIEW ✦</button></div>
-<nav><a href="halo-home.html">MY HALO</a><a href="card-album.html">CARD ALBUM</a></nav>
-<section id="memberGrid" class="member-grid"></section>
-<section id="detail"></section>
-<footer>ONE LIGHT • SEVEN STARS • ENDLESS LOVE<br><br>#WEAREHALO • #WEAREAETHER</footer>
+
+<div id="adminPreview" class="admin-preview">
+  <strong>🧪 ADMIN PREVIEW — HALO VIEW</strong>
+  <span id="adminPreviewText">
+    You are viewing the Birthday experience exactly as a HALO will see it.
+    Real claims and wishes remain protected.
+  </span>
 </div>
+
+<div id="adminError" class="admin-error"></div>
+
+<div id="adminPanel" class="admin-panel">
+  <select id="adminMemberSelect"></select>
+  <button id="adminOpenButton" class="claim">
+    OPEN HALO VIEW ✦
+  </button>
+</div>
+
+<nav>
+  <a href="halo-home.html">MY HALO</a>
+  <a href="card-album.html">CARD ALBUM</a>
+</nav>
+
+<section id="memberGrid" class="member-grid"></section>
+
+<section id="detail"></section>
+
+<footer>
+  ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+  <br><br>
+  #WEAREHALO • #WEAREAETHER
+</footer>
+
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
 const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
-const ADMIN_PREVIEW_IMAGE="images/birthday/birthday-preview-admin.png";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const supabaseClient=
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================================
+   MEMBERS
+========================================================= */
 
 const MEMBERS=[
- {key:"solen",name:"SOLEN",symbol:"☀️"},
- {key:"vex",name:"VEX",symbol:"🌑"},
- {key:"kairo",name:"KAIRO",symbol:"⚡"},
- {key:"riven",name:"RIVEN",symbol:"🌊"},
- {key:"zenith",name:"ZENITH",symbol:"🔥"},
- {key:"lux",name:"LUX",symbol:"✨"},
- {key:"nero",name:"NERO",symbol:"🌙"}
+  {key:"solen",name:"SOLEN",symbol:"☀️"},
+  {key:"vex",name:"VEX",symbol:"🌑"},
+  {key:"kairo",name:"KAIRO",symbol:"⚡"},
+  {key:"riven",name:"RIVEN",symbol:"🌊"},
+  {key:"zenith",name:"ZENITH",symbol:"🔥"},
+  {key:"lux",name:"LUX",symbol:"✨"},
+  {key:"nero",name:"NERO",symbol:"🌙"}
 ];
 
+
+/* =========================================================
+   STATE
+========================================================= */
+
 let events=[];
+let cards=[];
 let activeEvent=null;
+let activeCard=null;
+
 let timer=null;
 let serverTimeOffset=0;
+
 let isAetherAdmin=false;
 let adminPreview=false;
 let adminTestMember=null;
 let previewTimerEnd=null;
 
-const esc=v=>String(v??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const esc=v=>
+  String(v??"").replace(
+    /[&<>'"]/g,
+    c=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      "'":"&#39;",
+      '"':"&quot;"
+    }[c])
+  );
+
 
 function dateOnly(v){
- return new Intl.DateTimeFormat("de-DE",{day:"2-digit",month:"2-digit"}).format(new Date(v+"T12:00:00"));
+  return new Intl.DateTimeFormat(
+    "de-DE",
+    {
+      day:"2-digit",
+      month:"2-digit"
+    }
+  ).format(new Date(v+"T12:00:00"));
 }
+
+
+function dateLong(v){
+  return new Intl.DateTimeFormat(
+    "en-US",
+    {
+      day:"numeric",
+      month:"long"
+    }
+  ).format(new Date(v+"T12:00:00"));
+}
+
+
+/* =========================================================
+   URL PREVIEW
+========================================================= */
 
 function requestedPreviewMember(){
- const params=new URLSearchParams(location.search);
- return params.get("test")||params.get("preview")||null;
+
+  const params=
+    new URLSearchParams(location.search);
+
+  return params.get("test")
+    ||params.get("preview")
+    ||null;
 }
+
+
+/* =========================================================
+   ADMIN ACCESS
+========================================================= */
 
 async function checkAdminAccess(){
- const requested=requestedPreviewMember();
- const {data,error}=await supabaseClient.rpc("is_aether_admin");
- isAetherAdmin=!error&&(data===true||data==="true"||data===1);
- if(error){
-   const box=document.getElementById("adminError");
-   box.style.display="block";
-   box.textContent="ADMIN PREVIEW CHECK FAILED: "+(error.message||"Unknown error");
-   console.error("is_aether_admin failed",error);
-   return false;
- }
- if(!isAetherAdmin){
-   const box=document.getElementById("adminError");
-   box.style.display="block";
-   box.textContent="This account is not registered as an AETHER admin.";
-   return false;
- }
 
- const select=document.getElementById("adminMemberSelect");
- select.innerHTML=MEMBERS.map(m=>`<option value="${m.key}">${m.name}</option>`).join("");
- select.value=MEMBERS.some(m=>m.key===requested)?requested:"riven";
- document.getElementById("adminPanel").style.display="flex";
- document.getElementById("adminOpenButton").onclick=()=>startAdminPreview(select.value);
+  const requested=
+    requestedPreviewMember();
 
- if(requested&&MEMBERS.some(m=>m.key===requested)){
-   startAdminPreview(requested);
- }
- return true;
+  const {data,error}=
+    await supabaseClient.rpc(
+      "is_aether_admin"
+    );
+
+  isAetherAdmin=
+    !error &&
+    (
+      data===true ||
+      data==="true" ||
+      data===1
+    );
+
+
+  if(error){
+
+    const box=
+      document.getElementById("adminError");
+
+    box.style.display="block";
+
+    box.textContent=
+      "ADMIN PREVIEW CHECK FAILED: "+
+      (error.message||"Unknown error");
+
+    console.error(
+      "is_aether_admin failed",
+      error
+    );
+
+    return false;
+  }
+
+
+  if(!isAetherAdmin){
+
+    return false;
+  }
+
+
+  const select=
+    document.getElementById(
+      "adminMemberSelect"
+    );
+
+  select.innerHTML=
+    MEMBERS.map(
+      m=>
+        `<option value="${m.key}">
+          ${m.name}
+        </option>`
+    ).join("");
+
+
+  select.value=
+    MEMBERS.some(
+      m=>m.key===requested
+    )
+      ?requested
+      :"riven";
+
+
+  document.getElementById(
+    "adminPanel"
+  ).style.display="flex";
+
+
+  document.getElementById(
+    "adminOpenButton"
+  ).onclick=()=>{
+    startAdminPreview(
+      select.value
+    );
+  };
+
+
+  if(
+    requested &&
+    MEMBERS.some(
+      m=>m.key===requested
+    )
+  ){
+    startAdminPreview(requested);
+  }
+
+  return true;
 }
+
+
+/* =========================================================
+   START ADMIN PREVIEW
+========================================================= */
 
 function startAdminPreview(key){
- if(!isAetherAdmin) return;
- if(!MEMBERS.some(m=>m.key===key)) return;
- adminPreview=true;
- adminTestMember=key;
- previewTimerEnd=serverNow()+72*60*60*1000;
- const member=MEMBERS.find(m=>m.key===key);
- document.getElementById("adminPreview").style.display="block";
- document.getElementById("adminPreviewText").textContent=`${member.name} is being previewed. This is visual testing only — real card claims and wishes remain protected until the real birthday window.`;
- renderMembers();
- if(events.length) openBirthday(key,true);
+
+  if(!isAetherAdmin)return;
+
+  if(
+    !MEMBERS.some(
+      m=>m.key===key
+    )
+  )return;
+
+
+  adminPreview=true;
+  adminTestMember=key;
+
+  previewTimerEnd=
+    serverNow()+
+    72*60*60*1000;
+
+
+  const member=
+    MEMBERS.find(
+      m=>m.key===key
+    );
+
+
+  document.getElementById(
+    "adminPreview"
+  ).style.display="block";
+
+
+  document.getElementById(
+    "adminPreviewText"
+  ).textContent=
+    `${member.name} is being viewed in full HALO mode. `+
+    `All visual content is real preview content. `+
+    `Card claims and wishes remain disabled.`;
+
+
+  renderMembers();
+
+  if(events.length){
+    openBirthday(
+      key,
+      true
+    );
+  }
 }
+
+
+/* =========================================================
+   SERVER CLOCK
+========================================================= */
 
 async function syncServerClock(){
- const sent=Date.now();
- const {data,error}=await supabaseClient.rpc("get_server_time");
- const received=Date.now();
- if(!error&&data){
-   const midpoint=sent+(received-sent)/2;
-   serverTimeOffset=new Date(data).getTime()-midpoint;
- }
+
+  const sent=Date.now();
+
+  const {data,error}=
+    await supabaseClient.rpc(
+      "get_server_time"
+    );
+
+  const received=Date.now();
+
+  if(!error&&data){
+
+    const midpoint=
+      sent+
+      (received-sent)/2;
+
+    serverTimeOffset=
+      new Date(data).getTime()-
+      midpoint;
+  }
 }
 
-function serverNow(){return Date.now()+serverTimeOffset;}
+
+function serverNow(){
+  return Date.now()+serverTimeOffset;
+}
+
+
+/* =========================================================
+   EVENT STATE
+========================================================= */
 
 function state(ev){
- if(!ev)return "unknown";
- if(adminPreview&&ev.member_key===adminTestMember)return "live";
- const n=serverNow(),s=Date.parse(ev.start_at),e=Date.parse(ev.end_at);
- return n<s?"locked":n<e?"live":"expired";
+
+  if(!ev)return "unknown";
+
+
+  if(
+    adminPreview &&
+    ev.member_key===adminTestMember
+  ){
+    return "live";
+  }
+
+
+  const n=serverNow();
+
+  const s=
+    Date.parse(ev.start_at);
+
+  const e=
+    Date.parse(ev.end_at);
+
+
+  if(n<s)return "locked";
+
+  if(n<e)return "live";
+
+  return "expired";
 }
+
+
+/* =========================================================
+   MEMBER GRID
+========================================================= */
 
 function renderMembers(){
- document.getElementById("memberGrid").innerHTML=MEMBERS.map(m=>{
-   const ev=events.find(x=>x.member_key===m.key);
-   const st=state(ev);
-   const date=ev?dateOnly(ev.birthday_date):"Birthday date to be configured";
-   const preview=adminPreview&&m.key===adminTestMember;
-   const text=preview?"🧪 ADMIN PREVIEW":ev?(st==="locked"?"🔒 OPENS ON "+date:st==="live"?"✨ BIRTHDAY IS LIVE":"🌊 BIRTHDAY EVENT ENDED"):"Birthday event coming soon";
-   const live=ev&&(st==="live");
-   return `<div class="member-card ${live?"live":""} ${st==="expired"&&!preview?"expired":""}" ${live?`onclick="openBirthday('${m.key}')"`:""}><div class="member-symbol">${m.symbol}</div><div class="member-name">${m.name}</div><div class="birthday-date"><strong>${esc(date)}</strong>${ev?" Birthday":""}</div><div class="status">${esc(text)}</div></div>`;
- }).join("");
+
+  document.getElementById(
+    "memberGrid"
+  ).innerHTML=
+
+  MEMBERS.map(m=>{
+
+    const ev=
+      events.find(
+        x=>x.member_key===m.key
+      );
+
+
+    const st=state(ev);
+
+    const date=
+      ev
+        ?dateOnly(ev.birthday_date)
+        :"Birthday date to be configured";
+
+
+    const preview=
+      adminPreview &&
+      m.key===adminTestMember;
+
+
+    let text;
+
+
+    if(preview){
+
+      text="🧪 HALO VIEW — OPEN";
+
+    }else if(ev){
+
+      if(st==="locked"){
+        text=
+          "🔒 OPENS ON "+
+          date;
+      }else if(st==="live"){
+        text=
+          "✨ BIRTHDAY IS LIVE";
+      }else{
+        text=
+          "🌊 BIRTHDAY EVENT ENDED";
+      }
+
+    }else{
+
+      text=
+        "Birthday event coming soon";
+    }
+
+
+    const clickable=
+      adminPreview
+      ||
+      st==="live";
+
+
+    return `
+      <div
+        class="
+          member-card
+          ${clickable?"admin-clickable":""}
+          ${st==="expired"&&!preview?"expired":""}
+          ${preview?"admin-selected":""}
+        "
+        ${clickable
+          ?`onclick="openBirthday('${m.key}',${adminPreview})"`
+          :""
+        }
+      >
+
+        <div class="member-symbol">
+          ${m.symbol}
+        </div>
+
+        <div class="member-name">
+          ${m.name}
+        </div>
+
+        <div class="birthday-date">
+          <strong>
+            ${esc(date)}
+          </strong>
+          ${ev?" Birthday":""}
+        </div>
+
+        <div class="status">
+          ${esc(text)}
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
 }
+
+
+/* =========================================================
+   LOAD
+========================================================= */
 
 async function load(){
- const {data:sessionData,error:sessionError}=await supabaseClient.auth.getSession();
- if(sessionError||!sessionData.session){location.replace("halo.html");return;}
 
- await syncServerClock();
- await checkAdminAccess();
+  const {
+    data:sessionData,
+    error:sessionError
+  }=
+    await supabaseClient.auth.getSession();
 
- const {data,error}=await supabaseClient.from("birthday_events").select("*").eq("is_active",true).order("birthday_date");
- if(error){
-   document.getElementById("memberGrid").innerHTML='<div class="locked-note">Birthday could not be loaded right now.</div>';
-   return;
- }
- events=data||[];
- renderMembers();
 
- const params=new URLSearchParams(location.search);
- const requested=params.get("member");
- if(requested){
-   const ev=events.find(x=>x.member_key===requested);
-   if(ev&&state(ev)==="live") openBirthday(requested);
- }
- if(adminPreview&&adminTestMember){openBirthday(adminTestMember,true);}
+  if(
+    sessionError ||
+    !sessionData.session
+  ){
+
+    location.replace("halo.html");
+    return;
+  }
+
+
+  await syncServerClock();
+
+  await checkAdminAccess();
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("birthday_events")
+      .select("*")
+      .eq("is_active",true)
+      .order("birthday_date");
+
+
+  if(error){
+
+    document.getElementById(
+      "memberGrid"
+    ).innerHTML=
+      `
+      <div class="locked-note">
+        Birthday could not be loaded right now.
+      </div>
+      `;
+
+    console.error(error);
+    return;
+  }
+
+
+  events=data||[];
+
+
+  /* Load Birthday Cards */
+
+  const {
+    data:cardData,
+    error:cardError
+  }=
+    await supabaseClient
+      .from("aether_cards")
+      .select(
+        "id,card_number,card_key,title,image_url,is_active"
+      )
+      .eq("set_key","BIRTHDAY_CARDS")
+      .eq("is_active",true);
+
+
+  if(!cardError){
+    cards=cardData||[];
+  }
+
+
+  renderMembers();
+
+
+  const params=
+    new URLSearchParams(
+      location.search
+    );
+
+
+  const requested=
+    params.get("member");
+
+
+  if(requested){
+
+    const ev=
+      events.find(
+        x=>x.member_key===requested
+      );
+
+
+    if(
+      ev &&
+      state(ev)==="live"
+    ){
+
+      openBirthday(
+        requested
+      );
+    }
+  }
+
+
+  if(
+    adminPreview &&
+    adminTestMember
+  ){
+
+    openBirthday(
+      adminTestMember,
+      true
+    );
+  }
 }
 
-function openBirthday(key,isPreview=false){
- const ev=events.find(x=>x.member_key===key);
- if(!ev)return;
- const allowed=adminPreview&&isAetherAdmin&&key===adminTestMember;
- if(!allowed&&state(ev)!=="live")return;
- activeEvent=ev;
- const m=MEMBERS.find(x=>x.key===key);
- if(!m)return;
- const d=document.getElementById("detail");
- d.style.display="block";
- d.innerHTML=`<div class="detail-shell">
- <div class="detail-title"><div class="member-symbol">${m.symbol}</div><div class="member-name">${m.name}</div><div class="birthday-date"><strong>${dateOnly(ev.birthday_date)}</strong> BIRTHDAY</div></div>
- ${allowed?'<div class="locked-note" style="color:#ffe9a8;border:1px solid #d6a84f;border-radius:16px;padding:12px;max-width:600px;margin:20px auto">🧪 ADMIN PREVIEW — NOT LIVE<br>The real birthday event is still protected by server time.</div>':''}
- <img class="birthday-art" src="${esc(allowed?ADMIN_PREVIEW_IMAGE:(ev.snapshot_url||"images/file_00000000c1b88243828f3bb7fe1cc29a.png"))}" alt="${m.name} Birthday">
- <div class="timer"><div class="timer-label">${allowed?"ADMIN PREVIEW • SIMULATED 72 HOURS":"BIRTHDAY EVENT • 72 HOURS"}</div><div id="countdown" class="countdown">--:--:--</div><div id="timerNote" class="status">${allowed?"Preview timer — real event is not live yet.":"The birthday window is open."}</div></div>
- <div class="message"><h2>A MESSAGE FROM ${m.name}</h2><p>${esc(ev.birthday_message||"HALO, thank you for being here with me today. Let us make this birthday a memory we can keep.")}</p></div>
- <h2 class="section-title">BIRTHDAY SPECIALS</h2>
- <div class="specials">
- <div class="special"><div class="special-icon">🎙️</div><h3>VOICE MESSAGE</h3><p>A personal birthday message from ${m.name} to HALO.</p><button class="claim" disabled>VOICE COMING SOON</button></div>
- <div class="special"><div class="special-icon">🃏</div><h3>BIRTHDAY CARD</h3><p>Exclusive card for your AETHER album. One claim per HALO.</p><button id="claimCard" class="claim" ${allowed?"disabled":""}>${allowed?"ADMIN PREVIEW — CLAIM LOCKED":"COLLECT CARD ✦"}</button></div>
- <div class="special"><div class="special-icon">💌</div><h3>BIRTHDAY LETTER</h3><p>A private birthday letter from ${m.name}.</p><button id="letterButton" class="claim" ${allowed||!ev.letter_text?"disabled":""}>${allowed?"ADMIN PREVIEW — LETTER LOCKED":ev.letter_text?"OPEN LETTER ✦":"LETTER COMING SOON"}</button></div>
- <div class="special"><div class="special-icon">📸</div><h3>BIRTHDAY SNAPSHOT</h3><p>A little moment from today's celebration.</p></div>
- <div class="special"><div class="special-icon">🎵</div><h3>BIRTHDAY MOMENT</h3><p>A tiny exclusive audio moment from ${m.name}.</p><button class="claim" disabled>AUDIO COMING SOON</button></div>
- </div>
- <div id="letterBox" class="message" style="display:none;white-space:pre-line"><h2>A LETTER FROM ${m.name}</h2><p>${esc(ev.letter_text||"")}</p></div>
- <div class="wish-area"><h2 class="section-title">✨ MAKE A WISH FOR ${m.name}</h2><div class="wish-form"><textarea id="wishText" maxlength="500" placeholder="Write your birthday wish..." ${allowed?"disabled":""}></textarea><br><button id="sendWish" class="wish-button" ${allowed?"disabled":""}>${allowed?"ADMIN PREVIEW — WISHES LOCKED":"SEND WISH ✨"}</button><div id="wishStatus" class="wish-status">${allowed?"Real wishes can be sent during the actual birthday window.":""}</div></div><h2 class="section-title" style="margin-top:34px">💌 ${m.name}'S BIRTHDAY WISH WALL</h2><div id="wishWall" class="wish-wall"></div></div>
- <a class="back" href="birthday.html">← BACK TO BIRTHDAYS</a></div>`;
- if(!allowed){
-   document.getElementById("claimCard").onclick=claimCard;
-   document.getElementById("sendWish").onclick=sendWish;
-   const letterButton=document.getElementById("letterButton");
-   if(letterButton&&ev.letter_text){letterButton.onclick=()=>{const box=document.getElementById("letterBox");box.style.display=box.style.display==="block"?"none":"block";box.scrollIntoView({behavior:"smooth",block:"center"});};}
- }
- loadWishes();
- startTimer(allowed);
- d.scrollIntoView({behavior:"smooth"});
+
+/* =========================================================
+   OPEN BIRTHDAY
+========================================================= */
+
+function openBirthday(
+  key,
+  isPreview=false
+){
+
+  const ev=
+    events.find(
+      x=>x.member_key===key
+    );
+
+
+  if(!ev)return;
+
+
+  const allowed=
+    adminPreview &&
+    isAetherAdmin &&
+    key===adminTestMember;
+
+
+  if(
+    !allowed &&
+    state(ev)!=="live"
+  ){
+    return;
+  }
+
+
+  activeEvent=ev;
+
+
+  const m=
+    MEMBERS.find(
+      x=>x.key===key
+    );
+
+
+  if(!m)return;
+
+
+  activeCard=
+    cards.find(
+      c=>
+        c.card_key===
+        ev.special_card_key
+    )||null;
+
+
+  const d=
+    document.getElementById(
+      "detail"
+    );
+
+
+  d.style.display="block";
+
+
+  const snapshot=
+    ev.snapshot_url||
+    "";
+
+
+  const artwork=
+    ev.moment_url||
+    "";
+
+
+  const message=
+    ev.birthday_message||
+    "HALO, thank you for being here with me today. Let us make this birthday a memory we can keep — one filled with laughter, light, and a little magic. ✨";
+
+
+  const hasLetter=
+    !!ev.letter_text;
+
+
+  const hasVoice=
+    !!ev.voice_url;
+
+
+  d.innerHTML=`
+
+    <div class="detail-shell">
+
+      <div class="detail-title">
+
+        <div class="member-symbol">
+          ${m.symbol}
+        </div>
+
+        <div class="member-name">
+          ${m.name}
+        </div>
+
+        <div class="birthday-date">
+          <strong>
+            ${dateOnly(ev.birthday_date)}
+          </strong>
+          BIRTHDAY
+        </div>
+
+      </div>
+
+
+      ${
+        allowed
+        ?`
+          <div class="
+            locked-note
+            preview-disabled
+          "
+          style="
+            color:#ffe9a8;
+            border:1px solid #d6a84f;
+            border-radius:16px;
+            padding:12px;
+            max-width:600px;
+            margin:20px auto;
+          ">
+
+            🧪 ADMIN PREVIEW — FULL HALO VIEW
+
+            <br>
+
+            The real birthday event remains
+            protected by server time.
+
+          </div>
+        `
+        :""
+      }
+
+
+      <!-- SNAPSHOT -->
+
+      <div class="image-block">
+
+        <div class="image-label">
+          📸 BIRTHDAY SNAPSHOT
+        </div>
+
+        ${
+          snapshot
+          ?`
+            <img
+              class="birthday-snapshot"
+              src="${esc(snapshot)}"
+              alt="${m.name} Birthday Snapshot"
+            >
+          `
+          :`
+            <div class="locked-note">
+              📸 SNAPSHOT — NOT CONFIGURED YET
+            </div>
+          `
+        }
+
+      </div>
+
+
+      <!-- MESSAGE -->
+
+      <div class="message">
+
+        <h2>
+          A MESSAGE FROM ${m.name}
+        </h2>
+
+        <p>
+          ${esc(message)}
+        </p>
+
+      </div>
+
+
+      <!-- TIMER -->
+
+      <div class="timer">
+
+        <div class="timer-label">
+          ${
+            allowed
+            ?"ADMIN PREVIEW • SIMULATED 72 HOURS"
+            :"BIRTHDAY EVENT • 72 HOURS"
+          }
+        </div>
+
+        <div
+          id="countdown"
+          class="countdown"
+        >
+          --:--:--
+        </div>
+
+        <div
+          id="timerNote"
+          class="status"
+        >
+          ${
+            allowed
+            ?"Preview timer — simulated HALO view."
+            :"The birthday window is open."
+          }
+        </div>
+
+      </div>
+
+
+      <!-- BIRTHDAY ARTWORK -->
+
+      <div class="image-block">
+
+        <div class="image-label">
+          ✨ BIRTHDAY ARTWORK
+        </div>
+
+        ${
+          artwork
+          ?`
+            <img
+              class="birthday-art"
+              src="${esc(artwork)}"
+              alt="${m.name} Birthday Artwork"
+            >
+          `
+          :`
+            <div class="locked-note">
+              ✨ BIRTHDAY ARTWORK — NOT CONFIGURED YET
+            </div>
+          `
+        }
+
+      </div>
+
+
+      <!-- SPECIALS -->
+
+      <h2 class="section-title">
+        BIRTHDAY SPECIALS
+      </h2>
+
+
+      <div class="specials">
+
+
+        <!-- VOICE -->
+
+        <div class="
+          special
+          ${hasVoice?"configured":"missing"}
+        ">
+
+          <div class="special-icon">
+            🎙️
+          </div>
+
+          <h3>
+            VOICE MESSAGE
+          </h3>
+
+          <p>
+            A personal birthday message
+            from ${m.name} to HALO.
+          </p>
+
+          ${
+            hasVoice
+            ?`
+              <button
+                class="claim"
+                disabled
+              >
+                PLAY VOICE ✦
+              </button>
+            `
+            :`
+              <div class="special-status">
+                NOT CONFIGURED YET
+              </div>
+
+              ${
+                allowed
+                ?`
+                  <button
+                    class="claim"
+                    disabled
+                  >
+                    ADMIN PREVIEW
+                  </button>
+                `
+                :""
+              }
+            `
+          }
+
+        </div>
+
+
+        <!-- BIRTHDAY CARD -->
+
+        <div class="
+          special
+          ${activeCard?"configured":"missing"}
+        ">
+
+          <div class="special-icon">
+            🃏
+          </div>
+
+          <h3>
+            BIRTHDAY CARD
+          </h3>
+
+          <p>
+            Exclusive card for your AETHER album.
+            One claim per HALO.
+          </p>
+
+          ${
+            activeCard
+            ?`
+              <button
+                class="claim"
+                id="claimCard"
+                ${allowed?"disabled":""}
+              >
+                ${
+                  allowed
+                  ?"ADMIN PREVIEW — CLAIM LOCKED"
+                  :"COLLECT CARD ✦"
+                }
+              </button>
+            `
+            :`
+              <div class="special-status">
+                CARD NOT CONFIGURED
+              </div>
+            `
+          }
+
+        </div>
+
+
+        <!-- LETTER -->
+
+        <div class="
+          special
+          ${hasLetter?"configured":"missing"}
+        ">
+
+          <div class="special-icon">
+            💌
+          </div>
+
+          <h3>
+            BIRTHDAY LETTER
+          </h3>
+
+          <p>
+            A personal birthday letter
+            from ${m.name}.
+          </p>
+
+          ${
+            hasLetter
+            ?`
+              <button
+                id="letterButton"
+                class="claim"
+                ${allowed?"disabled":""}
+              >
+                ${
+                  allowed
+                  ?"ADMIN PREVIEW — LETTER"
+                  :"OPEN LETTER ✦"
+                }
+              </button>
+            `
+            :`
+              <div class="special-status">
+                NOT CONFIGURED YET
+              </div>
+            `
+          }
+
+        </div>
+
+
+        <!-- SNAPSHOT -->
+
+        <div class="special configured">
+
+          <div class="special-icon">
+            📸
+          </div>
+
+          <h3>
+            BIRTHDAY SNAPSHOT
+          </h3>
+
+          <p>
+            A little moment from today's
+            celebration.
+          </p>
+
+          <div class="special-status"
+               style="color:#72e4df">
+            ✓ AVAILABLE ABOVE
+          </div>
+
+        </div>
+
+
+        <!-- MOMENT -->
+
+        <div class="
+          special
+          ${artwork?"configured":"missing"}
+        ">
+
+          <div class="special-icon">
+            ✨
+          </div>
+
+          <h3>
+            BIRTHDAY MOMENT
+          </h3>
+
+          <p>
+            A special visual moment
+            from ${m.name}.
+          </p>
+
+          ${
+            artwork
+            ?`
+              <div class="special-status"
+                   style="color:#72e4df">
+                ✓ AVAILABLE ABOVE
+              </div>
+            `
+            :`
+              <div class="special-status">
+                NOT CONFIGURED YET
+              </div>
+            `
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- LETTER BOX -->
+
+      ${
+        hasLetter
+        ?`
+          <div
+            id="letterBox"
+            class="message"
+            style="
+              display:none;
+              white-space:pre-line;
+            "
+          >
+
+            <h2>
+              A LETTER FROM ${m.name}
+            </h2>
+
+            <p>
+              ${esc(ev.letter_text)}
+            </p>
+
+          </div>
+        `
+        :""
+      }
+
+
+      <!-- CARD PREVIEW -->
+
+      ${
+        activeCard
+        ?`
+          <div class="image-block">
+
+            <div class="image-label">
+              🃏 BIRTHDAY CARD PREVIEW
+            </div>
+
+            ${
+              activeCard.image_url
+              ?`
+                <img
+                  class="birthday-card-image"
+                  src="${esc(activeCard.image_url)}"
+                  alt="${esc(activeCard.title)}"
+                >
+              `
+              :`
+                <div class="locked-note">
+                  CARD IMAGE — NOT CONFIGURED YET
+                </div>
+              `
+            }
+
+            <div
+              class="locked-note"
+              style="
+                font-size:.8rem;
+                letter-spacing:1px;
+              "
+            >
+              CARD #${activeCard.card_number}
+              • ${esc(activeCard.title)}
+            </div>
+
+          </div>
+        `
+        :""
+      }
+
+
+      <!-- WISHES -->
+
+      <div class="wish-area">
+
+        <h2 class="section-title">
+          ✨ MAKE A WISH FOR ${m.name}
+        </h2>
+
+
+        <div class="wish-form">
+
+          <textarea
+            id="wishText"
+            maxlength="500"
+            placeholder="Write your birthday wish..."
+            ${allowed?"disabled":""}
+          ></textarea>
+
+          <br>
+
+          <button
+            id="sendWish"
+            class="wish-button"
+            ${allowed?"disabled":""}
+          >
+            ${
+              allowed
+              ?"ADMIN PREVIEW — WISHES LOCKED"
+              :"SEND WISH ✨"
+            }
+          </button>
+
+          <div
+            id="wishStatus"
+            class="wish-status"
+          >
+            ${
+              allowed
+              ?"Real wishes can be sent during the actual birthday window."
+              :""
+            }
+          </div>
+
+        </div>
+
+
+        <h2
+          class="section-title"
+          style="margin-top:34px"
+        >
+          💌 ${m.name}'S BIRTHDAY WISH WALL
+        </h2>
+
+
+        <div
+          id="wishWall"
+          class="wish-wall"
+        ></div>
+
+      </div>
+
+
+      <a
+        class="back"
+        href="birthday.html"
+      >
+        ← BACK TO BIRTHDAYS
+      </a>
+
+    </div>
+  `;
+
+
+  /* =======================================================
+     REAL USER ACTIONS ONLY
+  ======================================================= */
+
+  if(!allowed){
+
+    const claim=
+      document.getElementById(
+        "claimCard"
+      );
+
+    if(claim){
+      claim.onclick=claimCard;
+    }
+
+
+    const wish=
+      document.getElementById(
+        "sendWish"
+      );
+
+    if(wish){
+      wish.onclick=sendWish;
+    }
+
+
+    const letterButton=
+      document.getElementById(
+        "letterButton"
+      );
+
+
+    if(
+      letterButton &&
+      ev.letter_text
+    ){
+
+      letterButton.onclick=()=>{
+
+        const box=
+          document.getElementById(
+            "letterBox"
+          );
+
+        if(!box)return;
+
+        box.style.display=
+          box.style.display==="block"
+            ?"none"
+            :"block";
+
+
+        if(
+          box.style.display==="block"
+        ){
+
+          box.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+          });
+
+        }
+
+      };
+    }
+  }
+
+
+  loadWishes();
+
+  startTimer(allowed);
+
+  d.scrollIntoView({
+    behavior:"smooth"
+  });
 }
 
-function startTimer(isPreview=false){
- clearInterval(timer);
- if(isPreview&&!previewTimerEnd)previewTimerEnd=serverNow()+72*60*60*1000;
- const tick=()=>{
-   const end=isPreview?previewTimerEnd:Date.parse(activeEvent.end_at);
-   const left=Math.max(0,end-serverNow());
-   const h=Math.floor(left/3600000),m=Math.floor(left%3600000/60000),s=Math.floor(left%60000/1000);
-   const el=document.getElementById("countdown");
-   if(!el)return;
-   el.textContent=[h,m,s].map(x=>String(x).padStart(2,"0")).join(":");
-   if(!left){const note=document.getElementById("timerNote");if(note)note.textContent=isPreview?"Preview timer completed.":"The birthday event has ended.";clearInterval(timer);renderMembers();}
- };
- tick();timer=setInterval(tick,1000);
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer(
+  isPreview=false
+){
+
+  clearInterval(timer);
+
+
+  if(
+    isPreview &&
+    !previewTimerEnd
+  ){
+
+    previewTimerEnd=
+      serverNow()+
+      72*60*60*1000;
+  }
+
+
+  const tick=()=>{
+
+    const end=
+      isPreview
+        ?previewTimerEnd
+        :Date.parse(
+          activeEvent.end_at
+        );
+
+
+    const left=
+      Math.max(
+        0,
+        end-serverNow()
+      );
+
+
+    const h=
+      Math.floor(
+        left/3600000
+      );
+
+
+    const m=
+      Math.floor(
+        left%3600000/60000
+      );
+
+
+    const s=
+      Math.floor(
+        left%60000/1000
+      );
+
+
+    const el=
+      document.getElementById(
+        "countdown"
+      );
+
+
+    if(!el)return;
+
+
+    el.textContent=
+      [h,m,s]
+        .map(
+          x=>
+            String(x)
+              .padStart(2,"0")
+        )
+        .join(":");
+
+
+    if(!left){
+
+      const note=
+        document.getElementById(
+          "timerNote"
+        );
+
+
+      if(note){
+
+        note.textContent=
+          isPreview
+            ?"Preview timer completed."
+            :"The birthday event has ended.";
+      }
+
+
+      clearInterval(timer);
+
+      renderMembers();
+    }
+
+  };
+
+
+  tick();
+
+  timer=
+    setInterval(
+      tick,
+      1000
+    );
 }
+
+
+/* =========================================================
+   CLAIM CARD
+========================================================= */
 
 async function claimCard(){
- if(adminPreview)return;
- const b=document.getElementById("claimCard");b.disabled=true;
- const {error}=await supabaseClient.rpc("claim_birthday_card",{p_event_id:activeEvent.id});
- if(error){b.disabled=false;b.textContent=(error.message||"").includes("ALREADY_CLAIMED")?"ALREADY COLLECTED":"COLLECT CARD ✦";return;}
- b.textContent="✓ ADDED TO YOUR COLLECTION";
+
+  if(adminPreview)return;
+
+  if(!activeEvent)return;
+
+
+  const b=
+    document.getElementById(
+      "claimCard"
+    );
+
+
+  if(!b)return;
+
+
+  b.disabled=true;
+
+
+  const {error}=
+    await supabaseClient.rpc(
+      "claim_birthday_card",
+      {
+        p_event_id:
+          activeEvent.id
+      }
+    );
+
+
+  if(error){
+
+    b.disabled=false;
+
+    b.textContent=
+      (error.message||"")
+        .includes(
+          "ALREADY_CLAIMED"
+        )
+        ?"ALREADY COLLECTED"
+        :"COLLECT CARD ✦";
+
+    return;
+  }
+
+
+  b.textContent=
+    "✓ ADDED TO YOUR COLLECTION";
 }
+
+
+/* =========================================================
+   SEND WISH
+========================================================= */
 
 async function sendWish(){
- if(adminPreview)return;
- const input=document.getElementById("wishText"),status=document.getElementById("wishStatus"),b=document.getElementById("sendWish"),text=input.value.trim();
- if(!text){status.textContent="Write a little wish first. 💙";return;}
- b.disabled=true;
- const {error}=await supabaseClient.rpc("submit_birthday_wish",{p_event_id:activeEvent.id,p_message:text});
- if(error){status.textContent=(error.message||"").includes("WISH_ALREADY_SENT")?"You already sent a wish for this birthday. 💙":"Your wish could not be sent right now.";b.disabled=false;return;}
- input.value="";
- const m=MEMBERS.find(x=>x.key===activeEvent.member_key);
- status.textContent=`Your wish has reached ${m?m.name:"AETHER"}. ✨`;
- await loadWishes();b.disabled=false;
+
+  if(adminPreview)return;
+
+  if(!activeEvent)return;
+
+
+  const input=
+    document.getElementById(
+      "wishText"
+    );
+
+
+  const status=
+    document.getElementById(
+      "wishStatus"
+    );
+
+
+  const b=
+    document.getElementById(
+      "sendWish"
+    );
+
+
+  if(!input||!status||!b)return;
+
+
+  const text=
+    input.value.trim();
+
+
+  if(!text){
+
+    status.textContent=
+      "Write a little wish first. 💙";
+
+    return;
+  }
+
+
+  b.disabled=true;
+
+
+  const {error}=
+    await supabaseClient.rpc(
+      "submit_birthday_wish",
+      {
+        p_event_id:
+          activeEvent.id,
+        p_message:
+          text
+      }
+    );
+
+
+  if(error){
+
+    status.textContent=
+      (error.message||"")
+        .includes(
+          "WISH_ALREADY_SENT"
+        )
+          ?"You already sent a wish for this birthday. 💙"
+          :"Your wish could not be sent right now.";
+
+
+    b.disabled=false;
+
+    return;
+  }
+
+
+  input.value="";
+
+
+  const m=
+    MEMBERS.find(
+      x=>
+        x.key===
+        activeEvent.member_key
+    );
+
+
+  status.textContent=
+    `Your wish has reached ${m?m.name:"AETHER"}. ✨`;
+
+
+  await loadWishes();
+
+
+  b.disabled=false;
 }
+
+
+/* =========================================================
+   WISH WALL
+========================================================= */
 
 async function loadWishes(){
- const wall=document.getElementById("wishWall");
- if(!wall)return;
- const {data,error}=await supabaseClient.from("birthday_wishes").select("message,created_at").eq("event_id",activeEvent.id).order("created_at",{ascending:false});
- if(error)return;
- wall.innerHTML=(data||[]).map(w=>`<div class="wish"><p>${esc(w.message)}</p><small>💙 HALO</small></div>`).join("")||'<div class="locked-note">Be the first HALO to leave a birthday wish. ✨</div>';
+
+  const wall=
+    document.getElementById(
+      "wishWall"
+    );
+
+
+  if(!wall)return;
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("birthday_wishes")
+      .select(
+        "message,created_at"
+      )
+      .eq(
+        "event_id",
+        activeEvent.id
+      )
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    wall.innerHTML=
+      `
+      <div class="locked-note">
+        Birthday wishes could not be loaded.
+      </div>
+      `;
+
+    return;
+  }
+
+
+  wall.innerHTML=
+    (data||[])
+      .map(
+        w=>
+          `
+          <div class="wish">
+
+            <p>
+              ${esc(w.message)}
+            </p>
+
+            <small>
+              💙 HALO
+            </small>
+
+          </div>
+          `
+      )
+      .join("")
+      ||
+      `
+      <div class="locked-note">
+        Be the first HALO to leave a birthday wish. ✨
+      </div>
+      `;
 }
 
-setInterval(async()=>{await syncServerClock();renderMembers();if(activeEvent&&!adminPreview&&state(activeEvent)!=="live"){renderMembers();}},5*60*1000);
+
+/* =========================================================
+   PERIODIC SERVER CLOCK SYNC
+========================================================= */
+
+setInterval(
+  async()=>{
+    await syncServerClock();
+
+    renderMembers();
+
+    if(
+      activeEvent &&
+      !adminPreview &&
+      state(activeEvent)!=="live"
+    ){
+
+      renderMembers();
+    }
+
+  },
+  5*60*1000
+);
+
+
+/* =========================================================
+   START
+========================================================= */
 
 load();
 </script>
+
 </body>
-</html>
+ </html>
