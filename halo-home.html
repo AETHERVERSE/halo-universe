@@ -427,6 +427,189 @@ h1 {
 
 
 /* =========================
+   AETHER ARCADE
+========================= */
+
+.arcade-section {
+
+    margin-bottom: 45px;
+
+    padding: 32px 25px;
+
+    border-radius: 24px;
+
+    border: 1px solid #6558a0;
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(118,101,184,0.20),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            #29235a,
+            #15132f
+        );
+
+    box-shadow:
+        0 18px 50px
+        rgba(0,0,0,0.35);
+
+    text-align: center;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.arcade-section::before {
+
+    content: "✦";
+
+    position: absolute;
+
+    top: 12px;
+    left: 18px;
+
+    color: #cdb9ff;
+
+    opacity: 0.5;
+
+}
+
+.arcade-section::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    bottom: 12px;
+    right: 18px;
+
+    color: #8f84c9;
+
+    opacity: 0.5;
+
+}
+
+.arcade-icon {
+
+    font-size: 3rem;
+
+    margin-bottom: 8px;
+
+}
+
+.arcade-label {
+
+    color: #aaa0e6;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 10px;
+
+}
+
+.arcade-title {
+
+    color: #f0ecff;
+
+    font-size: 2rem;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 10px;
+
+}
+
+.arcade-subtitle {
+
+    color: #cdb9ff;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 18px;
+
+}
+
+.arcade-description {
+
+    max-width: 620px;
+
+    margin: 0 auto 25px;
+
+    color: #c4c1d7;
+
+    line-height: 1.7;
+
+}
+
+.arcade-button {
+
+    display: inline-block;
+
+    padding: 13px 28px;
+
+    border: 1px solid #b5a7f0;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5e4d9e,
+            #806bc4
+        );
+
+    color: #fff;
+
+    text-decoration: none;
+
+    font-size: 0.85rem;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(118,101,184,0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.arcade-button:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #eeeaff;
+
+    box-shadow:
+        0 12px 30px
+        rgba(118,101,184,0.35);
+
+}
+
+.arcade-note {
+
+    margin-top: 18px;
+
+    color: #8f84c9;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =========================
    EARN STAR POINTS
 ========================= */
 
@@ -774,6 +957,20 @@ footer {
 
     }
 
+    .arcade-title {
+
+        font-size: 1.55rem;
+
+        letter-spacing: 3px;
+
+    }
+
+    .arcade-section {
+
+        padding: 28px 18px;
+
+    }
+
 }
 
 </style>
@@ -1008,6 +1205,57 @@ class="codex-progress-points"
 id="codexProgressPoints">
 
 0 STAR POINTS FROM CODEX
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     AETHER ARCADE
+========================= -->
+
+<section class="arcade-section">
+
+<div class="arcade-icon">
+🎮
+</div>
+
+<div class="arcade-label">
+HALO EXCLUSIVE
+</div>
+
+<div class="arcade-title">
+AETHER ARCADE
+</div>
+
+<div class="arcade-subtitle">
+PLAY • REACT • EARN • REPEAT
+</div>
+
+<p class="arcade-description">
+
+Step into the AETHER Arcade.
+
+Play special games connected to the
+seven stars, challenge yourself,
+and collect AETHER Coins along the way.
+
+The first daily game has already arrived.
+
+</p>
+
+<a
+href="aether-arcade.html"
+class="arcade-button">
+
+✦ ENTER AETHER ARCADE →
+
+</a>
+
+<div class="arcade-note">
+
+ONE HALO • ONE REACTION • EVERY DAY
 
 </div>
 
@@ -1255,9 +1503,7 @@ Discover your connection to one of the seven stars of AETHER.
 </a>
 
 
-<!-- =====================================================
-     MY COLLECTION
-===================================================== -->
+<!-- MY COLLECTION -->
 
 <a
 href="collection.html"
@@ -1279,9 +1525,7 @@ discovered throughout your journey.
 </a>
 
 
-<!-- =====================================================
-     BIRTHDAY
-===================================================== -->
+<!-- BIRTHDAY -->
 
 <a
 href="birthday.html"
@@ -1303,9 +1547,7 @@ birthday moments, wishes and limited collectibles.
 </a>
 
 
-<!-- =====================================================
-     CARD ALBUM
-===================================================== -->
+<!-- CARD ALBUM -->
 
 <a
 href="card-album.html"
@@ -1327,9 +1569,7 @@ across seven sets and five rarity levels.
 </a>
 
 
-<!-- =====================================================
-     THE AETHER PATH
-===================================================== -->
+<!-- THE AETHER PATH -->
 
 <a
 href="aether-path.html"
@@ -1351,9 +1591,7 @@ meet the Guardians and discover the forgotten path.
 </a>
 
 
-<!-- =====================================================
-     ACHIEVEMENTS
-===================================================== -->
+<!-- ACHIEVEMENTS -->
 
 <a
 href="achievements.html"
@@ -2174,17 +2412,9 @@ async function loadHaloData() {
         }
 
 
-        /* =========================
-           AETHER ADMIN CHECK
-        ========================= */
-
         const admin =
             await isAetherAdmin();
 
-
-        /* =========================
-           HALO ID
-        ========================= */
 
         const {
             data: profile,
@@ -2246,14 +2476,6 @@ async function loadHaloData() {
         }
 
 
-        /* =========================
-           DAILY HALO REWARD
-
-           IMPORTANT:
-           The reward MUST be claimed
-           BEFORE halo_points are loaded.
-        ========================= */
-
         const dailyReward =
             await claimDailyHaloReward(
                 user.id
@@ -2265,10 +2487,6 @@ async function loadHaloData() {
             dailyReward
         );
 
-
-        /* =========================
-           HALO POINTS
-        ========================= */
 
         const {
             data: pointsData,
@@ -2324,10 +2542,6 @@ async function loadHaloData() {
         }
 
 
-        /* =========================
-           DISPLAY RANK
-        ========================= */
-
         if (admin) {
 
             displayAdminRank();
@@ -2343,18 +2557,10 @@ async function loadHaloData() {
         }
 
 
-        /* =========================
-           CODEX
-        ========================= */
-
         await loadCodexProgress(
             user.id
         );
 
-
-        /* =========================
-           DAILY HALO STATUS
-        ========================= */
 
         await loadDailyHaloStatus(
             user.id
