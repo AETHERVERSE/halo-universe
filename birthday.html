@@ -711,13 +711,16 @@ const esc=v=>
 
 
 function dateOnly(v){
-  return new Intl.DateTimeFormat(
-    "de-DE",
-    {
-      day:"2-digit",
-      month:"2-digit"
-    }
-  ).format(new Date(v+"T12:00:00"));
+  const d=
+    new Date(v+"T12:00:00");
+
+  return String(
+    d.getUTCDate()
+  ).padStart(2,"0")
+  +"."+
+  String(
+    d.getUTCMonth()+1
+  ).padStart(2,"0");
 }
 
 
@@ -728,7 +731,9 @@ function dateLong(v){
       day:"numeric",
       month:"long"
     }
-  ).format(new Date(v+"T12:00:00"));
+  ).format(
+    new Date(v+"T12:00:00")
+  );
 }
 
 
@@ -739,7 +744,9 @@ function dateLong(v){
 function requestedPreviewMember(){
 
   const params=
-    new URLSearchParams(location.search);
+    new URLSearchParams(
+      location.search
+    );
 
   return params.get("test")
     ||params.get("preview")
@@ -773,7 +780,9 @@ async function checkAdminAccess(){
   if(error){
 
     const box=
-      document.getElementById("adminError");
+      document.getElementById(
+        "adminError"
+      );
 
     box.style.display="block";
 
@@ -791,7 +800,6 @@ async function checkAdminAccess(){
 
 
   if(!isAetherAdmin){
-
     return false;
   }
 
@@ -1025,8 +1033,7 @@ function renderMembers(){
 
 
     const clickable=
-      adminPreview
-      ||
+      adminPreview ||
       st==="live";
 
 
@@ -1038,7 +1045,8 @@ function renderMembers(){
           ${st==="expired"&&!preview?"expired":""}
           ${preview?"admin-selected":""}
         "
-        ${clickable
+        ${
+          clickable
           ?`onclick="openBirthday('${m.key}',${adminPreview})"`
           :""
         }
@@ -1255,13 +1263,22 @@ function openBirthday(
   d.style.display="block";
 
 
-  const snapshot=
-    ev.snapshot_url||
-    "";
-
+  /*
+    IMPORTANT:
+    moment_url is the existing Birthday Artwork.
+    It points to:
+    birthday-riven-2026.png
+    birthday-vex-2026.png
+    etc.
+  */
 
   const artwork=
     ev.moment_url||
+    "";
+
+
+  const snapshot=
+    ev.snapshot_url||
     "";
 
 
@@ -1305,19 +1322,17 @@ function openBirthday(
       ${
         allowed
         ?`
-          <div class="
-            locked-note
-            preview-disabled
-          "
-          style="
-            color:#ffe9a8;
-            border:1px solid #d6a84f;
-            border-radius:16px;
-            padding:12px;
-            max-width:600px;
-            margin:20px auto;
-          ">
-
+          <div
+            class="locked-note preview-disabled"
+            style="
+              color:#ffe9a8;
+              border:1px solid #d6a84f;
+              border-radius:16px;
+              padding:12px;
+              max-width:600px;
+              margin:20px auto;
+            "
+          >
             🧪 ADMIN PREVIEW — FULL HALO VIEW
 
             <br>
@@ -1331,7 +1346,54 @@ function openBirthday(
       }
 
 
-      <!-- SNAPSHOT -->
+      <!-- =================================================
+           BIRTHDAY ARTWORK
+           REAL UPLOADED BIRTHDAY IMAGE
+      ================================================== -->
+
+      <div class="image-block">
+
+        <div class="image-label">
+          ✨ BIRTHDAY ARTWORK
+        </div>
+
+        ${
+          artwork
+          ?`
+            <img
+              class="birthday-art"
+              src="${esc(artwork)}"
+              alt="${m.name} Birthday Artwork"
+            >
+          `
+          :`
+            ${
+              allowed
+              ?`
+                <div
+                  class="locked-note"
+                  style="
+                    border:1px solid #d6a84f;
+                    border-radius:18px;
+                    padding:20px;
+                    color:#ffe9a8;
+                  "
+                >
+                  ✨ BIRTHDAY ARTWORK —
+                  NOT CONFIGURED YET
+                </div>
+              `
+              :""
+            }
+          `
+        }
+
+      </div>
+
+
+      <!-- =================================================
+           SNAPSHOT
+      ================================================== -->
 
       <div class="image-block">
 
@@ -1349,16 +1411,33 @@ function openBirthday(
             >
           `
           :`
-            <div class="locked-note">
-              📸 SNAPSHOT — NOT CONFIGURED YET
-            </div>
+            ${
+              allowed
+              ?`
+                <div
+                  class="locked-note"
+                  style="
+                    border:1px solid #d6a84f;
+                    border-radius:18px;
+                    padding:20px;
+                    color:#ffe9a8;
+                  "
+                >
+                  📸 SNAPSHOT —
+                  NOT CONFIGURED YET
+                </div>
+              `
+              :""
+            }
           `
         }
 
       </div>
 
 
-      <!-- MESSAGE -->
+      <!-- =================================================
+           MESSAGE
+      ================================================== -->
 
       <div class="message">
 
@@ -1373,7 +1452,9 @@ function openBirthday(
       </div>
 
 
-      <!-- TIMER -->
+      <!-- =================================================
+           TIMER
+      ================================================== -->
 
       <div class="timer">
 
@@ -1406,34 +1487,9 @@ function openBirthday(
       </div>
 
 
-      <!-- BIRTHDAY ARTWORK -->
-
-      <div class="image-block">
-
-        <div class="image-label">
-          ✨ BIRTHDAY ARTWORK
-        </div>
-
-        ${
-          artwork
-          ?`
-            <img
-              class="birthday-art"
-              src="${esc(artwork)}"
-              alt="${m.name} Birthday Artwork"
-            >
-          `
-          :`
-            <div class="locked-note">
-              ✨ BIRTHDAY ARTWORK — NOT CONFIGURED YET
-            </div>
-          `
-        }
-
-      </div>
-
-
-      <!-- SPECIALS -->
+      <!-- =================================================
+           BIRTHDAY SPECIALS
+      ================================================== -->
 
       <h2 class="section-title">
         BIRTHDAY SPECIALS
@@ -1603,15 +1659,17 @@ function openBirthday(
             celebration.
           </p>
 
-          <div class="special-status"
-               style="color:#72e4df">
+          <div
+            class="special-status"
+            style="color:#72e4df"
+          >
             ✓ AVAILABLE ABOVE
           </div>
 
         </div>
 
 
-        <!-- MOMENT -->
+        <!-- BIRTHDAY MOMENT -->
 
         <div class="
           special
@@ -1634,8 +1692,10 @@ function openBirthday(
           ${
             artwork
             ?`
-              <div class="special-status"
-                   style="color:#72e4df">
+              <div
+                class="special-status"
+                style="color:#72e4df"
+              >
                 ✓ AVAILABLE ABOVE
               </div>
             `
@@ -1651,7 +1711,9 @@ function openBirthday(
       </div>
 
 
-      <!-- LETTER BOX -->
+      <!-- =================================================
+           LETTER BOX
+      ================================================== -->
 
       ${
         hasLetter
@@ -1679,7 +1741,9 @@ function openBirthday(
       }
 
 
-      <!-- CARD PREVIEW -->
+      <!-- =================================================
+           CARD PREVIEW
+      ================================================== -->
 
       ${
         activeCard
@@ -1701,7 +1765,8 @@ function openBirthday(
               `
               :`
                 <div class="locked-note">
-                  CARD IMAGE — NOT CONFIGURED YET
+                  CARD IMAGE —
+                  NOT CONFIGURED YET
                 </div>
               `
             }
@@ -1723,7 +1788,9 @@ function openBirthday(
       }
 
 
-      <!-- WISHES -->
+      <!-- =================================================
+           WISHES
+      ================================================== -->
 
       <div class="wish-area">
 
@@ -2247,4 +2314,4 @@ load();
 </script>
 
 </body>
- </html>
+  </html>
