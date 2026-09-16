@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -18,17 +20,23 @@
 
 :root {
     --bg: #070b18;
-    --panel: rgba(10, 15, 35, .78);
+    --panel: rgba(10,15,35,.82);
     --panel-light: rgba(255,255,255,.045);
+
     --gold: #f3d58d;
     --gold-soft: #d9bd78;
+
     --purple: #b28ac9;
     --purple-soft: #c9b8d8;
+
     --blue: #62bfff;
     --blue-bright: #9bddff;
+
     --text: #f5e9d0;
     --muted: #a99ab8;
+
     --danger: #ff8fa3;
+    --success: #9ff0c5;
 }
 
 body {
@@ -99,22 +107,27 @@ h1 {
 
 .game-card {
     position: relative;
-
     overflow: hidden;
 
-    border: 1px solid #65577a;
+    border:
+        1px solid
+        #65577a;
+
     border-radius: 28px;
 
-    background: var(--panel);
+    background:
+        var(--panel);
 
     box-shadow:
-        0 0 60px rgba(80, 100, 180, .15);
+        0 0 60px
+        rgba(80,100,180,.15);
 
     padding: 25px;
 }
 
 .top-bar {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
@@ -130,16 +143,21 @@ h1 {
 
     text-align: center;
 
-    border: 1px solid #514c70;
+    border:
+        1px solid
+        #514c70;
+
     border-radius: 14px;
 
-    background: var(--panel-light);
+    background:
+        var(--panel-light);
 }
 
 .stat-label {
     display: block;
 
     font-size: .65rem;
+
     letter-spacing: 2px;
 
     color: var(--muted);
@@ -161,16 +179,20 @@ h1 {
     min-height: 390px;
 
     display: flex;
+
     flex-direction: column;
 
     justify-content: center;
+
     align-items: center;
 
     text-align: center;
 
     border-radius: 24px;
 
-    border: 1px solid rgba(98,191,255,.25);
+    border:
+        1px solid
+        rgba(98,191,255,.25);
 
     background:
         radial-gradient(
@@ -178,7 +200,7 @@ h1 {
             rgba(98,191,255,.10),
             transparent 48%
         ),
-        rgba(4, 9, 25, .65);
+        rgba(4,9,25,.65);
 
     overflow: hidden;
 }
@@ -198,7 +220,11 @@ h1 {
             transparent 68%
         );
 
-    animation: pulse 2.5s infinite ease-in-out;
+    animation:
+        pulse
+        2.5s
+        infinite
+        ease-in-out;
 
     pointer-events: none;
 }
@@ -214,6 +240,7 @@ h1 {
         transform: scale(1.12);
         opacity: 1;
     }
+
 }
 
 .kairo-avatar {
@@ -226,10 +253,13 @@ h1 {
     border-radius: 50%;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 2px solid rgba(155,221,255,.7);
+    border:
+        2px solid
+        rgba(155,221,255,.7);
 
     background:
         radial-gradient(
@@ -239,7 +269,8 @@ h1 {
         );
 
     box-shadow:
-        0 0 35px rgba(98,191,255,.28);
+        0 0 35px
+        rgba(98,191,255,.28);
 
     font-size: 4rem;
 }
@@ -250,13 +281,17 @@ h1 {
     top: -7px;
     left: 50%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width: 125px;
     height: 62px;
 
     border-radius:
-        55% 55% 35% 35%;
+        55%
+        55%
+        35%
+        35%;
 
     background:
         linear-gradient(
@@ -267,7 +302,8 @@ h1 {
         );
 
     box-shadow:
-        0 0 18px rgba(60,130,255,.45);
+        0 0 18px
+        rgba(60,130,255,.45);
 
     pointer-events: none;
 }
@@ -328,7 +364,7 @@ h1 {
     grid-template-columns:
         repeat(
             auto-fit,
-            minmax(120px, 1fr)
+            minmax(120px,1fr)
         );
 
     gap: 12px;
@@ -339,7 +375,9 @@ h1 {
 button {
     font-family: inherit;
 
-    border: 1px solid #65577a;
+    border:
+        1px solid
+        #65577a;
 
     border-radius: 18px;
 
@@ -364,21 +402,27 @@ button {
 }
 
 button:hover:not(:disabled) {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
-    border-color: var(--blue);
+    border-color:
+        var(--blue);
 
     box-shadow:
-        0 0 20px rgba(98,191,255,.16);
+        0 0 20px
+        rgba(98,191,255,.16);
 }
 
 button:active:not(:disabled) {
-    transform: scale(.97);
+    transform:
+        scale(.97);
 }
 
 button:disabled {
     opacity: .4;
-    cursor: not-allowed;
+
+    cursor:
+        not-allowed;
 }
 
 .primary {
@@ -415,7 +459,10 @@ button:disabled {
 
     text-align: center;
 
-    border: 1px solid #65577a;
+    border:
+        1px solid
+        #65577a;
+
     border-radius: 22px;
 
     background:
@@ -436,7 +483,7 @@ button:disabled {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(3,1fr);
 
     gap: 10px;
 
@@ -448,7 +495,8 @@ button:disabled {
 
     border-radius: 14px;
 
-    background: rgba(255,255,255,.035);
+    background:
+        rgba(255,255,255,.035);
 }
 
 .result-item strong {
@@ -461,6 +509,31 @@ button:disabled {
     color: var(--blue-bright);
 }
 
+.coin-result {
+    margin-top: 12px;
+
+    padding: 16px;
+
+    border:
+        1px solid
+        rgba(243,213,141,.35);
+
+    border-radius: 16px;
+
+    background:
+        rgba(243,213,141,.05);
+}
+
+.coin-result strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 1.6rem;
+
+    color: var(--gold);
+}
+
 .daily-lock {
     display: none;
 
@@ -470,7 +543,10 @@ button:disabled {
 
     text-align: center;
 
-    border: 1px solid #65577a;
+    border:
+        1px solid
+        #65577a;
+
     border-radius: 22px;
 
     background:
@@ -506,15 +582,76 @@ button:disabled {
 
     border-radius: 12px;
 
-    background: rgba(255,80,110,.08);
+    background:
+        rgba(255,80,110,.08);
 
     color: var(--danger);
 
     font-size: .85rem;
+
+    line-height: 1.6;
 }
 
 .error.visible {
     display: block;
+}
+
+.login-note {
+    display: none;
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border:
+        1px solid
+        #65577a;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    line-height: 1.7;
+
+    color: var(--purple-soft);
+}
+
+.login-note.visible {
+    display: block;
+}
+
+.login-note a {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 11px 22px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--gold-soft)
+        );
+
+    color: #101323;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.balance {
+    margin-top: 12px;
+
+    color: var(--muted);
+
+    font-size: .85rem;
 }
 
 footer {
@@ -551,6 +688,7 @@ footer {
 
     .game-card {
         padding: 14px;
+
         border-radius: 22px;
     }
 
@@ -576,7 +714,7 @@ footer {
 
     .reaction-buttons {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
     }
 
     .result-grid {
@@ -586,12 +724,15 @@ footer {
 }
 
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="container">
+
 
 <header>
 
@@ -612,9 +753,12 @@ footer {
 
 <main class="game-card">
 
+
     <div class="top-bar">
 
+
         <div class="stat">
+
             <span class="stat-label">
                 SCORE
             </span>
@@ -625,10 +769,12 @@ footer {
             >
                 0
             </span>
+
         </div>
 
 
         <div class="stat">
+
             <span class="stat-label">
                 COMBO
             </span>
@@ -639,10 +785,12 @@ footer {
             >
                 0
             </span>
+
         </div>
 
 
         <div class="stat">
+
             <span class="stat-label">
                 TIME
             </span>
@@ -653,7 +801,9 @@ footer {
             >
                 60
             </span>
+
         </div>
+
 
     </div>
 
@@ -663,7 +813,9 @@ footer {
         class="kairo-stage"
     >
 
+
         <div class="kairo-aura"></div>
+
 
         <div class="kairo-avatar">
 
@@ -699,6 +851,7 @@ footer {
             PRESS START
         </div>
 
+
     </section>
 
 
@@ -707,12 +860,14 @@ footer {
         class="reaction-buttons"
     >
 
+
         <button
             data-action="tap"
             disabled
         >
             ⚡ TAP
         </button>
+
 
         <button
             data-action="heart"
@@ -721,6 +876,7 @@ footer {
             💙 HEART
         </button>
 
+
         <button
             data-action="double"
             disabled
@@ -728,12 +884,14 @@ footer {
             ⚡⚡ DOUBLE TAP
         </button>
 
+
         <button
             data-action="nothing"
             disabled
         >
             ✋ DON'T TAP
         </button>
+
 
     </div>
 
@@ -744,6 +902,29 @@ footer {
     >
         START KAIRO REACTION
     </button>
+
+
+    <div
+        id="loginNote"
+        class="login-note"
+    >
+
+        <strong>
+            ✦ HALO LOGIN REQUIRED
+        </strong>
+
+        <br><br>
+
+        You need to be signed in to play
+        Kairo Reaction and receive AETHER Coins.
+
+        <br>
+
+        <a href="halo.html">
+            ENTER HALO LOGIN
+        </a>
+
+    </div>
 
 
     <div
@@ -761,6 +942,7 @@ footer {
             ⚡ KAIRO REACTION COMPLETE
         </h2>
 
+
         <p id="resultMessage">
             Not bad, HALO.
         </p>
@@ -768,39 +950,67 @@ footer {
 
         <div class="result-grid">
 
+
             <div class="result-item">
+
                 Score
-                <strong id="finalScore">
+
+                <strong
+                    id="finalScore"
+                >
                     0
                 </strong>
+
             </div>
 
+
             <div class="result-item">
+
                 Best Combo
-                <strong id="finalCombo">
+
+                <strong
+                    id="finalCombo"
+                >
                     0
                 </strong>
+
             </div>
 
+
             <div class="result-item">
+
                 Perfect
-                <strong id="finalPerfect">
+
+                <strong
+                    id="finalPerfect"
+                >
                     0
                 </strong>
+
             </div>
+
 
         </div>
 
 
-        <div class="result-item">
+        <div class="coin-result">
 
             AETHER Coins Earned
 
-            <strong id="finalCoins">
+            <strong
+                id="finalCoins"
+            >
                 0
             </strong>
 
         </div>
+
+
+        <div
+            id="balance"
+            class="balance"
+        ></div>
+
 
     </section>
 
@@ -811,13 +1021,8 @@ footer {
     >
 
         <h2>
-            💙 Kairo is done for today.
+            ✦ KAIRO IS DONE FOR TODAY ✦
         </h2>
-
-        <p>
-            You already played your daily
-            reaction challenge.
-        </p>
 
         <p>
             Come back tomorrow, HALO.
@@ -827,10 +1032,11 @@ footer {
             id="countdown"
             class="countdown"
         >
-            NEXT REACTION
+            Loading...
         </div>
 
     </section>
+
 
 </main>
 
@@ -839,99 +1045,52 @@ footer {
 
     ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
+    <br><br>
+
+    #WEAREHALO • #WEAREAETHER
+
     <br>
 
     <a
-        class="back"
         href="universe.html"
+        class="back"
     >
         ← BACK TO HALO UNIVERSE
     </a>
 
 </footer>
 
+
 </div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
 
 <script>
 
-/*
-    KAIRO REACTION
-    ----------------
+/* =========================================
+   SUPABASE
+========================================= */
 
-    The game UI is intentionally self-contained.
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
-    IMPORTANT:
-    The final authenticated Supabase reward call
-    will be connected to the existing Aetherverse
-    Supabase configuration before production use.
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-    Coins must NEVER be awarded from client-side
-    score calculation alone.
-*/
-
-
-const GAME_DURATION = 60;
-
-const state = {
-
-    playing: false,
-
-    finished: false,
-
-    score: 0,
-
-    combo: 0,
-
-    bestCombo: 0,
-
-    perfect: 0,
-
-    timeLeft: GAME_DURATION,
-
-    currentAction: null,
-
-    currentStartedAt: 0,
-
-    timer: null,
-
-    reactionTimer: null
-
-};
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-const actions = [
-
-    {
-        key: "tap",
-        prompt: "TAP!",
-        face: "👀",
-        message: "You saw that, right?"
-    },
-
-    {
-        key: "heart",
-        prompt: "HEART!",
-        face: "😳",
-        message: "Okay... I'll take that."
-    },
-
-    {
-        key: "double",
-        prompt: "DOUBLE TAP!",
-        face: "⚡",
-        message: "COME ON!"
-    },
-
-    {
-        key: "nothing",
-        prompt: "DON'T TAP",
-        face: "😏",
-        message: "I'm not doing anything..."
-    }
-
-];
-
+/* =========================================
+   ELEMENTS
+========================================= */
 
 const scoreElement =
     document.getElementById("score");
@@ -942,74 +1101,129 @@ const comboElement =
 const timeElement =
     document.getElementById("time");
 
-const faceElement =
-    document.getElementById("kairoFace");
+const promptElement =
+    document.getElementById("prompt");
 
 const messageElement =
     document.getElementById("message");
 
-const promptElement =
-    document.getElementById("prompt");
+const faceElement =
+    document.getElementById("kairoFace");
 
 const startButton =
     document.getElementById("startButton");
 
-const resultElement =
+const buttons =
+    document.querySelectorAll(
+        "#buttons button"
+    );
+
+const result =
     document.getElementById("result");
 
-const dailyLockElement =
+const dailyLock =
     document.getElementById("dailyLock");
+
+const countdown =
+    document.getElementById("countdown");
 
 const errorElement =
     document.getElementById("error");
 
-const buttons =
-    Array.from(
-        document.querySelectorAll(
-            "#buttons button"
-        )
-    );
+const loginNote =
+    document.getElementById("loginNote");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+const finalCombo =
+    document.getElementById("finalCombo");
+
+const finalPerfect =
+    document.getElementById("finalPerfect");
+
+const finalCoins =
+    document.getElementById("finalCoins");
+
+const balanceElement =
+    document.getElementById("balance");
+
+const resultMessage =
+    document.getElementById("resultMessage");
 
 
-function todayKey() {
+/* =========================================
+   GAME STATE
+========================================= */
 
-    const now = new Date();
+let score = 0;
 
-    return now.getFullYear()
-        + "-"
-        + String(
-            now.getMonth() + 1
-        ).padStart(2, "0")
-        + "-"
-        + String(
-            now.getDate()
-        ).padStart(2, "0");
+let combo = 0;
 
-}
+let bestCombo = 0;
+
+let perfectReactions = 0;
+
+let timeLeft = 60;
+
+let gameRunning = false;
+
+let timer = null;
+
+let reactionTimer = null;
+
+let currentAction = null;
+
+let actionStartedAt = 0;
+
+let sessionUser = null;
 
 
-function localDailyPlayed() {
+/* =========================================
+   ACTIONS
+========================================= */
 
-    return localStorage.getItem(
-        "aether_kairo_reaction_played"
-    ) === todayKey();
+const actions = [
 
-}
+    {
+        id: "tap",
+        prompt: "TAP!",
+        message: "KAIRO: NOW!",
+        face: "😳"
+    },
+
+    {
+        id: "heart",
+        prompt: "💙",
+        message: "KAIRO WANTS A HEART!",
+        face: "🥺"
+    },
+
+    {
+        id: "double",
+        prompt: "DOUBLE TAP!",
+        message: "FAST! FAST!",
+        face: "😈"
+    },
+
+    {
+        id: "nothing",
+        prompt: "DON'T TAP!",
+        message: "WAIT... DON'T YOU DARE.",
+        face: "👀"
+    }
+
+];
 
 
-function markLocalPlayed() {
-
-    localStorage.setItem(
-        "aether_kairo_reaction_played",
-        todayKey()
-    );
-
-}
-
+/* =========================================
+   ERROR
+========================================= */
 
 function showError(message) {
 
-    errorElement.textContent = message;
+    errorElement.textContent =
+        message;
 
     errorElement.classList.add(
         "visible"
@@ -1029,267 +1243,155 @@ function clearError() {
 }
 
 
-function setButtonsEnabled(enabled) {
+/* =========================================
+   BUTTON STATE
+========================================= */
 
-    buttons.forEach(button => {
+function setReactionButtons(
+    enabled
+) {
 
-        button.disabled = !enabled;
+    buttons.forEach(
+        button => {
 
-    });
+            button.disabled =
+                !enabled;
 
-}
-
-
-function resetStats() {
-
-    state.score = 0;
-
-    state.combo = 0;
-
-    state.bestCombo = 0;
-
-    state.perfect = 0;
-
-    state.timeLeft = GAME_DURATION;
-
-    state.currentAction = null;
-
-    scoreElement.textContent = "0";
-
-    comboElement.textContent = "0";
-
-    timeElement.textContent =
-        GAME_DURATION;
-
-}
-
-
-function randomAction() {
-
-    return actions[
-        Math.floor(
-            Math.random() *
-            actions.length
-        )
-    ];
-
-}
-
-
-function nextReaction() {
-
-    if (!state.playing) {
-        return;
-    }
-
-    clearTimeout(
-        state.reactionTimer
+        }
     );
 
-    const action =
-        randomAction();
-
-    state.currentAction =
-        action.key;
-
-    state.currentStartedAt =
-        performance.now();
-
-    faceElement.textContent =
-        action.face;
-
-    messageElement.textContent =
-        action.message;
-
-    promptElement.textContent =
-        action.prompt;
-
-
-    const wait =
-        900 +
-        Math.random() * 1700;
-
-    state.reactionTimer =
-        setTimeout(() => {
-
-            if (
-                state.currentAction ===
-                action.key
-            ) {
-
-                handleMiss();
-
-            }
-
-            nextReaction();
-
-        }, wait);
-
 }
 
 
-function handleReaction(actionKey) {
+/* =========================================
+   SESSION
+========================================= */
 
-    if (!state.playing) {
-        return;
-    }
+async function getSession() {
 
-    const now =
-        performance.now();
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
 
-    const reactionTime =
-        now -
-        state.currentStartedAt;
+    if (error) {
 
-    clearTimeout(
-        state.reactionTimer
-    );
-
-
-    if (
-        state.currentAction !==
-        actionKey
-    ) {
-
-        state.combo = 0;
-
-        comboElement.textContent =
-            "0";
-
-        messageElement.textContent =
-            "Kairo: Wrong one. 😏";
-
-        promptElement.textContent =
-            "TOO SLOW";
-
-        nextReaction();
-
-        return;
-
-    }
-
-
-    state.combo++;
-
-    if (
-        state.combo >
-        state.bestCombo
-    ) {
-
-        state.bestCombo =
-            state.combo;
-
-    }
-
-
-    let points = 2;
-
-    const perfectWindow = 650;
-
-    if (
-        reactionTime <=
-        perfectWindow
-    ) {
-
-        state.perfect++;
-
-        points = 5;
-
-        messageElement.textContent =
-            "Kairo: Okay, that was FAST.";
-
-    } else {
-
-        messageElement.textContent =
-            "Kairo: Nice one! ⚡";
-
-    }
-
-
-    if (
-        state.combo === 5
-    ) {
-
-        points += 3;
-
-        messageElement.textContent =
-            "Kairo: KEEP GOING!";
-
-    }
-
-
-    if (
-        state.combo === 10
-    ) {
-
-        points += 7;
-
-        messageElement.textContent =
-            "Kairo: We're synced! 💙";
-
-    }
-
-
-    state.score += points;
-
-
-    scoreElement.textContent =
-        state.score;
-
-    comboElement.textContent =
-        state.combo;
-
-    promptElement.textContent =
-        "+" + points;
-
-
-    nextReaction();
-
-}
-
-
-function handleMiss() {
-
-    state.combo = 0;
-
-    comboElement.textContent =
-        "0";
-
-    messageElement.textContent =
-        "Kairo: You fell for it. 😂";
-
-    promptElement.textContent =
-        "MISS";
-
-}
-
-
-function updateTimer() {
-
-    state.timeLeft--;
-
-    timeElement.textContent =
-        Math.max(
-            0,
-            state.timeLeft
+        console.error(
+            error
         );
 
-    if (
-        state.timeLeft <= 0
-    ) {
-
-        finishGame();
+        return null;
 
     }
+
+    return data.session || null;
 
 }
 
 
-function startGame() {
+/* =========================================
+   SERVER DAILY CHECK
+========================================= */
+
+async function checkDailyStatus() {
 
     clearError();
 
-    if (localDailyPlayed()) {
+    const session =
+        await getSession();
+
+    if (
+        !session ||
+        !session.user
+    ) {
+
+        sessionUser = null;
+
+        loginNote.classList.add(
+            "visible"
+        );
+
+        startButton.disabled = true;
+
+        setReactionButtons(false);
+
+        messageElement.textContent =
+            "Please sign in first.";
+
+        promptElement.textContent =
+            "HALO LOGIN REQUIRED";
+
+        return;
+
+    }
+
+
+    sessionUser =
+        session.user;
+
+    loginNote.classList.remove(
+        "visible"
+    );
+
+    startButton.disabled =
+        false;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "aether_kairo_reaction_daily"
+            )
+            .select(
+                "play_date,score,best_combo,perfect_reactions"
+            )
+            .eq(
+                "user_id",
+                session.user.id
+            )
+            .order(
+                "play_date",
+                {
+                    ascending: false
+                }
+            )
+            .limit(1);
+
+
+    if (error) {
+
+        console.error(
+            "KAIRO DAILY CHECK:",
+            error
+        );
+
+        showError(
+            "Kairo konnte deinen Tagesstatus nicht prüfen. Bitte lade die Seite neu."
+        );
+
+        return;
+
+    }
+
+
+    const berlinDate =
+        getBerlinDateString();
+
+
+    const playedToday =
+        data &&
+        data.length > 0 &&
+        data[0].play_date ===
+            berlinDate;
+
+
+    if (playedToday) {
 
         showDailyLock();
 
@@ -1298,270 +1400,827 @@ function startGame() {
     }
 
 
-    resetStats();
+    hideDailyLock();
 
-    state.playing = true;
-
-    state.finished = false;
-
-    resultElement.classList.remove(
+    result.classList.remove(
         "visible"
     );
 
-    dailyLockElement.classList.remove(
+}
+
+
+/* =========================================
+   BERLIN DATE
+========================================= */
+
+function getBerlinDateString() {
+
+    const formatter =
+        new Intl.DateTimeFormat(
+            "en-CA",
+            {
+                timeZone:
+                    "Europe/Berlin",
+
+                year: "numeric",
+
+                month: "2-digit",
+
+                day: "2-digit"
+            }
+        );
+
+    return formatter.format(
+        new Date()
+    );
+
+}
+
+
+/* =========================================
+   START GAME
+========================================= */
+
+async function startGame() {
+
+    clearError();
+
+    const session =
+        await getSession();
+
+    if (
+        !session ||
+        !session.user
+    ) {
+
+        loginNote.classList.add(
+            "visible"
+        );
+
+        showError(
+            "Bitte zuerst als HALO anmelden."
+        );
+
+        return;
+
+    }
+
+
+    sessionUser =
+        session.user;
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from(
+                "aether_kairo_reaction_daily"
+            )
+            .select(
+                "play_date"
+            )
+            .eq(
+                "user_id",
+                session.user.id
+            )
+            .eq(
+                "play_date",
+                getBerlinDateString()
+            )
+            .limit(1);
+
+
+    if (error) {
+
+        showError(
+            "Kairo konnte deinen Tagesstatus nicht prüfen."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        data &&
+        data.length > 0
+    ) {
+
+        showDailyLock();
+
+        return;
+
+    }
+
+
+    score = 0;
+
+    combo = 0;
+
+    bestCombo = 0;
+
+    perfectReactions = 0;
+
+    timeLeft = 60;
+
+    gameRunning = true;
+
+
+    scoreElement.textContent =
+        "0";
+
+    comboElement.textContent =
+        "0";
+
+    timeElement.textContent =
+        "60";
+
+
+    result.classList.remove(
         "visible"
     );
 
-    startButton.disabled = true;
+    dailyLock.classList.remove(
+        "visible"
+    );
 
-    startButton.textContent =
-        "KAIRO IS WATCHING...";
 
-    setButtonsEnabled(true);
+    startButton.disabled =
+        true;
+
+    setReactionButtons(true);
+
 
     messageElement.textContent =
-        "Ready, HALO?";
+        "Kairo is watching...";
 
-    promptElement.textContent =
-        "GET READY";
-
-
-    setTimeout(() => {
-
-        nextReaction();
-
-    }, 700);
+    faceElement.textContent =
+        "👀";
 
 
-    state.timer =
+    nextAction();
+
+
+    timer =
         setInterval(
-            updateTimer,
+            function() {
+
+                timeLeft--;
+
+                timeElement.textContent =
+                    timeLeft;
+
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    finishGame();
+
+                }
+
+            },
             1000
         );
 
 }
 
 
-async function finishGame() {
+/* =========================================
+   NEXT ACTION
+========================================= */
 
-    if (!state.playing) {
+function nextAction() {
+
+    if (!gameRunning) {
         return;
     }
 
-    state.playing = false;
 
-    state.finished = true;
+    if (reactionTimer) {
 
-    clearInterval(
-        state.timer
-    );
+        clearTimeout(
+            reactionTimer
+        );
 
-    clearTimeout(
-        state.reactionTimer
-    );
+    }
 
-    setButtonsEnabled(false);
 
-    markLocalPlayed();
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            actions.length
+        );
+
+
+    currentAction =
+        actions[randomIndex];
+
 
     promptElement.textContent =
-        "COMPLETE";
+        currentAction.prompt;
+
+    messageElement.textContent =
+        currentAction.message;
+
+    faceElement.textContent =
+        currentAction.face;
+
+
+    actionStartedAt =
+        performance.now();
+
+
+    const delay =
+        900 +
+        Math.random() *
+        1800;
+
+
+    reactionTimer =
+        setTimeout(
+            function() {
+
+                if (!gameRunning) {
+                    return;
+                }
+
+
+                /*
+                    Kairo can deliberately
+                    change the signal.
+                */
+
+                if (
+                    currentAction.id !==
+                    "nothing"
+                ) {
+
+                    combo = 0;
+
+                    comboElement.textContent =
+                        combo;
+
+                    messageElement.textContent =
+                        "TOO SLOW! 😈";
+
+                    faceElement.textContent =
+                        "😈";
+
+                }
+
+                else {
+
+                    /*
+                        Doing nothing is
+                        sometimes the correct move.
+                    */
+
+                    combo++;
+
+                    if (
+                        combo >
+                        bestCombo
+                    ) {
+
+                        bestCombo =
+                            combo;
+
+                    }
+
+                    score += 2;
+
+                    scoreElement.textContent =
+                        score;
+
+                    comboElement.textContent =
+                        combo;
+
+                    messageElement.textContent =
+                        "GOOD CHOICE. 👀";
+
+                    faceElement.textContent =
+                        "😏";
+
+                }
+
+
+                nextAction();
+
+            },
+            delay
+        );
+
+}
+
+
+/* =========================================
+   REACTION
+========================================= */
+
+function handleReaction(
+    selectedAction
+) {
+
+    if (
+        !gameRunning ||
+        !currentAction
+    ) {
+
+        return;
+
+    }
+
+
+    const reactionTime =
+        performance.now() -
+        actionStartedAt;
+
+
+    if (
+        reactionTime >
+        3000
+    ) {
+
+        return;
+
+    }
+
+
+    const correct =
+        selectedAction ===
+        currentAction.id;
+
+
+    if (correct) {
+
+        combo++;
+
+        if (
+            combo >
+            bestCombo
+        ) {
+
+            bestCombo =
+                combo;
+
+        }
+
+
+        let points = 2;
+
+
+        if (
+            reactionTime <=
+            650
+        ) {
+
+            points = 5;
+
+            perfectReactions++;
+
+        }
+
+
+        if (
+            combo >= 5
+        ) {
+
+            points += 3;
+
+        }
+
+
+        if (
+            combo >= 10
+        ) {
+
+            points += 7;
+
+        }
+
+
+        score += points;
+
+
+        scoreElement.textContent =
+            score;
+
+        comboElement.textContent =
+            combo;
+
+
+        messageElement.textContent =
+            reactionTime <= 650
+                ? "PERFECT! ⚡"
+                : "YES! 💙";
+
+
+        faceElement.textContent =
+            reactionTime <= 650
+                ? "🤩"
+                : "😎";
+
+
+    }
+
+    else {
+
+        combo = 0;
+
+        comboElement.textContent =
+            combo;
+
+        messageElement.textContent =
+            "KAIRO TRICKED YOU! 😈";
+
+        faceElement.textContent =
+            "😈";
+
+    }
+
+
+    nextAction();
+
+}
+
+
+/* =========================================
+   FINISH GAME
+========================================= */
+
+async function finishGame() {
+
+    if (!gameRunning) {
+        return;
+    }
+
+
+    gameRunning = false;
+
+
+    if (timer) {
+
+        clearInterval(
+            timer
+        );
+
+        timer = null;
+
+    }
+
+
+    if (reactionTimer) {
+
+        clearTimeout(
+            reactionTimer
+        );
+
+        reactionTimer = null;
+
+    }
+
+
+    setReactionButtons(false);
+
+
+    promptElement.textContent =
+        "TIME'S UP!";
+
+    messageElement.textContent =
+        "Kairo survived. Did you? 😈";
 
     faceElement.textContent =
         "😏";
 
-    messageElement.textContent =
-        "Not bad, HALO.";
 
-    startButton.disabled = true;
+    finalScore.textContent =
+        score;
 
-    startButton.textContent =
-        "PLAY AGAIN TOMORROW";
+    finalCombo.textContent =
+        bestCombo;
 
-
-    /*
-        COIN CALCULATION
-
-        This is only a provisional display
-        until the authenticated Supabase
-        claim endpoint is connected.
-
-        Production reward validation must
-        happen server-side.
-    */
-
-    const provisionalCoins =
-        Math.min(
-            50,
-            Math.floor(
-                state.score / 2
-            )
-        );
+    finalPerfect.textContent =
+        perfectReactions;
 
 
-    document.getElementById(
-        "finalScore"
-    ).textContent =
-        state.score;
-
-
-    document.getElementById(
-        "finalCombo"
-    ).textContent =
-        state.bestCombo;
-
-
-    document.getElementById(
-        "finalPerfect"
-    ).textContent =
-        state.perfect;
-
-
-    document.getElementById(
-        "finalCoins"
-    ).textContent =
-        provisionalCoins;
-
-
-    resultElement.classList.add(
-        "visible"
-    );
+    startButton.disabled =
+        true;
 
 
     /*
-        TODO:
-        Replace the provisional client
-        reward display with the secure
-        Supabase daily-claim RPC.
+        IMPORTANT:
 
-        The server must:
-        1. verify auth.uid()
-        2. verify today's claim
-        3. calculate/validate reward
-        4. write the daily result
-        5. call award_aether_coins()
-        6. return the actual awarded amount
+        The client never awards coins.
+
+        Supabase decides whether the daily
+        reward can actually be claimed.
     */
 
-}
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "claim_kairo_reaction_reward",
+                {
+                    p_score:
+                        score,
+
+                    p_best_combo:
+                        bestCombo,
+
+                    p_perfect_reactions:
+                        perfectReactions
+                }
+            );
 
 
-function showDailyLock() {
+    if (error) {
 
-    state.playing = false;
-
-    setButtonsEnabled(false);
-
-    startButton.disabled = true;
-
-    startButton.textContent =
-        "AVAILABLE TOMORROW";
-
-    dailyLockElement.classList.add(
-        "visible"
-    );
-
-    resultElement.classList.remove(
-        "visible"
-    );
-
-    startCountdown();
-
-}
-
-
-function startCountdown() {
-
-    const countdown =
-        document.getElementById(
-            "countdown"
+        console.error(
+            "KAIRO CLAIM ERROR:",
+            error
         );
 
-
-    function update() {
-
-        const now =
-            new Date();
-
-        const tomorrow =
-            new Date(now);
-
-        tomorrow.setHours(
-            24,
-            0,
-            0,
-            0
+        showError(
+            "Die Runde wurde beendet, aber die Coin-Auszahlung konnte nicht bestätigt werden. Bitte nicht erneut spielen — der Server schützt deinen Daily-Claim."
         );
 
-        const diff =
-            tomorrow - now;
+        finalCoins.textContent =
+            "—";
 
-        if (diff <= 0) {
+        resultMessage.textContent =
+            "Kairo ist fertig. Die Coin-Auszahlung konnte gerade nicht bestätigt werden.";
 
-            countdown.textContent =
-                "AVAILABLE NOW";
+        result.classList.add(
+            "visible"
+        );
 
-            return;
-
-        }
-
-
-        const hours =
-            Math.floor(
-                diff /
-                3600000
-            );
-
-        const minutes =
-            Math.floor(
-                (diff %
-                    3600000) /
-                60000
-            );
-
-        const seconds =
-            Math.floor(
-                (diff %
-                    60000) /
-                1000
-            );
-
-
-        countdown.textContent =
-            "NEXT REACTION  "
-            + String(hours).padStart(2, "0")
-            + ":"
-            + String(minutes).padStart(2, "0")
-            + ":"
-            + String(seconds).padStart(2, "0");
+        return;
 
     }
 
 
-    update();
+    const claim =
+        Array.isArray(data)
+            ? data[0]
+            : data;
 
-    setInterval(
-        update,
-        1000
+
+    if (!claim) {
+
+        showError(
+            "Keine gültige Antwort von Supabase erhalten."
+        );
+
+        finalCoins.textContent =
+            "—";
+
+        result.classList.add(
+            "visible"
+        );
+
+        return;
+
+    }
+
+
+    if (
+        claim.status ===
+        "ALREADY_CLAIMED"
+    ) {
+
+        finalCoins.textContent =
+            "0";
+
+        resultMessage.textContent =
+            "Kairo wurde für heute bereits gespielt.";
+
+        result.classList.add(
+            "visible"
+        );
+
+        showDailyLock();
+
+        return;
+
+    }
+
+
+    const awarded =
+        Number(
+            claim.coins_awarded || 0
+        );
+
+
+    finalCoins.textContent =
+        awarded;
+
+
+    if (
+        claim.balance !==
+        undefined &&
+        claim.balance !== null
+    ) {
+
+        balanceElement.textContent =
+            "Your AETHER Coin Balance: " +
+            claim.balance;
+
+    }
+    else {
+
+        balanceElement.textContent =
+            "";
+
+    }
+
+
+    if (awarded > 0) {
+
+        resultMessage.textContent =
+            "Kairo approves. Your AETHER Coins have been added. ⚡💙";
+
+    }
+    else {
+
+        resultMessage.textContent =
+            "Round complete. No Coins were earned this time.";
+
+    }
+
+
+    result.classList.add(
+        "visible"
+    );
+
+
+    /*
+        Server has now recorded the play.
+    */
+
+    showDailyLock();
+
+}
+
+
+/* =========================================
+   DAILY LOCK
+========================================= */
+
+function showDailyLock() {
+
+    dailyLock.classList.add(
+        "visible"
+    );
+
+    startButton.disabled =
+        true;
+
+    setReactionButtons(false);
+
+    updateCountdown();
+
+}
+
+
+function hideDailyLock() {
+
+    dailyLock.classList.remove(
+        "visible"
     );
 
 }
 
 
-buttons.forEach(button => {
+/* =========================================
+   COUNTDOWN
+========================================= */
 
-    button.addEventListener(
-        "click",
-        () => {
+function updateCountdown() {
 
-            handleReaction(
-                button.dataset.action
-            );
+    const now =
+        new Date();
 
-        }
+
+    const tomorrow =
+        new Date(
+            now
+        );
+
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
     );
 
-});
+    tomorrow.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    const difference =
+        tomorrow.getTime() -
+        now.getTime();
+
+
+    if (
+        difference <= 0
+    ) {
+
+        countdown.textContent =
+            "KAIRO IS READY AGAIN!";
+
+        checkDailyStatus();
+
+        return;
+
+    }
+
+
+    const hours =
+        Math.floor(
+            difference /
+            (
+                1000 *
+                60 *
+                60
+            )
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference %
+                (
+                    1000 *
+                    60 *
+                    60
+                )
+            ) /
+            (
+                1000 *
+                60
+            )
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference %
+                (
+                    1000 *
+                    60
+                )
+            ) /
+            1000
+        );
+
+
+    countdown.textContent =
+        String(hours).padStart(2,"0") +
+        ":" +
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(seconds).padStart(2,"0");
+
+}
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =========================================
+   BUTTON EVENTS
+========================================= */
+
+buttons.forEach(
+    button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                handleReaction(
+                    button.dataset.action
+                );
+
+            }
+        );
+
+    }
+);
 
 
 startButton.addEventListener(
@@ -1570,13 +2229,80 @@ startButton.addEventListener(
 );
 
 
-if (localDailyPlayed()) {
+/* =========================================
+   AUTH CHANGES
+========================================= */
 
-    showDailyLock();
+supabaseClient
+    .auth
+    .onAuthStateChange(
+        function(
+            event,
+            session
+        ) {
 
-}
+            sessionUser =
+                session
+                    ? session.user
+                    : null;
+
+
+            if (
+                event ===
+                "SIGNED_OUT"
+            ) {
+
+                gameRunning =
+                    false;
+
+                setReactionButtons(
+                    false
+                );
+
+                startButton.disabled =
+                    true;
+
+                loginNote.classList.add(
+                    "visible"
+                );
+
+                messageElement.textContent =
+                    "Please sign in first.";
+
+                promptElement.textContent =
+                    "HALO LOGIN REQUIRED";
+
+                hideDailyLock();
+
+            }
+
+
+            if (
+                event ===
+                "SIGNED_IN"
+            ) {
+
+                loginNote.classList.remove(
+                    "visible"
+                );
+
+                checkDailyStatus();
+
+            }
+
+        }
+    );
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+checkDailyStatus();
 
 </script>
 
+
 </body>
-  </html>
+
+    </html>
