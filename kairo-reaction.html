@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AETHER — Kairo Reaction</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #070b18;
+    --panel: rgba(10, 15, 35, .78);
+    --panel-light: rgba(255,255,255,.045);
+    --gold: #f3d58d;
+    --gold-soft: #d9bd78;
+    --purple: #b28ac9;
+    --purple-soft: #c9b8d8;
+    --blue: #62bfff;
+    --blue-bright: #9bddff;
+    --text: #f5e9d0;
+    --muted: #a99ab8;
+    --danger: #ff8fa3;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            #29385c 0%,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            #40264d 0%,
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            #172d4d 0%,
+            transparent 35%
+        ),
+        var(--bg);
+}
+
+.container {
+    width: min(100%, 1000px);
+    margin: auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 28px 10px 20px;
+}
+
+.logo {
+    letter-spacing: 7px;
+    font-size: .85rem;
+    color: var(--gold-soft);
+}
+
+h1 {
+    margin: 10px 0;
+
+    font-size: clamp(
+        2rem,
+        7vw,
+        4.2rem
+    );
+
+    letter-spacing: 7px;
+    color: var(--gold);
+}
+
+.subtitle {
+    letter-spacing: 3px;
+    color: var(--purple-soft);
+    font-size: .85rem;
+}
+
+.game-card {
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #65577a;
+    border-radius: 28px;
+
+    background: var(--panel);
+
+    box-shadow:
+        0 0 60px rgba(80, 100, 180, .15);
+
+    padding: 25px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.stat {
+    flex: 1;
+
+    padding: 10px;
+
+    text-align: center;
+
+    border: 1px solid #514c70;
+    border-radius: 14px;
+
+    background: var(--panel-light);
+}
+
+.stat-label {
+    display: block;
+
+    font-size: .65rem;
+    letter-spacing: 2px;
+
+    color: var(--muted);
+}
+
+.stat-value {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 1.15rem;
+
+    color: var(--gold);
+}
+
+.kairo-stage {
+    position: relative;
+
+    min-height: 390px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border-radius: 24px;
+
+    border: 1px solid rgba(98,191,255,.25);
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(98,191,255,.10),
+            transparent 48%
+        ),
+        rgba(4, 9, 25, .65);
+
+    overflow: hidden;
+}
+
+.kairo-aura {
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(98,191,255,.20),
+            transparent 68%
+        );
+
+    animation: pulse 2.5s infinite ease-in-out;
+
+    pointer-events: none;
+}
+
+@keyframes pulse {
+
+    0%, 100% {
+        transform: scale(.9);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(1.12);
+        opacity: 1;
+    }
+}
+
+.kairo-avatar {
+    position: relative;
+    z-index: 2;
+
+    width: 145px;
+    height: 145px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid rgba(155,221,255,.7);
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #31567a,
+            #101a31 70%
+        );
+
+    box-shadow:
+        0 0 35px rgba(98,191,255,.28);
+
+    font-size: 4rem;
+}
+
+.kairo-hair {
+    position: absolute;
+
+    top: -7px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 125px;
+    height: 62px;
+
+    border-radius:
+        55% 55% 35% 35%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #173dff,
+            #4d8cff 50%,
+            #76cfff
+        );
+
+    box-shadow:
+        0 0 18px rgba(60,130,255,.45);
+
+    pointer-events: none;
+}
+
+.kairo-face {
+    position: relative;
+    z-index: 3;
+
+    margin-top: 18px;
+
+    font-size: 3.5rem;
+}
+
+.kairo-name {
+    position: relative;
+    z-index: 3;
+
+    margin-top: 15px;
+
+    font-size: 1.3rem;
+
+    letter-spacing: 4px;
+
+    color: var(--blue-bright);
+}
+
+.message {
+    position: relative;
+    z-index: 3;
+
+    min-height: 28px;
+
+    margin-top: 8px;
+
+    color: var(--purple-soft);
+
+    font-size: .9rem;
+}
+
+.prompt {
+    position: relative;
+    z-index: 3;
+
+    margin-top: 22px;
+
+    min-height: 38px;
+
+    font-size: 1.55rem;
+
+    letter-spacing: 4px;
+
+    color: var(--gold);
+}
+
+.reaction-buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(120px, 1fr)
+        );
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+button {
+    font-family: inherit;
+
+    border: 1px solid #65577a;
+
+    border-radius: 18px;
+
+    padding: 15px 12px;
+
+    color: var(--text);
+
+    background:
+        rgba(255,255,255,.045);
+
+    cursor: pointer;
+
+    font-size: .95rem;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform .15s ease,
+        background .15s ease,
+        border-color .15s ease,
+        box-shadow .15s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    border-color: var(--blue);
+
+    box-shadow:
+        0 0 20px rgba(98,191,255,.16);
+}
+
+button:active:not(:disabled) {
+    transform: scale(.97);
+}
+
+button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.primary {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 17px;
+
+    border: none;
+
+    color: #101323;
+
+    font-weight: bold;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--gold-soft)
+        );
+}
+
+.primary:hover:not(:disabled) {
+    border: none;
+}
+
+.result {
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border: 1px solid #65577a;
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.035);
+}
+
+.result.visible {
+    display: block;
+}
+
+.result h2 {
+    margin-top: 0;
+
+    color: var(--gold);
+}
+
+.result-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.result-item {
+    padding: 12px;
+
+    border-radius: 14px;
+
+    background: rgba(255,255,255,.035);
+}
+
+.result-item strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 1.3rem;
+
+    color: var(--blue-bright);
+}
+
+.daily-lock {
+    display: none;
+
+    margin-top: 22px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    border: 1px solid #65577a;
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.035);
+}
+
+.daily-lock.visible {
+    display: block;
+}
+
+.daily-lock h2 {
+    margin-top: 0;
+
+    color: var(--gold);
+}
+
+.countdown {
+    margin-top: 12px;
+
+    font-size: 1.2rem;
+
+    letter-spacing: 2px;
+
+    color: var(--blue-bright);
+}
+
+.error {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    background: rgba(255,80,110,.08);
+
+    color: var(--danger);
+
+    font-size: .85rem;
+}
+
+.error.visible {
+    display: block;
+}
+
+footer {
+    text-align: center;
+
+    padding: 35px 10px 20px;
+
+    color: var(--muted);
+
+    letter-spacing: 2px;
+
+    font-size: .7rem;
+}
+
+.back {
+    display: inline-block;
+
+    margin-top: 12px;
+
+    color: var(--purple-soft);
+
+    text-decoration: none;
+}
+
+.back:hover {
+    color: var(--gold);
+}
+
+@media (max-width: 600px) {
+
+    .container {
+        padding: 12px;
+    }
+
+    .game-card {
+        padding: 14px;
+        border-radius: 22px;
+    }
+
+    .top-bar {
+        gap: 6px;
+    }
+
+    .stat {
+        padding: 8px 4px;
+    }
+
+    .stat-label {
+        font-size: .55rem;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+
+    .kairo-stage {
+        min-height: 350px;
+    }
+
+    .reaction-buttons {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .result-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="logo">
+        AETHER
+    </div>
+
+    <h1>
+        KAIRO REACTION
+    </h1>
+
+    <div class="subtitle">
+        ONE HALO • ONE REACTION • EVERY DAY
+    </div>
+
+</header>
+
+
+<main class="game-card">
+
+    <div class="top-bar">
+
+        <div class="stat">
+            <span class="stat-label">
+                SCORE
+            </span>
+
+            <span
+                id="score"
+                class="stat-value"
+            >
+                0
+            </span>
+        </div>
+
+
+        <div class="stat">
+            <span class="stat-label">
+                COMBO
+            </span>
+
+            <span
+                id="combo"
+                class="stat-value"
+            >
+                0
+            </span>
+        </div>
+
+
+        <div class="stat">
+            <span class="stat-label">
+                TIME
+            </span>
+
+            <span
+                id="time"
+                class="stat-value"
+            >
+                60
+            </span>
+        </div>
+
+    </div>
+
+
+    <section
+        id="gameStage"
+        class="kairo-stage"
+    >
+
+        <div class="kairo-aura"></div>
+
+        <div class="kairo-avatar">
+
+            <div class="kairo-hair"></div>
+
+            <div
+                id="kairoFace"
+                class="kairo-face"
+            >
+                👀
+            </div>
+
+        </div>
+
+
+        <div class="kairo-name">
+            KAIRO
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+        >
+            Ready, HALO?
+        </div>
+
+
+        <div
+            id="prompt"
+            class="prompt"
+        >
+            PRESS START
+        </div>
+
+    </section>
+
+
+    <div
+        id="buttons"
+        class="reaction-buttons"
+    >
+
+        <button
+            data-action="tap"
+            disabled
+        >
+            ⚡ TAP
+        </button>
+
+        <button
+            data-action="heart"
+            disabled
+        >
+            💙 HEART
+        </button>
+
+        <button
+            data-action="double"
+            disabled
+        >
+            ⚡⚡ DOUBLE TAP
+        </button>
+
+        <button
+            data-action="nothing"
+            disabled
+        >
+            ✋ DON'T TAP
+        </button>
+
+    </div>
+
+
+    <button
+        id="startButton"
+        class="primary"
+    >
+        START KAIRO REACTION
+    </button>
+
+
+    <div
+        id="error"
+        class="error"
+    ></div>
+
+
+    <section
+        id="result"
+        class="result"
+    >
+
+        <h2>
+            ⚡ KAIRO REACTION COMPLETE
+        </h2>
+
+        <p id="resultMessage">
+            Not bad, HALO.
+        </p>
+
+
+        <div class="result-grid">
+
+            <div class="result-item">
+                Score
+                <strong id="finalScore">
+                    0
+                </strong>
+            </div>
+
+            <div class="result-item">
+                Best Combo
+                <strong id="finalCombo">
+                    0
+                </strong>
+            </div>
+
+            <div class="result-item">
+                Perfect
+                <strong id="finalPerfect">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="result-item">
+
+            AETHER Coins Earned
+
+            <strong id="finalCoins">
+                0
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <section
+        id="dailyLock"
+        class="daily-lock"
+    >
+
+        <h2>
+            💙 Kairo is done for today.
+        </h2>
+
+        <p>
+            You already played your daily
+            reaction challenge.
+        </p>
+
+        <p>
+            Come back tomorrow, HALO.
+        </p>
+
+        <div
+            id="countdown"
+            class="countdown"
+        >
+            NEXT REACTION
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+
+    <br>
+
+    <a
+        class="back"
+        href="universe.html"
+    >
+        ← BACK TO HALO UNIVERSE
+    </a>
+
+</footer>
+
+</div>
+
+
+<script>
+
+/*
+    KAIRO REACTION
+    ----------------
+
+    The game UI is intentionally self-contained.
+
+    IMPORTANT:
+    The final authenticated Supabase reward call
+    will be connected to the existing Aetherverse
+    Supabase configuration before production use.
+
+    Coins must NEVER be awarded from client-side
+    score calculation alone.
+*/
+
+
+const GAME_DURATION = 60;
+
+const state = {
+
+    playing: false,
+
+    finished: false,
+
+    score: 0,
+
+    combo: 0,
+
+    bestCombo: 0,
+
+    perfect: 0,
+
+    timeLeft: GAME_DURATION,
+
+    currentAction: null,
+
+    currentStartedAt: 0,
+
+    timer: null,
+
+    reactionTimer: null
+
+};
+
+
+const actions = [
+
+    {
+        key: "tap",
+        prompt: "TAP!",
+        face: "👀",
+        message: "You saw that, right?"
+    },
+
+    {
+        key: "heart",
+        prompt: "HEART!",
+        face: "😳",
+        message: "Okay... I'll take that."
+    },
+
+    {
+        key: "double",
+        prompt: "DOUBLE TAP!",
+        face: "⚡",
+        message: "COME ON!"
+    },
+
+    {
+        key: "nothing",
+        prompt: "DON'T TAP",
+        face: "😏",
+        message: "I'm not doing anything..."
+    }
+
+];
+
+
+const scoreElement =
+    document.getElementById("score");
+
+const comboElement =
+    document.getElementById("combo");
+
+const timeElement =
+    document.getElementById("time");
+
+const faceElement =
+    document.getElementById("kairoFace");
+
+const messageElement =
+    document.getElementById("message");
+
+const promptElement =
+    document.getElementById("prompt");
+
+const startButton =
+    document.getElementById("startButton");
+
+const resultElement =
+    document.getElementById("result");
+
+const dailyLockElement =
+    document.getElementById("dailyLock");
+
+const errorElement =
+    document.getElementById("error");
+
+const buttons =
+    Array.from(
+        document.querySelectorAll(
+            "#buttons button"
+        )
+    );
+
+
+function todayKey() {
+
+    const now = new Date();
+
+    return now.getFullYear()
+        + "-"
+        + String(
+            now.getMonth() + 1
+        ).padStart(2, "0")
+        + "-"
+        + String(
+            now.getDate()
+        ).padStart(2, "0");
+
+}
+
+
+function localDailyPlayed() {
+
+    return localStorage.getItem(
+        "aether_kairo_reaction_played"
+    ) === todayKey();
+
+}
+
+
+function markLocalPlayed() {
+
+    localStorage.setItem(
+        "aether_kairo_reaction_played",
+        todayKey()
+    );
+
+}
+
+
+function showError(message) {
+
+    errorElement.textContent = message;
+
+    errorElement.classList.add(
+        "visible"
+    );
+
+}
+
+
+function clearError() {
+
+    errorElement.textContent = "";
+
+    errorElement.classList.remove(
+        "visible"
+    );
+
+}
+
+
+function setButtonsEnabled(enabled) {
+
+    buttons.forEach(button => {
+
+        button.disabled = !enabled;
+
+    });
+
+}
+
+
+function resetStats() {
+
+    state.score = 0;
+
+    state.combo = 0;
+
+    state.bestCombo = 0;
+
+    state.perfect = 0;
+
+    state.timeLeft = GAME_DURATION;
+
+    state.currentAction = null;
+
+    scoreElement.textContent = "0";
+
+    comboElement.textContent = "0";
+
+    timeElement.textContent =
+        GAME_DURATION;
+
+}
+
+
+function randomAction() {
+
+    return actions[
+        Math.floor(
+            Math.random() *
+            actions.length
+        )
+    ];
+
+}
+
+
+function nextReaction() {
+
+    if (!state.playing) {
+        return;
+    }
+
+    clearTimeout(
+        state.reactionTimer
+    );
+
+    const action =
+        randomAction();
+
+    state.currentAction =
+        action.key;
+
+    state.currentStartedAt =
+        performance.now();
+
+    faceElement.textContent =
+        action.face;
+
+    messageElement.textContent =
+        action.message;
+
+    promptElement.textContent =
+        action.prompt;
+
+
+    const wait =
+        900 +
+        Math.random() * 1700;
+
+    state.reactionTimer =
+        setTimeout(() => {
+
+            if (
+                state.currentAction ===
+                action.key
+            ) {
+
+                handleMiss();
+
+            }
+
+            nextReaction();
+
+        }, wait);
+
+}
+
+
+function handleReaction(actionKey) {
+
+    if (!state.playing) {
+        return;
+    }
+
+    const now =
+        performance.now();
+
+    const reactionTime =
+        now -
+        state.currentStartedAt;
+
+    clearTimeout(
+        state.reactionTimer
+    );
+
+
+    if (
+        state.currentAction !==
+        actionKey
+    ) {
+
+        state.combo = 0;
+
+        comboElement.textContent =
+            "0";
+
+        messageElement.textContent =
+            "Kairo: Wrong one. 😏";
+
+        promptElement.textContent =
+            "TOO SLOW";
+
+        nextReaction();
+
+        return;
+
+    }
+
+
+    state.combo++;
+
+    if (
+        state.combo >
+        state.bestCombo
+    ) {
+
+        state.bestCombo =
+            state.combo;
+
+    }
+
+
+    let points = 2;
+
+    const perfectWindow = 650;
+
+    if (
+        reactionTime <=
+        perfectWindow
+    ) {
+
+        state.perfect++;
+
+        points = 5;
+
+        messageElement.textContent =
+            "Kairo: Okay, that was FAST.";
+
+    } else {
+
+        messageElement.textContent =
+            "Kairo: Nice one! ⚡";
+
+    }
+
+
+    if (
+        state.combo === 5
+    ) {
+
+        points += 3;
+
+        messageElement.textContent =
+            "Kairo: KEEP GOING!";
+
+    }
+
+
+    if (
+        state.combo === 10
+    ) {
+
+        points += 7;
+
+        messageElement.textContent =
+            "Kairo: We're synced! 💙";
+
+    }
+
+
+    state.score += points;
+
+
+    scoreElement.textContent =
+        state.score;
+
+    comboElement.textContent =
+        state.combo;
+
+    promptElement.textContent =
+        "+" + points;
+
+
+    nextReaction();
+
+}
+
+
+function handleMiss() {
+
+    state.combo = 0;
+
+    comboElement.textContent =
+        "0";
+
+    messageElement.textContent =
+        "Kairo: You fell for it. 😂";
+
+    promptElement.textContent =
+        "MISS";
+
+}
+
+
+function updateTimer() {
+
+    state.timeLeft--;
+
+    timeElement.textContent =
+        Math.max(
+            0,
+            state.timeLeft
+        );
+
+    if (
+        state.timeLeft <= 0
+    ) {
+
+        finishGame();
+
+    }
+
+}
+
+
+function startGame() {
+
+    clearError();
+
+    if (localDailyPlayed()) {
+
+        showDailyLock();
+
+        return;
+
+    }
+
+
+    resetStats();
+
+    state.playing = true;
+
+    state.finished = false;
+
+    resultElement.classList.remove(
+        "visible"
+    );
+
+    dailyLockElement.classList.remove(
+        "visible"
+    );
+
+    startButton.disabled = true;
+
+    startButton.textContent =
+        "KAIRO IS WATCHING...";
+
+    setButtonsEnabled(true);
+
+    messageElement.textContent =
+        "Ready, HALO?";
+
+    promptElement.textContent =
+        "GET READY";
+
+
+    setTimeout(() => {
+
+        nextReaction();
+
+    }, 700);
+
+
+    state.timer =
+        setInterval(
+            updateTimer,
+            1000
+        );
+
+}
+
+
+async function finishGame() {
+
+    if (!state.playing) {
+        return;
+    }
+
+    state.playing = false;
+
+    state.finished = true;
+
+    clearInterval(
+        state.timer
+    );
+
+    clearTimeout(
+        state.reactionTimer
+    );
+
+    setButtonsEnabled(false);
+
+    markLocalPlayed();
+
+    promptElement.textContent =
+        "COMPLETE";
+
+    faceElement.textContent =
+        "😏";
+
+    messageElement.textContent =
+        "Not bad, HALO.";
+
+    startButton.disabled = true;
+
+    startButton.textContent =
+        "PLAY AGAIN TOMORROW";
+
+
+    /*
+        COIN CALCULATION
+
+        This is only a provisional display
+        until the authenticated Supabase
+        claim endpoint is connected.
+
+        Production reward validation must
+        happen server-side.
+    */
+
+    const provisionalCoins =
+        Math.min(
+            50,
+            Math.floor(
+                state.score / 2
+            )
+        );
+
+
+    document.getElementById(
+        "finalScore"
+    ).textContent =
+        state.score;
+
+
+    document.getElementById(
+        "finalCombo"
+    ).textContent =
+        state.bestCombo;
+
+
+    document.getElementById(
+        "finalPerfect"
+    ).textContent =
+        state.perfect;
+
+
+    document.getElementById(
+        "finalCoins"
+    ).textContent =
+        provisionalCoins;
+
+
+    resultElement.classList.add(
+        "visible"
+    );
+
+
+    /*
+        TODO:
+        Replace the provisional client
+        reward display with the secure
+        Supabase daily-claim RPC.
+
+        The server must:
+        1. verify auth.uid()
+        2. verify today's claim
+        3. calculate/validate reward
+        4. write the daily result
+        5. call award_aether_coins()
+        6. return the actual awarded amount
+    */
+
+}
+
+
+function showDailyLock() {
+
+    state.playing = false;
+
+    setButtonsEnabled(false);
+
+    startButton.disabled = true;
+
+    startButton.textContent =
+        "AVAILABLE TOMORROW";
+
+    dailyLockElement.classList.add(
+        "visible"
+    );
+
+    resultElement.classList.remove(
+        "visible"
+    );
+
+    startCountdown();
+
+}
+
+
+function startCountdown() {
+
+    const countdown =
+        document.getElementById(
+            "countdown"
+        );
+
+
+    function update() {
+
+        const now =
+            new Date();
+
+        const tomorrow =
+            new Date(now);
+
+        tomorrow.setHours(
+            24,
+            0,
+            0,
+            0
+        );
+
+        const diff =
+            tomorrow - now;
+
+        if (diff <= 0) {
+
+            countdown.textContent =
+                "AVAILABLE NOW";
+
+            return;
+
+        }
+
+
+        const hours =
+            Math.floor(
+                diff /
+                3600000
+            );
+
+        const minutes =
+            Math.floor(
+                (diff %
+                    3600000) /
+                60000
+            );
+
+        const seconds =
+            Math.floor(
+                (diff %
+                    60000) /
+                1000
+            );
+
+
+        countdown.textContent =
+            "NEXT REACTION  "
+            + String(hours).padStart(2, "0")
+            + ":"
+            + String(minutes).padStart(2, "0")
+            + ":"
+            + String(seconds).padStart(2, "0");
+
+    }
+
+
+    update();
+
+    setInterval(
+        update,
+        1000
+    );
+
+}
+
+
+buttons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            handleReaction(
+                button.dataset.action
+            );
+
+        }
+    );
+
+});
+
+
+startButton.addEventListener(
+    "click",
+    startGame
+);
+
+
+if (localDailyPlayed()) {
+
+    showDailyLock();
+
+}
+
+</script>
+
+</body>
+  </html>
