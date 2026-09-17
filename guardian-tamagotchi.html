@@ -176,7 +176,8 @@ h1{
     border:1px solid rgba(145,155,255,.12);
 }
 
-/* stars */
+/* STARS */
+
 .star{
     position:absolute;
     width:2px;
@@ -414,10 +415,11 @@ h1{
     color:white;
 }
 
+
 /* ---------------- STATE ANIMATIONS ---------------- */
 
 .state-sleepy{
-    animation: sleepyFloat 6s ease-in-out infinite;
+    animation:sleepyFloat 6s ease-in-out infinite;
 }
 
 .state-sleepy::before{
@@ -426,7 +428,7 @@ h1{
 }
 
 .state-lonely{
-    animation: lonelySway 5s ease-in-out infinite;
+    animation:lonelySway 5s ease-in-out infinite;
 }
 
 .state-lonely::before{
@@ -434,11 +436,11 @@ h1{
 }
 
 .state-calm{
-    animation: guardianFloat 4s ease-in-out infinite;
+    animation:guardianFloat 4s ease-in-out infinite;
 }
 
 .state-happy{
-    animation: happyFloat 2.8s ease-in-out infinite;
+    animation:happyFloat 2.8s ease-in-out infinite;
 }
 
 .state-happy::before{
@@ -446,7 +448,7 @@ h1{
 }
 
 .state-energetic{
-    animation: energeticBounce 1.7s ease-in-out infinite;
+    animation:energeticBounce 1.7s ease-in-out infinite;
 }
 
 .state-energetic::before{
@@ -454,14 +456,15 @@ h1{
 }
 
 .state-night{
-    animation: nightFloat 4.5s ease-in-out infinite;
+    animation:nightFloat 4.5s ease-in-out infinite;
 }
 
 .state-night::before{
     animation:nightGlow 4.5s ease-in-out infinite;
 }
 
-/* Action animations come AFTER state animations so they temporarily override them */
+
+/* ACTION ANIMATIONS */
 
 .guardian-display.action-feed{
     animation:actionFeed 1.6s ease-in-out;
@@ -475,97 +478,196 @@ h1{
     animation:actionPlay 1.6s ease-in-out;
 }
 
+
 /* ---------------- KEYFRAMES ---------------- */
 
 @keyframes guardianFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-9px)}
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-9px);
+    }
 }
 
 @keyframes sleepyFloat{
-    0%,100%{transform:translateY(2px) rotate(0deg)}
-    50%{transform:translateY(8px) rotate(-1deg)}
+    0%,100%{
+        transform:translateY(2px) rotate(0deg);
+    }
+    50%{
+        transform:translateY(8px) rotate(-1deg);
+    }
 }
 
 @keyframes lonelySway{
-    0%,100%{transform:translateX(0) rotate(0deg)}
-    25%{transform:translateX(-4px) rotate(-1deg)}
-    75%{transform:translateX(4px) rotate(1deg)}
+    0%,100%{
+        transform:translateX(0) rotate(0deg);
+    }
+    25%{
+        transform:translateX(-4px) rotate(-1deg);
+    }
+    75%{
+        transform:translateX(4px) rotate(1deg);
+    }
 }
 
 @keyframes happyFloat{
-    0%,100%{transform:translateY(0) scale(1)}
-    50%{transform:translateY(-13px) scale(1.025)}
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(-13px) scale(1.025);
+    }
 }
 
 @keyframes energeticBounce{
-    0%,100%{transform:translateY(0) scale(1)}
-    25%{transform:translateY(-10px) scale(1.02)}
-    50%{transform:translateY(0) scale(1)}
-    75%{transform:translateY(-6px) scale(1.015)}
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+    25%{
+        transform:translateY(-10px) scale(1.02);
+    }
+    50%{
+        transform:translateY(0) scale(1);
+    }
+    75%{
+        transform:translateY(-6px) scale(1.015);
+    }
 }
 
 @keyframes nightFloat{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-11px)}
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-11px);
+    }
 }
 
 @keyframes guardianGlow{
-    0%,100%{transform:scale(.96);opacity:.65}
-    50%{transform:scale(1.05);opacity:1}
+    0%,100%{
+        transform:scale(.96);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.05);
+        opacity:1;
+    }
 }
 
 @keyframes happyGlow{
-    0%,100%{transform:scale(.96);opacity:.65}
-    50%{transform:scale(1.12);opacity:1}
+    0%,100%{
+        transform:scale(.96);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.12);
+        opacity:1;
+    }
 }
 
 @keyframes energeticGlow{
-    0%,100%{transform:scale(.94);opacity:.65}
-    50%{transform:scale(1.13);opacity:1}
+    0%,100%{
+        transform:scale(.94);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.13);
+        opacity:1;
+    }
 }
 
 @keyframes nightGlow{
-    0%,100%{transform:scale(.96);opacity:.65}
-    50%{transform:scale(1.08);opacity:1}
+    0%,100%{
+        transform:scale(.96);
+        opacity:.65;
+    }
+    50%{
+        transform:scale(1.08);
+        opacity:1;
+    }
 }
 
 @keyframes orbitSpin{
-    from{transform:rotate(0deg)}
-    to{transform:rotate(360deg)}
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 @keyframes twinkle{
-    0%,100%{opacity:.2;transform:scale(.7)}
-    50%{opacity:1;transform:scale(1.4)}
+    0%,100%{
+        opacity:.2;
+        transform:scale(.7);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1.4);
+    }
 }
 
 @keyframes actionFeed{
-    0%{transform:translateY(0) scale(1)}
-    25%{transform:translateY(-15px) scale(1.03)}
-    50%{transform:translateY(0) scale(1)}
-    70%{transform:translateY(-7px) scale(1.015)}
-    100%{transform:translateY(0) scale(1)}
+    0%{
+        transform:translateY(0) scale(1);
+    }
+    25%{
+        transform:translateY(-15px) scale(1.03);
+    }
+    50%{
+        transform:translateY(0) scale(1);
+    }
+    70%{
+        transform:translateY(-7px) scale(1.015);
+    }
+    100%{
+        transform:translateY(0) scale(1);
+    }
 }
 
 @keyframes actionCare{
-    0%{transform:rotate(0deg) scale(1)}
-    25%{transform:rotate(-4deg) scale(1.03)}
-    50%{transform:rotate(4deg) scale(1.03)}
-    75%{transform:rotate(-2deg) scale(1.02)}
-    100%{transform:rotate(0deg) scale(1)}
+    0%{
+        transform:rotate(0deg) scale(1);
+    }
+    25%{
+        transform:rotate(-4deg) scale(1.03);
+    }
+    50%{
+        transform:rotate(4deg) scale(1.03);
+    }
+    75%{
+        transform:rotate(-2deg) scale(1.02);
+    }
+    100%{
+        transform:rotate(0deg) scale(1);
+    }
 }
 
 @keyframes actionPlay{
-    0%{transform:translateY(0) scale(1)}
-    20%{transform:translateY(-18px) rotate(-3deg) scale(1.04)}
-    40%{transform:translateY(0) rotate(3deg) scale(1)}
-    60%{transform:translateY(-14px) rotate(-2deg) scale(1.03)}
-    80%{transform:translateY(0) rotate(2deg) scale(1)}
-    100%{transform:translateY(0) scale(1)}
+    0%{
+        transform:translateY(0) scale(1);
+    }
+    20%{
+        transform:translateY(-18px) rotate(-3deg) scale(1.04);
+    }
+    40%{
+        transform:translateY(0) rotate(3deg) scale(1);
+    }
+    60%{
+        transform:translateY(-14px) rotate(-2deg) scale(1.03);
+    }
+    80%{
+        transform:translateY(0) rotate(2deg) scale(1);
+    }
+    100%{
+        transform:translateY(0) scale(1);
+    }
 }
 
+
 @media(max-width:700px){
+
     .guardian-card{
         padding:16px;
     }
@@ -599,42 +701,76 @@ h1{
     <a href="search.html">SEARCH</a>
 </nav>
 
+
 <main class="container">
 
     <section class="hero">
-        <div class="kicker">MY HALO • GUARDIAN CONNECTION</div>
+
+        <div class="kicker">
+            MY HALO • GUARDIAN CONNECTION
+        </div>
+
         <h1>MY GUARDIAN</h1>
+
         <p class="subtitle">
             A Guardian is not simply a companion.
             It is a living part of the connection between HALO and AETHER.
         </p>
+
     </section>
+
 
     <div class="status-bar">
 
         <div class="status">
-            <div class="status-label">Guardian</div>
-            <div class="status-value" id="guardianName">NOCTIS</div>
+            <div class="status-label">
+                Guardian
+            </div>
+
+            <div class="status-value" id="guardianName">
+                NOCTIS
+            </div>
         </div>
 
-        <div class="status">
-            <div class="status-label">Connection</div>
-            <div class="status-value" id="connectionStatus">ACTIVE</div>
-        </div>
 
         <div class="status">
-            <div class="status-label">Current Cycle</div>
-            <div class="status-value" id="cycleStatus">—</div>
+            <div class="status-label">
+                Connection
+            </div>
+
+            <div class="status-value" id="connectionStatus">
+                ACTIVE
+            </div>
+        </div>
+
+
+        <div class="status">
+            <div class="status-label">
+                Current Cycle
+            </div>
+
+            <div class="status-value" id="cycleStatus">
+                —
+            </div>
         </div>
 
     </div>
 
+
     <section class="panel guardian-card">
 
         <div class="guardian-header">
-            <h2>🐦‍⬛ NOCTIS</h2>
-            <p>Guardian of NOCTEUM</p>
+
+            <h2>
+                🐦‍⬛ NOCTIS
+            </h2>
+
+            <p>
+                Guardian of NOCTEUM
+            </p>
+
         </div>
+
 
         <div class="guardian-stage" id="guardianStage">
 
@@ -651,15 +787,27 @@ h1{
             <span class="star"></span>
             <span class="star"></span>
 
-            <div class="guardian-state" id="guardianState">
+
+            <div
+                class="guardian-state"
+                id="guardianState"
+            >
                 CALM NOCTIS
             </div>
 
-            <div class="guardian-time" id="guardianTime">
+
+            <div
+                class="guardian-time"
+                id="guardianTime"
+            >
                 THE DAY IS QUIET
             </div>
 
-            <div class="guardian-display" id="guardianDisplay">
+
+            <div
+                class="guardian-display"
+                id="guardianDisplay"
+            >
 
                 <div class="orbit"></div>
 
@@ -671,325 +819,291 @@ h1{
 
             </div>
 
-            <div class="message" id="guardianMessage">
+
+            <div
+                class="message"
+                id="guardianMessage"
+            >
                 Noctis is waiting for you.
             </div>
 
         </div>
 
+
         <div class="stats">
 
             <div class="stat">
+
                 <div class="stat-top">
-                    <span class="stat-name">Mood</span>
-                    <span class="stat-number" id="moodValue">0</span>
+
+                    <span class="stat-name">
+                        Mood
+                    </span>
+
+                    <span
+                        class="stat-number"
+                        id="moodValue"
+                    >
+                        0
+                    </span>
+
                 </div>
+
                 <div class="progress">
-                    <div class="progress-bar" id="moodBar"></div>
+
+                    <div
+                        class="progress-bar"
+                        id="moodBar"
+                    ></div>
+
                 </div>
+
             </div>
 
-            <div class="stat">
-                <div class="stat-top">
-                    <span class="stat-name">Energy</span>
-                    <span class="stat-number" id="energyValue">0</span>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" id="energyBar"></div>
-                </div>
-            </div>
 
             <div class="stat">
+
                 <div class="stat-top">
-                    <span class="stat-name">Bond</span>
-                    <span class="stat-number" id="bondValue">0</span>
+
+                    <span class="stat-name">
+                        Energy
+                    </span>
+
+                    <span
+                        class="stat-number"
+                        id="energyValue"
+                    >
+                        0
+                    </span>
+
                 </div>
+
                 <div class="progress">
-                    <div class="progress-bar" id="bondBar"></div>
+
+                    <div
+                        class="progress-bar"
+                        id="energyBar"
+                    ></div>
+
                 </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <span class="stat-name">
+                        Bond
+                    </span>
+
+                    <span
+                        class="stat-number"
+                        id="bondValue"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        id="bondBar"
+                    ></div>
+
+                </div>
+
             </div>
 
         </div>
+
 
         <div class="actions">
 
-            <button class="action" id="feedBtn" onclick="performAction('feed')">
-                <span class="action-icon">🍎</span>
+            <button
+                class="action"
+                id="feedBtn"
+                onclick="performAction('feed')"
+            >
+
+                <span class="action-icon">
+                    🍎
+                </span>
+
                 FEED
+
             </button>
 
-            <button class="action" id="careBtn" onclick="performAction('care')">
-                <span class="action-icon">💫</span>
+
+            <button
+                class="action"
+                id="careBtn"
+                onclick="performAction('care')"
+            >
+
+                <span class="action-icon">
+                    💫
+                </span>
+
                 CARE
+
             </button>
 
-            <button class="action" id="playBtn" onclick="performAction('play')">
-                <span class="action-icon">🎮</span>
+
+            <button
+                class="action"
+                id="playBtn"
+                onclick="performAction('play')"
+            >
+
+                <span class="action-icon">
+                    🎮
+                </span>
+
                 PLAY
+
             </button>
 
         </div>
 
-        <div class="notice" id="notice"></div>
+
+        <div
+            class="notice"
+            id="notice"
+        ></div>
 
     </section>
 
+
     <div class="back">
-        <a href="halo-home.html">← BACK TO MY HALO</a>
+
+        <a href="halo-home.html">
+            ← BACK TO MY HALO
+        </a>
+
     </div>
 
 </main>
 
+
 <script>
 
-const SUPABASE_URL = "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+/* =======================================================
+   SUPABASE
+======================================================= */
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_eyJ2ZXJzaW9uIjoxLCJwcm9qZWN0X2lkIjoibWtkZm..." ;
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
-/*
-   IMPORTANT:
-   Keep the exact publishable/anon key from your current working
-   guardian-tamagotchi.html here.
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
-   If your current file already contains the complete key,
-   DO NOT replace it with the shortened placeholder above.
-*/
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
 
 let guardianData = null;
 
 
-/* -------------------------------------------------------
-   GUARDIAN STATE SYSTEM
-------------------------------------------------------- */
+/* =======================================================
+   GUARDIAN CYCLE
+======================================================= */
 
 function getGuardianCycle(){
 
-    const hour = new Date().getHours();
+    const hour =
+        new Date().getHours();
+
+
+    /*
+       05:00 – 09:59
+       MORNING
+    */
 
     if(hour >= 5 && hour < 10){
+
         return {
             key:"morning",
             label:"MORNING",
             text:"THE WORLD IS WAKING"
         };
+
     }
 
+
+    /*
+       10:00 – 16:59
+       DAY
+    */
+
     if(hour >= 10 && hour < 17){
+
         return {
             key:"day",
             label:"DAY",
             text:"THE AETHER IS ACTIVE"
         };
+
     }
 
+
+    /*
+       17:00 – 20:59
+       EVENING
+    */
+
     if(hour >= 17 && hour < 21){
+
         return {
             key:"evening",
             label:"EVENING",
             text:"THE STARS ARE RETURNING"
         };
+
     }
+
+
+    /*
+       21:00 – 04:59
+       NIGHT
+    */
 
     return {
         key:"night",
         label:"NIGHT",
         text:"NOCTEUM IS AWAKE"
     };
+
 }
 
+
+/* =======================================================
+   GUARDIAN STATE
+======================================================= */
 
 function determineGuardianState(){
 
     if(!guardianData){
+
         return {
+
             key:"calm",
+
             title:"CALM NOCTIS",
-            message:"Noctis is quietly waiting for you."
+
+            message:
+                "Noctis is quietly waiting for you."
+
         };
-    }
-
-    const mood = Number(guardianData.mood ?? 0);
-    const energy = Number(guardianData.energy ?? 0);
-    const bond = Number(guardianData.bond ?? 0);
-
-    const cycle = getGuardianCycle();
-
-    /*
-       Priority:
-       1. very low energy
-       2. very low mood
-       3. night
-       4. high energy
-       5. happy + strong bond
-       6. calm
-    */
-
-    if(energy <= 25){
-        return {
-            key:"sleepy",
-            title:"SLEEPY NOCTIS",
-            message:"Noctis looks sleepy. Maybe he needs a little rest."
-        };
-    }
-
-    if(mood <= 30){
-        return {
-            key:"lonely",
-            title:"LONELY NOCTIS",
-            message:"Noctis seems a little lonely. Your presence means a lot."
-        };
-    }
-
-    if(cycle.key === "night" && mood >= 45 && energy >= 40){
-        return {
-            key:"night",
-            title:"AWAKE NOCTIS",
-            message:"The world is quiet. Noctis watches the stars with you."
-        };
-    }
-
-    if(energy >= 75){
-        return {
-            key:"energetic",
-            title:"ENERGETIC NOCTIS",
-            message:"Noctis is full of energy. Something tells me he wants to play."
-        };
-    }
-
-    if(mood >= 75 && bond >= 50){
-        return {
-            key:"happy",
-            title:"HAPPY NOCTIS",
-            message:"Noctis feels safe with you. The bond between you is shining."
-        };
-    }
-
-    return {
-        key:"calm",
-        title:"CALM NOCTIS",
-        message:"Noctis is calm. The connection feels steady."
-    };
-}
-
-
-function updateGuardianState(){
-
-    const cycle = getGuardianCycle();
-    const state = determineGuardianState();
-
-    const stateElement =
-        document.getElementById("guardianState");
-
-    const timeElement =
-        document.getElementById("guardianTime");
-
-    const cycleElement =
-        document.getElementById("cycleStatus");
-
-    const display =
-        document.getElementById("guardianDisplay");
-
-    stateElement.textContent = state.title;
-
-    timeElement.textContent =
-        cycle.label + " • " + cycle.text;
-
-    cycleElement.textContent =
-        cycle.label;
-
-    /*
-       Remove old state classes.
-    */
-
-    display.classList.remove(
-        "state-sleepy",
-        "state-lonely",
-        "state-calm",
-        "state-happy",
-        "state-energetic",
-        "state-night"
-    );
-
-    display.classList.add(
-        "state-" + state.key
-    );
-
-    /*
-       Only replace the default message if there
-       is currently no action message.
-    */
-
-    if(!display.dataset.actionActive){
-        document.getElementById("guardianMessage").textContent =
-            state.message;
-    }
-
-    /*
-       Subtle stage atmosphere changes.
-    */
-
-    const stage =
-        document.getElementById("guardianStage");
-
-    stage.dataset.state = state.key;
-}
-
-
-/* -------------------------------------------------------
-   SUPABASE
-------------------------------------------------------- */
-
-async function loadGuardian(){
-
-    const notice =
-        document.getElementById("notice");
-
-    try{
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-            "get_guardian_tamagotchi"
-        );
-
-        if(error){
-            throw error;
-        }
-
-        guardianData = data;
-
-        updateStats();
-
-        updateGuardianState();
-
-        notice.textContent = "";
-
-    }catch(error){
-
-        console.error(error);
-
-        notice.textContent =
-            "The Guardian connection could not be loaded.";
 
     }
 
-}
-
-
-/* -------------------------------------------------------
-   STATS
-------------------------------------------------------- */
-
-function updateStats(){
-
-    if(!guardianData) return;
 
     const mood =
         Number(guardianData.mood ?? 0);
@@ -1000,66 +1114,435 @@ function updateStats(){
     const bond =
         Number(guardianData.bond ?? 0);
 
-    document.getElementById("moodValue").textContent =
-        mood;
 
-    document.getElementById("energyValue").textContent =
-        energy;
+    const cycle =
+        getGuardianCycle();
 
-    document.getElementById("bondValue").textContent =
-        bond;
 
-    document.getElementById("moodBar").style.width =
-        Math.max(0,Math.min(100,mood)) + "%";
+    /*
+       STATE PRIORITY
 
-    document.getElementById("energyBar").style.width =
-        Math.max(0,Math.min(100,energy)) + "%";
+       1. Sleepy
+       2. Lonely
+       3. Night Awake
+       4. Energetic
+       5. Happy
+       6. Calm
+    */
 
-    document.getElementById("bondBar").style.width =
-        Math.max(0,Math.min(100,bond)) + "%";
+
+    if(energy <= 25){
+
+        return {
+
+            key:"sleepy",
+
+            title:"SLEEPY NOCTIS",
+
+            message:
+                "Noctis looks sleepy. Maybe he needs a little rest."
+
+        };
+
+    }
+
+
+    if(mood <= 30){
+
+        return {
+
+            key:"lonely",
+
+            title:"LONELY NOCTIS",
+
+            message:
+                "Noctis seems a little lonely. Your presence means a lot."
+
+        };
+
+    }
+
+
+    if(
+        cycle.key === "night" &&
+        mood >= 45 &&
+        energy >= 40
+    ){
+
+        return {
+
+            key:"night",
+
+            title:"AWAKE NOCTIS",
+
+            message:
+                "The world is quiet. Noctis watches the stars with you."
+
+        };
+
+    }
+
+
+    if(energy >= 75){
+
+        return {
+
+            key:"energetic",
+
+            title:"ENERGETIC NOCTIS",
+
+            message:
+                "Noctis is full of energy. Something tells me he wants to play."
+
+        };
+
+    }
+
+
+    if(
+        mood >= 75 &&
+        bond >= 50
+    ){
+
+        return {
+
+            key:"happy",
+
+            title:"HAPPY NOCTIS",
+
+            message:
+                "Noctis feels safe with you. The bond between you is shining."
+
+        };
+
+    }
+
+
+    return {
+
+        key:"calm",
+
+        title:"CALM NOCTIS",
+
+        message:
+            "Noctis is calm. The connection feels steady."
+
+    };
 
 }
 
 
-/* -------------------------------------------------------
-   ACTIONS
-------------------------------------------------------- */
+/* =======================================================
+   UPDATE GUARDIAN STATE
+======================================================= */
+
+function updateGuardianState(){
+
+    const cycle =
+        getGuardianCycle();
+
+    const state =
+        determineGuardianState();
+
+
+    const stateElement =
+        document.getElementById(
+            "guardianState"
+        );
+
+    const timeElement =
+        document.getElementById(
+            "guardianTime"
+        );
+
+    const cycleElement =
+        document.getElementById(
+            "cycleStatus"
+        );
+
+    const display =
+        document.getElementById(
+            "guardianDisplay"
+        );
+
+
+    stateElement.textContent =
+        state.title;
+
+
+    timeElement.textContent =
+        cycle.label +
+        " • " +
+        cycle.text;
+
+
+    cycleElement.textContent =
+        cycle.label;
+
+
+    display.classList.remove(
+
+        "state-sleepy",
+
+        "state-lonely",
+
+        "state-calm",
+
+        "state-happy",
+
+        "state-energetic",
+
+        "state-night"
+
+    );
+
+
+    display.classList.add(
+        "state-" + state.key
+    );
+
+
+    /*
+       Do not overwrite an action message.
+    */
+
+    if(!display.dataset.actionActive){
+
+        document.getElementById(
+            "guardianMessage"
+        ).textContent =
+            state.message;
+
+    }
+
+
+    document.getElementById(
+        "guardianStage"
+    ).dataset.state =
+        state.key;
+
+}
+
+
+/* =======================================================
+   LOAD GUARDIAN
+======================================================= */
+
+async function loadGuardian(){
+
+    const notice =
+        document.getElementById(
+            "notice"
+        );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "get_guardian_tamagotchi"
+            );
+
+
+        if(error){
+            throw error;
+        }
+
+
+        /*
+           Supports both:
+
+           {
+               mood:...,
+               energy:...,
+               bond:...
+           }
+
+           and:
+
+           {
+               guardian:{
+                   mood:...,
+                   energy:...,
+                   bond:...
+               }
+           }
+        */
+
+        guardianData =
+            data?.guardian ||
+            data;
+
+
+        updateStats();
+
+        updateGuardianState();
+
+
+        notice.textContent = "";
+
+
+    }catch(error){
+
+        console.error(
+            "Guardian load error:",
+            error
+        );
+
+
+        notice.textContent =
+            "The Guardian connection could not be loaded.";
+
+    }
+
+}
+
+
+/* =======================================================
+   UPDATE STATS
+======================================================= */
+
+function updateStats(){
+
+    if(!guardianData){
+        return;
+    }
+
+
+    const mood =
+        Number(
+            guardianData.mood ?? 0
+        );
+
+    const energy =
+        Number(
+            guardianData.energy ?? 0
+        );
+
+    const bond =
+        Number(
+            guardianData.bond ?? 0
+        );
+
+
+    document.getElementById(
+        "moodValue"
+    ).textContent =
+        mood;
+
+
+    document.getElementById(
+        "energyValue"
+    ).textContent =
+        energy;
+
+
+    document.getElementById(
+        "bondValue"
+    ).textContent =
+        bond;
+
+
+    document.getElementById(
+        "moodBar"
+    ).style.width =
+        Math.max(
+            0,
+            Math.min(100,mood)
+        ) + "%";
+
+
+    document.getElementById(
+        "energyBar"
+    ).style.width =
+        Math.max(
+            0,
+            Math.min(100,energy)
+        ) + "%";
+
+
+    document.getElementById(
+        "bondBar"
+    ).style.width =
+        Math.max(
+            0,
+            Math.min(100,bond)
+        ) + "%";
+
+}
+
+
+/* =======================================================
+   GUARDIAN ACTIONS
+======================================================= */
 
 async function performAction(action){
 
     const buttons = [
-        document.getElementById("feedBtn"),
-        document.getElementById("careBtn"),
-        document.getElementById("playBtn")
+
+        document.getElementById(
+            "feedBtn"
+        ),
+
+        document.getElementById(
+            "careBtn"
+        ),
+
+        document.getElementById(
+            "playBtn"
+        )
+
     ];
 
-    buttons.forEach(button => {
-        button.disabled = true;
-    });
 
-    const display =
-        document.getElementById("guardianDisplay");
-
-    const message =
-        document.getElementById("guardianMessage");
-
-    display.dataset.actionActive = "true";
-
-    display.classList.remove(
-        "action-feed",
-        "action-care",
-        "action-play"
+    buttons.forEach(
+        button => {
+            button.disabled = true;
+        }
     );
 
+
+    const display =
+        document.getElementById(
+            "guardianDisplay"
+        );
+
+
+    const message =
+        document.getElementById(
+            "guardianMessage"
+        );
+
+
+    display.dataset.actionActive =
+        "true";
+
+
+    display.classList.remove(
+
+        "action-feed",
+
+        "action-care",
+
+        "action-play"
+
+    );
+
+
     /*
-       Force animation restart.
+       Restart animation.
     */
 
     void display.offsetWidth;
 
+
     display.classList.add(
         "action-" + action
     );
+
 
     const actionMessages = {
 
@@ -1071,33 +1554,42 @@ async function performAction(action){
 
         play:
             "Noctis is suddenly much more energetic. He definitely wanted that!"
+
     };
+
 
     message.textContent =
         actionMessages[action];
+
 
     try{
 
         const {
             data,
             error
-        } = await supabaseClient.rpc(
-            "care_guardian_tamagotchi",
-            {
-                p_action: action
-            }
-        );
+        } =
+            await supabaseClient.rpc(
+                "care_guardian_tamagotchi",
+                {
+                    p_action:action
+                }
+            );
+
 
         if(error){
             throw error;
         }
 
+
         if(data){
 
             guardianData =
-                data.guardian || data;
+                data?.guardian ||
+                data;
+
 
             updateStats();
+
 
             if(data.already_done){
 
@@ -1108,18 +1600,25 @@ async function performAction(action){
 
                 message.textContent =
                     actionMessages[action];
+
             }
 
         }
 
+
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "Guardian action error:",
+            error
+        );
+
 
         message.textContent =
             "The connection to Noctis was interrupted.";
 
     }
+
 
     setTimeout(() => {
 
@@ -1127,33 +1626,52 @@ async function performAction(action){
             "action-" + action
         );
 
+
         delete display.dataset.actionActive;
+
 
         updateGuardianState();
 
-        buttons.forEach(button => {
-            button.disabled = false;
-        });
+
+        buttons.forEach(
+            button => {
+                button.disabled = false;
+            }
+        );
+
 
     },1600);
 
 }
 
 
-/* -------------------------------------------------------
-   INITIAL LOAD
-------------------------------------------------------- */
+/* =======================================================
+   INITIALIZE
+======================================================= */
 
 async function init(){
 
     await loadGuardian();
 
+
     updateGuardianState();
 
+
     /*
-       Re-check every minute so the Guardian's
-       presentation changes automatically with the
-       local time.
+       Re-check every minute.
+
+       This means the Guardian automatically
+       changes from:
+
+       MORNING
+       ↓
+       DAY
+       ↓
+       EVENING
+       ↓
+       NIGHT
+
+       without refreshing the page.
     */
 
     setInterval(() => {
@@ -1164,9 +1682,10 @@ async function init(){
 
 }
 
+
 init();
 
 </script>
 
 </body>
-</html>
+    </html>
