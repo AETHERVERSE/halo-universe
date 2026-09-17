@@ -7,534 +7,551 @@
 <title>My HALO | AETHERVERSE</title>
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        background:
-            radial-gradient(circle at top, #28104f 0%, #0b0615 55%, #05030a 100%);
-        color: #f5efff;
-        font-family: Georgia, serif;
-        min-height: 100vh;
-    }
+body {
+    margin: 0;
+    background:
+        radial-gradient(circle at top, #28104f 0%, #0b0615 55%, #05030a 100%);
+    color: #f5efff;
+    font-family: Georgia, serif;
+    min-height: 100vh;
+}
 
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        padding: 18px;
-        background: rgba(8, 3, 18, 0.88);
-        border-bottom: 1px solid rgba(190, 120, 255, 0.25);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        backdrop-filter: blur(10px);
-    }
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px;
+    background: rgba(8, 3, 18, 0.88);
+    border-bottom: 1px solid rgba(190, 120, 255, 0.25);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
 
-    nav a,
-    nav button {
-        color: #eadbff;
-        text-decoration: none;
-        background: rgba(80, 35, 130, 0.28);
-        border: 1px solid rgba(190, 120, 255, 0.25);
-        border-radius: 999px;
-        padding: 8px 14px;
-        font-family: Georgia, serif;
-        font-size: 13px;
-        cursor: pointer;
-        transition: 0.2s ease;
-    }
+nav a,
+nav button {
+    color: #eadbff;
+    text-decoration: none;
+    background: rgba(80, 35, 130, 0.28);
+    border: 1px solid rgba(190, 120, 255, 0.25);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    cursor: pointer;
+}
 
-    nav a:hover,
-    nav button:hover {
-        background: rgba(150, 80, 220, 0.35);
-        border-color: rgba(220, 160, 255, 0.55);
-        transform: translateY(-1px);
-    }
+.container {
+    width: min(1200px, 94%);
+    margin: auto;
+    padding: 45px 0 70px;
+}
 
-    .container {
-        width: min(1200px, 94%);
-        margin: 0 auto;
-        padding: 45px 0 70px;
-    }
+.hero {
+    text-align: center;
+    padding: 35px 20px 45px;
+}
 
-    .hero {
-        text-align: center;
-        padding: 35px 20px 45px;
-    }
+.hero h1 {
+    margin: 0;
+    font-size: clamp(34px, 7vw, 64px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 12px rgba(210, 150, 255, 0.7),
+        0 0 35px rgba(140, 60, 255, 0.4);
+}
 
-    .hero h1 {
-        margin: 0;
-        font-size: clamp(34px, 7vw, 64px);
-        letter-spacing: 5px;
-        text-transform: uppercase;
-        text-shadow:
-            0 0 12px rgba(210, 150, 255, 0.7),
-            0 0 35px rgba(140, 60, 255, 0.4);
-    }
+.hero p {
+    color: #cbb9e8;
+}
 
-    .hero p {
-        margin: 14px 0 0;
-        color: #cbb9e8;
-        font-size: 16px;
-    }
+.welcome-card,
+.daily,
+.rank-box,
+.card {
+    border: 1px solid rgba(190, 120, 255, 0.25);
+    border-radius: 22px;
+    background: rgba(30, 13, 49, 0.75);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.22);
+}
 
-    .welcome-card {
-        background:
-            linear-gradient(
-                145deg,
-                rgba(87, 40, 135, 0.42),
-                rgba(22, 10, 38, 0.75)
-            );
-        border: 1px solid rgba(200, 140, 255, 0.3);
-        border-radius: 24px;
-        padding: 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-    }
+.welcome-card {
+    padding: 30px;
+    margin-bottom: 30px;
+}
 
-    .welcome-card h2 {
-        margin-top: 0;
-        font-size: 27px;
-    }
+.daily {
+    text-align: center;
+    padding: 28px;
+}
 
-    .welcome-card p {
-        color: #cdbfe0;
-        line-height: 1.7;
-    }
+.rank-box {
+    text-align: center;
+    padding: 25px;
+    margin-top: 25px;
+}
 
-    .section-title {
-        text-align: center;
-        margin: 50px 0 22px;
-        font-size: 25px;
-        letter-spacing: 2px;
-    }
+.section-title {
+    text-align: center;
+    margin: 50px 0 22px;
+}
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 18px;
-    }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
 
-    .card {
-        display: block;
-        text-decoration: none;
-        color: inherit;
-        background:
-            linear-gradient(
-                145deg,
-                rgba(56, 25, 91, 0.72),
-                rgba(13, 7, 24, 0.88)
-            );
-        border: 1px solid rgba(190, 120, 255, 0.23);
-        border-radius: 20px;
-        padding: 23px;
-        min-height: 150px;
-        transition: 0.25s ease;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.22);
-    }
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 23px;
+    min-height: 150px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
 
-    .card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(220, 170, 255, 0.55);
-        box-shadow:
-            0 18px 50px rgba(100, 40, 170, 0.25);
-    }
+.card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(220, 160, 255, 0.55);
+}
 
-    .card .icon {
-        font-size: 32px;
-        margin-bottom: 12px;
-    }
+.icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
 
-    .card h3 {
-        margin: 0 0 8px;
-        font-size: 19px;
-    }
+.progress-wrap {
+    max-width: 650px;
+    margin: 15px auto;
+}
 
-    .card p {
-        margin: 0;
-        color: #bcaed0;
-        line-height: 1.5;
-        font-size: 14px;
-    }
+.progress-bar {
+    height: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
 
-    .highlight {
-        border-color: rgba(218, 165, 255, 0.5);
-        background:
-            linear-gradient(
-                145deg,
-                rgba(104, 46, 155, 0.55),
-                rgba(20, 8, 34, 0.9)
-            );
-    }
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #9d5cff, #e1b5ff);
+    transition: width 0.5s ease;
+}
 
-    .daily {
-        text-align: center;
-        padding: 28px;
-        border-radius: 22px;
-        background:
-            radial-gradient(
-                circle at center,
-                rgba(112, 54, 170, 0.35),
-                rgba(14, 7, 25, 0.9)
-            );
-        border: 1px solid rgba(210, 150, 255, 0.28);
-        margin-top: 30px;
-    }
+.progress-text {
+    margin-top: 8px;
+    color: #bcaed0;
+    font-size: 13px;
+}
 
-    .daily h2 {
-        margin-top: 0;
-    }
+.rank {
+    font-size: 30px;
+    margin: 10px;
+}
 
-    .daily p {
-        color: #c9b9dc;
-    }
+.logout {
+    color: #f3c5da;
+}
 
-    .rank-box {
-        margin-top: 25px;
-        text-align: center;
-        padding: 25px;
-        border-radius: 20px;
-        border: 1px solid rgba(190, 120, 255, 0.25);
-        background: rgba(30, 13, 49, 0.75);
-    }
-
-    .rank {
-        font-size: 30px;
-        margin: 10px 0;
-    }
-
-    .progress-wrap {
-        max-width: 650px;
-        margin: 15px auto 0;
-    }
-
-    .progress-bar {
-        height: 12px;
-        background: rgba(255,255,255,0.08);
-        border-radius: 999px;
-        overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .progress-fill {
-        height: 100%;
-        width: 0%;
-        background: linear-gradient(90deg, #9d5cff, #e1b5ff);
-        transition: width 0.4s ease;
-    }
-
-    .progress-text {
-        margin-top: 8px;
-        color: #bcaed0;
-        font-size: 13px;
-    }
-
-    .footer {
-        text-align: center;
-        margin-top: 65px;
-        color: #796a8c;
-        font-size: 13px;
-    }
-
-    .logout {
-        border-color: rgba(255, 100, 160, 0.3);
-        color: #f3c5da;
-    }
-
-    @media (max-width: 600px) {
-        nav {
-            gap: 7px;
-            padding: 12px;
-        }
-
-        nav a,
-        nav button {
-            font-size: 12px;
-            padding: 7px 11px;
-        }
-
-        .container {
-            width: 92%;
-            padding-top: 25px;
-        }
-
-        .welcome-card {
-            padding: 22px;
-        }
-    }
+.footer {
+    text-align: center;
+    margin-top: 65px;
+    color: #796a8c;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-    <a href="index.html">EXPLORE</a>
-    <a href="card-album.html">CARD ALBUM</a>
-    <a href="members.html">MEMBERS</a>
-    <a href="codex.html">CODEX</a>
-    <a href="community.html">COMMUNITY</a>
-    <a href="aether-path.html">THE AETHER PATH</a>
-    <a href="aether-shop.html">AETHER SHOP</a>
-    <a href="birthday.html">BIRTHDAY</a>
-    <a href="search.html">SEARCH</a>
-    <button class="logout" id="logoutBtn">LOGOUT</button>
+
+<a href="index.html">EXPLORE</a>
+
+<a href="card-album.html">CARD ALBUM</a>
+
+<a href="members.html">MEMBERS</a>
+
+<a href="codex.html">CODEX</a>
+
+<a href="community.html">COMMUNITY</a>
+
+<a href="aether-path.html">THE AETHER PATH</a>
+
+<a href="aether-shop.html">AETHER SHOP</a>
+
+<a href="birthday.html">BIRTHDAY</a>
+
+<a href="search.html">SEARCH</a>
+
+<button class="logout" id="logoutBtn">LOGOUT</button>
+
 </nav>
 
 <main class="container">
 
-    <section class="hero">
-        <h1>MY HALO</h1>
-        <p>Your personal space inside the AETHERVERSE</p>
-    </section>
+<section class="hero">
 
-    <section class="welcome-card">
-        <h2>✨ Welcome back, HALO</h2>
-        <p>
-            This is your personal space inside the AETHERVERSE.
-            Explore the worlds, collect cards, follow the story,
-            discover music, complete missions and leave your mark
-            on the connection between HALO and AETHER.
-        </p>
-    </section>
+<h1>MY HALO</h1>
 
-    <section class="daily">
-        <h2>🌙 DAILY HALO</h2>
-        <p id="dailyMessage">
-            Loading your daily connection...
-        </p>
-    </section>
+<p>
+Your personal space inside the AETHERVERSE
+</p>
 
-    <section class="rank-box">
-        <h2>✦ HALO RANK</h2>
+</section>
 
-        <div class="rank" id="haloRank">
-            Loading...
-        </div>
+<section class="welcome-card">
 
-        <div id="haloPoints">
-            AETHER Points: —
-        </div>
+<h2>✨ Welcome back, HALO</h2>
 
-        <div class="progress-wrap">
-            <div class="progress-bar">
-                <div class="progress-fill" id="rankProgress"></div>
-            </div>
+<p>
+This is your personal space inside the AETHERVERSE.
+Explore the worlds, collect cards, follow the story,
+discover music, complete missions and leave your mark
+on the connection between HALO and AETHER.
+</p>
 
-            <div class="progress-text" id="rankProgressText">
-                Loading rank progress...
-            </div>
-        </div>
-    </section>
+</section>
 
-    <h2 class="section-title">📖 CODEX PROGRESS</h2>
+<section class="daily">
 
-    <div class="grid">
+<h2>🌙 DAILY HALO</h2>
 
-        <a class="card highlight" href="codex.html">
-            <div class="icon">📖</div>
-            <h3>AETHER CODEX</h3>
-            <p>
-                Discover the worlds, members, Guardians and
-                hidden lore of the AETHERVERSE.
-            </p>
-        </a>
+<p id="dailyMessage">
+Loading your daily connection...
+</p>
 
-        <a class="card" href="aether-transmissions.html">
-            <div class="icon">📡</div>
-            <h3>TRANSMISSIONS</h3>
-            <p>
-                Follow the transmissions and uncover the evolving
-                connection between AETHER and HALO.
-            </p>
-        </a>
+</section>
 
-        <a class="card" href="aether-music.html">
-            <div class="icon">🎵</div>
-            <h3>AETHER MUSIC</h3>
-            <p>
-                Listen to AETHER and explore their musical universe.
-            </p>
-        </a>
+<section class="rank-box">
 
-    </div>
+<h2>✦ HALO RANK</h2>
 
-    <h2 class="section-title">🎮 AETHER ARCADE</h2>
+<div class="rank" id="haloRank">
+Loading...
+</div>
 
-    <div class="grid">
+<div id="haloPoints">
+AETHER Points: —
+</div>
 
-        <a class="card highlight" href="aether-arcade.html">
-            <div class="icon">🎮</div>
-            <h3>AETHER ARCADE</h3>
-            <p>
-                Play AETHER games, test your knowledge and earn
-                AETHER Coins.
-            </p>
-        </a>
+<div class="progress-wrap">
 
-    </div>
+<div class="progress-bar">
 
-    <h2 class="section-title">⭐ EARN STAR POINTS</h2>
+<div
+class="progress-fill"
+id="rankProgress">
+</div>
 
-    <div class="grid">
+</div>
 
-        <a class="card" href="aether-music.html">
-            <div class="icon">🎵</div>
-            <h3>AETHER MUSIC</h3>
-            <p>
-                Listen to AETHER and collect Star Points.
-            </p>
-        </a>
+<div
+class="progress-text"
+id="rankProgressText">
+Loading rank progress...
+</div>
 
-        <a class="card" href="codex.html">
-            <div class="icon">📖</div>
-            <h3>CODEX</h3>
-            <p>
-                Explore the AETHERVERSE and discover new entries.
-            </p>
-        </a>
+</div>
 
-        <a class="card" href="aether-transmissions.html">
-            <div class="icon">📡</div>
-            <h3>TRANSMISSIONS</h3>
-            <p>
-                Follow the story and uncover hidden signals.
-            </p>
-        </a>
+</section>
 
-        <a class="card" href="community.html">
-            <div class="icon">💬</div>
-            <h3>COMMUNITY</h3>
-            <p>
-                Connect with HALO and participate in the universe.
-            </p>
-        </a>
+<h2 class="section-title">
+📖 CODEX PROGRESS
+</h2>
 
-        <!-- PUZZLE -->
-        <a class="card highlight" href="aether-puzzle.html">
-            <div class="icon">🧩</div>
-            <h3>PUZZLES & EVENTS</h3>
-            <p>
-                Solve the broken signals and uncover what lies
-                beyond the known path.
-            </p>
-        </a>
+<div class="grid">
 
-        <a class="card" href="aether-special-challenges.html">
-            <div class="icon">⚡</div>
-            <h3>SPECIAL CHALLENGES</h3>
-            <p>
-                Take on special challenges and earn additional
-                Star Points.
-            </p>
-        </a>
+<a class="card" href="codex.html">
 
-    </div>
+<div class="icon">📖</div>
 
-    <h2 class="section-title">🌌 MY AETHERVERSE</h2>
+<h3>AETHER CODEX</h3>
 
-    <div class="grid">
+<p>
+Discover the worlds, members and hidden lore.
+</p>
 
-        <a class="card" href="your-star.html">
-            <div class="icon">⭐</div>
-            <h3>YOUR STAR</h3>
-            <p>
-                Your personal identity inside the AETHERVERSE.
-            </p>
-        </a>
+</a>
 
-        <a class="card" href="my-collection.html">
-            <div class="icon">🃏</div>
-            <h3>MY COLLECTION</h3>
-            <p>
-                View your collected AETHER cards and treasures.
-            </p>
-        </a>
+<a class="card" href="aether-transmissions.html">
 
-        <a class="card" href="birthday.html">
-            <div class="icon">🎂</div>
-            <h3>BIRTHDAY</h3>
-            <p>
-                Celebrate AETHER members and their special days.
-            </p>
-        </a>
+<div class="icon">📡</div>
 
-        <a class="card" href="card-album.html">
-            <div class="icon">💎</div>
-            <h3>CARD ALBUM</h3>
-            <p>
-                Explore the complete AETHER card universe.
-            </p>
-        </a>
+<h3>TRANSMISSIONS</h3>
 
-        <a class="card highlight" href="aether-path.html">
-            <div class="icon">🌌</div>
-            <h3>THE AETHER PATH</h3>
-            <p>
-                Walk through the seven worlds and discover
-                the forgotten path.
-            </p>
-        </a>
+<p>
+Follow the evolving connection between AETHER and HALO.
+</p>
 
-        <a class="card" href="achievements.html">
-            <div class="icon">🏆</div>
-            <h3>ACHIEVEMENTS</h3>
-            <p>
-                Track your milestones throughout the AETHERVERSE.
-            </p>
-        </a>
+</a>
 
-    </div>
+<a class="card" href="aether-music.html">
 
-    <div class="footer">
-        AETHERVERSE • AETHER × HALO
-        <br><br>
-        The connection continues.
-    </div>
+<div class="icon">🎵</div>
+
+<h3>AETHER MUSIC</h3>
+
+<p>
+Listen to every AETHER song.
+</p>
+
+</a>
+
+</div>
+
+<h2 class="section-title">
+🎮 AETHER ARCADE
+</h2>
+
+<div class="grid">
+
+<a class="card" href="aether-arcade.html">
+
+<div class="icon">🎮</div>
+
+<h3>AETHER ARCADE</h3>
+
+<p>
+Play games and earn AETHER Coins.
+</p>
+
+</a>
+
+</div>
+
+<h2 class="section-title">
+⭐ EARN STAR POINTS
+</h2>
+
+<div class="grid">
+
+<a class="card" href="aether-music.html">
+
+<div class="icon">🎵</div>
+
+<h3>AETHER MUSIC</h3>
+
+<p>
+Collect Star Points through music.
+</p>
+
+</a>
+
+<a class="card" href="codex.html">
+
+<div class="icon">📖</div>
+
+<h3>CODEX</h3>
+
+<p>
+Discover new memories.
+</p>
+
+</a>
+
+<a class="card" href="aether-transmissions.html">
+
+<div class="icon">📡</div>
+
+<h3>TRANSMISSIONS</h3>
+
+<p>
+Receive hidden signals.
+</p>
+
+</a>
+
+<a class="card" href="community.html">
+
+<div class="icon">💬</div>
+
+<h3>COMMUNITY</h3>
+
+<p>
+Connect with HALO.
+</p>
+
+</a>
+
+<a class="card" href="aether-puzzles-events.html">
+
+<div class="icon">🧩</div>
+
+<h3>PUZZLES & EVENTS</h3>
+
+<p>
+Solve mysteries of the universe.
+</p>
+
+</a>
+
+<a class="card" href="aether-special-challenges.html">
+
+<div class="icon">⚡</div>
+
+<h3>SPECIAL CHALLENGES</h3>
+
+<p>
+Complete special experiences.
+</p>
+
+</a>
+
+</div>
+
+<h2 class="section-title">
+🌌 MY AETHERVERSE
+</h2>
+
+<div class="grid">
+
+<a class="card" href="your-star.html">
+
+<div class="icon">⭐</div>
+
+<h3>YOUR STAR</h3>
+
+<p>
+Your connection to AETHER.
+</p>
+
+</a>
+
+<a class="card" href="collection.html">
+
+<div class="icon">🃏</div>
+
+<h3>MY COLLECTION</h3>
+
+<p>
+Your collected treasures.
+</p>
+
+</a>
+
+<a class="card" href="birthday.html">
+
+<div class="icon">🎂</div>
+
+<h3>BIRTHDAY</h3>
+
+<p>
+Celebrate every member.
+</p>
+
+</a>
+
+<a class="card" href="card-album.html">
+
+<div class="icon">💎</div>
+
+<h3>CARD ALBUM</h3>
+
+<p>
+Explore all AETHER cards.
+</p>
+
+</a>
+
+<a class="card" href="aether-path.html">
+
+<div class="icon">🌌</div>
+
+<h3>THE AETHER PATH</h3>
+
+<p>
+Walk through the seven worlds.
+</p>
+
+</a>
+
+<a class="card" href="achievements.html">
+
+<div class="icon">🏆</div>
+
+<h3>ACHIEVEMENTS</h3>
+
+<p>
+Track your milestones.
+</p>
+
+</a>
+
+</div>
+<div class="footer">
+AETHERVERSE • AETHER × HALO
+<br><br>
+The connection continues.
+</div>
 
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
 const SUPABASE_URL =
     "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 const SUPABASE_KEY =
-    "YOUR_SUPABASE_PUBLISHABLE_KEY";
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
 
 const supabaseClient =
-    supabase.createClient(
+    window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
 
+
 async function loadHalo() {
 
-    const {
-        data: {
-            session
-        }
-    } = await supabaseClient.auth.getSession();
+    try {
 
-    if (!session) {
-        window.location.href = "login.html";
-        return;
+        const {
+            data: {
+                session
+            },
+            error: sessionError
+        } = await supabaseClient.auth.getSession();
+
+        if (sessionError) {
+            throw sessionError;
+        }
+
+        if (!session) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        document.getElementById("dailyMessage").textContent =
+            "Your connection with AETHER is active. ✦";
+
+        await loadHaloRank();
+
+    } catch (error) {
+
+        console.error(
+            "HALO loading error:",
+            error
+        );
+
+        document.getElementById("dailyMessage").textContent =
+            "Your AETHERVERSE connection could not be loaded.";
+
     }
 
-    const user = session.user;
-
-    document.getElementById("dailyMessage").textContent =
-        "Your connection with AETHER is active. ✦";
-
-    await loadHaloRank(user);
 }
 
-async function loadHaloRank(user) {
+
+async function loadHaloRank() {
 
     try {
 
@@ -550,60 +567,116 @@ async function loadHaloRank(user) {
         }
 
         if (!data) {
-            throw new Error("No rank data");
+            throw new Error(
+                "No HALO rank data returned."
+            );
         }
+
 
         const rank =
             data.rank ||
             data.halo_rank ||
             "HALO";
 
+
         const points =
-            data.points ??
-            data.star_points ??
-            data.total_points ??
-            0;
+            Number(
+                data.points ??
+                data.star_points ??
+                data.total_points ??
+                0
+            );
 
-        document.getElementById("haloRank").textContent =
-            rank;
 
-        document.getElementById("haloPoints").textContent =
+        document.getElementById(
+            "haloRank"
+        ).textContent = rank;
+
+
+        document.getElementById(
+            "haloPoints"
+        ).textContent =
             "AETHER Points: " + points;
+
 
         updateRankProgress(points);
 
-    } catch (error) {
 
         console.log(
-            "Rank loading fallback:",
+            "HALO loaded:",
+            data
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "HALO rank loading error:",
             error
         );
 
-        document.getElementById("haloRank").textContent =
-            "HALO";
 
-        document.getElementById("haloPoints").textContent =
-            "AETHER Points: 0";
+        document.getElementById(
+            "haloRank"
+        ).textContent = "HALO";
 
-        updateRankProgress(0);
+
+        document.getElementById(
+            "haloPoints"
+        ).textContent =
+            "AETHER Points could not be loaded";
+
+
+        document.getElementById(
+            "rankProgressText"
+        ).textContent =
+            "Unable to load rank progress";
+
+
+        document.getElementById(
+            "rankProgress"
+        ).style.width = "0%";
+
     }
+
 }
+
 
 function updateRankProgress(points) {
 
     let percent = 0;
 
-    if (points < 100) {
-        percent = points;
-    } else if (points < 250) {
+
+    /*
+       Rank progress:
+       0–249   → first level
+       250–749 → second level
+       750–1499 → third level
+       1500+   → maximum
+    */
+
+
+    if (points < 250) {
+
         percent =
-            ((points - 100) / 150) * 100;
-    } else if (points < 500) {
+            (points / 250) * 100;
+
+    } else if (points < 750) {
+
         percent =
-            ((points - 250) / 250) * 100;
+            ((points - 250) / 500) * 100;
+
+    } else if (points < 1500) {
+
+        percent =
+            ((points - 750) / 750) * 100;
+
     } else {
+
         percent = 100;
+
     }
+
 
     percent =
         Math.max(
@@ -614,16 +687,21 @@ function updateRankProgress(points) {
             )
         );
 
+
     document.getElementById(
         "rankProgress"
     ).style.width =
         percent + "%";
 
+
     document.getElementById(
         "rankProgressText"
     ).textContent =
-        points + " AETHER Points";
+        points +
+        " AETHER Points";
+
 }
+
 
 document
     .getElementById("logoutBtn")
@@ -635,8 +713,10 @@ document
 
             window.location.href =
                 "login.html";
+
         }
     );
+
 
 loadHalo();
 
