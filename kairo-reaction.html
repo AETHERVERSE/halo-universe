@@ -19,28 +19,49 @@
 }
 
 :root {
+
     --bg: #070b18;
-    --panel: rgba(10,15,35,.82);
-    --panel-light: rgba(255,255,255,.045);
+
+    --panel:
+        rgba(10,15,35,.82);
+
+    --panel-light:
+        rgba(255,255,255,.045);
 
     --gold: #f3d58d;
-    --gold-soft: #d9bd78;
 
-    --purple: #b28ac9;
-    --purple-soft: #c9b8d8;
+    --gold-soft:
+        #d9bd78;
 
-    --blue: #62bfff;
-    --blue-bright: #9bddff;
+    --purple:
+        #b28ac9;
 
-    --text: #f5e9d0;
-    --muted: #a99ab8;
+    --purple-soft:
+        #c9b8d8;
 
-    --danger: #ff8fa3;
-    --success: #9ff0c5;
+    --blue:
+        #62bfff;
+
+    --blue-bright:
+        #9bddff;
+
+    --text:
+        #f5e9d0;
+
+    --muted:
+        #a99ab8;
+
+    --danger:
+        #ff8fa3;
+
+    --success:
+        #9ff0c5;
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
 
     font-family:
@@ -48,72 +69,110 @@ body {
         "Times New Roman",
         serif;
 
-    color: var(--text);
+    color:
+        var(--text);
 
     background:
+
         radial-gradient(
             circle at 15% 15%,
             #29385c 0%,
             transparent 28%
         ),
+
         radial-gradient(
             circle at 85% 25%,
             #40264d 0%,
             transparent 25%
         ),
+
         radial-gradient(
             circle at 50% 100%,
             #172d4d 0%,
             transparent 35%
         ),
+
         var(--bg);
 }
 
 .container {
-    width: min(100%, 1000px);
-    margin: auto;
-    padding: 20px;
+
+    width:
+        min(100%, 1000px);
+
+    margin:
+        auto;
+
+    padding:
+        20px;
 }
 
 header {
-    text-align: center;
-    padding: 28px 10px 20px;
+
+    text-align:
+        center;
+
+    padding:
+        28px 10px 20px;
 }
 
 .logo {
-    letter-spacing: 7px;
-    font-size: .85rem;
-    color: var(--gold-soft);
+
+    letter-spacing:
+        7px;
+
+    font-size:
+        .85rem;
+
+    color:
+        var(--gold-soft);
 }
 
 h1 {
-    margin: 10px 0;
 
-    font-size: clamp(
-        2rem,
-        7vw,
-        4.2rem
-    );
+    margin:
+        10px 0;
 
-    letter-spacing: 7px;
-    color: var(--gold);
+    font-size:
+        clamp(
+            2rem,
+            7vw,
+            4.2rem
+        );
+
+    letter-spacing:
+        7px;
+
+    color:
+        var(--gold);
 }
 
 .subtitle {
-    letter-spacing: 3px;
-    color: var(--purple-soft);
-    font-size: .85rem;
+
+    letter-spacing:
+        3px;
+
+    color:
+        var(--purple-soft);
+
+    font-size:
+        .85rem;
 }
 
 .game-card {
-    position: relative;
-    overflow: hidden;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
 
     border:
         1px solid
         #65577a;
 
-    border-radius: 28px;
+    border-radius:
+        28px;
 
     background:
         var(--panel);
@@ -122,98 +181,140 @@ h1 {
         0 0 60px
         rgba(80,100,180,.15);
 
-    padding: 25px;
+    padding:
+        25px;
 }
 
 .top-bar {
-    display: flex;
 
-    justify-content: space-between;
-    align-items: center;
+    display:
+        flex;
 
-    gap: 12px;
+    justify-content:
+        space-between;
 
-    margin-bottom: 20px;
+    align-items:
+        center;
+
+    gap:
+        12px;
+
+    margin-bottom:
+        20px;
 }
 
 .stat {
-    flex: 1;
 
-    padding: 10px;
+    flex:
+        1;
 
-    text-align: center;
+    padding:
+        10px;
+
+    text-align:
+        center;
 
     border:
         1px solid
         #514c70;
 
-    border-radius: 14px;
+    border-radius:
+        14px;
 
     background:
         var(--panel-light);
 }
 
 .stat-label {
-    display: block;
 
-    font-size: .65rem;
+    display:
+        block;
 
-    letter-spacing: 2px;
+    font-size:
+        .65rem;
 
-    color: var(--muted);
+    letter-spacing:
+        2px;
+
+    color:
+        var(--muted);
 }
 
 .stat-value {
-    display: block;
 
-    margin-top: 4px;
+    display:
+        block;
 
-    font-size: 1.15rem;
+    margin-top:
+        4px;
 
-    color: var(--gold);
+    font-size:
+        1.15rem;
+
+    color:
+        var(--gold);
 }
 
 .kairo-stage {
-    position: relative;
 
-    min-height: 390px;
+    position:
+        relative;
 
-    display: flex;
+    min-height:
+        390px;
 
-    flex-direction: column;
+    display:
+        flex;
 
-    justify-content: center;
+    flex-direction:
+        column;
 
-    align-items: center;
+    justify-content:
+        center;
 
-    text-align: center;
+    align-items:
+        center;
 
-    border-radius: 24px;
+    text-align:
+        center;
+
+    border-radius:
+        24px;
 
     border:
         1px solid
         rgba(98,191,255,.25);
 
     background:
+
         radial-gradient(
             circle at center,
             rgba(98,191,255,.10),
             transparent 48%
         ),
+
         rgba(4,9,25,.65);
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
 .kairo-aura {
-    position: absolute;
 
-    width: 230px;
-    height: 230px;
+    position:
+        absolute;
 
-    border-radius: 50%;
+    width:
+        230px;
+
+    height:
+        230px;
+
+    border-radius:
+        50%;
 
     background:
+
         radial-gradient(
             circle,
             rgba(98,191,255,.20),
@@ -226,42 +327,64 @@ h1 {
         infinite
         ease-in-out;
 
-    pointer-events: none;
+    pointer-events:
+        none;
 }
 
 @keyframes pulse {
 
     0%, 100% {
-        transform: scale(.9);
-        opacity: .55;
+
+        transform:
+            scale(.9);
+
+        opacity:
+            .55;
     }
 
     50% {
-        transform: scale(1.12);
-        opacity: 1;
+
+        transform:
+            scale(1.12);
+
+        opacity:
+            1;
     }
 
 }
 
 .kairo-avatar {
-    position: relative;
-    z-index: 2;
 
-    width: 145px;
-    height: 145px;
+    position:
+        relative;
 
-    border-radius: 50%;
+    z-index:
+        2;
 
-    display: flex;
+    width:
+        145px;
 
-    align-items: center;
-    justify-content: center;
+    height:
+        145px;
+
+    border-radius:
+        50%;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
 
     border:
         2px solid
         rgba(155,221,255,.7);
 
     background:
+
         radial-gradient(
             circle at 50% 35%,
             #31567a,
@@ -269,23 +392,33 @@ h1 {
         );
 
     box-shadow:
+
         0 0 35px
         rgba(98,191,255,.28);
 
-    font-size: 4rem;
+    font-size:
+        4rem;
 }
 
 .kairo-hair {
-    position: absolute;
 
-    top: -7px;
-    left: 50%;
+    position:
+        absolute;
+
+    top:
+        -7px;
+
+    left:
+        50%;
 
     transform:
         translateX(-50%);
 
-    width: 125px;
-    height: 62px;
+    width:
+        125px;
+
+    height:
+        62px;
 
     border-radius:
         55%
@@ -294,6 +427,7 @@ h1 {
         35%;
 
     background:
+
         linear-gradient(
             145deg,
             #173dff,
@@ -302,64 +436,118 @@ h1 {
         );
 
     box-shadow:
+
         0 0 18px
         rgba(60,130,255,.45);
 
-    pointer-events: none;
+    pointer-events:
+        none;
 }
 
 .kairo-face {
-    position: relative;
-    z-index: 3;
 
-    margin-top: 18px;
+    position:
+        relative;
 
-    font-size: 3.5rem;
+    z-index:
+        3;
+
+    margin-top:
+        18px;
+
+    font-size:
+        3.5rem;
+
+    transition:
+        transform .15s ease;
+}
+
+.kairo-face.reaction {
+
+    transform:
+        scale(1.12);
 }
 
 .kairo-name {
-    position: relative;
-    z-index: 3;
 
-    margin-top: 15px;
+    position:
+        relative;
 
-    font-size: 1.3rem;
+    z-index:
+        3;
 
-    letter-spacing: 4px;
+    margin-top:
+        15px;
 
-    color: var(--blue-bright);
+    font-size:
+        1.3rem;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--blue-bright);
 }
 
 .message {
-    position: relative;
-    z-index: 3;
 
-    min-height: 28px;
+    position:
+        relative;
 
-    margin-top: 8px;
+    z-index:
+        3;
 
-    color: var(--purple-soft);
+    min-height:
+        28px;
 
-    font-size: .9rem;
+    margin-top:
+        8px;
+
+    color:
+        var(--purple-soft);
+
+    font-size:
+        .9rem;
+
+    transition:
+        transform .15s ease,
+        color .15s ease;
+}
+
+.message.reaction {
+
+    transform:
+        scale(1.08);
 }
 
 .prompt {
-    position: relative;
-    z-index: 3;
 
-    margin-top: 22px;
+    position:
+        relative;
 
-    min-height: 38px;
+    z-index:
+        3;
 
-    font-size: 1.55rem;
+    margin-top:
+        22px;
 
-    letter-spacing: 4px;
+    min-height:
+        38px;
 
-    color: var(--gold);
+    font-size:
+        1.55rem;
+
+    letter-spacing:
+        4px;
+
+    color:
+        var(--gold);
 }
 
 .reaction-buttons {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(
@@ -367,41 +555,56 @@ h1 {
             minmax(120px,1fr)
         );
 
-    gap: 12px;
+    gap:
+        12px;
 
-    margin-top: 20px;
+    margin-top:
+        20px;
 }
 
 button {
-    font-family: inherit;
+
+    font-family:
+        inherit;
 
     border:
         1px solid
         #65577a;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
-    padding: 15px 12px;
+    padding:
+        15px 12px;
 
-    color: var(--text);
+    color:
+        var(--text);
 
     background:
         rgba(255,255,255,.045);
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    font-size: .95rem;
+    font-size:
+        .95rem;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 
     transition:
+
         transform .15s ease,
+
         background .15s ease,
+
         border-color .15s ease,
+
         box-shadow .15s ease;
 }
 
 button:hover:not(:disabled) {
+
     transform:
         translateY(-2px);
 
@@ -409,36 +612,48 @@ button:hover:not(:disabled) {
         var(--blue);
 
     box-shadow:
+
         0 0 20px
         rgba(98,191,255,.16);
 }
 
 button:active:not(:disabled) {
+
     transform:
         scale(.97);
 }
 
 button:disabled {
-    opacity: .4;
+
+    opacity:
+        .4;
 
     cursor:
         not-allowed;
 }
 
 .primary {
-    width: 100%;
 
-    margin-top: 20px;
+    width:
+        100%;
 
-    padding: 17px;
+    margin-top:
+        20px;
 
-    border: none;
+    padding:
+        17px;
 
-    color: #101323;
+    border:
+        none;
 
-    font-weight: bold;
+    color:
+        #101323;
+
+    font-weight:
+        bold;
 
     background:
+
         linear-gradient(
             90deg,
             var(--purple),
@@ -447,278 +662,392 @@ button:disabled {
 }
 
 .primary:hover:not(:disabled) {
-    border: none;
+
+    border:
+        none;
 }
 
 .result {
-    display: none;
 
-    margin-top: 22px;
+    display:
+        none;
 
-    padding: 25px;
+    margin-top:
+        22px;
 
-    text-align: center;
+    padding:
+        25px;
+
+    text-align:
+        center;
 
     border:
         1px solid
         #65577a;
 
-    border-radius: 22px;
+    border-radius:
+        22px;
 
     background:
         rgba(255,255,255,.035);
 }
 
 .result.visible {
-    display: block;
+
+    display:
+        block;
 }
 
 .result h2 {
-    margin-top: 0;
 
-    color: var(--gold);
+    margin-top:
+        0;
+
+    color:
+        var(--gold);
 }
 
 .result-grid {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(3,1fr);
 
-    gap: 10px;
+    gap:
+        10px;
 
-    margin: 20px 0;
+    margin:
+        20px 0;
 }
 
 .result-item {
-    padding: 12px;
 
-    border-radius: 14px;
+    padding:
+        12px;
+
+    border-radius:
+        14px;
 
     background:
         rgba(255,255,255,.035);
 }
 
 .result-item strong {
-    display: block;
 
-    margin-top: 5px;
+    display:
+        block;
 
-    font-size: 1.3rem;
+    margin-top:
+        5px;
 
-    color: var(--blue-bright);
+    font-size:
+        1.3rem;
+
+    color:
+        var(--blue-bright);
 }
 
 .coin-result {
-    margin-top: 12px;
 
-    padding: 16px;
+    margin-top:
+        12px;
+
+    padding:
+        16px;
 
     border:
         1px solid
         rgba(243,213,141,.35);
 
-    border-radius: 16px;
+    border-radius:
+        16px;
 
     background:
         rgba(243,213,141,.05);
 }
 
 .coin-result strong {
-    display: block;
 
-    margin-top: 5px;
+    display:
+        block;
 
-    font-size: 1.6rem;
+    margin-top:
+        5px;
 
-    color: var(--gold);
+    font-size:
+        1.6rem;
+
+    color:
+        var(--gold);
 }
 
 .daily-lock {
-    display: none;
 
-    margin-top: 22px;
+    display:
+        none;
 
-    padding: 25px;
+    margin-top:
+        22px;
 
-    text-align: center;
+    padding:
+        25px;
+
+    text-align:
+        center;
 
     border:
         1px solid
         #65577a;
 
-    border-radius: 22px;
+    border-radius:
+        22px;
 
     background:
         rgba(255,255,255,.035);
 }
 
 .daily-lock.visible {
-    display: block;
+
+    display:
+        block;
 }
 
 .daily-lock h2 {
-    margin-top: 0;
 
-    color: var(--gold);
+    margin-top:
+        0;
+
+    color:
+        var(--gold);
 }
 
 .countdown {
-    margin-top: 12px;
 
-    font-size: 1.2rem;
+    margin-top:
+        12px;
 
-    letter-spacing: 2px;
+    font-size:
+        1.2rem;
 
-    color: var(--blue-bright);
+    letter-spacing:
+        2px;
+
+    color:
+        var(--blue-bright);
 }
 
 .error {
-    display: none;
 
-    margin-top: 15px;
+    display:
+        none;
 
-    padding: 12px;
+    margin-top:
+        15px;
 
-    border-radius: 12px;
+    padding:
+        12px;
+
+    border-radius:
+        12px;
 
     background:
         rgba(255,80,110,.08);
 
-    color: var(--danger);
+    color:
+        var(--danger);
 
-    font-size: .85rem;
+    font-size:
+        .85rem;
 
-    line-height: 1.6;
+    line-height:
+        1.6;
 }
 
 .error.visible {
-    display: block;
+
+    display:
+        block;
 }
 
 .login-note {
-    display: none;
 
-    margin-top: 20px;
+    display:
+        none;
 
-    padding: 20px;
+    margin-top:
+        20px;
 
-    text-align: center;
+    padding:
+        20px;
+
+    text-align:
+        center;
 
     border:
         1px solid
         #65577a;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
     background:
         rgba(255,255,255,.035);
 
-    line-height: 1.7;
+    line-height:
+        1.7;
 
-    color: var(--purple-soft);
+    color:
+        var(--purple-soft);
 }
 
 .login-note.visible {
-    display: block;
+
+    display:
+        block;
 }
 
 .login-note a {
-    display: inline-block;
 
-    margin-top: 12px;
+    display:
+        inline-block;
 
-    padding: 11px 22px;
+    margin-top:
+        12px;
 
-    border-radius: 25px;
+    padding:
+        11px 22px;
+
+    border-radius:
+        25px;
 
     background:
+
         linear-gradient(
             90deg,
             var(--purple),
             var(--gold-soft)
         );
 
-    color: #101323;
+    color:
+        #101323;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 
-    text-decoration: none;
+    text-decoration:
+        none;
 }
 
 .balance {
-    margin-top: 12px;
 
-    color: var(--muted);
+    margin-top:
+        12px;
 
-    font-size: .85rem;
+    color:
+        var(--muted);
+
+    font-size:
+        .85rem;
 }
 
 footer {
-    text-align: center;
 
-    padding: 35px 10px 20px;
+    text-align:
+        center;
 
-    color: var(--muted);
+    padding:
+        35px 10px 20px;
 
-    letter-spacing: 2px;
+    color:
+        var(--muted);
 
-    font-size: .7rem;
+    letter-spacing:
+        2px;
+
+    font-size:
+        .7rem;
 }
 
 .back {
-    display: inline-block;
 
-    margin-top: 12px;
+    display:
+        inline-block;
 
-    color: var(--purple-soft);
+    margin-top:
+        12px;
 
-    text-decoration: none;
+    color:
+        var(--purple-soft);
+
+    text-decoration:
+        none;
 }
 
 .back:hover {
-    color: var(--gold);
+
+    color:
+        var(--gold);
 }
 
 @media (max-width: 600px) {
 
     .container {
-        padding: 12px;
+
+        padding:
+            12px;
     }
 
     .game-card {
-        padding: 14px;
 
-        border-radius: 22px;
+        padding:
+            14px;
+
+        border-radius:
+            22px;
     }
 
     .top-bar {
-        gap: 6px;
+
+        gap:
+            6px;
     }
 
     .stat {
-        padding: 8px 4px;
+
+        padding:
+            8px 4px;
     }
 
     .stat-label {
-        font-size: .55rem;
+
+        font-size:
+            .55rem;
     }
 
     .stat-value {
-        font-size: 1rem;
+
+        font-size:
+            1rem;
     }
 
     .kairo-stage {
-        min-height: 350px;
+
+        min-height:
+            350px;
     }
 
     .reaction-buttons {
+
         grid-template-columns:
             repeat(2,1fr);
     }
 
     .result-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
 
 }
@@ -1093,25 +1422,39 @@ const supabaseClient =
 ========================================= */
 
 const scoreElement =
-    document.getElementById("score");
+    document.getElementById(
+        "score"
+    );
 
 const comboElement =
-    document.getElementById("combo");
+    document.getElementById(
+        "combo"
+    );
 
 const timeElement =
-    document.getElementById("time");
+    document.getElementById(
+        "time"
+    );
 
 const promptElement =
-    document.getElementById("prompt");
+    document.getElementById(
+        "prompt"
+    );
 
 const messageElement =
-    document.getElementById("message");
+    document.getElementById(
+        "message"
+    );
 
 const faceElement =
-    document.getElementById("kairoFace");
+    document.getElementById(
+        "kairoFace"
+    );
 
 const startButton =
-    document.getElementById("startButton");
+    document.getElementById(
+        "startButton"
+    );
 
 const buttons =
     document.querySelectorAll(
@@ -1119,37 +1462,59 @@ const buttons =
     );
 
 const result =
-    document.getElementById("result");
+    document.getElementById(
+        "result"
+    );
 
 const dailyLock =
-    document.getElementById("dailyLock");
+    document.getElementById(
+        "dailyLock"
+    );
 
 const countdown =
-    document.getElementById("countdown");
+    document.getElementById(
+        "countdown"
+    );
 
 const errorElement =
-    document.getElementById("error");
+    document.getElementById(
+        "error"
+    );
 
 const loginNote =
-    document.getElementById("loginNote");
+    document.getElementById(
+        "loginNote"
+    );
 
 const finalScore =
-    document.getElementById("finalScore");
+    document.getElementById(
+        "finalScore"
+    );
 
 const finalCombo =
-    document.getElementById("finalCombo");
+    document.getElementById(
+        "finalCombo"
+    );
 
 const finalPerfect =
-    document.getElementById("finalPerfect");
+    document.getElementById(
+        "finalPerfect"
+    );
 
 const finalCoins =
-    document.getElementById("finalCoins");
+    document.getElementById(
+        "finalCoins"
+    );
 
 const balanceElement =
-    document.getElementById("balance");
+    document.getElementById(
+        "balance"
+    );
 
 const resultMessage =
-    document.getElementById("resultMessage");
+    document.getElementById(
+        "resultMessage"
+    );
 
 
 /* =========================================
@@ -1180,47 +1545,232 @@ let sessionUser = null;
 
 
 /* =========================================
-   ACTIONS
+   KAIRO PERSONALITY
 ========================================= */
 
-const actions = [
+const kairoLines = {
 
-    {
-        id: "tap",
-        prompt: "TAP!",
-        message: "KAIRO: NOW!",
-        face: "😳"
-    },
+    wrong: [
 
-    {
-        id: "heart",
-        prompt: "💙",
-        message: "KAIRO WANTS A HEART!",
-        face: "🥺"
-    },
+        "Wrong one! 😈",
 
-    {
-        id: "double",
-        prompt: "DOUBLE TAP!",
-        message: "FAST! FAST!",
-        face: "😈"
-    },
+        "Did you really fall for that? 😂",
 
-    {
-        id: "nothing",
-        prompt: "DON'T TAP!",
-        message: "WAIT... DON'T YOU DARE.",
-        face: "👀"
+        "NOPE! Try again, HALO!",
+
+        "I tricked you. ⚡",
+
+        "Too easy. 😏",
+
+        "Not that button! 😂",
+
+        "Kairo: 1. HALO: 0. 😈"
+
+    ],
+
+    tooSlow: [
+
+        "Too slow, HALO! 😈",
+
+        "Come on! You can do better! 😂",
+
+        "Missed me! 👀",
+
+        "You're getting sleepy… 😏",
+
+        "I was waiting for you! 😂",
+
+        "That was WAY too slow!",
+
+        "Kairo wins that one. 😎"
+
+    ],
+
+    correct: [
+
+        "Nice one! 💙",
+
+        "YES! That's it! ⚡",
+
+        "Good job, HALO! 😎",
+
+        "I knew you could do it!",
+
+        "Not bad! 👀",
+
+        "Okay, nice reaction! 💙",
+
+        "You got me! 😏"
+
+    ],
+
+    perfect: [
+
+        "WHOA! THAT WAS FAST! ⚡",
+
+        "PERFECT! Okay, HALO! 👀",
+
+        "Did you practice?! 😳",
+
+        "Okay… I'm impressed. 😏",
+
+        "LIGHTNING FAST! ⚡",
+
+        "That was clean! 💙",
+
+        "You're getting dangerous… 😈"
+
+    ],
+
+    nothingCorrect: [
+
+        "Good choice. 👀",
+
+        "You didn't fall for it. 😏",
+
+        "YES! You waited! 💙",
+
+        "Smart, HALO. Very smart.",
+
+        "You actually listened! 😂",
+
+        "Patience wins. 😎"
+
+    ],
+
+    nothingWrong: [
+
+        "I SAID DON'T TAP! 😂",
+
+        "You really tapped?! 😭",
+
+        "I literally said DON'T TAP! 😈",
+
+        "HALO… WHY?! 😂",
+
+        "You couldn't resist, could you? 👀",
+
+        "That was the trap! 😏"
+
+    ],
+
+    comboFive: [
+
+        "HALO IS ON FIRE! 🔥",
+
+        "Five already?! ⚡",
+
+        "Okay, I see you! 😏",
+
+        "Don't get too confident… 😈"
+
+    ],
+
+    comboTen: [
+
+        "Okay… you're actually GOOD. 👀",
+
+        "TEN?! WHAT?! 😳",
+
+        "HALO IS SERIOUS TODAY! 🔥",
+
+        "Wait… are you cheating? 😂",
+
+        "Okay Kairo is impressed. 😏"
+
+    ],
+
+    comboHigh: [
+
+        "WAIT—HOW ARE YOU DOING THIS?! 😂",
+
+        "Kairo is getting nervous… 😳",
+
+        "STOP BEING SO GOOD! 😭",
+
+        "HALO?! CALM DOWN! 🔥",
+
+        "I can't keep up with you! ⚡"
+
+    ]
+
+};
+
+
+/* =========================================
+   RANDOM KAIRO LINE
+========================================= */
+
+function randomLine(
+    group
+) {
+
+    const lines =
+        kairoLines[group];
+
+    if (
+        !lines ||
+        lines.length === 0
+    ) {
+
+        return "";
+
     }
 
-];
+    return
+        lines[
+            Math.floor(
+                Math.random() *
+                lines.length
+            )
+        ];
+
+}
+
+
+/* =========================================
+   KAIRO REACTION DISPLAY
+========================================= */
+
+function showKairoReaction(
+    message,
+    face
+) {
+
+    messageElement.textContent =
+        message;
+
+    faceElement.textContent =
+        face;
+
+    messageElement.classList.remove(
+        "reaction"
+    );
+
+    faceElement.classList.remove(
+        "reaction"
+    );
+
+    void messageElement.offsetWidth;
+
+    messageElement.classList.add(
+        "reaction"
+    );
+
+    faceElement.classList.add(
+        "reaction"
+    );
+
+}
 
 
 /* =========================================
    ERROR
 ========================================= */
 
-function showError(message) {
+function showError(
+    message
+) {
 
     errorElement.textContent =
         message;
@@ -1234,7 +1784,8 @@ function showError(message) {
 
 function clearError() {
 
-    errorElement.textContent = "";
+    errorElement.textContent =
+        "";
 
     errorElement.classList.remove(
         "visible"
@@ -1287,7 +1838,40 @@ async function getSession() {
 
     }
 
-    return data.session || null;
+    return
+        data.session ||
+        null;
+
+}
+
+
+/* =========================================
+   BERLIN DATE
+========================================= */
+
+function getBerlinDateString() {
+
+    const formatter =
+        new Intl.DateTimeFormat(
+            "en-CA",
+            {
+                timeZone:
+                    "Europe/Berlin",
+
+                year:
+                    "numeric",
+
+                month:
+                    "2-digit",
+
+                day:
+                    "2-digit"
+            }
+        );
+
+    return formatter.format(
+        new Date()
+    );
 
 }
 
@@ -1308,15 +1892,19 @@ async function checkDailyStatus() {
         !session.user
     ) {
 
-        sessionUser = null;
+        sessionUser =
+            null;
 
         loginNote.classList.add(
             "visible"
         );
 
-        startButton.disabled = true;
+        startButton.disabled =
+            true;
 
-        setReactionButtons(false);
+        setReactionButtons(
+            false
+        );
 
         messageElement.textContent =
             "Please sign in first.";
@@ -1358,7 +1946,8 @@ async function checkDailyStatus() {
             .order(
                 "play_date",
                 {
-                    ascending: false
+                    ascending:
+                        false
                 }
             )
             .limit(1);
@@ -1404,34 +1993,6 @@ async function checkDailyStatus() {
 
     result.classList.remove(
         "visible"
-    );
-
-}
-
-
-/* =========================================
-   BERLIN DATE
-========================================= */
-
-function getBerlinDateString() {
-
-    const formatter =
-        new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone:
-                    "Europe/Berlin",
-
-                year: "numeric",
-
-                month: "2-digit",
-
-                day: "2-digit"
-            }
-        );
-
-    return formatter.format(
-        new Date()
     );
 
 }
@@ -1515,17 +2076,23 @@ async function startGame() {
     }
 
 
-    score = 0;
+    score =
+        0;
 
-    combo = 0;
+    combo =
+        0;
 
-    bestCombo = 0;
+    bestCombo =
+        0;
 
-    perfectReactions = 0;
+    perfectReactions =
+        0;
 
-    timeLeft = 60;
+    timeLeft =
+        60;
 
-    gameRunning = true;
+    gameRunning =
+        true;
 
 
     scoreElement.textContent =
@@ -1550,11 +2117,16 @@ async function startGame() {
     startButton.disabled =
         true;
 
-    setReactionButtons(true);
+    setReactionButtons(
+        true
+    );
 
 
     messageElement.textContent =
         "Kairo is watching...";
+
+    promptElement.textContent =
+        "GET READY...";
 
     faceElement.textContent =
         "👀";
@@ -1595,7 +2167,9 @@ async function startGame() {
 function nextAction() {
 
     if (!gameRunning) {
+
         return;
+
     }
 
 
@@ -1644,41 +2218,37 @@ function nextAction() {
             function() {
 
                 if (!gameRunning) {
+
                     return;
+
                 }
 
-
-                /*
-                    Kairo can deliberately
-                    change the signal.
-                */
 
                 if (
                     currentAction.id !==
                     "nothing"
                 ) {
 
-                    combo = 0;
+                    combo =
+                        0;
 
                     comboElement.textContent =
                         combo;
 
-                    messageElement.textContent =
-                        "TOO SLOW! 😈";
 
-                    faceElement.textContent =
-                        "😈";
+                    showKairoReaction(
+                        randomLine(
+                            "tooSlow"
+                        ),
+                        "😈"
+                    );
 
                 }
 
                 else {
 
-                    /*
-                        Doing nothing is
-                        sometimes the correct move.
-                    */
-
                     combo++;
+
 
                     if (
                         combo >
@@ -1690,7 +2260,9 @@ function nextAction() {
 
                     }
 
-                    score += 2;
+
+                    score +=
+                        2;
 
                     scoreElement.textContent =
                         score;
@@ -1698,11 +2270,43 @@ function nextAction() {
                     comboElement.textContent =
                         combo;
 
-                    messageElement.textContent =
-                        "GOOD CHOICE. 👀";
 
-                    faceElement.textContent =
-                        "😏";
+                    if (
+                        combo >= 10
+                    ) {
+
+                        showKairoReaction(
+                            randomLine(
+                                "comboTen"
+                            ),
+                            "🤯"
+                        );
+
+                    }
+
+                    else if (
+                        combo >= 5
+                    ) {
+
+                        showKairoReaction(
+                            randomLine(
+                                "comboFive"
+                            ),
+                            "🔥"
+                        );
+
+                    }
+
+                    else {
+
+                        showKairoReaction(
+                            randomLine(
+                                "nothingCorrect"
+                            ),
+                            "😏"
+                        );
+
+                    }
 
                 }
 
@@ -1714,6 +2318,71 @@ function nextAction() {
         );
 
 }
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+const actions = [
+
+    {
+        id:
+            "tap",
+
+        prompt:
+            "TAP!",
+
+        message:
+            "KAIRO: NOW!",
+
+        face:
+            "😳"
+    },
+
+    {
+        id:
+            "heart",
+
+        prompt:
+            "💙",
+
+        message:
+            "KAIRO WANTS A HEART!",
+
+        face:
+            "🥺"
+    },
+
+    {
+        id:
+            "double",
+
+        prompt:
+            "DOUBLE TAP!",
+
+        message:
+            "FAST! FAST!",
+
+        face:
+            "😈"
+    },
+
+    {
+        id:
+            "nothing",
+
+        prompt:
+            "DON'T TAP!",
+
+        message:
+            "WAIT... DON'T YOU DARE.",
+
+        face:
+            "👀"
+    }
+
+];
 
 
 /* =========================================
@@ -1758,6 +2427,7 @@ function handleReaction(
 
         combo++;
 
+
         if (
             combo >
             bestCombo
@@ -1769,7 +2439,8 @@ function handleReaction(
         }
 
 
-        let points = 2;
+        let points =
+            2;
 
 
         if (
@@ -1777,7 +2448,8 @@ function handleReaction(
             650
         ) {
 
-            points = 5;
+            points =
+                5;
 
             perfectReactions++;
 
@@ -1785,24 +2457,29 @@ function handleReaction(
 
 
         if (
-            combo >= 5
+            combo >=
+            5
         ) {
 
-            points += 3;
+            points +=
+                3;
 
         }
 
 
         if (
-            combo >= 10
+            combo >=
+            10
         ) {
 
-            points += 7;
+            points +=
+                7;
 
         }
 
 
-        score += points;
+        score +=
+            points;
 
 
         scoreElement.textContent =
@@ -1812,32 +2489,122 @@ function handleReaction(
             combo;
 
 
-        messageElement.textContent =
-            reactionTime <= 650
-                ? "PERFECT! ⚡"
-                : "YES! 💙";
+        if (
+            combo >=
+            15
+        ) {
 
+            showKairoReaction(
+                randomLine(
+                    "comboHigh"
+                ),
+                "😳"
+            );
 
-        faceElement.textContent =
-            reactionTime <= 650
-                ? "🤩"
-                : "😎";
+        }
 
+        else if (
+            combo >=
+            10
+        ) {
+
+            showKairoReaction(
+                randomLine(
+                    "comboTen"
+                ),
+                "🤯"
+            );
+
+        }
+
+        else if (
+            combo >=
+            5
+        ) {
+
+            showKairoReaction(
+                randomLine(
+                    "comboFive"
+                ),
+                "🔥"
+            );
+
+        }
+
+        else if (
+            reactionTime <=
+            650
+        ) {
+
+            showKairoReaction(
+                randomLine(
+                    "perfect"
+                ),
+                "🤩"
+            );
+
+        }
+
+        else if (
+            currentAction.id ===
+            "nothing"
+        ) {
+
+            showKairoReaction(
+                randomLine(
+                    "nothingCorrect"
+                ),
+                "😏"
+            );
+
+        }
+
+        else {
+
+            showKairoReaction(
+                randomLine(
+                    "correct"
+                ),
+                "😎"
+            );
+
+        }
 
     }
 
     else {
 
-        combo = 0;
+        combo =
+            0;
 
         comboElement.textContent =
             combo;
 
-        messageElement.textContent =
-            "KAIRO TRICKED YOU! 😈";
 
-        faceElement.textContent =
-            "😈";
+        if (
+            currentAction.id ===
+            "nothing"
+        ) {
+
+            showKairoReaction(
+                randomLine(
+                    "nothingWrong"
+                ),
+                "😂"
+            );
+
+        }
+
+        else {
+
+            showKairoReaction(
+                randomLine(
+                    "wrong"
+                ),
+                "😈"
+            );
+
+        }
 
     }
 
@@ -1854,11 +2621,14 @@ function handleReaction(
 async function finishGame() {
 
     if (!gameRunning) {
+
         return;
+
     }
 
 
-    gameRunning = false;
+    gameRunning =
+        false;
 
 
     if (timer) {
@@ -1867,7 +2637,8 @@ async function finishGame() {
             timer
         );
 
-        timer = null;
+        timer =
+            null;
 
     }
 
@@ -1878,22 +2649,25 @@ async function finishGame() {
             reactionTimer
         );
 
-        reactionTimer = null;
+        reactionTimer =
+            null;
 
     }
 
 
-    setReactionButtons(false);
+    setReactionButtons(
+        false
+    );
 
 
     promptElement.textContent =
         "TIME'S UP!";
 
-    messageElement.textContent =
-        "Kairo survived. Did you? 😈";
 
-    faceElement.textContent =
-        "😏";
+    showKairoReaction(
+        "You survived! ...barely. 😏",
+        "😈"
+    );
 
 
     finalScore.textContent =
@@ -1910,15 +2684,6 @@ async function finishGame() {
         true;
 
 
-    /*
-        IMPORTANT:
-
-        The client never awards coins.
-
-        Supabase decides whether the daily
-        reward can actually be claimed.
-    */
-
     const {
         data,
         error
@@ -1927,6 +2692,7 @@ async function finishGame() {
             .rpc(
                 "claim_kairo_reaction_reward",
                 {
+
                     p_score:
                         score,
 
@@ -1935,6 +2701,7 @@ async function finishGame() {
 
                     p_perfect_reactions:
                         perfectReactions
+
                 }
             );
 
@@ -2013,7 +2780,8 @@ async function finishGame() {
 
     const awarded =
         Number(
-            claim.coins_awarded || 0
+            claim.coins_awarded ||
+            0
         );
 
 
@@ -2024,7 +2792,8 @@ async function finishGame() {
     if (
         claim.balance !==
         undefined &&
-        claim.balance !== null
+        claim.balance !==
+        null
     ) {
 
         balanceElement.textContent =
@@ -2032,6 +2801,7 @@ async function finishGame() {
             claim.balance;
 
     }
+
     else {
 
         balanceElement.textContent =
@@ -2040,12 +2810,16 @@ async function finishGame() {
     }
 
 
-    if (awarded > 0) {
+    if (
+        awarded >
+        0
+    ) {
 
         resultMessage.textContent =
             "Kairo approves. Your AETHER Coins have been added. ⚡💙";
 
     }
+
     else {
 
         resultMessage.textContent =
@@ -2058,10 +2832,6 @@ async function finishGame() {
         "visible"
     );
 
-
-    /*
-        Server has now recorded the play.
-    */
 
     showDailyLock();
 
@@ -2081,7 +2851,9 @@ function showDailyLock() {
     startButton.disabled =
         true;
 
-    setReactionButtons(false);
+    setReactionButtons(
+        false
+    );
 
     updateCountdown();
 
@@ -2114,7 +2886,8 @@ function updateCountdown() {
 
 
     tomorrow.setDate(
-        tomorrow.getDate() + 1
+        tomorrow.getDate() +
+        1
     );
 
     tomorrow.setHours(
@@ -2131,7 +2904,8 @@ function updateCountdown() {
 
 
     if (
-        difference <= 0
+        difference <=
+        0
     ) {
 
         countdown.textContent =
@@ -2186,11 +2960,39 @@ function updateCountdown() {
 
 
     countdown.textContent =
-        String(hours).padStart(2,"0") +
-        ":" +
-        String(minutes).padStart(2,"0") +
-        ":" +
-        String(seconds).padStart(2,"0");
+
+        String(
+            hours
+        ).padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        ":"
+
+        +
+
+        String(
+            minutes
+        ).padStart(
+            2,
+            "0"
+        )
+
+        +
+
+        ":"
+
+        +
+
+        String(
+            seconds
+        ).padStart(
+            2,
+            "0"
+        );
 
 }
 
