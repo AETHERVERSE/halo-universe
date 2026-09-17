@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My HALO | AETHERVERSE</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
@@ -45,6 +48,12 @@ nav button {
     font-family: Georgia, serif;
     font-size: 13px;
     cursor: pointer;
+}
+
+nav a:hover,
+nav button:hover {
+    background: rgba(100, 45, 160, 0.4);
+    border-color: rgba(220, 160, 255, 0.5);
 }
 
 .container {
@@ -94,8 +103,92 @@ nav button {
 
 .rank-box {
     text-align: center;
-    padding: 25px;
+    padding: 30px 25px;
     margin-top: 25px;
+    margin-bottom: 45px;
+}
+
+.rank-label {
+    color: #bcaed0;
+    font-size: 13px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.rank {
+    font-size: 30px;
+    margin: 10px;
+    letter-spacing: 3px;
+}
+
+.rank-points {
+    font-size: 18px;
+    margin-top: 8px;
+    color: #ddd7ff;
+}
+
+.progress-wrap {
+    max-width: 650px;
+    margin: 22px auto 0;
+}
+
+.progress-bar {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid rgba(190, 120, 255, 0.12);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background:
+        linear-gradient(
+            90deg,
+            #7665b8,
+            #cdb9ff
+        );
+    border-radius: 999px;
+    transition: width 0.8s ease;
+}
+
+.progress-text {
+    margin-top: 10px;
+    color: #bcaed0;
+    font-size: 14px;
+}
+
+.next-rank {
+    margin-top: 10px;
+    color: #ddd7ff;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.admin-rank {
+    border-color: rgba(205, 185, 255, 0.65);
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(118, 101, 184, 0.22),
+            transparent 60%
+        ),
+        rgba(48, 39, 95, 0.8);
+}
+
+.admin-status {
+    margin-top: 18px;
+    color: #cdb9ff;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.admin-note {
+    margin-top: 8px;
+    color: #aaa0e6;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 .section-title {
@@ -105,7 +198,8 @@ nav button {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
     gap: 18px;
 }
 
@@ -115,7 +209,9 @@ nav button {
     color: inherit;
     padding: 23px;
     min-height: 150px;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .card:hover {
@@ -128,34 +224,13 @@ nav button {
     margin-bottom: 12px;
 }
 
-.progress-wrap {
-    max-width: 650px;
-    margin: 15px auto;
-}
-
-.progress-bar {
-    height: 12px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #9d5cff, #e1b5ff);
-    transition: width 0.5s ease;
-}
-
-.progress-text {
+.card h3 {
     margin-top: 8px;
-    color: #bcaed0;
-    font-size: 13px;
 }
 
-.rank {
-    font-size: 30px;
-    margin: 10px;
+.card p {
+    color: #c4bddf;
+    line-height: 1.6;
 }
 
 .logout {
@@ -167,40 +242,68 @@ nav button {
     margin-top: 65px;
     color: #796a8c;
 }
+
 </style>
+
 </head>
 
 <body>
 
 <nav>
 
-<a href="index.html">EXPLORE</a>
+<a href="index.html">
+EXPLORE
+</a>
 
-<a href="card-album.html">CARD ALBUM</a>
+<a href="card-album.html">
+CARD ALBUM
+</a>
 
-<a href="members.html">MEMBERS</a>
+<a href="members.html">
+MEMBERS
+</a>
 
-<a href="codex.html">CODEX</a>
+<a href="codex.html">
+CODEX
+</a>
 
-<a href="community.html">COMMUNITY</a>
+<a href="community.html">
+COMMUNITY
+</a>
 
-<a href="aether-path.html">THE AETHER PATH</a>
+<a href="aether-path.html">
+THE AETHER PATH
+</a>
 
-<a href="aether-shop.html">AETHER SHOP</a>
+<a href="aether-shop.html">
+AETHER SHOP
+</a>
 
-<a href="birthday.html">BIRTHDAY</a>
+<a href="birthday.html">
+BIRTHDAY
+</a>
 
-<a href="search.html">SEARCH</a>
+<a href="search.html">
+SEARCH
+</a>
 
-<button class="logout" id="logoutBtn">LOGOUT</button>
+<button
+class="logout"
+id="logoutBtn">
+LOGOUT
+</button>
 
 </nav>
 
+
 <main class="container">
+
 
 <section class="hero">
 
-<h1>MY HALO</h1>
+<h1>
+MY HALO
+</h1>
 
 <p>
 Your personal space inside the AETHERVERSE
@@ -208,9 +311,12 @@ Your personal space inside the AETHERVERSE
 
 </section>
 
+
 <section class="welcome-card">
 
-<h2>✨ Welcome back, HALO</h2>
+<h2>
+✨ Welcome back, HALO
+</h2>
 
 <p>
 This is your personal space inside the AETHERVERSE.
@@ -221,9 +327,12 @@ on the connection between HALO and AETHER.
 
 </section>
 
+
 <section class="daily">
 
-<h2>🌙 DAILY HALO</h2>
+<h2>
+🌙 DAILY HALO
+</h2>
 
 <p id="dailyMessage">
 Loading your daily connection...
@@ -231,19 +340,38 @@ Loading your daily connection...
 
 </section>
 
-<section class="rank-box">
 
-<h2>✦ HALO RANK</h2>
+<section
+class="rank-box"
+id="rankBox">
 
-<div class="rank" id="haloRank">
+<div class="rank-label">
+YOUR HALO RANK
+</div>
+
+
+<div
+class="rank"
+id="haloRank">
+
 Loading...
+
 </div>
 
-<div id="haloPoints">
+
+<div
+class="rank-points"
+id="haloPoints">
+
 AETHER Points: —
+
 </div>
 
-<div class="progress-wrap">
+
+<div
+class="progress-wrap"
+id="rankProgressWrap">
+
 
 <div class="progress-bar">
 
@@ -254,27 +382,65 @@ id="rankProgress">
 
 </div>
 
+
 <div
 class="progress-text"
 id="rankProgressText">
+
 Loading rank progress...
+
+</div>
+
+
+<div
+class="next-rank"
+id="nextRankText">
+
+</div>
+
+
+</div>
+
+
+<div
+class="admin-status"
+id="adminStatus"
+style="display:none;">
+
+✦ AETHER ADMIN ✦
+
+<div
+class="admin-note">
+
+Special administrative status
+
 </div>
 
 </div>
+
 
 </section>
+
 
 <h2 class="section-title">
 📖 CODEX PROGRESS
 </h2>
 
+
 <div class="grid">
 
-<a class="card" href="codex.html">
 
-<div class="icon">📖</div>
+<a
+class="card"
+href="codex.html">
 
-<h3>AETHER CODEX</h3>
+<div class="icon">
+📖
+</div>
+
+<h3>
+AETHER CODEX
+</h3>
 
 <p>
 Discover the worlds, members and hidden lore.
@@ -282,11 +448,18 @@ Discover the worlds, members and hidden lore.
 
 </a>
 
-<a class="card" href="aether-transmissions.html">
 
-<div class="icon">📡</div>
+<a
+class="card"
+href="aether-transmissions.html">
 
-<h3>TRANSMISSIONS</h3>
+<div class="icon">
+📡
+</div>
+
+<h3>
+TRANSMISSIONS
+</h3>
 
 <p>
 Follow the evolving connection between AETHER and HALO.
@@ -294,11 +467,18 @@ Follow the evolving connection between AETHER and HALO.
 
 </a>
 
-<a class="card" href="aether-music.html">
 
-<div class="icon">🎵</div>
+<a
+class="card"
+href="aether-music.html">
 
-<h3>AETHER MUSIC</h3>
+<div class="icon">
+🎵
+</div>
+
+<h3>
+AETHER MUSIC
+</h3>
 
 <p>
 Listen to every AETHER song.
@@ -306,19 +486,29 @@ Listen to every AETHER song.
 
 </a>
 
+
 </div>
+
 
 <h2 class="section-title">
 🎮 AETHER ARCADE
 </h2>
 
+
 <div class="grid">
 
-<a class="card" href="aether-arcade.html">
 
-<div class="icon">🎮</div>
+<a
+class="card"
+href="aether-arcade.html">
 
-<h3>AETHER ARCADE</h3>
+<div class="icon">
+🎮
+</div>
+
+<h3>
+AETHER ARCADE
+</h3>
 
 <p>
 Play games and earn AETHER Coins.
@@ -326,19 +516,29 @@ Play games and earn AETHER Coins.
 
 </a>
 
+
 </div>
+
 
 <h2 class="section-title">
 ⭐ EARN STAR POINTS
 </h2>
 
+
 <div class="grid">
 
-<a class="card" href="aether-music.html">
 
-<div class="icon">🎵</div>
+<a
+class="card"
+href="aether-music.html">
 
-<h3>AETHER MUSIC</h3>
+<div class="icon">
+🎵
+</div>
+
+<h3>
+AETHER MUSIC
+</h3>
 
 <p>
 Collect Star Points through music.
@@ -346,11 +546,18 @@ Collect Star Points through music.
 
 </a>
 
-<a class="card" href="codex.html">
 
-<div class="icon">📖</div>
+<a
+class="card"
+href="codex.html">
 
-<h3>CODEX</h3>
+<div class="icon">
+📖
+</div>
+
+<h3>
+CODEX
+</h3>
 
 <p>
 Discover new memories.
@@ -358,11 +565,18 @@ Discover new memories.
 
 </a>
 
-<a class="card" href="aether-transmissions.html">
 
-<div class="icon">📡</div>
+<a
+class="card"
+href="aether-transmissions.html">
 
-<h3>TRANSMISSIONS</h3>
+<div class="icon">
+📡
+</div>
+
+<h3>
+TRANSMISSIONS
+</h3>
 
 <p>
 Receive hidden signals.
@@ -370,11 +584,18 @@ Receive hidden signals.
 
 </a>
 
-<a class="card" href="community.html">
 
-<div class="icon">💬</div>
+<a
+class="card"
+href="community.html">
 
-<h3>COMMUNITY</h3>
+<div class="icon">
+💬
+</div>
+
+<h3>
+COMMUNITY
+</h3>
 
 <p>
 Connect with HALO.
@@ -382,11 +603,18 @@ Connect with HALO.
 
 </a>
 
-<a class="card" href="aether-puzzles-events.html">
 
-<div class="icon">🧩</div>
+<a
+class="card"
+href="aether-puzzles-events.html">
 
-<h3>PUZZLES & EVENTS</h3>
+<div class="icon">
+🧩
+</div>
+
+<h3>
+PUZZLES & EVENTS
+</h3>
 
 <p>
 Solve mysteries of the universe.
@@ -394,11 +622,18 @@ Solve mysteries of the universe.
 
 </a>
 
-<a class="card" href="aether-special-challenges.html">
 
-<div class="icon">⚡</div>
+<a
+class="card"
+href="aether-special-challenges.html">
 
-<h3>SPECIAL CHALLENGES</h3>
+<div class="icon">
+⚡
+</div>
+
+<h3>
+SPECIAL CHALLENGES
+</h3>
 
 <p>
 Complete special experiences.
@@ -406,19 +641,29 @@ Complete special experiences.
 
 </a>
 
+
 </div>
+
 
 <h2 class="section-title">
 🌌 MY AETHERVERSE
 </h2>
 
+
 <div class="grid">
 
-<a class="card" href="your-star.html">
 
-<div class="icon">⭐</div>
+<a
+class="card"
+href="your-star.html">
 
-<h3>YOUR STAR</h3>
+<div class="icon">
+⭐
+</div>
+
+<h3>
+YOUR STAR
+</h3>
 
 <p>
 Your connection to AETHER.
@@ -426,11 +671,18 @@ Your connection to AETHER.
 
 </a>
 
-<a class="card" href="collection.html">
 
-<div class="icon">🃏</div>
+<a
+class="card"
+href="collection.html">
 
-<h3>MY COLLECTION</h3>
+<div class="icon">
+🃏
+</div>
+
+<h3>
+MY COLLECTION
+</h3>
 
 <p>
 Your collected treasures.
@@ -438,11 +690,18 @@ Your collected treasures.
 
 </a>
 
-<a class="card" href="birthday.html">
 
-<div class="icon">🎂</div>
+<a
+class="card"
+href="birthday.html">
 
-<h3>BIRTHDAY</h3>
+<div class="icon">
+🎂
+</div>
+
+<h3>
+BIRTHDAY
+</h3>
 
 <p>
 Celebrate every member.
@@ -450,11 +709,18 @@ Celebrate every member.
 
 </a>
 
-<a class="card" href="card-album.html">
 
-<div class="icon">💎</div>
+<a
+class="card"
+href="card-album.html">
 
-<h3>CARD ALBUM</h3>
+<div class="icon">
+💎
+</div>
+
+<h3>
+CARD ALBUM
+</h3>
 
 <p>
 Explore all AETHER cards.
@@ -462,11 +728,18 @@ Explore all AETHER cards.
 
 </a>
 
-<a class="card" href="aether-path.html">
 
-<div class="icon">🌌</div>
+<a
+class="card"
+href="aether-path.html">
 
-<h3>THE AETHER PATH</h3>
+<div class="icon">
+🌌
+</div>
+
+<h3>
+THE AETHER PATH
+</h3>
 
 <p>
 Walk through the seven worlds.
@@ -474,11 +747,18 @@ Walk through the seven worlds.
 
 </a>
 
-<a class="card" href="achievements.html">
 
-<div class="icon">🏆</div>
+<a
+class="card"
+href="achievements.html">
 
-<h3>ACHIEVEMENTS</h3>
+<div class="icon">
+🏆
+</div>
+
+<h3>
+ACHIEVEMENTS
+</h3>
 
 <p>
 Track your milestones.
@@ -486,23 +766,36 @@ Track your milestones.
 
 </a>
 
+
 </div>
+
+
 <div class="footer">
+
 AETHERVERSE • AETHER × HALO
+
 <br><br>
+
 The connection continues.
+
 </div>
+
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
 
 <script>
+
 const SUPABASE_URL =
     "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 const SUPABASE_KEY =
     "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
 
 const supabaseClient =
     window.supabase.createClient(
@@ -520,21 +813,33 @@ async function loadHalo() {
                 session
             },
             error: sessionError
-        } = await supabaseClient.auth.getSession();
+        } =
+            await supabaseClient.auth.getSession();
+
 
         if (sessionError) {
             throw sessionError;
         }
 
+
         if (!session) {
-            window.location.href = "login.html";
+
+            window.location.href =
+                "login.html";
+
             return;
+
         }
 
-        document.getElementById("dailyMessage").textContent =
+
+        document
+            .getElementById("dailyMessage")
+            .textContent =
             "Your connection with AETHER is active. ✦";
 
+
         await loadHaloRank();
+
 
     } catch (error) {
 
@@ -543,12 +848,16 @@ async function loadHalo() {
             error
         );
 
-        document.getElementById("dailyMessage").textContent =
+
+        document
+            .getElementById("dailyMessage")
+            .textContent =
             "Your AETHERVERSE connection could not be loaded.";
 
     }
 
 }
+
 
 
 async function loadHaloRank() {
@@ -558,25 +867,22 @@ async function loadHaloRank() {
         const {
             data,
             error
-        } = await supabaseClient.rpc(
-            "get_halo_rank"
-        );
+        } =
+            await supabaseClient.rpc(
+                "get_halo_rank"
+            );
+
 
         if (error) {
             throw error;
         }
+
 
         if (!data) {
             throw new Error(
                 "No HALO rank data returned."
             );
         }
-
-
-        const rank =
-            data.rank ||
-            data.halo_rank ||
-            "HALO";
 
 
         const points =
@@ -588,22 +894,195 @@ async function loadHaloRank() {
             );
 
 
-        document.getElementById(
-            "haloRank"
-        ).textContent = rank;
+        const rank =
+            data.rank ||
+            data.halo_rank ||
+            "NEW HALO";
 
 
-        document.getElementById(
-            "haloPoints"
-        ).textContent =
+        const isAdmin =
+            data.is_admin === true;
+
+
+        const nextRank =
+            data.next_rank ||
+            null;
+
+
+        const nextRankMin =
+            data.next_rank_min ??
+            null;
+
+
+        const currentRankMin =
+            Number(
+                data.current_rank_min ??
+                0
+            );
+
+
+        const remaining =
+            Number(
+                data.remaining ??
+                0
+            );
+
+
+        const rankBox =
+            document.getElementById(
+                "rankBox"
+            );
+
+
+        const rankElement =
+            document.getElementById(
+                "haloRank"
+            );
+
+
+        const pointsElement =
+            document.getElementById(
+                "haloPoints"
+            );
+
+
+        const progressWrap =
+            document.getElementById(
+                "rankProgressWrap"
+            );
+
+
+        const progressElement =
+            document.getElementById(
+                "rankProgress"
+            );
+
+
+        const progressText =
+            document.getElementById(
+                "rankProgressText"
+            );
+
+
+        const nextRankText =
+            document.getElementById(
+                "nextRankText"
+            );
+
+
+        const adminStatus =
+            document.getElementById(
+                "adminStatus"
+            );
+
+
+        rankElement.textContent =
+            rank;
+
+
+        pointsElement.textContent =
             "AETHER Points: " + points;
 
 
-        updateRankProgress(points);
+        if (isAdmin) {
+
+            rankBox.classList.add(
+                "admin-rank"
+            );
+
+
+            progressWrap.style.display =
+                "none";
+
+
+            adminStatus.style.display =
+                "block";
+
+
+            return;
+
+        }
+
+
+        rankBox.classList.remove(
+            "admin-rank"
+        );
+
+
+        adminStatus.style.display =
+            "none";
+
+
+        progressWrap.style.display =
+            "block";
+
+
+        if (
+            nextRank === null ||
+            nextRankMin === null
+        ) {
+
+            progressElement.style.width =
+                "100%";
+
+
+            progressText.textContent =
+                "Maximum HALO Rank reached";
+
+
+            nextRankText.textContent =
+                "✦ You have reached the highest rank. ✦";
+
+
+            return;
+
+        }
+
+
+        const range =
+            Number(nextRankMin) -
+            currentRankMin;
+
+
+        const earnedInRank =
+            points -
+            currentRankMin;
+
+
+        let percent =
+            (earnedInRank / range) *
+            100;
+
+
+        percent =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    percent
+                )
+            );
+
+
+        progressElement.style.width =
+            percent + "%";
+
+
+        progressText.textContent =
+            points +
+            " / " +
+            nextRankMin +
+            " AETHER Points";
+
+
+        nextRankText.textContent =
+            remaining +
+            " AETHER Points until " +
+            nextRank;
 
 
         console.log(
-            "HALO loaded:",
+            "HALO rank loaded:",
             data
         );
 
@@ -616,91 +1095,41 @@ async function loadHaloRank() {
         );
 
 
-        document.getElementById(
-            "haloRank"
-        ).textContent = "HALO";
+        document
+            .getElementById(
+                "haloRank"
+            )
+            .textContent =
+            "HALO";
 
 
-        document.getElementById(
-            "haloPoints"
-        ).textContent =
+        document
+            .getElementById(
+                "haloPoints"
+            )
+            .textContent =
             "AETHER Points could not be loaded";
 
 
-        document.getElementById(
-            "rankProgressText"
-        ).textContent =
+        document
+            .getElementById(
+                "rankProgressText"
+            )
+            .textContent =
             "Unable to load rank progress";
 
 
-        document.getElementById(
-            "rankProgress"
-        ).style.width = "0%";
-
-    }
-
-}
-
-
-function updateRankProgress(points) {
-
-    let percent = 0;
-
-
-    /*
-       Rank progress:
-       0–249   → first level
-       250–749 → second level
-       750–1499 → third level
-       1500+   → maximum
-    */
-
-
-    if (points < 250) {
-
-        percent =
-            (points / 250) * 100;
-
-    } else if (points < 750) {
-
-        percent =
-            ((points - 250) / 500) * 100;
-
-    } else if (points < 1500) {
-
-        percent =
-            ((points - 750) / 750) * 100;
-
-    } else {
-
-        percent = 100;
-
-    }
-
-
-    percent =
-        Math.max(
-            0,
-            Math.min(
-                100,
-                percent
+        document
+            .getElementById(
+                "rankProgress"
             )
-        );
+            .style.width =
+            "0%";
 
-
-    document.getElementById(
-        "rankProgress"
-    ).style.width =
-        percent + "%";
-
-
-    document.getElementById(
-        "rankProgressText"
-    ).textContent =
-        points +
-        " AETHER Points";
+    }
 
 }
+
 
 
 document
@@ -722,5 +1151,7 @@ loadHalo();
 
 </script>
 
+
 </body>
+
 </html>
