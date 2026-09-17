@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
 <title>Who Said It? | AETHERVERSE</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box
+}
 
 body{
 margin:0;
@@ -48,13 +54,7 @@ text-decoration:none;
 border:1px solid #39345e;
 border-radius:25px;
 padding:8px 16px;
-font-size:.78rem;
-transition:.2s
-}
-
-nav a:hover{
-background:#29264b;
-border-color:#9c8fe0
+font-size:.78rem
 }
 
 .hero{
@@ -210,13 +210,7 @@ border:1px solid #8f84c9;
 border-radius:25px;
 padding:10px 18px;
 font-size:.75rem;
-letter-spacing:1px;
-transition:.2s
-}
-
-.action:hover{
-background:#29264b;
-border-color:#cdb9ff
+letter-spacing:1px
 }
 
 footer{
@@ -229,6 +223,7 @@ line-height:2
 }
 
 @media(max-width:600px){
+
 h1{
 font-size:1.8rem
 }
@@ -244,8 +239,11 @@ grid-template-columns:1fr
 .quote{
 font-size:1.3rem
 }
+
 }
+
 </style>
+
 </head>
 
 <body>
@@ -253,23 +251,43 @@ font-size:1.3rem
 <div class="container">
 
 <header>
-<div class="logo">AETHERVERSE</div>
+
+<div class="logo">
+AETHERVERSE
+</div>
 
 <nav>
-<a href="halo-home.html">MY HALO</a>
-<a href="aether-arcade.html">AETHER ARCADE</a>
-<a href="aether-music.html">AETHER MUSIC</a>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="aether-arcade.html">
+AETHER ARCADE
+</a>
+
+<a href="aether-music.html">
+AETHER MUSIC
+</a>
+
 </nav>
+
 </header>
 
 
 <section class="hero">
 
-<div class="icon">💬</div>
+<div class="icon">
+💬
+</div>
 
-<div class="label">AETHER ARCADE</div>
+<div class="label">
+AETHER ARCADE
+</div>
 
-<h1>WHO SAID IT?</h1>
+<h1>
+WHO SAID IT?
+</h1>
 
 <div class="subtitle">
 You know their faces.<br>
@@ -332,15 +350,11 @@ SCORE: <span id="score">100</span>
 
 <div class="actions">
 
-<a
-class="action"
-href="who-said-it-leaderboard.html">
+<a class="action" href="who-said-it-leaderboard.html">
 🏆 VIEW LEADERBOARD
 </a>
 
-<a
-class="action"
-href="aether-arcade.html">
+<a class="action" href="aether-arcade.html">
 ← AETHER ARCADE
 </a>
 
@@ -352,8 +366,10 @@ href="aether-arcade.html">
 
 
 <footer>
+
 ONE HALO · ONE VOICE · EVERY DAY<br>
 AETHERVERSE
+
 </footer>
 
 </div>
@@ -373,6 +389,14 @@ SUPABASE_URL,
 SUPABASE_KEY
 );
 
+
+/* =========================================================
+   WHO SAID IT
+   30 QUESTION POOL
+
+   The displayed lines are AETHER-style game lines.
+   The correct member is determined by the server-side pool.
+========================================================= */
 
 const questions={
 
@@ -434,12 +458,106 @@ member:"Zenith"
 cat:{
 quote:"“Lumen has decided that you're part of the family now.”",
 member:"Lux"
+},
+
+
+/* ===== NEW QUESTIONS ===== */
+
+solarion:{
+quote:"“Solarion has been with me from the very beginning.”",
+member:"Solen"
+},
+
+lion:{
+quote:"“A golden lion? Yeah. That feels right.”",
+member:"Solen"
+},
+
+sunpendant:{
+quote:"“The sun pendant is never leaving my side.”",
+member:"Solen"
+},
+
+hollow:{
+quote:"“Hollow doesn't need to be loud to protect the people I care about.”",
+member:"Vex"
+},
+
+panther:{
+quote:"“The panther is watching. So am I.”",
+member:"Vex"
+},
+
+purplecrystal:{
+quote:"“Purple suits the crystal. Don't you think?”",
+member:"Vex"
+},
+
+voltaris:{
+quote:"“Voltaris sounds like exactly the kind of energy I want.”",
+member:"Kairo"
+},
+
+thalassia:{
+quote:"“Sometimes the ocean understands things before we do.”",
+member:"Riven"
+},
+
+dolphin:{
+quote:"“The dolphin always finds its way through the waves.”",
+member:"Riven"
+},
+
+gezeitenperle:{
+quote:"“The Gezeitenperle reminds me that everything moves in waves.”",
+member:"Riven"
+},
+
+ignis:{
+quote:"“Ignis was never meant to stay quiet.”",
+member:"Zenith"
+},
+
+darkred:{
+quote:"“Dark red? Yeah. I can live with that.”",
+member:"Zenith"
+},
+
+flammenherz:{
+quote:"“Flammenherz burns brighter when the whole team is together.”",
+member:"Zenith"
+},
+
+lumenia:{
+quote:"“Lumenia feels like light after a long night.”",
+member:"Lux"
+},
+
+whitehair:{
+quote:"“White hair? I think it fits.”",
+member:"Lux"
+},
+
+starlight:{
+quote:"“A little starlight makes everything feel warmer.”",
+member:"Lux"
+},
+
+nocteum:{
+quote:"“Nocteum belongs to the night. I kind of like that.”",
+member:"Nero"
+},
+
+darkblue:{
+quote:"“Dark blue is my color. I'm keeping it.”",
+member:"Nero"
 }
 
 };
 
 
 const members=[
+
 "Solen",
 "Vex",
 "Kairo",
@@ -447,6 +565,7 @@ const members=[
 "Zenith",
 "Lux",
 "Nero"
+
 ];
 
 
@@ -559,6 +678,11 @@ if(!questions[questionKey]){
 statusEl.textContent=
 "QUESTION DATA ERROR.";
 
+console.error(
+"Missing question key:",
+questionKey
+);
+
 return;
 
 }
@@ -649,7 +773,6 @@ finished=true;
 
 feedbackEl.textContent=
 "✦ CORRECT! YOU KNOW WHO SAID IT.";
-
 
 finish();
 
