@@ -129,12 +129,25 @@ h1 {
     color: #cdbbd9;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
+
 nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     margin: 10px 0 40px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
 }
 
 nav a {
@@ -144,10 +157,22 @@ nav a {
     text-decoration: none;
     color: #d8cde0;
     background: rgba(255,255,255,0.03);
+    transition: 0.2s ease;
 }
 
 nav a:hover {
     background: rgba(255,255,255,0.08);
+    color: #f2d58e;
+    border-color: #f2d58e;
+}
+
+nav a.search-link {
+    border-color: #8f84c9;
+    color: #ddd7ff;
+}
+
+nav a.search-link:hover {
+    border-color: #d9bd78;
     color: #f2d58e;
 }
 
@@ -392,6 +417,19 @@ footer {
     font-size: 0.75rem;
 }
 
+@media (max-width: 600px) {
+
+    .nav-links {
+        gap: 7px;
+    }
+
+    nav a {
+        padding: 9px 13px;
+        font-size: 0.8rem;
+    }
+
+}
+
 </style>
 
 </head>
@@ -422,9 +460,20 @@ footer {
 
 <nav>
 
-    <a href="halo.html">
-        MY HALO
-    </a>
+    <div class="nav-links">
+
+        <a href="halo.html">
+            MY HALO
+        </a>
+
+        <a
+            href="search.html"
+            class="search-link"
+        >
+            🔎 SEARCH
+        </a>
+
+    </div>
 
     <div class="halo-note">
         Sign up for free to discover more
