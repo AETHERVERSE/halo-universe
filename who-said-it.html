@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Who Said It? | AETHERVERSE</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+color:#eeeaff;
+font-family:Georgia,serif;
+background:radial-gradient(circle at top,#30275f 0%,#12102c 45%,#0b0920 100%)
+}
+
+.container{
+max-width:760px;
+margin:auto;
+padding:28px 16px 60px
+}
+
+header{
+text-align:center;
+margin-bottom:30px
+}
+
+.logo{
+letter-spacing:6px;
+font-size:.75rem;
+color:#aaa0e6;
+margin-bottom:18px
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:9px;
+flex-wrap:wrap
+}
+
+nav a{
+color:#ddd7ff;
+text-decoration:none;
+border:1px solid #39345e;
+border-radius:25px;
+padding:8px 16px;
+font-size:.78rem;
+transition:.2s
+}
+
+nav a:hover{
+background:#29264b;
+border-color:#9c8fe0
+}
+
+.hero{
+text-align:center;
+margin:25px 0 24px
+}
+
+.icon{
+font-size:3.5rem
+}
+
+.label{
+color:#aaa0e6;
+font-size:.75rem;
+letter-spacing:4px;
+margin-top:10px
+}
+
+h1{
+font-size:2.25rem;
+letter-spacing:4px;
+margin:8px 0
+}
+
+.subtitle{
+color:#aaa0e6;
+line-height:1.7
+}
+
+.badge{
+display:inline-block;
+margin-top:12px;
+border:1px solid #514879;
+border-radius:20px;
+padding:7px 14px;
+color:#cdb9ff;
+font-size:.68rem;
+letter-spacing:2px
+}
+
+.card{
+background:linear-gradient(145deg,rgba(48,42,92,.96),rgba(20,18,49,.98));
+border:1px solid #514879;
+border-radius:24px;
+padding:28px;
+box-shadow:0 20px 50px rgba(0,0,0,.35)
+}
+
+.status{
+text-align:center;
+color:#aaa0e6;
+font-size:.72rem;
+letter-spacing:2px;
+min-height:20px
+}
+
+.question{
+text-align:center;
+margin:25px 0 22px
+}
+
+.question-label{
+color:#8f84c9;
+font-size:.7rem;
+letter-spacing:3px;
+margin-bottom:12px
+}
+
+.quote{
+font-size:1.55rem;
+line-height:1.55;
+color:#f0ecff;
+padding:8px
+}
+
+.answers{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:24px
+}
+
+.answer{
+border:1px solid #514879;
+background:#211d43;
+color:#eeeaff;
+border-radius:15px;
+padding:16px 12px;
+cursor:pointer;
+font-family:Georgia,serif;
+font-size:.9rem;
+transition:.2s
+}
+
+.answer:hover{
+background:#302a57;
+border-color:#9c8fe0;
+transform:translateY(-2px)
+}
+
+.answer:disabled{
+cursor:default;
+opacity:.7;
+transform:none
+}
+
+.score{
+text-align:center;
+margin-top:22px;
+color:#cdb9ff;
+letter-spacing:2px
+}
+
+.feedback{
+text-align:center;
+min-height:28px;
+margin-top:16px;
+color:#eeeaff
+}
+
+.result{
+text-align:center;
+display:none
+}
+
+.result h2{
+letter-spacing:3px
+}
+
+.coins{
+font-size:1.2rem;
+margin:15px 0;
+color:#eeeaff
+}
+
+.result-text{
+color:#aaa0e6;
+line-height:1.7
+}
+
+.actions{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px
+}
+
+.action{
+color:#ddd7ff;
+text-decoration:none;
+border:1px solid #8f84c9;
+border-radius:25px;
+padding:10px 18px;
+font-size:.75rem;
+letter-spacing:1px;
+transition:.2s
+}
+
+.action:hover{
+background:#29264b;
+border-color:#cdb9ff
+}
+
+footer{
+text-align:center;
+margin-top:40px;
+color:#77739e;
+font-size:.65rem;
+letter-spacing:2px;
+line-height:2
+}
+
+@media(max-width:600px){
+h1{
+font-size:1.8rem
+}
+
+.card{
+padding:20px 15px
+}
+
+.answers{
+grid-template-columns:1fr
+}
+
+.quote{
+font-size:1.3rem
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<div class="logo">AETHERVERSE</div>
+
+<nav>
+<a href="halo-home.html">MY HALO</a>
+<a href="aether-arcade.html">AETHER ARCADE</a>
+<a href="aether-music.html">AETHER MUSIC</a>
+</nav>
+</header>
+
+
+<section class="hero">
+
+<div class="icon">💬</div>
+
+<div class="label">AETHER ARCADE</div>
+
+<h1>WHO SAID IT?</h1>
+
+<div class="subtitle">
+You know their faces.<br>
+But do you know their voices?
+</div>
+
+<div class="badge">
+ONE QUESTION · EVERY DAY
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="status" id="status">
+CONNECTING TO AETHER…
+</div>
+
+
+<div id="gameArea" style="display:none">
+
+<div class="question">
+
+<div class="question-label">
+WHO SAID IT?
+</div>
+
+<div class="quote" id="quote">
+“…”
+</div>
+
+</div>
+
+
+<div class="answers" id="answers"></div>
+
+
+<div class="score">
+SCORE: <span id="score">100</span>
+</div>
+
+
+<div class="feedback" id="feedback"></div>
+
+</div>
+
+
+<div class="result" id="result">
+
+<h2>
+✦ YOU KNOW AETHER ✦
+</h2>
+
+<div class="coins" id="coinResult">
+🪙 +0 AETHER COINS
+</div>
+
+<div class="result-text" id="resultText"></div>
+
+<div class="actions">
+
+<a
+class="action"
+href="who-said-it-leaderboard.html">
+🏆 VIEW LEADERBOARD
+</a>
+
+<a
+class="action"
+href="aether-arcade.html">
+← AETHER ARCADE
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+ONE HALO · ONE VOICE · EVERY DAY<br>
+AETHERVERSE
+</footer>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL=
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY=
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+const supabaseClient=
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+const questions={
+
+leader:{
+quote:"“If we move forward, we move forward together.”",
+member:"Solen"
+},
+
+protector:{
+quote:"“Stay close. I've got you.”",
+member:"Vex"
+},
+
+energy:{
+quote:"“Come on, HALO! One more time!”",
+member:"Kairo"
+},
+
+heart:{
+quote:"“It's okay. You don't have to hide how you feel.”",
+member:"Riven"
+},
+
+mood:{
+quote:"“Okay, okay… who said we're allowed to be serious today?”",
+member:"Zenith"
+},
+
+angel:{
+quote:"“You did enough today. That's already something.”",
+member:"Lux"
+},
+
+maknae:{
+quote:"“Wait! I have an idea!”",
+member:"Nero"
+},
+
+oldest:{
+quote:"“Someone has to keep these six under control.”",
+member:"Solen"
+},
+
+bluehair:{
+quote:"“Blue is staying. That's not up for discussion.”",
+member:"Kairo"
+},
+
+raven:{
+quote:"“Noctis noticed it before I did.”",
+member:"Nero"
+},
+
+phoenix:{
+quote:"“Pyra doesn't do quiet entrances.”",
+member:"Zenith"
+},
+
+cat:{
+quote:"“Lumen has decided that you're part of the family now.”",
+member:"Lux"
+}
+
+};
+
+
+const members=[
+"Solen",
+"Vex",
+"Kairo",
+"Riven",
+"Zenith",
+"Lux",
+"Nero"
+];
+
+
+let questionKey=null;
+let target=null;
+let score=100;
+let attempts=0;
+let finished=false;
+
+
+const statusEl=
+document.getElementById("status");
+
+const gameArea=
+document.getElementById("gameArea");
+
+const quoteEl=
+document.getElementById("quote");
+
+const answersEl=
+document.getElementById("answers");
+
+const scoreEl=
+document.getElementById("score");
+
+const feedbackEl=
+document.getElementById("feedback");
+
+const resultEl=
+document.getElementById("result");
+
+
+function shuffle(array){
+
+return array.sort(
+()=>Math.random()-0.5
+);
+
+}
+
+
+async function init(){
+
+const {
+data:{session}
+}=
+await supabaseClient.auth.getSession();
+
+
+if(!session){
+
+statusEl.textContent=
+"PLEASE LOG IN THROUGH MY HALO.";
+
+return;
+
+}
+
+
+const {
+data,
+error
+}=
+await supabaseClient.rpc(
+"start_who_said_it"
+);
+
+
+if(error){
+
+console.error(error);
+
+statusEl.textContent=
+"COULD NOT START TODAY'S GAME.";
+
+return;
+
+}
+
+
+if(!data){
+
+statusEl.textContent=
+"COULD NOT START TODAY'S GAME.";
+
+return;
+
+}
+
+
+if(data.status==="ALREADY_PLAYED"){
+
+statusEl.textContent=
+"YOU ALREADY PLAYED TODAY. COME BACK TOMORROW.";
+
+return;
+
+}
+
+
+questionKey=
+data.question_key;
+
+target=
+data.correct_member;
+
+
+if(!questions[questionKey]){
+
+statusEl.textContent=
+"QUESTION DATA ERROR.";
+
+return;
+
+}
+
+
+quoteEl.textContent=
+questions[questionKey].quote;
+
+
+buildAnswers();
+
+
+gameArea.style.display=
+"block";
+
+
+statusEl.textContent=
+"ONE HALO · ONE QUESTION · EVERY DAY";
+
+}
+
+
+function buildAnswers(){
+
+let wrongMembers=
+members.filter(
+member=>member!==target
+);
+
+
+wrongMembers=
+shuffle(wrongMembers)
+.slice(0,3);
+
+
+let choices=[
+target,
+...wrongMembers
+];
+
+
+choices=
+shuffle(choices);
+
+
+answersEl.innerHTML="";
+
+
+choices.forEach(member=>{
+
+const button=
+document.createElement("button");
+
+button.className=
+"answer";
+
+button.textContent=
+member;
+
+button.onclick=
+()=>answer(member);
+
+answersEl.appendChild(button);
+
+});
+
+}
+
+
+function answer(member){
+
+if(finished)return;
+
+
+attempts++;
+
+
+document
+.querySelectorAll(".answer")
+.forEach(
+button=>button.disabled=true
+);
+
+
+if(member===target){
+
+finished=true;
+
+feedbackEl.textContent=
+"✦ CORRECT! YOU KNOW WHO SAID IT.";
+
+
+finish();
+
+return;
+
+}
+
+
+score=
+Math.max(0,score-25);
+
+scoreEl.textContent=
+score;
+
+feedbackEl.textContent=
+"Not quite… try again.";
+
+
+setTimeout(()=>{
+
+if(!finished){
+
+document
+.querySelectorAll(".answer")
+.forEach(
+button=>button.disabled=false
+);
+
+}
+
+},500);
+
+}
+
+
+async function finish(){
+
+const {
+data,
+error
+}=
+await supabaseClient.rpc(
+"claim_who_said_it_reward",
+{
+p_question_key:questionKey,
+p_member:target,
+p_score:score,
+p_attempts:attempts
+}
+);
+
+
+gameArea.style.display=
+"none";
+
+resultEl.style.display=
+"block";
+
+
+if(error){
+
+console.error(error);
+
+document.getElementById(
+"coinResult"
+).textContent=
+"🪙 REWARD ERROR";
+
+document.getElementById(
+"resultText"
+).textContent=
+error.message;
+
+return;
+
+}
+
+
+document.getElementById(
+"coinResult"
+).textContent=
+`🪙 +${data.coins_awarded} AETHER COINS`;
+
+
+document.getElementById(
+"resultText"
+).innerHTML=
+`The voice belonged to <strong>${target}</strong>.<br>
+Your final score: <strong>${score}</strong> ·
+Attempts: <strong>${attempts}</strong>`;
+
+
+statusEl.textContent=
+"AETHER HEARD YOU.";
+
+}
+
+
+init();
+
+</script>
+
+</body>
+  </html>
