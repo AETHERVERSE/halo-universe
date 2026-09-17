@@ -825,7 +825,7 @@ async function loadHalo() {
         if (!session) {
 
             window.location.href =
-                "login.html";
+                "universe.html";
 
             return;
 
@@ -1141,7 +1141,7 @@ document
             await supabaseClient.auth.signOut();
 
             window.location.href =
-                "login.html";
+                "universe.html";
 
         }
     );
