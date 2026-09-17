@@ -82,6 +82,76 @@ h1 {
     font-size: 1rem;
 }
 
+/* =========================
+   MAIN NAVIGATION
+========================= */
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin: 10px auto 35px;
+}
+
+.main-nav a {
+    display: inline-block;
+
+    padding: 10px 17px;
+
+    border: 1px solid #514c70;
+    border-radius: 22px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .035
+        );
+
+    color: #c9b8d8;
+
+    text-decoration: none;
+
+    font-size: .72rem;
+    letter-spacing: 1.5px;
+
+    transition:
+        .2s ease;
+}
+
+.main-nav a:hover {
+    border-color: #d9bd78;
+
+    color: #f3d58d;
+
+    background:
+        rgba(
+            217,
+            189,
+            120,
+            .08
+        );
+
+    transform:
+        translateY(-2px);
+}
+
+.main-nav .search-link {
+    border-color: #8f84c9;
+
+    color: #ddd7ff;
+}
+
+.main-nav .search-link:hover {
+    border-color: #d9bd78;
+
+    color: #f3d58d;
+}
+
 .hero {
     text-align: center;
 
@@ -217,6 +287,32 @@ footer {
     font-size: .75rem;
 }
 
+@media (max-width: 600px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        padding-top: 30px;
+    }
+
+    h1 {
+        letter-spacing: 6px;
+    }
+
+    .main-nav {
+        gap: 7px;
+        margin-bottom: 25px;
+    }
+
+    .main-nav a {
+        padding: 9px 13px;
+        font-size: .65rem;
+    }
+
+}
+
 </style>
 
 </head>
@@ -243,6 +339,30 @@ footer {
     </div>
 
 </header>
+
+
+<!-- =========================
+     AETHERVERSE NAVIGATION
+========================= -->
+
+<nav class="main-nav">
+
+    <a href="universe.html">
+        ✦ UNIVERSE
+    </a>
+
+    <a href="halo-home.html">
+        💙 MY HALO
+    </a>
+
+    <a
+        href="search.html"
+        class="search-link"
+    >
+        🔎 SEARCH
+    </a>
+
+</nav>
 
 
 <section class="hero">
