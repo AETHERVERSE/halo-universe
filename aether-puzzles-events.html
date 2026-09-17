@@ -264,6 +264,170 @@ nav a:hover {
 
 
 /* =========================
+   ACTIVE EVENT
+========================= */
+
+.active-event {
+
+    position: relative;
+
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(150,120,255,0.16),
+            transparent 55%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(43,36,88,0.98),
+            rgba(13,11,32,0.98)
+        );
+
+    border: 1px solid #7666b5;
+
+    border-radius: 25px;
+
+    padding: 32px 28px;
+
+    margin-bottom: 28px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.45),
+        0 0 35px rgba(120,90,220,0.10);
+
+    transition:
+        transform 0.25s,
+        border-color 0.25s,
+        box-shadow 0.25s;
+
+}
+
+
+.active-event:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #a99be6;
+
+    box-shadow:
+        0 25px 65px rgba(0,0,0,0.5),
+        0 0 45px rgba(130,100,230,0.18);
+
+}
+
+
+.active-event-symbol {
+
+    font-size: 3rem;
+
+    margin-bottom: 12px;
+
+}
+
+
+.active-event-label {
+
+    color: #c8bdff;
+
+    font-size: 0.65rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.active-event-title {
+
+    margin: 0 0 12px;
+
+    color: #eeeaff;
+
+    font-size: 1.7rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+.active-event-subtitle {
+
+    margin: 0 auto 18px;
+
+    max-width: 600px;
+
+    color: #aaa0e6;
+
+    line-height: 1.8;
+
+    font-size: 0.92rem;
+
+}
+
+
+.active-event-reward {
+
+    display: inline-block;
+
+    margin-bottom: 20px;
+
+    padding: 8px 15px;
+
+    border: 1px solid #514879;
+
+    border-radius: 20px;
+
+    color: #cdb9ff;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 1px;
+
+}
+
+
+.active-event-button {
+
+    display: inline-block;
+
+    padding: 11px 23px;
+
+    border: 1px solid #8f84c9;
+
+    border-radius: 25px;
+
+    color: #eeeaff;
+
+    background: rgba(90,75,145,0.18);
+
+    font-size: 0.75rem;
+
+    letter-spacing: 2px;
+
+    transition: 0.2s;
+
+}
+
+
+.active-event:hover .active-event-button {
+
+    background: #29264b;
+
+    border-color: #c8bdff;
+
+}
+
+
+/* =========================
    SECTION
 ========================= */
 
@@ -584,6 +748,22 @@ footer {
     }
 
 
+    .active-event {
+
+        padding: 28px 18px;
+
+    }
+
+
+    .active-event-title {
+
+        font-size: 1.4rem;
+
+        letter-spacing: 3px;
+
+    }
+
+
     .event-card {
 
         padding: 22px 18px;
@@ -615,7 +795,7 @@ AETHERVERSE
 MY HALO
 </a>
 
-<a href="explore.html">
+<a href="index.html">
 EXPLORE
 </a>
 
@@ -690,21 +870,67 @@ CURRENT STATUS
 </div>
 
 <div class="status-title">
-NO ACTIVE EVENTS
+ACTIVE SIGNAL DETECTED
 </div>
 
 <div class="status-text">
 
-The universe is quiet for now.
+The AETHERVERSE is no longer quiet.
 
 <br>
 
-When the next puzzle or event begins,
-you will find it here.
+A broken signal has appeared.
+Something is waiting to be reconstructed.
 
 </div>
 
 </section>
+
+
+
+<!-- =========================
+     ACTIVE PUZZLE
+========================= -->
+
+<a
+href="aether-puzzle.html"
+class="active-event"
+>
+
+<div class="active-event-symbol">
+🧩
+</div>
+
+<div class="active-event-label">
+ACTIVE PUZZLE
+</div>
+
+<h2 class="active-event-title">
+THE BROKEN SIGNAL
+</h2>
+
+<p class="active-event-subtitle">
+
+Six fragments.
+One forgotten signal.
+
+Piece together the fragments,
+follow the clues and discover
+what the final signal is trying to tell HALO.
+
+</p>
+
+<div class="active-event-reward">
+🪙 UP TO 370 AETHER COINS
+</div>
+
+<br>
+
+<span class="active-event-button">
+ENTER THE PUZZLE →
+</span>
+
+</a>
 
 
 
@@ -728,15 +954,15 @@ UPCOMING
 </div>
 
 <div class="empty-title">
-NOTHING ANNOUNCED YET
+MORE SIGNALS WILL COME
 </div>
 
 <div class="empty-text">
 
-The next signal has not been revealed.
+The AETHERVERSE is only beginning
+to reveal what lies beyond the broken signal.
 
 Stay close.
-Something may appear when you least expect it.
 
 </div>
 
