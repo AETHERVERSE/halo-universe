@@ -1,0 +1,2844 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AETHER PUZZLE — The Broken Signal</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+:root {
+
+    --bg: #040610;
+    --panel: #0e1426;
+    --panel-light: #151d35;
+
+    --line: rgba(160,185,255,0.20);
+
+    --text: #dce6ff;
+    --muted: #8fa6d8;
+
+    --accent: #a9c0ff;
+    --gold: #ffd978;
+
+    --success: #9ff0c5;
+    --danger: #ff9dba;
+
+    --purple: #b99cff;
+
+    --shadow:
+        0 20px 60px rgba(0,0,0,0.48);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 5%,
+            rgba(100,130,255,0.16),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 15% 70%,
+            rgba(130,70,220,0.10),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(50,150,210,0.08),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+    color: var(--text);
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+button {
+    font: inherit;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+
+    width: min(1100px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        22px
+        18px
+        80px;
+}
+
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-bottom: 35px;
+}
+
+
+nav a {
+
+    padding:
+        9px
+        15px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition:
+        0.2s ease;
+}
+
+
+nav a:hover {
+
+    color: var(--gold);
+
+    border-color:
+        rgba(255,217,120,0.4);
+
+    background:
+        rgba(255,255,255,0.06);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+    text-align: center;
+
+    padding:
+        25px
+        10px
+        25px;
+}
+
+
+.eyebrow {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    letter-spacing:
+        0.38em;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        14px;
+}
+
+
+.hero-symbol {
+
+    font-size:
+        clamp(42px, 10vw, 70px);
+
+    margin-bottom:
+        8px;
+
+    filter:
+        drop-shadow(
+            0 0 25px
+            rgba(170,190,255,0.25)
+        );
+}
+
+
+.hero h1 {
+
+    margin: 0;
+
+    font-size:
+        clamp(35px, 8vw, 68px);
+
+    letter-spacing:
+        0.08em;
+
+    line-height:
+        1.05;
+}
+
+
+.hero h1 span {
+
+    color:
+        var(--gold);
+}
+
+
+.subtitle {
+
+    max-width:
+        680px;
+
+    margin:
+        18px auto 0;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.8;
+
+    font-size:
+        15px;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-bar {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        13px;
+
+    margin:
+        25px 0 5px;
+}
+
+
+.status-card {
+
+    min-width:
+        160px;
+
+    padding:
+        14px 20px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        16px;
+
+    background:
+        rgba(14,20,38,0.82);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.status-label {
+
+    display:
+        block;
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        0.16em;
+
+    text-transform:
+        uppercase;
+
+    margin-bottom:
+        6px;
+}
+
+
+.status-value {
+
+    font-size:
+        21px;
+
+    font-weight:
+        800;
+}
+
+
+.coins {
+
+    color:
+        var(--gold);
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro {
+
+    margin-top:
+        30px;
+
+    padding:
+        30px 24px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        24px;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(120,150,255,0.10),
+            transparent 65%
+        ),
+
+        rgba(14,20,38,0.75);
+
+    text-align:
+        center;
+}
+
+
+.intro h2 {
+
+    margin:
+        0 0 12px;
+
+    color:
+        var(--gold);
+
+    letter-spacing:
+        0.08em;
+}
+
+
+.intro p {
+
+    max-width:
+        720px;
+
+    margin:
+        0 auto;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.75;
+}
+
+
+.intro .signal-line {
+
+    margin-top:
+        20px;
+
+    color:
+        rgba(220,230,255,0.65);
+
+    font-size:
+        13px;
+
+    letter-spacing:
+        0.16em;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress-section {
+
+    margin-top:
+        32px;
+}
+
+
+.progress-top {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        8px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        12px;
+
+    letter-spacing:
+        0.08em;
+}
+
+
+.progress-track {
+
+    width:
+        100%;
+
+    height:
+        8px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        10px;
+
+    background:
+        #080d19;
+
+    border:
+        1px solid
+        rgba(160,185,255,0.08);
+}
+
+
+.progress-fill {
+
+    width:
+        0%;
+
+    height:
+        100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #809cff,
+            #d1dcff
+        );
+
+    transition:
+        width
+        0.45s
+        ease;
+}
+
+
+/* =========================
+   FRAGMENTS
+========================= */
+
+.fragment-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0,1fr)
+        );
+
+    gap:
+        18px;
+
+    margin-top:
+        35px;
+}
+
+
+.fragment {
+
+    position:
+        relative;
+
+    min-height:
+        190px;
+
+    padding:
+        22px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        21px;
+
+    background:
+
+        radial-gradient(
+            circle at top right,
+            rgba(120,150,255,0.07),
+            transparent 55%
+        ),
+
+        rgba(14,20,38,0.78);
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,0.18);
+
+    transition:
+        0.25s ease;
+}
+
+
+.fragment:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(180,200,255,0.32);
+}
+
+
+.fragment.locked {
+
+    opacity:
+        0.48;
+
+    filter:
+        saturate(0.4);
+}
+
+
+.fragment.completed {
+
+    border-color:
+        rgba(159,240,197,0.30);
+
+    background:
+
+        radial-gradient(
+            circle at top right,
+            rgba(80,180,130,0.08),
+            transparent 55%
+        ),
+
+        rgba(14,20,38,0.78);
+}
+
+
+.fragment-number {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        0.25em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.fragment-icon {
+
+    font-size:
+        30px;
+
+    margin:
+        15px 0 8px;
+}
+
+
+.fragment h3 {
+
+    margin:
+        0 0 8px;
+
+    font-size:
+        18px;
+
+    letter-spacing:
+        0.04em;
+}
+
+
+.fragment p {
+
+    margin:
+        0;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.55;
+
+    font-size:
+        13px;
+}
+
+
+.fragment-reward {
+
+    margin-top:
+        15px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.08em;
+}
+
+
+.fragment-button {
+
+    width:
+        100%;
+
+    margin-top:
+        16px;
+
+    padding:
+        11px 14px;
+
+    border:
+        0;
+
+    border-radius:
+        12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9fb8ff,
+            #c4d3ff
+        );
+
+    color:
+        #081020;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        0.07em;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.fragment-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(150,180,255,0.20);
+}
+
+
+.fragment-button.locked-button {
+
+    background:
+        rgba(255,255,255,0.05);
+
+    color:
+        #68779e;
+
+    border:
+        1px solid
+        rgba(160,185,255,0.10);
+
+    cursor:
+        default;
+}
+
+
+.fragment-button.locked-button:hover {
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+.fragment-button.completed-button {
+
+    background:
+        rgba(159,240,197,0.10);
+
+    color:
+        var(--success);
+
+    border:
+        1px solid
+        rgba(159,240,197,0.25);
+
+    cursor:
+        default;
+}
+
+
+.fragment-button.completed-button:hover {
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+/* =========================
+   FINAL SIGNAL
+========================= */
+
+.final-section {
+
+    margin-top:
+        35px;
+
+    padding:
+        32px 24px;
+
+    border:
+        1px solid
+        rgba(185,156,255,0.22);
+
+    border-radius:
+        24px;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(140,100,220,0.10),
+            transparent 65%
+        ),
+
+        rgba(14,20,38,0.78);
+
+    text-align:
+        center;
+}
+
+
+.final-section h2 {
+
+    margin:
+        0 0 10px;
+
+    color:
+        var(--purple);
+
+    letter-spacing:
+        0.08em;
+}
+
+
+.final-section p {
+
+    max-width:
+        700px;
+
+    margin:
+        0 auto;
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.7;
+}
+
+
+.signal-fragments {
+
+    display:
+        flex;
+
+    justify-content:
+        center;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        9px;
+
+    margin:
+        22px auto;
+
+    max-width:
+        850px;
+}
+
+
+.signal-piece {
+
+    padding:
+        9px 13px;
+
+    border:
+        1px solid
+        rgba(185,156,255,0.20);
+
+    border-radius:
+        10px;
+
+    background:
+        rgba(185,156,255,0.05);
+
+    color:
+        #a9b7dc;
+
+    font-size:
+        11px;
+
+    letter-spacing:
+        0.12em;
+}
+
+
+.signal-piece.unlocked {
+
+    color:
+        var(--gold);
+
+    border-color:
+        rgba(255,217,120,0.25);
+
+    background:
+        rgba(255,217,120,0.05);
+}
+
+
+.final-button {
+
+    display:
+        inline-block;
+
+    min-width:
+        220px;
+
+    padding:
+        13px 20px;
+
+    border:
+        0;
+
+    border-radius:
+        13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b99cff,
+            #d8cbff
+        );
+
+    color:
+        #0b0818;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        0.09em;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.2s ease;
+}
+
+
+.final-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(185,156,255,0.22);
+}
+
+
+.final-button:disabled {
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color:
+        #69779b;
+
+    border:
+        1px solid
+        rgba(160,185,255,0.10);
+
+    cursor:
+        default;
+}
+
+
+.final-button:disabled:hover {
+
+    transform:
+        none;
+
+    box-shadow:
+        none;
+}
+
+
+.final-result {
+
+    min-height:
+        25px;
+
+    margin-top:
+        18px;
+
+    font-weight:
+        700;
+
+    line-height:
+        1.6;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.overlay {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        100;
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        18px;
+
+    background:
+        rgba(2,4,12,0.84);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.overlay.open {
+
+    display:
+        flex;
+}
+
+
+.modal {
+
+    position:
+        relative;
+
+    width:
+        min(650px,100%);
+
+    max-height:
+        90vh;
+
+    overflow-y:
+        auto;
+
+    padding:
+        30px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        25px;
+
+    background:
+
+        radial-gradient(
+            circle at top,
+            rgba(120,150,255,0.12),
+            transparent 48%
+        ),
+
+        var(--panel);
+
+    box-shadow:
+        var(--shadow);
+}
+
+
+.close {
+
+    position:
+        absolute;
+
+    top:
+        15px;
+
+    right:
+        16px;
+
+    width:
+        38px;
+
+    height:
+        38px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        50%;
+
+    background:
+        var(--panel-light);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    font-size:
+        20px;
+}
+
+
+.close:hover {
+
+    background:
+        rgba(255,255,255,0.08);
+}
+
+
+.modal-kicker {
+
+    color:
+        var(--muted);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        0.28em;
+
+    text-transform:
+        uppercase;
+}
+
+
+.modal h2 {
+
+    margin:
+        8px 45px 12px 0;
+
+    font-size:
+        29px;
+}
+
+
+.story {
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.75;
+
+    margin-bottom:
+        22px;
+}
+
+
+.question {
+
+    padding:
+        20px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        17px;
+
+    background:
+        rgba(23,33,58,0.72);
+
+    line-height:
+        1.65;
+
+    font-size:
+        16px;
+
+    font-weight:
+        700;
+}
+
+
+.answers {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+    margin-top:
+        18px;
+}
+
+
+.answer {
+
+    width:
+        100%;
+
+    padding:
+        14px 16px;
+
+    border:
+        1px solid var(--line);
+
+    border-radius:
+        13px;
+
+    background:
+        var(--panel-light);
+
+    color:
+        var(--text);
+
+    cursor:
+        pointer;
+
+    text-align:
+        left;
+
+    transition:
+        0.2s ease;
+}
+
+
+.answer:hover {
+
+    background:
+        rgba(150,175,255,0.13);
+
+    border-color:
+        rgba(180,200,255,0.42);
+}
+
+
+.answer:disabled {
+
+    cursor:
+        default;
+
+    opacity:
+        0.65;
+}
+
+
+.modal-result {
+
+    min-height:
+        28px;
+
+    margin-top:
+        18px;
+
+    text-align:
+        center;
+
+    line-height:
+        1.6;
+
+    font-weight:
+        700;
+}
+
+
+.success {
+
+    color:
+        var(--success);
+}
+
+
+.wrong {
+
+    color:
+        var(--danger);
+}
+
+
+.reward-result {
+
+    margin-top:
+        8px;
+
+    color:
+        var(--gold);
+
+    font-size:
+        18px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    padding:
+        60px 10px 20px;
+
+    text-align:
+        center;
+
+    color:
+        rgba(143,166,216,0.5);
+
+    font-size:
+        10px;
+
+    letter-spacing:
+        0.22em;
+
+    line-height:
+        2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    .fragment-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
+            );
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .page {
+
+        padding:
+            15px
+            10px
+            60px;
+    }
+
+
+    .fragment-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .modal {
+
+        padding:
+            25px 18px;
+    }
+
+
+    .status-card {
+
+        min-width:
+            135px;
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    nav a {
+
+        font-size:
+            11px;
+
+        padding:
+            8px 11px;
+    }
+
+
+    .status-card {
+
+        min-width:
+            115px;
+
+        padding:
+            11px;
+    }
+
+
+    .status-value {
+
+        font-size:
+            18px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a href="index.html">
+        Home
+    </a>
+
+    <a href="universe.html">
+        HALO Universe
+    </a>
+
+    <a href="members.html">
+        Members
+    </a>
+
+    <a href="halo-home.html">
+        MY HALO
+    </a>
+
+    <a href="aether-path.html">
+        AETHER PATH
+    </a>
+
+    <a href="aether-path-advanced.html">
+        ADVANCED PATH
+    </a>
+
+    <a href="aether-arcade.html">
+        ARCADE
+    </a>
+
+    <a href="aether-music.html">
+        MUSIC
+    </a>
+
+    <a href="search.html">
+        🔎 SEARCH
+    </a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="eyebrow">
+        AETHERVERSE • HIDDEN SIGNAL
+    </div>
+
+    <div class="hero-symbol">
+        🧩
+    </div>
+
+    <h1>
+        THE BROKEN <span>SIGNAL</span>
+    </h1>
+
+    <p class="subtitle">
+        Something inside the connection has been fragmented.
+        Six pieces remain.
+        Find them. Connect them. Hear what they were trying to say.
+    </p>
+
+
+    <div class="status-bar">
+
+        <div class="status-card">
+
+            <span class="status-label">
+                AETHER Coins
+            </span>
+
+            <span
+                class="status-value coins"
+                id="coinDisplay">
+                0
+            </span>
+
+        </div>
+
+
+        <div class="status-card">
+
+            <span class="status-label">
+                Puzzle Progress
+            </span>
+
+            <span
+                class="status-value"
+                id="progressCount">
+                0/6
+            </span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="intro">
+
+    <h2>
+        THE SIGNAL IS BROKEN
+    </h2>
+
+    <p>
+        A faint transmission has appeared between the seven worlds.
+        It does not belong to one member.
+        It does not belong to one Guardian.
+        It belongs to the connection itself.
+    </p>
+
+    <p>
+        Each solved fragment restores another part of the message.
+        The final signal can only be understood when all six fragments
+        are connected.
+    </p>
+
+    <div class="signal-line">
+        ✦ SEVEN WORLDS • ONE CONNECTION • ONE SIGNAL ✦
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROGRESS
+========================= -->
+
+<section class="progress-section">
+
+    <div class="progress-top">
+
+        <span>
+            SIGNAL RESTORATION
+        </span>
+
+        <span id="progressText">
+            0%
+        </span>
+
+    </div>
+
+    <div class="progress-track">
+
+        <div
+            class="progress-fill"
+            id="progressFill">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FRAGMENTS
+========================= -->
+
+<section
+    class="fragment-grid"
+    id="fragmentGrid">
+</section>
+
+
+<!-- =========================
+     FINAL SIGNAL
+========================= -->
+
+<section class="final-section">
+
+    <h2>
+        ✦ FINAL SIGNAL
+    </h2>
+
+    <p>
+        The fragments are beginning to align.
+        Once all five knowledge fragments are restored,
+        the final signal will become available.
+    </p>
+
+
+    <div
+        class="signal-fragments"
+        id="signalFragments">
+
+        <span
+            class="signal-piece"
+            id="piece1">
+            SIGNAL I
+        </span>
+
+        <span
+            class="signal-piece"
+            id="piece2">
+            SIGNAL II
+        </span>
+
+        <span
+            class="signal-piece"
+            id="piece3">
+            SIGNAL III
+        </span>
+
+        <span
+            class="signal-piece"
+            id="piece4">
+            SIGNAL IV
+        </span>
+
+        <span
+            class="signal-piece"
+            id="piece5">
+            SIGNAL V
+        </span>
+
+        <span
+            class="signal-piece"
+            id="piece6">
+            FINAL SIGNAL
+        </span>
+
+    </div>
+
+
+    <button
+        class="final-button"
+        id="finalButton"
+        disabled
+        onclick="openPuzzle('final')">
+
+        🔒 SIGNAL INCOMPLETE
+
+    </button>
+
+
+    <div
+        class="final-result"
+        id="finalResult">
+    </div>
+
+</section>
+
+
+<footer>
+
+    AETHERVERSE • THE BROKEN SIGNAL<br>
+    SEVEN STARS • ONE CONNECTION
+
+</footer>
+
+</div>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+    class="overlay"
+    id="overlay">
+
+    <div class="modal">
+
+        <button
+            class="close"
+            onclick="closePuzzle()">
+            ×
+        </button>
+
+
+        <div
+            class="modal-kicker"
+            id="modalKicker">
+            SIGNAL FRAGMENT
+        </div>
+
+
+        <h2
+            id="modalTitle">
+            Fragment
+        </h2>
+
+
+        <div
+            class="story"
+            id="modalStory">
+        </div>
+
+
+        <div
+            class="question"
+            id="modalQuestion">
+        </div>
+
+
+        <div
+            class="answers"
+            id="modalAnswers">
+        </div>
+
+
+        <div
+            class="modal-result"
+            id="modalResult">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   PUZZLES
+========================================================= */
+
+const puzzles = {
+
+    fragment_one: {
+
+        number: "01",
+
+        title: "THE FIRST FRAGMENT",
+
+        icon: "✦",
+
+        description:
+            "The transmission begins with the stars themselves.",
+
+        reward: 50,
+
+        story:
+            "A faint pulse travels through the seven worlds. " +
+            "Before the signal can say anything else, one word appears: " +
+            "a number. Not six. Not eight. The number that defines AETHER.",
+
+        question:
+            "How many stars form AETHER?",
+
+        answers: [
+
+            ["Five", "five"],
+
+            ["Seven", "seven"],
+
+            ["Nine", "nine"],
+
+            ["Twelve", "twelve"]
+
+        ]
+
+    },
+
+
+    fragment_two: {
+
+        number: "02",
+
+        title: "THE SECOND FRAGMENT",
+
+        icon: "◈",
+
+        description:
+            "The signal turns toward the ones who are listening.",
+
+        reward: 50,
+
+        story:
+            "The second fragment does not name a star. " +
+            "It names the people standing on the other side of the connection. " +
+            "The ones who receive the signal and answer it.",
+
+        question:
+            "What is the name of AETHER's fandom?",
+
+        answers: [
+
+            ["HALO", "halo"],
+
+            ["QUILLS", "quills"],
+
+            ["SOLARION", "solarion"],
+
+            ["AETHER", "aether"]
+
+        ]
+
+    },
+
+
+    fragment_three: {
+
+        number: "03",
+
+        title: "THE THIRD FRAGMENT",
+
+        icon: "∞",
+
+        description:
+            "Something was rewritten. Not a world. Not a star.",
+
+        reward: 55,
+
+        story:
+            "The transmission remembers the choice made by HALO. " +
+            "Path B did not erase the journey. " +
+            "It changed what existed between AETHER and HALO.",
+
+        question:
+            "What was rewritten?",
+
+        answers: [
+
+            ["The members", "members"],
+
+            ["The connection", "connection"],
+
+            ["The Guardians", "guardians"],
+
+            ["The worlds", "worlds"]
+
+        ]
+
+    },
+
+
+    fragment_four: {
+
+        number: "04",
+
+        title: "THE FOURTH FRAGMENT",
+
+        icon: "✧",
+
+        description:
+            "The signal finally speaks the name of the stars.",
+
+        reward: 55,
+
+        story:
+            "Seven lights. Seven worlds. Seven voices. " +
+            "The signal searches for the name that connects them all.",
+
+        question:
+            "What is the name of the seven-member group?",
+
+        answers: [
+
+            ["HALO", "halo"],
+
+            ["AETHER", "aether"],
+
+            ["ARQIL", "arqil"],
+
+            ["QUILLS", "quills"]
+
+        ]
+
+    },
+
+
+    fragment_five: {
+
+        number: "05",
+
+        title: "THE FIFTH FRAGMENT",
+
+        icon: "🐾",
+
+        description:
+            "Something watches over the worlds.",
+
+        reward: 60,
+
+        story:
+            "The final knowledge fragment carries an image. " +
+            "A lion. A panther. A dolphin. A phoenix. " +
+            "Seven beings tied to seven stars. " +
+            "They are not members. They are something older.",
+
+        question:
+            "What are these beings called?",
+
+        answers: [
+
+            ["Guardians", "guardian"],
+
+            ["Signals", "signals"],
+
+            ["Halos", "halos"],
+
+            ["Fragments", "fragments"]
+
+        ]
+
+    },
+
+
+    final: {
+
+        number: "06",
+
+        title: "THE FINAL SIGNAL",
+
+        icon: "🌌",
+
+        description:
+            "All fragments have been restored.",
+
+        reward: 100,
+
+        story:
+            "The five fragments align. " +
+            "Seven. HALO. Connection. AETHER. Guardian. " +
+            "The broken transmission becomes clear. " +
+            "The answer is not another name. " +
+            "It is a statement. A presence. " +
+            "A new beginning.",
+
+        question:
+            "What is the final signal?",
+
+        answers: [
+
+            ["BREAK THE BUBBLE", "break_the_bubble"],
+
+            ["SEVEN SIGNALS", "seven_signals"],
+
+            ["HERE WE ARE", "here_we_are"],
+
+            ["FIRST LIGHT", "first_light"]
+
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let completed =
+    new Set();
+
+let currentPuzzle =
+    null;
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+async function getSession() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (error) {
+
+        console.error(error);
+
+        return null;
+
+    }
+
+
+    return data.session;
+
+}
+
+
+/* =========================================================
+   LOAD COINS
+========================================================= */
+
+async function loadCoins() {
+
+    const session =
+        await getSession();
+
+
+    if (!session) {
+
+        document.getElementById(
+            "coinDisplay"
+        ).textContent = "—";
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.rpc(
+            "get_aether_coin_balance"
+        );
+
+
+    if (!error) {
+
+        document.getElementById(
+            "coinDisplay"
+        ).textContent =
+            Number(data || 0).toLocaleString();
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD PROGRESS
+========================================================= */
+
+async function loadProgress() {
+
+    const session =
+        await getSession();
+
+
+    if (!session) {
+
+        showLoginState();
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.rpc(
+            "get_aether_puzzle_progress"
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    completed =
+        new Set(
+            data?.completed || []
+        );
+
+
+    renderFragments();
+
+    updateProgress();
+
+}
+
+
+/* =========================================================
+   LOGIN STATE
+========================================================= */
+
+function showLoginState() {
+
+    document.getElementById(
+        "progressCount"
+    ).textContent =
+        "LOGIN REQUIRED";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        "—";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        "0%";
+
+}
+
+
+/* =========================================================
+   RENDER FRAGMENTS
+========================================================= */
+
+function renderFragments() {
+
+    const grid =
+        document.getElementById(
+            "fragmentGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    const keys = [
+        "fragment_one",
+        "fragment_two",
+        "fragment_three",
+        "fragment_four",
+        "fragment_five"
+    ];
+
+
+    keys.forEach(
+        (
+            key,
+            index
+        ) => {
+
+            const puzzle =
+                puzzles[key];
+
+
+            const isCompleted =
+                completed.has(key);
+
+
+            const previousKey =
+                index === 0
+                    ? null
+                    : keys[index - 1];
+
+
+            const isUnlocked =
+                index === 0 ||
+                completed.has(previousKey);
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "fragment" +
+                (
+                    isCompleted
+                        ? " completed"
+                        : ""
+                ) +
+                (
+                    !isUnlocked
+                        ? " locked"
+                        : ""
+                );
+
+
+            let buttonText =
+                "OPEN FRAGMENT";
+
+
+            let buttonClass =
+                "fragment-button";
+
+
+            if (isCompleted) {
+
+                buttonText =
+                    "✓ RESTORED";
+
+                buttonClass +=
+                    " completed-button";
+
+            }
+            else if (!isUnlocked) {
+
+                buttonText =
+                    "🔒 LOCKED";
+
+                buttonClass +=
+                    " locked-button";
+
+            }
+
+
+            card.innerHTML = `
+
+                <div class="fragment-number">
+
+                    FRAGMENT • ${puzzle.number}
+
+                </div>
+
+
+                <div class="fragment-icon">
+
+                    ${puzzle.icon}
+
+                </div>
+
+
+                <h3>
+
+                    ${puzzle.title}
+
+                </h3>
+
+
+                <p>
+
+                    ${puzzle.description}
+
+                </p>
+
+
+                <div class="fragment-reward">
+
+                    🪙 ${puzzle.reward} AETHER COINS
+
+                </div>
+
+
+                <button
+                    class="${buttonClass}"
+                    ${!isUnlocked || isCompleted
+                        ? "disabled"
+                        : ""}
+                    onclick="openPuzzle('${key}')">
+
+                    ${buttonText}
+
+                </button>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    updateSignalPieces();
+
+}
+
+
+/* =========================================================
+   UPDATE PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+    const count =
+        completed.size;
+
+
+    document.getElementById(
+        "progressCount"
+    ).textContent =
+        `${count}/6`;
+
+
+    const percentage =
+        Math.round(
+            (
+                count / 6
+            ) * 100
+        );
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        `${percentage}%`;
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        `${percentage}%`;
+
+
+    const finalButton =
+        document.getElementById(
+            "finalButton"
+        );
+
+
+    if (
+        completed.has(
+            "final"
+        )
+    ) {
+
+        finalButton.disabled =
+            true;
+
+        finalButton.textContent =
+            "✓ SIGNAL RESTORED";
+
+        return;
+
+    }
+
+
+    if (
+        completed.size >= 5
+    ) {
+
+        finalButton.disabled =
+            false;
+
+        finalButton.textContent =
+            "✦ OPEN FINAL SIGNAL";
+
+    }
+    else {
+
+        finalButton.disabled =
+            true;
+
+        finalButton.textContent =
+            "🔒 SIGNAL INCOMPLETE";
+
+    }
+
+}
+
+
+/* =========================================================
+   SIGNAL PIECES
+========================================================= */
+
+function updateSignalPieces() {
+
+    const ids = [
+        "piece1",
+        "piece2",
+        "piece3",
+        "piece4",
+        "piece5",
+        "piece6"
+    ];
+
+
+    const keys = [
+        "fragment_one",
+        "fragment_two",
+        "fragment_three",
+        "fragment_four",
+        "fragment_five",
+        "final"
+    ];
+
+
+    const labels = [
+
+        "SEVEN",
+
+        "HALO",
+
+        "CONNECTION",
+
+        "AETHER",
+
+        "GUARDIAN",
+
+        "HERE WE ARE"
+
+    ];
+
+
+    keys.forEach(
+        (
+            key,
+            index
+        ) => {
+
+            const piece =
+                document.getElementById(
+                    ids[index]
+                );
+
+
+            if (
+                completed.has(key)
+            ) {
+
+                piece.textContent =
+                    labels[index];
+
+                piece.classList.add(
+                    "unlocked"
+                );
+
+            }
+            else {
+
+                piece.textContent =
+                    index === 5
+                        ? "FINAL SIGNAL"
+                        : `SIGNAL ${index + 1}`;
+
+                piece.classList.remove(
+                    "unlocked"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   OPEN PUZZLE
+========================================================= */
+
+function openPuzzle(
+    key
+) {
+
+    if (
+        key === "final" &&
+        completed.size < 5
+    ) {
+
+        return;
+
+    }
+
+
+    const puzzle =
+        puzzles[key];
+
+
+    if (!puzzle) {
+
+        return;
+
+    }
+
+
+    currentPuzzle =
+        key;
+
+
+    document.getElementById(
+        "modalKicker"
+    ).textContent =
+        `SIGNAL FRAGMENT • ${puzzle.number}`;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        puzzle.title;
+
+
+    document.getElementById(
+        "modalStory"
+    ).textContent =
+        puzzle.story;
+
+
+    document.getElementById(
+        "modalQuestion"
+    ).textContent =
+        puzzle.question;
+
+
+    const answers =
+        document.getElementById(
+            "modalAnswers"
+        );
+
+
+    answers.innerHTML = "";
+
+
+    puzzle.answers.forEach(
+        answer => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "answer";
+
+
+            button.textContent =
+                answer[0];
+
+
+            button.onclick =
+                () => submitAnswer(
+                    key,
+                    answer[1]
+                );
+
+
+            answers.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "modalResult"
+    ).innerHTML =
+        "";
+
+
+    document.getElementById(
+        "overlay"
+    ).classList.add(
+        "open"
+    );
+
+}
+
+
+/* =========================================================
+   CLOSE PUZZLE
+========================================================= */
+
+function closePuzzle() {
+
+    document.getElementById(
+        "overlay"
+    ).classList.remove(
+        "open"
+    );
+
+    currentPuzzle =
+        null;
+
+}
+
+
+/* =========================================================
+   SUBMIT ANSWER
+========================================================= */
+
+async function submitAnswer(
+    puzzleKey,
+    answerKey
+) {
+
+    const session =
+        await getSession();
+
+
+    if (!session) {
+
+        showResult(
+            "Please log in to restore the signal.",
+            false
+        );
+
+        return;
+
+    }
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    buttons.forEach(
+        button => {
+            button.disabled =
+                true;
+        }
+    );
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.rpc(
+            "complete_aether_puzzle",
+            {
+                p_puzzle_key:
+                    puzzleKey,
+
+                p_answer_key:
+                    answerKey
+            }
+        );
+
+
+    if (error) {
+
+        console.error(error);
+
+        showResult(
+            "The signal could not be reached. Try again.",
+            false
+        );
+
+
+        buttons.forEach(
+            button => {
+                button.disabled =
+                    false;
+            }
+        );
+
+
+        return;
+
+    }
+
+
+    if (
+        data?.correct
+    ) {
+
+        completed.add(
+            puzzleKey
+        );
+
+
+        if (
+            data.already_completed
+        ) {
+
+            showResult(
+                "✦ Fragment already restored.",
+                true
+            );
+
+        }
+        else {
+
+            showResult(
+                `✦ SIGNAL RESTORED` +
+                `<div class="reward-result">` +
+                `+${data.coins_awarded} AETHER Coins` +
+                `</div>`,
+                true
+            );
+
+        }
+
+
+        await loadCoins();
+
+        renderFragments();
+
+        updateProgress();
+
+
+        if (
+            puzzleKey === "final"
+        ) {
+
+            document.getElementById(
+                "finalResult"
+            ).innerHTML =
+                `
+                <span class="success">
+                    ✦ THE SIGNAL HAS BEEN RESTORED.
+                    <br>
+                    HERE WE ARE.
+                </span>
+                `;
+
+        }
+
+
+    }
+    else {
+
+        showResult(
+            "✦ The signal rejected that answer. Try again.",
+            false
+        );
+
+
+        buttons.forEach(
+            button => {
+                button.disabled =
+                    false;
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+function showResult(
+    message,
+    success
+) {
+
+    const result =
+        document.getElementById(
+            "modalResult"
+        );
+
+
+    result.className =
+        "modal-result " +
+        (
+            success
+                ? "success"
+                : "wrong"
+        );
+
+
+    result.innerHTML =
+        message;
+
+}
+
+
+/* =========================================================
+   BACKDROP CLOSE
+========================================================= */
+
+document.getElementById(
+    "overlay"
+).addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target.id ===
+            "overlay"
+        ) {
+
+            closePuzzle();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePuzzle();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+async function initialize() {
+
+    await loadCoins();
+
+    await loadProgress();
+
+}
+
+
+initialize();
+
+</script>
+
+</body>
+
+  </html>
