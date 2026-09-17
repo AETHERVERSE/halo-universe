@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AETHER ARCADE | AETHERVERSE</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0%,#30275f 0%,#171433 38%,#0b0920 100%);color:#ddd7ff;font-family:Georgia,serif}
+.container{max-width:950px;margin:auto;padding:30px 20px 70px}
+header{text-align:center;margin-bottom:50px}
+.logo{color:#aaa0e6;font-size:.8rem;letter-spacing:6px;margin-bottom:22px}
+.back-link,.leaderboard-link{display:inline-block;color:#cdb9ff;text-decoration:none;border:1px solid #514879;border-radius:25px;padding:9px 18px;font-size:.75rem;letter-spacing:1.5px;transition:.2s}
+.back-link:hover,.leaderboard-link:hover{background:#29264b;border-color:#cdb9ff}
+.leaderboard-link{margin-left:8px;border-color:#8f84c9}
+.hero{text-align:center;margin-bottom:45px}
+.hero-icon{font-size:4rem;margin-bottom:12px}.hero-label{color:#aaa0e6;font-size:.8rem;letter-spacing:5px;margin-bottom:12px}
+.hero h1{margin:0 0 12px;color:#f0ecff;font-size:2.7rem;letter-spacing:6px}.hero-subtitle{color:#cdb9ff;letter-spacing:3px;font-size:.9rem}
+.hero-description{max-width:650px;margin:20px auto 0;color:#aaa0e6;line-height:1.8}
+.coin-bar{display:flex;justify-content:center;align-items:center;gap:15px;margin:0 auto 45px;padding:15px 22px;max-width:380px;border:1px solid #514879;border-radius:30px;background:rgba(29,26,61,.9);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.coin-icon{font-size:1.5rem}.coin-label{color:#aaa0e6;font-size:.75rem;letter-spacing:2px}.coin-balance{color:#eeeaff;font-size:1.15rem;letter-spacing:2px}
+.section-label{text-align:center;color:#aaa0e6;font-size:.75rem;letter-spacing:4px;margin-bottom:18px}
+.game-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.game-card{position:relative;min-height:260px;padding:28px;border-radius:22px;border:1px solid #39345e;background:linear-gradient(145deg,#211d47,#14122e);box-shadow:0 15px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;justify-content:space-between;transition:.25s}
+.game-card.active{border-color:#7868bd;background:radial-gradient(circle at top right,rgba(118,101,184,.20),transparent 50%),linear-gradient(145deg,#29235a,#14122e)}
+.game-card.active:hover{transform:translateY(-5px);border-color:#b6a9f1;box-shadow:0 20px 50px rgba(118,101,184,.22)}
+.game-card.locked{opacity:.55}
+.game-icon{font-size:2.8rem;margin-bottom:15px}.game-tag{display:inline-block;color:#cdb9ff;border:1px solid #514879;border-radius:20px;padding:5px 10px;font-size:.65rem;letter-spacing:2px;margin-bottom:14px}
+.game-card h2{margin:0 0 10px;color:#eeeaff;font-size:1.35rem;letter-spacing:2px}.game-card p{color:#aaa6c3;line-height:1.7;margin:0}
+.game-button{display:inline-block;margin-top:25px;padding:10px 20px;border-radius:25px;border:1px solid #8f84c9;color:#eeeaff;text-decoration:none;font-size:.75rem;letter-spacing:2px;text-align:center;transition:.2s}
+.game-button:hover{background:#29264b;border-color:#cdb9ff}
+.locked-label{margin-top:25px;color:#77739e;font-size:.7rem;letter-spacing:2px}
+.daily-message{margin:45px auto 0;max-width:650px;padding:24px;text-align:center;border-top:1px solid #39345e;border-bottom:1px solid #39345e}
+.daily-message strong{display:block;color:#eeeaff;letter-spacing:2px;margin-bottom:10px}.daily-message span{color:#8f84c9;font-size:.75rem;letter-spacing:2px}
+footer{text-align:center;margin-top:60px;color:#625d86;font-size:.7rem;letter-spacing:2px;line-height:2}
+@media(max-width:650px){.game-grid{grid-template-columns:1fr}.hero h1{font-size:2rem;letter-spacing:4px}.hero-icon{font-size:3.2rem}.leaderboard-link{margin:10px 0 0}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="logo">AETHERVERSE</div>
+<a href="halo-home.html" class="back-link">← BACK TO MY HALO</a>
+<a href="kairo-leaderboard.html" class="leaderboard-link">🏆 HALO LEADERBOARD</a>
+</header>
+
+<section class="hero">
+<div class="hero-icon">🎮</div>
+<div class="hero-label">WELCOME TO</div>
+<h1>AETHER ARCADE</h1>
+<div class="hero-subtitle">PLAY • REACT • EARN • REPEAT</div>
+<p class="hero-description">A collection of games created for HALO.<br>Challenge yourself, discover new sides of AETHER, and collect AETHER Coins through special experiences.</p>
+</section>
+
+<div class="coin-bar">
+<div class="coin-icon">🪙</div>
+<div><div class="coin-label">YOUR AETHER COINS</div><div class="coin-balance" id="coinBalance">LOADING...</div></div>
+</div>
+
+<div class="section-label">✦ CURRENT GAMES ✦</div>
+<section class="game-grid">
+
+<article class="game-card active">
+<div>
+<div class="game-icon">⚡</div>
+<div class="game-tag">DAILY GAME</div>
+<h2>KAIRO REACTION</h2>
+<p>Kairo is fast.<br>Watch carefully, react quickly, and don't fall for his tricks.<br>One HALO gets one reaction every day.</p>
+</div>
+<a href="kairo-reaction.html" class="game-button">PLAY KAIRO REACTION →</a>
+</article>
+
+<article class="game-card active">
+<div>
+<div class="game-icon">🧠</div>
+<div class="game-tag">DAILY GAME</div>
+<h2>AETHER MEMORY</h2>
+<p>Can you remember all seven stars?<br>Match the members, remember the faces, and beat all three levels.</p>
+</div>
+<a href="aether-memory.html" class="game-button">PLAY AETHER MEMORY →</a>
+</article>
+
+<article class="game-card active">
+<div>
+<div class="game-icon">❓</div>
+<div class="game-tag">DAILY GAME</div>
+<h2>HALO QUIZ</h2>
+<p>How well do you really know AETHER?<br>Lore, members, music, Guardians and secrets await.</p>
+</div>
+<a href="halo-quiz.html" class="game-button">PLAY HALO QUIZ →</a>
+</article>
+
+<article class="game-card locked">
+<div>
+<div class="game-icon">🎵</div>
+<div class="game-tag">COMING SOON</div>
+<h2>GUESS THE SONG</h2>
+<p>Hear the signal.<br>Recognize the song.<br>Prove that you know AETHER.</p>
+</div>
+<div class="locked-label">✦ GAME IN DEVELOPMENT</div>
+</article>
+
+</section>
+
+<section class="daily-message">
+<strong>ONE HALO • ONE MEMORY • EVERY DAY</strong>
+<span>AETHER ARCADE • A NEW WAY TO CONNECT</span>
+</section>
+
+<footer>ONE LIGHT • SEVEN STARS • ENDLESS LOVE<br><br>#WEAREHALO • #WEAREAETHER</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
+const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+async function startArcade(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error||!data?.session){window.location.replace("halo.html");return}
+ const result=await supabaseClient.rpc("get_aether_coin_balance");
+ if(result.error){console.error(result.error);document.getElementById("coinBalance").textContent="UNAVAILABLE";return}
+ document.getElementById("coinBalance").textContent=Number(result.data||0).toLocaleString();
+}
+startArcade();
+</script>
+</body>
+</html>
