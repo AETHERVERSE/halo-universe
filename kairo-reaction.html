@@ -593,13 +593,9 @@ button {
         1px;
 
     transition:
-
         transform .15s ease,
-
         background .15s ease,
-
         border-color .15s ease,
-
         box-shadow .15s ease;
 }
 
@@ -612,7 +608,6 @@ button:hover:not(:disabled) {
         var(--blue);
 
     box-shadow:
-
         0 0 20px
         rgba(98,191,255,.16);
 }
@@ -994,7 +989,6 @@ footer {
 @media (max-width: 600px) {
 
     .container {
-
         padding:
             12px;
     }
@@ -1184,17 +1178,14 @@ footer {
     </section>
 
 
-    <div
-        id="buttons"
-        class="reaction-buttons"
-    >
+    <div class="reaction-buttons">
 
 
         <button
             data-action="tap"
             disabled
         >
-            ⚡ TAP
+            TAP
         </button>
 
 
@@ -1210,7 +1201,7 @@ footer {
             data-action="double"
             disabled
         >
-            ⚡⚡ DOUBLE TAP
+            DOUBLE TAP
         </button>
 
 
@@ -1218,7 +1209,7 @@ footer {
             data-action="nothing"
             disabled
         >
-            ✋ DON'T TAP
+            DON'T TAP
         </button>
 
 
@@ -1381,10 +1372,10 @@ footer {
     <br>
 
     <a
-        href="universe.html"
+        href="aether-arcade.html"
         class="back"
     >
-        ← BACK TO HALO UNIVERSE
+        ← BACK TO AETHER ARCADE
     </a>
 
 </footer>
@@ -1422,99 +1413,47 @@ const supabaseClient =
 ========================================= */
 
 const scoreElement =
-    document.getElementById(
-        "score"
-    );
+    document.getElementById("score");
 
 const comboElement =
-    document.getElementById(
-        "combo"
-    );
+    document.getElementById("combo");
 
 const timeElement =
-    document.getElementById(
-        "time"
-    );
+    document.getElementById("time");
 
 const promptElement =
-    document.getElementById(
-        "prompt"
-    );
+    document.getElementById("prompt");
 
 const messageElement =
-    document.getElementById(
-        "message"
-    );
+    document.getElementById("message");
 
 const faceElement =
-    document.getElementById(
-        "kairoFace"
-    );
+    document.getElementById("kairoFace");
 
 const startButton =
-    document.getElementById(
-        "startButton"
-    );
-
-const buttons =
-    document.querySelectorAll(
-        "#buttons button"
-    );
-
-const result =
-    document.getElementById(
-        "result"
-    );
-
-const dailyLock =
-    document.getElementById(
-        "dailyLock"
-    );
-
-const countdown =
-    document.getElementById(
-        "countdown"
-    );
+    document.getElementById("startButton");
 
 const errorElement =
-    document.getElementById(
-        "error"
-    );
+    document.getElementById("error");
 
 const loginNote =
-    document.getElementById(
-        "loginNote"
-    );
+    document.getElementById("loginNote");
 
-const finalScore =
-    document.getElementById(
-        "finalScore"
-    );
+const resultElement =
+    document.getElementById("result");
 
-const finalCombo =
-    document.getElementById(
-        "finalCombo"
-    );
+const dailyLockElement =
+    document.getElementById("dailyLock");
 
-const finalPerfect =
-    document.getElementById(
-        "finalPerfect"
-    );
+const countdownElement =
+    document.getElementById("countdown");
 
-const finalCoins =
-    document.getElementById(
-        "finalCoins"
-    );
-
-const balanceElement =
-    document.getElementById(
-        "balance"
-    );
-
-const resultMessage =
-    document.getElementById(
-        "resultMessage"
-    );
+const reactionButtons =
+    [
+        ...document.querySelectorAll(
+            ".reaction-buttons button"
+        )
+    ];
 
 
 /* =========================================
@@ -1531,17 +1470,82 @@ let perfectReactions = 0;
 
 let timeLeft = 60;
 
-let gameRunning = false;
+let timerInterval = null;
 
-let timer = null;
-
-let reactionTimer = null;
+let actionTimer = null;
 
 let currentAction = null;
 
 let actionStartedAt = 0;
 
-let sessionUser = null;
+let gameRunning = false;
+
+let dailyClaimed = false;
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+const actions = [
+
+    {
+        type:
+            "tap",
+
+        prompt:
+            "TAP!",
+
+        message:
+            "KAIRO: NOW!",
+
+        face:
+            "😳"
+    },
+
+    {
+        type:
+            "heart",
+
+        prompt:
+            "💙",
+
+        message:
+            "KAIRO WANTS A HEART!",
+
+        face:
+            "🥺"
+    },
+
+    {
+        type:
+            "double",
+
+        prompt:
+            "DOUBLE TAP!",
+
+        message:
+            "FAST! FAST!",
+
+        face:
+            "😈"
+    },
+
+    {
+        type:
+            "nothing",
+
+        prompt:
+            "DON'T TAP!",
+
+        message:
+            "WAIT... DON'T YOU DARE.",
+
+        face:
+            "👀"
+    }
+
+];
 
 
 /* =========================================
@@ -1568,6 +1572,7 @@ const kairoLines = {
 
     ],
 
+
     tooSlow: [
 
         "Too slow, HALO! 😈",
@@ -1585,6 +1590,7 @@ const kairoLines = {
         "Kairo wins that one. 😎"
 
     ],
+
 
     correct: [
 
@@ -1604,6 +1610,7 @@ const kairoLines = {
 
     ],
 
+
     perfect: [
 
         "WHOA! THAT WAS FAST! ⚡",
@@ -1622,6 +1629,7 @@ const kairoLines = {
 
     ],
 
+
     nothingCorrect: [
 
         "Good choice. 👀",
@@ -1637,6 +1645,7 @@ const kairoLines = {
         "Patience wins. 😎"
 
     ],
+
 
     nothingWrong: [
 
@@ -1654,6 +1663,7 @@ const kairoLines = {
 
     ],
 
+
     comboFive: [
 
         "HALO IS ON FIRE! 🔥",
@@ -1665,6 +1675,7 @@ const kairoLines = {
         "Don't get too confident… 😈"
 
     ],
+
 
     comboTen: [
 
@@ -1679,6 +1690,7 @@ const kairoLines = {
         "Okay Kairo is impressed. 😏"
 
     ],
+
 
     comboHigh: [
 
@@ -1698,38 +1710,27 @@ const kairoLines = {
 
 
 /* =========================================
-   RANDOM KAIRO LINE
+   RANDOM LINE
 ========================================= */
 
-function randomLine(
-    group
-) {
+function randomLine(group) {
 
     const lines =
-        kairoLines[group];
+        kairoLines[group] || [];
 
-    if (
-        !lines ||
-        lines.length === 0
-    ) {
-
-        return "";
-
-    }
-
-    return
+    return (
         lines[
             Math.floor(
                 Math.random() *
                 lines.length
             )
-        ];
-
+        ] || "..."
+    );
 }
 
 
 /* =========================================
-   KAIRO REACTION DISPLAY
+   KAIRO REACTION
 ========================================= */
 
 function showKairoReaction(
@@ -1761,6 +1762,46 @@ function showKairoReaction(
         "reaction"
     );
 
+    setTimeout(() => {
+
+        messageElement.classList.remove(
+            "reaction"
+        );
+
+        faceElement.classList.remove(
+            "reaction"
+        );
+
+    }, 180);
+
+}
+
+
+/* =========================================
+   BERLIN DATE
+========================================= */
+
+function getBerlinDate() {
+
+    return new Intl.DateTimeFormat(
+        "en-CA",
+        {
+            timeZone:
+                "Europe/Berlin",
+
+            year:
+                "numeric",
+
+            month:
+                "2-digit",
+
+            day:
+                "2-digit"
+        }
+    ).format(
+        new Date()
+    );
+
 }
 
 
@@ -1768,9 +1809,7 @@ function showKairoReaction(
    ERROR
 ========================================= */
 
-function showError(
-    message
-) {
+function showError(message) {
 
     errorElement.textContent =
         message;
@@ -1795,14 +1834,113 @@ function clearError() {
 
 
 /* =========================================
-   BUTTON STATE
+   SESSION
 ========================================= */
 
-function setReactionButtons(
+async function getSession() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.getSession();
+
+    if (error)
+        throw error;
+
+    return (
+        data?.session ||
+        null
+    );
+
+}
+
+
+/* =========================================
+   DAILY CLAIM CHECK
+========================================= */
+
+async function checkDailyClaim() {
+
+    const session =
+        await getSession();
+
+    if (!session)
+        return false;
+
+    const today =
+        getBerlinDate();
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+
+            .from(
+                "aether_kairo_reaction_daily"
+            )
+
+            .select(
+                "play_date"
+            )
+
+            .eq(
+                "user_id",
+                session.user.id
+            )
+
+            .eq(
+                "play_date",
+                today
+            )
+
+            .maybeSingle();
+
+
+    if (error) {
+
+        console.error(
+            "DAILY CHECK ERROR:",
+            error
+        );
+
+        return false;
+    }
+
+
+    return !!data;
+
+}
+
+
+/* =========================================
+   STATS
+========================================= */
+
+function updateStats() {
+
+    scoreElement.textContent =
+        score;
+
+    comboElement.textContent =
+        combo;
+
+    timeElement.textContent =
+        timeLeft;
+
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+function setButtonsEnabled(
     enabled
 ) {
 
-    buttons.forEach(
+    reactionButtons.forEach(
         button => {
 
             button.disabled =
@@ -1815,185 +1953,522 @@ function setReactionButtons(
 
 
 /* =========================================
-   SESSION
+   NEXT ACTION
 ========================================= */
 
-async function getSession() {
+function nextAction() {
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .auth
-            .getSession();
+    if (!gameRunning)
+        return;
 
-    if (error) {
-
-        console.error(
-            error
-        );
-
-        return null;
-
-    }
-
-    return
-        data.session ||
-        null;
-
-}
-
-
-/* =========================================
-   BERLIN DATE
-========================================= */
-
-function getBerlinDateString() {
-
-    const formatter =
-        new Intl.DateTimeFormat(
-            "en-CA",
-            {
-                timeZone:
-                    "Europe/Berlin",
-
-                year:
-                    "numeric",
-
-                month:
-                    "2-digit",
-
-                day:
-                    "2-digit"
-            }
-        );
-
-    return formatter.format(
-        new Date()
+    clearTimeout(
+        actionTimer
     );
 
+
+    const randomIndex =
+        Math.floor(
+            Math.random() *
+            actions.length
+        );
+
+
+    currentAction =
+        actions[randomIndex];
+
+
+    promptElement.textContent =
+        currentAction.prompt;
+
+
+    showKairoReaction(
+        currentAction.message,
+        currentAction.face
+    );
+
+
+    actionStartedAt =
+        performance.now();
+
+
+    const delay =
+        650 +
+        Math.floor(
+            Math.random() *
+            1250
+        );
+
+
+    actionTimer =
+        setTimeout(
+            () => {
+
+                if (!gameRunning)
+                    return;
+
+
+                if (
+                    currentAction.type !==
+                    "nothing"
+                ) {
+
+                    combo =
+                        0;
+
+                    updateStats();
+
+                    showKairoReaction(
+                        randomLine(
+                            "tooSlow"
+                        ),
+                        "😈"
+                    );
+
+                }
+
+                else {
+
+                    score +=
+                        2;
+
+                    combo +=
+                        1;
+
+                    bestCombo =
+                        Math.max(
+                            bestCombo,
+                            combo
+                        );
+
+                    updateStats();
+
+                    showKairoReaction(
+                        randomLine(
+                            "nothingCorrect"
+                        ),
+                        "😎"
+                    );
+
+                }
+
+
+                nextAction();
+
+            },
+            delay
+        );
+
 }
 
 
 /* =========================================
-   SERVER DAILY CHECK
+   REACTION
 ========================================= */
 
-async function checkDailyStatus() {
-
-    clearError();
-
-    const session =
-        await getSession();
+function handleReaction(
+    type
+) {
 
     if (
-        !session ||
-        !session.user
+        !gameRunning ||
+        !currentAction
+    )
+        return;
+
+
+    const reactionTime =
+        performance.now() -
+        actionStartedAt;
+
+
+    clearTimeout(
+        actionTimer
+    );
+
+
+    if (
+        type !==
+        currentAction.type
     ) {
 
-        sessionUser =
-            null;
+        combo =
+            0;
 
-        loginNote.classList.add(
-            "visible"
+        updateStats();
+
+
+        showKairoReaction(
+
+            type === "nothing" &&
+            currentAction.type !==
+            "nothing"
+
+                ? randomLine(
+                    "nothingWrong"
+                )
+
+                : randomLine(
+                    "wrong"
+                ),
+
+            "😈"
+
         );
 
-        startButton.disabled =
-            true;
 
-        setReactionButtons(
-            false
-        );
-
-        messageElement.textContent =
-            "Please sign in first.";
-
-        promptElement.textContent =
-            "HALO LOGIN REQUIRED";
+        nextAction();
 
         return;
 
     }
 
 
-    sessionUser =
-        session.user;
+    combo +=
+        1;
 
-    loginNote.classList.remove(
-        "visible"
-    );
 
-    startButton.disabled =
+    bestCombo =
+        Math.max(
+            bestCombo,
+            combo
+        );
+
+
+    let points =
+        2;
+
+
+    let reactionGroup =
+        "correct";
+
+
+    if (
+        reactionTime <=
+        650
+    ) {
+
+        points =
+            5;
+
+        perfectReactions +=
+            1;
+
+        reactionGroup =
+            "perfect";
+
+    }
+
+
+    if (
+        combo >= 5
+    ) {
+
+        points +=
+            3;
+
+        showKairoReaction(
+            randomLine(
+                "comboFive"
+            ),
+            "🔥"
+        );
+
+    }
+
+    else if (
+        combo >= 10
+    ) {
+
+        points +=
+            7;
+
+        showKairoReaction(
+            randomLine(
+                "comboTen"
+            ),
+            "😳"
+        );
+
+    }
+
+    else {
+
+        showKairoReaction(
+
+            randomLine(
+                reactionGroup
+            ),
+
+            reactionGroup ===
+            "perfect"
+
+                ? "⚡"
+
+                : "💙"
+
+        );
+
+    }
+
+
+    if (
+        combo > 10 &&
+        Math.random() < 0.35
+    ) {
+
+        showKairoReaction(
+            randomLine(
+                "comboHigh"
+            ),
+            "😳"
+        );
+
+    }
+
+
+    score +=
+        points;
+
+
+    updateStats();
+
+
+    nextAction();
+
+}
+
+
+/* =========================================
+   FINISH GAME
+========================================= */
+
+async function finishGame() {
+
+    if (!gameRunning)
+        return;
+
+
+    gameRunning =
         false;
 
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from(
-                "aether_kairo_reaction_daily"
-            )
-            .select(
-                "play_date,score,best_combo,perfect_reactions"
-            )
-            .eq(
-                "user_id",
-                session.user.id
-            )
-            .order(
-                "play_date",
-                {
-                    ascending:
-                        false
-                }
-            )
-            .limit(1);
+    clearInterval(
+        timerInterval
+    );
 
 
-    if (error) {
+    clearTimeout(
+        actionTimer
+    );
 
-        console.error(
-            "KAIRO DAILY CHECK:",
+
+    setButtonsEnabled(
+        false
+    );
+
+
+    startButton.disabled =
+        true;
+
+
+    promptElement.textContent =
+        "COMPLETE";
+
+
+    showKairoReaction(
+        "You survived! ...barely. 😏",
+        "😎"
+    );
+
+
+    finalScore.textContent =
+        score;
+
+
+    finalCombo.textContent =
+        bestCombo;
+
+
+    finalPerfect.textContent =
+        perfectReactions;
+
+
+    resultElement.classList.add(
+        "visible"
+    );
+
+
+    try {
+
+        const {
+            data,
             error
-        );
+        } =
+            await supabaseClient.rpc(
 
-        showError(
-            "Kairo konnte deinen Tagesstatus nicht prüfen. Bitte lade die Seite neu."
-        );
+                "claim_kairo_reaction_reward",
 
-        return;
+                {
+                    p_score:
+                        score,
 
-    }
+                    p_best_combo:
+                        bestCombo,
 
+                    p_perfect_reactions:
+                        perfectReactions
+                }
 
-    const berlinDate =
-        getBerlinDateString();
-
-
-    const playedToday =
-        data &&
-        data.length > 0 &&
-        data[0].play_date ===
-            berlinDate;
+            );
 
 
-    if (playedToday) {
+        if (error)
+            throw error;
+
+
+        if (
+            data?.status ===
+            "ALREADY_CLAIMED"
+        ) {
+
+            finalCoins.textContent =
+                "0";
+
+            balance.textContent =
+                "Today's reward has already been claimed.";
+
+            dailyClaimed =
+                true;
+
+            showDailyLock();
+
+            return;
+
+        }
+
+
+        finalCoins.textContent =
+            Number(
+                data?.coins_awarded ||
+                0
+            ).toLocaleString();
+
+
+        balance.textContent =
+            `AETHER Coin Balance: ${
+                Number(
+                    data?.balance ||
+                    0
+                ).toLocaleString()
+            }`;
+
+
+        dailyClaimed =
+            true;
+
 
         showDailyLock();
 
-        return;
 
     }
 
+    catch (error) {
 
-    hideDailyLock();
+        console.error(
+            "REWARD ERROR:",
+            error
+        );
 
-    result.classList.remove(
+
+        showError(
+            "Your game finished, but the AETHER Coin reward could not be confirmed. Please try again later."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DAILY LOCK
+========================================= */
+
+function showDailyLock() {
+
+    dailyLockElement.classList.add(
         "visible"
     );
+
+
+    startButton.disabled =
+        true;
+
+
+    startButton.textContent =
+        "KAIRO IS DONE FOR TODAY";
+
+
+    updateCountdown();
+
+}
+
+
+/* =========================================
+   COUNTDOWN
+========================================= */
+
+function updateCountdown() {
+
+    const now =
+        new Date();
+
+
+    const tomorrow =
+        new Date(now);
+
+
+    tomorrow.setHours(
+        24,
+        0,
+        0,
+        0
+    );
+
+
+    const diff =
+        Math.max(
+            0,
+            tomorrow - now
+        );
+
+
+    const hours =
+        Math.floor(
+            diff / 3600000
+        );
+
+
+    const minutes =
+        Math.floor(
+            (diff % 3600000) /
+            60000
+        );
+
+
+    const seconds =
+        Math.floor(
+            (diff % 60000) /
+            1000
+        );
+
+
+    countdownElement.textContent =
+
+        `${String(hours).padStart(2,"0")}:` +
+
+        `${String(minutes).padStart(2,"0")}:` +
+
+        `${String(seconds).padStart(2,"0")}`;
 
 }
 
@@ -2006,74 +2481,55 @@ async function startGame() {
 
     clearError();
 
+
+    if (dailyClaimed)
+        return;
+
+
     const session =
         await getSession();
 
-    if (
-        !session ||
-        !session.user
-    ) {
+
+    if (!session) {
 
         loginNote.classList.add(
             "visible"
         );
 
-        showError(
-            "Bitte zuerst als HALO anmelden."
-        );
-
         return;
 
     }
 
 
-    sessionUser =
-        session.user;
+    const alreadyPlayed =
+        await checkDailyClaim();
 
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .from(
-                "aether_kairo_reaction_daily"
-            )
-            .select(
-                "play_date"
-            )
-            .eq(
-                "user_id",
-                session.user.id
-            )
-            .eq(
-                "play_date",
-                getBerlinDateString()
-            )
-            .limit(1);
+    if (alreadyPlayed) {
 
-
-    if (error) {
-
-        showError(
-            "Kairo konnte deinen Tagesstatus nicht prüfen."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        data &&
-        data.length > 0
-    ) {
+        dailyClaimed =
+            true;
 
         showDailyLock();
 
         return;
 
     }
+
+
+    loginNote.classList.remove(
+        "visible"
+    );
+
+
+    resultElement.classList.remove(
+        "visible"
+    );
+
+
+    dailyLockElement.classList.remove(
+        "visible"
+    );
 
 
     score =
@@ -2095,59 +2551,44 @@ async function startGame() {
         true;
 
 
-    scoreElement.textContent =
-        "0";
-
-    comboElement.textContent =
-        "0";
-
-    timeElement.textContent =
-        "60";
-
-
-    result.classList.remove(
-        "visible"
-    );
-
-    dailyLock.classList.remove(
-        "visible"
-    );
-
-
     startButton.disabled =
         true;
 
-    setReactionButtons(
+
+    startButton.textContent =
+        "KAIRO IS WATCHING...";
+
+
+    setButtonsEnabled(
         true
     );
 
 
-    messageElement.textContent =
-        "Kairo is watching...";
-
-    promptElement.textContent =
-        "GET READY...";
-
-    faceElement.textContent =
-        "👀";
+    updateStats();
 
 
     nextAction();
 
 
-    timer =
+    timerInterval =
         setInterval(
-            function() {
+            () => {
 
-                timeLeft--;
+                timeLeft -=
+                    1;
 
-                timeElement.textContent =
-                    timeLeft;
+                updateStats();
 
 
                 if (
-                    timeLeft <= 0
+                    timeLeft <=
+                    0
                 ) {
+
+                    timeLeft =
+                        0;
+
+                    updateStats();
 
                     finishGame();
 
@@ -2161,858 +2602,15 @@ async function startGame() {
 
 
 /* =========================================
-   NEXT ACTION
-========================================= */
-
-function nextAction() {
-
-    if (!gameRunning) {
-
-        return;
-
-    }
-
-
-    if (reactionTimer) {
-
-        clearTimeout(
-            reactionTimer
-        );
-
-    }
-
-
-    const randomIndex =
-        Math.floor(
-            Math.random() *
-            actions.length
-        );
-
-
-    currentAction =
-        actions[randomIndex];
-
-
-    promptElement.textContent =
-        currentAction.prompt;
-
-    messageElement.textContent =
-        currentAction.message;
-
-    faceElement.textContent =
-        currentAction.face;
-
-
-    actionStartedAt =
-        performance.now();
-
-
-    const delay =
-        900 +
-        Math.random() *
-        1800;
-
-
-    reactionTimer =
-        setTimeout(
-            function() {
-
-                if (!gameRunning) {
-
-                    return;
-
-                }
-
-
-                if (
-                    currentAction.id !==
-                    "nothing"
-                ) {
-
-                    combo =
-                        0;
-
-                    comboElement.textContent =
-                        combo;
-
-
-                    showKairoReaction(
-                        randomLine(
-                            "tooSlow"
-                        ),
-                        "😈"
-                    );
-
-                }
-
-                else {
-
-                    combo++;
-
-
-                    if (
-                        combo >
-                        bestCombo
-                    ) {
-
-                        bestCombo =
-                            combo;
-
-                    }
-
-
-                    score +=
-                        2;
-
-                    scoreElement.textContent =
-                        score;
-
-                    comboElement.textContent =
-                        combo;
-
-
-                    if (
-                        combo >= 10
-                    ) {
-
-                        showKairoReaction(
-                            randomLine(
-                                "comboTen"
-                            ),
-                            "🤯"
-                        );
-
-                    }
-
-                    else if (
-                        combo >= 5
-                    ) {
-
-                        showKairoReaction(
-                            randomLine(
-                                "comboFive"
-                            ),
-                            "🔥"
-                        );
-
-                    }
-
-                    else {
-
-                        showKairoReaction(
-                            randomLine(
-                                "nothingCorrect"
-                            ),
-                            "😏"
-                        );
-
-                    }
-
-                }
-
-
-                nextAction();
-
-            },
-            delay
-        );
-
-}
-
-
-/* =========================================
-   ACTIONS
-========================================= */
-
-const actions = [
-
-    {
-        id:
-            "tap",
-
-        prompt:
-            "TAP!",
-
-        message:
-            "KAIRO: NOW!",
-
-        face:
-            "😳"
-    },
-
-    {
-        id:
-            "heart",
-
-        prompt:
-            "💙",
-
-        message:
-            "KAIRO WANTS A HEART!",
-
-        face:
-            "🥺"
-    },
-
-    {
-        id:
-            "double",
-
-        prompt:
-            "DOUBLE TAP!",
-
-        message:
-            "FAST! FAST!",
-
-        face:
-            "😈"
-    },
-
-    {
-        id:
-            "nothing",
-
-        prompt:
-            "DON'T TAP!",
-
-        message:
-            "WAIT... DON'T YOU DARE.",
-
-        face:
-            "👀"
-    }
-
-];
-
-
-/* =========================================
-   REACTION
-========================================= */
-
-function handleReaction(
-    selectedAction
-) {
-
-    if (
-        !gameRunning ||
-        !currentAction
-    ) {
-
-        return;
-
-    }
-
-
-    const reactionTime =
-        performance.now() -
-        actionStartedAt;
-
-
-    if (
-        reactionTime >
-        3000
-    ) {
-
-        return;
-
-    }
-
-
-    const correct =
-        selectedAction ===
-        currentAction.id;
-
-
-    if (correct) {
-
-        combo++;
-
-
-        if (
-            combo >
-            bestCombo
-        ) {
-
-            bestCombo =
-                combo;
-
-        }
-
-
-        let points =
-            2;
-
-
-        if (
-            reactionTime <=
-            650
-        ) {
-
-            points =
-                5;
-
-            perfectReactions++;
-
-        }
-
-
-        if (
-            combo >=
-            5
-        ) {
-
-            points +=
-                3;
-
-        }
-
-
-        if (
-            combo >=
-            10
-        ) {
-
-            points +=
-                7;
-
-        }
-
-
-        score +=
-            points;
-
-
-        scoreElement.textContent =
-            score;
-
-        comboElement.textContent =
-            combo;
-
-
-        if (
-            combo >=
-            15
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "comboHigh"
-                ),
-                "😳"
-            );
-
-        }
-
-        else if (
-            combo >=
-            10
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "comboTen"
-                ),
-                "🤯"
-            );
-
-        }
-
-        else if (
-            combo >=
-            5
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "comboFive"
-                ),
-                "🔥"
-            );
-
-        }
-
-        else if (
-            reactionTime <=
-            650
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "perfect"
-                ),
-                "🤩"
-            );
-
-        }
-
-        else if (
-            currentAction.id ===
-            "nothing"
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "nothingCorrect"
-                ),
-                "😏"
-            );
-
-        }
-
-        else {
-
-            showKairoReaction(
-                randomLine(
-                    "correct"
-                ),
-                "😎"
-            );
-
-        }
-
-    }
-
-    else {
-
-        combo =
-            0;
-
-        comboElement.textContent =
-            combo;
-
-
-        if (
-            currentAction.id ===
-            "nothing"
-        ) {
-
-            showKairoReaction(
-                randomLine(
-                    "nothingWrong"
-                ),
-                "😂"
-            );
-
-        }
-
-        else {
-
-            showKairoReaction(
-                randomLine(
-                    "wrong"
-                ),
-                "😈"
-            );
-
-        }
-
-    }
-
-
-    nextAction();
-
-}
-
-
-/* =========================================
-   FINISH GAME
-========================================= */
-
-async function finishGame() {
-
-    if (!gameRunning) {
-
-        return;
-
-    }
-
-
-    gameRunning =
-        false;
-
-
-    if (timer) {
-
-        clearInterval(
-            timer
-        );
-
-        timer =
-            null;
-
-    }
-
-
-    if (reactionTimer) {
-
-        clearTimeout(
-            reactionTimer
-        );
-
-        reactionTimer =
-            null;
-
-    }
-
-
-    setReactionButtons(
-        false
-    );
-
-
-    promptElement.textContent =
-        "TIME'S UP!";
-
-
-    showKairoReaction(
-        "You survived! ...barely. 😏",
-        "😈"
-    );
-
-
-    finalScore.textContent =
-        score;
-
-    finalCombo.textContent =
-        bestCombo;
-
-    finalPerfect.textContent =
-        perfectReactions;
-
-
-    startButton.disabled =
-        true;
-
-
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-            .rpc(
-                "claim_kairo_reaction_reward",
-                {
-
-                    p_score:
-                        score,
-
-                    p_best_combo:
-                        bestCombo,
-
-                    p_perfect_reactions:
-                        perfectReactions
-
-                }
-            );
-
-
-    if (error) {
-
-        console.error(
-            "KAIRO CLAIM ERROR:",
-            error
-        );
-
-        showError(
-            "Die Runde wurde beendet, aber die Coin-Auszahlung konnte nicht bestätigt werden. Bitte nicht erneut spielen — der Server schützt deinen Daily-Claim."
-        );
-
-        finalCoins.textContent =
-            "—";
-
-        resultMessage.textContent =
-            "Kairo ist fertig. Die Coin-Auszahlung konnte gerade nicht bestätigt werden.";
-
-        result.classList.add(
-            "visible"
-        );
-
-        return;
-
-    }
-
-
-    const claim =
-        Array.isArray(data)
-            ? data[0]
-            : data;
-
-
-    if (!claim) {
-
-        showError(
-            "Keine gültige Antwort von Supabase erhalten."
-        );
-
-        finalCoins.textContent =
-            "—";
-
-        result.classList.add(
-            "visible"
-        );
-
-        return;
-
-    }
-
-
-    if (
-        claim.status ===
-        "ALREADY_CLAIMED"
-    ) {
-
-        finalCoins.textContent =
-            "0";
-
-        resultMessage.textContent =
-            "Kairo wurde für heute bereits gespielt.";
-
-        result.classList.add(
-            "visible"
-        );
-
-        showDailyLock();
-
-        return;
-
-    }
-
-
-    const awarded =
-        Number(
-            claim.coins_awarded ||
-            0
-        );
-
-
-    finalCoins.textContent =
-        awarded;
-
-
-    if (
-        claim.balance !==
-        undefined &&
-        claim.balance !==
-        null
-    ) {
-
-        balanceElement.textContent =
-            "Your AETHER Coin Balance: " +
-            claim.balance;
-
-    }
-
-    else {
-
-        balanceElement.textContent =
-            "";
-
-    }
-
-
-    if (
-        awarded >
-        0
-    ) {
-
-        resultMessage.textContent =
-            "Kairo approves. Your AETHER Coins have been added. ⚡💙";
-
-    }
-
-    else {
-
-        resultMessage.textContent =
-            "Round complete. No Coins were earned this time.";
-
-    }
-
-
-    result.classList.add(
-        "visible"
-    );
-
-
-    showDailyLock();
-
-}
-
-
-/* =========================================
-   DAILY LOCK
-========================================= */
-
-function showDailyLock() {
-
-    dailyLock.classList.add(
-        "visible"
-    );
-
-    startButton.disabled =
-        true;
-
-    setReactionButtons(
-        false
-    );
-
-    updateCountdown();
-
-}
-
-
-function hideDailyLock() {
-
-    dailyLock.classList.remove(
-        "visible"
-    );
-
-}
-
-
-/* =========================================
-   COUNTDOWN
-========================================= */
-
-function updateCountdown() {
-
-    const now =
-        new Date();
-
-
-    const tomorrow =
-        new Date(
-            now
-        );
-
-
-    tomorrow.setDate(
-        tomorrow.getDate() +
-        1
-    );
-
-    tomorrow.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-
-    const difference =
-        tomorrow.getTime() -
-        now.getTime();
-
-
-    if (
-        difference <=
-        0
-    ) {
-
-        countdown.textContent =
-            "KAIRO IS READY AGAIN!";
-
-        checkDailyStatus();
-
-        return;
-
-    }
-
-
-    const hours =
-        Math.floor(
-            difference /
-            (
-                1000 *
-                60 *
-                60
-            )
-        );
-
-
-    const minutes =
-        Math.floor(
-            (
-                difference %
-                (
-                    1000 *
-                    60 *
-                    60
-                )
-            ) /
-            (
-                1000 *
-                60
-            )
-        );
-
-
-    const seconds =
-        Math.floor(
-            (
-                difference %
-                (
-                    1000 *
-                    60
-                )
-            ) /
-            1000
-        );
-
-
-    countdown.textContent =
-
-        String(
-            hours
-        ).padStart(
-            2,
-            "0"
-        )
-
-        +
-
-        ":"
-
-        +
-
-        String(
-            minutes
-        ).padStart(
-            2,
-            "0"
-        )
-
-        +
-
-        ":"
-
-        +
-
-        String(
-            seconds
-        ).padStart(
-            2,
-            "0"
-        );
-
-}
-
-
-setInterval(
-    updateCountdown,
-    1000
-);
-
-
-/* =========================================
    BUTTON EVENTS
 ========================================= */
 
-buttons.forEach(
+reactionButtons.forEach(
     button => {
 
         button.addEventListener(
             "click",
-            function() {
+            () => {
 
                 handleReaction(
                     button.dataset.action
@@ -3032,78 +2630,76 @@ startButton.addEventListener(
 
 
 /* =========================================
-   AUTH CHANGES
-========================================= */
-
-supabaseClient
-    .auth
-    .onAuthStateChange(
-        function(
-            event,
-            session
-        ) {
-
-            sessionUser =
-                session
-                    ? session.user
-                    : null;
-
-
-            if (
-                event ===
-                "SIGNED_OUT"
-            ) {
-
-                gameRunning =
-                    false;
-
-                setReactionButtons(
-                    false
-                );
-
-                startButton.disabled =
-                    true;
-
-                loginNote.classList.add(
-                    "visible"
-                );
-
-                messageElement.textContent =
-                    "Please sign in first.";
-
-                promptElement.textContent =
-                    "HALO LOGIN REQUIRED";
-
-                hideDailyLock();
-
-            }
-
-
-            if (
-                event ===
-                "SIGNED_IN"
-            ) {
-
-                loginNote.classList.remove(
-                    "visible"
-                );
-
-                checkDailyStatus();
-
-            }
-
-        }
-    );
-
-
-/* =========================================
    INITIALIZE
 ========================================= */
 
-checkDailyStatus();
+async function initialize() {
+
+    try {
+
+        const session =
+            await getSession();
+
+
+        if (!session) {
+
+            loginNote.classList.add(
+                "visible"
+            );
+
+            startButton.disabled =
+                true;
+
+            return;
+
+        }
+
+
+        const alreadyPlayed =
+            await checkDailyClaim();
+
+
+        if (alreadyPlayed) {
+
+            dailyClaimed =
+                true;
+
+            showDailyLock();
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "INITIALIZATION ERROR:",
+            error
+        );
+
+        showError(
+            "Kairo could not connect to the HALO system. Please refresh the page."
+        );
+
+    }
+
+}
+
+
+setInterval(
+    () => {
+
+        if (dailyClaimed)
+            updateCountdown();
+
+    },
+    1000
+);
+
+
+initialize();
 
 </script>
-
 
 </body>
 
