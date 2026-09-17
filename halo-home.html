@@ -85,7 +85,8 @@ nav button:hover {
 .daily,
 .rank-box,
 .card,
-.halo-daily-card {
+.halo-daily-card,
+.guardian-card {
     border: 1px solid rgba(190, 120, 255, 0.25);
     border-radius: 22px;
     background: rgba(30, 13, 49, 0.75);
@@ -325,6 +326,107 @@ nav button:hover {
     color: #f0b8cf;
 }
 
+
+/* =========================
+   MY GUARDIAN
+========================= */
+
+.guardian-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 35px 25px;
+    margin: 35px 0 45px;
+
+    border-color: rgba(205, 185, 255, 0.35);
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(155, 90, 255, 0.20),
+            transparent 60%
+        ),
+        rgba(30, 13, 49, 0.82);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.22);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.guardian-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(225, 195, 255, 0.7);
+
+    box-shadow:
+        0 18px 45px rgba(120, 70, 180, 0.25);
+}
+
+.guardian-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(205, 185, 255, 0.08);
+    filter: blur(25px);
+    pointer-events: none;
+}
+
+.guardian-card-icon {
+    position: relative;
+    font-size: 52px;
+    margin-bottom: 12px;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(210, 170, 255, 0.5)
+        );
+}
+
+.guardian-card h2 {
+    position: relative;
+    margin: 8px 0 12px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.guardian-card p {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+
+    color: #d5cbea;
+
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.guardian-card-button {
+    position: relative;
+    display: inline-block;
+
+    margin-top: 22px;
+
+    color: #e8dcff;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+
 .section-title {
     text-align: center;
     margin: 50px 0 22px;
@@ -525,6 +627,33 @@ id="haloDailyStatus">
 </div>
 
 </section>
+
+
+<!-- =========================
+     MY GUARDIAN
+========================= -->
+
+<a
+class="guardian-card"
+href="guardian-tamagotchi.html">
+
+<div class="guardian-card-icon">
+🦊
+</div>
+
+<h2>
+MY GUARDIAN
+</h2>
+
+<p>
+Your personal Guardian is waiting for you.
+</p>
+
+<div class="guardian-card-button">
+OPEN MY GUARDIAN →
+</div>
+
+</a>
 
 
 <section
