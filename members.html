@@ -95,11 +95,106 @@ nav a:hover {
     color: #d8cde0;
 }
 
+
+/* =========================
+   SEVEN VIRTUES
+========================= */
+
+.virtues-section {
+    margin-top: 55px;
+    text-align: center;
+}
+
+.virtues-intro {
+    max-width: 760px;
+    margin: 0 auto 30px;
+}
+
+.virtues-intro h2 {
+    color: #f2d58e;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.virtues-intro .eyebrow {
+    color: #9f8fb0;
+    letter-spacing: 4px;
+    font-size: 0.75rem;
+    margin-bottom: 15px;
+}
+
+.virtues-intro p {
+    color: #d8cde0;
+    line-height: 1.8;
+}
+
+.virtues {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.virtue {
+    padding: 28px 20px;
+    border: 1px solid #655b78;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
+        );
+
+    transition:
+        transform 0.25s,
+        background 0.25s,
+        border-color 0.25s;
+}
+
+.virtue:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.075);
+    border-color: #a18bb7;
+}
+
+.virtue-symbol {
+    font-size: 2.2rem;
+    color: #f2d58e;
+    margin-bottom: 10px;
+}
+
+.virtue h3 {
+    margin: 8px 0 6px;
+    color: #f2d58e;
+    letter-spacing: 3px;
+    font-size: 1.25rem;
+}
+
+.virtue-member {
+    color: #bfaed0;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.virtue p {
+    color: #d8cde0;
+    line-height: 1.6;
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+
+/* =========================
+   MEMBERS
+========================= */
+
 .members {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin-top: 35px;
+    margin-top: 55px;
 }
 
 .member {
@@ -110,7 +205,9 @@ nav a:hover {
     background: rgba(255,255,255,0.035);
     text-align: center;
 
-    transition: transform 0.25s, background 0.25s;
+    transition:
+        transform 0.25s,
+        background 0.25s;
 }
 
 .member:hover {
@@ -147,6 +244,16 @@ nav a:hover {
     line-height: 1.6;
     font-size: 0.95rem;
 }
+
+.member a {
+    display: inline-block;
+    margin-top: 8px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
     text-align: center;
@@ -216,6 +323,10 @@ footer {
         Achievements
     </a>
 
+    <a href="search.html">
+        🔎 SEARCH
+    </a>
+
 </nav>
 
 
@@ -237,6 +348,211 @@ footer {
 
 </section>
 
+
+<!-- =========================
+     THE SEVEN VIRTUES
+========================= -->
+
+<section class="virtues-section">
+
+    <div class="virtues-intro">
+
+        <div class="eyebrow">
+            THE SEVEN SIGNALS
+        </div>
+
+        <h2>
+            The Seven Virtues
+        </h2>
+
+        <p>
+            Each star carries a virtue at the heart of their journey.
+            Together, these seven virtues form another part of the
+            connection between AETHER and HALO.
+        </p>
+
+    </div>
+
+
+    <div class="virtues">
+
+
+        <!-- SOLEN -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                ☀
+            </div>
+
+            <h3>
+                HOPE
+            </h3>
+
+            <div class="virtue-member">
+                SOLEN
+            </div>
+
+            <p>
+                The light that remains when the path becomes difficult.
+                Hope reminds AETHER that there is always another dawn.
+            </p>
+
+        </div>
+
+
+        <!-- VEX -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                🛡
+            </div>
+
+            <h3>
+                COURAGE
+            </h3>
+
+            <div class="virtue-member">
+                VEX
+            </div>
+
+            <p>
+                The strength to face what lies ahead,
+                even when the truth is difficult to confront.
+            </p>
+
+        </div>
+
+
+        <!-- KAIRO -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                ⚡
+            </div>
+
+            <h3>
+                DETERMINATION
+            </h3>
+
+            <div class="virtue-member">
+                KAIRO
+            </div>
+
+            <p>
+                The force that keeps moving forward.
+                Determination turns obstacles into another reason to continue.
+            </p>
+
+        </div>
+
+
+        <!-- RIVEN -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                🌊
+            </div>
+
+            <h3>
+                COMPASSION
+            </h3>
+
+            <div class="virtue-member">
+                RIVEN
+            </div>
+
+            <p>
+                The ability to understand another heart.
+                Compassion connects people even when words are not enough.
+            </p>
+
+        </div>
+
+
+        <!-- ZENITH -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                🔥
+            </div>
+
+            <h3>
+                PASSION
+            </h3>
+
+            <div class="virtue-member">
+                ZENITH
+            </div>
+
+            <p>
+                The fire that gives meaning to every step.
+                Passion turns feeling into energy and action.
+            </p>
+
+        </div>
+
+
+        <!-- LUX -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                ✨
+            </div>
+
+            <h3>
+                GUIDANCE
+            </h3>
+
+            <div class="virtue-member">
+                LUX
+            </div>
+
+            <p>
+                The light that helps others find their way.
+                Guidance means being there when someone needs direction.
+            </p>
+
+        </div>
+
+
+        <!-- NERO -->
+
+        <div class="virtue">
+
+            <div class="virtue-symbol">
+                🌙
+            </div>
+
+            <h3>
+                WISDOM
+            </h3>
+
+            <div class="virtue-member">
+                NERO
+            </div>
+
+            <p>
+                The ability to observe, understand and recognize
+                what others may overlook.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MEMBERS
+========================= -->
 
 <section class="members">
 
