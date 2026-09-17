@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HALO QUIZ | HALO LEADERBOARD</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#070b18;--panel:rgba(10,15,35,.88);--gold:#f3d58d;
+  --gold-soft:#d9bd78;--purple:#b28ac9;--purple-soft:#c9b8d8;
+  --blue:#62bfff;--blue-bright:#9bddff;--text:#f5e9d0;--muted:#a99ab8;
+}
+body{
+ margin:0;min-height:100vh;color:var(--text);
+ font-family:Georgia,"Times New Roman",serif;
+ background:
+ radial-gradient(circle at 15% 10%,#29385c 0%,transparent 28%),
+ radial-gradient(circle at 85% 20%,#40264d 0%,transparent 25%),
+ radial-gradient(circle at 50% 100%,#172d4d 0%,transparent 35%),var(--bg);
+}
+.container{width:min(100%,900px);margin:auto;padding:22px 18px 70px}
+header{text-align:center;padding:25px 10px 30px}
+.logo{letter-spacing:7px;font-size:.8rem;color:var(--gold-soft)}
+.back{
+ display:inline-block;margin-top:18px;padding:9px 18px;border:1px solid #514c70;
+ border-radius:25px;color:var(--purple-soft);text-decoration:none;font-size:.75rem;
+ letter-spacing:1.5px
+}
+.back:hover{border-color:var(--blue);color:var(--blue-bright)}
+.hero{text-align:center;margin-bottom:30px}
+.hero-icon{font-size:4rem}
+.hero-label{margin-top:8px;color:var(--purple-soft);font-size:.72rem;letter-spacing:5px}
+h1{margin:10px 0;color:var(--gold);font-size:clamp(2rem,7vw,3.7rem);letter-spacing:6px}
+.subtitle{color:var(--blue-bright);letter-spacing:3px;font-size:.8rem}
+.description{max-width:620px;margin:18px auto;color:var(--muted);line-height:1.7}
+.tabs{display:flex;gap:10px;justify-content:center;margin:28px 0}
+.tab{
+ flex:1;max-width:220px;padding:13px;border-radius:18px;border:1px solid #514c70;
+ background:rgba(255,255,255,.035);color:var(--purple-soft);font-family:inherit;
+ letter-spacing:2px;cursor:pointer
+}
+.tab.active{border-color:var(--gold-soft);color:var(--gold);background:rgba(243,213,141,.07)}
+.panel{
+ border:1px solid #514c70;border-radius:26px;background:var(--panel);
+ box-shadow:0 0 60px rgba(80,100,180,.12);overflow:hidden
+}
+.panel-head{padding:22px;text-align:center;border-bottom:1px solid #39345e}
+.panel-head strong{display:block;color:var(--gold);letter-spacing:3px}
+.panel-head span{display:block;margin-top:8px;color:var(--muted);font-size:.75rem;letter-spacing:1px}
+.loading,.empty,.error{padding:45px 20px;text-align:center;color:var(--muted)}
+.error{color:#ff9aae}
+.rows{padding:10px 14px 16px}
+.row{
+ display:grid;grid-template-columns:65px 1fr 100px 90px;align-items:center;
+ gap:10px;padding:15px 10px;border-bottom:1px solid rgba(255,255,255,.055)
+}
+.row:last-child{border-bottom:0}
+.rank{text-align:center;font-size:1.2rem;color:var(--muted)}
+.rank.top{font-size:1.45rem}
+.halo{min-width:0}
+.halo-name{color:var(--text);font-size:1rem;letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.halo-meta{margin-top:5px;color:#817993;font-size:.65rem;letter-spacing:1px}
+.score{text-align:right;color:var(--gold);font-size:1.15rem;font-weight:bold}
+.combo{text-align:right;color:var(--blue-bright);font-size:.78rem}
+.row.me{margin:0 -3px;border:1px solid rgba(98,191,255,.4);border-radius:16px;background:rgba(98,191,255,.055)}
+.my-card{
+ margin-top:22px;padding:20px;border:1px solid rgba(98,191,255,.3);
+ border-radius:22px;background:rgba(98,191,255,.045);text-align:center
+}
+.my-label{color:var(--purple-soft);font-size:.7rem;letter-spacing:3px}
+.my-rank{margin-top:8px;color:var(--blue-bright);font-size:1.8rem}
+.my-score{margin-top:5px;color:var(--gold);font-size:1.15rem}
+.refresh{
+ display:block;margin:22px auto 0;padding:11px 20px;border-radius:24px;
+ border:1px solid #65577a;background:rgba(255,255,255,.035);
+ color:var(--purple-soft);font-family:inherit;cursor:pointer;letter-spacing:1px
+}
+.refresh:hover{border-color:var(--blue);color:var(--blue-bright)}
+footer{text-align:center;margin-top:55px;color:#625d86;font-size:.68rem;letter-spacing:2px;line-height:2}
+@media(max-width:600px){
+ .container{padding:12px 12px 55px}
+ .row{grid-template-columns:48px 1fr 75px}
+ .combo{display:none}
+ .rows{padding:8px}
+ .row{padding:14px 6px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div class="logo">AETHERVERSE</div>
+  <a href="aether-arcade.html" class="back">← BACK TO AETHER ARCADE</a>
+</header>
+
+<section class="hero">
+  <div class="hero-icon">❓</div>
+  <div class="hero-label">HALO QUIZ</div>
+  <h1>HALO LEADERBOARD</h1>
+  <div class="subtitle">ONE HALO • ONE ANSWER • EVERY DAY</div>
+  <p class="description">
+    How well does HALO know AETHER? Compare your HALO Quiz score with the
+    AETHERVERSE community and chase your personal record.
+  </p>
+</section>
+
+<div class="tabs">
+  <button class="tab active" id="allTimeTab">🌌 ALL TIME</button>
+  <button class="tab" id="todayTab">📅 TODAY</button>
+</div>
+
+<section class="panel">
+  <div class="panel-head">
+    <strong id="modeTitle">ALL-TIME HIGH SCORES</strong>
+    <span id="modeSubtitle">The highest HALO Quiz score recorded by each HALO.</span>
+  </div>
+  <div id="content" class="loading">LOADING HALO SCORES...</div>
+</section>
+
+<button id="refreshButton" class="refresh">↻ REFRESH LEADERBOARD</button>
+<div id="myCard" class="my-card" style="display:none"></div>
+
+<footer>
+  ONE LIGHT • SEVEN STARS • ENDLESS LOVE
+  <br><br>
+  #WEAREHALO • #WEAREAETHER
+  <br>
+  <a href="aether-arcade.html" class="back">← BACK TO AETHER ARCADE</a>
+</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
+const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+let mode="all_time";
+
+const content=document.getElementById("content");
+const myCard=document.getElementById("myCard");
+const modeTitle=document.getElementById("modeTitle");
+const modeSubtitle=document.getElementById("modeSubtitle");
+
+function escapeHtml(value){
+ return String(value ?? "")
+  .replaceAll("&","&amp;").replaceAll("<","&lt;")
+  .replaceAll(">","&gt;").replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+}
+
+function medal(rank){
+ if(rank===1)return "🥇";
+ if(rank===2)return "🥈";
+ if(rank===3)return "🥉";
+ return rank;
+}
+
+async function requireSession(){
+ const {data,error}=await supabaseClient.auth.getSession();
+ if(error || !data.session){
+   window.location.replace("halo.html");
+   return false;
+ }
+ return true;
+}
+
+async function loadLeaderboard(){
+ content.className="loading";
+ content.textContent="LOADING HALO SCORES...";
+ myCard.style.display="none";
+
+ modeTitle.textContent=mode==="today"?"TODAY'S HIGH SCORES":"ALL-TIME HIGH SCORES";
+ modeSubtitle.textContent=mode==="today"
+  ?"Scores from HALO's current Berlin calendar day."
+  :"The highest HALO Quiz score recorded by each HALO.";
+
+ const {data,error}=await supabaseClient.rpc("get_halo_quiz_leaderboard",{p_mode:mode});
+
+ if(error){
+   console.error(error);
+   content.className="error";
+   content.textContent="THE LEADERBOARD COULD NOT BE LOADED. PLEASE TRY AGAIN.";
+   return;
+ }
+
+ const entries=data?.entries || [];
+
+ if(!entries.length){
+   content.className="empty";
+   content.innerHTML="NO SCORES YET.<br><br>BE THE FIRST HALO TO TAKE THE TOP SPOT! ❓";
+ }else{
+   content.className="rows";
+   content.innerHTML=entries.map(entry=>{
+     const mine=data.me && Number(data.me.rank)===Number(entry.rank);
+     return `
+       <div class="row ${mine?"me":""}">
+         <div class="rank ${entry.rank<=3?"top":""}">${medal(Number(entry.rank))}</div>
+         <div class="halo">
+           <div class="halo-name">${escapeHtml(entry.halo_id)}</div>
+           <div class="halo-meta">CORRECT ${Number(entry.correct_count)||0}</div>
+         </div>
+         <div class="score">${Number(entry.score)||0}</div>
+         <div class="combo">POINTS</div>
+       </div>`;
+   }).join("");
+ }
+
+ if(data?.me){
+   myCard.style.display="block";
+   myCard.innerHTML=`
+     <div class="my-label">YOUR ${mode==="today"?"TODAY'S":"ALL-TIME"} RESULT</div>
+     <div class="my-rank">#${Number(data.me.rank)}</div>
+     <div class="my-score">${Number(data.me.score)||0} POINTS</div>`;
+ }else{
+   myCard.style.display="block";
+   myCard.innerHTML=`
+     <div class="my-label">YOUR ${mode==="today"?"TODAY'S":"ALL-TIME"} RESULT</div>
+     <div class="my-rank">—</div>
+     <div class="my-score">PLAY HALO QUIZ TO ENTER</div>`;
+ }
+}
+
+document.getElementById("allTimeTab").addEventListener("click",()=>{
+ mode="all_time";
+ document.getElementById("allTimeTab").classList.add("active");
+ document.getElementById("todayTab").classList.remove("active");
+ loadLeaderboard();
+});
+
+document.getElementById("todayTab").addEventListener("click",()=>{
+ mode="today";
+ document.getElementById("todayTab").classList.add("active");
+ document.getElementById("allTimeTab").classList.remove("active");
+ loadLeaderboard();
+});
+
+document.getElementById("refreshButton").addEventListener("click",loadLeaderboard);
+
+(async()=>{
+ if(await requireSession()) await loadLeaderboard();
+})();
+</script>
+</body>
+</html>
