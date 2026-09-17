@@ -69,6 +69,10 @@ nav a {
     padding: 8px 14px;
 
     font-size: 13px;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 nav a:hover {
@@ -108,7 +112,14 @@ nav a:hover {
 
 .hero p {
     color: #cbb9e8;
+
+    line-height: 1.7;
 }
+
+
+/* =========================
+   PANELS
+========================= */
 
 .panel {
     border:
@@ -150,13 +161,13 @@ nav a:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
+        minmax(180px, 300px);
+
+    justify-content: center;
 
     gap: 14px;
 
-    max-width: 420px;
-
-    margin: 25px auto 0;
+    margin-top: 25px;
 }
 
 .guardian-choice {
@@ -315,34 +326,34 @@ nav a:hover {
 .guardian-stage {
     position: relative;
 
-    width: min(420px, 100%);
+    width: min(520px, 100%);
 
-    height: 310px;
+    height: 410px;
 
     margin: 0 auto 10px;
 
     overflow: hidden;
 
-    border-radius: 28px;
+    border-radius: 30px;
 
     background:
         radial-gradient(
-            circle at 50% 40%,
-            rgba(105, 70, 170, 0.28),
+            circle at 50% 45%,
+            rgba(115, 75, 180, 0.28),
             transparent 42%
         ),
         radial-gradient(
             circle at 50% 100%,
-            rgba(50, 30, 90, 0.35),
-            transparent 65%
+            rgba(55, 30, 95, 0.4),
+            transparent 68%
         );
 
     border:
         1px solid rgba(190, 120, 255, 0.18);
 
     box-shadow:
-        inset 0 0 50px rgba(0, 0, 0, 0.22),
-        0 0 45px rgba(100, 60, 170, 0.08);
+        inset 0 0 70px rgba(0, 0, 0, 0.28),
+        0 0 55px rgba(100, 60, 170, 0.1);
 }
 
 
@@ -355,132 +366,56 @@ nav a:hover {
 
     color: #e7dcff;
 
-    font-size: 10px;
+    font-size: 11px;
 
     opacity: 0.55;
+
+    pointer-events: none;
 
     animation:
         starFloat 4s ease-in-out infinite;
 }
 
 .star.one {
-    top: 35px;
-    left: 18%;
+    top: 40px;
+    left: 17%;
     animation-delay: 0s;
 }
 
 .star.two {
-    top: 80px;
-    right: 18%;
+    top: 85px;
+    right: 17%;
     animation-delay: 1.2s;
 }
 
 .star.three {
-    top: 145px;
-    left: 10%;
+    top: 175px;
+    left: 9%;
     animation-delay: 2s;
 }
 
 .star.four {
-    top: 170px;
-    right: 12%;
+    top: 210px;
+    right: 10%;
     animation-delay: 0.7s;
 }
 
 .star.five {
-    top: 45px;
-    left: 70%;
+    top: 55px;
+    left: 73%;
     animation-delay: 2.8s;
 }
 
-
-/* =========================
-   NOCTIS
-========================= */
-
-.noctis-orbit {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width: 190px;
-    height: 190px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(160, 120, 220, 0.13),
-            transparent 65%
-        );
-
-    animation:
-        orbitPulse 4s ease-in-out infinite;
+.star.six {
+    bottom: 55px;
+    left: 25%;
+    animation-delay: 1.6s;
 }
 
-.guardian-display {
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
-    width: 145px;
-    height: 145px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 105px;
-
-    line-height: 1;
-
-    background: transparent;
-
-    border: none;
-
-    filter:
-        drop-shadow(
-            0 0 12px rgba(205, 175, 255, 0.55)
-        )
-        drop-shadow(
-            0 0 35px rgba(120, 75, 190, 0.3)
-        );
-
-    animation:
-        noctisFloat 3.5s ease-in-out infinite;
-
-    user-select: none;
-}
-
-
-/* gentle wing/body movement */
-
-.guardian-display::after {
-    content: "✦";
-
-    position: absolute;
-
-    top: 3px;
-    right: 2px;
-
-    font-size: 18px;
-
-    color: #e8dcff;
-
-    opacity: 0;
-
-    animation:
-        noctisSpark 3.5s ease-in-out infinite;
+.star.seven {
+    bottom: 75px;
+    right: 25%;
+    animation-delay: 3.1s;
 }
 
 
@@ -492,10 +427,10 @@ nav a:hover {
     position: absolute;
 
     left: 50%;
-    top: 50%;
+    top: 52%;
 
-    width: 120px;
-    height: 120px;
+    width: 230px;
+    height: 230px;
 
     transform:
         translate(-50%, -50%);
@@ -503,14 +438,171 @@ nav a:hover {
     border-radius: 50%;
 
     background:
-        rgba(145, 100, 210, 0.16);
+        radial-gradient(
+            circle,
+            rgba(150, 105, 235, 0.28),
+            rgba(100, 60, 180, 0.12) 45%,
+            transparent 72%
+        );
 
     filter: blur(25px);
 
     animation:
-        guardianGlow 3.5s ease-in-out infinite;
+        guardianGlow 4s ease-in-out infinite;
 
     pointer-events: none;
+}
+
+
+/* =========================
+   NOCTIS ORBIT
+========================= */
+
+.noctis-orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 52%;
+
+    width: 270px;
+    height: 270px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border:
+        1px solid rgba(185, 145, 255, 0.18);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 30px rgba(130, 85, 220, 0.08);
+
+    animation:
+        orbitPulse 5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.noctis-orbit::before {
+    content: "✦";
+
+    position: absolute;
+
+    top: 8px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    color: #d9c7ff;
+
+    font-size: 14px;
+
+    text-shadow:
+        0 0 12px rgba(220, 190, 255, 0.8);
+
+    animation:
+        orbitStar 5s linear infinite;
+}
+
+
+/* =========================
+   REAL NOCTIS ARTWORK
+========================= */
+
+.guardian-display {
+    position: absolute;
+
+    left: 50%;
+    top: 51%;
+
+    width: 330px;
+    height: 330px;
+
+    transform:
+        translate(-50%, -50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 5;
+
+    animation:
+        noctisFloat 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.guardian-display img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(150, 115, 255, 0.6)
+        )
+        drop-shadow(
+            0 0 30px rgba(90, 55, 170, 0.35)
+        );
+}
+
+
+/* =========================
+   NOCTIS SPARK
+========================= */
+
+.noctis-spark {
+    position: absolute;
+
+    z-index: 8;
+
+    color: #ddd0ff;
+
+    font-size: 16px;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    animation:
+        sparkAppear 4s ease-in-out infinite;
+}
+
+.noctis-spark.one {
+    top: 28%;
+    left: 30%;
+    animation-delay: 0.4s;
+}
+
+.noctis-spark.two {
+    top: 35%;
+    right: 27%;
+    animation-delay: 1.8s;
+}
+
+.noctis-spark.three {
+    bottom: 25%;
+    left: 29%;
+    animation-delay: 2.7s;
+}
+
+.noctis-spark.four {
+    bottom: 30%;
+    right: 25%;
+    animation-delay: 3.4s;
 }
 
 
@@ -524,51 +616,55 @@ nav a:hover {
     100% {
         transform:
             translate(-50%, -50%)
-            translateY(4px)
+            translateY(6px)
             rotate(-1deg);
     }
 
     25% {
         transform:
             translate(-50%, -50%)
-            translateY(-5px)
-            rotate(1deg);
+            translateY(-4px)
+            rotate(0.8deg);
     }
 
     50% {
         transform:
             translate(-50%, -50%)
-            translateY(-10px)
-            rotate(-1deg);
+            translateY(-12px)
+            rotate(-0.8deg);
     }
 
     75% {
         transform:
             translate(-50%, -50%)
             translateY(-4px)
-            rotate(1deg);
+            rotate(0.8deg);
     }
 
 }
+
 
 @keyframes guardianGlow {
 
     0%,
     100% {
-        opacity: 0.65;
+        opacity: 0.55;
+
         transform:
             translate(-50%, -50%)
-            scale(0.9);
+            scale(0.88);
     }
 
     50% {
         opacity: 1;
+
         transform:
             translate(-50%, -50%)
-            scale(1.15);
+            scale(1.14);
     }
 
 }
+
 
 @keyframes orbitPulse {
 
@@ -576,7 +672,7 @@ nav a:hover {
     100% {
         transform:
             translate(-50%, -50%)
-            scale(0.95);
+            scale(0.96);
     }
 
     50% {
@@ -587,39 +683,27 @@ nav a:hover {
 
 }
 
-@keyframes noctisSpark {
 
-    0%,
-    72% {
-        opacity: 0;
+@keyframes orbitStar {
+
+    from {
         transform:
-            scale(0.5)
+            translateX(-50%)
+            rotate(0deg)
+            translateX(132px)
             rotate(0deg);
     }
 
-    78% {
-        opacity: 1;
+    to {
         transform:
-            scale(1.2)
-            rotate(90deg);
-    }
-
-    85% {
-        opacity: 0.8;
-        transform:
-            scale(0.8)
-            rotate(180deg);
-    }
-
-    92%,
-    100% {
-        opacity: 0;
-        transform:
-            scale(0.4)
-            rotate(270deg);
+            translateX(-50%)
+            rotate(360deg)
+            translateX(132px)
+            rotate(-360deg);
     }
 
 }
+
 
 @keyframes starFloat {
 
@@ -634,17 +718,55 @@ nav a:hover {
 
     50% {
         transform:
-            translateY(-12px)
+            translateY(-13px)
             scale(1.3);
 
-        opacity: 0.85;
+        opacity: 0.9;
+    }
+
+}
+
+
+@keyframes sparkAppear {
+
+    0%,
+    65% {
+        opacity: 0;
+
+        transform:
+            scale(0.4)
+            rotate(0deg);
+    }
+
+    75% {
+        opacity: 1;
+
+        transform:
+            scale(1.25)
+            rotate(90deg);
+    }
+
+    85% {
+        opacity: 0.7;
+
+        transform:
+            scale(0.8)
+            rotate(180deg);
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            scale(0.4)
+            rotate(270deg);
     }
 
 }
 
 
 /* =========================
-   NOCTIS MESSAGE
+   GUARDIAN MESSAGE
 ========================= */
 
 .guardian-message {
@@ -663,7 +785,7 @@ nav a:hover {
     opacity: 0.9;
 
     transition:
-        opacity 0.3s ease;
+        opacity 0.35s ease;
 }
 
 .guardian-message::before {
@@ -763,7 +885,7 @@ nav a:hover {
         );
 
     transition:
-        width 0.5s ease;
+        width 0.7s ease;
 }
 
 
@@ -860,19 +982,22 @@ nav a:hover {
     }
 
     .guardian-stage {
-        height: 275px;
+        height: 330px;
     }
 
     .guardian-display {
-        font-size: 88px;
-
-        width: 125px;
-        height: 125px;
+        width: 270px;
+        height: 270px;
     }
 
     .noctis-orbit {
-        width: 165px;
-        height: 165px;
+        width: 220px;
+        height: 220px;
+    }
+
+    .guardian-glow {
+        width: 190px;
+        height: 190px;
     }
 
     .guardian-title {
@@ -892,7 +1017,7 @@ nav a:hover {
     .guardian-glow,
     .noctis-orbit,
     .star,
-    .guardian-display::after {
+    .noctis-spark {
         animation: none;
     }
 
@@ -1039,6 +1164,14 @@ id="guardianPanel">
 ✦
 </span>
 
+<span class="star six">
+✧
+</span>
+
+<span class="star seven">
+✦
+</span>
+
 
 <div class="guardian-glow">
 </div>
@@ -1048,11 +1181,32 @@ id="guardianPanel">
 </div>
 
 
+<span class="noctis-spark one">
+✦
+</span>
+
+<span class="noctis-spark two">
+✧
+</span>
+
+<span class="noctis-spark three">
+✦
+</span>
+
+<span class="noctis-spark four">
+✧
+</span>
+
+
 <div
 class="guardian-display"
 id="guardianEmoji">
 
-🐦‍⬛
+<img
+src="images/guardians/noctis.png"
+alt="Noctis — Guardian of Nocteum"
+draggable="false"
+>
 
 </div>
 
@@ -1081,7 +1235,7 @@ NOCTEUM
 class="guardian-message"
 id="guardianMessage">
 
-...
+I was waiting for you.
 
 </div>
 
@@ -1264,16 +1418,17 @@ const supabaseClient =
 ========================= */
 
 /*
-   Only NOCTIS is currently available.
-   The other Guardians will be added
-   later as the AETHERVERSE expands.
+   The Guardian system is already
+   structured for all seven Guardians.
+
+   Only NOCTIS is currently unlocked.
 */
 
 const guardians = {
 
     noctis: {
         name: "NOCTIS",
-        emoji: "🐦‍⬛",
+        image: "images/guardians/noctis.png",
         world: "NOCTEUM",
         description:
             "Guardian of the night."
@@ -1328,6 +1483,7 @@ function rotateNoctisMessage() {
             "guardianMessage"
         );
 
+
     if (!message) {
         return;
     }
@@ -1356,7 +1512,7 @@ function rotateNoctisMessage() {
                 noctisMessages.length;
 
         },
-        300
+        350
     );
 
 }
@@ -1441,7 +1597,19 @@ function renderGuardianChoices(
             button.innerHTML = `
 
                 <span class="guardian-emoji">
-                    ${guardian.emoji}
+
+                    <img
+                        src="${guardian.image}"
+                        alt="${guardian.name}"
+                        style="
+                            width:90px;
+                            height:90px;
+                            object-fit:contain;
+                            display:block;
+                            margin:0 auto 10px;
+                        "
+                    >
+
                 </span>
 
                 <span class="guardian-name">
@@ -1524,12 +1692,14 @@ async function loadGuardian() {
 
         console.error(error);
 
+
         document.getElementById(
             "selectionStatus"
         ).innerHTML =
             `<span class="error">
                 Unable to load your Guardian.
             </span>`;
+
 
         return;
 
@@ -1541,8 +1711,8 @@ async function loadGuardian() {
 
 
     /*
-       If the database already contains
-       NOCTIS, show the Guardian immediately.
+       Existing NOCTIS:
+       open Guardian home immediately.
     */
 
     if (
@@ -1616,10 +1786,23 @@ function updateGuardianDisplay(
     }
 
 
-    document.getElementById(
-        "guardianEmoji"
-    ).textContent =
-        info.emoji;
+    const guardianImage =
+        document.querySelector(
+            "#guardianEmoji img"
+        );
+
+
+    if (guardianImage) {
+
+        guardianImage.src =
+            info.image;
+
+        guardianImage.alt =
+            info.name +
+            " — Guardian of " +
+            info.world;
+
+    }
 
 
     document.getElementById(
@@ -1697,7 +1880,8 @@ async function saveGuardian() {
         );
 
 
-    button.disabled = true;
+    button.disabled =
+        true;
 
 
     button.textContent =
@@ -1763,7 +1947,7 @@ async function saveGuardian() {
 
 
 /* =========================
-   CARE ACTION
+   GUARDIAN ACTION
 ========================= */
 
 async function guardianAction(
