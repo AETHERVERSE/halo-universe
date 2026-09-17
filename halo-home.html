@@ -1,2718 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>My HALO | AETHERVERSE</title>
 
 <style>
-
-body {
-    margin: 0;
-    background: #0f0d2b;
-    color: #ddd7ff;
-    font-family: Georgia, serif;
-}
-
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 30px 20px 60px;
-}
-
-header {
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-.logo {
-    letter-spacing: 6px;
-    font-size: 0.8rem;
-    color: #aaa0e6;
-    margin-bottom: 25px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-nav a,
-.logout-nav-button {
-    text-decoration: none;
-    color: #ddd7ff;
-    border: 1px solid #39345e;
-    border-radius: 25px;
-    padding: 8px 18px;
-    font-size: 0.85rem;
-    font-family: Georgia, serif;
-    cursor: pointer;
-}
-
-nav a:hover,
-.logout-nav-button:hover {
-    background: #29264b;
-    border-color: #8f84c9;
-}
-
-nav a.search-link {
-    border-color: #8f84c9;
-    color: #ddd7ff;
-}
-
-nav a.search-link:hover {
-    background: #29264b;
-    border-color: #c8bdff;
-    color: #f0ecff;
-}
-
-.logout-nav-button {
-    background: transparent;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.hero .symbol {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 2.2rem;
-    letter-spacing: 3px;
-    margin: 10px 0;
-}
-
-.subtitle {
-    color: #aaa0e6;
-    line-height: 1.7;
-}
-
-
-/* =========================
-   WELCOME
-========================= */
-
-.halo-card {
-    background: #1d1a3d;
-    border: 1px solid #39345e;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.welcome {
-    text-align: center;
-}
-
-.welcome h2 {
-    color: #ddd7ff;
-    letter-spacing: 2px;
-}
-
-.email {
-    color: #aaa0e6;
-    font-style: italic;
-}
-
-
-/* =========================
-   DAILY HALO
-========================= */
-
-.daily-halo-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #181633
-        );
-
-    border: 1px solid #514879;
-
-    border-radius: 22px;
-
-    padding: 28px 25px;
-
-    margin-bottom: 40px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
-
-    transition:
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.daily-halo-card.claimed {
-
-    border-color: #8f84c9;
-
-    box-shadow:
-        0 15px 45px
-        rgba(143,132,201,0.18);
-}
-
-.daily-halo-icon {
-
-    font-size: 2rem;
-
-    color: #cdb9ff;
-
-    margin-bottom: 10px;
-}
-
-.daily-halo-label {
-
-    color: #aaa0e6;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 12px;
-}
-
-.daily-halo-title {
-
-    color: #eeeaff;
-
-    font-size: 1.1rem;
-
-    letter-spacing: 1px;
-
-    line-height: 1.6;
-}
-
-.daily-halo-points {
-
-    margin-top: 10px;
-
-    color: #dfd1ff;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   HALO RANK
-========================= */
-
-.rank-card {
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #181633
-        );
-
-    border: 1px solid #514879;
-
-    border-radius: 22px;
-
-    padding: 30px 25px;
-
-    margin-bottom: 45px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
-}
-
-.rank-label {
-    color: #aaa0e6;
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    margin-bottom: 12px;
-}
-
-.rank-name {
-    color: #eeeaff;
-    font-size: 2rem;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
-}
-
-.rank-points {
-    color: #c4bddf;
-    font-size: 1rem;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-}
-
-
-/* =========================
-   ADMIN RANK
-========================= */
-
-.rank-card.admin-rank {
-
-    border-color: #9c8fe0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #30275f,
-            #181633
-        );
-
-}
-
-.rank-card.admin-rank .rank-name {
-
-    letter-spacing: 4px;
-
-}
-
-.admin-status {
-
-    color: #cdb9ff;
-
-    font-size: 0.85rem;
-
-    letter-spacing: 2px;
-
-    margin-top: 8px;
-
-}
-
-
-/* =========================
-   RANK PROGRESS
-========================= */
-
-.progress-container {
-    width: 100%;
-    height: 14px;
-
-    background: #0e0c25;
-
-    border: 1px solid #39345e;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin: 0 auto 15px;
-}
-
-.progress-bar {
-    height: 100%;
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7665b8,
-            #cdb9ff
-        );
-
-    border-radius: 20px;
-
-    transition: width 0.8s ease;
-}
-
-.progress-text {
-    color: #aaa0e6;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-}
-
-.next-rank {
-    color: #ddd7ff;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   CODEX PROGRESS
-========================= */
-
-.codex-progress-card {
-
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #181633
-        );
-
-    border: 1px solid #514879;
-
-    border-radius: 22px;
-
-    padding: 30px 25px;
-
-    margin-bottom: 40px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
-}
-
-.codex-progress-label {
-    color: #aaa0e6;
-    font-size: 0.85rem;
-    letter-spacing: 4px;
-    margin-bottom: 14px;
-}
-
-.codex-progress-count {
-    color: #eeeaff;
-    font-size: 1.7rem;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
-}
-
-.codex-progress-container {
-
-    width: 100%;
-    height: 14px;
-
-    background: #0e0c25;
-
-    border: 1px solid #39345e;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
-    margin-bottom: 15px;
-}
-
-.codex-progress-bar {
-
-    height: 100%;
-    width: 0%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #7665b8,
-            #cdb9ff
-        );
-
-    border-radius: 20px;
-
-    transition: width 0.8s ease;
-}
-
-.codex-progress-text {
-    color: #aaa0e6;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    line-height: 1.6;
-}
-
-.codex-progress-points {
-    margin-top: 12px;
-    color: #ddd7ff;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   AETHER ARCADE
-========================= */
-
-.arcade-section {
-
-    margin-bottom: 45px;
-
-    padding: 32px 25px;
-
-    border-radius: 24px;
-
-    border: 1px solid #6558a0;
-
-    background:
-        radial-gradient(
-            circle at top,
-            rgba(118,101,184,0.20),
-            transparent 55%
-        ),
-        linear-gradient(
-            145deg,
-            #29235a,
-            #15132f
-        );
-
-    box-shadow:
-        0 18px 50px
-        rgba(0,0,0,0.35);
-
-    text-align: center;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-.arcade-section::before {
-
-    content: "✦";
-
-    position: absolute;
-
-    top: 12px;
-    left: 18px;
-
-    color: #cdb9ff;
-
-    opacity: 0.5;
-
-}
-
-.arcade-section::after {
-
-    content: "✦";
-
-    position: absolute;
-
-    bottom: 12px;
-    right: 18px;
-
-    color: #8f84c9;
-
-    opacity: 0.5;
-
-}
-
-.arcade-icon {
-
-    font-size: 3rem;
-
-    margin-bottom: 8px;
-
-}
-
-.arcade-label {
-
-    color: #aaa0e6;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 5px;
-
-    margin-bottom: 10px;
-
-}
-
-.arcade-title {
-
-    color: #f0ecff;
-
-    font-size: 2rem;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 10px;
-
-}
-
-.arcade-subtitle {
-
-    color: #cdb9ff;
-
-    font-size: 0.9rem;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 18px;
-
-}
-
-.arcade-description {
-
-    max-width: 620px;
-
-    margin: 0 auto 25px;
-
-    color: #c4c1d7;
-
-    line-height: 1.7;
-
-}
-
-.arcade-button {
-
-    display: inline-block;
-
-    padding: 13px 28px;
-
-    border: 1px solid #b5a7f0;
-
-    border-radius: 30px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #5e4d9e,
-            #806bc4
-        );
-
-    color: #fff;
-
-    text-decoration: none;
-
-    font-size: 0.85rem;
-
-    letter-spacing: 2px;
-
-    box-shadow:
-        0 8px 25px
-        rgba(118,101,184,0.25);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.arcade-button:hover {
-
-    transform: translateY(-3px);
-
-    border-color: #eeeaff;
-
-    box-shadow:
-        0 12px 30px
-        rgba(118,101,184,0.35);
-
-}
-
-.arcade-note {
-
-    margin-top: 18px;
-
-    color: #8f84c9;
-
-    font-size: 0.72rem;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* =========================
-   EARN STAR POINTS
-========================= */
-
-.points-section {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.points-title {
-    font-size: 1.8rem;
-    letter-spacing: 3px;
-    color: #eeeaff;
-    margin-bottom: 10px;
-}
-
-.points-description {
-    color: #aaa0e6;
-    line-height: 1.7;
-    margin-bottom: 28px;
-}
-
-
-/* =========================
-   POINT CARDS
-========================= */
-
-.points-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.points-card {
-    background: #1d1a3d;
-
-    border: 1px solid #39345e;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    text-align: left;
-
-    transition:
-        transform 0.2s,
-        background 0.2s,
-        border-color 0.2s;
-
-    text-decoration: none;
-
-    color: inherit;
-
-    display: block;
-}
-
-.points-card:hover {
-    transform: translateY(-3px);
-
-    background: #242047;
-
-    border-color: #514879;
-}
-
-.points-icon {
-    font-size: 2rem;
-    margin-bottom: 12px;
-}
-
-.points-card h3 {
-    margin: 5px 0 8px;
-    color: #ddd7ff;
-    letter-spacing: 1px;
-}
-
-.points-card p {
-    color: #c4c1d7;
-    line-height: 1.6;
-    margin: 0 0 18px;
-}
-
-.points-value {
-    display: inline-block;
-
-    padding: 6px 12px;
-
-    border: 1px solid #514879;
-
-    border-radius: 20px;
-
-    color: #dfd1ff;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-}
-
-
-/* =========================
-   MUSIC BUTTON
-========================= */
-
-.music-button {
-
-    display: inline-block;
-
-    margin-top: 18px;
-
-    padding: 10px 20px;
-
-    border: 1px solid #8f84c9;
-
-    border-radius: 25px;
-
-    background: transparent;
-
-    color: #ddd7ff;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    text-decoration: none;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.music-button:hover {
-
-    background: #29264b;
-
-    border-color: #c8bdff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   EXPLORE BUTTON
-========================= */
-
-.explore-button {
-
-    display: inline-block;
-
-    margin-top: 15px;
-
-    padding: 9px 18px;
-
-    border: 1px solid #8f84c9;
-
-    border-radius: 25px;
-
-    color: #ddd7ff;
-
-    text-decoration: none;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.explore-button:hover {
-
-    background: #29264b;
-
-    border-color: #c8bdff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   TRANSMISSION BUTTON
-========================= */
-
-.transmission-button {
-
-    display: inline-block;
-
-    margin-top: 18px;
-
-    padding: 10px 20px;
-
-    border: 1px solid #8f84c9;
-
-    border-radius: 25px;
-
-    background: transparent;
-
-    color: #ddd7ff;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.8rem;
-
-    letter-spacing: 1px;
-
-    text-decoration: none;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease;
-}
-
-.transmission-button:hover {
-
-    background: #29264b;
-
-    border-color: #c8bdff;
-
-    transform: translateY(-2px);
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-.dashboard {
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 18px;
-}
-
-.dashboard-card {
-
-    background: #1d1a3d;
-
-    border: 1px solid #39345e;
-
-    border-radius: 18px;
-
-    padding: 25px;
-
-    transition: 0.2s;
-
-    text-decoration: none;
-
-    color: inherit;
-}
-
-.dashboard-card:hover {
-
-    transform: translateY(-3px);
-
-    background: #242047;
-}
-
-.dashboard-card .icon {
-
-    font-size: 2rem;
-
-    margin-bottom: 12px;
-}
-
-.dashboard-card h3 {
-
-    margin: 8px 0;
-
-    color: #ddd7ff;
-
-    letter-spacing: 1px;
-}
-
-.dashboard-card p {
-
-    color: #c4c1d7;
-
-    line-height: 1.7;
-
-    margin-bottom: 0;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-    text-align: center;
-
-    margin-top: 55px;
-
-    color: #77739e;
-
-    font-size: 0.75rem;
-
-    letter-spacing: 2px;
-
-    line-height: 2;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 650px) {
-
-    .dashboard,
-    .points-grid {
-
-        grid-template-columns: 1fr;
-
+    * {
+        box-sizing: border-box;
     }
 
-    h1 {
-
-        font-size: 1.8rem;
-
+    body {
+        margin: 0;
+        background:
+            radial-gradient(circle at top, #28104f 0%, #0b0615 55%, #05030a 100%);
+        color: #f5efff;
+        font-family: Georgia, serif;
+        min-height: 100vh;
     }
 
-    .rank-name {
-
-        font-size: 1.6rem;
-
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 18px;
+        background: rgba(8, 3, 18, 0.88);
+        border-bottom: 1px solid rgba(190, 120, 255, 0.25);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(10px);
     }
 
-    .points-title {
-
-        font-size: 1.5rem;
-
+    nav a,
+    nav button {
+        color: #eadbff;
+        text-decoration: none;
+        background: rgba(80, 35, 130, 0.28);
+        border: 1px solid rgba(190, 120, 255, 0.25);
+        border-radius: 999px;
+        padding: 8px 14px;
+        font-family: Georgia, serif;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s ease;
     }
 
-    .codex-progress-count {
-
-        font-size: 1.4rem;
-
+    nav a:hover,
+    nav button:hover {
+        background: rgba(150, 80, 220, 0.35);
+        border-color: rgba(220, 160, 255, 0.55);
+        transform: translateY(-1px);
     }
 
-    .arcade-title {
-
-        font-size: 1.55rem;
-
-        letter-spacing: 3px;
-
+    .container {
+        width: min(1200px, 94%);
+        margin: 0 auto;
+        padding: 45px 0 70px;
     }
 
-    .arcade-section {
-
-        padding: 28px 18px;
-
+    .hero {
+        text-align: center;
+        padding: 35px 20px 45px;
     }
 
-}
+    .hero h1 {
+        margin: 0;
+        font-size: clamp(34px, 7vw, 64px);
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        text-shadow:
+            0 0 12px rgba(210, 150, 255, 0.7),
+            0 0 35px rgba(140, 60, 255, 0.4);
+    }
 
+    .hero p {
+        margin: 14px 0 0;
+        color: #cbb9e8;
+        font-size: 16px;
+    }
+
+    .welcome-card {
+        background:
+            linear-gradient(
+                145deg,
+                rgba(87, 40, 135, 0.42),
+                rgba(22, 10, 38, 0.75)
+            );
+        border: 1px solid rgba(200, 140, 255, 0.3);
+        border-radius: 24px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .welcome-card h2 {
+        margin-top: 0;
+        font-size: 27px;
+    }
+
+    .welcome-card p {
+        color: #cdbfe0;
+        line-height: 1.7;
+    }
+
+    .section-title {
+        text-align: center;
+        margin: 50px 0 22px;
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+    }
+
+    .card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        background:
+            linear-gradient(
+                145deg,
+                rgba(56, 25, 91, 0.72),
+                rgba(13, 7, 24, 0.88)
+            );
+        border: 1px solid rgba(190, 120, 255, 0.23);
+        border-radius: 20px;
+        padding: 23px;
+        min-height: 150px;
+        transition: 0.25s ease;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.22);
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(220, 170, 255, 0.55);
+        box-shadow:
+            0 18px 50px rgba(100, 40, 170, 0.25);
+    }
+
+    .card .icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .card h3 {
+        margin: 0 0 8px;
+        font-size: 19px;
+    }
+
+    .card p {
+        margin: 0;
+        color: #bcaed0;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .highlight {
+        border-color: rgba(218, 165, 255, 0.5);
+        background:
+            linear-gradient(
+                145deg,
+                rgba(104, 46, 155, 0.55),
+                rgba(20, 8, 34, 0.9)
+            );
+    }
+
+    .daily {
+        text-align: center;
+        padding: 28px;
+        border-radius: 22px;
+        background:
+            radial-gradient(
+                circle at center,
+                rgba(112, 54, 170, 0.35),
+                rgba(14, 7, 25, 0.9)
+            );
+        border: 1px solid rgba(210, 150, 255, 0.28);
+        margin-top: 30px;
+    }
+
+    .daily h2 {
+        margin-top: 0;
+    }
+
+    .daily p {
+        color: #c9b9dc;
+    }
+
+    .rank-box {
+        margin-top: 25px;
+        text-align: center;
+        padding: 25px;
+        border-radius: 20px;
+        border: 1px solid rgba(190, 120, 255, 0.25);
+        background: rgba(30, 13, 49, 0.75);
+    }
+
+    .rank {
+        font-size: 30px;
+        margin: 10px 0;
+    }
+
+    .progress-wrap {
+        max-width: 650px;
+        margin: 15px auto 0;
+    }
+
+    .progress-bar {
+        height: 12px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #9d5cff, #e1b5ff);
+        transition: width 0.4s ease;
+    }
+
+    .progress-text {
+        margin-top: 8px;
+        color: #bcaed0;
+        font-size: 13px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 65px;
+        color: #796a8c;
+        font-size: 13px;
+    }
+
+    .logout {
+        border-color: rgba(255, 100, 160, 0.3);
+        color: #f3c5da;
+    }
+
+    @media (max-width: 600px) {
+        nav {
+            gap: 7px;
+            padding: 12px;
+        }
+
+        nav a,
+        nav button {
+            font-size: 12px;
+            padding: 7px 11px;
+        }
+
+        .container {
+            width: 92%;
+            padding-top: 25px;
+        }
+
+        .welcome-card {
+            padding: 22px;
+        }
+    }
 </style>
-
 </head>
-
 
 <body>
 
-<div class="container">
-
-
-<header>
-
-<div class="logo">
-AETHERVERSE
-</div>
-
 <nav>
-
-<a href="explore.html">
-EXPLORE
-</a>
-
-<a href="card-album.html">
-CARD ALBUM
-</a>
-
-<a href="members.html">
-Members
-</a>
-
-<a href="codex.html">
-Codex
-</a>
-
-<a href="community.html">
-Community
-</a>
-
-<a href="aether-path.html">
-THE AETHER PATH
-</a>
-
-<a href="aether-shop.html">
-AETHER SHOP
-</a>
-
-<a href="birthday.html">
-Birthday
-</a>
-
-<a
-href="search.html"
-class="search-link">
-
-🔎 SEARCH
-
-</a>
-
-<button
-type="button"
-id="logoutButton"
-class="logout-nav-button">
-
-↪ LOG OUT
-
-</button>
-
+    <a href="index.html">EXPLORE</a>
+    <a href="card-album.html">CARD ALBUM</a>
+    <a href="members.html">MEMBERS</a>
+    <a href="codex.html">CODEX</a>
+    <a href="community.html">COMMUNITY</a>
+    <a href="aether-path.html">THE AETHER PATH</a>
+    <a href="aether-shop.html">AETHER SHOP</a>
+    <a href="birthday.html">BIRTHDAY</a>
+    <a href="search.html">SEARCH</a>
+    <button class="logout" id="logoutBtn">LOGOUT</button>
 </nav>
 
-</header>
-
-
-<section class="hero">
-
-<div class="symbol">
-✦
-</div>
-
-<h1>
-MY HALO
-</h1>
-
-<p class="subtitle">
-
-Your place among the seven stars.
-
-<br>
-
-Welcome back to the AETHER universe.
-
-</p>
-
-</section>
-
-
-<!-- WELCOME -->
-
-<section class="halo-card welcome">
-
-<div style="font-size: 2.5rem;">
-💜
-</div>
-
-<h2>
-WELCOME BACK, HALO
-</h2>
-
-<p>
-Your journey through AETHER continues.
-</p>
-
-<p
-class="email"
-id="haloEmail">
-</p>
-
-</section>
-
-
-<!-- DAILY HALO -->
-
-<section
-class="daily-halo-card"
-id="dailyHaloCard"
-aria-live="polite">
-
-<div class="daily-halo-icon">
-✦
-</div>
-
-<div class="daily-halo-label">
-DAILY HALO
-</div>
-
-<div
-class="daily-halo-title"
-id="dailyHaloTitle">
-
-CHECKING TODAY'S LIGHT...
-
-</div>
-
-<div
-class="daily-halo-points"
-id="dailyHaloPoints">
-
-+10 HALO POINTS
-
-</div>
-
-</section>
-
-
-<!-- HALO RANK -->
-
-<section class="rank-card" id="rankCard">
-
-<div class="rank-label">
-✦ YOUR HALO RANK ✦
-</div>
-
-<div
-class="rank-name"
-id="rankName">
-
-LOADING...
-
-</div>
-
-<div
-class="rank-points"
-id="rankPoints">
-
-0 / 250 POINTS
-
-</div>
-
-<div class="progress-container" id="progressContainer">
-
-<div
-class="progress-bar"
-id="progressBar">
-</div>
-
-</div>
-
-<div
-class="progress-text"
-id="progressText">
-
-Loading your journey...
-
-</div>
-
-<div
-class="next-rank"
-id="nextRank">
-</div>
-
-</section>
-
-
-<!-- CODEX PROGRESS -->
-
-<section class="codex-progress-card">
-
-<div class="codex-progress-label">
-✦ CODEX DISCOVERIES ✦
-</div>
-
-<div
-class="codex-progress-count"
-id="codexProgressCount">
-
-0 / 21 DISCOVERED
-
-</div>
-
-<div class="codex-progress-container">
-
-<div
-class="codex-progress-bar"
-id="codexProgressBar">
-</div>
-
-</div>
-
-<div
-class="codex-progress-text"
-id="codexProgressText">
-
-Loading your Codex journey...
-
-</div>
-
-<div
-class="codex-progress-points"
-id="codexProgressPoints">
-
-0 STAR POINTS FROM CODEX
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     AETHER ARCADE
-========================= -->
-
-<section class="arcade-section">
-
-<div class="arcade-icon">
-🎮
-</div>
-
-<div class="arcade-label">
-HALO EXCLUSIVE
-</div>
-
-<div class="arcade-title">
-AETHER ARCADE
-</div>
-
-<div class="arcade-subtitle">
-PLAY • REACT • EARN • REPEAT
-</div>
-
-<p class="arcade-description">
-
-Step into the AETHER Arcade.
-
-Play special games connected to the
-seven stars, challenge yourself,
-and collect AETHER Coins along the way.
-
-The first daily game has already arrived.
-
-</p>
-
-<a
-href="aether-arcade.html"
-class="arcade-button">
-
-✦ ENTER AETHER ARCADE →
-
-</a>
-
-<div class="arcade-note">
-
-ONE HALO • ONE REACTION • EVERY DAY
-
-</div>
-
-</section>
-
-
-<!-- EARN STAR POINTS -->
-
-<section class="points-section">
-
-<div class="points-title">
-✦ EARN STAR POINTS ✦
-</div>
-
-<div class="points-description">
-
-Discover AETHER, explore the universe
-and collect Star Points along the way.
-
-<br>
-
-Every memory brings you closer to the next star.
-
-</div>
-
-
-<div class="points-grid">
-
-
-<!-- AETHER MUSIC -->
-
-<div class="points-card">
-
-<div class="points-icon">
-🎵
-</div>
-
-<h3>
-AETHER MUSIC
-</h3>
-
-<p>
-Explore the complete BREAK THE BUBBLE album
-and discover every AETHER song.
-</p>
-
-<span class="points-value">
-+5 STAR POINTS PER SONG
-</span>
-
-<br>
-
-<a
-href="aether-music.html"
-class="music-button">
-
-✦ OPEN AETHER MUSIC →
-
-</a>
-
-</div>
-
-
-<!-- CODEX -->
-
-<div class="points-card">
-
-<div class="points-icon">
-📖
-</div>
-
-<h3>
-THE CODEX
-</h3>
-
-<p>
-Explore the lore, worlds and secrets of AETHER.
-</p>
-
-<span class="points-value">
-+5 STAR POINTS
-</span>
-
-<br>
-
-<a
-href="codex.html"
-class="explore-button">
-
-✦ EXPLORE CODEX
-
-</a>
-
-</div>
-
-
-<!-- TRANSMISSIONS -->
-
-<div class="points-card">
-
-<div class="points-icon">
-📡
-</div>
-
-<h3>
-TRANSMISSIONS
-</h3>
-
-<p>
-Receive signals and fragments from the AETHER universe.
-</p>
-
-<span class="points-value">
-+10 STAR POINTS
-</span>
-
-<br>
-
-<a
-href="aether-transmissions.html"
-class="transmission-button">
-
-✦ OPEN TRANSMISSIONS →
-
-</a>
-
-</div>
-
-
-<!-- COMMUNITY -->
-
-<a
-href="community.html"
-class="points-card">
-
-<div class="points-icon">
-💬
-</div>
-
-<h3>
-COMMUNITY
-</h3>
-
-<p>
-Take part in the HALO community and connect with AETHER.
-</p>
-
-<span class="points-value">
-+10 STAR POINTS
-</span>
-
-<div class="music-status">
-✦ ENTER THE COMMUNITY
-</div>
-
-</a>
-
-
-<!-- PUZZLES -->
-
-<a
-href="aether-puzzles-events.html"
-class="points-card">
-
-<div class="points-icon">
-🧩
-</div>
-
-<h3>
-PUZZLES & EVENTS
-</h3>
-
-<p>
-Solve mysteries and discover hidden pieces of the universe.
-</p>
-
-<span class="points-value">
-+15 STAR POINTS
-</span>
-
-<div class="music-status">
-✦ ENTER PUZZLES & EVENTS
-</div>
-
-</a>
-
-
-<!-- SPECIAL CHALLENGES -->
-
-<a
-href="aether-special-challenges.html"
-class="points-card">
-
-<div class="points-icon">
-🌟
-</div>
-
-<h3>
-SPECIAL CHALLENGES
-</h3>
-
-<p>
-Take part in special HALO challenges and limited experiences.
-</p>
-
-<span class="points-value">
-+10 HALO POINTS
-</span>
-
-<div class="music-status">
-✦ ENTER SPECIAL CHALLENGES
-</div>
-
-</a>
-
-
-</div>
-
-</section>
-
-
-<!-- DASHBOARD -->
-
-<section class="dashboard">
-
-
-<!-- YOUR STAR -->
-
-<a
-href="your-star.html"
-class="dashboard-card">
-
-<div class="icon">
-🌟
-</div>
-
-<h3>
-YOUR STAR
-</h3>
-
-<p>
-Discover your connection to one of the seven stars of AETHER.
-</p>
-
-</a>
-
-
-<!-- MY COLLECTION -->
-
-<a
-href="collection.html"
-class="dashboard-card">
-
-<div class="icon">
-💫
-</div>
-
-<h3>
-MY COLLECTION
-</h3>
-
-<p>
-A place for the moments, stories and memories
-discovered throughout your journey.
-</p>
-
-</a>
-
-
-<!-- BIRTHDAY -->
-
-<a
-href="birthday.html"
-class="dashboard-card">
-
-<div class="icon">
-🎂
-</div>
-
-<h3>
-BIRTHDAY
-</h3>
-
-<p>
-Celebrate the seven stars and discover special
-birthday moments, wishes and limited collectibles.
-</p>
-
-</a>
-
-
-<!-- CARD ALBUM -->
-
-<a
-href="card-album.html"
-class="dashboard-card">
-
-<div class="icon">
-🃏
-</div>
-
-<h3>
-CARD ALBUM
-</h3>
-
-<p>
-Collect all 50 unique AETHER cards
-across seven sets and five rarity levels.
-</p>
-
-</a>
-
-
-<!-- THE AETHER PATH -->
-
-<a
-href="aether-path.html"
-class="dashboard-card">
-
-<div class="icon">
-🗺️
-</div>
-
-<h3>
-THE AETHER PATH
-</h3>
-
-<p>
-Walk through the seven worlds, complete missions,
-meet the Guardians and discover the forgotten path.
-</p>
-
-</a>
-
-
-<!-- ACHIEVEMENTS -->
-
-<a
-href="achievements.html"
-class="dashboard-card">
-
-<div class="icon">
-🎖️
-</div>
-
-<h3>
-ACHIEVEMENTS
-</h3>
-
-<p>
-Collect milestones as you explore the seven worlds.
-</p>
-
-</a>
-
-
-</section>
-
-
-<footer>
-
-ONE LIGHT • SEVEN STARS • ENDLESS LOVE
-
-<br><br>
-
-#WEAREHALO • #WEAREAETHER
-
-</footer>
-
-
-</div>
-
-
-<!-- SUPABASE -->
+<main class="container">
+
+    <section class="hero">
+        <h1>MY HALO</h1>
+        <p>Your personal space inside the AETHERVERSE</p>
+    </section>
+
+    <section class="welcome-card">
+        <h2>✨ Welcome back, HALO</h2>
+        <p>
+            This is your personal space inside the AETHERVERSE.
+            Explore the worlds, collect cards, follow the story,
+            discover music, complete missions and leave your mark
+            on the connection between HALO and AETHER.
+        </p>
+    </section>
+
+    <section class="daily">
+        <h2>🌙 DAILY HALO</h2>
+        <p id="dailyMessage">
+            Loading your daily connection...
+        </p>
+    </section>
+
+    <section class="rank-box">
+        <h2>✦ HALO RANK</h2>
+
+        <div class="rank" id="haloRank">
+            Loading...
+        </div>
+
+        <div id="haloPoints">
+            AETHER Points: —
+        </div>
+
+        <div class="progress-wrap">
+            <div class="progress-bar">
+                <div class="progress-fill" id="rankProgress"></div>
+            </div>
+
+            <div class="progress-text" id="rankProgressText">
+                Loading rank progress...
+            </div>
+        </div>
+    </section>
+
+    <h2 class="section-title">📖 CODEX PROGRESS</h2>
+
+    <div class="grid">
+
+        <a class="card highlight" href="codex.html">
+            <div class="icon">📖</div>
+            <h3>AETHER CODEX</h3>
+            <p>
+                Discover the worlds, members, Guardians and
+                hidden lore of the AETHERVERSE.
+            </p>
+        </a>
+
+        <a class="card" href="aether-transmissions.html">
+            <div class="icon">📡</div>
+            <h3>TRANSMISSIONS</h3>
+            <p>
+                Follow the transmissions and uncover the evolving
+                connection between AETHER and HALO.
+            </p>
+        </a>
+
+        <a class="card" href="aether-music.html">
+            <div class="icon">🎵</div>
+            <h3>AETHER MUSIC</h3>
+            <p>
+                Listen to AETHER and explore their musical universe.
+            </p>
+        </a>
+
+    </div>
+
+    <h2 class="section-title">🎮 AETHER ARCADE</h2>
+
+    <div class="grid">
+
+        <a class="card highlight" href="aether-arcade.html">
+            <div class="icon">🎮</div>
+            <h3>AETHER ARCADE</h3>
+            <p>
+                Play AETHER games, test your knowledge and earn
+                AETHER Coins.
+            </p>
+        </a>
+
+    </div>
+
+    <h2 class="section-title">⭐ EARN STAR POINTS</h2>
+
+    <div class="grid">
+
+        <a class="card" href="aether-music.html">
+            <div class="icon">🎵</div>
+            <h3>AETHER MUSIC</h3>
+            <p>
+                Listen to AETHER and collect Star Points.
+            </p>
+        </a>
+
+        <a class="card" href="codex.html">
+            <div class="icon">📖</div>
+            <h3>CODEX</h3>
+            <p>
+                Explore the AETHERVERSE and discover new entries.
+            </p>
+        </a>
+
+        <a class="card" href="aether-transmissions.html">
+            <div class="icon">📡</div>
+            <h3>TRANSMISSIONS</h3>
+            <p>
+                Follow the story and uncover hidden signals.
+            </p>
+        </a>
+
+        <a class="card" href="community.html">
+            <div class="icon">💬</div>
+            <h3>COMMUNITY</h3>
+            <p>
+                Connect with HALO and participate in the universe.
+            </p>
+        </a>
+
+        <!-- PUZZLE -->
+        <a class="card highlight" href="aether-puzzle.html">
+            <div class="icon">🧩</div>
+            <h3>PUZZLES & EVENTS</h3>
+            <p>
+                Solve the broken signals and uncover what lies
+                beyond the known path.
+            </p>
+        </a>
+
+        <a class="card" href="aether-special-challenges.html">
+            <div class="icon">⚡</div>
+            <h3>SPECIAL CHALLENGES</h3>
+            <p>
+                Take on special challenges and earn additional
+                Star Points.
+            </p>
+        </a>
+
+    </div>
+
+    <h2 class="section-title">🌌 MY AETHERVERSE</h2>
+
+    <div class="grid">
+
+        <a class="card" href="your-star.html">
+            <div class="icon">⭐</div>
+            <h3>YOUR STAR</h3>
+            <p>
+                Your personal identity inside the AETHERVERSE.
+            </p>
+        </a>
+
+        <a class="card" href="my-collection.html">
+            <div class="icon">🃏</div>
+            <h3>MY COLLECTION</h3>
+            <p>
+                View your collected AETHER cards and treasures.
+            </p>
+        </a>
+
+        <a class="card" href="birthday.html">
+            <div class="icon">🎂</div>
+            <h3>BIRTHDAY</h3>
+            <p>
+                Celebrate AETHER members and their special days.
+            </p>
+        </a>
+
+        <a class="card" href="card-album.html">
+            <div class="icon">💎</div>
+            <h3>CARD ALBUM</h3>
+            <p>
+                Explore the complete AETHER card universe.
+            </p>
+        </a>
+
+        <a class="card highlight" href="aether-path.html">
+            <div class="icon">🌌</div>
+            <h3>THE AETHER PATH</h3>
+            <p>
+                Walk through the seven worlds and discover
+                the forgotten path.
+            </p>
+        </a>
+
+        <a class="card" href="achievements.html">
+            <div class="icon">🏆</div>
+            <h3>ACHIEVEMENTS</h3>
+            <p>
+                Track your milestones throughout the AETHERVERSE.
+            </p>
+        </a>
+
+    </div>
+
+    <div class="footer">
+        AETHERVERSE • AETHER × HALO
+        <br><br>
+        The connection continues.
+    </div>
+
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
 const SUPABASE_URL =
-"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+    "YOUR_SUPABASE_PUBLISHABLE_KEY";
 
 const supabaseClient =
-window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
+async function loadHalo() {
 
-/* =========================
-   PROTECTED HALO PAGE
-========================= */
+    const {
+        data: {
+            session
+        }
+    } = await supabaseClient.auth.getSession();
 
-async function requireHaloSession() {
+    if (!session) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    const user = session.user;
+
+    document.getElementById("dailyMessage").textContent =
+        "Your connection with AETHER is active. ✦";
+
+    await loadHaloRank(user);
+}
+
+async function loadHaloRank(user) {
 
     try {
 
         const {
             data,
             error
-        } =
-        await supabaseClient.auth.getSession();
+        } = await supabaseClient.rpc(
+            "get_halo_rank"
+        );
 
-
-        if (
-            error
-        ) {
-
-            console.error(
-                "HALO SESSION ERROR:",
-                error
-            );
-
-            window.location.replace(
-                "halo.html"
-            );
-
-            return false;
-
+        if (error) {
+            throw error;
         }
 
-
-        const session =
-            data &&
-            data.session
-                ? data.session
-                : null;
-
-
-        if (
-            !session ||
-            !session.user
-        ) {
-
-            window.location.replace(
-                "halo.html"
-            );
-
-            return false;
-
+        if (!data) {
+            throw new Error("No rank data");
         }
 
+        const rank =
+            data.rank ||
+            data.halo_rank ||
+            "HALO";
 
-        return true;
+        const points =
+            data.points ??
+            data.star_points ??
+            data.total_points ??
+            0;
 
-    }
+        document.getElementById("haloRank").textContent =
+            rank;
 
-    catch (error) {
+        document.getElementById("haloPoints").textContent =
+            "AETHER Points: " + points;
 
-        console.error(
-            "HALO SESSION CHECK ERROR:",
+        updateRankProgress(points);
+
+    } catch (error) {
+
+        console.log(
+            "Rank loading fallback:",
             error
         );
 
-        window.location.replace(
-            "halo.html"
-        );
+        document.getElementById("haloRank").textContent =
+            "HALO";
 
-        return false;
+        document.getElementById("haloPoints").textContent =
+            "AETHER Points: 0";
 
+        updateRankProgress(0);
     }
-
 }
 
+function updateRankProgress(points) {
 
-/* =========================
-   HALO RANKS
-========================= */
+    let percent = 0;
 
-const ranks = [
-
-    {
-        name: "NEW HALO",
-        min: 0
-    },
-
-    {
-        name: "AWAKENED HALO",
-        min: 250
-    },
-
-    {
-        name: "RISING HALO",
-        min: 750
-    },
-
-    {
-        name: "RADIANT HALO",
-        min: 1500
-    },
-
-    {
-        name: "STELLAR HALO",
-        min: 3000
-    },
-
-    {
-        name: "CELESTIAL HALO",
-        min: 5500
-    },
-
-    {
-        name: "LEGENDARY HALO",
-        min: 10000
-    },
-
-    {
-        name: "ETERNAL HALO",
-        min: 15000
-    },
-
-    {
-        name: "PRESTIGE HALO",
-        min: 25000
-    },
-
-    {
-        name: "EIGHT",
-        min: 50000
+    if (points < 100) {
+        percent = points;
+    } else if (points < 250) {
+        percent =
+            ((points - 100) / 150) * 100;
+    } else if (points < 500) {
+        percent =
+            ((points - 250) / 250) * 100;
+    } else {
+        percent = 100;
     }
 
-];
-
-
-/* =========================
-   DISPLAY NORMAL RANK
-========================= */
-
-function displayRank(points) {
-
-    let currentRank =
-        ranks[0];
-
-    let nextRank =
-        null;
-
-
-    for (
-        let i = 0;
-        i < ranks.length;
-        i++
-    ) {
-
-        if (
-            points >= ranks[i].min
-        ) {
-
-            currentRank =
-                ranks[i];
-
-            nextRank =
-                ranks[i + 1] || null;
-
-        }
-
-    }
-
-
-    document.getElementById(
-        "rankName"
-    ).textContent =
-        currentRank.name;
-
-
-    if (!nextRank) {
-
-        document.getElementById(
-            "rankPoints"
-        ).textContent =
-            points.toLocaleString() +
-            " POINTS";
-
-        document.getElementById(
-            "progressBar"
-        ).style.width =
-            "100%";
-
-        document.getElementById(
-            "progressText"
-        ).textContent =
-            "✦ You have reached the eighth light. ✦";
-
-        document.getElementById(
-            "nextRank"
-        ).textContent =
-            "EIGHT • THE LIGHT BESIDE AETHER";
-
-        return;
-
-    }
-
-
-    const pointsIntoRank =
-        points -
-        currentRank.min;
-
-
-    const pointsNeeded =
-        nextRank.min -
-        currentRank.min;
-
-
-    let percentage =
-        (
-            pointsIntoRank /
-            pointsNeeded
-        ) * 100;
-
-
-    percentage =
+    percent =
         Math.max(
             0,
             Math.min(
                 100,
-                percentage
+                percent
             )
         );
 
-
     document.getElementById(
-        "rankPoints"
-    ).textContent =
-
-        points.toLocaleString() +
-        " / " +
-        nextRank.min.toLocaleString() +
-        " POINTS";
-
-
-    document.getElementById(
-        "progressBar"
+        "rankProgress"
     ).style.width =
-        percentage + "%";
-
-
-    const remaining =
-        nextRank.min -
-        points;
-
+        percent + "%";
 
     document.getElementById(
-        "progressText"
+        "rankProgressText"
     ).textContent =
-
-        remaining.toLocaleString() +
-        " points until " +
-        nextRank.name;
-
-
-    document.getElementById(
-        "nextRank"
-    ).textContent =
-
-        "Next rank: " +
-        nextRank.name;
-
+        points + " AETHER Points";
 }
-
-
-/* =========================
-   DISPLAY AETHER ADMIN
-========================= */
-
-function displayAdminRank() {
-
-    const rankCard =
-        document.getElementById(
-            "rankCard"
-        );
-
-    const rankName =
-        document.getElementById(
-            "rankName"
-        );
-
-    const rankPoints =
-        document.getElementById(
-            "rankPoints"
-        );
-
-    const progressContainer =
-        document.getElementById(
-            "progressContainer"
-        );
-
-    const progressText =
-        document.getElementById(
-            "progressText"
-        );
-
-    const nextRank =
-        document.getElementById(
-            "nextRank"
-        );
-
-
-    rankCard.classList.add(
-        "admin-rank"
-    );
-
-
-    rankName.textContent =
-        "AETHER ADMIN";
-
-
-    rankPoints.textContent =
-        "SPECIAL ADMIN STATUS";
-
-
-    progressContainer.style.display =
-        "none";
-
-
-    progressText.textContent =
-        "✦ This status is reserved exclusively for the AETHER ADMIN. ✦";
-
-
-    nextRank.textContent =
-        "Not obtainable through HALO Points";
-
-}
-
-
-/* =========================
-   CHECK AETHER ADMIN
-========================= */
-
-async function isAetherAdmin() {
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-        .rpc(
-            "is_aether_admin"
-        );
-
-
-    if (error) {
-
-        console.error(
-            "AETHER ADMIN CHECK ERROR:",
-            error
-        );
-
-        return false;
-
-    }
-
-
-    return data === true;
-
-}
-
-
-/* =========================
-   LOAD CODEX PROGRESS
-========================= */
-
-async function loadCodexProgress(userId) {
-
-    const {
-        data,
-        error
-    } =
-    await supabaseClient
-
-        .from("halo_point_events")
-
-        .select("action_key, points")
-
-        .eq(
-            "user_id",
-            userId
-        );
-
-
-    if (error) {
-
-        console.error(
-            "CODEX PROGRESS ERROR:",
-            error
-        );
-
-        return;
-
-    }
-
-
-    const codexEvents =
-    data.filter(
-        event =>
-            event.action_key.startsWith(
-                "codex_"
-            )
-    );
-
-
-    const discovered =
-    codexEvents.length;
-
-
-    const codexPoints =
-    codexEvents.reduce(
-        (
-            total,
-            event
-        ) =>
-            total +
-            Number(event.points || 0),
-        0
-    );
-
-
-    const totalCodex =
-        21;
-
-
-    const percentage =
-        Math.min(
-            100,
-            (
-                discovered /
-                totalCodex
-            ) * 100
-        );
-
-
-    document.getElementById(
-        "codexProgressCount"
-    ).textContent =
-
-        discovered +
-        " / " +
-        totalCodex +
-        " DISCOVERED";
-
-
-    document.getElementById(
-        "codexProgressBar"
-    ).style.width =
-
-        percentage +
-        "%";
-
-
-    document.getElementById(
-        "codexProgressPoints"
-    ).textContent =
-
-        codexPoints +
-        " STAR POINTS FROM CODEX";
-
-
-    if (
-        discovered >= totalCodex
-    ) {
-
-        document.getElementById(
-            "codexProgressText"
-        ).textContent =
-
-            "✦ THE CODEX IS COMPLETE. ✦";
-
-    }
-
-    else {
-
-        const remaining =
-        totalCodex -
-        discovered;
-
-
-        document.getElementById(
-            "codexProgressText"
-        ).textContent =
-
-            remaining +
-            " Codex memories remain to be discovered. ✦";
-
-    }
-
-}
-
-
-/* =========================
-   DAILY HALO DATE KEY
-========================= */
-
-function getBerlinDateKey() {
-
-    return new Intl.DateTimeFormat(
-        "en-CA",
-        {
-            timeZone: "Europe/Berlin",
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        }
-    ).format(
-        new Date()
-    );
-
-}
-
-
-/* =========================
-   CLAIM DAILY HALO REWARD
-========================= */
-
-async function claimDailyHaloReward(userId) {
-
-    try {
-
-        console.log(
-            "DAILY HALO: requesting daily reward..."
-        );
-
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-            .rpc(
-                "grant_daily_halo_login_points",
-                {
-                    p_user_id: userId
-                }
-            );
-
-
-        if (error) {
-
-            console.error(
-                "DAILY HALO REWARD ERROR:",
-                error
-            );
-
-            return 0;
-
-        }
-
-
-        const reward =
-            Number(data || 0);
-
-
-        console.log(
-            "DAILY HALO REWARD RESULT:",
-            reward
-        );
-
-
-        return reward;
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "DAILY HALO REWARD EXCEPTION:",
-            error
-        );
-
-        return 0;
-
-    }
-
-}
-
-
-/* =========================
-   LOAD DAILY HALO STATUS
-========================= */
-
-async function loadDailyHaloStatus(userId) {
-
-    const card =
-        document.getElementById(
-            "dailyHaloCard"
-        );
-
-    const title =
-        document.getElementById(
-            "dailyHaloTitle"
-        );
-
-    const points =
-        document.getElementById(
-            "dailyHaloPoints"
-        );
-
-
-    if (
-        !card ||
-        !title ||
-        !points
-    ) {
-
-        return;
-
-    }
-
-
-    const today =
-        getBerlinDateKey();
-
-
-    const actionKey =
-        "daily_login_" +
-        today;
-
-
-    try {
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-            .from("halo_point_events")
-
-            .select(
-                "id, points, created_at"
-            )
-
-            .eq(
-                "user_id",
-                userId
-            )
-
-            .eq(
-                "action_key",
-                actionKey
-            )
-
-            .maybeSingle();
-
-
-        if (error) {
-
-            console.error(
-                "DAILY HALO STATUS ERROR:",
-                error
-            );
-
-            title.textContent =
-                "Daily Halo status unavailable.";
-
-            points.textContent =
-                "+10 HALO POINTS PER DAY";
-
-            return;
-
-        }
-
-
-        if (data) {
-
-            card.classList.add(
-                "claimed"
-            );
-
-            title.textContent =
-                "✦ TODAY'S HALO IS ACTIVE ✦";
-
-            points.textContent =
-                "+10 HALO POINTS • CLAIMED TODAY";
-
-        }
-
-        else {
-
-            card.classList.remove(
-                "claimed"
-            );
-
-            title.textContent =
-                "Your next Daily Halo reward awaits at your next login.";
-
-            points.textContent =
-                "+10 HALO POINTS PER DAY";
-
-        }
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "DAILY HALO LOAD ERROR:",
-            error
-        );
-
-        title.textContent =
-            "Daily Halo status unavailable.";
-
-        points.textContent =
-            "+10 HALO POINTS PER DAY";
-
-    }
-
-}
-
-
-/* =========================
-   LOAD HALO DATA
-========================= */
-
-async function loadHaloData() {
-
-    try {
-
-        const {
-            data: { user },
-            error: userError
-        } =
-        await supabaseClient.auth.getUser();
-
-
-        if (
-            userError
-        ) {
-
-            console.error(
-                "USER ERROR:",
-                userError
-            );
-
-            window.location.replace(
-                "halo.html"
-            );
-
-            return;
-
-        }
-
-
-        if (!user) {
-
-            window.location.replace(
-                "halo.html"
-            );
-
-            return;
-
-        }
-
-
-        const admin =
-            await isAetherAdmin();
-
-
-        const {
-            data: profile,
-            error: profileError
-        } =
-        await supabaseClient
-
-            .from("halo_profiles")
-
-            .select("halo_id")
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .maybeSingle();
-
-
-        if (
-            profileError
-        ) {
-
-            console.error(
-                "PROFILE ERROR:",
-                profileError
-            );
-
-        }
-
-
-        if (admin) {
-
-            document.getElementById(
-                "haloEmail"
-            ).textContent =
-                "AETHER ADMIN • NO HALO ID ASSIGNED";
-
-        }
-
-        else if (profile) {
-
-            document.getElementById(
-                "haloEmail"
-            ).textContent =
-
-                "HALO ID: " +
-                profile.halo_id;
-
-        }
-
-        else {
-
-            document.getElementById(
-                "haloEmail"
-            ).textContent =
-                "NO HALO ID ASSIGNED";
-
-        }
-
-
-        const dailyReward =
-            await claimDailyHaloReward(
-                user.id
-            );
-
-
-        console.log(
-            "DAILY HALO POINTS ADDED:",
-            dailyReward
-        );
-
-
-        const {
-            data: pointsData,
-            error: pointsError
-        } =
-        await supabaseClient
-
-            .from("halo_points")
-
-            .select("points")
-
-            .eq(
-                "user_id",
-                user.id
-            )
-
-            .maybeSingle();
-
-
-        if (pointsError) {
-
-            console.error(
-                "POINTS ERROR:",
-                pointsError
-            );
-
-            if (!admin) {
-
-                document.getElementById(
-                    "rankName"
-                ).textContent =
-                    "POINTS ERROR";
-
-            }
-
-        }
-
-
-        let points =
-            0;
-
-
-        if (
-            pointsData &&
-            pointsData.points !== null
-        ) {
-
-            points =
-                Number(
-                    pointsData.points
-                );
-
-        }
-
-
-        if (admin) {
-
-            displayAdminRank();
-
-        }
-
-        else {
-
-            displayRank(
-                points
-            );
-
-        }
-
-
-        await loadCodexProgress(
-            user.id
-        );
-
-
-        await loadDailyHaloStatus(
-            user.id
-        );
-
-    }
-
-
-    catch (error) {
-
-        console.error(
-            "HALO LOAD ERROR:",
-            error
-        );
-
-        window.location.replace(
-            "halo.html"
-        );
-
-    }
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-async function logoutHalo() {
-
-    const button =
-        document.getElementById(
-            "logoutButton"
-        );
-
-
-    button.disabled =
-        true;
-
-    button.textContent =
-        "LOGGING OUT...";
-
-
-    try {
-
-        const {
-            error
-        } =
-        await supabaseClient.auth.signOut();
-
-
-        if (error) {
-
-            console.error(
-                "HALO LOGOUT ERROR:",
-                error
-            );
-
-            button.disabled =
-                false;
-
-            button.textContent =
-                "↪ LOG OUT";
-
-            return;
-
-        }
-
-
-        window.location.replace(
-            "halo.html"
-        );
-
-    }
-
-    catch (error) {
-
-        console.error(
-            "HALO LOGOUT ERROR:",
-            error
-        );
-
-        button.disabled =
-            false;
-
-        button.textContent =
-            "↪ LOG OUT";
-
-    }
-
-}
-
-
-/* =========================
-   BUTTONS
-========================= */
 
 document
-    .getElementById(
-        "logoutButton"
-    )
+    .getElementById("logoutBtn")
     .addEventListener(
         "click",
-        logoutHalo
+        async () => {
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href =
+                "login.html";
+        }
     );
 
-
-/* =========================
-   START
-========================= */
-
-async function startHaloHome() {
-
-    const authorized =
-        await requireHaloSession();
-
-
-    if (!authorized) {
-
-        return;
-
-    }
-
-
-    await loadHaloData();
-
-}
-
-
-startHaloHome();
+loadHalo();
 
 </script>
 
 </body>
-
-    </html>
+</html>
