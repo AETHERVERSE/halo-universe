@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Guardian | AETHERVERSE</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #f5efff;
+    font-family: Georgia, serif;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #32145c 0%,
+            #10071c 48%,
+            #05030a 100%
+        );
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px;
+
+    background: rgba(8, 3, 18, 0.9);
+
+    border-bottom:
+        1px solid rgba(190, 120, 255, 0.25);
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: #eadbff;
+    text-decoration: none;
+
+    background:
+        rgba(80, 35, 130, 0.28);
+
+    border:
+        1px solid rgba(190, 120, 255, 0.25);
+
+    border-radius: 999px;
+
+    padding: 8px 14px;
+
+    font-size: 13px;
+}
+
+nav a:hover {
+    background:
+        rgba(100, 45, 160, 0.4);
+
+    border-color:
+        rgba(220, 160, 255, 0.5);
+}
+
+.container {
+    width: min(1050px, 94%);
+    margin: auto;
+    padding: 45px 0 70px;
+}
+
+.hero {
+    text-align: center;
+    padding: 30px 20px 40px;
+}
+
+.hero h1 {
+    margin: 0;
+
+    font-size:
+        clamp(38px, 8vw, 68px);
+
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 15px rgba(210, 150, 255, 0.75),
+        0 0 40px rgba(140, 60, 255, 0.45);
+}
+
+.hero p {
+    color: #cbb9e8;
+}
+
+.panel {
+    border:
+        1px solid rgba(190, 120, 255, 0.28);
+
+    border-radius: 25px;
+
+    background:
+        rgba(30, 13, 49, 0.78);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+}
+
+.panel h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.subtitle {
+    text-align: center;
+    color: #bcaed0;
+    line-height: 1.7;
+}
+
+.guardian-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(130px, 1fr));
+
+    gap: 14px;
+
+    margin-top: 25px;
+}
+
+.guardian-choice {
+    border:
+        1px solid rgba(190, 120, 255, 0.25);
+
+    border-radius: 18px;
+
+    background:
+        rgba(50, 20, 75, 0.55);
+
+    color: #fff;
+
+    padding: 20px 10px;
+
+    cursor: pointer;
+
+    font-family: Georgia, serif;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.guardian-choice:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(220, 170, 255, 0.7);
+
+    background:
+        rgba(90, 40, 130, 0.65);
+}
+
+.guardian-choice.selected {
+    border-color:
+        rgba(235, 210, 255, 0.9);
+
+    background:
+        rgba(110, 55, 155, 0.7);
+
+    box-shadow:
+        0 0 25px rgba(180, 110, 255, 0.25);
+}
+
+.guardian-emoji {
+    font-size: 42px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.guardian-name {
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.guardian-world {
+    display: block;
+
+    margin-top: 5px;
+
+    color: #bcaed0;
+
+    font-size: 11px;
+}
+
+.save-button,
+.action-button {
+    border:
+        1px solid rgba(220, 180, 255, 0.55);
+
+    border-radius: 999px;
+
+    padding: 13px 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(118, 75, 180, 0.7),
+            rgba(70, 35, 120, 0.8)
+        );
+
+    color: #fff;
+
+    font-family: Georgia, serif;
+
+    cursor: pointer;
+
+    letter-spacing: 1px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.save-button:hover,
+.action-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(145, 95, 220, 0.8),
+            rgba(85, 45, 145, 0.9)
+        );
+}
+
+.save-button {
+    display: block;
+    margin: 25px auto 0;
+}
+
+.save-button:disabled,
+.action-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+    transform: none;
+}
+
+.guardian-home {
+    text-align: center;
+}
+
+.guardian-display {
+    font-size: 110px;
+
+    margin:
+        10px 0 5px;
+
+    filter:
+        drop-shadow(
+            0 0 25px rgba(200, 150, 255, 0.4)
+        );
+}
+
+.guardian-title {
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+.guardian-world-large {
+    color: #bcaed0;
+    letter-spacing: 2px;
+}
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.stat {
+    padding: 18px;
+
+    border:
+        1px solid rgba(190, 120, 255, 0.2);
+
+    border-radius: 18px;
+
+    background:
+        rgba(10, 5, 20, 0.35);
+}
+
+.stat-label {
+    color: #aaa0c0;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 24px;
+}
+
+.meter {
+    height: 8px;
+
+    margin-top: 10px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    overflow: hidden;
+}
+
+.meter-fill {
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8065c5,
+            #d5c0ff
+        );
+
+    transition:
+        width 0.5s ease;
+}
+
+.actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 30px;
+}
+
+.action-button {
+    min-height: 110px;
+
+    font-size: 14px;
+}
+
+.action-icon {
+    display: block;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+}
+
+.action-reward {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #d8c7ff;
+
+    font-size: 12px;
+}
+
+.status {
+    min-height: 25px;
+
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: #cdb9ff;
+}
+
+.info {
+    text-align: center;
+
+    color: #aaa0c0;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: #f0b8cf;
+}
+
+.success {
+    color: #d9c7ff;
+}
+
+@media (max-width: 650px) {
+
+    .stats,
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .guardian-display {
+        font-size: 85px;
+    }
+
+    .panel {
+        padding: 22px 16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<nav>
+
+<a href="index.html">
+EXPLORE
+</a>
+
+<a href="universe.html">
+UNIVERSE
+</a>
+
+<a href="members.html">
+MEMBERS
+</a>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="codex.html">
+CODEX
+</a>
+
+<a href="aether-path.html">
+AETHER PATH
+</a>
+
+<a href="aether-arcade.html">
+ARCADE
+</a>
+
+<a href="aether-music.html">
+MUSIC
+</a>
+
+<a href="search.html">
+SEARCH
+</a>
+
+</nav>
+
+
+<main class="container">
+
+
+<section class="hero">
+
+<h1>
+MY GUARDIAN
+</h1>
+
+<p>
+A small Guardian. A growing connection.
+</p>
+
+</section>
+
+
+<!-- =========================
+     GUARDIAN SELECTION
+========================= -->
+
+<section
+class="panel"
+id="selectionPanel">
+
+<h2>
+🦊 CHOOSE YOUR GUARDIAN
+</h2>
+
+<p class="subtitle">
+
+Every HALO has a Guardian.
+
+Choose the one whose signal
+feels closest to you.
+
+</p>
+
+
+<div
+class="guardian-grid"
+id="guardianGrid">
+</div>
+
+
+<button
+class="save-button"
+id="saveGuardian"
+disabled>
+
+CHOOSE GUARDIAN
+
+</button>
+
+
+<div
+class="status"
+id="selectionStatus">
+</div>
+
+</section>
+
+
+<!-- =========================
+     GUARDIAN HOME
+========================= -->
+
+<section
+class="panel guardian-home hidden"
+id="guardianPanel">
+
+<div
+class="guardian-display"
+id="guardianEmoji">
+
+🦊
+
+</div>
+
+
+<div
+class="guardian-title"
+id="guardianName">
+
+GUARDIAN
+
+</div>
+
+
+<div
+class="guardian-world-large"
+id="guardianWorld">
+
+AETHER
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-label">
+MOOD
+</div>
+
+<div
+class="stat-value"
+id="moodValue">
+
+—
+
+</div>
+
+<div class="meter">
+
+<div
+class="meter-fill"
+id="moodFill">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+ENERGY
+</div>
+
+<div
+class="stat-value"
+id="energyValue">
+
+—
+
+</div>
+
+<div class="meter">
+
+<div
+class="meter-fill"
+id="energyFill">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+BOND
+</div>
+
+<div
+class="stat-value"
+id="bondValue">
+
+—
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+
+<button
+class="action-button"
+id="feedButton">
+
+<span class="action-icon">
+🍎
+</span>
+
+FEED
+
+<span class="action-reward">
++5 HALO Points
+</span>
+
+</button>
+
+
+<button
+class="action-button"
+id="careButton">
+
+<span class="action-icon">
+🫶
+</span>
+
+CARE
+
+<span class="action-reward">
++5 HALO Points
+</span>
+
+</button>
+
+
+<button
+class="action-button"
+id="playButton">
+
+<span class="action-icon">
+🎮
+</span>
+
+PLAY
+
+<span class="action-reward">
++10 HALO Points
+</span>
+
+</button>
+
+
+</div>
+
+
+<div
+class="status"
+id="actionStatus">
+</div>
+
+
+<p class="info">
+
+Each action can be performed once per day.
+Your Guardian and Bond are saved in the AETHERVERSE.
+
+</p>
+
+</section>
+
+
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
+
+<script>
+
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================
+   GUARDIANS
+========================= */
+
+
+const guardians = {
+
+    solis: {
+        name: "SOLIS",
+        emoji: "🦁",
+        world: "SOLARION",
+        description: "Guardian of the sun."
+    },
+
+    umbra: {
+        name: "UMBRA",
+        emoji: "🐆",
+        world: "HOLLOW",
+        description: "Guardian of the hidden shadow."
+    },
+
+    volt: {
+        name: "VOLT",
+        emoji: "🐺",
+        world: "VOLTARIS",
+        description: "Guardian of electric energy."
+    },
+
+    thalos: {
+        name: "THALOS",
+        emoji: "🐬",
+        world: "THALASSIA",
+        description: "Guardian of the ocean."
+    },
+
+    pyra: {
+        name: "PYRA",
+        emoji: "🔥",
+        world: "IGNIS",
+        description: "Guardian of the flame."
+    },
+
+    lumen: {
+        name: "LUMEN",
+        emoji: "🐈",
+        world: "LUMENIA",
+        description: "Guardian of the stars."
+    },
+
+    noctis: {
+        name: "NOCTIS",
+        emoji: "🐦‍⬛",
+        world: "NOCTEUM",
+        description: "Guardian of the night."
+    }
+
+};
+
+
+let selectedGuardian = null;
+
+
+/* =========================
+   AUTH
+========================= */
+
+
+async function getSession() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+    if (
+        error ||
+        !data.session
+    ) {
+
+        window.location.href =
+            "universe.html";
+
+        return null;
+
+    }
+
+    return data.session;
+
+}
+
+
+/* =========================
+   GUARDIAN SELECTION UI
+========================= */
+
+
+function renderGuardianChoices(
+    currentGuardian
+) {
+
+    const grid =
+        document.getElementById(
+            "guardianGrid"
+        );
+
+    grid.innerHTML = "";
+
+
+    Object.entries(
+        guardians
+    ).forEach(
+        ([key, guardian]) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "guardian-choice";
+
+
+            if (
+                key === currentGuardian
+            ) {
+
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            button.innerHTML = `
+
+                <span class="guardian-emoji">
+                    ${guardian.emoji}
+                </span>
+
+                <span class="guardian-name">
+                    ${guardian.name}
+                </span>
+
+                <span class="guardian-world">
+                    ${guardian.world}
+                </span>
+
+            `;
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    selectedGuardian =
+                        key;
+
+
+                    document
+                        .querySelectorAll(
+                            ".guardian-choice"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList.remove(
+                                    "selected"
+                                )
+                        );
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    document.getElementById(
+                        "saveGuardian"
+                    ).disabled = false;
+
+
+                    document.getElementById(
+                        "saveGuardian"
+                    ).textContent =
+                        "SAVE GUARDIAN";
+
+                }
+            );
+
+
+            grid.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   LOAD GUARDIAN
+========================= */
+
+
+async function loadGuardian() {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "get_guardian_tamagotchi"
+            );
+
+
+    if (error) {
+
+        console.error(error);
+
+        document.getElementById(
+            "selectionStatus"
+        ).textContent =
+            "Unable to load your Guardian.";
+
+        return;
+
+    }
+
+
+    const guardian =
+        data;
+
+
+    selectedGuardian =
+        guardian.guardian_key;
+
+
+    renderGuardianChoices(
+        guardian.guardian_key
+    );
+
+
+    updateGuardianDisplay(
+        guardian
+    );
+
+}
+
+
+/* =========================
+   UPDATE DISPLAY
+========================= */
+
+
+function updateGuardianDisplay(
+    guardian
+) {
+
+    const info =
+        guardians[
+            guardian.guardian_key
+        ];
+
+
+    if (!info) {
+        return;
+    }
+
+
+    document.getElementById(
+        "guardianEmoji"
+    ).textContent =
+        info.emoji;
+
+
+    document.getElementById(
+        "guardianName"
+    ).textContent =
+        info.name;
+
+
+    document.getElementById(
+        "guardianWorld"
+    ).textContent =
+        info.world;
+
+
+    document.getElementById(
+        "moodValue"
+    ).textContent =
+        guardian.mood + "%";
+
+
+    document.getElementById(
+        "energyValue"
+    ).textContent =
+        guardian.energy + "%";
+
+
+    document.getElementById(
+        "bondValue"
+    ).textContent =
+        guardian.bond;
+
+
+    document.getElementById(
+        "moodFill"
+    ).style.width =
+        guardian.mood + "%";
+
+
+    document.getElementById(
+        "energyFill"
+    ).style.width =
+        guardian.energy + "%";
+
+
+    document.getElementById(
+        "selectionPanel"
+    ).classList.add(
+        "hidden"
+    );
+
+
+    document.getElementById(
+        "guardianPanel"
+    ).classList.remove(
+        "hidden"
+    );
+
+}
+
+
+/* =========================
+   SAVE GUARDIAN
+========================= */
+
+
+async function saveGuardian() {
+
+    if (!selectedGuardian) {
+        return;
+    }
+
+
+    const button =
+        document.getElementById(
+            "saveGuardian"
+        );
+
+
+    button.disabled = true;
+
+    button.textContent =
+        "SAVING...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "set_guardian_tamagotchi",
+                {
+                    p_guardian_key:
+                        selectedGuardian
+                }
+            );
+
+
+    if (error) {
+
+        console.error(error);
+
+        button.disabled = false;
+
+        button.textContent =
+            "SAVE GUARDIAN";
+
+        document.getElementById(
+            "selectionStatus"
+        ).innerHTML =
+            `<span class="error">
+                Could not save Guardian.
+            </span>`;
+
+        return;
+
+    }
+
+
+    updateGuardianDisplay(
+        data
+    );
+
+
+    document.getElementById(
+        "actionStatus"
+    ).innerHTML =
+        `<span class="success">
+            ✨ Your Guardian has awakened.
+        </span>`;
+
+}
+
+
+/* =========================
+   CARE ACTION
+========================= */
+
+
+async function guardianAction(
+    action
+) {
+
+    const buttonMap = {
+
+        feed:
+            "feedButton",
+
+        care:
+            "careButton",
+
+        play:
+            "playButton"
+
+    };
+
+
+    const button =
+        document.getElementById(
+            buttonMap[action]
+        );
+
+
+    const status =
+        document.getElementById(
+            "actionStatus"
+        );
+
+
+    button.disabled = true;
+
+    status.textContent =
+        "Connecting to your Guardian...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .rpc(
+                "care_guardian_tamagotchi",
+                {
+                    p_action:
+                        action
+                }
+            );
+
+
+    if (error) {
+
+        console.error(error);
+
+        status.innerHTML =
+            `<span class="error">
+                Something went wrong.
+            </span>`;
+
+        button.disabled = false;
+
+        return;
+
+    }
+
+
+    updateGuardianDisplay(
+        data
+    );
+
+
+    if (
+        data.already_done
+    ) {
+
+        if (
+            action === "play" &&
+            data.energy < 10
+        ) {
+
+            status.innerHTML =
+                `<span class="error">
+                    ⚡ Your Guardian needs more energy.
+                </span>`;
+
+        } else {
+
+            status.innerHTML =
+                `<span>
+                    🌙 Your Guardian has already received
+                    this today.
+                </span>`;
+
+        }
+
+        return;
+
+    }
+
+
+    status.innerHTML =
+        `<span class="success">
+            ✨ ${action.toUpperCase()} complete!
+            +${data.points_awarded} HALO Points
+        </span>`;
+
+
+    button.textContent =
+        action === "feed"
+            ? "FED TODAY"
+            : action === "care"
+                ? "CARED FOR TODAY"
+                : "PLAYED TODAY";
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+
+document
+    .getElementById(
+        "saveGuardian"
+    )
+    .addEventListener(
+        "click",
+        saveGuardian
+    );
+
+
+document
+    .getElementById(
+        "feedButton"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            guardianAction("feed")
+    );
+
+
+document
+    .getElementById(
+        "careButton"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            guardianAction("care")
+    );
+
+
+document
+    .getElementById(
+        "playButton"
+    )
+    .addEventListener(
+        "click",
+        () =>
+            guardianAction("play")
+    );
+
+
+/* =========================
+   START
+========================= */
+
+
+async function init() {
+
+    const session =
+        await getSession();
+
+
+    if (!session) {
+        return;
+    }
+
+
+    await loadGuardian();
+
+}
+
+
+init();
+
+
+</script>
+
+</body>
+
+  </html>
