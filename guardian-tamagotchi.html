@@ -17,7 +17,9 @@
 body {
     margin: 0;
     min-height: 100vh;
+
     color: #f5efff;
+
     font-family: Georgia, serif;
 
     background:
@@ -34,15 +36,18 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+
     padding: 18px;
 
-    background: rgba(8, 3, 18, 0.9);
+    background:
+        rgba(8, 3, 18, 0.9);
 
     border-bottom:
         1px solid rgba(190, 120, 255, 0.25);
 
     position: sticky;
     top: 0;
+
     z-index: 100;
 
     backdrop-filter: blur(10px);
@@ -50,6 +55,7 @@ nav {
 
 nav a {
     color: #eadbff;
+
     text-decoration: none;
 
     background:
@@ -75,12 +81,15 @@ nav a:hover {
 
 .container {
     width: min(1050px, 94%);
+
     margin: auto;
+
     padding: 45px 0 70px;
 }
 
 .hero {
     text-align: center;
+
     padding: 30px 20px 40px;
 }
 
@@ -120,57 +129,71 @@ nav a:hover {
 
 .panel h2 {
     text-align: center;
+
     margin-top: 0;
 }
 
 .subtitle {
     text-align: center;
+
     color: #bcaed0;
+
     line-height: 1.7;
 }
+
+
+/* =========================
+   GUARDIAN SELECTION
+========================= */
 
 .guardian-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(130px, 1fr));
+        repeat(auto-fit, minmax(180px, 1fr));
 
     gap: 14px;
 
-    margin-top: 25px;
+    max-width: 420px;
+
+    margin: 25px auto 0;
 }
 
 .guardian-choice {
     border:
-        1px solid rgba(190, 120, 255, 0.25);
+        1px solid rgba(190, 120, 255, 0.3);
 
-    border-radius: 18px;
+    border-radius: 20px;
 
     background:
         rgba(50, 20, 75, 0.55);
 
     color: #fff;
 
-    padding: 20px 10px;
+    padding: 25px 15px;
 
     cursor: pointer;
 
     font-family: Georgia, serif;
 
     transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .guardian-choice:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
 
     border-color:
         rgba(220, 170, 255, 0.7);
 
     background:
         rgba(90, 40, 130, 0.65);
+
+    box-shadow:
+        0 12px 30px rgba(100, 50, 160, 0.2);
 }
 
 .guardian-choice.selected {
@@ -181,29 +204,39 @@ nav a:hover {
         rgba(110, 55, 155, 0.7);
 
     box-shadow:
-        0 0 25px rgba(180, 110, 255, 0.25);
+        0 0 30px rgba(180, 110, 255, 0.3);
 }
 
 .guardian-emoji {
-    font-size: 42px;
+    font-size: 52px;
+
     display: block;
-    margin-bottom: 8px;
+
+    margin-bottom: 10px;
 }
 
 .guardian-name {
-    font-size: 15px;
-    letter-spacing: 1px;
+    font-size: 17px;
+
+    letter-spacing: 2px;
 }
 
 .guardian-world {
     display: block;
 
-    margin-top: 5px;
+    margin-top: 6px;
 
     color: #bcaed0;
 
     font-size: 11px;
+
+    letter-spacing: 1px;
 }
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 .save-button,
 .action-button {
@@ -231,7 +264,8 @@ nav a:hover {
 
     transition:
         transform 0.2s ease,
-        background 0.2s ease;
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .save-button:hover,
@@ -244,45 +278,425 @@ nav a:hover {
             rgba(145, 95, 220, 0.8),
             rgba(85, 45, 145, 0.9)
         );
+
+    border-color:
+        rgba(235, 210, 255, 0.8);
 }
 
 .save-button {
     display: block;
+
     margin: 25px auto 0;
 }
 
 .save-button:disabled,
 .action-button:disabled {
     opacity: 0.5;
+
     cursor: default;
+
     transform: none;
 }
+
+
+/* =========================
+   GUARDIAN HOME
+========================= */
 
 .guardian-home {
     text-align: center;
 }
 
-.guardian-display {
-    font-size: 110px;
 
-    margin:
-        10px 0 5px;
+/* =========================
+   NOCTIS STAGE
+========================= */
+
+.guardian-stage {
+    position: relative;
+
+    width: min(420px, 100%);
+
+    height: 310px;
+
+    margin: 0 auto 10px;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(105, 70, 170, 0.28),
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(50, 30, 90, 0.35),
+            transparent 65%
+        );
+
+    border:
+        1px solid rgba(190, 120, 255, 0.18);
+
+    box-shadow:
+        inset 0 0 50px rgba(0, 0, 0, 0.22),
+        0 0 45px rgba(100, 60, 170, 0.08);
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.star {
+    position: absolute;
+
+    color: #e7dcff;
+
+    font-size: 10px;
+
+    opacity: 0.55;
+
+    animation:
+        starFloat 4s ease-in-out infinite;
+}
+
+.star.one {
+    top: 35px;
+    left: 18%;
+    animation-delay: 0s;
+}
+
+.star.two {
+    top: 80px;
+    right: 18%;
+    animation-delay: 1.2s;
+}
+
+.star.three {
+    top: 145px;
+    left: 10%;
+    animation-delay: 2s;
+}
+
+.star.four {
+    top: 170px;
+    right: 12%;
+    animation-delay: 0.7s;
+}
+
+.star.five {
+    top: 45px;
+    left: 70%;
+    animation-delay: 2.8s;
+}
+
+
+/* =========================
+   NOCTIS
+========================= */
+
+.noctis-orbit {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(160, 120, 220, 0.13),
+            transparent 65%
+        );
+
+    animation:
+        orbitPulse 4s ease-in-out infinite;
+}
+
+.guardian-display {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 145px;
+    height: 145px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 105px;
+
+    line-height: 1;
+
+    background: transparent;
+
+    border: none;
 
     filter:
         drop-shadow(
-            0 0 25px rgba(200, 150, 255, 0.4)
+            0 0 12px rgba(205, 175, 255, 0.55)
+        )
+        drop-shadow(
+            0 0 35px rgba(120, 75, 190, 0.3)
         );
+
+    animation:
+        noctisFloat 3.5s ease-in-out infinite;
+
+    user-select: none;
 }
+
+
+/* gentle wing/body movement */
+
+.guardian-display::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 3px;
+    right: 2px;
+
+    font-size: 18px;
+
+    color: #e8dcff;
+
+    opacity: 0;
+
+    animation:
+        noctisSpark 3.5s ease-in-out infinite;
+}
+
+
+/* =========================
+   GUARDIAN GLOW
+========================= */
+
+.guardian-glow {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 120px;
+    height: 120px;
+
+    transform:
+        translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(145, 100, 210, 0.16);
+
+    filter: blur(25px);
+
+    animation:
+        guardianGlow 3.5s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes noctisFloat {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            translateY(4px)
+            rotate(-1deg);
+    }
+
+    25% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-5px)
+            rotate(1deg);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-10px)
+            rotate(-1deg);
+    }
+
+    75% {
+        transform:
+            translate(-50%, -50%)
+            translateY(-4px)
+            rotate(1deg);
+    }
+
+}
+
+@keyframes guardianGlow {
+
+    0%,
+    100% {
+        opacity: 0.65;
+        transform:
+            translate(-50%, -50%)
+            scale(0.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+}
+
+@keyframes orbitPulse {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(0.95);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.04);
+    }
+
+}
+
+@keyframes noctisSpark {
+
+    0%,
+    72% {
+        opacity: 0;
+        transform:
+            scale(0.5)
+            rotate(0deg);
+    }
+
+    78% {
+        opacity: 1;
+        transform:
+            scale(1.2)
+            rotate(90deg);
+    }
+
+    85% {
+        opacity: 0.8;
+        transform:
+            scale(0.8)
+            rotate(180deg);
+    }
+
+    92%,
+    100% {
+        opacity: 0;
+        transform:
+            scale(0.4)
+            rotate(270deg);
+    }
+
+}
+
+@keyframes starFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: 0.35;
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            scale(1.3);
+
+        opacity: 0.85;
+    }
+
+}
+
+
+/* =========================
+   NOCTIS MESSAGE
+========================= */
+
+.guardian-message {
+    max-width: 600px;
+
+    min-height: 30px;
+
+    margin: 8px auto 20px;
+
+    color: #d8c8f3;
+
+    font-style: italic;
+
+    line-height: 1.6;
+
+    opacity: 0.9;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.guardian-message::before {
+    content: "“";
+}
+
+.guardian-message::after {
+    content: "”";
+}
+
+
+/* =========================
+   GUARDIAN INFO
+========================= */
 
 .guardian-title {
     font-size: 32px;
+
     letter-spacing: 3px;
+
+    margin-top: 5px;
 }
 
 .guardian-world-large {
     color: #bcaed0;
+
     letter-spacing: 2px;
 }
+
+
+/* =========================
+   STATS
+========================= */
 
 .stats {
     display: grid;
@@ -352,6 +766,11 @@ nav a:hover {
         width 0.5s ease;
 }
 
+
+/* =========================
+   ACTIONS
+========================= */
+
 .actions {
     display: grid;
 
@@ -387,6 +806,11 @@ nav a:hover {
     font-size: 12px;
 }
 
+
+/* =========================
+   STATUS
+========================= */
+
 .status {
     min-height: 25px;
 
@@ -419,6 +843,11 @@ nav a:hover {
     color: #d9c7ff;
 }
 
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 650px) {
 
     .stats,
@@ -426,12 +855,45 @@ nav a:hover {
         grid-template-columns: 1fr;
     }
 
-    .guardian-display {
-        font-size: 85px;
-    }
-
     .panel {
         padding: 22px 16px;
+    }
+
+    .guardian-stage {
+        height: 275px;
+    }
+
+    .guardian-display {
+        font-size: 88px;
+
+        width: 125px;
+        height: 125px;
+    }
+
+    .noctis-orbit {
+        width: 165px;
+        height: 165px;
+    }
+
+    .guardian-title {
+        font-size: 27px;
+    }
+
+}
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .guardian-display,
+    .guardian-glow,
+    .noctis-orbit,
+    .star,
+    .guardian-display::after {
+        animation: none;
     }
 
 }
@@ -510,15 +972,14 @@ class="panel"
 id="selectionPanel">
 
 <h2>
-🦊 CHOOSE YOUR GUARDIAN
+🐦‍⬛ YOUR FIRST GUARDIAN
 </h2>
 
 <p class="subtitle">
 
-Every HALO has a Guardian.
+The first Guardian has awakened.
 
-Choose the one whose signal
-feels closest to you.
+For now, only one signal can be heard.
 
 </p>
 
@@ -555,11 +1016,45 @@ id="selectionStatus">
 class="panel guardian-home hidden"
 id="guardianPanel">
 
+
+<div class="guardian-stage">
+
+<span class="star one">
+✦
+</span>
+
+<span class="star two">
+✧
+</span>
+
+<span class="star three">
+✦
+</span>
+
+<span class="star four">
+✧
+</span>
+
+<span class="star five">
+✦
+</span>
+
+
+<div class="guardian-glow">
+</div>
+
+
+<div class="noctis-orbit">
+</div>
+
+
 <div
 class="guardian-display"
 id="guardianEmoji">
 
-🦊
+🐦‍⬛
+
+</div>
 
 </div>
 
@@ -568,7 +1063,7 @@ id="guardianEmoji">
 class="guardian-title"
 id="guardianName">
 
-GUARDIAN
+NOCTIS
 
 </div>
 
@@ -577,7 +1072,16 @@ GUARDIAN
 class="guardian-world-large"
 id="guardianWorld">
 
-AETHER
+NOCTEUM
+
+</div>
+
+
+<div
+class="guardian-message"
+id="guardianMessage">
+
+...
 
 </div>
 
@@ -759,56 +1263,20 @@ const supabaseClient =
    GUARDIANS
 ========================= */
 
+/*
+   Only NOCTIS is currently available.
+   The other Guardians will be added
+   later as the AETHERVERSE expands.
+*/
 
 const guardians = {
-
-    solis: {
-        name: "SOLIS",
-        emoji: "🦁",
-        world: "SOLARION",
-        description: "Guardian of the sun."
-    },
-
-    umbra: {
-        name: "UMBRA",
-        emoji: "🐆",
-        world: "HOLLOW",
-        description: "Guardian of the hidden shadow."
-    },
-
-    volt: {
-        name: "VOLT",
-        emoji: "🐺",
-        world: "VOLTARIS",
-        description: "Guardian of electric energy."
-    },
-
-    thalos: {
-        name: "THALOS",
-        emoji: "🐬",
-        world: "THALASSIA",
-        description: "Guardian of the ocean."
-    },
-
-    pyra: {
-        name: "PYRA",
-        emoji: "🔥",
-        world: "IGNIS",
-        description: "Guardian of the flame."
-    },
-
-    lumen: {
-        name: "LUMEN",
-        emoji: "🐈",
-        world: "LUMENIA",
-        description: "Guardian of the stars."
-    },
 
     noctis: {
         name: "NOCTIS",
         emoji: "🐦‍⬛",
         world: "NOCTEUM",
-        description: "Guardian of the night."
+        description:
+            "Guardian of the night."
     }
 
 };
@@ -818,9 +1286,85 @@ let selectedGuardian = null;
 
 
 /* =========================
-   AUTH
+   NOCTIS MESSAGES
 ========================= */
 
+const noctisMessages = [
+
+    "I was waiting for you.",
+
+    "The night is quiet today.",
+
+    "Stay a little longer.",
+
+    "I can feel your signal.",
+
+    "You found me.",
+
+    "The stars are listening.",
+
+    "Your bond is growing.",
+
+    "I will watch over you.",
+
+    "Something feels different tonight.",
+
+    "HALO... you're here."
+
+];
+
+
+let currentMessage = 0;
+
+
+/* =========================
+   ROTATE NOCTIS MESSAGE
+========================= */
+
+function rotateNoctisMessage() {
+
+    const message =
+        document.getElementById(
+            "guardianMessage"
+        );
+
+    if (!message) {
+        return;
+    }
+
+
+    message.style.opacity = "0";
+
+
+    setTimeout(
+        () => {
+
+            message.textContent =
+                noctisMessages[
+                    currentMessage
+                ];
+
+
+            message.style.opacity =
+                "0.9";
+
+
+            currentMessage =
+                (
+                    currentMessage + 1
+                ) %
+                noctisMessages.length;
+
+        },
+        300
+    );
+
+}
+
+
+/* =========================
+   AUTH
+========================= */
 
 async function getSession() {
 
@@ -831,6 +1375,7 @@ async function getSession() {
         await supabaseClient
             .auth
             .getSession();
+
 
     if (
         error ||
@@ -844,6 +1389,7 @@ async function getSession() {
 
     }
 
+
     return data.session;
 
 }
@@ -853,7 +1399,6 @@ async function getSession() {
    GUARDIAN SELECTION UI
 ========================= */
 
-
 function renderGuardianChoices(
     currentGuardian
 ) {
@@ -862,6 +1407,7 @@ function renderGuardianChoices(
         document.getElementById(
             "guardianGrid"
         );
+
 
     grid.innerHTML = "";
 
@@ -875,6 +1421,7 @@ function renderGuardianChoices(
                 document.createElement(
                     "button"
                 );
+
 
             button.className =
                 "guardian-choice";
@@ -941,7 +1488,7 @@ function renderGuardianChoices(
                     document.getElementById(
                         "saveGuardian"
                     ).textContent =
-                        "SAVE GUARDIAN";
+                        "SAVE NOCTIS";
 
                 }
             );
@@ -961,7 +1508,6 @@ function renderGuardianChoices(
    LOAD GUARDIAN
 ========================= */
 
-
 async function loadGuardian() {
 
     const {
@@ -980,8 +1526,10 @@ async function loadGuardian() {
 
         document.getElementById(
             "selectionStatus"
-        ).textContent =
-            "Unable to load your Guardian.";
+        ).innerHTML =
+            `<span class="error">
+                Unable to load your Guardian.
+            </span>`;
 
         return;
 
@@ -992,18 +1540,52 @@ async function loadGuardian() {
         data;
 
 
-    selectedGuardian =
-        guardian.guardian_key;
+    /*
+       If the database already contains
+       NOCTIS, show the Guardian immediately.
+    */
 
+    if (
+        guardian &&
+        guardian.guardian_key === "noctis"
+    ) {
+
+        selectedGuardian =
+            "noctis";
+
+
+        renderGuardianChoices(
+            "noctis"
+        );
+
+
+        updateGuardianDisplay(
+            guardian
+        );
+
+
+        rotateNoctisMessage();
+
+
+        return;
+
+    }
+
+
+    /*
+       New HALO:
+       only NOCTIS is available.
+    */
 
     renderGuardianChoices(
-        guardian.guardian_key
+        null
     );
 
 
-    updateGuardianDisplay(
-        guardian
-    );
+    document.getElementById(
+        "selectionStatus"
+    ).textContent =
+        "Noctis is waiting for you. ✦";
 
 }
 
@@ -1011,7 +1593,6 @@ async function loadGuardian() {
 /* =========================
    UPDATE DISPLAY
 ========================= */
-
 
 function updateGuardianDisplay(
     guardian
@@ -1024,7 +1605,14 @@ function updateGuardianDisplay(
 
 
     if (!info) {
+
+        console.warn(
+            "Unknown Guardian:",
+            guardian.guardian_key
+        );
+
         return;
+
     }
 
 
@@ -1096,7 +1684,6 @@ function updateGuardianDisplay(
    SAVE GUARDIAN
 ========================= */
 
-
 async function saveGuardian() {
 
     if (!selectedGuardian) {
@@ -1112,8 +1699,9 @@ async function saveGuardian() {
 
     button.disabled = true;
 
+
     button.textContent =
-        "SAVING...";
+        "AWAKENING...";
 
 
     const {
@@ -1134,17 +1722,22 @@ async function saveGuardian() {
 
         console.error(error);
 
-        button.disabled = false;
+
+        button.disabled =
+            false;
+
 
         button.textContent =
-            "SAVE GUARDIAN";
+            "SAVE NOCTIS";
+
 
         document.getElementById(
             "selectionStatus"
         ).innerHTML =
             `<span class="error">
-                Could not save Guardian.
+                Could not awaken Noctis.
             </span>`;
+
 
         return;
 
@@ -1156,11 +1749,14 @@ async function saveGuardian() {
     );
 
 
+    rotateNoctisMessage();
+
+
     document.getElementById(
         "actionStatus"
     ).innerHTML =
         `<span class="success">
-            ✨ Your Guardian has awakened.
+            ✨ Noctis has awakened.
         </span>`;
 
 }
@@ -1169,7 +1765,6 @@ async function saveGuardian() {
 /* =========================
    CARE ACTION
 ========================= */
-
 
 async function guardianAction(
     action
@@ -1201,10 +1796,12 @@ async function guardianAction(
         );
 
 
-    button.disabled = true;
+    button.disabled =
+        true;
+
 
     status.textContent =
-        "Connecting to your Guardian...";
+        "Connecting to Noctis...";
 
 
     const {
@@ -1225,12 +1822,16 @@ async function guardianAction(
 
         console.error(error);
 
+
         status.innerHTML =
             `<span class="error">
                 Something went wrong.
             </span>`;
 
-        button.disabled = false;
+
+        button.disabled =
+            false;
+
 
         return;
 
@@ -1240,6 +1841,9 @@ async function guardianAction(
     updateGuardianDisplay(
         data
     );
+
+
+    rotateNoctisMessage();
 
 
     if (
@@ -1253,18 +1857,19 @@ async function guardianAction(
 
             status.innerHTML =
                 `<span class="error">
-                    ⚡ Your Guardian needs more energy.
+                    ⚡ Noctis needs more energy.
                 </span>`;
 
         } else {
 
             status.innerHTML =
                 `<span>
-                    🌙 Your Guardian has already received
+                    🌙 Noctis has already received
                     this today.
                 </span>`;
 
         }
+
 
         return;
 
@@ -1291,7 +1896,6 @@ async function guardianAction(
 /* =========================
    BUTTONS
 ========================= */
-
 
 document
     .getElementById(
@@ -1340,7 +1944,6 @@ document
    START
 ========================= */
 
-
 async function init() {
 
     const session =
@@ -1354,6 +1957,17 @@ async function init() {
 
     await loadGuardian();
 
+
+    /*
+       Noctis gets a new little
+       message every 7 seconds.
+    */
+
+    setInterval(
+        rotateNoctisMessage,
+        7000
+    );
+
 }
 
 
@@ -1364,4 +1978,4 @@ init();
 
 </body>
 
-  </html>
+    </html>
