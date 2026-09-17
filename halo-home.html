@@ -84,7 +84,8 @@ nav button:hover {
 .welcome-card,
 .daily,
 .rank-box,
-.card {
+.card,
+.halo-daily-card {
     border: 1px solid rgba(190, 120, 255, 0.25);
     border-radius: 22px;
     background: rgba(30, 13, 49, 0.75);
@@ -189,6 +190,139 @@ nav button:hover {
     color: #aaa0e6;
     font-size: 12px;
     letter-spacing: 1px;
+}
+
+
+/* =========================
+   HALO DAILY
+========================= */
+
+.halo-daily-card {
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    padding: 35px 25px;
+    margin: 35px 0 45px;
+    border-color: rgba(205, 185, 255, 0.35);
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(155, 90, 255, 0.20),
+            transparent 60%
+        ),
+        rgba(30, 13, 49, 0.82);
+}
+
+.halo-daily-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(205, 185, 255, 0.08);
+    filter: blur(25px);
+    pointer-events: none;
+}
+
+.halo-daily-label {
+    position: relative;
+    color: #bcaed0;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.halo-daily-icon {
+    position: relative;
+    font-size: 46px;
+    margin: 8px 0 12px;
+}
+
+.halo-daily-card h2 {
+    position: relative;
+    margin: 8px 0 12px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.halo-daily-description {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto;
+    color: #d5cbea;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.halo-daily-reward {
+    position: relative;
+    margin: 22px auto;
+    color: #e8dcff;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.halo-daily-button {
+    position: relative;
+    display: inline-block;
+    margin-top: 8px;
+    padding: 13px 28px;
+    border-radius: 999px;
+    border: 1px solid rgba(220, 180, 255, 0.55);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(118, 75, 180, 0.65),
+            rgba(70, 35, 120, 0.75)
+        );
+    color: #fff;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.halo-daily-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(235, 210, 255, 0.85);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(145, 95, 220, 0.75),
+            rgba(85, 45, 145, 0.85)
+        );
+}
+
+.halo-daily-button:disabled {
+    cursor: default;
+    transform: none;
+    opacity: 0.75;
+}
+
+.halo-daily-status {
+    position: relative;
+    min-height: 24px;
+    margin-top: 18px;
+    color: #cdb9ff;
+    font-size: 14px;
+}
+
+.halo-daily-complete {
+    color: #e1d2ff;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.halo-daily-error {
+    color: #f0b8cf;
 }
 
 .section-title {
@@ -337,6 +471,58 @@ on the connection between HALO and AETHER.
 <p id="dailyMessage">
 Loading your daily connection...
 </p>
+
+</section>
+
+
+<!-- =========================
+     HALO DAILY
+========================= -->
+
+<section
+class="halo-daily-card"
+id="haloDailyCard">
+
+<div class="halo-daily-label">
+HALO DAILY SIGNAL
+</div>
+
+<div
+class="halo-daily-icon"
+id="haloDailyIcon">
+✨
+</div>
+
+<h2
+id="haloDailyTitle">
+Loading today's signal...
+</h2>
+
+<p
+class="halo-daily-description"
+id="haloDailyDescription">
+A new signal is waiting for you.
+</p>
+
+<div
+class="halo-daily-reward"
+id="haloDailyReward">
+⭐ Loading reward...
+</div>
+
+<button
+class="halo-daily-button"
+id="haloDailyButton"
+type="button">
+
+CLAIM POINTS
+
+</button>
+
+<div
+class="halo-daily-status"
+id="haloDailyStatus">
+</div>
 
 </section>
 
@@ -804,6 +990,400 @@ const supabaseClient =
     );
 
 
+/* =========================
+   HALO DAILY DATA
+========================= */
+
+const haloDailyActivities = [
+
+    {
+        key: "daily_signal",
+        icon: "✨",
+        title: "THE DAILY SIGNAL",
+        description:
+            "A small signal has reached HALO today. Receive it and keep the connection alive.",
+        reward: 5
+    },
+
+    {
+        key: "daily_discovery",
+        icon: "🔮",
+        title: "DAILY DISCOVERY",
+        description:
+            "Something small is waiting to be discovered inside the AETHERVERSE.",
+        reward: 5
+    },
+
+    {
+        key: "daily_sound",
+        icon: "🎵",
+        title: "DAILY SOUND",
+        description:
+            "Listen closely. AETHER leaves a little piece of the connection in today's signal.",
+        reward: 10
+    },
+
+    {
+        key: "guardian_moment",
+        icon: "🦊",
+        title: "GUARDIAN MOMENT",
+        description:
+            "One of the Guardians is watching over the connection today. Receive its signal.",
+        reward: 10
+    },
+
+    {
+        key: "daily_message",
+        icon: "💌",
+        title: "A MESSAGE FOR HALO",
+        description:
+            "A small message from the AETHERVERSE is waiting for you today.",
+        reward: 5
+    },
+
+    {
+        key: "special_signal",
+        icon: "🌌",
+        title: "SPECIAL SIGNAL",
+        description:
+            "A stronger signal has appeared. Today, the connection shines a little brighter.",
+        reward: 15
+    }
+
+];
+
+
+/* =========================
+   GET TODAY'S DAILY
+========================= */
+
+function getHaloDailyActivity() {
+
+    const now =
+        new Date();
+
+    const start =
+        new Date(
+            now.getFullYear(),
+            0,
+            0
+        );
+
+    const diff =
+        now -
+        start;
+
+    const oneDay =
+        1000 *
+        60 *
+        60 *
+        24;
+
+    const dayOfYear =
+        Math.floor(
+            diff / oneDay
+        );
+
+    const index =
+        dayOfYear %
+        haloDailyActivities.length;
+
+    return haloDailyActivities[index];
+
+}
+
+
+/* =========================
+   LOAD HALO DAILY
+========================= */
+
+async function loadHaloDaily() {
+
+    const activity =
+        getHaloDailyActivity();
+
+
+    const icon =
+        document.getElementById(
+            "haloDailyIcon"
+        );
+
+    const title =
+        document.getElementById(
+            "haloDailyTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "haloDailyDescription"
+        );
+
+    const reward =
+        document.getElementById(
+            "haloDailyReward"
+        );
+
+    const button =
+        document.getElementById(
+            "haloDailyButton"
+        );
+
+    const status =
+        document.getElementById(
+            "haloDailyStatus"
+        );
+
+
+    icon.textContent =
+        activity.icon;
+
+
+    title.textContent =
+        activity.title;
+
+
+    description.textContent =
+        activity.description;
+
+
+    reward.textContent =
+        "⭐ +" +
+        activity.reward +
+        " HALO Points";
+
+
+    button.disabled =
+        true;
+
+
+    status.textContent =
+        "Checking today's signal...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "get_halo_daily"
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (
+            data &&
+            data.completed === true
+        ) {
+
+            button.textContent =
+                "✓ CLAIMED TODAY";
+
+
+            button.disabled =
+                true;
+
+
+            status.innerHTML =
+                "<span class=\"halo-daily-complete\">" +
+                "✦ Today's signal has already been received. Come back tomorrow. ✦" +
+                "</span>";
+
+
+            return;
+
+        }
+
+
+        button.textContent =
+            "CLAIM POINTS";
+
+
+        button.disabled =
+            false;
+
+
+        status.textContent =
+            "Today's signal is waiting for you. ✦";
+
+
+    } catch (error) {
+
+        console.error(
+            "HALO DAILY loading error:",
+            error
+        );
+
+
+        button.disabled =
+            true;
+
+
+        status.innerHTML =
+            "<span class=\"halo-daily-error\">" +
+            "Today's signal could not be loaded." +
+            "</span>";
+
+    }
+
+}
+
+
+/* =========================
+   CLAIM HALO DAILY
+========================= */
+
+async function claimHaloDaily() {
+
+    const activity =
+        getHaloDailyActivity();
+
+
+    const button =
+        document.getElementById(
+            "haloDailyButton"
+        );
+
+    const status =
+        document.getElementById(
+            "haloDailyStatus"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "RECEIVING SIGNAL...";
+
+
+    status.textContent =
+        "Connecting to today's signal...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "claim_halo_daily",
+                {
+                    p_activity_key:
+                        activity.key
+                }
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (
+            data &&
+            data.already_completed === true
+        ) {
+
+            button.textContent =
+                "✓ CLAIMED TODAY";
+
+
+            status.innerHTML =
+                "<span class=\"halo-daily-complete\">" +
+                "✦ You already received today's HALO Points. Come back tomorrow. ✦" +
+                "</span>";
+
+
+            return;
+
+        }
+
+
+        if (
+            data &&
+            data.success === true &&
+            Number(data.points_awarded) > 0
+        ) {
+
+            const awarded =
+                Number(
+                    data.points_awarded
+                );
+
+
+            button.textContent =
+                "✓ POINTS RECEIVED";
+
+
+            status.innerHTML =
+                "<span class=\"halo-daily-complete\">" +
+                "✦ +" +
+                awarded +
+                " HALO Points added! ✦" +
+                "</span>";
+
+
+            await loadHaloRank();
+
+
+            return;
+
+        }
+
+
+        throw new Error(
+            "No points were awarded."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "HALO DAILY claim error:",
+            error
+        );
+
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "CLAIM POINTS";
+
+
+        status.innerHTML =
+            "<span class=\"halo-daily-error\">" +
+            "The signal could not be received. Please try again." +
+            "</span>";
+
+    }
+
+}
+
+
+/* =========================
+   HALO DAILY BUTTON
+========================= */
+
+document
+    .getElementById(
+        "haloDailyButton"
+    )
+    .addEventListener(
+        "click",
+        claimHaloDaily
+    );
+
+
 async function loadHalo() {
 
     try {
@@ -839,6 +1419,8 @@ async function loadHalo() {
 
 
         await loadHaloRank();
+
+        await loadHaloDaily();
 
 
     } catch (error) {
@@ -1154,4 +1736,4 @@ loadHalo();
 
 </body>
 
-</html>
+    </html>
