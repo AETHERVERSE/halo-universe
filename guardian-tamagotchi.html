@@ -20,8 +20,6 @@
     --accent:#9b8cff;
     --accent2:#70d9ff;
     --gold:#ffd76a;
-    --success:#7ff0b4;
-    --danger:#ff7d9d;
 }
 
 *{
@@ -874,7 +872,6 @@ h1{
         <div class="star"></div>
         <div class="star"></div>
 
-
         <div
             class="guardian-state"
             id="guardianState"
@@ -882,14 +879,12 @@ h1{
             AWAITING CHOICE
         </div>
 
-
         <div
             class="guardian-time"
             id="guardianTime"
         >
             CHOOSE A GUARDIAN TO BEGIN
         </div>
-
 
         <div
             class="guardian-display"
@@ -906,7 +901,6 @@ h1{
             >
 
         </div>
-
 
         <div
             class="message"
@@ -1018,13 +1012,8 @@ h1{
             onclick="performAction('feed')"
             disabled
         >
-
-            <span class="action-icon">
-                🍎
-            </span>
-
+            <span class="action-icon">🍎</span>
             FEED
-
         </button>
 
 
@@ -1034,13 +1023,8 @@ h1{
             onclick="performAction('care')"
             disabled
         >
-
-            <span class="action-icon">
-                💜
-            </span>
-
+            <span class="action-icon">💜</span>
             CARE
-
         </button>
 
 
@@ -1050,13 +1034,8 @@ h1{
             onclick="performAction('play')"
             disabled
         >
-
-            <span class="action-icon">
-                ✨
-            </span>
-
+            <span class="action-icon">✨</span>
             PLAY
-
         </button>
 
     </div>
@@ -1111,7 +1090,23 @@ const guardians = {
         world:"SOLARION",
         emoji:"🦁",
         image:"solis",
-        title:"Guardian of SOLARION"
+        title:"Guardian of SOLARION",
+
+        personality:{
+            morning:"Good morning, HALO. Solarion rises with you. ☀️",
+            day:"Stay close, HALO. Solis will keep watch.",
+            evening:"The light is softening. Stay here a little longer.",
+            night:"Even the stars are safe under Solis's watch.",
+
+            sleepy:"Even a guardian of light needs rest. Stay close.",
+            lonely:"Solis is quiet. Your presence brings the light back.",
+            happy:"Solis feels the warmth of your bond. ☀️",
+            energetic:"Solis is glowing with energy. Let's make today count!",
+
+            feed:"Solis accepts your offering with a warm glow.",
+            care:"Solis relaxes. Your kindness feels like sunlight.",
+            play:"Solis is ready! Even guardians of light can have fun."
+        }
     },
 
     umbra:{
@@ -1119,7 +1114,23 @@ const guardians = {
         world:"HOLLOW",
         emoji:"🐆",
         image:"umbra",
-        title:"Guardian of HOLLOW"
+        title:"Guardian of HOLLOW",
+
+        personality:{
+            morning:"Morning already? Umbra is awake… quietly. 🌘",
+            day:"Umbra watches from the shadows. Nothing escapes its notice.",
+            evening:"The shadows are getting comfortable. Umbra approves.",
+            night:"The darkness belongs to Umbra tonight.",
+
+            sleepy:"Umbra gives you one very tired look. Even shadows need sleep.",
+            lonely:"Umbra says nothing… but it noticed you were gone.",
+            happy:"A tiny purr. Umbra is pretending that didn't happen.",
+            energetic:"Umbra is moving through the shadows again. Try to keep up.",
+
+            feed:"Umbra accepts the offering with quiet approval.",
+            care:"Umbra stays close. That's basically a love confession.",
+            play:"Umbra disappears into the shadows… then pounces back."
+        }
     },
 
     volt:{
@@ -1127,7 +1138,23 @@ const guardians = {
         world:"VOLTARIS",
         emoji:"🐺",
         image:"volt",
-        title:"Guardian of VOLTARIS"
+        title:"Guardian of VOLTARIS",
+
+        personality:{
+            morning:"WAKE UP! Volt is already ready to run! ⚡",
+            day:"Volt is charged. What are we doing?!",
+            evening:"The day isn't over yet. Volt has energy to spare!",
+            night:"Even at night, Volt still has a little spark left.",
+
+            sleepy:"Volt has officially run out of zoomies. 😴",
+            lonely:"Volt missed you! Seriously. A lot.",
+            happy:"YES! Volt is having the best day now! ⚡",
+            energetic:"FULL POWER! Volt is ready for action!",
+
+            feed:"Fuel acquired! Volt is recharged!",
+            care:"Volt tries to sit still. It lasts approximately three seconds.",
+            play:"FINALLY! PLAY TIME! ⚡🐺"
+        }
     },
 
     thalos:{
@@ -1135,7 +1162,23 @@ const guardians = {
         world:"THALASSIA",
         emoji:"🐬",
         image:"thalos",
-        title:"Guardian of THALASSIA"
+        title:"Guardian of THALASSIA",
+
+        personality:{
+            morning:"Good morning, HALO. The tides are gentle today. 🌊",
+            day:"Thalos is swimming through the day beside you.",
+            evening:"The ocean is glowing beneath the evening sky.",
+            night:"The tides are quiet. Thalos stays close.",
+
+            sleepy:"The waves are slow. Thalos could use some rest.",
+            lonely:"The water feels a little colder without you.",
+            happy:"Thalos feels peaceful. Your bond moves like calm water.",
+            energetic:"The tide is high! Thalos wants to play!",
+
+            feed:"Thalos happily accepts your little offering.",
+            care:"Thalos relaxes into the calm of your attention.",
+            play:"A splash! Thalos definitely chose chaos today. 🌊"
+        }
     },
 
     pyra:{
@@ -1143,7 +1186,23 @@ const guardians = {
         world:"IGNIS",
         emoji:"🔥",
         image:"pyra",
-        title:"Guardian of IGNIS"
+        title:"Guardian of IGNIS",
+
+        personality:{
+            morning:"Rise and shine! Pyra is already burning bright! 🔥",
+            day:"Pyra is fired up. Let's make this day count!",
+            evening:"The flames look beautiful tonight.",
+            night:"Pyra keeps a small flame burning through the night.",
+
+            sleepy:"Even fire needs to cool down sometimes.",
+            lonely:"Pyra's flame burns lower when you're away.",
+            happy:"Pyra is practically glowing with happiness! 🔥",
+            energetic:"PYRA IS ON FIRE! Literally.",
+
+            feed:"Fuel accepted. The flame grows brighter.",
+            care:"Pyra softens. Don't tell anyone.",
+            play:"Pyra is ready! Let's see what you've got! 🔥"
+        }
     },
 
     lumen:{
@@ -1151,7 +1210,23 @@ const guardians = {
         world:"LUMENIA",
         emoji:"🐈",
         image:"lumen",
-        title:"Guardian of LUMENIA"
+        title:"Guardian of LUMENIA",
+
+        personality:{
+            morning:"Good morning, little star. Lumen is waiting for you. ✨",
+            day:"Lumen is happily keeping you company.",
+            evening:"The evening lights are beautiful. Lumen likes them.",
+            night:"Lumen watches the quiet stars with you. 🌙",
+
+            sleepy:"Lumen is getting sleepy. Maybe a little cuddle?",
+            lonely:"Lumen has been waiting very patiently for you.",
+            happy:"Lumen is glowing with happiness. 💜",
+            energetic:"Lumen has discovered ENERGY. Oh no. 😸",
+
+            feed:"Lumen accepts the offering with a very pleased look.",
+            care:"Lumen settles beside you. This is a safe place.",
+            play:"Lumen is ready to play! ✨"
+        }
     },
 
     noctis:{
@@ -1159,7 +1234,23 @@ const guardians = {
         world:"NOCTEUM",
         emoji:"🐦‍⬛",
         image:"noctis",
-        title:"Guardian of NOCTEUM"
+        title:"Guardian of NOCTEUM",
+
+        personality:{
+            morning:"Good morning, HALO. Noctis is slowly waking with you. 🌅",
+            day:"Noctis watches the Aether quietly beside you.",
+            evening:"The stars are returning. Noctis seems pleased.",
+            night:"The world is quiet. Noctis watches the stars with you. 🌙",
+
+            sleepy:"Noctis is getting sleepy. The night can wait.",
+            lonely:"Noctis is quiet… but it noticed you were gone.",
+            happy:"Noctis feels safe with you. The bond is shining.",
+            energetic:"Noctis is unusually energetic tonight. ✨",
+
+            feed:"Noctis accepts your offering with quiet approval.",
+            care:"Noctis relaxes beneath your attention. The connection grows.",
+            play:"Noctis joins you. Even the quiet ones need fun."
+        }
     }
 
 };
@@ -1209,7 +1300,6 @@ const states = {
 ===================================================== */
 
 let guardianData = null;
-
 let currentGuardian = null;
 
 
@@ -1225,12 +1315,8 @@ function renderGuardianSelector(){
             guardianData.guardian_chosen === true
         );
 
-
     const selectorTitle =
-        document.getElementById(
-            "selectorTitle"
-        );
-
+        document.getElementById("selectorTitle");
 
     if(selectorTitle){
 
@@ -1241,57 +1327,41 @@ function renderGuardianSelector(){
 
     }
 
-
     const grid =
-        document.getElementById(
-            "guardianGrid"
-        );
-
+        document.getElementById("guardianGrid");
 
     grid.innerHTML = "";
-
 
     Object.entries(guardians)
     .forEach(
         ([key,guardian]) => {
 
             const button =
-                document.createElement(
-                    "button"
-                );
-
+                document.createElement("button");
 
             button.className =
                 "guardian-option";
 
-
             button.dataset.key =
                 key;
-
 
             if(
                 locked &&
                 key === currentGuardian
             ){
 
-                button.classList.add(
-                    "active"
-                );
+                button.classList.add("active");
 
             }
-
 
             if(
                 locked &&
                 key !== currentGuardian
             ){
 
-                button.classList.add(
-                    "locked"
-                );
+                button.classList.add("locked");
 
             }
-
 
             button.innerHTML = `
 
@@ -1311,10 +1381,8 @@ function renderGuardianSelector(){
 
             `;
 
-
             button.onclick =
                 () => selectGuardian(key);
-
 
             grid.appendChild(button);
 
@@ -1332,14 +1400,9 @@ async function selectGuardian(
     guardianKey
 ){
 
-    if(
-        !guardians[guardianKey]
-    ){
-
+    if(!guardians[guardianKey]){
         return;
-
     }
-
 
     if(
         guardianData &&
@@ -1347,29 +1410,21 @@ async function selectGuardian(
         guardianData.guardian_key !== guardianKey
     ){
 
-        document.getElementById(
-            "notice"
-        ).textContent =
+        document.getElementById("notice").textContent =
             "Your Guardian is already chosen. This bond cannot be changed yet.";
 
         renderGuardianSelector();
 
         return;
-
     }
 
-
     const notice =
-        document.getElementById(
-            "notice"
-        );
-
+        document.getElementById("notice");
 
     try{
 
         notice.textContent =
             "Establishing Guardian connection…";
-
 
         const {
             data,
@@ -1378,54 +1433,35 @@ async function selectGuardian(
             await supabaseClient.rpc(
                 "set_guardian_tamagotchi",
                 {
-                    p_guardian_key:
-                        guardianKey
+                    p_guardian_key:guardianKey
                 }
             );
 
-
         if(error){
-
             throw error;
-
         }
-
 
         const savedGuardian =
             data?.guardian?.guardian_key ||
             data?.guardian_key ||
             guardianKey;
 
-
         currentGuardian =
             savedGuardian;
-
 
         guardianData =
             data?.guardian ||
             data;
 
-
-        if(
-            guardianData
-        ){
-
-            guardianData.guardian_chosen =
-                true;
-
+        if(guardianData){
+            guardianData.guardian_chosen = true;
         }
 
-
         renderGuardianSelector();
-
         updateGuardianHeader();
-
         updateStats();
-
         updateGuardianState();
-
         enableActions();
-
 
         notice.textContent =
             "Your Guardian has been chosen. This bond is now locked.";
@@ -1436,7 +1472,6 @@ async function selectGuardian(
             "Guardian selection error:",
             error
         );
-
 
         notice.textContent =
             "The Guardian connection could not be changed.";
@@ -1457,57 +1492,35 @@ function updateGuardianHeader(){
         !guardians[currentGuardian]
     ){
 
-        document.getElementById(
-            "guardianName"
-        ).textContent =
+        document.getElementById("guardianName").textContent =
             "NO GUARDIAN CHOSEN";
 
-
-        document.getElementById(
-            "guardianTitle"
-        ).textContent =
+        document.getElementById("guardianTitle").textContent =
             "✦ CHOOSE YOUR GUARDIAN ✦";
 
-
-        document.getElementById(
-            "guardianWorld"
-        ).textContent =
+        document.getElementById("guardianWorld").textContent =
             "Your connection begins with your first choice.";
 
-
         return;
-
     }
-
 
     const guardian =
         guardians[currentGuardian];
 
-
-    document.getElementById(
-        "guardianName"
-    ).textContent =
+    document.getElementById("guardianName").textContent =
         guardian.name;
 
+    document.getElementById("guardianTitle").textContent =
+        guardian.emoji + " " + guardian.name;
 
-    document.getElementById(
-        "guardianTitle"
-    ).textContent =
-        guardian.emoji +
-        " " +
-        guardian.name;
-
-
-    document.getElementById(
-        "guardianWorld"
-    ).textContent =
+    document.getElementById("guardianWorld").textContent =
         guardian.title;
 
 }
 
 
 /* =====================================================
-   CYCLE
+   DAILY CYCLE
 ===================================================== */
 
 function getGuardianCycle(){
@@ -1515,11 +1528,7 @@ function getGuardianCycle(){
     const hour =
         new Date().getHours();
 
-
-    if(
-        hour >= 5 &&
-        hour < 10
-    ){
+    if(hour >= 5 && hour < 10){
 
         return {
             key:"morning",
@@ -1529,11 +1538,7 @@ function getGuardianCycle(){
 
     }
 
-
-    if(
-        hour >= 10 &&
-        hour < 17
-    ){
+    if(hour >= 10 && hour < 17){
 
         return {
             key:"day",
@@ -1543,11 +1548,7 @@ function getGuardianCycle(){
 
     }
 
-
-    if(
-        hour >= 17 &&
-        hour < 21
-    ){
+    if(hour >= 17 && hour < 21){
 
         return {
             key:"evening",
@@ -1556,7 +1557,6 @@ function getGuardianCycle(){
         };
 
     }
-
 
     return {
         key:"night",
@@ -1584,32 +1584,25 @@ function determineGuardianState(){
 
     }
 
-
     const mood =
         Number(
             guardianData.mood ?? 0
         );
-
 
     const energy =
         Number(
             guardianData.energy ?? 0
         );
 
-
-    const bond =
-        Number(
-            guardianData.bond ?? 0
-        );
-
-
     const cycle =
         getGuardianCycle();
 
+    /*
+       Real values have priority over the daily cycle.
+       This makes the Guardian actually react to its condition.
+    */
 
-    if(
-        energy <= 25
-    ){
+    if(energy <= 25){
 
         return {
             key:"sleepy"
@@ -1617,10 +1610,7 @@ function determineGuardianState(){
 
     }
 
-
-    if(
-        mood <= 30
-    ){
+    if(mood <= 30){
 
         return {
             key:"lonely"
@@ -1628,6 +1618,10 @@ function determineGuardianState(){
 
     }
 
+    /*
+       Night always has its own awake artwork
+       when the Guardian is feeling reasonably well.
+    */
 
     if(
         cycle.key === "night" &&
@@ -1641,10 +1635,7 @@ function determineGuardianState(){
 
     }
 
-
-    if(
-        energy >= 75
-    ){
+    if(energy >= 75){
 
         return {
             key:"energetic"
@@ -1652,10 +1643,9 @@ function determineGuardianState(){
 
     }
 
-
     if(
         mood >= 75 &&
-        bond >= 50
+        Number(guardianData.bond ?? 0) >= 50
     ){
 
         return {
@@ -1663,7 +1653,6 @@ function determineGuardianState(){
         };
 
     }
-
 
     return {
         key:"calm"
@@ -1673,130 +1662,60 @@ function determineGuardianState(){
 
 
 /* =====================================================
-   RETURN / WELCOME MESSAGE
+   PERSONALITY MESSAGE
 ===================================================== */
 
-function getReturnMessage(){
+function getGuardianMessage(
+    stateKey
+){
 
-    const daysAway =
-        Number(
-            guardianData?.days_away ?? 0
-        );
-
-
-    const cycle =
-        getGuardianCycle();
-
-
-    const guardian =
-        currentGuardian
-        ? guardians[currentGuardian]
-        : null;
-
-
-    if(!guardian){
+    if(
+        !currentGuardian ||
+        !guardians[currentGuardian]
+    ){
 
         return {
             message:
                 "Choose your Guardian above. Your first choice creates the bond.",
-            badge:"",
-            status:"—"
+            badge:""
         };
 
     }
 
+    const guardian =
+        guardians[currentGuardian];
 
-    if(daysAway >= 3){
+    const cycle =
+        getGuardianCycle();
+
+    /*
+       Emotional states override the normal time-of-day message.
+    */
+
+    if(
+        stateKey &&
+        guardian.personality[stateKey]
+    ){
 
         return {
             message:
-                `${guardian.name} missed you. You were away for ${daysAway} days, but the connection is still here. 💜`,
+                guardian.personality[stateKey],
             badge:
-                `MISSED YOU • ${daysAway} DAYS AWAY`,
-            status:
-                `${daysAway} DAYS AWAY`
+                states[stateKey]?.label || ""
         };
 
     }
 
-
-    if(daysAway === 2){
-
-        return {
-            message:
-                `${guardian.name} noticed your absence. Two days have passed, but your bond remains.`,
-            badge:
-                "WELCOME BACK",
-            status:
-                "WELCOME BACK"
-        };
-
-    }
-
-
-    if(daysAway === 1){
-
-        return {
-            message:
-                `${guardian.name} is happy to see you again. You were away yesterday. ✦`,
-            badge:
-                "BACK AFTER 1 DAY",
-            status:
-                "WELCOME BACK"
-        };
-
-    }
-
-
-    if(cycle.key === "morning"){
-
-        return {
-            message:
-                `Good morning, HALO. ${guardian.name} is slowly waking up with you. 🌅`,
-            badge:
-                "MORNING CONNECTION",
-            status:
-                "CONNECTED"
-        };
-
-    }
-
-
-    if(cycle.key === "day"){
-
-        return {
-            message:
-                `${guardian.name} is ready for another day beside you. ☀️`,
-            badge:
-                "DAY CONNECTION",
-            status:
-                "CONNECTED"
-        };
-
-    }
-
-
-    if(cycle.key === "evening"){
-
-        return {
-            message:
-                `Welcome to the evening, HALO. ${guardian.name} is watching the stars return. 🌆`,
-            badge:
-                "EVENING CONNECTION",
-            status:
-                "CONNECTED"
-        };
-
-    }
-
+    /*
+       Otherwise the Guardian reacts to the current
+       part of the day.
+    */
 
     return {
         message:
-            `The world is quiet. ${guardian.name} watches the stars with you. 🌙`,
+            guardian.personality[cycle.key],
         badge:
-            "NIGHT CONNECTION",
-        status:
-            "CONNECTED"
+            cycle.label + " CONNECTION"
     };
 
 }
@@ -1816,34 +1735,22 @@ function changeGuardianArtwork(
     ){
 
         return;
-
     }
-
 
     const guardian =
         guardians[currentGuardian];
 
-
     const state =
-        states[stateKey] ||
-        states.calm;
-
+        states[stateKey] || states.calm;
 
     const display =
-        document.getElementById(
-            "guardianDisplay"
-        );
-
+        document.getElementById("guardianDisplay");
 
     const artwork =
-        document.getElementById(
-            "guardianArtwork"
-        );
-
+        document.getElementById("guardianArtwork");
 
     const newArtwork =
         `images/guardians/${guardian.image}${state.suffix}.png`;
-
 
     if(
         artwork.getAttribute("src") ===
@@ -1851,14 +1758,11 @@ function changeGuardianArtwork(
     ){
 
         return;
-
     }
-
 
     display.classList.add(
         "artwork-changing"
     );
-
 
     setTimeout(
         () => {
@@ -1868,7 +1772,6 @@ function changeGuardianArtwork(
 
             artwork.alt =
                 `${guardian.name} - ${state.label}`;
-
 
             setTimeout(
                 () => {
@@ -1901,102 +1804,56 @@ function updateGuardianState(){
         guardianData.guardian_chosen !== true
     ){
 
-        document.getElementById(
-            "guardianState"
-        ).textContent =
+        document.getElementById("guardianState").textContent =
             "AWAITING CHOICE";
 
-
-        document.getElementById(
-            "guardianTime"
-        ).textContent =
+        document.getElementById("guardianTime").textContent =
             "CHOOSE A GUARDIAN TO BEGIN";
 
-
-        document.getElementById(
-            "cycleStatus"
-        ).textContent =
+        document.getElementById("cycleStatus").textContent =
             "—";
 
-
-        document.getElementById(
-            "timeStatus"
-        ).textContent =
+        document.getElementById("timeStatus").textContent =
             "—";
 
-
-        document.getElementById(
-            "returnStatus"
-        ).textContent =
+        document.getElementById("returnStatus").textContent =
             "—";
 
-
-        document.getElementById(
-            "guardianMessage"
-        ).textContent =
+        document.getElementById("guardianMessage").textContent =
             "Choose your Guardian above. Your first choice creates the bond.";
 
-
         return;
-
     }
-
 
     const guardian =
         guardians[currentGuardian];
 
-
     const cycle =
         getGuardianCycle();
-
 
     const state =
         determineGuardianState();
 
-
     const stateData =
         states[state.key];
 
-
     const display =
-        document.getElementById(
-            "guardianDisplay"
-        );
-
+        document.getElementById("guardianDisplay");
 
     const stage =
-        document.getElementById(
-            "guardianStage"
-        );
+        document.getElementById("guardianStage");
 
+    document.getElementById("guardianState").textContent =
+        stateData.label + " " + guardian.name;
 
-    document.getElementById(
-        "guardianState"
-    ).textContent =
-        stateData.label +
-        " " +
+    document.getElementById("guardianTime").textContent =
+        cycle.label + " • " + cycle.text;
+
+    document.getElementById("cycleStatus").textContent =
         guardian.name;
 
-
-    document.getElementById(
-        "guardianTime"
-    ).textContent =
-        cycle.label +
-        " • " +
-        cycle.text;
-
-
-    document.getElementById(
-        "cycleStatus"
-    ).textContent =
-        guardian.name;
-
-
-    document.getElementById(
-        "timeStatus"
-    ).textContent =
+    document.getElementById("timeStatus").textContent =
         cycle.label;
-
 
     display.classList.remove(
         "state-sleepy",
@@ -2007,49 +1864,45 @@ function updateGuardianState(){
         "state-night"
     );
 
-
     display.classList.add(
-        "state-" +
-        state.key
+        "state-" + state.key
     );
-
 
     stage.dataset.state =
         state.key;
-
 
     changeGuardianArtwork(
         state.key
     );
 
-
-    const returnInfo =
-        getReturnMessage();
-
-
-    document.getElementById(
-        "returnStatus"
-    ).textContent =
-        returnInfo.status;
-
+    /*
+       Do not overwrite an action message while
+       Feed / Care / Play animation is running.
+    */
 
     if(
         !display.dataset.actionActive
     ){
 
+        const personality =
+            getGuardianMessage(
+                state.key
+            );
+
+        document.getElementById(
+            "returnStatus"
+        ).textContent =
+            "CONNECTED";
+
         document.getElementById(
             "guardianMessage"
         ).innerHTML = `
 
-            ${returnInfo.message}
+            ${personality.message}
 
-            ${
-                returnInfo.badge
-                ? `<div class="return-badge">
-                       ${returnInfo.badge}
-                   </div>`
-                : ""
-            }
+            <div class="return-badge">
+                ${personality.badge}
+            </div>
 
         `;
 
@@ -2065,10 +1918,7 @@ function updateGuardianState(){
 async function loadGuardian(){
 
     const notice =
-        document.getElementById(
-            "notice"
-        );
-
+        document.getElementById("notice");
 
     try{
 
@@ -2080,18 +1930,13 @@ async function loadGuardian(){
                 "get_guardian_tamagotchi"
             );
 
-
         if(error){
-
             throw error;
-
         }
-
 
         guardianData =
             data?.guardian ||
             data;
-
 
         if(
             guardianData?.guardian_chosen !== true
@@ -2112,15 +1957,10 @@ async function loadGuardian(){
 
         }
 
-
         renderGuardianSelector();
-
         updateGuardianHeader();
-
         updateStats();
-
         updateGuardianState();
-
 
         if(
             guardianData?.guardian_chosen === true
@@ -2134,9 +1974,7 @@ async function loadGuardian(){
 
         }
 
-
         notice.textContent = "";
-
 
     }catch(error){
 
@@ -2144,7 +1982,6 @@ async function loadGuardian(){
             "Guardian load error:",
             error
         );
-
 
         notice.textContent =
             "The Guardian connection could not be loaded.";
@@ -2161,69 +1998,46 @@ async function loadGuardian(){
 function updateStats(){
 
     if(!guardianData){
-
         return;
-
     }
-
 
     const mood =
         Number(
             guardianData.mood ?? 0
         );
 
-
     const energy =
         Number(
             guardianData.energy ?? 0
         );
-
 
     const bond =
         Number(
             guardianData.bond ?? 0
         );
 
-
-    document.getElementById(
-        "moodValue"
-    ).textContent =
+    document.getElementById("moodValue").textContent =
         mood;
 
-
-    document.getElementById(
-        "energyValue"
-    ).textContent =
+    document.getElementById("energyValue").textContent =
         energy;
 
-
-    document.getElementById(
-        "bondValue"
-    ).textContent =
+    document.getElementById("bondValue").textContent =
         bond;
 
-
-    document.getElementById(
-        "moodBar"
-    ).style.width =
+    document.getElementById("moodBar").style.width =
         Math.max(
             0,
             Math.min(100,mood)
         ) + "%";
 
-
-    document.getElementById(
-        "energyBar"
-    ).style.width =
+    document.getElementById("energyBar").style.width =
         Math.max(
             0,
             Math.min(100,energy)
         ) + "%";
 
-
-    document.getElementById(
-        "bondBar"
-    ).style.width =
+    document.getElementById("bondBar").style.width =
         Math.max(
             0,
             Math.min(100,bond)
@@ -2294,9 +2108,7 @@ async function performAction(
             "Choose your Guardian first.";
 
         return;
-
     }
-
 
     const buttons = [
 
@@ -2305,7 +2117,6 @@ async function performAction(
         document.getElementById("playBtn")
 
     ];
-
 
     buttons.forEach(
         button => {
@@ -2316,26 +2127,21 @@ async function performAction(
         }
     );
 
-
     const display =
         document.getElementById(
             "guardianDisplay"
         );
-
 
     const message =
         document.getElementById(
             "guardianMessage"
         );
 
-
     const guardian =
         guardians[currentGuardian];
 
-
     display.dataset.actionActive =
         "true";
-
 
     display.classList.remove(
         "action-feed",
@@ -2343,33 +2149,27 @@ async function performAction(
         "action-play"
     );
 
-
     void display.offsetWidth;
 
-
     display.classList.add(
-        "action-" +
-        action
+        "action-" + action
     );
-
 
     const actionMessages = {
 
         feed:
-            `${guardian.name} seems pleased. The offering was accepted.`,
+            guardian.personality.feed,
 
         care:
-            `${guardian.name} relaxes under your attention. The connection grows.`,
+            guardian.personality.care,
 
         play:
-            `${guardian.name} is suddenly full of energy. That was definitely fun!`
+            guardian.personality.play
 
     };
 
-
     message.textContent =
         actionMessages[action];
-
 
     try{
 
@@ -2385,13 +2185,9 @@ async function performAction(
                 }
             );
 
-
         if(error){
-
             throw error;
-
         }
-
 
         if(
             data?.success === false &&
@@ -2401,10 +2197,16 @@ async function performAction(
             message.textContent =
                 "Choose your Guardian first.";
 
+            display.classList.remove(
+                "action-" + action
+            );
+
+            delete display.dataset.actionActive;
+
+            disableActions();
+
             return;
-
         }
-
 
         if(data){
 
@@ -2412,19 +2214,19 @@ async function performAction(
                 data?.guardian ||
                 data;
 
+            /*
+               The selected Guardian is already known to be chosen.
+               Keep the lock state intact.
+            */
 
-            if(
-                guardianData
-            ){
+            if(guardianData){
 
                 guardianData.guardian_chosen =
                     true;
 
             }
 
-
             updateStats();
-
 
             if(
                 data.already_done
@@ -2442,7 +2244,6 @@ async function performAction(
 
         }
 
-
     }catch(error){
 
         console.error(
@@ -2450,27 +2251,21 @@ async function performAction(
             error
         );
 
-
         message.textContent =
             `The connection to ${guardian.name} was interrupted.`;
 
     }
 
-
     setTimeout(
         () => {
 
             display.classList.remove(
-                "action-" +
-                action
+                "action-" + action
             );
-
 
             delete display.dataset.actionActive;
 
-
             updateGuardianState();
-
 
             enableActions();
 
@@ -2489,13 +2284,11 @@ async function init(){
 
     await loadGuardian();
 
-
     updateGuardianState();
 
-
     /*
-       The Guardian checks its world every minute.
-       The server handles the offline/return calculation.
+       The Guardian checks the daily cycle every minute.
+       No database changes are required for the cycle itself.
     */
 
     setInterval(
