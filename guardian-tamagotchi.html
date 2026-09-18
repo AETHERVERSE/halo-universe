@@ -58,10 +58,7 @@ a{
     text-decoration:none;
 }
 
-
-/* =====================================================
-   NAV
-===================================================== */
+/* NAV */
 
 .nav{
     width:min(1200px,94%);
@@ -94,10 +91,7 @@ a{
     background:rgba(155,140,255,.08);
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
+/* MAIN */
 
 .container{
     width:min(1200px,92%);
@@ -105,10 +99,7 @@ a{
     padding:30px 0 70px;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
     text-align:center;
@@ -140,10 +131,7 @@ h1{
     line-height:1.7;
 }
 
-
-/* =====================================================
-   GUARDIAN SELECTOR
-===================================================== */
+/* SELECTOR */
 
 .selector{
     margin-bottom:25px;
@@ -305,10 +293,7 @@ h1{
     font-size:9px;
 }
 
-
-/* =====================================================
-   STATUS
-===================================================== */
+/* STATUS */
 
 .status-bar{
     display:flex;
@@ -345,10 +330,7 @@ h1{
     font-weight:bold;
 }
 
-
-/* =====================================================
-   MAIN CARD
-===================================================== */
+/* MAIN CARD */
 
 .guardian-card{
     padding:28px;
@@ -379,10 +361,7 @@ h1{
     margin:8px 0 0;
 }
 
-
-/* =====================================================
-   STAGE
-===================================================== */
+/* STAGE */
 
 .guardian-stage{
     position:relative;
@@ -421,10 +400,7 @@ h1{
         box-shadow 1s ease;
 }
 
-
-/* =====================================================
-   STARS
-===================================================== */
+/* STARS */
 
 .star{
     position:absolute;
@@ -456,10 +432,7 @@ h1{
 .star:nth-child(11){left:12%;top:40%;animation-delay:2.2s}
 .star:nth-child(12){left:84%;top:48%;animation-delay:1.1s}
 
-
-/* =====================================================
-   STATE
-===================================================== */
+/* STATE */
 
 .guardian-state{
     position:relative;
@@ -501,10 +474,7 @@ h1{
     letter-spacing:.08em;
 }
 
-
-/* =====================================================
-   ARTWORK
-===================================================== */
+/* ARTWORK */
 
 .guardian-display{
     position:relative;
@@ -583,10 +553,7 @@ h1{
     transform:scale(.96);
 }
 
-
-/* =====================================================
-   ORBIT
-===================================================== */
+/* ORBIT */
 
 .orbit{
     position:absolute;
@@ -633,10 +600,7 @@ h1{
     right:5%;
 }
 
-
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* MESSAGE */
 
 .message{
     position:relative;
@@ -664,10 +628,7 @@ h1{
     font-size:14px;
 }
 
-
-/* =====================================================
-   STATS
-===================================================== */
+/* STATS */
 
 .stats{
     display:grid;
@@ -738,10 +699,7 @@ h1{
         );
 }
 
-
-/* =====================================================
-   ACTIONS
-===================================================== */
+/* ACTIONS */
 
 .actions{
     display:grid;
@@ -793,10 +751,7 @@ h1{
     margin-bottom:7px;
 }
 
-
-/* =====================================================
-   NOTICE / BACK
-===================================================== */
+/* NOTICE */
 
 .notice{
     margin-top:18px;
@@ -836,10 +791,7 @@ h1{
     color:white;
 }
 
-
-/* =====================================================
-   STATE ATMOSPHERES
-===================================================== */
+/* STATE ATMOSPHERES */
 
 .guardian-stage[data-state="sleepy"]{
     box-shadow:
@@ -871,10 +823,7 @@ h1{
         rgba(50,80,190,.22);
 }
 
-
-/* =====================================================
-   ANIMATIONS
-===================================================== */
+/* ANIMATIONS */
 
 .state-sleepy{
     animation:
@@ -924,9 +873,6 @@ h1{
         infinite;
 }
 
-
-/* ACTIONS */
-
 .guardian-display.action-feed{
     animation:
         actionFeed
@@ -948,13 +894,9 @@ h1{
         ease-in-out;
 }
 
-
-/* =====================================================
-   KEYFRAMES
-===================================================== */
+/* KEYFRAMES */
 
 @keyframes guardianFloat{
-
     0%,100%{
         transform:translateY(0);
     }
@@ -962,11 +904,9 @@ h1{
     50%{
         transform:translateY(-9px);
     }
-
 }
 
 @keyframes sleepyFloat{
-
     0%,100%{
         transform:
             translateY(2px)
@@ -978,11 +918,9 @@ h1{
             translateY(8px)
             rotate(-1deg);
     }
-
 }
 
 @keyframes lonelySway{
-
     0%,100%{
         transform:
             translateX(0)
@@ -1000,11 +938,9 @@ h1{
             translateX(4px)
             rotate(1deg);
     }
-
 }
 
 @keyframes happyFloat{
-
     0%,100%{
         transform:
             translateY(0)
@@ -1016,11 +952,9 @@ h1{
             translateY(-13px)
             scale(1.025);
     }
-
 }
 
 @keyframes energeticBounce{
-
     0%,100%{
         transform:
             translateY(0)
@@ -1044,11 +978,9 @@ h1{
             translateY(-6px)
             scale(1.015);
     }
-
 }
 
 @keyframes nightFloat{
-
     0%,100%{
         transform:translateY(0);
     }
@@ -1056,11 +988,9 @@ h1{
     50%{
         transform:translateY(-11px);
     }
-
 }
 
 @keyframes guardianGlow{
-
     0%,100%{
         transform:scale(.96);
         opacity:.65;
@@ -1070,11 +1000,9 @@ h1{
         transform:scale(1.05);
         opacity:1;
     }
-
 }
 
 @keyframes orbitSpin{
-
     from{
         transform:rotate(0deg);
     }
@@ -1082,11 +1010,9 @@ h1{
     to{
         transform:rotate(360deg);
     }
-
 }
 
 @keyframes twinkle{
-
     0%,100%{
         opacity:.2;
         transform:scale(.7);
@@ -1096,11 +1022,9 @@ h1{
         opacity:1;
         transform:scale(1.4);
     }
-
 }
 
 @keyframes actionFeed{
-
     0%{
         transform:
             translateY(0)
@@ -1130,11 +1054,9 @@ h1{
             translateY(0)
             scale(1);
     }
-
 }
 
 @keyframes actionCare{
-
     0%{
         transform:
             rotate(0deg)
@@ -1164,11 +1086,9 @@ h1{
             rotate(0deg)
             scale(1);
     }
-
 }
 
 @keyframes actionPlay{
-
     0%{
         transform:
             translateY(0)
@@ -1208,45 +1128,47 @@ h1{
             translateY(0)
             scale(1);
     }
-
 }
 
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:900px){
 
     .guardian-grid{
-        grid-template-columns:
-            repeat(4,1fr);
+        grid-template-columns:repeat(4,1fr);
     }
 
 }
 
 @media(max-width:600px){
 
+    .container{
+        width:94%;
+    }
+
     .guardian-card{
         padding:16px;
     }
 
     .guardian-stage{
-        min-height:470px;
+        min-height:450px;
     }
 
     .guardian-grid{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .stats,
+    .stats{
+        grid-template-columns:1fr;
+    }
+
     .actions{
         grid-template-columns:1fr;
     }
 
-    .status{
-        min-width:140px;
+    .guardian-display{
+        width:min(320px,82vw);
+        height:min(320px,82vw);
     }
 
 }
@@ -1255,26 +1177,17 @@ h1{
 
 </head>
 
-
 <body>
-
 
 <nav class="nav">
 
     <a href="index.html">HOME</a>
-
     <a href="universe.html">UNIVERSE</a>
-
     <a href="members.html">MEMBERS</a>
-
     <a href="halo-home.html">MY HALO</a>
-
     <a href="aether-path.html">AETHER PATH</a>
-
     <a href="aether-arcade.html">ARCADE</a>
-
     <a href="aether-music.html">MUSIC</a>
-
     <a href="search.html">SEARCH</a>
 
 </nav>
@@ -1282,11 +1195,10 @@ h1{
 
 <main class="container">
 
-
 <section class="hero">
 
     <div class="kicker">
-        MY AETHERVERSE
+        MY HALO • GUARDIAN SYSTEM
     </div>
 
     <h1>
@@ -1294,16 +1206,12 @@ h1{
     </h1>
 
     <p class="subtitle">
-        One Guardian. One connection. One journey.
-        Choose carefully — your bond begins here.
+        Seven Guardians. One connection.
+        Choose the Guardian that will walk beside you.
     </p>
 
 </section>
 
-
-<!-- =====================================================
-     GUARDIAN SELECTOR
-===================================================== -->
 
 <section class="selector">
 
@@ -1322,17 +1230,12 @@ h1{
 </section>
 
 
-<!-- =====================================================
-     STATUS
-===================================================== -->
-
-<div class="status-bar">
-
+<section class="status-bar">
 
     <div class="status">
 
         <div class="status-label">
-            ACTIVE GUARDIAN
+            Guardian
         </div>
 
         <div
@@ -1344,259 +1247,239 @@ h1{
 
     </div>
 
+</section>
 
-</div>
-
-
-<!-- =====================================================
-     GUARDIAN CARD
-===================================================== -->
 
 <section class="guardian-card">
 
+    <div class="guardian-header">
 
-<div class="guardian-header">
+        <h2 id="guardianName">
+            NO GUARDIAN CHOSEN
+        </h2>
 
-    <h2 id="guardianName">
-        NOCTIS
-    </h2>
+        <p id="guardianTitle">
+            ✦ CHOOSE YOUR GUARDIAN ✦
+        </p>
 
-    <p id="guardianTitle">
-        🐦‍⬛ NOCTIS
-    </p>
+        <p id="guardianWorld">
+            Your connection begins with your first choice.
+        </p>
 
-    <p id="guardianWorld">
-        Guardian of NOCTEUM
-    </p>
-
-</div>
-
-
-<!-- =====================================================
-     STAGE
-===================================================== -->
-
-<div
-    class="guardian-stage"
-    id="guardianStage"
->
-
-
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-
-
-    <div
-        class="guardian-state"
-        id="guardianState"
-    >
-        CALM NOCTIS
     </div>
 
 
     <div
-        class="guardian-time"
-        id="guardianTime"
-    >
-        —
-    </div>
-
-
-    <div
-        class="guardian-display"
-        id="guardianDisplay"
+        class="guardian-stage"
+        id="guardianStage"
+        data-state="calm"
     >
 
-        <div class="orbit"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
 
-        <img
-            id="guardianArtwork"
-            src="images/guardians/noctis.png"
-            alt="Noctis"
-            draggable="false"
+
+        <div
+            class="guardian-state"
+            id="guardianState"
+        >
+            AWAITING CHOICE
+        </div>
+
+
+        <div
+            class="guardian-time"
+            id="guardianTime"
+        >
+            CHOOSE A GUARDIAN TO BEGIN
+        </div>
+
+
+        <div
+            class="guardian-display"
+            id="guardianDisplay"
         >
 
+            <div class="orbit"></div>
+
+            <img
+                id="guardianArtwork"
+                src="images/guardians/noctis.png"
+                alt="Guardian waiting for selection"
+                draggable="false"
+            >
+
+        </div>
+
+
+        <div
+            class="message"
+            id="guardianMessage"
+        >
+            Choose your Guardian above.
+            Your first choice creates the bond.
+        </div>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-name">
+                    Mood
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="moodValue"
+                >
+                    0
+                </div>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="moodBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-name">
+                    Energy
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="energyValue"
+                >
+                    0
+                </div>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="energyBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-top">
+
+                <div class="stat-name">
+                    Bond
+                </div>
+
+                <div
+                    class="stat-number"
+                    id="bondValue"
+                >
+                    0
+                </div>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="bondBar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="action"
+            id="feedBtn"
+            onclick="performAction('feed')"
+            disabled
+        >
+
+            <span class="action-icon">
+                🍎
+            </span>
+
+            FEED
+
+        </button>
+
+
+        <button
+            class="action"
+            id="careBtn"
+            onclick="performAction('care')"
+            disabled
+        >
+
+            <span class="action-icon">
+                💜
+            </span>
+
+            CARE
+
+        </button>
+
+
+        <button
+            class="action"
+            id="playBtn"
+            onclick="performAction('play')"
+            disabled
+        >
+
+            <span class="action-icon">
+                ✨
+            </span>
+
+            PLAY
+
+        </button>
+
     </div>
 
 
     <div
-        class="message"
-        id="guardianMessage"
-    >
-        Your Guardian is waiting for you.
-    </div>
-
-
-</div>
-
-
-<!-- =====================================================
-     STATS
-===================================================== -->
-
-<div class="stats">
-
-
-    <div class="stat">
-
-        <div class="stat-top">
-
-            <span class="stat-name">
-                Mood
-            </span>
-
-            <span
-                class="stat-number"
-                id="moodValue"
-            >
-                0
-            </span>
-
-        </div>
-
-        <div class="progress">
-
-            <div
-                class="progress-bar"
-                id="moodBar"
-            ></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-top">
-
-            <span class="stat-name">
-                Energy
-            </span>
-
-            <span
-                class="stat-number"
-                id="energyValue"
-            >
-                0
-            </span>
-
-        </div>
-
-        <div class="progress">
-
-            <div
-                class="progress-bar"
-                id="energyBar"
-            ></div>
-
-        </div>
-
-    </div>
-
-
-    <div class="stat">
-
-        <div class="stat-top">
-
-            <span class="stat-name">
-                Bond
-            </span>
-
-            <span
-                class="stat-number"
-                id="bondValue"
-            >
-                0
-            </span>
-
-        </div>
-
-        <div class="progress">
-
-            <div
-                class="progress-bar"
-                id="bondBar"
-            ></div>
-
-        </div>
-
-    </div>
-
-
-</div>
-
-
-<!-- =====================================================
-     ACTIONS
-===================================================== -->
-
-<div class="actions">
-
-
-    <button
-        class="action"
-        id="feedBtn"
-        onclick="performAction('feed')"
-    >
-
-        <span class="action-icon">
-            🍎
-        </span>
-
-        FEED
-
-    </button>
-
-
-    <button
-        class="action"
-        id="careBtn"
-        onclick="performAction('care')"
-    >
-
-        <span class="action-icon">
-            💫
-        </span>
-
-        CARE
-
-    </button>
-
-
-    <button
-        class="action"
-        id="playBtn"
-        onclick="performAction('play')"
-    >
-
-        <span class="action-icon">
-            🎮
-        </span>
-
-        PLAY
-
-    </button>
-
-
-</div>
-
-
-<div
-    class="notice"
-    id="notice"
-></div>
-
+        class="notice"
+        id="notice"
+    ></div>
 
 </section>
 
@@ -1609,12 +1492,10 @@ h1{
 
 </div>
 
-
 </main>
 
 
 <script>
-
 
 /* =====================================================
    SUPABASE
@@ -1699,7 +1580,7 @@ const guardians = {
 
 
 /* =====================================================
-   STATE ARTWORKS
+   STATES
 ===================================================== */
 
 const states = {
@@ -1743,19 +1624,18 @@ const states = {
 
 let guardianData = null;
 
-let currentGuardian =
-    "noctis";
+let currentGuardian = null;
 
 
 /* =====================================================
-   GUARDIAN SELECTOR
+   SELECTOR
 ===================================================== */
 
 function renderGuardianSelector(){
 
     const locked = Boolean(
         guardianData &&
-        guardianData.guardian_key
+        guardianData.guardian_chosen === true
     );
 
 
@@ -1788,7 +1668,6 @@ function renderGuardianSelector(){
     .forEach(
         ([key,guardian]) => {
 
-
             const button =
                 document.createElement(
                     "button"
@@ -1803,7 +1682,14 @@ function renderGuardianSelector(){
                 key;
 
 
+            /*
+               IMPORTANT:
+               A Guardian is only active when
+               guardian_chosen is TRUE.
+            */
+
             if(
+                locked &&
                 key === currentGuardian
             ){
 
@@ -1875,18 +1761,18 @@ async function selectGuardian(
 
 
     /*
-       IMPORTANT:
+       IMPORTANT FIX:
 
-       Once Supabase has a Guardian saved,
-       changing to another Guardian is blocked.
+       guardian_key alone does NOT mean
+       the user has chosen a Guardian.
 
-       The real security check also exists
-       inside the Supabase RPC.
+       Only guardian_chosen === true
+       locks the selection.
     */
 
     if(
         guardianData &&
-        guardianData.guardian_key &&
+        guardianData.guardian_chosen === true &&
         guardianData.guardian_key !== guardianKey
     ){
 
@@ -1901,7 +1787,6 @@ async function selectGuardian(
 
 
         renderGuardianSelector();
-
 
         return;
 
@@ -1940,16 +1825,9 @@ async function selectGuardian(
         }
 
 
-        /*
-           The RPC returns the saved Guardian.
-
-           If the selection was already locked,
-           Supabase returns the original Guardian.
-        */
-
         const savedGuardian =
-            data?.guardian_key ||
             data?.guardian?.guardian_key ||
+            data?.guardian_key ||
             guardianKey;
 
 
@@ -1962,6 +1840,21 @@ async function selectGuardian(
             data;
 
 
+        /*
+           Make absolutely sure the UI
+           knows the Guardian is now chosen.
+        */
+
+        if(
+            guardianData
+        ){
+
+            guardianData.guardian_chosen =
+                true;
+
+        }
+
+
         renderGuardianSelector();
 
         updateGuardianHeader();
@@ -1969,6 +1862,8 @@ async function selectGuardian(
         updateStats();
 
         updateGuardianState();
+
+        enableActions();
 
 
         if(
@@ -2008,6 +1903,34 @@ async function selectGuardian(
 ===================================================== */
 
 function updateGuardianHeader(){
+
+    if(
+        !currentGuardian ||
+        !guardians[currentGuardian]
+    ){
+
+        document.getElementById(
+            "guardianName"
+        ).textContent =
+            "NO GUARDIAN CHOSEN";
+
+
+        document.getElementById(
+            "guardianTitle"
+        ).textContent =
+            "✦ CHOOSE YOUR GUARDIAN ✦";
+
+
+        document.getElementById(
+            "guardianWorld"
+        ).textContent =
+            "Your connection begins with your first choice.";
+
+
+        return;
+
+    }
+
 
     const guardian =
         guardians[currentGuardian];
@@ -2122,7 +2045,10 @@ function getGuardianCycle(){
 
 function determineGuardianState(){
 
-    if(!guardianData){
+    if(
+        !guardianData ||
+        guardianData.guardian_chosen !== true
+    ){
 
         return {
             key:"calm"
@@ -2151,18 +2077,6 @@ function determineGuardianState(){
 
     const cycle =
         getGuardianCycle();
-
-
-    /*
-       STATE PRIORITY
-
-       1. SLEEPY
-       2. LONELY
-       3. NIGHT / AWAKE
-       4. ENERGETIC
-       5. HAPPY
-       6. CALM
-    */
 
 
     if(
@@ -2238,6 +2152,16 @@ function changeGuardianArtwork(
     stateKey
 ){
 
+    if(
+        !currentGuardian ||
+        !guardians[currentGuardian]
+    ){
+
+        return;
+
+    }
+
+
     const guardian =
         guardians[currentGuardian];
 
@@ -2311,6 +2235,55 @@ function changeGuardianArtwork(
 ===================================================== */
 
 function updateGuardianState(){
+
+    if(
+        !currentGuardian ||
+        !guardians[currentGuardian] ||
+        !guardianData ||
+        guardianData.guardian_chosen !== true
+    ){
+
+        const stateElement =
+            document.getElementById(
+                "guardianState"
+            );
+
+        const timeElement =
+            document.getElementById(
+                "guardianTime"
+            );
+
+        const cycleElement =
+            document.getElementById(
+                "cycleStatus"
+            );
+
+        const messageElement =
+            document.getElementById(
+                "guardianMessage"
+            );
+
+
+        stateElement.textContent =
+            "AWAITING CHOICE";
+
+
+        timeElement.textContent =
+            "CHOOSE A GUARDIAN TO BEGIN";
+
+
+        cycleElement.textContent =
+            "—";
+
+
+        messageElement.textContent =
+            "Choose your Guardian above. Your first choice creates the bond.";
+
+
+        return;
+
+    }
+
 
     const guardian =
         guardians[currentGuardian];
@@ -2480,7 +2453,25 @@ async function loadGuardian(){
             data;
 
 
+        /*
+           IMPORTANT FIX:
+
+           Existing rows may contain a guardian_key
+           from the old automatic default.
+
+           That does NOT count as a real selection.
+
+           Only guardian_chosen === true does.
+        */
+
         if(
+            guardianData?.guardian_chosen !== true
+        ){
+
+            currentGuardian =
+                null;
+
+        }else if(
             guardianData?.guardian_key &&
             guardians[
                 guardianData.guardian_key
@@ -2500,6 +2491,19 @@ async function loadGuardian(){
         updateStats();
 
         updateGuardianState();
+
+
+        if(
+            guardianData?.guardian_chosen === true
+        ){
+
+            enableActions();
+
+        }else{
+
+            disableActions();
+
+        }
 
 
         notice.textContent = "";
@@ -2522,7 +2526,7 @@ async function loadGuardian(){
 
 
 /* =====================================================
-   UPDATE STATS
+   STATS
 ===================================================== */
 
 function updateStats(){
@@ -2600,6 +2604,72 @@ function updateStats(){
 
 
 /* =====================================================
+   ENABLE / DISABLE ACTIONS
+===================================================== */
+
+function enableActions(){
+
+    const buttons = [
+
+        document.getElementById(
+            "feedBtn"
+        ),
+
+        document.getElementById(
+            "careBtn"
+        ),
+
+        document.getElementById(
+            "playBtn"
+        )
+
+    ];
+
+
+    buttons.forEach(
+        button => {
+
+            button.disabled =
+                false;
+
+        }
+    );
+
+}
+
+
+function disableActions(){
+
+    const buttons = [
+
+        document.getElementById(
+            "feedBtn"
+        ),
+
+        document.getElementById(
+            "careBtn"
+        ),
+
+        document.getElementById(
+            "playBtn"
+        )
+
+    ];
+
+
+    buttons.forEach(
+        button => {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+}
+
+
+/* =====================================================
    ACTIONS
 ===================================================== */
 
@@ -2608,16 +2678,15 @@ async function performAction(
 ){
 
     /*
-       Only the currently selected Guardian
-       is ever used here.
+       No Guardian = no actions.
 
-       The Supabase care function also operates
-       on the user's saved Guardian.
+       This is checked using guardian_chosen,
+       not merely guardian_key.
     */
-
 
     if(
         !guardianData ||
+        guardianData.guardian_chosen !== true ||
         !guardianData.guardian_key
     ){
 
@@ -2625,6 +2694,7 @@ async function performAction(
             document.getElementById(
                 "guardianMessage"
             );
+
 
         message.textContent =
             "Choose your Guardian first.";
@@ -2746,6 +2816,20 @@ async function performAction(
                 data;
 
 
+            /*
+               Preserve the currently chosen Guardian.
+            */
+
+            if(
+                guardianData
+            ){
+
+                guardianData.guardian_chosen =
+                    true;
+
+            }
+
+
             updateStats();
 
 
@@ -2795,15 +2879,7 @@ async function performAction(
             updateGuardianState();
 
 
-            buttons.forEach(
-                button => {
-
-                    button.disabled =
-                        false;
-
-                }
-            );
-
+            enableActions();
 
         },
         1600
