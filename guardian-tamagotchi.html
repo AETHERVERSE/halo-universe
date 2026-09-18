@@ -217,6 +217,63 @@ h1{
         rgba(112,217,255,.10);
 }
 
+.guardian-option.locked:not(.active){
+    opacity:.38;
+    filter:grayscale(.65);
+    cursor:not-allowed;
+}
+
+.guardian-option.locked:not(.active)::after{
+    content:"LOCKED";
+
+    position:absolute;
+
+    top:7px;
+    right:7px;
+
+    padding:3px 6px;
+
+    border-radius:999px;
+
+    background:
+        rgba(5,7,19,.82);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color:var(--muted);
+
+    font-size:7px;
+    letter-spacing:.08em;
+}
+
+.guardian-option.active::after{
+    content:"YOUR GUARDIAN";
+
+    position:absolute;
+
+    top:7px;
+    right:7px;
+
+    padding:3px 6px;
+
+    border-radius:999px;
+
+    background:
+        rgba(112,217,255,.12);
+
+    border:
+        1px solid
+        rgba(112,217,255,.28);
+
+    color:
+        var(--accent2);
+
+    font-size:7px;
+    letter-spacing:.08em;
+}
+
 .guardian-option img{
     display:block;
 
@@ -1229,7 +1286,7 @@ h1{
 <section class="hero">
 
     <div class="kicker">
-        MY HALO • GUARDIAN CONNECTION
+        MY AETHERVERSE
     </div>
 
     <h1>
@@ -1237,8 +1294,8 @@ h1{
     </h1>
 
     <p class="subtitle">
-        A Guardian is not simply a companion.
-        It is a living part of the connection between HALO and AETHER.
+        One Guardian. One connection. One journey.
+        Choose carefully — your bond begins here.
     </p>
 
 </section>
@@ -1250,7 +1307,10 @@ h1{
 
 <section class="selector">
 
-    <div class="selector-title">
+    <div
+        class="selector-title"
+        id="selectorTitle"
+    >
         CHOOSE YOUR GUARDIAN
     </div>
 
@@ -1268,42 +1328,11 @@ h1{
 
 <div class="status-bar">
 
-    <div class="status">
-
-        <div class="status-label">
-            Guardian
-        </div>
-
-        <div
-            class="status-value"
-            id="guardianName"
-        >
-            NOCTIS
-        </div>
-
-    </div>
-
 
     <div class="status">
 
         <div class="status-label">
-            Connection
-        </div>
-
-        <div
-            class="status-value"
-            id="connectionStatus"
-        >
-            ACTIVE
-        </div>
-
-    </div>
-
-
-    <div class="status">
-
-        <div class="status-label">
-            Current Cycle
+            ACTIVE GUARDIAN
         </div>
 
         <div
@@ -1314,6 +1343,7 @@ h1{
         </div>
 
     </div>
+
 
 </div>
 
@@ -1327,9 +1357,13 @@ h1{
 
 <div class="guardian-header">
 
-    <h2 id="guardianTitle">
-        🐦‍⬛ NOCTIS
+    <h2 id="guardianName">
+        NOCTIS
     </h2>
+
+    <p id="guardianTitle">
+        🐦‍⬛ NOCTIS
+    </p>
 
     <p id="guardianWorld">
         Guardian of NOCTEUM
@@ -1338,24 +1372,28 @@ h1{
 </div>
 
 
+<!-- =====================================================
+     STAGE
+===================================================== -->
+
 <div
     class="guardian-stage"
     id="guardianStage"
 >
 
 
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
 
 
     <div
@@ -1370,7 +1408,7 @@ h1{
         class="guardian-time"
         id="guardianTime"
     >
-        THE DAY IS QUIET
+        —
     </div>
 
 
@@ -1395,7 +1433,7 @@ h1{
         class="message"
         id="guardianMessage"
     >
-        Noctis is waiting for you.
+        Your Guardian is waiting for you.
     </div>
 
 
@@ -1668,44 +1706,32 @@ const states = {
 
     calm:{
         suffix:"",
-        label:"CALM",
-        message:
-            "The connection feels steady."
+        label:"CALM"
     },
 
     sleepy:{
         suffix:"-sleepy",
-        label:"SLEEPY",
-        message:
-            "Your Guardian looks sleepy. Maybe it needs a little rest."
+        label:"SLEEPY"
     },
 
     lonely:{
         suffix:"-lonely",
-        label:"LONELY",
-        message:
-            "Your Guardian seems a little lonely. Your presence means a lot."
+        label:"LONELY"
     },
 
     happy:{
         suffix:"-happy",
-        label:"HAPPY",
-        message:
-            "Your Guardian feels safe with you. The bond is shining."
+        label:"HAPPY"
     },
 
     energetic:{
         suffix:"-energetic",
-        label:"ENERGETIC",
-        message:
-            "Your Guardian is full of energy. Something tells me it wants to play."
+        label:"ENERGETIC"
     },
 
     night:{
         suffix:"-awake",
-        label:"AWAKE",
-        message:
-            "The world is quiet. Your Guardian watches the stars with you."
+        label:"AWAKE"
     }
 
 };
@@ -1727,10 +1753,33 @@ let currentGuardian =
 
 function renderGuardianSelector(){
 
+    const locked = Boolean(
+        guardianData &&
+        guardianData.guardian_key
+    );
+
+
+    const selectorTitle =
+        document.getElementById(
+            "selectorTitle"
+        );
+
+
+    if(selectorTitle){
+
+        selectorTitle.textContent =
+            locked
+            ? "YOUR GUARDIAN • CHOICE LOCKED"
+            : "CHOOSE YOUR GUARDIAN";
+
+    }
+
+
     const grid =
         document.getElementById(
             "guardianGrid"
         );
+
 
     grid.innerHTML = "";
 
@@ -1739,13 +1788,16 @@ function renderGuardianSelector(){
     .forEach(
         ([key,guardian]) => {
 
+
             const button =
                 document.createElement(
                     "button"
                 );
 
+
             button.className =
                 "guardian-option";
+
 
             button.dataset.key =
                 key;
@@ -1757,6 +1809,18 @@ function renderGuardianSelector(){
 
                 button.classList.add(
                     "active"
+                );
+
+            }
+
+
+            if(
+                locked &&
+                key !== currentGuardian
+            ){
+
+                button.classList.add(
+                    "locked"
                 );
 
             }
@@ -1810,6 +1874,40 @@ async function selectGuardian(
     }
 
 
+    /*
+       IMPORTANT:
+
+       Once Supabase has a Guardian saved,
+       changing to another Guardian is blocked.
+
+       The real security check also exists
+       inside the Supabase RPC.
+    */
+
+    if(
+        guardianData &&
+        guardianData.guardian_key &&
+        guardianData.guardian_key !== guardianKey
+    ){
+
+        const notice =
+            document.getElementById(
+                "notice"
+            );
+
+
+        notice.textContent =
+            "Your Guardian is already chosen. This bond cannot be changed yet.";
+
+
+        renderGuardianSelector();
+
+
+        return;
+
+    }
+
+
     const notice =
         document.getElementById(
             "notice"
@@ -1819,7 +1917,7 @@ async function selectGuardian(
     try{
 
         notice.textContent =
-            "Changing Guardian connection…";
+            "Establishing Guardian connection…";
 
 
         const {
@@ -1842,8 +1940,21 @@ async function selectGuardian(
         }
 
 
-        currentGuardian =
+        /*
+           The RPC returns the saved Guardian.
+
+           If the selection was already locked,
+           Supabase returns the original Guardian.
+        */
+
+        const savedGuardian =
+            data?.guardian_key ||
+            data?.guardian?.guardian_key ||
             guardianKey;
+
+
+        currentGuardian =
+            savedGuardian;
 
 
         guardianData =
@@ -1860,8 +1971,20 @@ async function selectGuardian(
         updateGuardianState();
 
 
-        notice.textContent =
-            `${guardians[guardianKey].name} is now your active Guardian.`;
+        if(
+            data?.selection_locked &&
+            savedGuardian !== guardianKey
+        ){
+
+            notice.textContent =
+                "Your Guardian choice is already locked.";
+
+        }else{
+
+            notice.textContent =
+                "Your Guardian has been chosen. This bond is now locked.";
+
+        }
 
 
     }catch(error){
@@ -2248,7 +2371,7 @@ function updateGuardianState(){
 
 
     cycleElement.textContent =
-        cycle.label;
+        guardian.name;
 
 
     display.classList.remove(
@@ -2282,10 +2405,40 @@ function updateGuardianState(){
         !display.dataset.actionActive
     ){
 
+        const stateMessages = {
+
+            calm:
+                guardian.name +
+                " is calm. The connection feels steady.",
+
+            sleepy:
+                guardian.name +
+                " looks sleepy. Maybe it needs a little rest.",
+
+            lonely:
+                guardian.name +
+                " seems a little lonely. Your presence means a lot.",
+
+            happy:
+                guardian.name +
+                " feels safe with you. The bond is shining.",
+
+            energetic:
+                guardian.name +
+                " is full of energy. Something tells me it wants to play.",
+
+            night:
+                "The world is quiet. " +
+                guardian.name +
+                " watches the stars with you."
+
+        };
+
+
         document.getElementById(
             "guardianMessage"
         ).textContent =
-            `${guardian.name} ${stateData.message.charAt(0).toLowerCase()}${stateData.message.slice(1)}`;
+            stateMessages[state.key];
 
     }
 
@@ -2453,6 +2606,33 @@ function updateStats(){
 async function performAction(
     action
 ){
+
+    /*
+       Only the currently selected Guardian
+       is ever used here.
+
+       The Supabase care function also operates
+       on the user's saved Guardian.
+    */
+
+
+    if(
+        !guardianData ||
+        !guardianData.guardian_key
+    ){
+
+        const message =
+            document.getElementById(
+                "guardianMessage"
+            );
+
+        message.textContent =
+            "Choose your Guardian first.";
+
+        return;
+
+    }
+
 
     const buttons = [
 
@@ -2646,6 +2826,7 @@ async function init(){
 
     /*
        Check every minute.
+
        The Guardian automatically changes
        its state and artwork.
     */
