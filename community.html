@@ -1,1420 +1,769 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AETHER Community | AETHERVERSE</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+body{
+    margin:0;
+    min-height:100vh;
+    background:radial-gradient(circle at 50% 0%,#30275f 0%,#0f0d2b 45%,#080719 100%);
+    color:#ddd7ff;
+    font-family:Georgia,serif;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            #30275f 0%,
-            #0f0d2b 45%,
-            #080719 100%
-        );
-
-    color: #ddd7ff;
-    font-family: Georgia, serif;
+.container{
+    width:100%;
+    max-width:1000px;
+    margin:auto;
+    padding:30px 20px 60px;
 }
 
-.container {
-    width: 100%;
-    max-width: 1000px;
-    margin: auto;
+header{text-align:center;margin-bottom:35px}
 
-    padding:
-        30px
-        20px
-        60px;
+.logo{
+    color:#aaa0e6;
+    font-size:.8rem;
+    letter-spacing:6px;
+    margin-bottom:25px;
 }
 
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-header {
-    text-align: center;
-    margin-bottom: 35px;
+nav{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
-.logo {
-    color: #aaa0e6;
-    font-size: 0.8rem;
-    letter-spacing: 6px;
-    margin-bottom: 25px;
+nav a{
+    color:#ddd7ff;
+    text-decoration:none;
+    border:1px solid #39345e;
+    border-radius:25px;
+    padding:8px 18px;
+    font-size:.85rem;
+    transition:.2s;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+nav a:hover{
+    background:#29264b;
+    border-color:#514879;
 }
 
-nav a {
-    color: #ddd7ff;
-    text-decoration: none;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 25px;
-
-    padding:
-        8px
-        18px;
-
-    font-size: 0.85rem;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+.hero{
+    text-align:center;
+    margin-bottom:35px;
 }
 
-nav a:hover {
-    background: #29264b;
-    border-color: #514879;
+.hero-symbol{
+    font-size:3rem;
+    margin-bottom:8px;
 }
 
-
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero {
-    text-align: center;
-    margin-bottom: 35px;
+.hero h1{
+    margin:8px 0;
+    font-size:2.2rem;
+    letter-spacing:4px;
 }
 
-.hero-symbol {
-    font-size: 3rem;
-    margin-bottom: 8px;
+.hero p{
+    margin:0;
+    color:#aaa0e6;
+    line-height:1.7;
 }
 
-.hero h1 {
-    margin:
-        8px
-        0;
-
-    font-size: 2.2rem;
-    letter-spacing: 4px;
+.identity-card,
+.aether-control,
+.chat-card{
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
-.hero p {
-    margin: 0;
-    color: #aaa0e6;
-    line-height: 1.7;
+.identity-card{
+    background:linear-gradient(145deg,#252052,#181633);
+    border:1px solid #514879;
+    padding:20px 25px;
+    margin-bottom:25px;
+    text-align:center;
 }
 
-
-/* =========================================================
-   HALO IDENTITY
-========================================================= */
-
-.identity-card {
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #181633
-        );
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 20px;
-
-    padding:
-        20px
-        25px;
-
-    margin-bottom: 25px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
+.identity-label{
+    color:#aaa0e6;
+    font-size:.75rem;
+    letter-spacing:3px;
+    margin-bottom:8px;
 }
 
-.identity-label {
-    color: #aaa0e6;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+.identity-name{
+    color:#eeeaff;
+    font-size:1.2rem;
+    letter-spacing:2px;
 }
-
-.identity-name {
-    color: #eeeaff;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-}
-
 
 /* =========================================================
    AETHER CONTROL
 ========================================================= */
 
-.aether-control {
-    display: none;
-
-    background:
-        linear-gradient(
-            145deg,
-            #29234f,
-            #17142f
-        );
-
-    border:
-        1px solid
-        #7064a5;
-
-    border-radius: 20px;
-
-    padding:
-        20px
-        25px;
-
-    margin-bottom: 25px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,0.25);
+.aether-control{
+    display:none;
+    background:linear-gradient(145deg,#29234f,#17142f);
+    border:1px solid #7064a5;
+    padding:20px 25px;
+    margin-bottom:25px;
+    text-align:center;
 }
 
-.aether-control-title {
-    color: #d8ceff;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    margin-bottom: 8px;
+.aether-control-title{
+    color:#d8ceff;
+    font-size:.75rem;
+    letter-spacing:3px;
+    margin-bottom:8px;
 }
 
-.aether-control-subtitle {
-    color: #8f88b5;
-    font-size: 0.72rem;
-    line-height: 1.5;
-    margin-bottom: 14px;
+.aether-control-subtitle{
+    color:#8f88b5;
+    font-size:.72rem;
+    line-height:1.5;
+    margin-bottom:14px;
 }
 
-
-/* =========================================================
-   COMMUNITY CREATOR
-========================================================= */
-
-.creator-divider {
-    height: 1px;
-
-    margin:
-        22px
-        0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #514879,
-            transparent
-        );
+.creator-divider,
+.scene-divider{
+    height:1px;
+    margin:22px 0;
+    background:linear-gradient(90deg,transparent,#514879,transparent);
 }
 
-.creator-title {
-    color: #eeeaff;
-
-    font-size: 0.72rem;
-
-    letter-spacing: 2.5px;
-
-    margin-bottom: 7px;
+.creator-title{
+    color:#eeeaff;
+    font-size:.72rem;
+    letter-spacing:2.5px;
+    margin-bottom:7px;
 }
 
-.creator-subtitle {
-    color: #8f88b5;
-
-    font-size: 0.68rem;
-
-    line-height: 1.5;
-
-    margin-bottom: 14px;
+.creator-subtitle{
+    color:#8f88b5;
+    font-size:.68rem;
+    line-height:1.5;
+    margin-bottom:14px;
 }
 
-.creator-label {
-    display: block;
-
-    color: #aaa0e6;
-
-    font-size: 0.62rem;
-
-    letter-spacing: 1.5px;
-
-    margin:
-        12px
-        0
-        6px;
-
-    text-align: left;
+.creator-label{
+    display:block;
+    color:#aaa0e6;
+    font-size:.62rem;
+    letter-spacing:1.5px;
+    margin:12px 0 6px;
+    text-align:left;
 }
 
-.creator-select {
-    width: 100%;
-
-    min-height: 45px;
-
-    padding:
-        10px
-        13px;
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 15px;
-
-    background:
-        #0e0c25;
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.82rem;
-
-    outline: none;
+.creator-select,
+.creator-textarea,
+.scene-select{
+    width:100%;
+    padding:10px 13px;
+    border:1px solid #514879;
+    border-radius:15px;
+    background:#0e0c25;
+    color:#eeeaff;
+    font-family:Georgia,serif;
+    outline:none;
 }
 
-.creator-select:focus {
-    border-color:
-        #9c8fe0;
+.creator-select,
+.scene-select{
+    min-height:45px;
+    font-size:.82rem;
 }
 
-.creator-textarea {
-    width: 100%;
-
-    min-height: 130px;
-
-    resize: vertical;
-
-    padding:
-        13px
-        14px;
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 15px;
-
-    background:
-        #0e0c25;
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.88rem;
-
-    line-height: 1.6;
-
-    outline: none;
+.creator-textarea{
+    min-height:130px;
+    resize:vertical;
+    font-size:.88rem;
+    line-height:1.6;
 }
 
-.creator-textarea::placeholder {
-    color: #77739e;
+.creator-select:focus,
+.creator-textarea:focus,
+.scene-select:focus{
+    border-color:#9c8fe0;
 }
 
-.creator-textarea:focus {
-    border-color:
-        #9c8fe0;
+.creator-textarea::placeholder{
+    color:#77739e;
 }
 
-.creator-counter {
-    text-align: right;
-
-    color: #706b91;
-
-    font-size: 0.6rem;
-
-    margin-top: 4px;
+.creator-counter{
+    text-align:right;
+    color:#706b91;
+    font-size:.6rem;
+    margin-top:4px;
 }
 
-.creator-preview {
-    display: none;
-
-    margin-top: 15px;
-
-    padding:
-        15px;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 16px;
-
-    background:
-        #15132f;
-
-    text-align: left;
+.creator-preview{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border:1px solid #39345e;
+    border-radius:16px;
+    background:#15132f;
+    text-align:left;
 }
 
-.creator-preview.visible {
-    display: block;
+.creator-preview.visible{
+    display:block;
 }
 
-.creator-preview-label {
-    color: #8f88b5;
-
-    font-size: 0.58rem;
-
-    letter-spacing: 1.5px;
-
-    margin-bottom: 8px;
+.creator-preview-label{
+    color:#8f88b5;
+    font-size:.58rem;
+    letter-spacing:1.5px;
+    margin-bottom:8px;
 }
 
-.creator-preview-sender {
-    color: #ddd7ff;
-
-    font-size: 0.78rem;
-
-    margin-bottom: 6px;
+.creator-preview-sender{
+    color:#ddd7ff;
+    font-size:.78rem;
+    margin-bottom:6px;
 }
 
-.creator-preview-badge {
-    display: inline-block;
-
-    color: #d8ceff;
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 15px;
-
-    padding:
-        3px
-        8px;
-
-    font-size: 0.55rem;
-
-    letter-spacing: 1px;
-
-    margin-left: 5px;
+.creator-preview-badge{
+    display:inline-block;
+    color:#d8ceff;
+    border:1px solid #514879;
+    border-radius:15px;
+    padding:3px 8px;
+    font-size:.55rem;
+    letter-spacing:1px;
+    margin-left:5px;
 }
 
-.creator-preview-message {
-    padding:
-        12px
-        14px;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 15px;
-
-    background:
-        #1d1a3d;
-
-    color: #eeeaff;
-
-    font-size: 0.84rem;
-
-    line-height: 1.6;
-
-    word-break: break-word;
+.creator-preview-message{
+    padding:12px 14px;
+    border:1px solid #39345e;
+    border-radius:15px;
+    background:#1d1a3d;
+    color:#eeeaff;
+    font-size:.84rem;
+    line-height:1.6;
+    word-break:break-word;
 }
 
-.creator-actions {
-    display: flex;
-
-    gap: 10px;
-
-    margin-top: 12px;
+.creator-actions{
+    display:flex;
+    gap:10px;
+    margin-top:12px;
 }
 
 .creator-preview-button,
-.creator-post-button {
-    flex: 1;
-
-    min-height: 45px;
-
-    border:
-        1px solid
-        #8f84c9;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #292451,
-            #393064
-        );
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+.creator-post-button,
+.scene-button{
+    flex:1;
+    min-height:45px;
+    border:1px solid #8f84c9;
+    border-radius:18px;
+    background:linear-gradient(90deg,#292451,#393064);
+    color:#eeeaff;
+    font-family:Georgia,serif;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.2s;
 }
 
 .creator-preview-button:hover,
-.creator-post-button:hover {
-    transform:
-        translateY(-2px);
-
-    background:
-        linear-gradient(
-            90deg,
-            #393064,
-            #4a3f78
-        );
-
-    border-color:
-        #c8bdff;
+.creator-post-button:hover,
+.scene-button:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(90deg,#393064,#4a3f78);
+    border-color:#c8bdff;
 }
 
 .creator-post-button:disabled,
-.creator-preview-button:disabled {
-    opacity: 0.6;
-
-    cursor: default;
-
-    transform: none;
+.creator-preview-button:disabled,
+.scene-button:disabled{
+    opacity:.6;
+    cursor:default;
+    transform:none;
 }
 
-.creator-message {
-    min-height: 18px;
-
-    margin-top: 10px;
-
-    color: #aaa0e6;
-
-    font-size: 0.7rem;
-
-    line-height: 1.5;
+.creator-message,
+.scene-message{
+    min-height:18px;
+    margin-top:10px;
+    color:#aaa0e6;
+    font-size:.7rem;
+    line-height:1.5;
 }
-
 
 /* =========================================================
-   SCENE CONTROL
+   LIVE MOMENTS
 ========================================================= */
 
-.scene-divider {
-    height: 1px;
-
-    margin:
-        22px
-        0;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #514879,
-            transparent
-        );
+.scene-select{
+    margin-bottom:10px;
 }
 
-.scene-select {
-    width: 100%;
-    min-height: 45px;
-
-    padding:
-        10px
-        13px;
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 15px;
-
-    background:
-        #0e0c25;
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-    font-size: 0.82rem;
-
-    outline: none;
-
-    margin-bottom: 10px;
+.scene-info{
+    display:none;
+    margin:10px 0 12px;
+    padding:13px 15px;
+    border:1px solid #39345e;
+    border-radius:15px;
+    background:#15132f;
+    text-align:left;
 }
 
-.scene-select:focus {
-    border-color:
-        #9c8fe0;
+.scene-info.visible{
+    display:block;
 }
 
-.scene-button {
-    width: 100%;
-    min-height: 45px;
-
-    border:
-        1px solid
-        #8f84c9;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #292451,
-            #393064
-        );
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+.scene-info-title{
+    color:#eeeaff;
+    font-size:.8rem;
+    letter-spacing:1px;
+    margin-bottom:6px;
 }
 
-.scene-button:hover {
-    transform:
-        translateY(-2px);
-
-    background:
-        linear-gradient(
-            90deg,
-            #393064,
-            #4a3f78
-        );
-
-    border-color:
-        #c8bdff;
+.scene-info-description{
+    color:#aaa0e6;
+    font-size:.7rem;
+    line-height:1.6;
 }
 
-.scene-button:disabled {
-    opacity: 0.6;
-    cursor: default;
-    transform: none;
+.scene-info-meta{
+    color:#77739e;
+    font-size:.6rem;
+    letter-spacing:.7px;
+    margin-top:8px;
 }
 
-.scene-message {
-    min-height: 18px;
-    margin-top: 10px;
-
-    color: #aaa0e6;
-
-    font-size: 0.7rem;
-    letter-spacing: 0.7px;
-    line-height: 1.5;
+.scene-button{
+    width:100%;
+    flex:none;
 }
-
 
 /* =========================================================
    CHAT
 ========================================================= */
 
-.chat-card {
-    background:
-        rgba(18, 16, 45, 0.95);
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 24px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 20px 50px
-        rgba(0,0,0,0.3);
+.chat-card{
+    background:rgba(18,16,45,.95);
+    border:1px solid #39345e;
+    border-radius:24px;
+    overflow:hidden;
 }
 
-.chat-header {
-    padding:
-        22px
-        25px;
-
-    border-bottom:
-        1px solid
-        #39345e;
-
-    background:
-        linear-gradient(
-            145deg,
-            #252052,
-            #1b1838
-        );
+.chat-header{
+    padding:22px 25px;
+    border-bottom:1px solid #39345e;
+    background:linear-gradient(145deg,#252052,#1b1838);
 }
 
-.chat-header-title {
-    color: #eeeaff;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    margin-bottom: 6px;
+.chat-header-title{
+    color:#eeeaff;
+    font-size:1.1rem;
+    letter-spacing:2px;
+    margin-bottom:6px;
 }
 
-.chat-header-subtitle {
-    color: #aaa0e6;
-    font-size: 0.78rem;
-    line-height: 1.5;
+.chat-header-subtitle{
+    color:#aaa0e6;
+    font-size:.78rem;
+    line-height:1.5;
 }
 
-
-/* =========================================================
-   CHAT STATUS
-========================================================= */
-
-.chat-status {
-    padding:
-        10px
-        20px;
-
-    text-align: center;
-
-    color: #aaa0e6;
-
-    font-size: 0.72rem;
-    letter-spacing: 1px;
-
-    border-bottom:
-        1px solid
-        #302c52;
+.chat-status{
+    padding:10px 20px;
+    text-align:center;
+    color:#aaa0e6;
+    font-size:.72rem;
+    letter-spacing:1px;
+    border-bottom:1px solid #302c52;
 }
 
-.chat-status.online {
-    color: #d9ccff;
+.chat-status.online{
+    color:#d9ccff;
 }
 
-
-/* =========================================================
-   MESSAGE AREA
-========================================================= */
-
-.messages {
-    height: 520px;
-
-    overflow-y: auto;
-
-    padding:
-        25px
-        20px;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 15px;
-
-    scroll-behavior: smooth;
+.login-warning{
+    display:none;
+    padding:25px;
+    text-align:center;
+    color:#aaa0e6;
+    line-height:1.7;
 }
 
-
-/* =========================================================
-   EMPTY STATE
-========================================================= */
-
-.empty-state {
-    margin: auto;
-
-    text-align: center;
-
-    max-width: 400px;
-
-    color: #aaa0e6;
-
-    line-height: 1.7;
+.login-warning strong{
+    display:block;
+    color:#eeeaff;
+    letter-spacing:2px;
+    margin-bottom:8px;
 }
 
-.empty-state-symbol {
-    font-size: 2.5rem;
-    margin-bottom: 12px;
+.messages{
+    height:520px;
+    overflow-y:auto;
+    padding:25px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    scroll-behavior:smooth;
 }
 
-.empty-state-title {
-    color: #ddd7ff;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
+.empty-state{
+    margin:auto;
+    text-align:center;
+    max-width:400px;
+    color:#aaa0e6;
+    line-height:1.7;
 }
 
-
-/* =========================================================
-   MESSAGE
-========================================================= */
-
-.message {
-    display: flex;
-    flex-direction: column;
-
-    max-width: 78%;
-
-    animation:
-        messageAppear
-        0.35s
-        ease-out;
+.empty-state-symbol{
+    font-size:2.5rem;
+    margin-bottom:12px;
 }
 
-@keyframes messageAppear {
+.empty-state-title{
+    color:#ddd7ff;
+    letter-spacing:2px;
+    margin-bottom:8px;
+}
 
-    from {
-        opacity: 0;
-        transform:
-            translateY(10px);
+.message{
+    display:flex;
+    flex-direction:column;
+    max-width:78%;
+    animation:messageAppear .35s ease-out;
+}
+
+@keyframes messageAppear{
+    from{
+        opacity:0;
+        transform:translateY(10px);
     }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
-
 }
 
-.message.halo {
-    align-self: flex-end;
-    align-items: flex-end;
+.message.halo{
+    align-self:flex-end;
+    align-items:flex-end;
 }
 
-.message.aether {
-    align-self: flex-start;
-    align-items: flex-start;
+.message.aether{
+    align-self:flex-start;
+    align-items:flex-start;
 }
 
+.sender{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:5px;
+    padding:0 5px;
+}
+
+.sender-name{
+    color:#ddd7ff;
+    font-size:.78rem;
+    letter-spacing:1px;
+}
+
+.sender-role{
+    color:#8f88b5;
+    font-size:.65rem;
+    letter-spacing:.8px;
+}
+
+.message-bubble{
+    padding:12px 16px;
+    border-radius:18px;
+    line-height:1.6;
+    font-size:.88rem;
+    word-break:break-word;
+}
+
+.message.halo .message-bubble{
+    background:linear-gradient(145deg,#493e79,#332c5b);
+    border:1px solid #62568f;
+    border-top-right-radius:5px;
+}
+
+.message.aether .message-bubble{
+    background:#1d1a3d;
+    border:1px solid #39345e;
+    border-top-left-radius:5px;
+}
+
+.message-time{
+    color:#706b91;
+    font-size:.62rem;
+    margin-top:5px;
+    padding:0 5px;
+}
+
+.aether-badge{
+    display:inline-block;
+    color:#d8ceff;
+    border:1px solid #514879;
+    border-radius:15px;
+    padding:3px 8px;
+    font-size:.58rem;
+    letter-spacing:1px;
+}
+
+.scene-marker{
+    color:#8f88b5;
+    font-size:.58rem;
+    letter-spacing:1.5px;
+    margin-top:2px;
+    padding:0 5px;
+}
 
 /* =========================================================
-   SENDER
+   TYPING
 ========================================================= */
 
-.sender {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    margin-bottom: 5px;
-
-    padding:
-        0
-        5px;
+.aether-typing{
+    display:none;
+    align-self:flex-start;
+    margin:0 5px 2px;
+    padding:0 10px;
+    color:#8f88b5;
+    font-size:.7rem;
+    letter-spacing:.6px;
 }
 
-.sender-name {
-    color: #ddd7ff;
-    font-size: 0.78rem;
-    letter-spacing: 1px;
+.aether-typing.visible{
+    display:flex;
+    align-items:center;
+    gap:5px;
 }
 
-.sender-role {
-    color: #8f88b5;
-    font-size: 0.65rem;
-    letter-spacing: 0.8px;
+.typing-name{
+    color:#aaa0e6;
 }
 
-
-/* =========================================================
-   MESSAGE BUBBLE
-========================================================= */
-
-.message-bubble {
-    padding:
-        12px
-        16px;
-
-    border-radius: 18px;
-
-    line-height: 1.6;
-
-    font-size: 0.88rem;
-
-    word-break: break-word;
+.typing-dots{
+    display:inline-flex;
+    gap:3px;
+    align-items:center;
 }
 
-.message.halo .message-bubble {
-    background:
-        linear-gradient(
-            145deg,
-            #493e79,
-            #332c5b
-        );
-
-    border:
-        1px solid
-        #62568f;
-
-    border-top-right-radius: 5px;
+.typing-dot{
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#aaa0e6;
+    animation:typingDot 1.2s infinite ease-in-out;
 }
 
-.message.aether .message-bubble {
-    background:
-        #1d1a3d;
+.typing-dot:nth-child(2){animation-delay:.15s}
+.typing-dot:nth-child(3){animation-delay:.3s}
 
-    border:
-        1px solid
-        #39345e;
-
-    border-top-left-radius: 5px;
-}
-
-
-/* =========================================================
-   MESSAGE TIME
-========================================================= */
-
-.message-time {
-    color: #706b91;
-
-    font-size: 0.62rem;
-
-    margin-top: 5px;
-
-    padding:
-        0
-        5px;
-}
-
-
-/* =========================================================
-   AETHER BADGE
-========================================================= */
-
-.aether-badge {
-    display: inline-block;
-
-    color: #d8ceff;
-
-    border:
-        1px solid
-        #514879;
-
-    border-radius: 15px;
-
-    padding:
-        3px
-        8px;
-
-    font-size: 0.58rem;
-    letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   SCENE MARKER
-========================================================= */
-
-.scene-marker {
-    color: #8f88b5;
-
-    font-size: 0.58rem;
-    letter-spacing: 1.5px;
-
-    margin-top: 2px;
-
-    padding:
-        0
-        5px;
-}
-
-
-/* =========================================================
-   AETHER TYPING
-========================================================= */
-
-.aether-typing {
-    display: none;
-
-    align-self: flex-start;
-
-    margin:
-        0
-        5px
-        2px;
-
-    padding:
-        0
-        10px;
-
-    color: #8f88b5;
-
-    font-size: 0.7rem;
-
-    letter-spacing: 0.6px;
-
-    animation:
-        typingAppear
-        0.25s
-        ease-out;
-}
-
-.aether-typing.visible {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.typing-name {
-    color: #aaa0e6;
-}
-
-.typing-dots {
-    display: inline-flex;
-    gap: 3px;
-    align-items: center;
-}
-
-.typing-dot {
-    width: 4px;
-    height: 4px;
-
-    border-radius: 50%;
-
-    background: #aaa0e6;
-
-    animation:
-        typingDot
-        1.2s
-        infinite
-        ease-in-out;
-}
-
-.typing-dot:nth-child(2) {
-    animation-delay: 0.15s;
-}
-
-.typing-dot:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-@keyframes typingAppear {
-
-    from {
-        opacity: 0;
-        transform:
-            translateY(4px);
+@keyframes typingDot{
+    0%,60%,100%{
+        opacity:.3;
+        transform:translateY(0);
     }
-
-    to {
-        opacity: 1;
-        transform:
-            translateY(0);
+    30%{
+        opacity:1;
+        transform:translateY(-3px);
     }
-
 }
-
-@keyframes typingDot {
-
-    0%,
-    60%,
-    100% {
-        opacity: 0.3;
-        transform:
-            translateY(0);
-    }
-
-    30% {
-        opacity: 1;
-        transform:
-            translateY(-3px);
-    }
-
-}
-
 
 /* =========================================================
    REACTIONS
 ========================================================= */
 
-.reactions {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 5px;
-
-    margin-top: 7px;
-
-    padding:
-        0
-        3px;
+.reactions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:5px;
+    margin-top:7px;
+    padding:0 3px;
 }
 
-.reaction-button {
-    display: inline-flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 4px;
-
-    min-height: 28px;
-
-    padding:
-        4px
-        8px;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 15px;
-
-    background:
-        #171532;
-
-    color: #aaa0e6;
-
-    font-family: Georgia, serif;
-
-    font-size: 0.7rem;
-
-    cursor: pointer;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.15s ease;
+.reaction-button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    min-height:28px;
+    padding:4px 8px;
+    border:1px solid #39345e;
+    border-radius:15px;
+    background:#171532;
+    color:#aaa0e6;
+    font-family:Georgia,serif;
+    font-size:.7rem;
+    cursor:pointer;
+    transition:.15s;
 }
 
-.reaction-button:hover {
-    transform:
-        translateY(-1px);
-
-    background:
-        #29264b;
-
-    border-color:
-        #7064a5;
-
-    color:
-        #eeeaff;
+.reaction-button:hover{
+    transform:translateY(-1px);
+    background:#29264b;
+    border-color:#7064a5;
+    color:#eeeaff;
 }
 
-.reaction-button.active {
-    background:
-        #393064;
-
-    border-color:
-        #9c8fe0;
-
-    color:
-        #eeeaff;
+.reaction-button.active{
+    background:#393064;
+    border-color:#9c8fe0;
+    color:#eeeaff;
 }
 
-.reaction-count {
-    font-size: 0.65rem;
-    min-width: 8px;
+.reaction-count{
+    font-size:.65rem;
+    min-width:8px;
 }
-
 
 /* =========================================================
    COMPOSER
 ========================================================= */
 
-.composer {
-    border-top:
-        1px solid
-        #39345e;
-
-    padding:
-        18px;
-
-    background:
-        #15132f;
+.composer{
+    border-top:1px solid #39345e;
+    padding:18px;
+    background:#15132f;
 }
 
-.composer-form {
-    display: flex;
-    gap: 10px;
+.composer-form{
+    display:flex;
+    gap:10px;
 }
 
-.message-input {
-    flex: 1;
-    min-width: 0;
-
-    resize: none;
-
-    height: 48px;
-
-    padding:
-        13px
-        15px;
-
-    border:
-        1px solid
-        #39345e;
-
-    border-radius: 18px;
-
-    background:
-        #0e0c25;
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-    font-size: 0.88rem;
-
-    outline: none;
+.message-input{
+    flex:1;
+    min-width:0;
+    resize:none;
+    height:48px;
+    padding:13px 15px;
+    border:1px solid #39345e;
+    border-radius:18px;
+    background:#0e0c25;
+    color:#eeeaff;
+    font-family:Georgia,serif;
+    font-size:.88rem;
+    outline:none;
 }
 
-.message-input::placeholder {
-    color: #77739e;
+.message-input::placeholder{
+    color:#77739e;
 }
 
-.message-input:focus {
-    border-color:
-        #7064a5;
+.message-input:focus{
+    border-color:#7064a5;
 }
 
-.send-button {
-    flex-shrink: 0;
-
-    min-width: 100px;
-
-    border:
-        1px solid
-        #8f84c9;
-
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #292451,
-            #393064
-        );
-
-    color: #eeeaff;
-
-    font-family: Georgia, serif;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border-color 0.2s ease;
+.send-button{
+    flex-shrink:0;
+    min-width:100px;
+    border:1px solid #8f84c9;
+    border-radius:18px;
+    background:linear-gradient(90deg,#292451,#393064);
+    color:#eeeaff;
+    font-family:Georgia,serif;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:.2s;
 }
 
-.send-button:hover {
-    transform:
-        translateY(-2px);
-
-    background:
-        linear-gradient(
-            90deg,
-            #393064,
-            #4a3f78
-        );
-
-    border-color:
-        #c8bdff;
+.send-button:hover{
+    transform:translateY(-2px);
+    background:linear-gradient(90deg,#393064,#4a3f78);
+    border-color:#c8bdff;
 }
 
-.send-button:disabled {
-    opacity: 0.6;
-    cursor: default;
-    transform: none;
+.send-button:disabled{
+    opacity:.6;
+    cursor:default;
+    transform:none;
 }
 
-
-/* =========================================================
-   COMPOSER MESSAGE
-========================================================= */
-
-.composer-message {
-    min-height: 18px;
-
-    margin-top: 9px;
-
-    text-align: center;
-
-    color: #aaa0e6;
-
-    font-size: 0.7rem;
-    letter-spacing: 0.7px;
+.composer-message{
+    min-height:18px;
+    margin-top:9px;
+    text-align:center;
+    color:#aaa0e6;
+    font-size:.7rem;
+    letter-spacing:.7px;
 }
 
-
-/* =========================================================
-   LOGIN WARNING
-========================================================= */
-
-.login-warning {
-    display: none;
-
-    padding:
-        25px;
-
-    text-align: center;
-
-    color: #aaa0e6;
-
-    line-height: 1.7;
+footer{
+    text-align:center;
+    margin-top:45px;
+    color:#77739e;
+    font-size:.7rem;
+    letter-spacing:2px;
+    line-height:2;
 }
 
-.login-warning strong {
-    display: block;
-
-    color: #eeeaff;
-
-    letter-spacing: 2px;
-
-    margin-bottom: 8px;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer {
-    text-align: center;
-
-    margin-top: 45px;
-
-    color: #77739e;
-
-    font-size: 0.7rem;
-
-    letter-spacing: 2px;
-
-    line-height: 2;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .container {
-        padding:
-            20px
-            12px
-            45px;
+@media(max-width:650px){
+    .container{
+        padding:20px 12px 45px;
     }
 
-    .hero h1 {
-        font-size: 1.75rem;
-        letter-spacing: 3px;
+    .hero h1{
+        font-size:1.75rem;
+        letter-spacing:3px;
     }
 
-    .messages {
-        height: 500px;
-
-        padding:
-            20px
-            12px;
+    .messages{
+        height:500px;
+        padding:20px 12px;
     }
 
-    .message {
-        max-width: 88%;
+    .message{
+        max-width:88%;
     }
 
-    .composer-form {
-        flex-direction: column;
+    .composer-form,
+    .creator-actions{
+        flex-direction:column;
     }
 
-    .send-button {
-        width: 100%;
-        min-height: 45px;
+    .send-button{
+        width:100%;
+        min-height:45px;
     }
 
-    .reaction-button {
-        min-height: 30px;
-
-        padding:
-            5px
-            9px;
+    .reaction-button{
+        min-height:30px;
+        padding:5px 9px;
     }
-
-    .creator-actions {
-        flex-direction: column;
-    }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 <div class="container">
 
-
 <header>
-
-<div class="logo">
-AETHERVERSE
-</div>
+<div class="logo">AETHERVERSE</div>
 
 <nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="universe.html">
-HALO Universe
-</a>
-
-<a href="members.html">
-Members
-</a>
-
-<a href="codex.html">
-Codex
-</a>
-
-<a href="halo.html">
-My HALO
-</a>
-
+<a href="index.html">Home</a>
+<a href="universe.html">HALO Universe</a>
+<a href="members.html">Members</a>
+<a href="codex.html">Codex</a>
+<a href="halo.html">My HALO</a>
 </nav>
-
 </header>
 
 
 <section class="hero">
+<div class="hero-symbol">✦</div>
 
-<div class="hero-symbol">
-✦
-</div>
-
-<h1>
-AETHER COMMUNITY
-</h1>
+<h1>AETHER COMMUNITY</h1>
 
 <p>
 One universe.
@@ -1423,7 +772,6 @@ Seven stars.
 <br>
 One community of HALOs.
 </p>
-
 </section>
 
 
@@ -1433,20 +781,14 @@ One community of HALOs.
 YOUR HALO ID
 </div>
 
-<div
-    class="identity-name"
-    id="haloIdentity"
->
+<div class="identity-name" id="haloIdentity">
 LOADING...
 </div>
 
 </section>
 
 
-<section
-    class="aether-control"
-    id="aetherControl"
->
+<section class="aether-control" id="aetherControl">
 
 <div class="aether-control-title">
 AETHER CONTROL
@@ -1473,57 +815,25 @@ Only AETHER administrators can use this control.
 </div>
 
 
-<label
-    class="creator-label"
-    for="creatorAuthor"
->
+<label class="creator-label" for="creatorAuthor">
 AUTHOR
 </label>
 
-<select
-    id="creatorAuthor"
-    class="creator-select"
->
+<select id="creatorAuthor" class="creator-select">
 
-<option value="solen">
-☀️ Solen
-</option>
-
-<option value="vex">
-🖤 Vex
-</option>
-
-<option value="kairo">
-⚡ Kairo
-</option>
-
-<option value="riven">
-🌊 Riven
-</option>
-
-<option value="zenith">
-🔥 Zenith
-</option>
-
-<option value="lux">
-🤍 Lux
-</option>
-
-<option value="nero">
-🌌 Nero
-</option>
-
-<option value="elyra">
-✦ Elyra — The Voice Between Worlds
-</option>
+<option value="solen">☀️ Solen</option>
+<option value="vex">🖤 Vex</option>
+<option value="kairo">⚡ Kairo</option>
+<option value="riven">🌊 Riven</option>
+<option value="zenith">🔥 Zenith</option>
+<option value="lux">🤍 Lux</option>
+<option value="nero">🌌 Nero</option>
+<option value="elyra">✦ Elyra — The Voice Between Worlds</option>
 
 </select>
 
 
-<label
-    class="creator-label"
-    for="creatorMessage"
->
+<label class="creator-label" for="creatorMessage">
 MESSAGE
 </label>
 
@@ -1534,39 +844,22 @@ MESSAGE
     placeholder="Write a community message..."
 ></textarea>
 
-<div
-    class="creator-counter"
-    id="creatorCounter"
->
+<div class="creator-counter" id="creatorCounter">
 0 / 1000
 </div>
 
 
-<div
-    class="creator-preview"
-    id="creatorPreview"
->
+<div class="creator-preview" id="creatorPreview">
 
 <div class="creator-preview-label">
 PREVIEW
 </div>
 
-<div
-    class="creator-preview-sender"
-    id="creatorPreviewSender"
->
+<div class="creator-preview-sender" id="creatorPreviewSender">
 AETHER
-
-<span class="creator-preview-badge">
-AETHER
-</span>
-
 </div>
 
-<div
-    class="creator-preview-message"
-    id="creatorPreviewMessage"
->
+<div class="creator-preview-message" id="creatorPreviewMessage">
 Your message will appear here.
 </div>
 
@@ -1594,58 +887,76 @@ POST ✦
 </div>
 
 
-<div
-    class="creator-message"
-    id="creatorMessageStatus"
-></div>
+<div class="creator-message" id="creatorMessageStatus"></div>
 
 
 <!-- =====================================================
-     SCENE CONTROL
+     LIVE MOMENTS
 ===================================================== -->
 
 <div class="scene-divider"></div>
 
 <div class="creator-title">
-⚡ AETHER SCENE CONTROL
+⚡ AETHER LIVE MOMENTS
 </div>
 
 <div class="creator-subtitle">
-Trigger a predefined AETHER conversation scene.
+Choose a live AETHER moment and trigger it directly into
+the community. Available scenes are loaded from the
+AETHERVERSE signal archive.
 </div>
 
+
+<label class="creator-label" for="sceneSelect">
+LIVE MOMENT
+</label>
 
 <select
     id="sceneSelect"
     class="scene-select"
+    disabled
 >
 
-<option value="KAIRO_ZENITH_001">
-THE IDEA
+<option value="">
+Loading live moments...
 </option>
 
 </select>
+
+
+<div class="scene-info" id="sceneInfo">
+
+<div class="scene-info-title" id="sceneInfoTitle"></div>
+
+<div
+    class="scene-info-description"
+    id="sceneInfoDescription"
+></div>
+
+<div
+    class="scene-info-meta"
+    id="sceneInfoMeta"
+></div>
+
+</div>
 
 
 <button
     type="button"
     id="triggerSceneButton"
     class="scene-button"
+    disabled
 >
-⚡ TRIGGER SCENE
+⚡ TRIGGER LIVE MOMENT
 </button>
 
 
-<div
-    class="scene-message"
-    id="sceneMessage"
-></div>
+<div class="scene-message" id="sceneMessage"></div>
 
 </section>
 
 
 <section class="chat-card">
-
 
 <div class="chat-header">
 
@@ -1661,18 +972,12 @@ their journey through the AETHERVERSE.
 </div>
 
 
-<div
-    class="chat-status"
-    id="chatStatus"
->
+<div class="chat-status" id="chatStatus">
 Connecting to the AETHER community...
 </div>
 
 
-<div
-    class="login-warning"
-    id="loginWarning"
->
+<div class="login-warning" id="loginWarning">
 
 <strong>
 HALO ACCESS REQUIRED
@@ -1683,10 +988,7 @@ Please log in to enter the AETHER Community.
 </div>
 
 
-<div
-    class="messages"
-    id="messages"
->
+<div class="messages" id="messages">
 
 <div class="empty-state">
 
@@ -1707,10 +1009,7 @@ The first message is waiting to be written.
 </div>
 
 
-<div
-    class="aether-typing"
-    id="aetherTyping"
->
+<div class="aether-typing" id="aetherTyping">
 
 <span class="typing-name" id="typingName">
 AETHER
@@ -1731,15 +1030,9 @@ is typing
 </div>
 
 
-<div
-    class="composer"
-    id="composer"
->
+<div class="composer" id="composer">
 
-<form
-    class="composer-form"
-    id="messageForm"
->
+<form class="composer-form" id="messageForm">
 
 <textarea
     id="messageInput"
@@ -1748,7 +1041,6 @@ is typing
     placeholder="Write something to your fellow HALOs..."
     autocomplete="off"
 ></textarea>
-
 
 <button
     type="submit"
@@ -1761,10 +1053,7 @@ SEND ✦
 </form>
 
 
-<div
-    class="composer-message"
-    id="composerMessage"
-></div>
+<div class="composer-message" id="composerMessage"></div>
 
 </div>
 
@@ -1786,7 +1075,6 @@ ONE LIGHT • SEVEN STARS • ENDLESS LOVE
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <script>
 
 const SUPABASE_URL =
@@ -1806,9 +1094,9 @@ window.supabase.createClient(
    PROTECTED COMMUNITY PAGE
 ========================================================= */
 
-async function requireCommunitySession() {
+async function requireCommunitySession(){
 
-    try {
+    try{
 
         const {
             data,
@@ -1817,7 +1105,7 @@ async function requireCommunitySession() {
         await supabaseClient.auth.getSession();
 
 
-        if (error) {
+        if(error){
 
             console.error(
                 "COMMUNITY SESSION ERROR:",
@@ -1840,10 +1128,10 @@ async function requireCommunitySession() {
                 : null;
 
 
-        if (
+        if(
             !session ||
             !session.user
-        ) {
+        ){
 
             window.location.replace(
                 "halo.html"
@@ -1858,7 +1146,7 @@ async function requireCommunitySession() {
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(
             "COMMUNITY SESSION CHECK ERROR:",
@@ -1879,33 +1167,33 @@ async function requireCommunitySession() {
 const reactionTypes = [
 
     {
-        key: "love",
-        emoji: "❤️",
-        label: "Love"
+        key:"love",
+        emoji:"❤️",
+        label:"Love"
     },
 
     {
-        key: "aether",
-        emoji: "✦",
-        label: "AETHER"
+        key:"aether",
+        emoji:"✦",
+        label:"AETHER"
     },
 
     {
-        key: "lol",
-        emoji: "😂",
-        label: "LOL"
+        key:"lol",
+        emoji:"😂",
+        label:"LOL"
     },
 
     {
-        key: "feels",
-        emoji: "🥹",
-        label: "Feels"
+        key:"feels",
+        emoji:"🥹",
+        label:"Feels"
     },
 
     {
-        key: "fire",
-        emoji: "🔥",
-        label: "Fire"
+        key:"fire",
+        emoji:"🔥",
+        label:"Fire"
     }
 
 ];
@@ -2013,12 +1301,32 @@ document.getElementById(
 
 
 /* =========================================================
-   SCENE ELEMENTS
+   LIVE MOMENT ELEMENTS
 ========================================================= */
 
 const sceneSelect =
 document.getElementById(
     "sceneSelect"
+);
+
+const sceneInfo =
+document.getElementById(
+    "sceneInfo"
+);
+
+const sceneInfoTitle =
+document.getElementById(
+    "sceneInfoTitle"
+);
+
+const sceneInfoDescription =
+document.getElementById(
+    "sceneInfoDescription"
+);
+
+const sceneInfoMeta =
+document.getElementById(
+    "sceneInfoMeta"
 );
 
 const triggerSceneButton =
@@ -2030,6 +1338,7 @@ const sceneMessage =
 document.getElementById(
     "sceneMessage"
 );
+
 
 const aetherTyping =
 document.getElementById(
@@ -2050,6 +1359,8 @@ let aetherMembersCache = [];
 
 let reactionCache = [];
 
+let aetherLiveScenes = [];
+
 let messageChannel = null;
 
 let reactionChannel = null;
@@ -2065,52 +1376,52 @@ let typingTimeout = null;
 
 const creatorAuthors = {
 
-    solen: {
-        name: "Solen",
-        badge: "AETHER",
-        role: "Leader"
+    solen:{
+        name:"Solen",
+        badge:"AETHER",
+        role:"Leader"
     },
 
-    vex: {
-        name: "Vex",
-        badge: "AETHER",
-        role: "Protector"
+    vex:{
+        name:"Vex",
+        badge:"AETHER",
+        role:"Protector"
     },
 
-    kairo: {
-        name: "Kairo",
-        badge: "AETHER",
-        role: "Main Energy"
+    kairo:{
+        name:"Kairo",
+        badge:"AETHER",
+        role:"Main Energy"
     },
 
-    riven: {
-        name: "Riven",
-        badge: "AETHER",
-        role: "Emotional Heart"
+    riven:{
+        name:"Riven",
+        badge:"AETHER",
+        role:"Emotional Heart"
     },
 
-    zenith: {
-        name: "Zenith",
-        badge: "AETHER",
-        role: "Mood Maker"
+    zenith:{
+        name:"Zenith",
+        badge:"AETHER",
+        role:"Mood Maker"
     },
 
-    lux: {
-        name: "Lux",
-        badge: "AETHER",
-        role: "Angel / Comfort Member"
+    lux:{
+        name:"Lux",
+        badge:"AETHER",
+        role:"Angel / Comfort Member"
     },
 
-    nero: {
-        name: "Nero",
-        badge: "AETHER",
-        role: "Maknae"
+    nero:{
+        name:"Nero",
+        badge:"AETHER",
+        role:"Maknae"
     },
 
-    elyra: {
-        name: "Elyra",
-        badge: "ELYRA",
-        role: "The Voice Between Worlds"
+    elyra:{
+        name:"Elyra",
+        badge:"ELYRA",
+        role:"The Voice Between Worlds"
     }
 
 };
@@ -2120,7 +1431,7 @@ const creatorAuthors = {
    GENERAL HELPERS
 ========================================================= */
 
-function formatTime(timestamp) {
+function formatTime(timestamp){
 
     const date =
         new Date(timestamp);
@@ -2128,17 +1439,17 @@ function formatTime(timestamp) {
     return date.toLocaleString(
         [],
         {
-            day: "2-digit",
-            month: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit"
+            day:"2-digit",
+            month:"2-digit",
+            hour:"2-digit",
+            minute:"2-digit"
         }
     );
 
 }
 
 
-function escapeHtml(text) {
+function escapeHtml(text){
 
     const div =
         document.createElement(
@@ -2153,7 +1464,7 @@ function escapeHtml(text) {
 }
 
 
-function isNearBottom() {
+function isNearBottom(){
 
     const distance =
         messagesContainer.scrollHeight -
@@ -2165,7 +1476,7 @@ function isNearBottom() {
 }
 
 
-function scrollToBottom() {
+function scrollToBottom(){
 
     messagesContainer.scrollTop =
         messagesContainer.scrollHeight;
@@ -2177,14 +1488,14 @@ function scrollToBottom() {
    CREATOR PREVIEW
 ========================================================= */
 
-function updateCreatorPreview() {
+function updateCreatorPreview(){
 
     const author =
         creatorAuthors[
             creatorAuthor.value
         ];
 
-    if (!author) {
+    if(!author){
 
         return;
 
@@ -2207,7 +1518,7 @@ function updateCreatorPreview() {
         <span
             style="
                 color:#8f88b5;
-                font-size:0.65rem;
+                font-size:.65rem;
                 margin-left:6px;
             "
         >
@@ -2221,14 +1532,14 @@ function updateCreatorPreview() {
     const text =
         creatorMessage.value.trim();
 
-    if (text) {
+    if(text){
 
         creatorPreviewMessage.textContent =
             text;
 
     }
 
-    else {
+    else{
 
         creatorPreviewMessage.textContent =
             "Your message will appear here.";
@@ -2242,7 +1553,7 @@ function updateCreatorPreview() {
 }
 
 
-function updateCreatorCounter() {
+function updateCreatorCounter(){
 
     const length =
         creatorMessage.value.length;
@@ -2256,7 +1567,7 @@ function updateCreatorCounter() {
 
 creatorAuthor.addEventListener(
     "change",
-    function() {
+    function(){
 
         updateCreatorPreview();
 
@@ -2269,15 +1580,15 @@ creatorAuthor.addEventListener(
 
 creatorMessage.addEventListener(
     "input",
-    function() {
+    function(){
 
         updateCreatorCounter();
 
-        if (
+        if(
             creatorPreview.classList.contains(
                 "visible"
             )
-        ) {
+        ){
 
             updateCreatorPreview();
 
@@ -2289,7 +1600,7 @@ creatorMessage.addEventListener(
 
 creatorPreviewButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         updateCreatorPreview();
 
@@ -2304,9 +1615,9 @@ creatorPreviewButton.addEventListener(
    AETHER CREATOR POST
 ========================================================= */
 
-async function postAsAetherMember() {
+async function postAsAetherMember(){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         creatorMessageStatus.textContent =
             "Please log in first.";
@@ -2321,7 +1632,7 @@ async function postAsAetherMember() {
     const message =
         creatorMessage.value.trim();
 
-    if (!authorKey) {
+    if(!authorKey){
 
         creatorMessageStatus.textContent =
             "Please select an author.";
@@ -2330,7 +1641,7 @@ async function postAsAetherMember() {
 
     }
 
-    if (!message) {
+    if(!message){
 
         creatorMessageStatus.textContent =
             "Write a message first. ✦";
@@ -2339,7 +1650,7 @@ async function postAsAetherMember() {
 
     }
 
-    if (message.length > 1000) {
+    if(message.length > 1000){
 
         creatorMessageStatus.textContent =
             "Your message is too long.";
@@ -2364,7 +1675,7 @@ async function postAsAetherMember() {
         "Publishing...";
 
 
-    try {
+    try{
 
         const {
             data,
@@ -2382,28 +1693,28 @@ async function postAsAetherMember() {
         );
 
 
-        if (error) {
+        if(error){
 
             console.error(
                 "CREATOR POST ERROR:",
                 error
             );
 
-            if (
+            if(
                 error.message &&
                 error.message
                     .toLowerCase()
                     .includes(
                         "admin access"
                     )
-            ) {
+            ){
 
                 creatorMessageStatus.textContent =
                     "AETHER admin access required.";
 
             }
 
-            else {
+            else{
 
                 creatorMessageStatus.textContent =
                     error.message ||
@@ -2436,7 +1747,7 @@ async function postAsAetherMember() {
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(
             "CREATOR POST REQUEST ERROR:",
@@ -2448,7 +1759,7 @@ async function postAsAetherMember() {
 
     }
 
-    finally {
+    finally{
 
         creatorPostButton.disabled =
             false;
@@ -2469,9 +1780,338 @@ async function postAsAetherMember() {
 
 creatorPostButton.addEventListener(
     "click",
-    function() {
+    function(){
 
         postAsAetherMember();
+
+    }
+);
+
+
+/* =========================================================
+   AETHER LIVE MOMENTS
+========================================================= */
+
+const categoryLabels = {
+
+    QUICK:
+        "QUICK MOMENTS",
+
+    "QUICK MOMENTS":
+        "QUICK MOMENTS",
+
+    CHAOS:
+        "CHAOS EVENTS",
+
+    "CHAOS EVENTS":
+        "CHAOS EVENTS",
+
+    HALO:
+        "HALO MOMENTS",
+
+    "HALO MOMENTS":
+        "HALO MOMENTS",
+
+    QUIET:
+        "QUIET MOMENTS",
+
+    "QUIET MOMENTS":
+        "QUIET MOMENTS",
+
+    LIVE:
+        "LIVE SCENES",
+
+    "LIVE SCENES":
+        "LIVE SCENES",
+
+    SPECIAL:
+        "SPECIAL EVENTS",
+
+    "SPECIAL EVENTS":
+        "SPECIAL EVENTS"
+
+};
+
+
+function friendlyCategory(category){
+
+    const key =
+        String(
+            category ||
+            "LIVE"
+        ).toUpperCase();
+
+    return (
+        categoryLabels[key] ||
+        key
+    );
+
+}
+
+
+function updateSceneInfo(){
+
+    const scene =
+        aetherLiveScenes.find(
+            item =>
+                item.scene_key ===
+                sceneSelect.value
+        );
+
+    if(!scene){
+
+        sceneInfo.classList.remove(
+            "visible"
+        );
+
+        return;
+
+    }
+
+    sceneInfoTitle.textContent =
+        "✦ " +
+        scene.title;
+
+    sceneInfoDescription.textContent =
+        scene.description ||
+        "A live AETHER moment is ready.";
+
+    sceneInfoMeta.textContent =
+        "CATEGORY: " +
+        friendlyCategory(
+            scene.category
+        ) +
+        " • COOLDOWN: " +
+        (
+            scene.cooldown_minutes ??
+            5
+        ) +
+        " MIN";
+
+    sceneInfo.classList.add(
+        "visible"
+    );
+
+}
+
+
+async function loadAetherLiveScenes(){
+
+    sceneSelect.disabled =
+        true;
+
+    triggerSceneButton.disabled =
+        true;
+
+    sceneSelect.innerHTML = `
+        <option value="">
+            Loading live moments...
+        </option>
+    `;
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient.rpc(
+            "get_aether_live_scenes"
+        );
+
+
+        if(error){
+
+            console.error(
+                "LIVE MOMENTS LOAD ERROR:",
+                error
+            );
+
+            sceneSelect.innerHTML = `
+                <option value="">
+                    Could not load live moments
+                </option>
+            `;
+
+            sceneMessage.textContent =
+                "Could not load the AETHER live moments.";
+
+            return false;
+
+        }
+
+
+        aetherLiveScenes =
+            Array.isArray(data)
+                ? data
+                : [];
+
+
+        aetherLiveScenes.sort(
+            function(a,b){
+
+                const orderA =
+                    a.sort_order ??
+                    100;
+
+                const orderB =
+                    b.sort_order ??
+                    100;
+
+                if(
+                    orderA !==
+                    orderB
+                ){
+
+                    return orderA -
+                        orderB;
+
+                }
+
+                return String(
+                    a.title ||
+                    ""
+                ).localeCompare(
+                    String(
+                        b.title ||
+                        ""
+                    )
+                );
+
+            }
+        );
+
+
+        sceneSelect.innerHTML =
+            "";
+
+
+        const groups = {};
+
+
+        aetherLiveScenes.forEach(
+            function(scene){
+
+                const label =
+                    friendlyCategory(
+                        scene.category
+                    );
+
+                if(!groups[label]){
+
+                    groups[label] =
+                        document.createElement(
+                            "optgroup"
+                        );
+
+                    groups[label].label =
+                        label;
+
+                }
+
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    scene.scene_key;
+
+                option.textContent =
+                    scene.title;
+
+                groups[label].appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        Object.values(groups)
+            .forEach(
+                function(group){
+
+                    sceneSelect.appendChild(
+                        group
+                    );
+
+                }
+            );
+
+
+        if(
+            !aetherLiveScenes.length
+        ){
+
+            sceneSelect.innerHTML = `
+                <option value="">
+                    No live moments available
+                </option>
+            `;
+
+            sceneInfo.classList.remove(
+                "visible"
+            );
+
+            return false;
+
+        }
+
+
+        sceneSelect.disabled =
+            false;
+
+        triggerSceneButton.disabled =
+            false;
+
+        sceneSelect.value =
+            aetherLiveScenes[0].scene_key;
+
+        updateSceneInfo();
+
+        sceneMessage.textContent =
+            "✦ " +
+            aetherLiveScenes.length +
+            " LIVE MOMENTS AVAILABLE";
+
+        return true;
+
+    }
+
+    catch(error){
+
+        console.error(
+            "LIVE MOMENTS REQUEST ERROR:",
+            error
+        );
+
+        sceneSelect.innerHTML = `
+            <option value="">
+                Could not load live moments
+            </option>
+        `;
+
+        sceneMessage.textContent =
+            "Could not reach the AETHER live moment archive.";
+
+        return false;
+
+    }
+
+}
+
+
+sceneSelect.addEventListener(
+    "change",
+    function(){
+
+        updateSceneInfo();
+
+        sceneMessage.textContent =
+            "";
 
     }
 );
@@ -2481,7 +2121,9 @@ creatorPostButton.addEventListener(
    DIRECT AETHER ADDRESS DETECTION
 ========================================================= */
 
-function detectMentionedMember(message) {
+function detectMentionedMember(
+    message
+){
 
     const lower =
         message.toLowerCase();
@@ -2489,46 +2131,47 @@ function detectMentionedMember(message) {
     const members = [
 
         {
-            key: "solen",
-            name: "Solen"
+            key:"solen",
+            name:"Solen"
         },
 
         {
-            key: "vex",
-            name: "Vex"
+            key:"vex",
+            name:"Vex"
         },
 
         {
-            key: "kairo",
-            name: "Kairo"
+            key:"kairo",
+            name:"Kairo"
         },
 
         {
-            key: "riven",
-            name: "Riven"
+            key:"riven",
+            name:"Riven"
         },
 
         {
-            key: "zenith",
-            name: "Zenith"
+            key:"zenith",
+            name:"Zenith"
         },
 
         {
-            key: "lux",
-            name: "Lux"
+            key:"lux",
+            name:"Lux"
         },
 
         {
-            key: "nero",
-            name: "Nero"
+            key:"nero",
+            name:"Nero"
         }
 
     ];
 
-    for (
+
+    for(
         const member
         of members
-    ) {
+    ){
 
         const pattern =
             new RegExp(
@@ -2537,9 +2180,9 @@ function detectMentionedMember(message) {
                 "([^a-z]|$)"
             );
 
-        if (
+        if(
             pattern.test(lower)
-        ) {
+        ){
 
             return member;
 
@@ -2554,7 +2197,7 @@ function detectMentionedMember(message) {
 
 function showLocalAetherTyping(
     memberKey
-) {
+){
 
     const member =
         aetherMembersCache.find(
@@ -2563,7 +2206,7 @@ function showLocalAetherTyping(
                 memberKey
         );
 
-    if (!member) {
+    if(!member){
 
         return;
 
@@ -2584,7 +2227,7 @@ function showLocalAetherTyping(
 function showAetherTyping(
     memberKey,
     displayName
-) {
+){
 
     clearTimeout(
         typingTimeout
@@ -2602,7 +2245,8 @@ function showAetherTyping(
         (
             member
                 ? member.display_name
-                : memberKey || "AETHER"
+                : memberKey ||
+                  "AETHER"
         );
 
     typingName.textContent =
@@ -2612,10 +2256,12 @@ function showAetherTyping(
         "visible"
     );
 
-    if (isNearBottom()) {
+    if(
+        isNearBottom()
+    ){
 
         requestAnimationFrame(
-            function() {
+            function(){
 
                 scrollToBottom();
 
@@ -2627,7 +2273,7 @@ function showAetherTyping(
 }
 
 
-function hideAetherTyping() {
+function hideAetherTyping(){
 
     aetherTyping.classList.remove(
         "visible"
@@ -2636,9 +2282,9 @@ function hideAetherTyping() {
 }
 
 
-function subscribeToAetherTyping() {
+function subscribeToAetherTyping(){
 
-    if (typingChannel) {
+    if(typingChannel){
 
         supabaseClient.removeChannel(
             typingChannel
@@ -2659,7 +2305,7 @@ function subscribeToAetherTyping() {
                     event:
                         "aether_typing"
                 },
-                function(payload) {
+                function(payload){
 
                     console.log(
                         "AETHER TYPING:",
@@ -2670,9 +2316,10 @@ function subscribeToAetherTyping() {
                         payload.payload ||
                         {};
 
-                    if (
-                        data.typing === true
-                    ) {
+                    if(
+                        data.typing ===
+                        true
+                    ){
 
                         showAetherTyping(
                             data.member_key,
@@ -2681,7 +2328,7 @@ function subscribeToAetherTyping() {
 
                     }
 
-                    else {
+                    else{
 
                         hideAetherTyping();
 
@@ -2691,7 +2338,7 @@ function subscribeToAetherTyping() {
             )
 
             .subscribe(
-                function(status) {
+                function(status){
 
                     console.log(
                         "AETHER TYPING REALTIME:",
@@ -2708,7 +2355,7 @@ function subscribeToAetherTyping() {
    AETHER MEMBERS
 ========================================================= */
 
-async function loadAetherMembers() {
+async function loadAetherMembers(){
 
     const {
         data,
@@ -2729,7 +2376,7 @@ async function loadAetherMembers() {
             true
         );
 
-    if (error) {
+    if(error){
 
         console.error(
             "AETHER MEMBER ERROR:",
@@ -2752,9 +2399,9 @@ async function loadAetherMembers() {
    HALO WELCOME
 ========================================================= */
 
-async function triggerHaloWelcome() {
+async function triggerHaloWelcome(){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         return;
 
@@ -2768,7 +2415,7 @@ async function triggerHaloWelcome() {
         "trigger_halo_welcome"
     );
 
-    if (error) {
+    if(error){
 
         console.error(
             "HALO WELCOME ERROR:",
@@ -2779,7 +2426,7 @@ async function triggerHaloWelcome() {
 
     }
 
-    if (data) {
+    if(data){
 
         console.log(
             "✦ AETHER WELCOME TRIGGERED:",
@@ -2788,7 +2435,7 @@ async function triggerHaloWelcome() {
 
     }
 
-    else {
+    else{
 
         console.log(
             "HALO already received AETHER welcome."
@@ -2805,12 +2452,12 @@ async function triggerHaloWelcome() {
 
 async function loadReactions(
     messageIds
-) {
+){
 
-    if (
+    if(
         !messageIds ||
         messageIds.length === 0
-    ) {
+    ){
 
         reactionCache = [];
 
@@ -2837,7 +2484,7 @@ async function loadReactions(
             messageIds
         );
 
-    if (error) {
+    if(error){
 
         console.error(
             "REACTION LOAD ERROR:",
@@ -2858,7 +2505,7 @@ async function loadReactions(
 
 function createReactionArea(
     message
-) {
+){
 
     const area =
         document.createElement(
@@ -2867,6 +2514,7 @@ function createReactionArea(
 
     area.className =
         "reactions";
+
 
     reactionTypes.forEach(
         type => {
@@ -2882,18 +2530,20 @@ function createReactionArea(
             button.className =
                 "reaction-button";
 
+
             const matchingReactions =
                 reactionCache.filter(
                     reaction =>
                         reaction.message_id ===
-                        message.id
-                        &&
+                            message.id &&
                         reaction.reaction ===
-                        type.key
+                            type.key
                 );
+
 
             const count =
                 matchingReactions.length;
+
 
             const userReacted =
                 currentUser &&
@@ -2903,13 +2553,15 @@ function createReactionArea(
                         currentUser.id
                 );
 
-            if (userReacted) {
+
+            if(userReacted){
 
                 button.classList.add(
                     "active"
                 );
 
             }
+
 
             button.innerHTML = `
 
@@ -2933,9 +2585,10 @@ function createReactionArea(
 
             `;
 
+
             button.addEventListener(
                 "click",
-                function() {
+                function(){
 
                     toggleReaction(
                         message.id,
@@ -2945,12 +2598,14 @@ function createReactionArea(
                 }
             );
 
+
             area.appendChild(
                 button
             );
 
         }
     );
+
 
     return area;
 
@@ -2963,7 +2618,7 @@ function createReactionArea(
 
 function buildMessageElement(
     message
-) {
+){
 
     const aetherMember =
         message.author_member_key
@@ -2978,15 +2633,18 @@ function buildMessageElement(
                     message.user_id
             );
 
+
     const isAether =
         Boolean(
             aetherMember
         );
 
+
     const messageElement =
         document.createElement(
             "div"
         );
+
 
     messageElement.className =
         "message " +
@@ -2996,16 +2654,19 @@ function buildMessageElement(
                 : "halo"
         );
 
+
     messageElement.dataset.messageId =
         message.id;
 
-    if (isAether) {
+
+    if(isAether){
 
         const badge =
             aetherMember.member_key ===
             "elyra"
                 ? "ELYRA"
                 : "AETHER";
+
 
         messageElement.innerHTML = `
 
@@ -3055,21 +2716,23 @@ function buildMessageElement(
 
     }
 
-    else {
+    else{
 
         const isOwn =
             currentUser &&
             message.user_id ===
             currentUser.id;
 
+
         messageElement.innerHTML = `
 
             <div class="sender">
 
                 <span class="sender-name">
-                    ${isOwn
-                        ? "YOU • HALO"
-                        : "HALO"
+                    ${
+                        isOwn
+                            ? "YOU • HALO"
+                            : "HALO"
                     }
                 </span>
 
@@ -3091,11 +2754,13 @@ function buildMessageElement(
 
     }
 
+
     messageElement.appendChild(
         createReactionArea(
             message
         )
     );
+
 
     return messageElement;
 
@@ -3104,57 +2769,65 @@ function buildMessageElement(
 
 function addMessageToChat(
     message
-) {
+){
 
-    if (
+    if(
         messageCache.some(
             existing =>
                 existing.id ===
                 message.id
         )
-    ) {
+    ){
 
         return;
 
     }
 
+
     const shouldScroll =
         isNearBottom();
+
 
     const emptyState =
         messagesContainer.querySelector(
             ".empty-state"
         );
 
-    if (emptyState) {
+
+    if(emptyState){
 
         emptyState.remove();
 
     }
 
+
     messageCache.push(
         message
     );
 
+
     messageCache.sort(
-        (a, b) =>
+        (a,b) =>
             new Date(a.created_at) -
             new Date(b.created_at)
     );
+
 
     const messageElement =
         buildMessageElement(
             message
         );
 
+
     messagesContainer.appendChild(
         messageElement
     );
 
-    if (shouldScroll) {
+
+    if(shouldScroll){
 
         requestAnimationFrame(
-            function() {
+            function(){
 
                 scrollToBottom();
 
@@ -3166,18 +2839,20 @@ function addMessageToChat(
 }
 
 
-function rebuildChat() {
+function rebuildChat(){
 
     const wasNearBottom =
         isNearBottom();
 
+
     messagesContainer.innerHTML =
         "";
 
-    if (
+
+    if(
         !messageCache ||
         messageCache.length === 0
-    ) {
+    ){
 
         messagesContainer.innerHTML = `
 
@@ -3203,9 +2878,10 @@ function rebuildChat() {
 
     }
 
+
     messageCache
         .sort(
-            (a, b) =>
+            (a,b) =>
                 new Date(a.created_at) -
                 new Date(b.created_at)
         )
@@ -3221,10 +2897,11 @@ function rebuildChat() {
             }
         );
 
-    if (wasNearBottom) {
+
+    if(wasNearBottom){
 
         requestAnimationFrame(
-            function() {
+            function(){
 
                 scrollToBottom();
 
@@ -3236,9 +2913,10 @@ function rebuildChat() {
 }
 
 
-async function loadMessages() {
+async function loadMessages(){
 
     await loadAetherMembers();
+
 
     const {
         data,
@@ -3257,11 +2935,12 @@ async function loadMessages() {
         .order(
             "created_at",
             {
-                ascending: true
+                ascending:true
             }
         );
 
-    if (error) {
+
+    if(error){
 
         console.error(
             "MESSAGE LOAD ERROR:",
@@ -3279,8 +2958,10 @@ async function loadMessages() {
 
     }
 
+
     messageCache =
         data || [];
+
 
     const messageIds =
         messageCache.map(
@@ -3288,13 +2969,16 @@ async function loadMessages() {
                 message.id
         );
 
+
     await loadReactions(
         messageIds
     );
 
+
     rebuildChat();
 
     scrollToBottom();
+
 
     chatStatus.textContent =
         "✦ COMMUNITY ONLINE";
@@ -3306,7 +2990,7 @@ async function loadMessages() {
 }
 
 
-function updateReactionAreas() {
+function updateReactionAreas(){
 
     messageCache.forEach(
         message => {
@@ -3316,22 +3000,26 @@ function updateReactionAreas() {
                     `[data-message-id="${message.id}"]`
                 );
 
-            if (!messageElement) {
+
+            if(!messageElement){
 
                 return;
 
             }
+
 
             const oldArea =
                 messageElement.querySelector(
                     ".reactions"
                 );
 
-            if (!oldArea) {
+
+            if(!oldArea){
 
                 return;
 
             }
+
 
             oldArea.replaceWith(
                 createReactionArea(
@@ -3352,9 +3040,9 @@ function updateReactionAreas() {
 async function toggleReaction(
     messageId,
     reactionType
-) {
+){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         composerMessage.textContent =
             "Please log in first.";
@@ -3363,9 +3051,10 @@ async function toggleReaction(
 
     }
 
+
     const {
-        data: existingReaction,
-        error: findError
+        data:existingReaction,
+        error:findError
     } =
     await supabaseClient
 
@@ -3394,7 +3083,8 @@ async function toggleReaction(
 
         .maybeSingle();
 
-    if (findError) {
+
+    if(findError){
 
         console.error(
             "REACTION CHECK ERROR:",
@@ -3408,7 +3098,8 @@ async function toggleReaction(
 
     }
 
-    if (existingReaction) {
+
+    if(existingReaction){
 
         const {
             error
@@ -3431,7 +3122,8 @@ async function toggleReaction(
                 currentUser.id
             );
 
-        if (error) {
+
+        if(error){
 
             console.error(
                 "REACTION DELETE ERROR:",
@@ -3447,7 +3139,7 @@ async function toggleReaction(
 
     }
 
-    else {
+    else{
 
         const {
             error
@@ -3471,7 +3163,8 @@ async function toggleReaction(
 
             });
 
-        if (error) {
+
+        if(error){
 
             console.error(
                 "REACTION INSERT ERROR:",
@@ -3487,6 +3180,7 @@ async function toggleReaction(
 
     }
 
+
     composerMessage.textContent =
         "";
 
@@ -3497,16 +3191,18 @@ async function toggleReaction(
    AETHER ADMIN
 ========================================================= */
 
-async function checkAetherAdmin() {
+async function checkAetherAdmin(){
 
     aetherControl.style.display =
         "none";
 
-    if (!currentUser) {
+
+    if(!currentUser){
 
         return false;
 
     }
+
 
     const {
         data,
@@ -3516,7 +3212,8 @@ async function checkAetherAdmin() {
         "is_aether_admin"
     );
 
-    if (error) {
+
+    if(error){
 
         console.error(
             "AETHER ADMIN CHECK ERROR:",
@@ -3527,14 +3224,18 @@ async function checkAetherAdmin() {
 
     }
 
-    if (data === true) {
+
+    if(data === true){
 
         aetherControl.style.display =
             "block";
 
+        await loadAetherLiveScenes();
+
         return true;
 
     }
+
 
     return false;
 
@@ -3542,12 +3243,12 @@ async function checkAetherAdmin() {
 
 
 /* =========================================================
-   TRIGGER AETHER SCENE
+   TRIGGER AETHER LIVE MOMENT
 ========================================================= */
 
-async function triggerAetherScene() {
+async function triggerAetherScene(){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         sceneMessage.textContent =
             "Please log in first.";
@@ -3556,17 +3257,20 @@ async function triggerAetherScene() {
 
     }
 
+
     const sceneKey =
         sceneSelect.value;
 
-    if (!sceneKey) {
+
+    if(!sceneKey){
 
         sceneMessage.textContent =
-            "Please select a scene.";
+            "Please select a live moment.";
 
         return;
 
     }
+
 
     triggerSceneButton.disabled =
         true;
@@ -3575,21 +3279,23 @@ async function triggerAetherScene() {
         true;
 
     sceneMessage.textContent =
-        "Triggering AETHER scene...";
+        "Triggering AETHER live moment...";
 
-    try {
+
+    try{
 
         const {
-            data: sessionData,
-            error: sessionError
+            data:sessionData,
+            error:sessionError
         } =
         await supabaseClient.auth.getSession();
 
-        if (
+
+        if(
             sessionError ||
             !sessionData ||
             !sessionData.session
-        ) {
+        ){
 
             sceneMessage.textContent =
                 "Your login session could not be verified.";
@@ -3598,8 +3304,10 @@ async function triggerAetherScene() {
 
         }
 
+
         const accessToken =
             sessionData.session.access_token;
+
 
         const response =
             await fetch(
@@ -3607,9 +3315,9 @@ async function triggerAetherScene() {
                 "/functions/v1/trigger-aether-scene",
                 {
 
-                    method: "POST",
+                    method:"POST",
 
-                    headers: {
+                    headers:{
 
                         "Content-Type":
                             "application/json",
@@ -3620,7 +3328,7 @@ async function triggerAetherScene() {
 
                     },
 
-                    body: JSON.stringify({
+                    body:JSON.stringify({
 
                         scene_key:
                             sceneKey
@@ -3630,31 +3338,34 @@ async function triggerAetherScene() {
                 }
             );
 
+
         const result =
             await response.json();
 
-        if (!response.ok) {
+
+        if(!response.ok){
 
             console.error(
                 "AETHER SCENE ERROR:",
                 result
             );
 
-            if (
+
+            if(
                 response.status ===
                 403
-            ) {
+            ){
 
                 sceneMessage.textContent =
                     "AETHER admin access required.";
 
             }
 
-            else {
+            else{
 
                 sceneMessage.textContent =
                     result.error ||
-                    "Could not trigger the scene.";
+                    "Could not trigger the live moment.";
 
             }
 
@@ -3662,24 +3373,26 @@ async function triggerAetherScene() {
 
         }
 
-        if (
+
+        if(
             result.scene_id === null ||
             result.scene_id === undefined
-        ) {
+        ){
 
             sceneMessage.textContent =
-                "This scene has already been triggered.";
+                "This live moment is currently on cooldown. Please choose another moment or wait a little.";
 
             return;
 
         }
 
+
         sceneMessage.textContent =
-            "✦ AETHER SCENE TRIGGERED";
+            "✦ LIVE MOMENT TRIGGERED";
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(
             "AETHER SCENE REQUEST ERROR:",
@@ -3691,7 +3404,7 @@ async function triggerAetherScene() {
 
     }
 
-    finally {
+    finally{
 
         triggerSceneButton.disabled =
             false;
@@ -3711,13 +3424,14 @@ async function triggerAetherScene() {
 async function requestAetherReply(
     messageId,
     haloMessage
-) {
+){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         return;
 
     }
+
 
     const mentionedMember =
         detectMentionedMember(
@@ -3725,7 +3439,7 @@ async function requestAetherReply(
         );
 
 
-    if (mentionedMember) {
+    if(mentionedMember){
 
         showLocalAetherTyping(
             mentionedMember.key
@@ -3733,7 +3447,7 @@ async function requestAetherReply(
 
     }
 
-    else {
+    else{
 
         typingName.textContent =
             "AETHER";
@@ -3742,10 +3456,13 @@ async function requestAetherReply(
             "visible"
         );
 
-        if (isNearBottom()) {
+
+        if(
+            isNearBottom()
+        ){
 
             requestAnimationFrame(
-                function() {
+                function(){
 
                     scrollToBottom();
 
@@ -3760,8 +3477,10 @@ async function requestAetherReply(
     const delay =
         1500 +
         Math.floor(
-            Math.random() * 1300
+            Math.random() *
+            1300
         );
+
 
     await new Promise(
         resolve =>
@@ -3772,7 +3491,7 @@ async function requestAetherReply(
     );
 
 
-    try {
+    try{
 
         const {
             data,
@@ -3787,7 +3506,7 @@ async function requestAetherReply(
         );
 
 
-        if (error) {
+        if(error){
 
             console.error(
                 "AETHER HALO REPLY ERROR:",
@@ -3808,7 +3527,7 @@ async function requestAetherReply(
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(
             "AETHER HALO REPLY REQUEST ERROR:",
@@ -3817,12 +3536,11 @@ async function requestAetherReply(
 
     }
 
-    finally {
+    finally{
 
         hideAetherTyping();
 
     }
-
 
 }
 
@@ -3831,9 +3549,9 @@ async function requestAetherReply(
    SEND HALO MESSAGE
 ========================================================= */
 
-async function sendMessage() {
+async function sendMessage(){
 
-    if (!currentUser) {
+    if(!currentUser){
 
         composerMessage.textContent =
             "Please log in first.";
@@ -3842,10 +3560,12 @@ async function sendMessage() {
 
     }
 
+
     const message =
         messageInput.value.trim();
 
-    if (!message) {
+
+    if(!message){
 
         composerMessage.textContent =
             "Write a message first. ✦";
@@ -3854,7 +3574,8 @@ async function sendMessage() {
 
     }
 
-    if (message.length > 1000) {
+
+    if(message.length > 1000){
 
         composerMessage.textContent =
             "Your message is too long.";
@@ -3862,6 +3583,7 @@ async function sendMessage() {
         return;
 
     }
+
 
     sendButton.disabled =
         true;
@@ -3900,7 +3622,7 @@ async function sendMessage() {
         .single();
 
 
-    if (error) {
+    if(error){
 
         console.error(
             "SEND MESSAGE ERROR:",
@@ -3948,15 +3670,16 @@ async function sendMessage() {
    REALTIME — MESSAGES
 ========================================================= */
 
-function subscribeToMessages() {
+function subscribeToMessages(){
 
-    if (messageChannel) {
+    if(messageChannel){
 
         supabaseClient.removeChannel(
             messageChannel
         );
 
     }
+
 
     messageChannel =
         supabaseClient
@@ -3968,11 +3691,11 @@ function subscribeToMessages() {
             .on(
                 "postgres_changes",
                 {
-                    event: "INSERT",
-                    schema: "public",
-                    table: "community_messages"
+                    event:"INSERT",
+                    schema:"public",
+                    table:"community_messages"
                 },
-                function(payload) {
+                function(payload){
 
                     console.log(
                         "NEW COMMUNITY MESSAGE:",
@@ -3987,17 +3710,18 @@ function subscribeToMessages() {
             )
 
             .subscribe(
-                function(status) {
+                function(status){
 
                     console.log(
                         "COMMUNITY REALTIME:",
                         status
                     );
 
-                    if (
+
+                    if(
                         status ===
                         "SUBSCRIBED"
-                    ) {
+                    ){
 
                         chatStatus.textContent =
                             "✦ COMMUNITY ONLINE";
@@ -4018,15 +3742,16 @@ function subscribeToMessages() {
    REALTIME — REACTIONS
 ========================================================= */
 
-function subscribeToReactions() {
+function subscribeToReactions(){
 
-    if (reactionChannel) {
+    if(reactionChannel){
 
         supabaseClient.removeChannel(
             reactionChannel
         );
 
     }
+
 
     reactionChannel =
         supabaseClient
@@ -4038,16 +3763,17 @@ function subscribeToReactions() {
             .on(
                 "postgres_changes",
                 {
-                    event: "*",
-                    schema: "public",
-                    table: "community_reactions"
+                    event:"*",
+                    schema:"public",
+                    table:"community_reactions"
                 },
-                async function(payload) {
+                async function(payload){
 
                     console.log(
                         "REACTION UPDATE:",
                         payload
                     );
+
 
                     const messageId =
                         payload.new &&
@@ -4058,11 +3784,13 @@ function subscribeToReactions() {
                                 ? payload.old.message_id
                                 : null;
 
-                    if (!messageId) {
+
+                    if(!messageId){
 
                         return;
 
                     }
+
 
                     const {
                         data,
@@ -4086,7 +3814,8 @@ function subscribeToReactions() {
                             )
                         );
 
-                    if (error) {
+
+                    if(error){
 
                         console.error(
                             "LIVE REACTION LOAD ERROR:",
@@ -4097,8 +3826,10 @@ function subscribeToReactions() {
 
                     }
 
+
                     reactionCache =
                         data || [];
+
 
                     updateReactionAreas();
 
@@ -4106,7 +3837,7 @@ function subscribeToReactions() {
             )
 
             .subscribe(
-                function(status) {
+                function(status){
 
                     console.log(
                         "REACTIONS REALTIME:",
@@ -4123,13 +3854,13 @@ function subscribeToReactions() {
    INITIALIZE COMMUNITY
 ========================================================= */
 
-async function initializeCommunity() {
+async function initializeCommunity(){
 
     const authorized =
         await requireCommunitySession();
 
 
-    if (!authorized) {
+    if(!authorized){
 
         return;
 
@@ -4137,15 +3868,16 @@ async function initializeCommunity() {
 
 
     const {
-        data: { user },
+        data:{user},
         error
     } =
     await supabaseClient.auth.getUser();
 
-    if (
+
+    if(
         error ||
         !user
-    ) {
+    ){
 
         window.location.replace(
             "halo.html"
@@ -4155,14 +3887,16 @@ async function initializeCommunity() {
 
     }
 
+
     currentUser =
         user;
+
 
     await checkAetherAdmin();
 
 
     const {
-        data: profile
+        data:profile
     } =
     await supabaseClient
 
@@ -4182,14 +3916,14 @@ async function initializeCommunity() {
         .maybeSingle();
 
 
-    if (profile) {
+    if(profile){
 
         haloIdentity.textContent =
             profile.halo_id;
 
     }
 
-    else {
+    else{
 
         haloIdentity.textContent =
             "HALO";
@@ -4212,7 +3946,6 @@ async function initializeCommunity() {
 
     await loadMessages();
 
-
     await triggerHaloWelcome();
 
 }
@@ -4220,7 +3953,7 @@ async function initializeCommunity() {
 
 messageForm.addEventListener(
     "submit",
-    function(event) {
+    function(event){
 
         event.preventDefault();
 
@@ -4232,12 +3965,12 @@ messageForm.addEventListener(
 
 messageInput.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
-        if (
+        if(
             event.key === "Enter" &&
             !event.shiftKey
-        ) {
+        ){
 
             event.preventDefault();
 
@@ -4249,19 +3982,9 @@ messageInput.addEventListener(
 );
 
 
-triggerSceneButton.addEventListener(
-    "click",
-    function() {
-
-        triggerAetherScene();
-
-    }
-);
-
-
 document.addEventListener(
     "DOMContentLoaded",
-    function() {
+    function(){
 
         initializeCommunity();
 
@@ -4271,5 +3994,4 @@ document.addEventListener(
 </script>
 
 </body>
-
-    </html>
+</html>
