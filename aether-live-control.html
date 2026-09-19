@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AETHER Live Control | AETHERVERSE</title>
+
+
+<style>
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #30275f 0%,
+            #0f0d2b 45%,
+            #080719 100%
+        );
+
+    color: #ddd7ff;
+
+    font-family:
+        Georgia,
+        serif;
+
+}
+
+
+.container {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    margin: auto;
+
+    padding:
+        28px
+        18px
+        60px;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+    text-align: center;
+
+    margin-bottom: 32px;
+
+}
+
+
+.logo {
+
+    color: #aaa0e6;
+
+    font-size: 0.8rem;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 20px;
+
+}
+
+
+nav {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    flex-wrap: wrap;
+
+}
+
+
+nav a {
+
+    color: #ddd7ff;
+
+    text-decoration: none;
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 25px;
+
+    padding:
+        8px
+        16px;
+
+    font-size: 0.82rem;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+nav a:hover {
+
+    background: #29264b;
+
+    border-color: #7064a5;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    text-align: center;
+
+    margin-bottom: 28px;
+
+}
+
+
+.hero-symbol {
+
+    font-size: 3rem;
+
+    margin-bottom: 8px;
+
+}
+
+
+.hero h1 {
+
+    margin:
+        8px
+        0;
+
+    font-size: 2.2rem;
+
+    letter-spacing: 4px;
+
+}
+
+
+.hero p {
+
+    margin: 0;
+
+    color: #aaa0e6;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   MAIN PANEL
+========================================================= */
+
+.panel {
+
+    background:
+        linear-gradient(
+            145deg,
+            #29234f,
+            #17142f
+        );
+
+    border:
+        1px solid
+        #7064a5;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0,0,0,0.3);
+
+}
+
+
+.panel-title {
+
+    color: #d8ceff;
+
+    font-size: 0.75rem;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.panel-subtitle {
+
+    color: #8f88b5;
+
+    font-size: 0.72rem;
+
+    line-height: 1.6;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status {
+
+    min-height: 20px;
+
+    text-align: center;
+
+    color: #aaa0e6;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.status.ok {
+
+    color: #d9ccff;
+
+}
+
+
+.status.error {
+
+    color: #ffb8c8;
+
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.category {
+
+    margin-top: 26px;
+
+}
+
+
+.category:first-child {
+
+    margin-top: 0;
+
+}
+
+
+.category-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    color: #eeeaff;
+
+    font-size: 0.72rem;
+
+    letter-spacing: 2.5px;
+
+    padding-bottom: 10px;
+
+    border-bottom:
+        1px solid
+        #39345e;
+
+}
+
+
+.category-count {
+
+    color: #706b91;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =========================================================
+   SCENE GRID
+========================================================= */
+
+.scene-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
+
+    gap: 12px;
+
+    margin-top: 12px;
+
+}
+
+
+/* =========================================================
+   SCENE CARD
+========================================================= */
+
+.scene-card {
+
+    border:
+        1px solid
+        #39345e;
+
+    border-radius: 17px;
+
+    background:
+        #15132f;
+
+    padding: 16px;
+
+    text-align: left;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.scene-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #7064a5;
+
+    background:
+        #1b1838;
+
+}
+
+
+.scene-title {
+
+    color: #eeeaff;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.scene-description {
+
+    color: #8f88b5;
+
+    font-size: 0.7rem;
+
+    line-height: 1.55;
+
+    min-height: 34px;
+
+}
+
+
+.scene-key {
+
+    color: #625b83;
+
+    font-size: 0.56rem;
+
+    letter-spacing: 1px;
+
+    margin-top: 10px;
+
+    word-break: break-word;
+
+}
+
+
+/* =========================================================
+   TRIGGER BUTTON
+========================================================= */
+
+.scene-trigger {
+
+    width: 100%;
+
+    margin-top: 13px;
+
+    min-height: 44px;
+
+    border:
+        1px solid
+        #8f84c9;
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #292451,
+            #393064
+        );
+
+    color: #eeeaff;
+
+    font-family:
+        Georgia,
+        serif;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.scene-trigger:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #393064,
+            #4a3f78
+        );
+
+    border-color:
+        #c8bdff;
+
+}
+
+
+.scene-trigger:disabled {
+
+    opacity: 0.55;
+
+    cursor: default;
+
+    transform: none;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty {
+
+    padding: 22px;
+
+    text-align: center;
+
+    color: #8f88b5;
+
+    font-size: 0.75rem;
+
+    line-height: 1.6;
+
+    border:
+        1px dashed
+        #39345e;
+
+    border-radius: 16px;
+
+}
+
+
+/* =========================================================
+   FOOT NOTE
+========================================================= */
+
+.note {
+
+    margin-top: 22px;
+
+    color: #706b91;
+
+    text-align: center;
+
+    font-size: 0.62rem;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    .container {
+
+        padding:
+            20px
+            12px
+            45px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 1.75rem;
+
+        letter-spacing: 3px;
+
+    }
+
+
+    .panel {
+
+        padding: 18px;
+
+    }
+
+
+    .scene-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header>
+
+<div class="logo">
+AETHERVERSE
+</div>
+
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="community.html">
+Community
+</a>
+
+<a href="halo.html">
+My HALO
+</a>
+
+<a href="members.html">
+Members
+</a>
+
+<a href="aether-arcade.html">
+ARCADE
+</a>
+
+<a href="aether-music.html">
+MUSIC
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+<div class="hero-symbol">
+⚡
+</div>
+
+
+<h1>
+AETHER LIVE CONTROL
+</h1>
+
+
+<p>
+
+Trigger live AETHER moments
+<br>
+
+directly into the community.
+
+</p>
+
+</section>
+
+
+<!-- =====================================================
+     CONTROL PANEL
+===================================================== -->
+
+<section class="panel">
+
+
+<div class="panel-title">
+
+AETHER CONTROL
+
+</div>
+
+
+<div class="panel-subtitle">
+
+Choose a live moment.
+The selected scene will appear in the
+AETHER Community in its saved order.
+
+</div>
+
+
+<div
+    id="status"
+    class="status"
+>
+
+Checking AETHER admin access…
+
+</div>
+
+
+<div
+    id="sceneContainer"
+></div>
+
+
+<div class="note">
+
+Scenes can be triggered again after the
+server-side cooldown.
+
+<br>
+
+Every trigger remains recorded.
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
+
+const SUPABASE_URL =
+    "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+
+const SUPABASE_KEY =
+    "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const statusElement =
+    document.getElementById(
+        "status"
+    );
+
+
+const sceneContainer =
+    document.getElementById(
+        "sceneContainer"
+    );
+
+
+/* =========================================================
+   CATEGORY ORDER
+========================================================= */
+
+const categoryOrder = [
+
+    "QUICK MOMENTS",
+
+    "LIVE SCENES",
+
+    "HALO MOMENTS",
+
+    "CHAOS EVENTS",
+
+    "QUIET MOMENTS",
+
+    "SPECIAL EVENTS"
+
+];
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function setStatus(
+    message,
+    type = ""
+) {
+
+    statusElement.textContent =
+        message;
+
+    statusElement.className =
+        "status";
+
+    if (type) {
+
+        statusElement.classList.add(
+            type
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   HTML ESCAPE
+========================================================= */
+
+function escapeHtml(
+    value
+) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /[&<>"']/g,
+        function(character) {
+
+            const entities = {
+
+                "&": "&amp;",
+
+                "<": "&lt;",
+
+                ">": "&gt;",
+
+                "\"": "&quot;",
+
+                "'": "&#039;"
+
+            };
+
+            return entities[
+                character
+            ];
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN CHECK
+========================================================= */
+
+async function requireAdmin() {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (
+        error ||
+        !data ||
+        !data.session
+    ) {
+
+        window.location.replace(
+            "halo.html"
+        );
+
+        return false;
+
+    }
+
+
+    const {
+        data: isAdmin,
+        error: adminError
+    } =
+    await supabaseClient
+        .rpc(
+            "is_aether_admin"
+        );
+
+
+    if (
+        adminError ||
+        isAdmin !== true
+    ) {
+
+        setStatus(
+            "AETHER admin access required.",
+            "error"
+        );
+
+
+        sceneContainer.innerHTML = `
+
+            <div class="empty">
+
+                This control panel is reserved
+                for AETHER administrators.
+
+            </div>
+
+        `;
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================================
+   RENDER SCENES
+========================================================= */
+
+function renderScenes(
+    scenes
+) {
+
+    sceneContainer.innerHTML =
+        "";
+
+
+    if (
+        !scenes ||
+        scenes.length === 0
+    ) {
+
+        sceneContainer.innerHTML = `
+
+            <div class="empty">
+
+                No active live scenes
+                are available yet.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const grouped = {};
+
+
+    scenes.forEach(
+        function(scene) {
+
+            const category =
+                scene.category ||
+                "LIVE SCENES";
+
+
+            if (
+                !grouped[category]
+            ) {
+
+                grouped[category] = [];
+
+            }
+
+
+            grouped[
+                category
+            ].push(
+                scene
+            );
+
+        }
+    );
+
+
+    const categories = [
+
+        ...categoryOrder,
+
+        ...Object.keys(
+            grouped
+        ).filter(
+            function(category) {
+
+                return !
+                    categoryOrder
+                        .includes(
+                            category
+                        );
+
+            }
+        )
+
+    ];
+
+
+    categories.forEach(
+        function(category) {
+
+            if (
+                !grouped[category] ||
+                grouped[category].length === 0
+            ) {
+
+                return;
+
+            }
+
+
+            const section =
+                document.createElement(
+                    "section"
+                );
+
+
+            section.className =
+                "category";
+
+
+            const categoryTitle =
+                document.createElement(
+                    "div"
+                );
+
+
+            categoryTitle.className =
+                "category-title";
+
+
+            categoryTitle.innerHTML = `
+
+                <span>
+                    ${escapeHtml(category)}
+                </span>
+
+                <span class="category-count">
+
+                    ${
+                        grouped[category].length
+                    }
+
+                    SCENE${
+                        grouped[category].length === 1
+                            ? ""
+                            : "S"
+                    }
+
+                </span>
+
+            `;
+
+
+            section.appendChild(
+                categoryTitle
+            );
+
+
+            const grid =
+                document.createElement(
+                    "div"
+                );
+
+
+            grid.className =
+                "scene-grid";
+
+
+            grouped[category].forEach(
+                function(scene) {
+
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    card.className =
+                        "scene-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="scene-title">
+
+                            ${
+                                escapeHtml(
+                                    scene.title
+                                )
+                            }
+
+                        </div>
+
+
+                        <div class="scene-description">
+
+                            ${
+                                escapeHtml(
+                                    scene.description ||
+                                    "Live AETHER moment."
+                                )
+                            }
+
+                        </div>
+
+
+                        <div class="scene-key">
+
+                            ${
+                                escapeHtml(
+                                    scene.scene_key
+                                )
+                            }
+
+                        </div>
+
+                    `;
+
+
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+
+                    button.type =
+                        "button";
+
+
+                    button.className =
+                        "scene-trigger";
+
+
+                    button.textContent =
+                        "⚡ TRIGGER";
+
+
+                    button.addEventListener(
+                        "click",
+                        function() {
+
+                            triggerScene(
+                                scene,
+                                button
+                            );
+
+                        }
+                    );
+
+
+                    card.appendChild(
+                        button
+                    );
+
+
+                    grid.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+
+            section.appendChild(
+                grid
+            );
+
+
+            sceneContainer.appendChild(
+                section
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOAD SCENES
+========================================================= */
+
+async function loadScenes() {
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+        .from(
+            "aether_scenes"
+        )
+        .select(
+            "id,scene_key,title,category,description,is_active"
+        )
+        .eq(
+            "is_active",
+            true
+        )
+        .order(
+            "category",
+            {
+                ascending: true
+            }
+        )
+        .order(
+            "title",
+            {
+                ascending: true
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "LIVE SCENE LOAD ERROR:",
+            error
+        );
+
+
+        setStatus(
+            "Could not load the live scenes.",
+            "error"
+        );
+
+
+        sceneContainer.innerHTML = `
+
+            <div class="empty">
+
+                The AETHER scene archive
+                could not be loaded.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    renderScenes(
+        data || []
+    );
+
+
+    setStatus(
+        "✦ AETHER LIVE CONTROL ONLINE",
+        "ok"
+    );
+
+}
+
+
+/* =========================================================
+   TRIGGER SCENE
+========================================================= */
+
+async function triggerScene(
+    scene,
+    button
+) {
+
+    if (
+        !scene ||
+        !scene.scene_key
+    ) {
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+
+    button.textContent =
+        "TRIGGERING…";
+
+
+    setStatus(
+        "Triggering " +
+        scene.title +
+        "…"
+    );
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (
+            error ||
+            !data ||
+            !data.session
+        ) {
+
+            setStatus(
+                "Your login session could not be verified.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const accessToken =
+            data.session.access_token;
+
+
+        const response =
+            await fetch(
+
+                SUPABASE_URL +
+                "/functions/v1/trigger-aether-scene",
+
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            accessToken
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            scene_key:
+                                scene.scene_key
+
+                        })
+
+                }
+
+            );
+
+
+        const result =
+            await response
+                .json()
+                .catch(
+                    function() {
+
+                        return {};
+
+                    }
+                );
+
+
+        if (
+            !response.ok
+        ) {
+
+            console.error(
+                "AETHER LIVE SCENE ERROR:",
+                result
+            );
+
+
+            setStatus(
+
+                result.error ||
+                "Could not trigger the scene.",
+
+                "error"
+
+            );
+
+
+            return;
+
+        }
+
+
+        if (
+            result.scene_id === null ||
+            result.scene_id === undefined
+        ) {
+
+            setStatus(
+                "This scene is currently on cooldown."
+            );
+
+            return;
+
+        }
+
+
+        setStatus(
+
+            "✦ " +
+            scene.title +
+            " TRIGGERED",
+
+            "ok"
+
+        );
+
+    }
+
+
+    catch (error) {
+
+        console.error(
+            "AETHER LIVE SCENE REQUEST ERROR:",
+            error
+        );
+
+
+        setStatus(
+            "Could not reach the AETHER scene engine.",
+            "error"
+        );
+
+    }
+
+
+    finally {
+
+        button.disabled =
+            false;
+
+
+        button.textContent =
+            "⚡ TRIGGER";
+
+    }
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+async function initialize() {
+
+    const admin =
+        await requireAdmin();
+
+
+    if (!admin) {
+
+        return;
+
+    }
+
+
+    await loadScenes();
+
+}
+
+
+initialize();
+
+
+</script>
+
+
+</body>
+
+  </html>
