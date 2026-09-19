@@ -1236,7 +1236,22 @@ function nextAction(){
 if(!gameRunning)
 return;
 
-clearTimeout(actionTimer);
+
+/*
+IMPORTANT:
+
+Every previous action timer is cleared
+before creating the next one.
+*/
+
+clearTimeout(
+actionTimer
+);
+
+
+/*
+Choose the next reaction.
+*/
 
 currentAction =
 actions[
@@ -1246,6 +1261,11 @@ actions.length
 )
 ];
 
+
+/*
+Show the reaction immediately.
+*/
+
 promptElement.textContent =
 currentAction.prompt;
 
@@ -1254,8 +1274,19 @@ currentAction.message,
 currentAction.face
 );
 
+
+/*
+Start reaction timing NOW.
+*/
+
 actionStartedAt =
 performance.now();
+
+
+/*
+Give HALO between
+0.9 and 2.0 seconds.
+*/
 
 const delay =
 900 +
@@ -1263,11 +1294,23 @@ Math.floor(
 Math.random()*1100
 );
 
+
+/*
+After the reaction window expires,
+the action is considered missed.
+*/
+
 actionTimer =
 setTimeout(()=>{
 
 if(!gameRunning)
 return;
+
+
+/*
+If the required action was
+NOT "nothing", HALO was too slow.
+*/
 
 if(
 currentAction.type !==
@@ -1284,6 +1327,12 @@ randomLine("tooSlow"),
 );
 
 }else{
+
+/*
+For DON'T TAP:
+doing nothing correctly
+earns points.
+*/
 
 score += 2;
 
@@ -1304,6 +1353,11 @@ randomLine("nothingCorrect"),
 
 }
 
+
+/*
+Immediately start the next reaction.
+*/
+
 nextAction();
 
 },delay);
@@ -1323,11 +1377,28 @@ if(
 )
 return;
 
+
+/*
+Measure reaction speed.
+*/
+
 const reactionTime =
 performance.now() -
 actionStartedAt;
 
-clearTimeout(actionTimer);
+
+/*
+Stop current action timer.
+*/
+
+clearTimeout(
+actionTimer
+);
+
+
+/*
+Wrong action.
+*/
 
 if(
 type !==
@@ -1351,11 +1422,21 @@ currentAction.type !== "nothing"
 
 );
 
+
+/*
+Continue immediately.
+*/
+
 nextAction();
 
 return;
 
 }
+
+
+/*
+Correct action.
+*/
 
 combo++;
 
@@ -1365,10 +1446,16 @@ bestCombo,
 combo
 );
 
+
 let points = 2;
 
 let reactionGroup =
 "correct";
+
+
+/*
+Perfect reaction.
+*/
 
 if(
 reactionTime <= 650
@@ -1382,6 +1469,11 @@ reactionGroup =
 "perfect";
 
 }
+
+
+/*
+Combo bonuses.
+*/
 
 if(
 combo >= 10
@@ -1426,6 +1518,7 @@ reactionGroup ===
 
 }
 
+
 if(
 combo > 10 &&
 Math.random() < .35
@@ -1438,9 +1531,15 @@ randomLine("comboHigh"),
 
 }
 
+
 score += points;
 
 updateStats();
+
+
+/*
+Immediately continue.
+*/
 
 nextAction();
 
@@ -1456,34 +1555,62 @@ async function finishGame(){
 if(!gameRunning)
 return;
 
+
+/*
+STOP EVERYTHING FIRST
+*/
+
 gameRunning = false;
 
-clearInterval(timerInterval);
+clearInterval(
+timerInterval
+);
 
-clearTimeout(actionTimer);
+clearTimeout(
+actionTimer
+);
 
 timerInterval = null;
 
 actionTimer = null;
 
-setButtonsEnabled(false);
+setButtonsEnabled(
+false
+);
 
-startButton.disabled = true;
+startButton.disabled =
+true;
 
-promptElement.textContent = "COMPLETE";
+promptElement.textContent =
+"COMPLETE";
 
 showKairoReaction(
 "You survived! ...barely. 😏",
 "😎"
 );
 
-finalScore.textContent = score;
 
-finalCombo.textContent = bestCombo;
+/*
+Show final result immediately.
+*/
 
-finalPerfect.textContent = perfectReactions;
+finalScore.textContent =
+score;
 
-resultElement.classList.add("visible");
+finalCombo.textContent =
+bestCombo;
+
+finalPerfect.textContent =
+perfectReactions;
+
+resultElement.classList.add(
+"visible"
+);
+
+
+/*
+Now save reward.
+*/
 
 try{
 
@@ -1496,30 +1623,43 @@ await supabaseClient.rpc(
 {
 p_score:score,
 p_best_combo:bestCombo,
-p_perfect_reactions:perfectReactions
+p_perfect_reactions:
+perfectReactions
 }
 );
 
 if(error)
 throw error;
 
+
+/*
+Already claimed.
+*/
+
 if(
 data?.status ===
 "ALREADY_CLAIMED"
 ){
 
-finalCoins.textContent = "0";
+finalCoins.textContent =
+"0";
 
 balance.textContent =
 "Today's reward has already been claimed.";
 
-dailyClaimed = true;
+dailyClaimed =
+true;
 
 showDailyLock();
 
 return;
 
 }
+
+
+/*
+Reward received.
+*/
 
 finalCoins.textContent =
 Number(
@@ -1533,9 +1673,12 @@ data?.balance || 0
 ).toLocaleString()
 }`;
 
-dailyClaimed = true;
+
+dailyClaimed =
+true;
 
 showDailyLock();
+
 
 }catch(error){
 
@@ -1559,11 +1702,15 @@ showError(
 
 function showDailyLock(){
 
-dailyLockElement.classList.add("visible");
+dailyLockElement.classList.add(
+"visible"
+);
 
-startButton.disabled = true;
+startButton.disabled =
+true;
 
-startButton.textContent = "KAIRO IS DONE FOR TODAY";
+startButton.textContent =
+"KAIRO IS DONE FOR TODAY";
 
 updateCountdown();
 
@@ -1572,19 +1719,39 @@ updateCountdown();
 
 function updateCountdown(){
 
-const now = new Date();
+const now =
+new Date();
 
-const tomorrow = new Date(now);
+const tomorrow =
+new Date(now);
 
-tomorrow.setHours(24,0,0,0);
+tomorrow.setHours(
+24,
+0,
+0,
+0
+);
 
-const diff = Math.max(0, tomorrow - now);
+const diff =
+Math.max(
+0,
+tomorrow-now
+);
 
-const h = Math.floor(diff/3600000);
+const h =
+Math.floor(
+diff/3600000
+);
 
-const m = Math.floor((diff%3600000)/60000);
+const m =
+Math.floor(
+(diff%3600000)/60000
+);
 
-const s = Math.floor((diff%60000)/1000);
+const s =
+Math.floor(
+(diff%60000)/1000
+);
 
 countdownElement.textContent =
 `${String(h).padStart(2,"0")}:`+
@@ -1595,53 +1762,197 @@ countdownElement.textContent =
 
 
 /* =====================================================
-   START GAME (KORRIGIERT: KEINE VORZEITIGE SPERRE MEHR!)
+   START GAME
 ===================================================== */
 
 async function startGame(){
 
-if(gameRunning || dailyClaimed) return;
+/*
+Prevent double clicks.
+*/
+
+if(
+gameRunning ||
+dailyClaimed
+)
+return;
 
 clearError();
+
+
+/*
+Check login.
+*/
 
 let session;
 
 try{
 
-session = await getSession();
+session =
+await getSession();
 
 }catch(error){
 
-console.error("SESSION ERROR:", error);
+console.error(
+"SESSION ERROR:",
+error
+);
 
-showError("Could not verify your HALO login. Please refresh the page.");
+showError(
+"Could not verify your HALO login. Please refresh the page."
+);
 
 return;
 
 }
+
 
 if(!session){
 
-loginNote.classList.add("visible");
+loginNote.classList.add(
+"visible"
+);
 
 return;
 
 }
 
-loginNote.classList.remove("visible");
 
-startButton.disabled = true;
+loginNote.classList.remove(
+"visible"
+);
 
-startButton.textContent = "CHECKING KAIRO...";
 
 /*
-WIR VERZICHTEN HIER AUF DEN DRÄNGENDEN START-CALL,
-DER DEN USER SOFORT IN DER DATENBANK SPÄRRTE.
+Disable button immediately.
+
+This prevents double clicks
+while Supabase answers.
 */
 
-resultElement.classList.remove("visible");
+startButton.disabled =
+true;
 
-dailyLockElement.classList.remove("visible");
+startButton.textContent =
+"CHECKING KAIRO...";
+
+
+/*
+ASK SERVER FOR TODAY'S GAME
+*/
+
+let data;
+
+try{
+
+const response =
+await supabaseClient.rpc(
+"start_kairo_reaction"
+);
+
+data =
+response.data;
+
+if(response.error)
+throw response.error;
+
+
+}catch(error){
+
+console.error(
+"START RPC ERROR:",
+error
+);
+
+
+/*
+Re-enable the button because
+the game has NOT started.
+*/
+
+startButton.disabled =
+false;
+
+startButton.textContent =
+"START KAIRO REACTION";
+
+showError(
+"Kairo could not start today's game. Please try again."
+);
+
+return;
+
+}
+
+
+/*
+SERVER SAYS TODAY WAS ALREADY PLAYED.
+*/
+
+if(
+data?.status ===
+"ALREADY_PLAYED"
+){
+
+dailyClaimed =
+true;
+
+showDailyLock();
+
+return;
+
+}
+
+
+/*
+Anything except STARTED is invalid.
+*/
+
+if(
+data?.status !==
+"STARTED"
+){
+
+console.error(
+"UNKNOWN START RESPONSE:",
+data
+);
+
+startButton.disabled =
+false;
+
+startButton.textContent =
+"START KAIRO REACTION";
+
+showError(
+"Kairo could not confirm today's game."
+);
+
+return;
+
+}
+
+
+/* =====================================================
+   ACTUAL GAME START
+===================================================== */
+
+/*
+Clear previous result/lock.
+*/
+
+resultElement.classList.remove(
+"visible"
+);
+
+dailyLockElement.classList.remove(
+"visible"
+);
+
+
+/*
+Reset game values.
+*/
 
 score = 0;
 
@@ -1653,37 +1964,89 @@ perfectReactions = 0;
 
 timeLeft = 60;
 
-gameRunning = true;
 
-startButton.textContent = "KAIRO IS WATCHING...";
+/*
+IMPORTANT:
 
-setButtonsEnabled(true);
+The game is marked running
+BEFORE nextAction().
+
+Therefore nextAction() cannot
+silently return.
+*/
+
+gameRunning =
+true;
+
+
+/*
+Prepare interface.
+*/
+
+startButton.disabled =
+true;
+
+startButton.textContent =
+"KAIRO IS WATCHING...";
+
+setButtonsEnabled(
+true
+);
 
 updateStats();
 
-promptElement.textContent = "GET READY...";
 
-messageElement.textContent = "KAIRO IS WATCHING YOU... 👀";
+/*
+IMPORTANT:
 
-faceElement.textContent = "👀";
+Create the FIRST Kairo action
+BEFORE starting the 60-second timer.
+
+This guarantees that the game
+has an active reaction immediately.
+*/
+
+promptElement.textContent =
+"GET READY...";
+
+messageElement.textContent =
+"KAIRO IS WATCHING YOU... 👀";
+
+faceElement.textContent =
+"👀";
+
+
+/*
+START FIRST ACTION
+*/
 
 nextAction();
 
-timerInterval = setInterval(()=>{
 
-if(!gameRunning) return;
+/*
+ONLY NOW start the timer.
+*/
+
+timerInterval =
+setInterval(()=>{
+
+if(!gameRunning)
+return;
 
 timeLeft--;
 
 updateStats();
 
-if(timeLeft <= 0){
+
+if(
+timeLeft <= 0
+){
 
 timeLeft = 0;
 
 updateStats();
 
-finishGame(); // HIER wird nach 60 Sek. der Claim & die 24h-Sperre in Supabase registriert!
+finishGame();
 
 }
 
@@ -1696,18 +2059,27 @@ finishGame(); // HIER wird nach 60 Sek. der Claim & die 24h-Sperre in Supabase r
    BUTTON EVENTS
 ===================================================== */
 
-reactionButtons.forEach(button => {
+reactionButtons.forEach(
+button=>{
 
-button.addEventListener("click", () => {
+button.addEventListener(
+"click",
+()=>{
 
-handleReaction(button.dataset.action);
+handleReaction(
+button.dataset.action
+);
+
+}
+);
 
 });
 
-});
 
-
-startButton.addEventListener("click", startGame);
+startButton.addEventListener(
+"click",
+startGame
+);
 
 
 /* =====================================================
@@ -1718,34 +2090,63 @@ async function initialize(){
 
 try{
 
-const session = await getSession();
+const session =
+await getSession();
+
 
 if(!session){
 
-loginNote.classList.add("visible");
+loginNote.classList.add(
+"visible"
+);
 
-startButton.disabled = true;
+startButton.disabled =
+true;
 
 return;
 
 }
 
-startButton.disabled = false;
+
+/*
+Authenticated.
+
+We DO NOT check today's
+game here.
+
+The server decides that
+when START is pressed.
+*/
+
+startButton.disabled =
+false;
+
 
 }catch(error){
 
-console.error("INITIALIZATION ERROR:", error);
+console.error(
+"INITIALIZATION ERROR:",
+error
+);
 
-showError("Kairo could not connect to the HALO system. Please refresh the page.");
+showError(
+"Kairo could not connect to the HALO system. Please refresh the page."
+);
 
 }
 
 }
 
+
+/* =====================================================
+   COUNTDOWN UPDATE
+===================================================== */
 
 setInterval(()=>{
 
-if(dailyClaimed){
+if(
+dailyClaimed
+){
 
 updateCountdown();
 
@@ -1754,9 +2155,13 @@ updateCountdown();
 },1000);
 
 
+/*
+START INITIALIZATION
+*/
+
 initialize();
 
 </script>
 
 </body>
-</html>
+   </html>
