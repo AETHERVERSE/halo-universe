@@ -128,33 +128,79 @@ footer a{color:#bcb5ce}
       <div class="controls">
         <button class="start" id="startButton">START MEMORY</button>
       </div>
-      <div class="note">Daily game • One play per calendar day • Max 50 AETHER Coins</div>
+
+      <div class="note">
+        Daily game • One play per calendar day • Max 50 AETHER Coins
+      </div>
     </div>
 
     <section class="result" id="result">
       <div class="kicker">MEMORY COMPLETE</div>
       <h2 id="resultTitle">AETHER REMEMBERS YOU 💙</h2>
+
       <div class="result-grid">
-        <div class="result-card"><small>SCORE</small><strong id="finalScore">0</strong></div>
-        <div class="result-card"><small>MOVES</small><strong id="finalMoves">0</strong></div>
-        <div class="result-card"><small>MISTAKES</small><strong id="finalMistakes">0</strong></div>
-        <div class="result-card"><small>TIME</small><strong id="finalTime">0s</strong></div>
-        <div class="result-card"><small>LEVEL</small><strong id="finalLevel">1</strong></div>
-        <div class="result-card"><small>COINS</small><strong id="finalCoins">0</strong></div>
+        <div class="result-card">
+          <small>SCORE</small>
+          <strong id="finalScore">0</strong>
+        </div>
+
+        <div class="result-card">
+          <small>MOVES</small>
+          <strong id="finalMoves">0</strong>
+        </div>
+
+        <div class="result-card">
+          <small>MISTAKES</small>
+          <strong id="finalMistakes">0</strong>
+        </div>
+
+        <div class="result-card">
+          <small>TIME</small>
+          <strong id="finalTime">0s</strong>
+        </div>
+
+        <div class="result-card">
+          <small>LEVEL</small>
+          <strong id="finalLevel">1</strong>
+        </div>
+
+        <div class="result-card">
+          <small>COINS</small>
+          <strong id="finalCoins">0</strong>
+        </div>
       </div>
-      <div class="reward" id="rewardText">🪙 AETHER Coins Earned: 0</div>
-      <a class="leaderboard" href="aether-memory-leaderboard.html">🏆 VIEW HALO LEADERBOARD</a>
+
+      <div class="reward" id="rewardText">
+        🪙 AETHER Coins Earned: 0
+      </div>
+
+      <a class="leaderboard" href="aether-memory-leaderboard.html">
+        🏆 VIEW HALO LEADERBOARD
+      </a>
     </section>
   </main>
 
-  <footer><a href="aether-arcade.html">← BACK TO AETHER ARCADE</a></footer>
+  <footer>
+    <a href="aether-arcade.html">← BACK TO AETHER ARCADE</a>
+  </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 const SUPABASE_URL="https://mkdkfnejqnqoalzyeqaw.supabase.co";
 const SUPABASE_KEY="sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
-const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const supabaseClient=
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+/* =========================================================
+   AETHER MEMORY DATA
+========================================================= */
 
 const members=[
   {name:"SOLEN",role:"LEADER",avatar:"☀️"},
@@ -167,196 +213,863 @@ const members=[
   {name:"HALO",role:"THE CONNECTION",avatar:"💫"}
 ];
 
-const board=document.getElementById("board");
-const startButton=document.getElementById("startButton");
-const message=document.getElementById("message");
-const result=document.getElementById("result");
-const gameArea=document.getElementById("gameArea");
-let deck=[],flipped=[],matched=0,moves=0,mistakes=0,score=0,level=1,timeLeft=60;
-let gameRunning=false,lockBoard=false,timer=null,startedAt=0,elapsed=0;
+
+const board=
+  document.getElementById("board");
+
+const startButton=
+  document.getElementById("startButton");
+
+const message=
+  document.getElementById("message");
+
+const result=
+  document.getElementById("result");
+
+const gameArea=
+  document.getElementById("gameArea");
+
+
+let deck=[];
+let flipped=[];
+let matched=0;
+let moves=0;
+let mistakes=0;
+let score=0;
+let level=1;
+let timeLeft=60;
+
+let gameRunning=false;
+let lockBoard=false;
+let timer=null;
+let startedAt=0;
+let elapsed=0;
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function berlinDate(){
-  return new Intl.DateTimeFormat("en-CA",{timeZone:"Europe/Berlin",year:"numeric",month:"2-digit",day:"2-digit"}).format(new Date());
+
+  return new Intl.DateTimeFormat(
+    "en-CA",
+    {
+      timeZone:"Europe/Berlin",
+      year:"numeric",
+      month:"2-digit",
+      day:"2-digit"
+    }
+  ).format(new Date());
+
 }
+
+
 function shuffle(arr){
+
   const a=[...arr];
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
+
+  for(
+    let i=a.length-1;
+    i>0;
+    i--
+  ){
+
+    const j=
+      Math.floor(
+        Math.random()*(i+1)
+      );
+
+    [a[i],a[j]]=
+      [a[j],a[i]];
+
+  }
+
   return a;
+
 }
-function setMessage(text){message.textContent=text}
+
+
+function setMessage(text){
+
+  message.textContent=text;
+
+}
+
+
 function updateStats(){
-  document.getElementById("levelLabel").textContent=`${level} / 3`;
-  document.getElementById("timerLabel").textContent=timeLeft;
-  document.getElementById("scoreLabel").textContent=score;
-  document.getElementById("movesLabel").textContent=moves;
+
+  document.getElementById("levelLabel")
+    .textContent=`${level} / 3`;
+
+  document.getElementById("timerLabel")
+    .textContent=timeLeft;
+
+  document.getElementById("scoreLabel")
+    .textContent=score;
+
+  document.getElementById("movesLabel")
+    .textContent=moves;
+
 }
+
+
+/* =========================================================
+   DECK
+========================================================= */
+
 function buildDeck(pairCount){
-  const selected=members.slice(0,pairCount);
-  deck=shuffle([...selected,...selected].map((m,i)=>({...m,id:i,pair:m.name})));
-  board.className=`board level${level}`;
+
+  const selected=
+    members.slice(0,pairCount);
+
+  deck=
+    shuffle(
+      [...selected,...selected]
+        .map(
+          (m,i)=>({
+            ...m,
+            id:i,
+            pair:m.name
+          })
+        )
+    );
+
+  board.className=
+    `board level${level}`;
+
   board.innerHTML="";
+
   deck.forEach(card=>{
-    const el=document.createElement("div");
+
+    const el=
+      document.createElement("div");
+
     el.className="card";
-    el.dataset.pair=card.pair;
+
+    el.dataset.pair=
+      card.pair;
+
     el.innerHTML=`
-      <div class="face front">✦<span>AETHER</span></div>
-      <div class="face backface"><div class="avatar">${card.avatar}</div><div class="name">${card.name}</div><div class="role">${card.role}</div></div>`;
-    el.addEventListener("click",()=>flipCard(el,card));
+      <div class="face front">
+        ✦
+        <span>AETHER</span>
+      </div>
+
+      <div class="face backface">
+        <div class="avatar">
+          ${card.avatar}
+        </div>
+
+        <div class="name">
+          ${card.name}
+        </div>
+
+        <div class="role">
+          ${card.role}
+        </div>
+      </div>
+    `;
+
+    el.addEventListener(
+      "click",
+      ()=>flipCard(el,card)
+    );
+
     board.appendChild(el);
+
   });
+
 }
-function pairsForLevel(){return level===1?4:level===2?6:8}
+
+
+function pairsForLevel(){
+
+  return level===1
+    ?4
+    :level===2
+      ?6
+      :8;
+
+}
+
+
+/* =========================================================
+   GAMEPLAY
+========================================================= */
 
 function flipCard(el,card){
-  if(!gameRunning||lockBoard||el.classList.contains("flipped")||el.classList.contains("matched"))return;
+
+  if(
+    !gameRunning ||
+    lockBoard ||
+    el.classList.contains("flipped") ||
+    el.classList.contains("matched")
+  ){
+    return;
+  }
+
+
   el.classList.add("flipped");
-  flipped.push({el,card});
-  if(flipped.length<2)return;
 
-  moves++;
-  updateStats();
-  const [a,b]=flipped;
-
-  if(a.card.pair===b.card.pair){
-    a.el.classList.add("matched");b.el.classList.add("matched");
-    matched++;
-    const speedBonus=Math.max(0,12-Math.floor((Date.now()-startedAt)/1000));
-    score+=20+speedBonus;
-    setMessage(`${a.card.name} MATCHED! ✨`);
-    flipped=[];
-    if(matched===pairsForLevel())completeLevel();
-  }else{
-    mistakes++;
-    score=Math.max(0,score-5);
-    lockBoard=true;
-    setMessage(randomWrong());
-    setTimeout(()=>{
-      a.el.classList.remove("flipped");b.el.classList.remove("flipped");
-      flipped=[];lockBoard=false;
-    },700);
-  }
-  updateStats();
-}
-function randomWrong(){
-  const lines=[
-    "Not a match! 👀 Try to remember the faces.",
-    "HALO… those two don't belong together. 😂",
-    "Nope! AETHER is testing your memory. 😈",
-    "Almost! Look carefully next time. ⚡",
-    "Your memory just got tricked. 👀"
-  ];
-  return lines[Math.floor(Math.random()*lines.length)];
-}
-function completeLevel(){
-  lockBoard=true;
-  if(level<3){
-    score+=50*level;
-    setMessage(level===1?"LEVEL 2 — AETHER IS GETTING HARDER. 🧠": "LEVEL 3 — FINAL MEMORY TEST! ⚡");
-    setTimeout(()=>{
-      level++;matched=0;flipped=[];lockBoard=false;
-      buildDeck(pairsForLevel());updateStats();
-    },900);
-  }else{
-    finishGame();
-  }
-}
-function finishGame(){
-  if(!gameRunning)return;
-  gameRunning=false;lockBoard=true;
-  clearInterval(timer);
-  elapsed=Math.min(3600,Math.max(0,Math.floor((Date.now()-startedAt)/1000)));
-  score=Math.max(0,score+Math.max(0,180-elapsed*2)-mistakes*3);
-  updateStats();
-  claimReward();
-}
-async function claimReward(){
-  setMessage("Saving your AETHER MEMORY result… ✨");
-  const {data,error}=await supabaseClient.rpc("claim_aether_memory_reward",{
-    p_score:Math.floor(score),
-    p_moves:moves,
-    p_mistakes:mistakes,
-    p_time_seconds:elapsed,
-    p_level_reached:level
+  flipped.push({
+    el,
+    card
   });
 
+
+  if(flipped.length<2){
+    return;
+  }
+
+
+  moves++;
+
+  updateStats();
+
+
+  const [a,b]=flipped;
+
+
+  if(a.card.pair===b.card.pair){
+
+    a.el.classList.add("matched");
+    b.el.classList.add("matched");
+
+    matched++;
+
+    const speedBonus=
+      Math.max(
+        0,
+        12-
+        Math.floor(
+          (Date.now()-startedAt)/1000
+        )
+      );
+
+    score+=20+speedBonus;
+
+    setMessage(
+      `${a.card.name} MATCHED! ✨`
+    );
+
+    flipped=[];
+
+    if(
+      matched===
+      pairsForLevel()
+    ){
+
+      completeLevel();
+
+    }
+
+  }else{
+
+    mistakes++;
+
+    score=
+      Math.max(
+        0,
+        score-5
+      );
+
+    lockBoard=true;
+
+    setMessage(
+      randomWrong()
+    );
+
+
+    setTimeout(()=>{
+
+      a.el.classList.remove(
+        "flipped"
+      );
+
+      b.el.classList.remove(
+        "flipped"
+      );
+
+      flipped=[];
+      lockBoard=false;
+
+    },700);
+
+  }
+
+
+  updateStats();
+
+}
+
+
+function randomWrong(){
+
+  const lines=[
+
+    "Not a match! 👀 Try to remember the faces.",
+
+    "HALO… those two don't belong together. 😂",
+
+    "Nope! AETHER is testing your memory. 😈",
+
+    "Almost! Look carefully next time. ⚡",
+
+    "Your memory just got tricked. 👀"
+
+  ];
+
+  return lines[
+    Math.floor(
+      Math.random()*lines.length
+    )
+  ];
+
+}
+
+
+/* =========================================================
+   LEVELS
+========================================================= */
+
+function completeLevel(){
+
+  lockBoard=true;
+
+
+  if(level<3){
+
+    score+=50*level;
+
+    setMessage(
+      level===1
+        ?"LEVEL 2 — AETHER IS GETTING HARDER. 🧠"
+        :"LEVEL 3 — FINAL MEMORY TEST! ⚡"
+    );
+
+
+    setTimeout(()=>{
+
+      level++;
+
+      matched=0;
+      flipped=[];
+      lockBoard=false;
+
+      buildDeck(
+        pairsForLevel()
+      );
+
+      updateStats();
+
+    },900);
+
+  }else{
+
+    finishGame();
+
+  }
+
+}
+
+
+/* =========================================================
+   FINISH GAME
+========================================================= */
+
+function finishGame(){
+
+  if(!gameRunning){
+    return;
+  }
+
+
+  gameRunning=false;
+  lockBoard=true;
+
+  clearInterval(timer);
+
+
+  elapsed=
+    Math.min(
+      3600,
+      Math.max(
+        0,
+        Math.floor(
+          (Date.now()-startedAt)/1000
+        )
+      )
+    );
+
+
+  score=
+    Math.max(
+      0,
+      score+
+      Math.max(
+        0,
+        180-elapsed*2
+      )-
+      mistakes*3
+    );
+
+
+  updateStats();
+
+  claimReward();
+
+}
+
+
+/* =========================================================
+   REWARD
+========================================================= */
+
+async function claimReward(){
+
+  setMessage(
+    "Saving your AETHER MEMORY result… ✨"
+  );
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient.rpc(
+      "claim_aether_memory_reward",
+      {
+        p_score:Math.floor(score),
+        p_moves:moves,
+        p_mistakes:mistakes,
+        p_time_seconds:elapsed,
+        p_level_reached:level
+      }
+    );
+
+
   if(error){
-    setMessage("Something went wrong saving your result. Please try again.");
+
+    console.error(
+      "Memory reward error:",
+      error
+    );
+
+    setMessage(
+      "Something went wrong saving your result. Please try again."
+    );
+
     startButton.disabled=false;
     gameRunning=false;
+
     return;
+
   }
 
-  gameArea.style.display="none";
-  result.classList.add("show");
-  document.getElementById("finalScore").textContent=score;
-  document.getElementById("finalMoves").textContent=moves;
-  document.getElementById("finalMistakes").textContent=mistakes;
-  document.getElementById("finalTime").textContent=elapsed+"s";
-  document.getElementById("finalLevel").textContent=level;
 
-  if(data.status==="ALREADY_CLAIMED"){
-    document.getElementById("finalCoins").textContent="0";
-    document.getElementById("rewardText").textContent="🪙 AETHER Coins already claimed today.";
-    document.getElementById("resultTitle").textContent="AETHER MEMORY IS DONE FOR TODAY 🌙";
+  gameArea.style.display=
+    "none";
+
+  result.classList.add(
+    "show"
+  );
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent=score;
+
+
+  document.getElementById(
+    "finalMoves"
+  ).textContent=moves;
+
+
+  document.getElementById(
+    "finalMistakes"
+  ).textContent=mistakes;
+
+
+  document.getElementById(
+    "finalTime"
+  ).textContent=
+    elapsed+"s";
+
+
+  document.getElementById(
+    "finalLevel"
+  ).textContent=level;
+
+
+  if(
+    data.status===
+    "ALREADY_CLAIMED"
+  ){
+
+    document.getElementById(
+      "finalCoins"
+    ).textContent="0";
+
+
+    document.getElementById(
+      "rewardText"
+    ).textContent=
+      "🪙 AETHER Coins already claimed today.";
+
+
+    document.getElementById(
+      "resultTitle"
+    ).textContent=
+      "AETHER MEMORY IS DONE FOR TODAY 🌙";
+
   }else{
-    document.getElementById("finalCoins").textContent=data.coins_awarded;
-    document.getElementById("rewardText").textContent=`🪙 AETHER Coins Earned: ${data.coins_awarded} • Balance: ${data.balance}`;
-    document.getElementById("resultTitle").textContent="AETHER REMEMBERS YOU 💙";
-    document.getElementById("coinBalance").textContent=data.balance;
+
+    document.getElementById(
+      "finalCoins"
+    ).textContent=
+      data.coins_awarded;
+
+
+    document.getElementById(
+      "rewardText"
+    ).textContent=
+      `🪙 AETHER Coins Earned: ${data.coins_awarded} • Balance: ${data.balance}`;
+
+
+    document.getElementById(
+      "resultTitle"
+    ).textContent=
+      "AETHER REMEMBERS YOU 💙";
+
+
+    document.getElementById(
+      "coinBalance"
+    ).textContent=
+      data.balance;
+
   }
+
 }
+
+
+/* =========================================================
+   DISPLAY-ONLY DAILY STATUS
+   This is NOT the security gate.
+========================================================= */
+
 async function checkToday(){
-  const {data:{session}}=await supabaseClient.auth.getSession();
-  if(!session){
-    setMessage("Please log in through MY HALO first.");
-    startButton.disabled=true;
-    return false;
-  }
-  const today=berlinDate();
-  const {data,error}=await supabaseClient.from("aether_memory_daily").select("play_date").eq("user_id",session.user.id).eq("play_date",today).maybeSingle();
-  if(!error&&data){
-    startButton.disabled=true;
-    setMessage("AETHER MEMORY is done for today. Come back tomorrow. 🌙");
-    return false;
-  }
-  return true;
-}
-async function loadBalance(){
-  const {data,error}=await supabaseClient.rpc("get_aether_coin_balance");
-  if(!error&&data!==null)document.getElementById("coinBalance").textContent=data;
-}
-async function startGame(){
-  const allowed=await checkToday();
-  if(!allowed)return;
-  level=1;matched=0;moves=0;mistakes=0;score=0;flipped=[];lockBoard=false;
-  timeLeft=60;gameRunning=true;startedAt=Date.now();elapsed=0;
-  startButton.disabled=true;
-  buildDeck(4);updateStats();
-  setMessage("Find the pairs, HALO! 🧠💙");
-  clearInterval(timer);
-  timer=setInterval(()=>{
-    if(!gameRunning)return;
-    timeLeft--;updateStats();
-    if(timeLeft<=0){
-      clearInterval(timer);
-      setMessage("TIME! Kairo would probably laugh. 😂");
-      finishGame();
+
+  const {
+    data:{
+      session
     }
-  },1000);
-}
-async function init(){
-  const {data:{session}}=await supabaseClient.auth.getSession();
+  }=
+    await supabaseClient.auth.getSession();
+
+
   if(!session){
+
+    setMessage(
+      "Please log in through MY HALO first."
+    );
+
     startButton.disabled=true;
-    setMessage("Please log in through MY HALO first.");
+
+    return false;
+
+  }
+
+
+  const today=
+    berlinDate();
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient
+      .from("aether_memory_daily")
+      .select("play_date")
+      .eq(
+        "user_id",
+        session.user.id
+      )
+      .eq(
+        "play_date",
+        today
+      )
+      .maybeSingle();
+
+
+  if(!error && data){
+
+    startButton.disabled=true;
+
+    setMessage(
+      "AETHER MEMORY is done for today. Come back tomorrow. 🌙"
+    );
+
+    return false;
+
+  }
+
+
+  return true;
+
+}
+
+
+/* =========================================================
+   BALANCE
+========================================================= */
+
+async function loadBalance(){
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient.rpc(
+      "get_aether_coin_balance"
+    );
+
+
+  if(
+    !error &&
+    data!==null
+  ){
+
+    document.getElementById(
+      "coinBalance"
+    ).textContent=
+      data;
+
+  }
+
+}
+
+
+/* =========================================================
+   SERVER-SIDE START GATE
+========================================================= */
+
+async function startGame(){
+
+  if(gameRunning){
     return;
   }
-  await loadBalance();
-  await checkToday();
+
+
+  const {
+    data:{
+      session
+    }
+  }=
+    await supabaseClient.auth.getSession();
+
+
+  if(!session){
+
+    setMessage(
+      "Please log in through MY HALO first."
+    );
+
+    startButton.disabled=true;
+
+    return;
+
+  }
+
+
+  /*
+    IMPORTANT:
+    Supabase is now the authoritative
+    daily gate.
+
+    The browser does NOT decide whether
+    the game may start.
+  */
+
+  startButton.disabled=true;
+
+  setMessage(
+    "Opening today's AETHER MEMORY… ✨"
+  );
+
+
+  const {
+    data,
+    error
+  }=
+    await supabaseClient.rpc(
+      "start_aether_memory"
+    );
+
+
+  if(error){
+
+    console.error(
+      "Memory start error:",
+      error
+    );
+
+    startButton.disabled=false;
+
+    setMessage(
+      "The memory game could not be started. Please try again."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    data?.status===
+    "ALREADY_PLAYED"
+  ){
+
+    startButton.disabled=true;
+
+    setMessage(
+      "AETHER MEMORY is done for today. Come back tomorrow. 🌙"
+    );
+
+    return;
+
+  }
+
+
+  if(
+    data?.status!==
+    "STARTED"
+  ){
+
+    startButton.disabled=false;
+
+    setMessage(
+      "The memory game could not be started. Please try again."
+    );
+
+    return;
+
+  }
+
+
+  /* ============================
+     SERVER APPROVED THE START
+  ============================ */
+
+  level=1;
+  matched=0;
+  moves=0;
+  mistakes=0;
+  score=0;
+  flipped=[];
+  lockBoard=false;
+
+  timeLeft=60;
+
+  gameRunning=true;
+
+  startedAt=Date.now();
+
+  elapsed=0;
+
+
+  buildDeck(4);
+
+  updateStats();
+
+
+  setMessage(
+    "Find the pairs, HALO! 🧠💙"
+  );
+
+
+  clearInterval(timer);
+
+
+  timer=
+    setInterval(()=>{
+
+      if(!gameRunning){
+        return;
+      }
+
+
+      timeLeft--;
+
+      updateStats();
+
+
+      if(timeLeft<=0){
+
+        clearInterval(timer);
+
+        setMessage(
+          "TIME! Kairo would probably laugh. 😂"
+        );
+
+        finishGame();
+
+      }
+
+    },1000);
+
 }
-startButton.addEventListener("click",startGame);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+async function init(){
+
+  const {
+    data:{
+      session
+    }
+  }=
+    await supabaseClient.auth.getSession();
+
+
+  if(!session){
+
+    startButton.disabled=true;
+
+    setMessage(
+      "Please log in through MY HALO first."
+    );
+
+    return;
+
+  }
+
+
+  await loadBalance();
+
+  /*
+    This check is only for the UI.
+    The actual start permission always
+    comes from start_aether_memory().
+  */
+
+  await checkToday();
+
+}
+
+
+startButton.addEventListener(
+  "click",
+  startGame
+);
+
+
 init();
+
 </script>
 </body>
-</html>
+  </html>
