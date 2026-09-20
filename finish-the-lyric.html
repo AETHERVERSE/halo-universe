@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finish the Lyric | AETHERVERSE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  min-height:100vh;
+  color:#eeeaff;
+  font-family:Georgia,serif;
+
+  background:
+    radial-gradient(
+      circle at top,
+      #30275f 0%,
+      #15122f 42%,
+      #090817 100%
+    );
+}
+
+.container{
+  max-width:860px;
+  margin:auto;
+  padding:28px 16px 60px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.logo{
+  letter-spacing:6px;
+  font-size:.75rem;
+  color:#aaa0e6;
+  margin-bottom:18px;
+}
+
+nav{
+  display:flex;
+  justify-content:center;
+  gap:9px;
+  flex-wrap:wrap;
+}
+
+nav a,
+.action{
+  display:inline-block;
+  text-decoration:none;
+  color:#ddd7ff;
+
+  border:1px solid #514879;
+  border-radius:25px;
+
+  padding:8px 16px;
+
+  font-size:.78rem;
+
+  transition:.2s;
+}
+
+nav a:hover,
+.action:hover{
+  background:#29264b;
+  border-color:#b6a9f1;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  text-align:center;
+  margin:24px 0 28px;
+}
+
+.symbol{
+  font-size:3.2rem;
+}
+
+.kicker{
+  color:#aaa0e6;
+  letter-spacing:4px;
+  font-size:.72rem;
+}
+
+h1{
+  font-size:2.5rem;
+  letter-spacing:5px;
+  margin:8px 0;
+}
+
+.subtitle{
+  color:#aaa0e6;
+  line-height:1.7;
+  margin:0;
+}
+
+.album{
+  display:inline-block;
+
+  margin-top:14px;
+  padding:7px 14px;
+
+  border:1px solid #514879;
+  border-radius:20px;
+
+  color:#cdb9ff;
+
+  font-size:.7rem;
+  letter-spacing:2px;
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.card{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(48,42,92,.96),
+      rgba(20,18,49,.98)
+    );
+
+  border:1px solid #514879;
+  border-radius:24px;
+
+  padding:26px;
+
+  box-shadow:
+    0 20px 50px
+    rgba(0,0,0,.35);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+  text-align:center;
+
+  color:#aaa0e6;
+
+  min-height:22px;
+
+  margin-bottom:12px;
+}
+
+
+/* =========================
+   START
+========================= */
+
+.start-wrap{
+  text-align:center;
+  padding:20px 0;
+}
+
+.start{
+  border:1px solid #b6a9f1;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7665b8,
+      #4e427e
+    );
+
+  color:#fff;
+
+  border-radius:28px;
+
+  padding:13px 25px;
+
+  font-weight:800;
+
+  cursor:pointer;
+
+  font-family:Georgia,serif;
+
+  letter-spacing:1.5px;
+}
+
+.start:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
+
+/* =========================
+   QUESTION HEADER
+========================= */
+
+.topline{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  color:#aaa0e6;
+
+  font-size:.72rem;
+
+  letter-spacing:1.5px;
+
+  margin-bottom:20px;
+}
+
+.question-number{
+  color:#cdb9ff;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress{
+  height:6px;
+
+  background:#171432;
+
+  border-radius:10px;
+
+  overflow:hidden;
+
+  margin-bottom:24px;
+}
+
+.progress span{
+  display:block;
+
+  height:100%;
+
+  width:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7665b8,
+      #d9bd78
+    );
+
+  transition:.25s;
+}
+
+
+/* =========================
+   LYRIC
+========================= */
+
+.lyric-box{
+  background:
+    rgba(
+      8,
+      7,
+      20,
+      .55
+    );
+
+  border:1px solid #39345e;
+
+  border-radius:18px;
+
+  padding:24px;
+
+  text-align:center;
+
+  min-height:145px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+.lyric{
+  font-size:1.1rem;
+
+  line-height:1.9;
+
+  white-space:pre-line;
+
+  color:#f0ecff;
+}
+
+
+/* =========================
+   ANSWERS
+========================= */
+
+.options{
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:12px;
+
+  margin-top:22px;
+}
+
+.option{
+  border:1px solid #514879;
+
+  background:#211d43;
+
+  color:#eeeaff;
+
+  border-radius:15px;
+
+  padding:15px 12px;
+
+  cursor:pointer;
+
+  font-family:Georgia,serif;
+
+  font-size:.92rem;
+
+  transition:.2s;
+}
+
+.option:hover{
+  background:#302a57;
+
+  border-color:#b6a9f1;
+
+  transform:
+    translateY(-2px);
+}
+
+.option:disabled{
+  cursor:default;
+  opacity:.55;
+  transform:none;
+}
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+.feedback{
+  text-align:center;
+
+  min-height:26px;
+
+  margin:17px 0 0;
+
+  font-weight:700;
+
+  color:#d9bd78;
+}
+
+.score{
+  text-align:center;
+
+  margin-top:10px;
+
+  color:#cdb9ff;
+
+  letter-spacing:1px;
+}
+
+
+/* =========================
+   RESULT
+========================= */
+
+.result{
+  text-align:center;
+  display:none;
+}
+
+.result.show{
+  display:block;
+}
+
+.result h2{
+  letter-spacing:3px;
+  margin-top:4px;
+}
+
+.big-score{
+  font-size:2.4rem;
+
+  color:#eeeaff;
+
+  margin:18px 0 4px;
+}
+
+.result-meta{
+  color:#aaa0e6;
+
+  line-height:1.8;
+}
+
+.coins{
+  font-size:1.25rem;
+
+  color:#d9bd78;
+
+  margin:16px 0;
+}
+
+.actions{
+  display:flex;
+
+  justify-content:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:22px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  text-align:center;
+
+  margin-top:40px;
+
+  color:#77739e;
+
+  font-size:.65rem;
+
+  letter-spacing:2px;
+
+  line-height:2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+  h1{
+    font-size:1.85rem;
+    letter-spacing:3px;
+  }
+
+  .card{
+    padding:19px 14px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .lyric{
+    font-size:1rem;
+  }
+
+  .lyric-box{
+    padding:18px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<header>
+
+<div class="logo">
+AETHERVERSE
+</div>
+
+<nav>
+
+<a href="halo-home.html">
+MY HALO
+</a>
+
+<a href="aether-arcade.html">
+AETHER ARCADE
+</a>
+
+<a href="aether-music.html">
+AETHER MUSIC
+</a>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<div class="symbol">
+🎤
+</div>
+
+<div class="kicker">
+AETHER ARCADE · GAME #6
+</div>
+
+<h1>
+FINISH THE LYRIC
+</h1>
+
+<p class="subtitle">
+Hear the line. Feel the moment. Finish the lyric. ✨
+</p>
+
+<div class="album">
+BREAK THE BUBBLE · BUBBLE · DAILY GAME
+</div>
+
+</section>
+
+
+<section class="card">
+
+
+<div
+class="status"
+id="status">
+
+READY WHEN YOU ARE, HALO…
+
+</div>
+
+
+<!-- =========================
+     START
+========================= -->
+
+<div
+id="startArea"
+class="start-wrap">
+
+<button
+class="start"
+id="startButton">
+
+START TODAY'S LYRIC
+
+</button>
+
+</div>
+
+
+<!-- =========================
+     GAME
+========================= -->
+
+<div
+id="gameArea"
+style="display:none">
+
+
+<div class="topline">
+
+<span
+class="question-number"
+id="questionNumber">
+
+QUESTION 1 / 10
+
+</span>
+
+<span>
+
+SCORE:
+
+<strong id="score">
+0
+</strong>
+
+</span>
+
+</div>
+
+
+<div class="progress">
+
+<span
+id="progressBar">
+</span>
+
+</div>
+
+
+<div class="lyric-box">
+
+<div
+class="lyric"
+id="lyric">
+</div>
+
+</div>
+
+
+<div
+class="options"
+id="options">
+</div>
+
+
+<div
+class="feedback"
+id="feedback">
+</div>
+
+
+<div class="score">
+
+🪙 UP TO 50 AETHER COINS
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     RESULT
+========================= -->
+
+<div
+class="result"
+id="result">
+
+
+<h2>
+✦ LYRIC COMPLETE ✦
+</h2>
+
+
+<div
+class="big-score"
+id="finalScore">
+
+0 / 1000
+
+</div>
+
+
+<div
+class="result-meta"
+id="resultMeta">
+</div>
+
+
+<div
+class="coins"
+id="coinResult">
+
+🪙 +0 AETHER COINS
+
+</div>
+
+
+<div class="actions">
+
+<a
+class="action"
+href="finish-the-lyric-leaderboard.html">
+
+🏆 VIEW LEADERBOARD
+
+</a>
+
+
+<a
+class="action"
+href="aether-arcade.html">
+
+← AETHER ARCADE
+
+</a>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<footer>
+
+ONE HALO · ONE SONG · EVERY DAY<br>
+
+AETHERVERSE · BREAK THE BUBBLE
+
+</footer>
+
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+"https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
+
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+const startButton =
+document.getElementById(
+  "startButton"
+);
+
+const startArea =
+document.getElementById(
+  "startArea"
+);
+
+const gameArea =
+document.getElementById(
+  "gameArea"
+);
+
+const result =
+document.getElementById(
+  "result"
+);
+
+const statusEl =
+document.getElementById(
+  "status"
+);
+
+const lyricEl =
+document.getElementById(
+  "lyric"
+);
+
+const optionsEl =
+document.getElementById(
+  "options"
+);
+
+const feedbackEl =
+document.getElementById(
+  "feedback"
+);
+
+const questionNumberEl =
+document.getElementById(
+  "questionNumber"
+);
+
+const scoreEl =
+document.getElementById(
+  "score"
+);
+
+const progressBar =
+document.getElementById(
+  "progressBar"
+);
+
+
+let questions = [];
+
+let current = 0;
+
+let answers = {};
+
+let score = 0;
+
+let locked = false;
+
+
+/* =========================
+   HELPERS
+========================= */
+
+function setStatus(text){
+
+  statusEl.textContent =
+    text;
+
+}
+
+
+function shuffle(arr){
+
+  const a = [...arr];
+
+  for(
+    let i = a.length - 1;
+    i > 0;
+    i--
+  ){
+
+    const j =
+      Math.floor(
+        Math.random() *
+        (i + 1)
+      );
+
+    [a[i],a[j]] =
+      [a[j],a[i]];
+
+  }
+
+  return a;
+
+}
+
+
+/* =========================
+   RENDER QUESTION
+========================= */
+
+function renderQuestion(){
+
+  if(
+    current >=
+    questions.length
+  ){
+
+    finishGame();
+
+    return;
+
+  }
+
+
+  const q =
+    questions[current];
+
+
+  questionNumberEl.textContent =
+    `QUESTION ${current + 1} / ${questions.length}`;
+
+
+  scoreEl.textContent =
+    score;
+
+
+  progressBar.style.width =
+    `${(current / questions.length) * 100}%`;
+
+
+  lyricEl.textContent =
+    q.text;
+
+
+  feedbackEl.textContent =
+    "";
+
+
+  optionsEl.innerHTML =
+    "";
+
+
+  locked =
+    false;
+
+
+  shuffle(q.options)
+    .forEach(option=>{
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.className =
+        "option";
+
+
+      button.textContent =
+        option;
+
+
+      button.onclick =
+        ()=>answerQuestion(
+          q.key,
+          option
+        );
+
+
+      optionsEl.appendChild(
+        button
+      );
+
+    });
+
+}
+
+
+/* =========================
+   ANSWER
+========================= */
+
+function answerQuestion(
+  key,
+  option
+){
+
+  if(locked){
+
+    return;
+
+  }
+
+
+  locked =
+    true;
+
+
+  document
+    .querySelectorAll(
+      ".option"
+    )
+    .forEach(
+      b =>
+        b.disabled = true
+    );
+
+
+  answers[key] =
+    option;
+
+
+  /*
+    The server is the
+    authoritative source for
+    scoring.
+
+    This local score is only
+    a visual feedback counter.
+  */
+
+  score += 100;
+
+
+  feedbackEl.textContent =
+    "✦ ANSWER LOCKED ✦";
+
+
+  scoreEl.textContent =
+    score;
+
+
+  setTimeout(()=>{
+
+    current++;
+
+    renderQuestion();
+
+  },650);
+
+}
+
+
+/* =========================
+   START GAME
+========================= */
+
+async function startGame(){
+
+  startButton.disabled =
+    true;
+
+
+  setStatus(
+    "OPENING TODAY'S LYRIC… 🎵"
+  );
+
+
+  const {
+
+    data:{
+      session
+
+    }
+
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if(!session){
+
+    setStatus(
+      "PLEASE LOG IN THROUGH MY HALO FIRST."
+    );
+
+    startButton.disabled =
+      false;
+
+    return;
+
+  }
+
+
+  const {
+
+    data,
+    error
+
+  } =
+    await supabaseClient
+      .rpc(
+        "start_finish_the_lyric"
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    setStatus(
+      "COULD NOT START TODAY'S LYRIC."
+    );
+
+    startButton.disabled =
+      false;
+
+    return;
+
+  }
+
+
+  if(
+    data.status ===
+    "ALREADY_PLAYED"
+  ){
+
+    setStatus(
+      "YOU ALREADY PLAYED TODAY. COME BACK TOMORROW. 🌙"
+    );
+
+    return;
+
+  }
+
+
+  questions =
+    data.questions || [];
+
+
+  if(
+    questions.length !== 10
+  ){
+
+    setStatus(
+      "LYRIC DATA ERROR."
+    );
+
+    startButton.disabled =
+      false;
+
+    return;
+
+  }
+
+
+  current = 0;
+
+  answers = {};
+
+  score = 0;
+
+
+  startArea.style.display =
+    "none";
+
+
+  gameArea.style.display =
+    "block";
+
+
+  setStatus(
+    "BUBBLE · FINISH THE LYRIC"
+  );
+
+
+  renderQuestion();
+
+}
+
+
+/* =========================
+   FINISH GAME
+========================= */
+
+async function finishGame(){
+
+  progressBar.style.width =
+    "100%";
+
+
+  gameArea.style.display =
+    "none";
+
+
+  result.classList.add(
+    "show"
+  );
+
+
+  setStatus(
+    "SAVING YOUR RESULT… ✨"
+  );
+
+
+  const {
+
+    data,
+    error
+
+  } =
+    await supabaseClient
+      .rpc(
+        "claim_finish_the_lyric",
+        {
+          p_answers:
+            answers
+        }
+      );
+
+
+  if(error){
+
+    document.getElementById(
+      "finalScore"
+    ).textContent =
+      `${score} / 1000`;
+
+
+    document.getElementById(
+      "resultMeta"
+    ).textContent =
+      "Your result could not be saved. Please contact the AETHERVERSE admin.";
+
+
+    document.getElementById(
+      "coinResult"
+    ).textContent =
+      "🪙 REWARD ERROR";
+
+
+    console.error(error);
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "finalScore"
+  ).textContent =
+    `${data.score} / 1000`;
+
+
+  document.getElementById(
+    "resultMeta"
+  ).innerHTML =
+
+    `Correct answers: <strong>${data.correct_count} / ${data.total_questions}</strong><br>` +
+
+    `Song: <strong>BUBBLE</strong>`;
+
+
+  document.getElementById(
+    "coinResult"
+  ).textContent =
+
+    `🪙 +${data.coins_awarded} AETHER COINS · Balance: ${data.balance}`;
+
+
+  setStatus(
+    "AETHER HEARD YOU. 🎤"
+  );
+
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+startButton.addEventListener(
+  "click",
+  startGame
+);
+
+
+/* =========================
+   INIT
+========================= */
+
+(async function init(){
+
+  const {
+
+    data:{
+      session
+
+    }
+
+  } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if(!session){
+
+    setStatus(
+      "PLEASE LOG IN THROUGH MY HALO FIRST."
+    );
+
+    startButton.disabled =
+      true;
+
+  }
+
+})();
+
+</script>
+
+</body>
+  </html>
