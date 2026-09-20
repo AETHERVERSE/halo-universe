@@ -5,8 +5,10 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>The AETHER Codex</title>
 
@@ -14,6 +16,10 @@ content="width=device-width, initial-scale=1.0">
 
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -243,12 +249,69 @@ nav a:hover {
 
 
 /* =========================
+   CLICKABLE CODEX CARDS
+========================= */
+
+.codex-card.codex-link {
+    cursor: pointer;
+}
+
+.codex-card.codex-link:focus {
+    outline:
+        2px solid
+        #c8bdff;
+
+    outline-offset: 4px;
+}
+
+
+/* =========================
+   SECTION HIGHLIGHT
+========================= */
+
+.codex-section-highlight {
+    animation:
+        codexHighlight 1.4s ease;
+}
+
+@keyframes codexHighlight {
+
+    0% {
+        filter:
+            drop-shadow(
+                0 0 0
+                rgba(200,189,255,0)
+            );
+    }
+
+    25% {
+        filter:
+            drop-shadow(
+                0 0 18px
+                rgba(200,189,255,.75)
+            );
+    }
+
+    100% {
+        filter:
+            drop-shadow(
+                0 0 0
+                rgba(200,189,255,0)
+            );
+    }
+
+}
+
+
+/* =========================
    WORLDS
 ========================= */
 
 .world-archive {
     margin: 70px auto;
     max-width: 1000px;
+
+    scroll-margin-top: 25px;
 }
 
 .world-archive h2 {
@@ -357,6 +420,8 @@ nav a:hover {
     max-width: 1100px;
 
     text-align: center;
+
+    scroll-margin-top: 25px;
 }
 
 .guardian-archive h2 {
@@ -481,6 +546,10 @@ nav a:hover {
 
     margin:
         0 0 20px;
+}
+
+.relics-anchor {
+    scroll-margin-top: 25px;
 }
 
 
@@ -690,7 +759,12 @@ footer {
 <section class="codex-grid">
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card codex-link"
+        tabindex="0"
+        role="button"
+        data-scroll-target="worlds"
+    >
 
         <div class="symbol">
             🌍
@@ -708,7 +782,12 @@ footer {
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card codex-link"
+        tabindex="0"
+        role="button"
+        data-scroll-target="guardians"
+    >
 
         <div class="symbol">
             🐾
@@ -726,7 +805,12 @@ footer {
     </div>
 
 
-    <div class="codex-card">
+    <div
+        class="codex-card codex-link"
+        tabindex="0"
+        role="button"
+        data-scroll-target="relics"
+    >
 
         <div class="symbol">
             💎
@@ -805,7 +889,10 @@ footer {
      SEVEN WORLDS
 ========================= -->
 
-<section class="world-archive">
+<section
+    class="world-archive"
+    id="worlds"
+>
 
     <h2>
         ✦ THE SEVEN WORLDS
@@ -1011,7 +1098,10 @@ footer {
      GUARDIANS
 ========================= -->
 
-<section class="guardian-archive">
+<section
+    class="guardian-archive"
+    id="guardians"
+>
 
     <h2>
         ✦ THE GUARDIANS
@@ -1210,7 +1300,10 @@ footer {
      RELICS
 ========================= -->
 
-<section class="codex-grid">
+<section
+    class="codex-grid relics-anchor"
+    id="relics"
+>
 
     <h2 class="relics-title">
         ✦ THE RELICS
@@ -1456,6 +1549,117 @@ window.supabase.createClient(
 const DISCOVERY_POINTS = 5;
 
 const TOTAL_DISCOVERIES = 21;
+
+
+/* =========================
+   CODEX QUICK NAVIGATION
+========================= */
+
+function scrollToCodexSection(
+    targetId
+) {
+
+    const target =
+        document.getElementById(
+            targetId
+        );
+
+    if (!target) {
+        return;
+    }
+
+
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+
+    target.classList.remove(
+        "codex-section-highlight"
+    );
+
+
+    /*
+       Force the browser to restart
+       the highlight animation.
+    */
+
+    void target.offsetWidth;
+
+
+    target.classList.add(
+        "codex-section-highlight"
+    );
+
+
+    setTimeout(
+        () => {
+
+            target.classList.remove(
+                "codex-section-highlight"
+            );
+
+        },
+        1500
+    );
+
+}
+
+
+/* =========================
+   SETUP CODEX QUICK NAV
+========================= */
+
+function setupCodexNavigation() {
+
+    document
+        .querySelectorAll(
+            "[data-scroll-target]"
+        )
+        .forEach(
+            card => {
+
+                const targetId =
+                    card.dataset.scrollTarget;
+
+
+                card.addEventListener(
+                    "click",
+                    () => {
+
+                        scrollToCodexSection(
+                            targetId
+                        );
+
+                    }
+                );
+
+
+                card.addEventListener(
+                    "keydown",
+                    event => {
+
+                        if (
+                            event.key === "Enter" ||
+                            event.key === " "
+                        ) {
+
+                            event.preventDefault();
+
+                            scrollToCodexSection(
+                                targetId
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+}
 
 
 /* =========================
@@ -1886,6 +2090,8 @@ async function loadDiscovered() {
 ========================= */
 
 async function initCodex() {
+
+    setupCodexNavigation();
 
     setupDiscoveries();
 
