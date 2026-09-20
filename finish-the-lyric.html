@@ -540,8 +540,12 @@ FINISH THE LYRIC
 Hear the line. Feel the moment. Finish the lyric. ✨
 </p>
 
-<div class="album">
-BREAK THE BUBBLE · BUBBLE · DAILY GAME
+<div
+class="album"
+id="songLabel">
+
+BREAK THE BUBBLE · DAILY GAME
+
 </div>
 
 </section>
@@ -721,7 +725,7 @@ href="aether-arcade.html">
 
 ONE HALO · ONE SONG · EVERY DAY<br>
 
-AETHERVERSE · BREAK THE BUBBLE
+AETHERVERSE · FINISH THE LYRIC
 
 </footer>
 
@@ -733,6 +737,7 @@ AETHERVERSE · BREAK THE BUBBLE
 
 const SUPABASE_URL =
 "https://mkdkfnejqnqoalzyeqaw.supabase.co";
+
 
 const SUPABASE_KEY =
 "sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetmY";
@@ -750,54 +755,70 @@ document.getElementById(
   "startButton"
 );
 
+
 const startArea =
 document.getElementById(
   "startArea"
 );
+
 
 const gameArea =
 document.getElementById(
   "gameArea"
 );
 
+
 const result =
 document.getElementById(
   "result"
 );
+
 
 const statusEl =
 document.getElementById(
   "status"
 );
 
+
 const lyricEl =
 document.getElementById(
   "lyric"
 );
+
 
 const optionsEl =
 document.getElementById(
   "options"
 );
 
+
 const feedbackEl =
 document.getElementById(
   "feedback"
 );
+
 
 const questionNumberEl =
 document.getElementById(
   "questionNumber"
 );
 
+
 const scoreEl =
 document.getElementById(
   "score"
 );
 
+
 const progressBar =
 document.getElementById(
   "progressBar"
+);
+
+
+const songLabel =
+document.getElementById(
+  "songLabel"
 );
 
 
@@ -811,12 +832,66 @@ let score = 0;
 
 let locked = false;
 
+let currentSong = "";
+
+
+/* =========================
+   SONG DISPLAY
+========================= */
+
+function formatSongName(
+  songKey
+){
+
+  if(
+    songKey ===
+    "awakening"
+  ){
+
+    return "AWAKENING";
+
+  }
+
+  return "BUBBLE";
+
+}
+
+
+function updateSongDisplay(
+  songKey
+){
+
+  currentSong =
+    formatSongName(
+      songKey
+    );
+
+
+  if(
+    currentSong ===
+    "AWAKENING"
+  ){
+
+    songLabel.textContent =
+      "BREAK THE BUBBLE · AWAKENING · DAILY GAME";
+
+  }else{
+
+    songLabel.textContent =
+      "BREAK THE BUBBLE · BUBBLE · DAILY GAME";
+
+  }
+
+}
+
 
 /* =========================
    HELPERS
 ========================= */
 
-function setStatus(text){
+function setStatus(
+  text
+){
 
   statusEl.textContent =
     text;
@@ -824,9 +899,12 @@ function setStatus(text){
 }
 
 
-function shuffle(arr){
+function shuffle(
+  arr
+){
 
-  const a = [...arr];
+  const a =
+    [...arr];
 
   for(
     let i = a.length - 1;
@@ -840,8 +918,14 @@ function shuffle(arr){
         (i + 1)
       );
 
-    [a[i],a[j]] =
-      [a[j],a[i]];
+    [
+      a[i],
+      a[j]
+    ] =
+    [
+      a[j],
+      a[i]
+    ];
 
   }
 
@@ -900,8 +984,10 @@ function renderQuestion(){
     false;
 
 
-  shuffle(q.options)
-    .forEach(option=>{
+  shuffle(
+    q.options
+  ).forEach(
+    option=>{
 
       const button =
         document.createElement(
@@ -928,7 +1014,8 @@ function renderQuestion(){
         button
       );
 
-    });
+    }
+  );
 
 }
 
@@ -942,7 +1029,9 @@ function answerQuestion(
   option
 ){
 
-  if(locked){
+  if(
+    locked
+  ){
 
     return;
 
@@ -959,7 +1048,8 @@ function answerQuestion(
     )
     .forEach(
       b =>
-        b.disabled = true
+        b.disabled =
+          true
     );
 
 
@@ -968,12 +1058,9 @@ function answerQuestion(
 
 
   /*
-    The server is the
-    authoritative source for
-    scoring.
-
-    This local score is only
-    a visual feedback counter.
+    Visual score only.
+    The server remains
+    authoritative.
   */
 
   score += 100;
@@ -987,13 +1074,16 @@ function answerQuestion(
     score;
 
 
-  setTimeout(()=>{
+  setTimeout(
+    ()=>{
 
-    current++;
+      current++;
 
-    renderQuestion();
+      renderQuestion();
 
-  },650);
+    },
+    650
+  );
 
 }
 
@@ -1026,11 +1116,14 @@ async function startGame(){
       .getSession();
 
 
-  if(!session){
+  if(
+    !session
+  ){
 
     setStatus(
       "PLEASE LOG IN THROUGH MY HALO FIRST."
     );
+
 
     startButton.disabled =
       false;
@@ -1052,13 +1145,19 @@ async function startGame(){
       );
 
 
-  if(error){
+  if(
+    error
+  ){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     setStatus(
       "COULD NOT START TODAY'S LYRIC."
     );
+
 
     startButton.disabled =
       false;
@@ -1083,16 +1182,19 @@ async function startGame(){
 
 
   questions =
-    data.questions || [];
+    data.questions ||
+    [];
 
 
   if(
-    questions.length !== 10
+    questions.length !==
+    10
   ){
 
     setStatus(
       "LYRIC DATA ERROR."
     );
+
 
     startButton.disabled =
       false;
@@ -1102,11 +1204,21 @@ async function startGame(){
   }
 
 
-  current = 0;
+  updateSongDisplay(
+    data.song_key
+  );
 
-  answers = {};
 
-  score = 0;
+  current =
+    0;
+
+
+  answers =
+    {};
+
+
+  score =
+    0;
 
 
   startArea.style.display =
@@ -1118,7 +1230,7 @@ async function startGame(){
 
 
   setStatus(
-    "BUBBLE · FINISH THE LYRIC"
+    `${currentSong} · FINISH THE LYRIC`
   );
 
 
@@ -1167,7 +1279,9 @@ async function finishGame(){
       );
 
 
-  if(error){
+  if(
+    error
+  ){
 
     document.getElementById(
       "finalScore"
@@ -1187,11 +1301,19 @@ async function finishGame(){
       "🪙 REWARD ERROR";
 
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     return;
 
   }
+
+
+  const returnedSong =
+    formatSongName(
+      data.song_key
+    );
 
 
   document.getElementById(
@@ -1206,7 +1328,7 @@ async function finishGame(){
 
     `Correct answers: <strong>${data.correct_count} / ${data.total_questions}</strong><br>` +
 
-    `Song: <strong>BUBBLE</strong>`;
+    `Song: <strong>${returnedSong}</strong>`;
 
 
   document.getElementById(
@@ -1252,11 +1374,14 @@ startButton.addEventListener(
       .getSession();
 
 
-  if(!session){
+  if(
+    !session
+  ){
 
     setStatus(
       "PLEASE LOG IN THROUGH MY HALO FIRST."
     );
+
 
     startButton.disabled =
       true;
@@ -1266,6 +1391,7 @@ startButton.addEventListener(
 })();
 
 </script>
+
 
 </body>
   </html>
