@@ -843,16 +843,46 @@ function formatSongName(
   songKey
 ){
 
-  if(
-    songKey ===
-    "awakening"
-  ){
+  const songNames = {
 
-    return "AWAKENING";
+    bubble:
+      "BUBBLE",
 
-  }
+    awakening:
+      "AWAKENING",
 
-  return "BUBBLE";
+    limitless:
+      "LIMITLESS",
+
+    gravity:
+      "GRAVITY",
+
+    echo:
+      "ECHO",
+
+    higher:
+      "HIGHER",
+
+    new_horizon:
+      "NEW HORIZON",
+
+    beyond:
+      "BEYOND"
+
+  };
+
+
+  return (
+    songNames[songKey] ||
+    String(
+      songKey || ""
+    )
+      .replace(
+        /_/g,
+        " "
+      )
+      .toUpperCase()
+  );
 
 }
 
@@ -867,20 +897,8 @@ function updateSongDisplay(
     );
 
 
-  if(
-    currentSong ===
-    "AWAKENING"
-  ){
-
-    songLabel.textContent =
-      "BREAK THE BUBBLE · AWAKENING · DAILY GAME";
-
-  }else{
-
-    songLabel.textContent =
-      "BREAK THE BUBBLE · BUBBLE · DAILY GAME";
-
-  }
+  songLabel.textContent =
+    `BREAK THE BUBBLE · ${currentSong} · DAILY GAME`;
 
 }
 
@@ -906,6 +924,7 @@ function shuffle(
   const a =
     [...arr];
 
+
   for(
     let i = a.length - 1;
     i > 0;
@@ -918,6 +937,7 @@ function shuffle(
         (i + 1)
       );
 
+
     [
       a[i],
       a[j]
@@ -928,6 +948,7 @@ function shuffle(
     ];
 
   }
+
 
   return a;
 
@@ -1167,14 +1188,41 @@ async function startGame(){
   }
 
 
+  /*
+    The RPC returns:
+    success:false
+    code:"ALREADY_PLAYED"
+    when today's game
+    has already been used.
+  */
+
   if(
-    data.status ===
+    data &&
+    data.code ===
     "ALREADY_PLAYED"
   ){
 
     setStatus(
       "YOU ALREADY PLAYED TODAY. COME BACK TOMORROW. 🌙"
     );
+
+    return;
+
+  }
+
+
+  if(
+    !data ||
+    data.success !== true
+  ){
+
+    setStatus(
+      "COULD NOT START TODAY'S LYRIC."
+    );
+
+
+    startButton.disabled =
+      false;
 
     return;
 
@@ -1394,4 +1442,4 @@ startButton.addEventListener(
 
 
 </body>
-  </html>
+</html>
