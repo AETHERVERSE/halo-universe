@@ -86,7 +86,8 @@ nav button:hover {
 .rank-box,
 .card,
 .halo-daily-card,
-.guardian-card {
+.guardian-card,
+.profile-frame-card {
     border: 1px solid rgba(190, 120, 255, 0.25);
     border-radius: 22px;
     background: rgba(30, 13, 49, 0.75);
@@ -324,6 +325,352 @@ nav button:hover {
 
 .halo-daily-error {
     color: #f0b8cf;
+}
+
+
+/* =========================
+   MY PROFILE FRAME
+========================= */
+
+.profile-frame-card {
+    position: relative;
+    overflow: hidden;
+    padding: 35px 25px;
+    margin: 35px 0 45px;
+    border-color: rgba(205, 185, 255, 0.35);
+
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(155, 90, 255, 0.20),
+            transparent 60%
+        ),
+        rgba(30, 13, 49, 0.82);
+}
+
+.profile-frame-card::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    top: -170px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(205, 185, 255, 0.08);
+    filter: blur(35px);
+    pointer-events: none;
+}
+
+.profile-frame-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-frame-label {
+    color: #bcaed0;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.profile-frame-header h2 {
+    margin: 8px 0 12px;
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.profile-frame-header p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #d5cbea;
+    line-height: 1.7;
+}
+
+.profile-frame-layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(220px, 320px) 1fr;
+    gap: 35px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-preview {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+
+    border-radius: 30px;
+
+    background:
+        radial-gradient(
+            circle at 35% 25%,
+            rgba(220, 190, 255, 0.18),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(76, 42, 115, 0.95),
+            rgba(16, 8, 30, 0.98)
+        );
+
+    border: 1px solid rgba(220, 180, 255, 0.28);
+
+    box-shadow:
+        inset 0 0 35px rgba(0, 0, 0, 0.35),
+        0 15px 45px rgba(0, 0, 0, 0.28);
+
+    overflow: hidden;
+}
+
+.profile-preview-inner {
+    position: absolute;
+    inset: 28px;
+
+    border-radius: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(110, 70, 160, 0.25),
+            rgba(8, 4, 18, 0.86)
+        );
+
+    border: 1px solid rgba(205, 185, 255, 0.12);
+}
+
+.profile-preview-halo {
+    font-size: 52px;
+    line-height: 1;
+
+    filter:
+        drop-shadow(
+            0 0 18px rgba(220, 190, 255, 0.55)
+        );
+}
+
+.profile-preview-name {
+    margin-top: 14px;
+    color: #f4edff;
+    font-size: 17px;
+    letter-spacing: 4px;
+}
+
+.profile-preview-subtitle {
+    margin-top: 8px;
+    color: #aaa0e6;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.profile-preview-frame {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    pointer-events: none;
+
+    z-index: 3;
+
+    filter:
+        drop-shadow(
+            0 0 14px rgba(210, 170, 255, 0.5)
+        );
+}
+
+.profile-frame-info {
+    min-width: 0;
+}
+
+.profile-frame-current {
+    color: #e8dcff;
+    font-size: 19px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.profile-frame-description {
+    color: #c4bddf;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.profile-frame-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile-frame-button {
+    padding: 11px 18px;
+
+    border-radius: 999px;
+
+    border: 1px solid rgba(220, 180, 255, 0.42);
+
+    background:
+        rgba(80, 35, 130, 0.38);
+
+    color: #f5efff;
+
+    font-family: Georgia, serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.profile-frame-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(105, 55, 160, 0.52);
+
+    border-color:
+        rgba(235, 210, 255, 0.75);
+}
+
+.profile-frame-button:disabled {
+    cursor: default;
+    transform: none;
+    opacity: 0.7;
+}
+
+.profile-frame-button.secondary {
+    background:
+        rgba(30, 13, 49, 0.55);
+}
+
+.profile-frame-button.active {
+    border-color:
+        rgba(235, 210, 255, 0.82);
+
+    background:
+        rgba(118, 75, 180, 0.58);
+}
+
+.profile-frame-status {
+    min-height: 24px;
+    margin-top: 16px;
+
+    color: #cdb9ff;
+    font-size: 14px;
+}
+
+.profile-frame-status.error {
+    color: #f0b8cf;
+}
+
+.profile-frame-list {
+    position: relative;
+
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(190px, 1fr)
+        );
+
+    gap: 12px;
+}
+
+.profile-frame-option {
+    border:
+        1px solid
+        rgba(190, 120, 255, 0.20);
+
+    border-radius: 16px;
+
+    padding: 15px;
+
+    background:
+        rgba(20, 9, 34, 0.65);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.profile-frame-option:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(220, 160, 255, 0.45);
+
+    background:
+        rgba(35, 16, 56, 0.82);
+}
+
+.profile-frame-option.owned {
+    border-color:
+        rgba(205, 185, 255, 0.42);
+}
+
+.profile-frame-option.active {
+    border-color:
+        rgba(235, 210, 255, 0.78);
+
+    background:
+        rgba(75, 42, 110, 0.55);
+}
+
+.profile-frame-option-title {
+    color: #eee5ff;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.profile-frame-option-state {
+    margin-top: 7px;
+    color: #aaa0e6;
+    font-size: 12px;
+}
+
+.profile-frame-option-action {
+    margin-top: 12px;
+
+    color: #e8dcff;
+
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 720px) {
+
+    .profile-frame-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-preview {
+        width: 220px;
+        height: 220px;
+    }
+
 }
 
 
@@ -625,6 +972,135 @@ CLAIM POINTS
 class="halo-daily-status"
 id="haloDailyStatus">
 </div>
+
+</section>
+
+
+<!-- =========================
+     MY PROFILE FRAME
+========================= -->
+
+<section
+class="profile-frame-card"
+id="profileFrameCard">
+
+<div class="profile-frame-header">
+
+<div class="profile-frame-label">
+MY AETHERVERSE IDENTITY
+</div>
+
+<h2>
+🪞 MY PROFILE FRAME
+</h2>
+
+<p>
+Choose the frame that represents your HALO identity inside the AETHERVERSE.
+Your active frame can be changed at any time.
+</p>
+
+</div>
+
+
+<div class="profile-frame-layout">
+
+
+<div
+class="profile-preview"
+id="profileFramePreview">
+
+<div class="profile-preview-inner">
+
+<div class="profile-preview-halo">
+✦
+</div>
+
+<div class="profile-preview-name">
+HALO
+</div>
+
+<div class="profile-preview-subtitle">
+AETHERVERSE IDENTITY
+</div>
+
+</div>
+
+
+<img
+class="profile-preview-frame"
+id="profileFrameImage"
+alt="Active AETHER profile frame"
+style="display:none;"
+>
+
+</div>
+
+
+<div class="profile-frame-info">
+
+
+<div
+class="profile-frame-current"
+id="profileFrameCurrent">
+
+Loading profile frame...
+
+</div>
+
+
+<div
+class="profile-frame-description"
+id="profileFrameDescription">
+
+Checking your collection...
+
+</div>
+
+
+<div class="profile-frame-actions">
+
+
+<button
+class="profile-frame-button"
+id="profileFrameActivate"
+type="button"
+disabled>
+
+ACTIVATE FRAME
+
+</button>
+
+
+<button
+class="profile-frame-button secondary"
+id="profileFrameRemove"
+type="button"
+disabled>
+
+REMOVE FRAME
+
+</button>
+
+
+</div>
+
+
+<div
+class="profile-frame-status"
+id="profileFrameStatus">
+</div>
+
+
+</div>
+
+</div>
+
+
+<div
+class="profile-frame-list"
+id="profileFrameList">
+</div>
+
 
 </section>
 
@@ -1513,6 +1989,860 @@ document
     );
 
 
+/* =========================
+   MY PROFILE FRAME
+========================= */
+
+let profileFrames = [];
+
+let selectedProfileFrameKey =
+    null;
+
+
+/* =========================
+   LOAD PROFILE FRAME IMAGE
+========================= */
+
+async function getProfileFrameImageUrl() {
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.storage
+                .from("aether-shop-assets")
+                .createSignedUrl(
+                    "profile_frame_aether_01.png",
+                    3600
+                );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        return data?.signedUrl || null;
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile frame image error:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+/* =========================
+   LOAD PROFILE FRAMES
+========================= */
+
+async function loadProfileFrames() {
+
+    const current =
+        document.getElementById(
+            "profileFrameCurrent"
+        );
+
+    const description =
+        document.getElementById(
+            "profileFrameDescription"
+        );
+
+    const status =
+        document.getElementById(
+            "profileFrameStatus"
+        );
+
+    const activateButton =
+        document.getElementById(
+            "profileFrameActivate"
+        );
+
+    const removeButton =
+        document.getElementById(
+            "profileFrameRemove"
+        );
+
+    const list =
+        document.getElementById(
+            "profileFrameList"
+        );
+
+
+    try {
+
+        current.textContent =
+            "Loading profile frame...";
+
+        description.textContent =
+            "Checking your collection...";
+
+        status.textContent =
+            "";
+
+        status.classList.remove(
+            "error"
+        );
+
+        activateButton.disabled =
+            true;
+
+        removeButton.disabled =
+            true;
+
+        list.innerHTML =
+            "";
+
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "get_my_profile_frames"
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        profileFrames =
+            Array.isArray(data)
+                ? data
+                : [];
+
+
+        if (
+            profileFrames.length ===
+            0
+        ) {
+
+            current.textContent =
+                "NO PROFILE FRAME";
+
+            description.textContent =
+                "No profile frames are currently available.";
+
+            return;
+
+        }
+
+
+        const activeFrame =
+            profileFrames.find(
+                frame =>
+                    frame.active === true
+            ) || null;
+
+
+        const ownedFrame =
+            profileFrames.find(
+                frame =>
+                    frame.owned === true
+            ) || null;
+
+
+        selectedProfileFrameKey =
+            activeFrame?.frame_key ||
+            ownedFrame?.frame_key ||
+            null;
+
+
+        renderProfileFrames();
+
+
+        if (activeFrame) {
+
+            current.textContent =
+                "✦ " +
+                activeFrame.title;
+
+
+            description.textContent =
+                activeFrame.description ||
+                "Your active AETHER profile frame.";
+
+
+            activateButton.textContent =
+                "✓ ACTIVE FRAME";
+
+
+            activateButton.disabled =
+                true;
+
+
+            removeButton.disabled =
+                false;
+
+
+            await displayProfileFrame(
+                true
+            );
+
+
+        } else if (ownedFrame) {
+
+            current.textContent =
+                "READY — " +
+                ownedFrame.title;
+
+
+            description.textContent =
+                ownedFrame.description ||
+                "Your purchased AETHER profile frame is ready to use.";
+
+
+            activateButton.textContent =
+                "ACTIVATE FRAME";
+
+
+            activateButton.disabled =
+                false;
+
+
+            removeButton.disabled =
+                true;
+
+
+            await displayProfileFrame(
+                true
+            );
+
+
+        } else {
+
+            current.textContent =
+                "LOCKED — " +
+                profileFrames[0].title;
+
+
+            description.textContent =
+                profileFrames[0].description ||
+                "Purchase this frame in AETHER SHOP to use it.";
+
+
+            activateButton.textContent =
+                "NOT OWNED";
+
+
+            activateButton.disabled =
+                true;
+
+
+            removeButton.disabled =
+                true;
+
+
+            await displayProfileFrame(
+                false
+            );
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Profile frame loading error:",
+            error
+        );
+
+
+        current.textContent =
+            "PROFILE FRAME UNAVAILABLE";
+
+
+        description.textContent =
+            "Your profile frame could not be loaded.";
+
+
+        status.textContent =
+            "Please try again.";
+
+
+        status.classList.add(
+            "error"
+        );
+
+
+        activateButton.disabled =
+            true;
+
+
+        removeButton.disabled =
+            true;
+
+    }
+
+}
+
+
+/* =========================
+   RENDER PROFILE FRAME LIST
+========================= */
+
+function renderProfileFrames() {
+
+    const list =
+        document.getElementById(
+            "profileFrameList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    profileFrames.forEach(
+        frame => {
+
+            const option =
+                document.createElement(
+                    "div"
+                );
+
+
+            option.className =
+                "profile-frame-option" +
+                (
+                    frame.owned
+                        ? " owned"
+                        : ""
+                ) +
+                (
+                    frame.active
+                        ? " active"
+                        : ""
+                );
+
+
+            const title =
+                document.createElement(
+                    "div"
+                );
+
+
+            title.className =
+                "profile-frame-option-title";
+
+
+            title.textContent =
+                frame.title;
+
+
+            const state =
+                document.createElement(
+                    "div"
+                );
+
+
+            state.className =
+                "profile-frame-option-state";
+
+
+            if (
+                frame.active ===
+                true
+            ) {
+
+                state.textContent =
+                    "✓ ACTIVE";
+
+
+            } else if (
+                frame.owned ===
+                true
+            ) {
+
+                state.textContent =
+                    "✓ OWNED — READY TO USE";
+
+
+            } else {
+
+                state.textContent =
+                    "🔒 NOT OWNED";
+
+            }
+
+
+            const action =
+                document.createElement(
+                    "div"
+                );
+
+
+            action.className =
+                "profile-frame-option-action";
+
+
+            if (
+                frame.owned
+            ) {
+
+                action.textContent =
+                    frame.active
+                        ? "CURRENT FRAME"
+                        : "SELECT FRAME";
+
+            } else {
+
+                action.textContent =
+                    "AVAILABLE IN AETHER SHOP";
+
+            }
+
+
+            option.appendChild(
+                title
+            );
+
+            option.appendChild(
+                state
+            );
+
+            option.appendChild(
+                action
+            );
+
+
+            option.addEventListener(
+                "click",
+                () =>
+                    selectProfileFrame(
+                        frame.frame_key
+                    )
+            );
+
+
+            list.appendChild(
+                option
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================
+   SELECT PROFILE FRAME
+========================= */
+
+async function selectProfileFrame(
+    frameKey
+) {
+
+    const frame =
+        profileFrames.find(
+            item =>
+                item.frame_key ===
+                frameKey
+        );
+
+
+    if (!frame) {
+        return;
+    }
+
+
+    const current =
+        document.getElementById(
+            "profileFrameCurrent"
+        );
+
+    const description =
+        document.getElementById(
+            "profileFrameDescription"
+        );
+
+    const activateButton =
+        document.getElementById(
+            "profileFrameActivate"
+        );
+
+    const removeButton =
+        document.getElementById(
+            "profileFrameRemove"
+        );
+
+    const status =
+        document.getElementById(
+            "profileFrameStatus"
+        );
+
+
+    selectedProfileFrameKey =
+        frame.frame_key;
+
+
+    status.textContent =
+        "";
+
+    status.classList.remove(
+        "error"
+    );
+
+
+    current.textContent =
+        frame.active
+            ? "✦ " + frame.title
+            : "SELECTED — " +
+              frame.title;
+
+
+    description.textContent =
+        frame.description ||
+        "A profile frame for your HALO identity.";
+
+
+    if (
+        frame.active
+    ) {
+
+        activateButton.textContent =
+            "✓ ACTIVE FRAME";
+
+        activateButton.disabled =
+            true;
+
+        removeButton.disabled =
+            false;
+
+
+    } else if (
+        frame.owned
+    ) {
+
+        activateButton.textContent =
+            "ACTIVATE FRAME";
+
+        activateButton.disabled =
+            false;
+
+        removeButton.disabled =
+            true;
+
+
+    } else {
+
+        activateButton.textContent =
+            "NOT OWNED";
+
+        activateButton.disabled =
+            true;
+
+        removeButton.disabled =
+            true;
+
+    }
+
+
+    await displayProfileFrame(
+        frame.owned
+    );
+
+
+    renderProfileFrames();
+
+}
+
+
+/* =========================
+   DISPLAY PROFILE FRAME
+========================= */
+
+async function displayProfileFrame(
+    shouldDisplay
+) {
+
+    const image =
+        document.getElementById(
+            "profileFrameImage"
+        );
+
+
+    if (!shouldDisplay) {
+
+        image.style.display =
+            "none";
+
+        image.removeAttribute(
+            "src"
+        );
+
+        return;
+
+    }
+
+
+    const imageUrl =
+        await getProfileFrameImageUrl();
+
+
+    if (
+        imageUrl
+    ) {
+
+        image.src =
+            imageUrl;
+
+        image.style.display =
+            "block";
+
+    } else {
+
+        image.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =========================
+   ACTIVATE PROFILE FRAME
+========================= */
+
+async function activateSelectedProfileFrame() {
+
+    const frame =
+        profileFrames.find(
+            item =>
+                item.frame_key ===
+                selectedProfileFrameKey
+        );
+
+
+    if (
+        !frame ||
+        !frame.owned
+    ) {
+
+        return;
+
+    }
+
+
+    const button =
+        document.getElementById(
+            "profileFrameActivate"
+        );
+
+    const status =
+        document.getElementById(
+            "profileFrameStatus"
+        );
+
+
+    button.disabled =
+        true;
+
+    button.textContent =
+        "ACTIVATING...";
+
+
+    status.classList.remove(
+        "error"
+    );
+
+    status.textContent =
+        "Updating your HALO identity...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "set_active_profile_frame",
+                {
+                    p_frame_key:
+                        frame.frame_key
+                }
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            throw new Error(
+                "Profile frame could not be activated."
+            );
+
+        }
+
+
+        status.textContent =
+            "✦ Profile frame activated.";
+
+
+        await loadProfileFrames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile frame activation error:",
+            error
+        );
+
+
+        status.classList.add(
+            "error"
+        );
+
+        status.textContent =
+            "The profile frame could not be activated.";
+
+
+        button.disabled =
+            false;
+
+        button.textContent =
+            "ACTIVATE FRAME";
+
+    }
+
+}
+
+
+/* =========================
+   REMOVE PROFILE FRAME
+========================= */
+
+async function removeActiveProfileFrame() {
+
+    const button =
+        document.getElementById(
+            "profileFrameRemove"
+        );
+
+    const status =
+        document.getElementById(
+            "profileFrameStatus"
+        );
+
+
+    button.disabled =
+        true;
+
+
+    status.classList.remove(
+        "error"
+    );
+
+
+    status.textContent =
+        "Removing active frame...";
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient.rpc(
+                "set_active_profile_frame",
+                {
+                    p_frame_key:
+                        null
+                }
+            );
+
+
+        if (error) {
+            throw error;
+        }
+
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            throw new Error(
+                "Profile frame could not be removed."
+            );
+
+        }
+
+
+        status.textContent =
+            "✦ Active profile frame removed.";
+
+
+        await loadProfileFrames();
+
+
+    } catch (error) {
+
+        console.error(
+            "Profile frame removal error:",
+            error
+        );
+
+
+        status.classList.add(
+            "error"
+        );
+
+        status.textContent =
+            "The active profile frame could not be removed.";
+
+
+        button.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =========================
+   PROFILE FRAME BUTTONS
+========================= */
+
+document
+    .getElementById(
+        "profileFrameActivate"
+    )
+    .addEventListener(
+        "click",
+        activateSelectedProfileFrame
+    );
+
+
+document
+    .getElementById(
+        "profileFrameRemove"
+    )
+    .addEventListener(
+        "click",
+        removeActiveProfileFrame
+    );
+
+
 async function loadHalo() {
 
     try {
@@ -1542,7 +2872,9 @@ async function loadHalo() {
 
 
         document
-            .getElementById("dailyMessage")
+            .getElementById(
+                "dailyMessage"
+            )
             .textContent =
             "Your connection with AETHER is active. ✦";
 
@@ -1550,6 +2882,8 @@ async function loadHalo() {
         await loadHaloRank();
 
         await loadHaloDaily();
+
+        await loadProfileFrames();
 
 
     } catch (error) {
@@ -1561,7 +2895,9 @@ async function loadHalo() {
 
 
         document
-            .getElementById("dailyMessage")
+            .getElementById(
+                "dailyMessage"
+            )
             .textContent =
             "Your AETHERVERSE connection could not be loaded.";
 
@@ -1570,6 +2906,9 @@ async function loadHalo() {
 }
 
 
+/* =========================
+   HALO RANK
+========================= */
 
 async function loadHaloRank() {
 
@@ -1692,7 +3031,8 @@ async function loadHaloRank() {
 
 
         pointsElement.textContent =
-            "AETHER Points: " + points;
+            "AETHER Points: " +
+            points;
 
 
         if (isAdmin) {
@@ -1842,9 +3182,14 @@ async function loadHaloRank() {
 }
 
 
+/* =========================
+   LOGOUT
+========================= */
 
 document
-    .getElementById("logoutBtn")
+    .getElementById(
+        "logoutBtn"
+    )
     .addEventListener(
         "click",
         async () => {
