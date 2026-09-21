@@ -8,8 +8,13 @@
 <body>
 <script>
 (async function () {
+    /*
+     * This uses the REAL GitHub COMMIT that contains the complete
+     * halo-home.html. The previous file incorrectly used the blob SHA,
+     * which caused the page to fail with "HALO could not be loaded".
+     */
     const source =
-        "https://raw.githubusercontent.com/AETHERVERSE/halo-universe/c37535418e3150198914121cde4d549c06bd9022/halo-home.html";
+        "https://raw.githubusercontent.com/AETHERVERSE/halo-universe/59a88608d3f210007d2e789424661a71ab61a696/halo-home.html";
 
     try {
         const response = await fetch(source, {
@@ -17,62 +22,86 @@
         });
 
         if (!response.ok) {
-            throw new Error("Could not load the original HALO page.");
+            throw new Error("Could not load the HALO page source.");
         }
 
         let html = await response.text();
 
-        /* Remove the newer duplicate HALO identity card. */
+        /*
+         * Remove ONLY the newer duplicate HALO identity card.
+         * Everything else from the complete page stays untouched.
+         */
         html = html.replace(
-            /<!-- =========================\s*MY HALO IDENTITY\s*========================= -->\s*<section\s+class="halo-identity-card"\s+id="haloIdentityCard">[\s\S]*?<\/section>\s*/i,
+            /<!-- =========================\s*MY HALO IDENTITY\s*========================= -->\s*<section\s*class="halo-identity-card"\s*id="haloIdentityCard">[\s\S]*?<\/section>\s*/i,
             ""
         );
 
-        /* Remove the newer identity-card CSS. */
+        /*
+         * Remove ONLY the CSS belonging to that duplicate card.
+         */
         html = html.replace(
-            /\s*\/\* =========================\s*HALO IDENTITY\s*========================= \*\/\s*\.halo-identity-card \{[\s\S]*?\.halo-identity-points \{[\s\S]*?\}\s*/i,
-            "\n"
+            /\/\* =========================\s*HALO IDENTITY\s*========================= \*\/\s*\.halo-identity-card\s*\{[\s\S]*?\.halo-identity-points\s*\{[\s\S]*?\}\s*/i,
+            ""
         );
 
-        /* Remove the identity-card class from the shared card selector. */
+        /*
+         * Remove the duplicate card from the shared card selector.
+         */
         html = html.replace(
             /,\s*\.halo-identity-card\s*\{/,
             " {"
         );
 
-        /* Restore the original HALO ID display directly below the hero. */
-        html = html.replace(
-            /(<\/section>\s*<!-- =========================\s*MY HALO IDENTITY)/i,
-            '$1'
-        );
+        /*
+         * Put the ORIGINAL HALO ID display directly underneath MY HALO.
+         */
+        const heroStart = html.indexOf('<section class="hero">');
+        const heroEnd = html.indexOf("</section>", heroStart);
 
-        const heroEnd = html.indexOf("</section>", html.indexOf('<section class="hero">'));
-        if (heroEnd !== -1) {
-            const insertAt = heroEnd + "</section>".length;
-            html =
-                html.slice(0, insertAt) +
-                '\n\n<p class="email" id="haloEmail"></p>\n' +
-                html.slice(insertAt);
+        if (heroStart === -1 || heroEnd === -1) {
+            throw new Error("HALO hero section not found.");
         }
 
-        /* Restore the original HALO ID styling. */
+        const insertAt = heroEnd + "</section>".length;
+
+        html =
+            html.slice(0, insertAt) +
+            '\n\n<p class="email" id="haloEmail"></p>\n' +
+            html.slice(insertAt);
+
+        /*
+         * Original HALO ID styling.
+         */
         html = html.replace(
             "</style>",
-            '\n.email { color: #aaa0e6; font-style: italic; }\n\n</style>'
+            `
+.email {
+    color: #aaa0e6;
+    font-style: italic;
+}
+
+</style>`,
+            1
         );
 
-        /* Replace the newer identity loader with the original behavior. */
-        const start = html.indexOf(
+        /*
+         * Restore the original HALO ID loader.
+         */
+        const identityStart = html.indexOf(
             "/* =========================\n   HALO IDENTITY"
         );
+
         const rankStart = html.indexOf(
             "/* =========================\n   HALO RANK",
-            start
+            identityStart
         );
 
-        if (start !== -1 && rankStart !== -1) {
-            const loader =
-`/* =========================
+        if (identityStart === -1 || rankStart === -1) {
+            throw new Error("HALO ID loader section not found.");
+        }
+
+        const originalHaloIdLoader = `
+/* =========================
    HALO ID
 ========================= */
 
@@ -156,35 +185,40 @@ async function loadHaloIdentity(
 
 
 `;
-            html =
-                html.slice(0, start) +
-                loader +
-                html.slice(rankStart);
-        }
 
-        /* Remove the obsolete top-points synchronization. */
+        html =
+            html.slice(0, identityStart) +
+            originalHaloIdLoader +
+            html.slice(rankStart);
+
+        /*
+         * Remove the obsolete AETHER-POINTS synchronization that belonged
+         * only to the deleted duplicate identity card.
+         */
         html = html.replace(
-            /\s*\/\*\s*\* Also display the current points[\s\S]*?if \(identityPoints\) \{[\s\S]*?\}\s*/i,
+            /\/\*\s*\* Also display the current points[\s\S]*?if\s*\(identityPoints\)\s*\{[\s\S]*?\}\s*/i,
             "\n"
         );
 
-        /* Remove the obsolete error reference. */
         html = html.replace(
-            /\s*document\s*\.getElementById\(\s*"haloIdentityPoints"\s*\)\s*\.textContent\s*=\s*"—";/i,
+            /document\s*\.getElementById\(\s*"haloIdentityPoints"\s*\)\s*\.textContent\s*=\s*"—"\s*;/i,
             ""
         );
 
-        /* Write the corrected original page back into the document. */
+        /*
+         * The complete original page is now rendered.
+         */
         document.open();
         document.write(html);
         document.close();
 
     } catch (error) {
+        console.error("HALO loading error:", error);
+
         document.body.innerHTML =
             "<p style='font-family:Georgia,serif;padding:30px;color:#f5efff;background:#0b0615'>" +
             "HALO could not be loaded. Please refresh the page." +
             "</p>";
-        console.error(error);
     }
 })();
 </script>
