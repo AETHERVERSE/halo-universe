@@ -8,217 +8,120 @@
 <body>
 <script>
 (async function () {
-    /*
-     * This uses the REAL GitHub COMMIT that contains the complete
-     * halo-home.html. The previous file incorrectly used the blob SHA,
-     * which caused the page to fail with "HALO could not be loaded".
-     */
-    const source =
-        "https://raw.githubusercontent.com/AETHERVERSE/halo-universe/59a88608d3f210007d2e789424661a71ab61a696/halo-home.html";
+    const source = "https://raw.githubusercontent.com/AETHERVERSE/halo-universe/59a88608d3f210007d2e789424661a71ab61a696/halo-home.html";
 
     try {
-        const response = await fetch(source, {
-            cache: "no-store"
-        });
-
-        if (!response.ok) {
-            throw new Error("Could not load the HALO page source.");
-        }
-
+        const response = await fetch(source, { cache: "no-store" });
+        if (!response.ok) throw new Error("Could not load the HALO page source.");
         let html = await response.text();
 
-        /*
-         * Remove ONLY the newer duplicate HALO identity card.
-         * Everything else from the complete page stays untouched.
-         */
         html = html.replace(
             /<!-- =========================\s*MY HALO IDENTITY\s*========================= -->\s*<section\s*class="halo-identity-card"\s*id="haloIdentityCard">[\s\S]*?<\/section>\s*/i,
             ""
         );
-
-        /*
-         * Remove ONLY the CSS belonging to that duplicate card.
-         */
         html = html.replace(
             /\/\* =========================\s*HALO IDENTITY\s*========================= \*\/\s*\.halo-identity-card\s*\{[\s\S]*?\.halo-identity-points\s*\{[\s\S]*?\}\s*/i,
             ""
         );
+        html = html.replace(/,\s*\.halo-identity-card\s*\{/, " {");
 
-        /*
-         * Remove the duplicate card from the shared card selector.
-         */
-        html = html.replace(
-            /,\s*\.halo-identity-card\s*\{/,
-            " {"
-        );
-
-        /*
-         * Put the ORIGINAL HALO ID display directly underneath MY HALO.
-         */
         const heroStart = html.indexOf('<section class="hero">');
         const heroEnd = html.indexOf("</section>", heroStart);
-
-        if (heroStart === -1 || heroEnd === -1) {
-            throw new Error("HALO hero section not found.");
-        }
-
+        if (heroStart === -1 || heroEnd === -1) throw new Error("HALO hero section not found.");
         const insertAt = heroEnd + "</section>".length;
+        html = html.slice(0, insertAt) + '\n\n<p class="email" id="haloEmail"></p>\n' + html.slice(insertAt);
 
-        html =
-            html.slice(0, insertAt) +
-            '\n\n<p class="email" id="haloEmail"></p>\n' +
-            html.slice(insertAt);
+        html = html.replace("</style>", `
+.email { color: #aaa0e6; font-style: italic; }
+</style>`, 1);
 
-        /*
-         * Original HALO ID styling.
-         */
-        html = html.replace(
-            "</style>",
-            `
-.email {
-    color: #aaa0e6;
-    font-style: italic;
-}
-
-</style>`,
-            1
-        );
-
-        /*
-         * Restore the original HALO ID loader.
-         */
-        const identityStart = html.indexOf(
-            "/* =========================\n   HALO IDENTITY"
-        );
-
-        const rankStart = html.indexOf(
-            "/* =========================\n   HALO RANK",
-            identityStart
-        );
-
-        if (identityStart === -1 || rankStart === -1) {
-            throw new Error("HALO ID loader section not found.");
-        }
+        const identityStart = html.indexOf("/* =========================\n   HALO IDENTITY");
+        const rankStart = html.indexOf("/* =========================\n   HALO RANK", identityStart);
+        if (identityStart === -1 || rankStart === -1) throw new Error("HALO ID loader section not found.");
 
         const originalHaloIdLoader = `
 /* =========================
    HALO ID
 ========================= */
 
-async function loadHaloIdentity(
-    userId
-) {
-
-    const identityElement =
-        document.getElementById(
-            "haloEmail"
-        );
-
+async function loadHaloIdentity(userId) {
+    const identityElement = document.getElementById("haloEmail");
     try {
+        const { data: profile, error: profileError } = await supabaseClient
+            .from("halo_profiles")
+            .select("halo_id")
+            .eq("user_id", userId)
+            .maybeSingle();
+        if (profileError) console.error("PROFILE ERROR:", profileError);
 
-        const {
-            data: profile,
-            error: profileError
-        } =
-            await supabaseClient
-                .from("halo_profiles")
-                .select("halo_id")
-                .eq(
-                    "user_id",
-                    userId
-                )
-                .maybeSingle();
-
-        if (profileError) {
-            console.error(
-                "PROFILE ERROR:",
-                profileError
-            );
-        }
-
-        const {
-            data: admin,
-            error: adminError
-        } =
-            await supabaseClient.rpc(
-                "is_aether_admin"
-            );
-
-        if (adminError) {
-            console.error(
-                "AETHER ADMIN CHECK ERROR:",
-                adminError
-            );
-        }
+        const { data: admin, error: adminError } = await supabaseClient.rpc("is_aether_admin");
+        if (adminError) console.error("AETHER ADMIN CHECK ERROR:", adminError);
 
         if (admin === true) {
-
-            identityElement.textContent =
-                "AETHER ADMIN • NO HALO ID ASSIGNED";
-
+            identityElement.textContent = "AETHER ADMIN • NO HALO ID ASSIGNED";
         } else if (profile) {
-
-            identityElement.textContent =
-                "HALO ID: " +
-                profile.halo_id;
-
+            identityElement.textContent = "HALO ID: " + profile.halo_id;
         } else {
-
-            identityElement.textContent =
-                "NO HALO ID ASSIGNED";
-
+            identityElement.textContent = "NO HALO ID ASSIGNED";
         }
-
     } catch (error) {
-
-        console.error(
-            "PROFILE ERROR:",
-            error
-        );
-
-        identityElement.textContent =
-            "NO HALO ID ASSIGNED";
-
+        console.error("PROFILE ERROR:", error);
+        identityElement.textContent = "NO HALO ID ASSIGNED";
     }
-
 }
 
 
 `;
+        html = html.slice(0, identityStart) + originalHaloIdLoader + html.slice(rankStart);
 
-        html =
-            html.slice(0, identityStart) +
-            originalHaloIdLoader +
-            html.slice(rankStart);
-
-        /*
-         * Remove the obsolete AETHER-POINTS synchronization that belonged
-         * only to the deleted duplicate identity card.
-         */
         html = html.replace(
             /\/\*\s*\* Also display the current points[\s\S]*?if\s*\(identityPoints\)\s*\{[\s\S]*?\}\s*/i,
             "\n"
         );
-
         html = html.replace(
             /document\s*\.getElementById\(\s*"haloIdentityPoints"\s*\)\s*\.textContent\s*=\s*"—"\s*;/i,
             ""
         );
 
-        /*
-         * The complete original page is now rendered.
-         */
+        const emailTest = `
+<style>
+#haloEmailTest{display:none;margin:18px auto 30px;max-width:520px;padding:16px;border:1px solid rgba(170,160,230,.35);border-radius:16px;background:rgba(20,12,35,.72);text-align:center}
+#haloEmailTest button{border:0;border-radius:12px;padding:12px 18px;font-size:15px;cursor:pointer;background:#aaa0e6;color:#171020}
+#haloEmailTestStatus{margin-top:10px;font-size:13px;color:#aaa0e6}
+</style>
+<section id="haloEmailTest"><button type="button" id="sendHaloTestEmail">📧 Test E-Mail an HALO senden</button><div id="haloEmailTestStatus"></div></section>
+<script>
+(function(){
+    const box=document.getElementById("haloEmailTest"),btn=document.getElementById("sendHaloTestEmail"),status=document.getElementById("haloEmailTestStatus");
+    async function setup(){
+        try{
+            if(!window.supabaseClient)return;
+            const {data:admin,error:adminError}=await window.supabaseClient.rpc("is_aether_admin");
+            if(adminError||admin!==true)return;
+            box.style.display="block";
+            btn.addEventListener("click",async function(){
+                btn.disabled=true;status.textContent="Sende Testmail … ✨";
+                try{
+                    const {data,error}=await window.supabaseClient.functions.invoke("send-email",{body:{to:"carinawiedemann2@gmail.com",subject:"AETHER • HALO – Testmail",htmlContent:"<h2>AETHER • HALO</h2><p>Das ist eine Testmail aus dem AETHERVERSE.</p><p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"}});
+                    if(error)throw error;
+                    status.textContent="✅ Testmail wurde an carinawiedemann2@gmail.com gesendet.";
+                    console.log("BREVO TEST RESPONSE:",data);
+                }catch(error){console.error("BREVO TEST ERROR:",error);status.textContent="❌ Testmail konnte nicht gesendet werden. Siehe Konsole.";}
+                finally{btn.disabled=false;}
+            });
+        }catch(error){console.error("HALO email test setup error:",error);}
+    }
+    setTimeout(setup,1200);
+})();
+<\/script>`;
+
+        html = html.replace("</body>", emailTest + "\n</body>");
         document.open();
         document.write(html);
         document.close();
-
     } catch (error) {
         console.error("HALO loading error:", error);
-
-        document.body.innerHTML =
-            "<p style='font-family:Georgia,serif;padding:30px;color:#f5efff;background:#0b0615'>" +
-            "HALO could not be loaded. Please refresh the page." +
-            "</p>";
+        document.body.innerHTML = "<p style='font-family:Georgia,serif;padding:30px;color:#f5efff;background:#0b0615'>HALO could not be loaded. Please refresh the page.</p>";
     }
 })();
 </script>
