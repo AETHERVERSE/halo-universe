@@ -96,13 +96,13 @@ async function loadHaloIdentity(userId) {
     async function setup(){
         try{
             if(!window.supabaseClient)return;
-            const {data:admin,error:adminError}=await window.supabaseClient.rpc("is_aether_admin");
+            const {data:admin,error:adminError}=await supabaseClient.rpc("is_aether_admin");
             if(adminError||admin!==true)return;
             box.style.display="block";
             btn.addEventListener("click",async function(){
                 btn.disabled=true;status.textContent="Sende Testmail … ✨";
                 try{
-                    const {data,error}=await window.supabaseClient.functions.invoke("send-email",{body:{to:"carinawiedemann2@gmail.com",subject:"AETHER • HALO – Testmail",htmlContent:"<h2>AETHER • HALO</h2><p>Das ist eine Testmail aus dem AETHERVERSE.</p><p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"}});
+                    const {data,error}=await supabaseClient.functions.invoke("send-email",{body:{to:"carinawiedemann2@gmail.com",subject:"AETHER • HALO – Testmail",htmlContent:"<h2>AETHER • HALO</h2><p>Das ist eine Testmail aus dem AETHERVERSE.</p><p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"}});
                     if(error)throw error;
                     status.textContent="✅ Testmail wurde an carinawiedemann2@gmail.com gesendet.";
                     console.log("BREVO TEST RESPONSE:",data);
