@@ -15,29 +15,75 @@
         if (!response.ok) throw new Error("Could not load the HALO page source.");
         let html = await response.text();
 
+        /*
+         * =========================
+         * FIX EXPLORE NAVIGATION
+         * =========================
+         *
+         * The original My HALO navigation
+         * points EXPLORE to index.html.
+         * The dedicated Explore page is
+         * explore.html.
+         */
+        html = html.replace(
+            /<a\s+href=["']index\.html["']>(\s*)EXPLORE(\s*)<\/a>/i,
+            '<a href="explore.html">$1EXPLORE$2</a>'
+        );
+
         html = html.replace(
             /<!-- =========================\s*MY HALO IDENTITY\s*========================= -->\s*<section\s*class="halo-identity-card"\s*id="haloIdentityCard">[\s\S]*?<\/section>\s*/i,
             ""
         );
+
         html = html.replace(
             /\/\* =========================\s*HALO IDENTITY\s*========================= \*\/\s*\.halo-identity-card\s*\{[\s\S]*?\.halo-identity-points\s*\{[\s\S]*?\}\s*/i,
             ""
         );
-        html = html.replace(/,\s*\.halo-identity-card\s*\{/, " {");
+
+        html = html.replace(
+            /,\s*\.halo-identity-card\s*\{/,
+            " {"
+        );
 
         const heroStart = html.indexOf('<section class="hero">');
         const heroEnd = html.indexOf("</section>", heroStart);
-        if (heroStart === -1 || heroEnd === -1) throw new Error("HALO hero section not found.");
-        const insertAt = heroEnd + "</section>".length;
-        html = html.slice(0, insertAt) + '\n\n<p class="email" id="haloEmail"></p>\n' + html.slice(insertAt);
+
+        if (heroStart === -1 || heroEnd === -1) {
+            throw new Error("HALO hero section not found.");
+        }
+
+        const insertAt =
+            heroEnd +
+            "</section>".length;
+
+        html =
+            html.slice(0, insertAt) +
+            '\n\n<p class="email" id="haloEmail"></p>\n' +
+            html.slice(insertAt);
 
         html = html.replace("</style>", `
 .email { color: #aaa0e6; font-style: italic; }
 </style>`, 1);
 
-        const identityStart = html.indexOf("/* =========================\n   HALO IDENTITY");
-        const rankStart = html.indexOf("/* =========================\n   HALO RANK", identityStart);
-        if (identityStart === -1 || rankStart === -1) throw new Error("HALO ID loader section not found.");
+        const identityStart =
+            html.indexOf(
+                "/* =========================\n   HALO IDENTITY"
+            );
+
+        const rankStart =
+            html.indexOf(
+                "/* =========================\n   HALO RANK",
+                identityStart
+            );
+
+        if (
+            identityStart === -1 ||
+            rankStart === -1
+        ) {
+            throw new Error(
+                "HALO ID loader section not found."
+            );
+        }
 
         const originalHaloIdLoader = `
 /* =========================
@@ -45,39 +91,86 @@
 ========================= */
 
 async function loadHaloIdentity(userId) {
-    const identityElement = document.getElementById("haloEmail");
+    const identityElement =
+        document.getElementById("haloEmail");
+
     try {
-        const { data: profile, error: profileError } = await supabaseClient
+        const {
+            data: profile,
+            error: profileError
+        } = await supabaseClient
             .from("halo_profiles")
             .select("halo_id")
             .eq("user_id", userId)
             .maybeSingle();
-        if (profileError) console.error("PROFILE ERROR:", profileError);
 
-        const { data: admin, error: adminError } = await supabaseClient.rpc("is_aether_admin");
-        if (adminError) console.error("AETHER ADMIN CHECK ERROR:", adminError);
+        if (profileError) {
+            console.error(
+                "PROFILE ERROR:",
+                profileError
+            );
+        }
+
+        const {
+            data: admin,
+            error: adminError
+        } = await supabaseClient.rpc(
+            "is_aether_admin"
+        );
+
+        if (adminError) {
+            console.error(
+                "AETHER ADMIN CHECK ERROR:",
+                adminError
+            );
+        }
 
         if (admin === true) {
-            identityElement.textContent = "AETHER ADMIN • NO HALO ID ASSIGNED";
+
+            identityElement.textContent =
+                "AETHER ADMIN • NO HALO ID ASSIGNED";
+
         } else if (profile) {
-            identityElement.textContent = "HALO ID: " + profile.halo_id;
+
+            identityElement.textContent =
+                "HALO ID: " +
+                profile.halo_id;
+
         } else {
-            identityElement.textContent = "NO HALO ID ASSIGNED";
+
+            identityElement.textContent =
+                "NO HALO ID ASSIGNED";
+
         }
+
     } catch (error) {
-        console.error("PROFILE ERROR:", error);
-        identityElement.textContent = "NO HALO ID ASSIGNED";
+
+        console.error(
+            "PROFILE ERROR:",
+            error
+        );
+
+        identityElement.textContent =
+            "NO HALO ID ASSIGNED";
     }
 }
 
 
 `;
-        html = html.slice(0, identityStart) + originalHaloIdLoader + html.slice(rankStart);
+
+        html =
+            html.slice(
+                0,
+                identityStart
+            ) +
+            originalHaloIdLoader +
+            html.slice(rankStart);
 
         html = html.replace(
             /\/\*\s*\* Also display the current points[\s\S]*?if\s*\(identityPoints\)\s*\{[\s\S]*?\}\s*/i,
             "\n"
         );
+
         html = html.replace(
             /document\s*\.getElementById\(\s*"haloIdentityPoints"\s*\)\s*\.textContent\s*=\s*"—"\s*;/i,
             ""
@@ -95,6 +188,7 @@ async function loadHaloIdentity(userId) {
     background: rgba(20,12,35,.72);
     text-align: center;
 }
+
 #haloEmailTest button {
     border: 0;
     border-radius: 12px;
@@ -104,18 +198,32 @@ async function loadHaloIdentity(userId) {
     background: #aaa0e6;
     color: #171020;
 }
+
 #haloEmailTestStatus {
     margin-top: 10px;
     font-size: 13px;
     color: #aaa0e6;
 }
 </style>
+
 <section id="haloEmailTest">
-    <button type="button" id="sendHaloTestEmail">📧 Test E-Mail an HALO senden</button>
+
+    <button
+        type="button"
+        id="sendHaloTestEmail"
+    >
+        📧 Test E-Mail an HALO senden
+    </button>
+
     <div id="haloEmailTestStatus"></div>
+
 </section>`;
 
-        html = html.replace("</body>", emailTestHtml + "\n</body>");
+        html = html.replace(
+            "</body>",
+            emailTestHtml +
+            "\n</body>"
+        );
 
         const emailTestScript = `
 /* =========================
@@ -124,72 +232,132 @@ async function loadHaloIdentity(userId) {
 
 async function setupHaloEmailTest() {
 
-    const box = document.getElementById("haloEmailTest");
-    const button = document.getElementById("sendHaloTestEmail");
-    const status = document.getElementById("haloEmailTestStatus");
+    const box =
+        document.getElementById(
+            "haloEmailTest"
+        );
 
-    if (!box || !button || !status) return;
+    const button =
+        document.getElementById(
+            "sendHaloTestEmail"
+        );
+
+    const status =
+        document.getElementById(
+            "haloEmailTestStatus"
+        );
+
+    if (
+        !box ||
+        !button ||
+        !status
+    ) {
+        return;
+    }
 
     try {
 
-        const { data: admin, error: adminError } =
-            await supabaseClient.rpc("is_aether_admin");
+        const {
+            data: admin,
+            error: adminError
+        } =
+            await supabaseClient.rpc(
+                "is_aether_admin"
+            );
 
         if (adminError) {
-            console.error("BREVO TEST ADMIN CHECK ERROR:", adminError);
+
+            console.error(
+                "BREVO TEST ADMIN CHECK ERROR:",
+                adminError
+            );
+
             return;
         }
 
-        if (admin !== true) return;
+        if (admin !== true) {
+            return;
+        }
 
-        box.style.display = "block";
+        box.style.display =
+            "block";
 
-        button.addEventListener("click", async () => {
+        button.addEventListener(
+            "click",
+            async () => {
 
-            button.disabled = true;
-            status.textContent = "Sende Testmail … ✨";
+                button.disabled =
+                    true;
 
-            try {
+                status.textContent =
+                    "Sende Testmail … ✨";
 
-                const { data, error } =
-                    await supabaseClient.functions.invoke(
-                        "send-email",
-                        {
-                            body: {
-                                to: "carinawiedemann2@gmail.com",
-                                subject: "AETHER • HALO – Testmail",
-                                htmlContent:
-                                    "<h2>AETHER • HALO</h2>" +
-                                    "<p>Das ist eine Testmail aus dem AETHERVERSE.</p>" +
-                                    "<p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"
+                try {
+
+                    const {
+                        data,
+                        error
+                    } =
+                        await supabaseClient.functions.invoke(
+                            "send-email",
+                            {
+                                body: {
+                                    to: "carinawiedemann2@gmail.com",
+
+                                    subject:
+                                        "AETHER • HALO – Testmail",
+
+                                    htmlContent:
+                                        "<h2>AETHER • HALO</h2>" +
+                                        "<p>Das ist eine Testmail aus dem AETHERVERSE.</p>" +
+                                        "<p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"
+                                }
                             }
-                        }
+                        );
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    console.log(
+                        "BREVO TEST RESPONSE:",
+                        data
                     );
 
-                if (error) throw error;
+                    status.textContent =
+                        "✅ Testmail wurde gesendet.";
 
-                console.log("BREVO TEST RESPONSE:", data);
-                status.textContent = "✅ Testmail wurde gesendet.";
+                } catch (error) {
 
-            } catch (error) {
+                    console.error(
+                        "BREVO TEST ERROR:",
+                        error
+                    );
 
-                console.error("BREVO TEST ERROR:", error);
-                status.textContent =
-                    "❌ Fehler: " +
-                    (error && error.message
-                        ? error.message
-                        : String(error));
+                    status.textContent =
+                        "❌ Fehler: " +
+                        (
+                            error &&
+                            error.message
+                                ? error.message
+                                : String(error)
+                        );
 
-            } finally {
+                } finally {
 
-                button.disabled = false;
+                    button.disabled =
+                        false;
 
+                }
             }
-        });
+        );
 
     } catch (error) {
 
-        console.error("BREVO TEST SETUP ERROR:", error);
+        console.error(
+            "BREVO TEST SETUP ERROR:",
+            error
+        );
 
     }
 }
@@ -197,15 +365,32 @@ async function setupHaloEmailTest() {
 setupHaloEmailTest();
 `;
 
-        html = html.replace("loadHalo();", emailTestScript + "\nloadHalo();");
+        html = html.replace(
+            "loadHalo();",
+            emailTestScript +
+            "\nloadHalo();"
+        );
+
         document.open();
         document.write(html);
         document.close();
+
     } catch (error) {
-        console.error("HALO loading error:", error);
-        document.body.innerHTML = "<p style='font-family:Georgia,serif;padding:30px;color:#f5efff;background:#0b0615'>HALO could not be loaded. Please refresh the page.</p>";
+
+        console.error(
+            "HALO loading error:",
+            error
+        );
+
+        document.body.innerHTML =
+            "<p style='font-family:Georgia,serif;padding:30px;color:#f5efff;background:#0b0615'>" +
+            "HALO could not be loaded. Please refresh the page." +
+            "</p>";
     }
+
 })();
 </script>
 </body>
 </html>
+
+
