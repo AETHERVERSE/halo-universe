@@ -83,39 +83,117 @@ async function loadHaloIdentity(userId) {
             ""
         );
 
-        const emailTest = `
+        const emailTestHtml = `
 <style>
-#haloEmailTest{display:none;margin:18px auto 30px;max-width:520px;padding:16px;border:1px solid rgba(170,160,230,.35);border-radius:16px;background:rgba(20,12,35,.72);text-align:center}
-#haloEmailTest button{border:0;border-radius:12px;padding:12px 18px;font-size:15px;cursor:pointer;background:#aaa0e6;color:#171020}
-#haloEmailTestStatus{margin-top:10px;font-size:13px;color:#aaa0e6}
+#haloEmailTest {
+    display: none;
+    margin: 18px auto 30px;
+    max-width: 520px;
+    padding: 16px;
+    border: 1px solid rgba(170,160,230,.35);
+    border-radius: 16px;
+    background: rgba(20,12,35,.72);
+    text-align: center;
+}
+#haloEmailTest button {
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-size: 15px;
+    cursor: pointer;
+    background: #aaa0e6;
+    color: #171020;
+}
+#haloEmailTestStatus {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #aaa0e6;
+}
 </style>
-<section id="haloEmailTest"><button type="button" id="sendHaloTestEmail">📧 Test E-Mail an HALO senden</button><div id="haloEmailTestStatus"></div></section>
-<script>
-(function(){
-    const box=document.getElementById("haloEmailTest"),btn=document.getElementById("sendHaloTestEmail"),status=document.getElementById("haloEmailTestStatus");
-    async function setup(){
-        try{
-            if(!window.supabaseClient)return;
-            const {data:admin,error:adminError}=await supabaseClient.rpc("is_aether_admin");
-            if(adminError||admin!==true)return;
-            box.style.display="block";
-            btn.addEventListener("click",async function(){
-                btn.disabled=true;status.textContent="Sende Testmail … ✨";
-                try{
-                    const {data,error}=await supabaseClient.functions.invoke("send-email",{body:{to:"carinawiedemann2@gmail.com",subject:"AETHER • HALO – Testmail",htmlContent:"<h2>AETHER • HALO</h2><p>Das ist eine Testmail aus dem AETHERVERSE.</p><p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"}});
-                    if(error)throw error;
-                    status.textContent="✅ Testmail wurde an carinawiedemann2@gmail.com gesendet.";
-                    console.log("BREVO TEST RESPONSE:",data);
-                }catch(error){console.error("BREVO TEST ERROR:",error);status.textContent="❌ Testmail konnte nicht gesendet werden. Siehe Konsole.";}
-                finally{btn.disabled=false;}
-            });
-        }catch(error){console.error("HALO email test setup error:",error);}
-    }
-    setTimeout(setup,1200);
-})();
-<\/script>`;
+<section id="haloEmailTest">
+    <button type="button" id="sendHaloTestEmail">📧 Test E-Mail an HALO senden</button>
+    <div id="haloEmailTestStatus"></div>
+</section>`;
 
-        html = html.replace("</body>", emailTest + "\n</body>");
+        html = html.replace("</body>", emailTestHtml + "\n</body>");
+
+        const emailTestScript = `
+/* =========================
+   TEMPORARY BREVO TEST
+========================= */
+
+async function setupHaloEmailTest() {
+
+    const box = document.getElementById("haloEmailTest");
+    const button = document.getElementById("sendHaloTestEmail");
+    const status = document.getElementById("haloEmailTestStatus");
+
+    if (!box || !button || !status) return;
+
+    try {
+
+        const { data: admin, error: adminError } =
+            await supabaseClient.rpc("is_aether_admin");
+
+        if (adminError) {
+            console.error("BREVO TEST ADMIN CHECK ERROR:", adminError);
+            return;
+        }
+
+        if (admin !== true) return;
+
+        box.style.display = "block";
+
+        button.addEventListener("click", async () => {
+
+            button.disabled = true;
+            status.textContent = "Sende Testmail … ✨";
+
+            try {
+
+                const { data, error } =
+                    await supabaseClient.functions.invoke(
+                        "send-email",
+                        {
+                            body: {
+                                to: "carinawiedemann2@gmail.com",
+                                subject: "AETHER • HALO – Testmail",
+                                htmlContent:
+                                    "<h2>AETHER • HALO</h2>" +
+                                    "<p>Das ist eine Testmail aus dem AETHERVERSE.</p>" +
+                                    "<p>Wenn du diese Nachricht erhältst, funktioniert die Verbindung von AETHER → Supabase → Brevo. 💜</p>"
+                            }
+                        }
+                    );
+
+                if (error) throw error;
+
+                console.log("BREVO TEST RESPONSE:", data);
+                status.textContent = "✅ Testmail wurde gesendet.";
+
+            } catch (error) {
+
+                console.error("BREVO TEST ERROR:", error);
+                status.textContent = "❌ Testmail konnte nicht gesendet werden.";
+
+            } finally {
+
+                button.disabled = false;
+
+            }
+        });
+
+    } catch (error) {
+
+        console.error("BREVO TEST SETUP ERROR:", error);
+
+    }
+}
+
+setupHaloEmailTest();
+`;
+
+        html = html.replace("loadHalo();", emailTestScript + "\nloadHalo();");
         document.open();
         document.write(html);
         document.close();
