@@ -190,7 +190,7 @@ async function setupHaloEmailTest() {
     }
 }
 
-setupHaloEmailTest();
+window.addEventListener("load", setupHaloEmailTest);
 `;
 
         html = html.replace("loadHalo();", emailTestScript + "\nloadHalo();");
