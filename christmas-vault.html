@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,21 +10,62 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root{--night:#071426;--night2:#0d2038;--gold:#d8bd78;--gold2:#f4e6bd;--silver:#cbd5e2;--ivory:#f8f4e9;--muted:#9eabc0;--line:rgba(216,189,120,.28)}
-    *{box-sizing:border-box} body{margin:0;min-height:100vh;color:var(--ivory);font-family:Georgia,'Times New Roman',serif;background:radial-gradient(ellipse at 50% 0%,#20395a 0,#0d2038 36%,#071426 76%);}
-    a{color:inherit}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px clamp(18px,5vw,64px);border-bottom:1px solid var(--line);font:12px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}.brand{color:var(--gold2);text-decoration:none}.nav{display:flex;gap:18px;flex-wrap:wrap}.nav a{text-decoration:none;color:var(--silver)}.nav a:hover{color:var(--gold2)}
-    main{width:min(1120px,92vw);margin:0 auto;padding:58px 0 80px}.eyebrow{text-align:center;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase}.hero{text-align:center;margin-bottom:42px}.hero h1{font-size:clamp(38px,8vw,78px);font-weight:normal;letter-spacing:.055em;margin:15px 0 8px;color:var(--gold2);text-shadow:0 0 34px #d8bd7830}.subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;color:var(--silver);text-transform:uppercase}.tagline{color:var(--muted);font-size:17px;font-style:italic;margin:22px 0 0}.starline{color:var(--gold);letter-spacing:.8em;margin:24px 0;font-size:18px}
-    .intro{max-width:690px;margin:0 auto 35px;text-align:center;color:#d6deea;font:14px/1.8 Arial,sans-serif}.status{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:0 auto 34px;font:12px Arial,sans-serif;color:var(--muted)}.status strong{color:var(--gold2);font-weight:normal}.status a,.cta{display:inline-block;border:1px solid var(--gold);padding:11px 17px;color:var(--gold2);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font:11px Arial,sans-serif}.status a:hover,.cta:hover{background:#d8bd7818}
-    .chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px}.chapter{border-top:1px solid var(--line);padding:13px 8px;text-align:center}.chapter b{display:block;color:var(--gold2);font:11px Arial,sans-serif;letter-spacing:.12em}.chapter span{display:block;color:var(--muted);font:10px Arial,sans-serif;margin-top:6px;letter-spacing:.08em}
-    .doors{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px}.door{position:relative;min-height:142px;border:1px solid var(--line);border-radius:3px;background:linear-gradient(145deg,#142c49,#09182b);color:var(--ivory);cursor:pointer;padding:14px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;transition:transform .2s,border-color .2s,box-shadow .2s}.door:hover:not(:disabled){transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 28px #0005,0 0 20px #d8bd7818}.door:disabled{cursor:not-allowed;opacity:.56}.door .number{font:11px Arial,sans-serif;letter-spacing:.22em;color:var(--gold)}.door .symbol{font-size:27px;color:var(--gold2)}.door .name{font-size:14px;color:#e9e1d1}.door .state{font:9px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}.door.open{border-color:#bba46c88;background:linear-gradient(145deg,#1b3551,#10233b)}.door.open .state{color:var(--gold2)}
-    .notice{margin:30px auto 0;max-width:690px;min-height:56px;padding:16px 20px;border:1px solid var(--line);text-align:center;color:#cbd5e2;font:13px/1.7 Arial,sans-serif;background:#06102088}.notice strong{color:var(--gold2)}.footer{text-align:center;margin-top:50px;color:#8291a8;font:10px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
-    @media(max-width:760px){.doors{grid-template-columns:repeat(4,minmax(0,1fr))}.chapters{grid-template-columns:repeat(2,1fr)}.door{min-height:125px}.topbar{align-items:flex-start;flex-direction:column}}@media(max-width:420px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}.door{min-height:116px}.door .name{font-size:12px}}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;color:var(--ivory);font-family:Georgia,'Times New Roman',serif;background:radial-gradient(ellipse at 50% 0%,#20395a 0,#0d2038 36%,#071426 76%)}
+    a{color:inherit}
+    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px clamp(18px,5vw,64px);border-bottom:1px solid var(--line);font:12px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+    .brand{color:var(--gold2);text-decoration:none}
+    .nav{display:flex;gap:18px;flex-wrap:wrap}
+    .nav a{text-decoration:none;color:var(--silver)}
+    .nav a:hover{color:var(--gold2)}
+    main{width:min(1120px,92vw);margin:0 auto;padding:58px 0 80px}
+    .eyebrow{text-align:center;color:var(--gold);font:11px Arial,sans-serif;letter-spacing:.34em;text-transform:uppercase}
+    .hero{text-align:center;margin-bottom:42px}
+    .hero h1{font-size:clamp(38px,8vw,78px);font-weight:normal;letter-spacing:.055em;margin:15px 0 8px;color:var(--gold2);text-shadow:0 0 34px #d8bd7830}
+    .subtitle{font:12px Arial,sans-serif;letter-spacing:.28em;color:var(--silver);text-transform:uppercase}
+    .tagline{color:var(--muted);font-size:17px;font-style:italic;margin:22px 0 0}
+    .starline{color:var(--gold);letter-spacing:.8em;margin:24px 0;font-size:18px}
+    .intro{max-width:690px;margin:0 auto 35px;text-align:center;color:#d6deea;font:14px/1.8 Arial,sans-serif}
+    .status{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:0 auto 34px;font:12px Arial,sans-serif;color:var(--muted)}
+    .status strong{color:var(--gold2);font-weight:normal}
+    .status a,.cta{display:inline-block;border:1px solid var(--gold);padding:11px 17px;color:var(--gold2);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font:11px Arial,sans-serif}
+    .status a:hover,.cta:hover{background:#d8bd7818}
+    .chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px}
+    .chapter{border-top:1px solid var(--line);padding:13px 8px;text-align:center}
+    .chapter b{display:block;color:var(--gold2);font:11px Arial,sans-serif;letter-spacing:.12em}
+    .chapter span{display:block;color:var(--muted);font:10px Arial,sans-serif;margin-top:6px;letter-spacing:.08em}
+    .doors{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:13px}
+    .door{position:relative;min-height:142px;border:1px solid var(--line);border-radius:3px;background:linear-gradient(145deg,#142c49,#09182b);color:var(--ivory);cursor:pointer;padding:14px 8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;transition:transform .2s,border-color .2s,box-shadow .2s}
+    .door:hover:not(:disabled){transform:translateY(-4px);border-color:var(--gold);box-shadow:0 8px 28px #0005,0 0 20px #d8bd7818}
+    .door:disabled{cursor:not-allowed;opacity:.56}
+    .door .number{font:11px Arial,sans-serif;letter-spacing:.22em;color:var(--gold)}
+    .door .symbol{font-size:27px;color:var(--gold2)}
+    .door .name{font-size:14px;color:#e9e1d1}
+    .door .state{font:9px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .door.open{border-color:#bba46c88;background:linear-gradient(145deg,#1b3551,#10233b)}
+    .door.open .state{color:var(--gold2)}
+    .notice{margin:30px auto 0;max-width:760px;min-height:56px;padding:18px 20px;border:1px solid var(--line);text-align:center;color:#cbd5e2;font:13px/1.7 Arial,sans-serif;background:#06102088}
+    .notice strong{color:var(--gold2)}
+    .notice a{margin-top:12px}
+    .story-content{margin-top:18px;padding-top:18px;border-top:1px solid var(--line);text-align:left}
+    .story-content h2{margin:0 0 16px;text-align:center;color:var(--gold2);font:normal clamp(20px,4vw,30px) Georgia,serif;letter-spacing:.06em}
+    .story-body{color:#e5e8ef;font:15px/1.9 Georgia,'Times New Roman',serif;white-space:pre-wrap;overflow-wrap:anywhere}
+    .story-meta{margin-top:18px;text-align:center;color:var(--muted);font:10px Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+    .footer{text-align:center;margin-top:50px;color:#8291a8;font:10px Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+    @media(max-width:760px){.doors{grid-template-columns:repeat(4,minmax(0,1fr))}.chapters{grid-template-columns:repeat(2,1fr)}.door{min-height:125px}.topbar{align-items:flex-start;flex-direction:column}}
+    @media(max-width:420px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}.door{min-height:116px}.door .name{font-size:12px}}
   </style>
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="index.html">✦ AETHER UNIVERSE</a>
-    <nav class="nav" aria-label="Main navigation"><a href="index.html">Home</a><a href="universe.html">Universe</a><a href="halo.html">My HALO</a></nav>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="universe.html">Universe</a>
+      <a href="halo.html">My HALO</a>
+    </nav>
   </header>
+
   <main>
     <section class="hero">
       <div class="eyebrow">AETHER presents</div>
@@ -32,61 +74,293 @@
       <div class="starline">✧ ✦ ✧ ✦ ✧ ✦ ✧</div>
       <p class="tagline">24 Days. 7 Stars. 1 Universe.</p>
     </section>
-    <p class="intro">A signal is travelling through the winter sky. Behind each door waits another piece of the story. Follow the seven stars — and discover the light that brings them together.</p>
-    <div class="status" id="authStatus" aria-live="polite"><span>Checking your HALO connection…</span></div>
+
+    <p class="intro">
+      A signal is travelling through the winter sky. Behind each door waits another piece of the story.
+      Follow the seven stars — and discover the light that brings them together.
+    </p>
+
+    <div class="status" id="authStatus" aria-live="polite">
+      <span>Checking your HALO connection…</span>
+    </div>
+
     <section class="chapters" aria-label="Story chapters">
       <div class="chapter"><b>I · THE FIRST SIGNAL</b><span>01—06 DEC</span></div>
       <div class="chapter"><b>II · THE SEVEN GUARDIANS</b><span>07—12 DEC</span></div>
       <div class="chapter"><b>III · THE DISTANCE BETWEEN US</b><span>13—18 DEC</span></div>
       <div class="chapter"><b>IV · THE 24TH STAR</b><span>19—24 DEC</span></div>
     </section>
+
     <section class="doors" id="doors" aria-label="The 24 advent doors"></section>
-    <div class="notice" id="doorNotice" aria-live="polite"><strong>Choose a door.</strong> The next chapter of our story is waiting.</div>
+
+    <div class="notice" id="doorNotice" aria-live="polite">
+      <strong>Choose a door.</strong> The next chapter of our story is waiting.
+    </div>
+
     <div class="footer">AETHER · HALO · THE 24TH STAR</div>
   </main>
+
 <script>
-  // Public frontend credentials: publishable key only. Never place a service-role/secret key here.
+  // Public frontend credentials only. Never place a service-role/secret key here.
   const SUPABASE_URL = 'https://mkdkfnejqnqoalzyeqaw.supabase.co';
   const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_uScqa4BUx4rq0lEmkVO-8Q_QsiyetkY';
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+
+  const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
   const days = [
-    'The First Signal','A Light in the Snow','The Silent Warning','Seven Reflections','Someone Is Missing','Follow the Light',
-    'The Golden Flame','Shadow of the Moon','A Heart of Thunder','Where the Ocean Sleeps','The Phoenix Promise','A Light Called Home',
-    'The Frozen Gate','Letters Never Sent','Seven Voices','The Longest Night','A Thousand Miles Away','The Last Star Fades',
-    'Beyond the Stars','The Truth We Couldn’t See','If You Are There','The Eighth Light','The Night We Found You','THE 24TH STAR'
+    'The First Signal',
+    'A Light in the Snow',
+    'The Silent Warning',
+    'Seven Reflections',
+    'Someone Is Missing',
+    'Follow the Light',
+    'The Golden Flame',
+    'Shadow of the Moon',
+    'A Heart of Thunder',
+    'Where the Ocean Sleeps',
+    'The Phoenix Promise',
+    'A Light Called Home',
+    'The Frozen Gate',
+    'Letters Never Sent',
+    'Seven Voices',
+    'The Longest Night',
+    'A Thousand Miles Away',
+    'The Last Star Fades',
+    'Beyond the Stars',
+    'The Truth We Couldn’t See',
+    'If You Are There',
+    'The Eighth Light',
+    'The Night We Found You',
+    'THE 24TH STAR'
   ];
+
   let currentUser = null;
-  const berlinToday = () => new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
-  const today = berlinToday();
+
+  const berlinToday = () =>
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Europe/Berlin',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(new Date());
+
   const doors = document.getElementById('doors');
   const notice = document.getElementById('doorNotice');
-  function renderDoors(){
-    doors.innerHTML = '';
-    days.forEach((name,index)=>{
-      const day=index+1, date=`2026-12-${String(day).padStart(2,'0')}`;
-      const unlocked=today>=date;
-      const button=document.createElement('button');
-      button.type='button'; button.className='door'+(unlocked?' open':''); button.disabled=!unlocked;
-      button.setAttribute('aria-label',`Door ${day}: ${name}${unlocked?' — available':' — locked until '+date}`);
-      button.innerHTML=`<span class="number">DOOR ${String(day).padStart(2,'0')}</span><span class="symbol">${unlocked?'✦':'✧'}</span><span class="name">${name}</span><span class="state">${unlocked?'Available':'Opens '+date.slice(5).replace('-','.')+'.'}</span>`;
-      button.addEventListener('click',()=>{
-        if(!currentUser){ notice.innerHTML='<strong>Become a HALO.</strong> Sign in or create your HALO account to enter the Christmas Vault. <a class="cta" href="halo.html">Join / Sign in</a>'; return; }
-        notice.innerHTML=`<strong>Door ${String(day).padStart(2,'0')} · ${name}</strong><br>This door is unlocked. Its exclusive story and surprise will appear here when the daily content is added.`;
+  const status = document.getElementById('authStatus');
+
+  function setNoticeMessage(title, message) {
+    notice.replaceChildren();
+
+    const heading = document.createElement('strong');
+    heading.textContent = title;
+
+    const paragraph = document.createElement('div');
+    paragraph.textContent = message;
+
+    notice.append(heading, paragraph);
+  }
+
+  function showLoginNotice() {
+    notice.replaceChildren();
+
+    const heading = document.createElement('strong');
+    heading.textContent = 'Become a HALO.';
+
+    const paragraph = document.createElement('div');
+    paragraph.textContent =
+      'Sign in or create your HALO account to enter the Christmas Vault.';
+
+    const link = document.createElement('a');
+    link.className = 'cta';
+    link.href = 'halo.html';
+    link.textContent = 'Join / Sign in';
+
+    notice.append(heading, paragraph, link);
+  }
+
+  function showStory(title, story, day) {
+    notice.replaceChildren();
+
+    const heading = document.createElement('strong');
+    heading.textContent = `DOOR ${String(day).padStart(2, '0')} · STORY UNLOCKED`;
+
+    const storySection = document.createElement('section');
+    storySection.className = 'story-content';
+
+    const storyTitle = document.createElement('h2');
+    storyTitle.textContent = title;
+
+    const storyBody = document.createElement('div');
+    storyBody.className = 'story-body';
+    storyBody.textContent = story;
+
+    const meta = document.createElement('div');
+    meta.className = 'story-meta';
+    meta.textContent = `AETHER CHRISTMAS VAULT · DAY ${day} OF 24`;
+
+    storySection.append(storyTitle, storyBody, meta);
+    notice.append(heading, storySection);
+
+    notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  async function openDoor(day, fallbackTitle) {
+    if (!currentUser) {
+      showLoginNotice();
+      return;
+    }
+
+    setNoticeMessage(
+      `DOOR ${String(day).padStart(2, '0')}`,
+      'Opening your story…'
+    );
+
+    try {
+      const { data, error } = await supabaseClient
+        .from('christmas_vault_content')
+        .select('day_number, title, unlock_date, story_content')
+        .eq('day_number', day)
+        .maybeSingle();
+
+      if (error) {
+        console.error('Christmas Vault story error:', error);
+        setNoticeMessage(
+          'The signal is unclear.',
+          'We could not load this story right now. Please try again in a moment.'
+        );
+        return;
+      }
+
+      if (!data) {
+        setNoticeMessage(
+          fallbackTitle,
+          'This story has not been published yet. Please return soon — the next piece of the constellation is still being prepared.'
+        );
+        return;
+      }
+
+      // Extra client-side date check for a clear user experience.
+      // Supabase RLS remains the actual security protection.
+      if (data.unlock_date > berlinToday()) {
+        setNoticeMessage(
+          'This star is still sleeping.',
+          'This door has not reached its release date yet.'
+        );
+        return;
+      }
+
+      showStory(data.title, data.story_content, day);
+
+    } catch (error) {
+      console.error('Christmas Vault error:', error);
+      setNoticeMessage(
+        'Something went wrong.',
+        'The story could not be opened. Please try again later.'
+      );
+    }
+  }
+
+  function renderDoors() {
+    doors.replaceChildren();
+
+    const today = berlinToday();
+
+    days.forEach((name, index) => {
+      const day = index + 1;
+      const date = `2026-12-${String(day).padStart(2, '0')}`;
+      const unlocked = today >= date;
+
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'door' + (unlocked ? ' open' : '');
+      button.disabled = !unlocked;
+
+      button.setAttribute(
+        'aria-label',
+        `Door ${day}: ${name}${unlocked ? ' — available' : ' — locked until ' + date}`
+      );
+
+      const number = document.createElement('span');
+      number.className = 'number';
+      number.textContent = `DOOR ${String(day).padStart(2, '0')}`;
+
+      const symbol = document.createElement('span');
+      symbol.className = 'symbol';
+      symbol.textContent = unlocked ? '✦' : '✧';
+
+      const title = document.createElement('span');
+      title.className = 'name';
+      title.textContent = name;
+
+      const state = document.createElement('span');
+      state.className = 'state';
+      state.textContent = unlocked
+        ? 'Available'
+        : `Opens ${date.slice(5).replace('-', '.')}.`;
+
+      button.append(number, symbol, title, state);
+
+      button.addEventListener('click', () => {
+        openDoor(day, name);
       });
+
       doors.appendChild(button);
     });
   }
-  async function init(){
-    const {data:{session},error}=await supabaseClient.auth.getSession();
-    currentUser=session?.user||null;
-    const status=document.getElementById('authStatus');
-    if(error){status.innerHTML='<span>HALO connection could not be checked. You can still explore the public vault.</span>';}
-    else if(currentUser){status.innerHTML='<strong>✦ HALO connection active</strong><span>Welcome back to the Vault.</span><a href="halo-home.html">My HALO</a>'}
-    else{status.innerHTML='<span>The Vault is open to explore.</span><a href="halo.html">Join / Sign in as HALO</a>'}
-    renderDoors();
-    supabaseClient.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;initStatusOnly();});
+
+  function updateAuthStatus() {
+    if (currentUser) {
+      status.replaceChildren();
+
+      const label = document.createElement('strong');
+      label.textContent = '✦ HALO connection active';
+
+      const welcome = document.createElement('span');
+      welcome.textContent = 'Welcome back to the Vault.';
+
+      const link = document.createElement('a');
+      link.href = 'halo-home.html';
+      link.textContent = 'My HALO';
+
+      status.append(label, welcome, link);
+    } else {
+      status.replaceChildren();
+
+      const message = document.createElement('span');
+      message.textContent = 'The Vault is open to explore.';
+
+      const link = document.createElement('a');
+      link.href = 'halo.html';
+      link.textContent = 'Join / Sign in as HALO';
+
+      status.append(message, link);
+    }
   }
-  function initStatusOnly(){const status=document.getElementById('authStatus');status.innerHTML=currentUser?'<strong>✦ HALO connection active</strong><span>Welcome back to the Vault.</span><a href="halo-home.html">My HALO</a>':'<span>The Vault is open to explore.</span><a href="halo.html">Join / Sign in as HALO</a>';}
+
+  async function init() {
+    const { data, error } = await supabaseClient.auth.getSession();
+
+    currentUser = data?.session?.user || null;
+
+    if (error) {
+      status.textContent =
+        'HALO connection could not be checked. You can still explore the public vault.';
+    } else {
+      updateAuthStatus();
+    }
+
+    renderDoors();
+
+    supabaseClient.auth.onAuthStateChange((_event, session) => {
+      currentUser = session?.user || null;
+      updateAuthStatus();
+      renderDoors();
+    });
+  }
+
   init();
 </script>
 </body>
