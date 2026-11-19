@@ -1,49 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AETHER — HALO Universe</title>
-
 <style>
-
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     min-height: 100vh;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     color: #f5e9d0;
-
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            #29385c 0%,
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 80% 30%,
-            #40264d 0%,
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            #172d4d 0%,
-            transparent 30%
-        ),
+        radial-gradient(circle at 20% 20%, #29385c 0%, transparent 28%),
+        radial-gradient(circle at 80% 30%, #40264d 0%, transparent 25%),
+        radial-gradient(circle at 50% 90%, #172d4d 0%, transparent 30%),
         #070b18;
 }
 
@@ -65,12 +38,7 @@ header {
 }
 
 h1 {
-    font-size: clamp(
-        2.5rem,
-        8vw,
-        5.5rem
-    );
-
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
     letter-spacing: 10px;
     margin: 15px 0;
     color: #f3d58d;
@@ -82,9 +50,7 @@ h1 {
     font-size: 1rem;
 }
 
-/* =========================
-   MAIN NAVIGATION
-========================= */
+/* MAIN NAVIGATION */
 
 .main-nav {
     display: flex;
@@ -92,90 +58,46 @@ h1 {
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
-
     margin: 10px auto 35px;
 }
 
 .main-nav a {
     display: inline-block;
-
     padding: 10px 17px;
-
     border: 1px solid #514c70;
     border-radius: 22px;
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .035
-        );
-
+    background: rgba(255, 255, 255, .035);
     color: #c9b8d8;
-
     text-decoration: none;
-
     font-size: .72rem;
     letter-spacing: 1.5px;
-
-    transition:
-        .2s ease;
+    transition: .2s ease;
 }
 
 .main-nav a:hover {
     border-color: #d9bd78;
-
     color: #f3d58d;
-
-    background:
-        rgba(
-            217,
-            189,
-            120,
-            .08
-        );
-
-    transform:
-        translateY(-2px);
+    background: rgba(217, 189, 120, .08);
+    transform: translateY(-2px);
 }
 
 .main-nav .search-link {
     border-color: #8f84c9;
-
     color: #ddd7ff;
 }
 
 .main-nav .search-link:hover {
     border-color: #d9bd78;
-
     color: #f3d58d;
 }
 
 .hero {
     text-align: center;
-
     padding: 60px 25px;
-
     border: 1px solid #65577a;
     border-radius: 24px;
-
-    background:
-        rgba(
-            10,
-            15,
-            35,
-            .72
-        );
-
-    box-shadow:
-        0 0 50px
-        rgba(
-            100,
-            80,
-            160,
-            .18
-        );
+    background: rgba(10, 15, 35, .72);
+    box-shadow: 0 0 50px rgba(100, 80, 160, .18);
 }
 
 .hero h2 {
@@ -186,34 +108,19 @@ h1 {
 .hero p {
     max-width: 650px;
     margin: 20px auto;
-
     line-height: 1.8;
-
     color: #d8cedd;
 }
 
 .button {
     display: inline-block;
-
     margin-top: 20px;
-
     padding: 14px 30px;
-
     border-radius: 30px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #b28ac9,
-            #d9bd78
-        );
-
+    background: linear-gradient(90deg, #b28ac9, #d9bd78);
     color: #101323;
-
     font-weight: bold;
-
     text-decoration: none;
-
     letter-spacing: 2px;
 }
 
@@ -228,36 +135,17 @@ h1 {
 
 .rank-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(
-                130px,
-                1fr
-            )
-        );
-
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 15px;
-
     margin-top: 25px;
 }
 
 .rank {
     padding: 22px 12px;
-
     text-align: center;
-
     border: 1px solid #514c70;
     border-radius: 16px;
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .035
-        );
+    background: rgba(255, 255, 255, .035);
 }
 
 .number {
@@ -277,99 +165,47 @@ h1 {
 
 footer {
     text-align: center;
-
     padding: 55px 10px 25px;
-
     color: #9e91a8;
-
     letter-spacing: 2px;
-
     font-size: .75rem;
 }
 
 @media (max-width: 600px) {
-
-    .container {
-        padding: 15px;
-    }
-
-    header {
-        padding-top: 30px;
-    }
-
-    h1 {
-        letter-spacing: 6px;
-    }
-
+    .container { padding: 15px; }
+    header { padding-top: 30px; }
+    h1 { letter-spacing: 6px; }
     .main-nav {
         gap: 7px;
         margin-bottom: 25px;
     }
-
     .main-nav a {
         padding: 9px 13px;
         font-size: .65rem;
     }
-
 }
-
 </style>
-
 </head>
 
-
 <body>
-
-
 <div class="container">
 
-
 <header>
-
-    <div class="logo">
-        AETHER
-    </div>
-
-    <h1>
-        HALO UNIVERSE
-    </h1>
-
-    <div class="subtitle">
-        SEVEN STARS. ONE LIGHT.
-    </div>
-
+    <div class="logo">AETHER</div>
+    <h1>HALO UNIVERSE</h1>
+    <div class="subtitle">SEVEN STARS. ONE LIGHT.</div>
 </header>
 
-
-<!-- =========================
-     AETHERVERSE NAVIGATION
-========================= -->
-
+<!-- AETHERVERSE NAVIGATION -->
 <nav class="main-nav">
-
-    <a href="universe.html">
-        ✦ UNIVERSE
-    </a>
-
-    <a href="halo-home.html">
-        💙 MY HALO
-    </a>
-
-    <a
-        href="search.html"
-        class="search-link"
-    >
-        🔎 SEARCH
-    </a>
-
+    <a href="universe.html">✦ UNIVERSE</a>
+    <a href="halo-home.html">💙 MY HALO</a>
+    <a href="christmas-vault.html">✦ CHRISTMAS VAULT</a>
+    <a href="search.html" class="search-link">🔎 SEARCH</a>
 </nav>
 
-
 <section class="hero">
-
-    <h2>
-        Welcome, HALO.
-    </h2>
+    <h2>Welcome, HALO.</h2>
 
     <p>
         HALO is more than a fandom.
@@ -385,166 +221,67 @@ footer {
         the stage.
     </p>
 
-    <a
-        class="button"
-        href="universe.html"
-    >
+    <a class="button" href="universe.html">
         ENTER HALO UNIVERSE
     </a>
-
 </section>
 
-
-<section
-    id="ranks"
-    class="ranks"
->
-
-    <h2>
-        ✦ THE SEVEN RANKS ✦
-    </h2>
-
+<section id="ranks" class="ranks">
+    <h2>✦ THE SEVEN RANKS ✦</h2>
 
     <div class="rank-grid">
 
-
         <div class="rank">
-
-            <div class="number">
-                01
-            </div>
-
-            <div class="star">
-                ✦
-            </div>
-
-            <h3>
-                NEW STAR
-            </h3>
-
+            <div class="number">01</div>
+            <div class="star">✦</div>
+            <h3>NEW STAR</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                02
-            </div>
-
-            <div class="star">
-                ✧
-            </div>
-
-            <h3>
-                RISING STAR
-            </h3>
-
+            <div class="number">02</div>
+            <div class="star">✧</div>
+            <h3>RISING STAR</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                03
-            </div>
-
-            <div class="star">
-                ✦
-            </div>
-
-            <h3>
-                GUARDIAN
-            </h3>
-
+            <div class="number">03</div>
+            <div class="star">✦</div>
+            <h3>GUARDIAN</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                04
-            </div>
-
-            <div class="star">
-                ✧
-            </div>
-
-            <h3>
-                CELESTIAL
-            </h3>
-
+            <div class="number">04</div>
+            <div class="star">✧</div>
+            <h3>CELESTIAL</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                05
-            </div>
-
-            <div class="star">
-                ✦
-            </div>
-
-            <h3>
-                ETERNAL
-            </h3>
-
+            <div class="number">05</div>
+            <div class="star">✦</div>
+            <h3>ETERNAL</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                06
-            </div>
-
-            <div class="star">
-                ✧
-            </div>
-
-            <h3>
-                STARBORN
-            </h3>
-
+            <div class="number">06</div>
+            <div class="star">✧</div>
+            <h3>STARBORN</h3>
         </div>
 
-
         <div class="rank">
-
-            <div class="number">
-                07
-            </div>
-
-            <div class="star">
-                ✦
-            </div>
-
-            <h3>
-                LEGENDARY HALO
-            </h3>
-
+            <div class="number">07</div>
+            <div class="star">✦</div>
+            <h3>LEGENDARY HALO</h3>
         </div>
-
 
     </div>
-
 </section>
 
-
 <footer>
-
     ONE LIGHT • SEVEN STARS • ENDLESS LOVE
-
     <br><br>
-
     #WEAREHALO • #WEAREAETHER
-
 </footer>
 
-
 </div>
-
-
 </body>
 </html>
